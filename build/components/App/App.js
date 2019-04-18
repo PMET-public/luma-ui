@@ -1,18 +1,10 @@
-import { FlashMessage, FlashMessageProps } from 'src/components/FlashMessage'
-import React, { Fragment, FunctionComponent } from 'react'
-
-export type AppProps = {
-    flashMessage?: FlashMessageProps
-}
-
-export const App: FunctionComponent<AppProps> = ({ flashMessage, children }) => (
-    <Fragment>
-        { flashMessage && <FlashMessage type={flashMessage.type} message={flashMessage.message} /> }
-
-        <main>
-            {children}
-
-            <style>{`
+import { FlashMessage } from 'src/components/FlashMessage';
+import React, { Fragment } from 'react';
+export const App = ({ flashMessage, children }) => (React.createElement(Fragment, null,
+    flashMessage && React.createElement(FlashMessage, { type: flashMessage.type, message: flashMessage.message }),
+    React.createElement("main", null,
+        children,
+        React.createElement("style", null, `
                 :root {
                     --color-primary: blue;
                     --color-primary--contrast: white;
@@ -29,7 +21,5 @@ export const App: FunctionComponent<AppProps> = ({ flashMessage, children }) => 
                 body {
                     font-size: 1.6rem;
                 }
-            `}</style>
-        </main>
-    </Fragment>
-)
+            `))));
+//# sourceMappingURL=App.js.map

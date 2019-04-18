@@ -1,5 +1,5 @@
 {
-  "name": "@luma/storybook",
+  "name": "luma-storybook",
   "version": "0.0.1",
   "description": "Front-end Components Storybook",
   "repository": "git@github.com:PMET-public/luma-storybook.git",
@@ -11,8 +11,11 @@
   },
   "scripts": {
     "dev": "start-storybook -p 5001 --quiet",
-    "type-check": "tsc"
+    "build": "rimraf ./build && tsc"
   },
+  "files": [
+    "build"
+  ],
   "dependencies": {
     "@storybook/addon-a11y": "^5.0.10",
     "@storybook/addon-actions": "^5.0.10",
@@ -34,6 +37,7 @@
     "@types/styled-jsx": "^2.2.8",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
+    "rimraf": "^2.6.3",
     "typescript": "^3.4.3",
     "webpack": "^4.30.0"
   }
