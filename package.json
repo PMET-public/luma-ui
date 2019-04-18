@@ -9,6 +9,7 @@
     "node": ">=11.13.0",
     "yarn": ">=1.15.2"
   },
+  "main": "build/",
   "scripts": {
     "dev": "start-storybook -p 5001 --quiet",
     "build": "rimraf ./build && tsc",
