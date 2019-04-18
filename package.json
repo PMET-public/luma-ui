@@ -1,0 +1,40 @@
+{
+  "name": "luma-storybook",
+  "version": "0.0.1",
+  "description": "Front-end Components Storybook",
+  "repository": "git@github.com:PMET-public/luma-storybook.git",
+  "author": "Carlos A. Cabrera <cacabrer@adobe.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=11.13.0",
+    "yarn": ">=1.15.2"
+  },
+  "scripts": {
+    "dev": "start-storybook -p 5001 --quiet",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@storybook/addon-a11y": "^5.0.10",
+    "@storybook/addon-actions": "^5.0.10",
+    "@storybook/addon-backgrounds": "^5.0.10",
+    "@storybook/addon-info": "^5.0.10",
+    "@storybook/addon-knobs": "^5.0.10",
+    "@storybook/addon-viewport": "^5.0.10",
+    "@storybook/react": "^5.0.10",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@types/next": "^8.0.3",
+    "@types/storybook__addon-actions": "^3.4.2",
+    "@types/storybook__addon-knobs": "^4.0.5",
+    "@types/storybook__react": "^4.0.1",
+    "@types/styled-jsx": "^2.2.8",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.5",
+    "typescript": "^3.4.3",
+    "webpack": "^4.30.0"
+  }
+}
