@@ -14,7 +14,7 @@
     "build": "rimraf ./build && tsc"
   },
   "files": [
-    "build"
+    "src/"  
   ],
   "dependencies": {
     "@storybook/addon-a11y": "^5.0.10",
