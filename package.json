@@ -15,7 +15,7 @@
     "prepare": "yarn build"
   },
   "files": [
-    "src/"  
+    "build/"  
   ],
   "dependencies": {
     "@storybook/addon-a11y": "^5.0.10",
