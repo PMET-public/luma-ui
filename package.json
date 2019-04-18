@@ -1,5 +1,5 @@
 {
-  "name": "luma-storybook",
+  "name": "@luma/storybook",
   "version": "0.0.1",
   "description": "Front-end Components Storybook",
   "repository": "git@github.com:PMET-public/luma-storybook.git",
