@@ -14,9 +14,6 @@
     "build": "rimraf ./build && tsc",
     "prepare": "yarn build"
   },
-  "files": [
-    "build/"  
-  ],
   "dependencies": {
     "@storybook/addon-a11y": "^5.0.10",
     "@storybook/addon-actions": "^5.0.10",
