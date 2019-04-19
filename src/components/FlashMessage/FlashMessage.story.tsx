@@ -1,5 +1,5 @@
 import React from 'react'
-import FlashMessage from 'src/components/FlashMessage'
+import FlashMessage from './'
 import { action } from '@storybook/addon-actions'
 import { select, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'

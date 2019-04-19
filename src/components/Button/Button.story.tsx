@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from 'src/components/Button'
+import Button from './'
 import { text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 

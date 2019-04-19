@@ -10,7 +10,7 @@
         "forceConsistentCasingInFileNames": true,
         "jsx": "react",
         "lib": [ "dom", "es2017" ],
-        "module": "umd",
+        "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
@@ -25,5 +25,4 @@
     },
     "include": ["src/**/*"],
     "exclude": [ "node_modules", "dist" ],
-    "paths": { "src/*": [ "./src/*" ], },
 }

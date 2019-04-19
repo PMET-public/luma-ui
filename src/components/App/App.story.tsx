@@ -1,9 +1,9 @@
 import React from 'react'
-import App from 'src/components/App'
+import App from './'
 import { action } from '@storybook/addon-actions'
 import { boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
-import { FlashMessageProps } from 'src/components/FlashMessage'
+import { FlashMessageProps } from '../../components/FlashMessage'
 
 const flashMessage: FlashMessageProps = {
     type: 'info',

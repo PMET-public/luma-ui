@@ -1,5 +1,5 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { getClassNamesWithModifier } from 'src/lib/helpers'
+import { getClassNamesWithModifier } from '../../lib/helpers'
 
 type SidePanelProps = {
     position?: 'left' | 'right'
