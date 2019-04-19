@@ -1,5 +1,5 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { FlashMessage, FlashMessageProps } from 'src/components/FlashMessage'
+import FlashMessage, { FlashMessageProps } from 'src/components/FlashMessage'
 
 export type AppProps = {
     flashMessage?: FlashMessageProps
