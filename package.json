@@ -12,11 +12,15 @@
   "files": [
     "dist/"
   ],
+  "bin": {
+    "luma-storybook": "bin/luma-storybook.js"
+  },
   "scripts": {
     "dev": "concurrently -n typescript,storybook -c cyan,magenta 'tsc --watch --preserveWatchOutput' 'start-storybook -p 5001 --quiet'",
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "prepare": "yarn build && echo '👌 Finished building NPM package'"
+    "prepare": "yarn build && echo '👌 Finished building NPM package'",
+    "foo": "luma-storybook new foo"
   },
   "peerDependencies": {
     "next": "^8.1.0",
