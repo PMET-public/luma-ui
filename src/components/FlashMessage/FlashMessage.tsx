@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { getClassNamesWithModifier } from 'src/lib/helpers'
-import Button from 'src/components/Button'
+import { Button } from 'src/components/Button'
 
 export type FlashMessageProps = {
     message: string

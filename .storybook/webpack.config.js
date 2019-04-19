@@ -4,14 +4,19 @@ module.exports = ({ config }) => {
 
     config.resolve.alias = {
         ...config.resolve.alias,
-        'src': path.resolve(__dirname, '../src'),
+        src: path.resolve(__dirname, '../src'),
     }
 
     config.module.rules.push({
         test: /\.(ts|tsx)$/,
         use: [
             {
-                loader: require.resolve('awesome-typescript-loader'),
+                loader: require.resolve('babel-loader'),
+                options: {
+                    presets: [
+                        ['react-app', { flow: false, typescript: true }]
+                    ]
+                }
             },
         ],
     })

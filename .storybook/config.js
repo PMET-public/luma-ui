@@ -1,12 +1,12 @@
 import { addDecorator, addParameters, configure } from '@storybook/react'
 import { themes } from '@storybook/theming'
-import { withA11y } from '@storybook/addon-a11y'
 import { withInfo } from '@storybook/addon-info'
 import { withKnobs } from '@storybook/addon-knobs'
+import { withA11y } from '@storybook/addon-a11y'
 
 addDecorator(withInfo)
 addDecorator(withKnobs)
-// addDecorator(withA11y)
+addDecorator(withA11y)
 
 addParameters({
     backgrounds: [
