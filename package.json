@@ -10,8 +10,7 @@
     "yarn": ">=1.15.2"
   },
   "files": [
-    "components/",
-    "lib/"
+    "dist/"
   ],
   "scripts": {
     "dev": "concurrently -n typescript,storybook -c cyan,magenta 'tsc --watch --preserveWatchOutput' 'start-storybook -p 5001 --quiet'",
