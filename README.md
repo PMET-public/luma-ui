@@ -2,10 +2,10 @@
 
 ## Getting Started
 
-### 1.- Install Dependencies
+### Install Dependencies
 `yarn install`
 
-### 3.- Run Storybook Locally
+### Run Storybook Locally
 `yarn dev`
 
 
