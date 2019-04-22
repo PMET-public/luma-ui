@@ -1,8 +1,10 @@
 import { addDecorator, addParameters, configure } from '@storybook/react'
-import { themes } from '@storybook/theming'
+import { create } from '@storybook/theming'
 import { withInfo } from '@storybook/addon-info'
 import { withKnobs } from '@storybook/addon-knobs'
 import { withA11y } from '@storybook/addon-a11y'
+
+import Logo from './static/logo.png'
 
 addDecorator(withInfo)
 addDecorator(withKnobs)
@@ -14,8 +16,13 @@ addParameters({
         { name: 'Light', value: '#f9f9f9', default: false },
     ],
     options: {
-        brand: 'Luma',
-        theme: themes.dark,
+        theme: create({
+            base: 'dark',
+            brandTitle: 'Luma Storybook',
+            // brandUrl: 'https://example.com',
+            brandImage: Logo,
+            appBorderRadius: 20
+        }),
     },
 })
 
