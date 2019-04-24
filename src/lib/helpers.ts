@@ -1,9 +1,4 @@
 /**
- * Returns full page title
- */
-export const getFullPageTitle = (arr: string[]) => arr.filter(x => !!x).join(' | ')
-
-/**
  * Returns a string with all classes
  * i.e.: class-name
  */
