@@ -21,6 +21,7 @@ module.exports = (name) => {
     writeFile(`${dir}/${name}.tsx`, templateComponent(name, hyphenatedName))
     writeFile(`${dir}/${name}.story.tsx`, templateStory(name))
     writeFile(`${dir}/index.ts`, templateIndex(name))
+    writeFile(`${dir}/README.md`, templateREADME(name))
 }
 
 function writeFile(path, content) {
