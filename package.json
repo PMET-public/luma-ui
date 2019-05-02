@@ -14,7 +14,9 @@
   ],
   "scripts": {
     "predev": "rimraf dist",
-    "dev": "concurrently -n webpack,storybook -c cyan,magenta 'webpack --watch --preserveWatchOutput --mode=production' 'start-storybook -p 5001 --quiet'",
+    "dev": "concurrently -n webpack,storybook -c cyan,magenta 'yarn watch:webpack' 'yarn watch:storybook'",
+    "watch:storybook": "start-storybook -p 5001 --quiet",
+    "watch:webpack": "webpack --watch --preserveWatchOutput --mode=production",
     "prebuild": "rimraf dist",
     "build": "webpack --mode=production",
     "prepare": "yarn build",
