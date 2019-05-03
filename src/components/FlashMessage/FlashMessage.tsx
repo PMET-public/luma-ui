@@ -19,11 +19,7 @@ export const FlashMessage: FunctionComponent<FlashMessageProps> = ({ message, ty
                 background-color: var(--color-primary);
                 color: var(--color-primary--text);
                 font-size: 1.5rem;
-                left: 0;
                 padding: 1rem;
-                position: fixed;
-                right: 0;
-                top: 0;
             }
 
             .flash-message--error {

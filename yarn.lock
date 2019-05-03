@@ -1279,6 +1279,15 @@
     react "^16.8.1"
     util-deprecate "^1.0.2"
 
+"@storybook/addon-centered@^5.0.11":
+  version "5.0.11"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-centered/-/addon-centered-5.0.11.tgz#baf40cd21da23366f06a1e680c5ee94aec1cfcd9"
+  integrity sha512-SaYjoHe4JXWUEbM7I3Koxl8ejixJp9Vedik6zih2kU6ZsWpUcmvSvLNAXWh+XyksB6kSpgFeMko3TEIUcpIU0g==
+  dependencies:
+    core-js "^2.6.5"
+    global "^4.3.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/addon-knobs@^5.0.10":
   version "5.0.11"
   resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-5.0.11.tgz#1f093560ceec78f4906e0575ded0ac03b4494b09"
@@ -1774,6 +1783,14 @@
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/@types/storybook__addon-actions/-/storybook__addon-actions-3.4.2.tgz#1d08689cc3259269ddb3479a2307c9d16944309e"
   integrity sha512-CWxGz2pXav9PHcwrtXmkuH+xJL7sAu2AmIGEbkdT3Xs5jzBPZUEDEN//ZF7o6IOPP/tdXU37K1hrVMt9TDO0Bw==
+
+"@types/storybook__addon-centered@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-centered/-/storybook__addon-centered-3.4.0.tgz#0d33b1b7c4d965590ecf673c79d3b5cdd176fd75"
+  integrity sha512-COLgn0FV+Ofj8yL+Qt7VXRtAYNTNm5me9R1YQ0p9YxiaiYFxblGmIZCQRwkY0S3im0Ymr4tpqOTxyj/K1Eczcw==
+  dependencies:
+    "@types/react" "*"
+    "@types/storybook__react" "*"
 
 "@types/storybook__addon-knobs@^4.0.5":
   version "4.0.5"

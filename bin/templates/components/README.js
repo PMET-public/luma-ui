@@ -2,4 +2,8 @@ module.exports = Name => `
 
 # Components/${Name}
 
-`.trim()
+\`\`\`
+import 'luma-storybook/dist/components/${Name}'
+\`\`\`
+
+`.trimLeft()

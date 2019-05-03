@@ -16,4 +16,4 @@ export const ${Name}: FunctionComponent<${Name}Props> = ({ }) => (
     </Fragment>
 )
 
-`.trim()
+`.trimLeft()
