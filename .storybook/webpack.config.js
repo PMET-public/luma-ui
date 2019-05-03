@@ -3,17 +3,11 @@ const path = require('path')
 module.exports = ({ config }) => {
 
     config.module.rules.push({
-        test: /\.(ts|tsx)$/,
+        test: /\.tsx?$/,
         use: [
-            {
-                loader: require.resolve('babel-loader'),
-                options: {
-                    presets: [
-                        ['react-app', { flow: false, typescript: true }]
-                    ]
-                }
-            },
+            'awesome-typescript-loader',
         ],
+        exclude: /node_modules/,
     })
 
     config.resolve.extensions.push('.ts', '.tsx')

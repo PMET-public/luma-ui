@@ -19,7 +19,6 @@ addParameters({
             brandTitle: 'Luma Storybook',
             // brandUrl: 'https://example.com',
             brandImage: Logo,
-            appBorderRadius: 20
         }),
     },
 })

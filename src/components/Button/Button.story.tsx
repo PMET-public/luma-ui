@@ -1,11 +1,20 @@
 import React from 'react'
 import Button from './'
-import { text } from '@storybook/addon-knobs'
+import { text, select, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
+
+const types: any = {
+    button: 'button', 
+    reset: 'reset', 
+    submit: 'submit'
+}
 
 storiesOf('Components/Button', module)
     .add('React', () => (
-        <Button>
-            { text('Text', 'button') }
+        <Button 
+            disabled={ boolean('disabled', false, 'props') }
+            type={ select('type', types, 'button', 'props') }
+        >
+            { text('children', 'Label', 'props') }
         </Button>
     ))

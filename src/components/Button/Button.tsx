@@ -1,12 +1,13 @@
-import React, { Fragment, FunctionComponent, ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
+import React, { Fragment, FunctionComponent, ButtonHTMLAttributes } from 'react'
 
-export type ButtonProps = {} & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+export type ButtonProps = {
+    type?: 'button' | 'reset' | 'submit'
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button: FunctionComponent<ButtonProps> = ({ children, type = 'button', ...props }) => (
+
+export const Button: FunctionComponent<ButtonProps> = ({ type, ...props }) => (
     <Fragment>
-        <button className="button" type={type} {...props}>
-            {children}
-        </button>
+        <button className="button" type={type} {...props}></button>
 
         <style jsx>{`
             .button {
