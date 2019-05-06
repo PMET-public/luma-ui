@@ -1,0 +1,21 @@
+.banner-wrapper {
+    background-position: left top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    border-style: none;
+    border-width: 1px;
+    border-radius: 0px;
+    padding: 40px;
+    min-height: 600px;
+    text-align: center;
+}
+
+.overlay {
+    background-color: rgb(255, 255, 255);
+}
+
+.banner-button {
+    opacity: 1;
+    visibility: visible;
+}
