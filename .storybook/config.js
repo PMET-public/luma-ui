@@ -10,8 +10,8 @@ addDecorator(withA11y)
 
 addParameters({
     backgrounds: [
-        { name: 'Dark', value: '#333', default: true },
-        { name: 'Light', value: '#f9f9f9', default: false },
+        { name: 'Light', value: '#f9f9f9', default: true },
+        { name: 'Dark', value: '#333' },
     ],
     options: {
         theme: create({
