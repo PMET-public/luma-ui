@@ -1,0 +1,49 @@
+
+/* 
+    Theme Color System
+*/
+
+:root {
+    --color-background: #fff;
+    --color-on-background: #222;
+
+    --color-surface: #fff;
+    --color-on-surface: #222;
+
+    --color-primary: #f46f25;
+    --color-on-primary:#fff;
+    
+    --color-secondary: rgb(37, 169, 225);
+    --color-on-secondary: #fff;
+    
+    --color-error: #b00020;
+    --color-on-error: white;
+
+    background: var(--color-background);
+    color: var(--color-on-background);
+}
+
+.color-surface {
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+}
+
+.color-background {
+    background: var(--color-background);
+    color: var(--color-on-background);
+}
+
+.color-primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.color-secondary {
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+}
+
+.color-error {
+    background: var(--color-error);
+    color: var(--color-on-error);
+}

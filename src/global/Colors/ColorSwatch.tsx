@@ -35,7 +35,6 @@ export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
 
             <code className="color-swatch__value">
                 <strong>html</strong>.<Copy value={`color-${color}`} /><br/>                
-                <strong>less</strong><Copy value={`@color-${color}`} /><br/>
                 <strong>css</strong><Copy value={`var(--color-${color})`} />
             </code>
 
@@ -51,7 +50,6 @@ export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
                 </code>
 
                 <code className="color-swatch__value">
-                    <strong>less</strong><Copy value={`@color-on-${color}`} /><br/>
                     <strong>css</strong><Copy value={`var(--color-on-${color})`} />
                 </code>
             </div>

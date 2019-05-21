@@ -1,4 +1,4 @@
 import './reset.css'
 import './typography.css'
-import './colors.less'
-import './layout.less'
+import './colors.css'
+import './layout.css'

@@ -1,29 +1,40 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
-import './Colors.story.less'
 import ColorSwatch from './'
 
 storiesOf('Global', module)
     .add('🎨 Colors', () => (
         <Fragment>
     
-            <ul className="global-colors color-background">
-                <li className="global-colors__swatch">
-                    <ColorSwatch color="background" />
-                </li>
-                <li className="global-colors__swatch">
-                    <ColorSwatch color="surface" />
-                </li>
-                <li className="global-colors__swatch">
-                    <ColorSwatch color="primary" />
-                </li>
-                <li className="global-colors__swatch">
-                    <ColorSwatch color="secondary" />
-                </li>
-                <li className="global-colors__swatch">
-                    <ColorSwatch color="error" />
-                </li>
-            </ul>
+            <div className="global-colors color-background">
+                <ColorSwatch color="background" />
+                <ColorSwatch color="surface" />
+                <ColorSwatch color="primary" />
+                <ColorSwatch color="secondary" />
+                <ColorSwatch color="error" />
+            </div>
+
+            <style>{`
+                .global-colors {
+                    display: grid;
+                    grid-gap: 2rem;
+                    padding: 2rem;
+                    grid-template: 1fr / auto;
+                    grid-template-rows: auto;
+                }
+
+                @media (min-width: 768px) {
+                    .global-colors {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+
+                @media (min-width: 1224px) {
+                    .global-colors {
+                        grid-template-columns: repeat(auto-fit, minmax(10rem, 40rem));
+                    }
+                }
+            `}</style>
         </Fragment>
     ))
 
