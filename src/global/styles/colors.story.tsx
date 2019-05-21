@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
-import ColorSwatch from './'
+import ColorSwatch from '../../components/ColorSwatch'
+import centered from '@storybook/addon-centered';
 
-storiesOf('Global', module)
+storiesOf('🌎 Global', module)
+    .addDecorator(centered)
     .add('🎨 Colors', () => (
         <Fragment>
     
-            <div className="global-colors color-background">
+            <div className="container grid global-colors color-background">
                 <ColorSwatch color="background" />
                 <ColorSwatch color="surface" />
                 <ColorSwatch color="primary" />
@@ -15,23 +17,15 @@ storiesOf('Global', module)
             </div>
 
             <style>{`
-                .global-colors {
-                    display: grid;
-                    grid-gap: 2rem;
-                    padding: 2rem;
-                    grid-template: 1fr / auto;
-                    grid-template-rows: auto;
-                }
-
                 @media (min-width: 768px) {
                     .global-colors {
-                        grid-template-columns: repeat(2, 1fr);
+                        --columns: 2;
                     }
                 }
 
                 @media (min-width: 1224px) {
                     .global-colors {
-                        grid-template-columns: repeat(auto-fit, minmax(10rem, 40rem));
+                        --columns: 3;
                     }
                 }
             `}</style>

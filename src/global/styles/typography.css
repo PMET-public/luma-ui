@@ -34,10 +34,6 @@ p {
     margin-bottom: 1.5rem;
 }
 
-p:last-of-type {
-    margin-bottom: 0;
-}
-
 ul, ol {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
@@ -52,6 +48,7 @@ ul li, ol li {
 }
 
 blockquote {
+    font-size: 2.7rem;
     font-style: italic;
     line-height: 1.5;
     margin-bottom: 1.5rem;
@@ -116,5 +113,5 @@ table td, table th {
 
 code {
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    vertical-align: bottom;
+    font-size: 1.3rem;
 }

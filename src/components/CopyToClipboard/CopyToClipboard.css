@@ -1,0 +1,63 @@
+
+.copy {
+    align-items: baseline; 
+    box-sizing: border-box;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    max-width: 100%;
+}
+
+.copy__content {
+    line-height: 1.4;
+    overflow: scroll;
+}
+
+.copy__content::selection {
+    background-color: var(--color-primary, black);
+    color: var(--color-on-primary, white);
+}
+
+.copy::after {
+    content: "📋";
+    margin-left: 1.5rem;
+    margin-top: 0.4rem;
+    opacity: 0;
+    transform: scale(1.5)
+}
+
+.copy__label {
+    transition: opacity 250ms ease;
+}
+
+.copy:hover .copy__label,
+.copy:hover::after,
+.copy--success::after,
+.copy--failed::after {
+    opacity: 1;
+}
+
+.copy--success::after {
+    content:"👍";
+}
+
+.copy--failed::after {
+    content:"💩";
+}
+
+.copy__label {
+    align-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 1rem;
+    min-width: 5rem;
+    opacity: 0.5;
+    padding: 0.25rem;
+    transform: scale(0.8)
+}

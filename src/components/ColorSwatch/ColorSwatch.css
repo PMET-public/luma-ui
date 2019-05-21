@@ -11,14 +11,11 @@
     box-sizing: border-box;
 }
 
-.color-swatch > .color-swatch__value {
-    flex-grow: 1;
-}
-
 .color-swatch__info {
     justify-self: flex-end;
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+    margin-top: 2rem;
     width: 100%;
 }
 
@@ -26,23 +23,12 @@
     font-family: var(--font-family-heading);
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 0;
-    padding: 0 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0 0.75rem;
     text-transform: uppercase;
 }
 
 .color-swatch__value {
     display: block;
-    padding: 1rem;
-}
-
-.color-swatch__value > strong {
-    background-color: rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.5rem;
-    display: inline-block;
-    margin-right: 0.75rem;
-    min-width: 5rem;
-    padding: 0 1rem;
-    text-align: center;
+    padding: 0.5rem 1rem;
 }

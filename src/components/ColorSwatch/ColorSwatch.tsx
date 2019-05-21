@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
-import Copy from '../Copy';
+import CopyToClipboard from '../CopyToClipboard';
 
 type Props = {
     color: string
@@ -30,13 +30,21 @@ export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
             </h2>
 
             <code className="color-swatch__value">
-                <Copy value={colorValue} />
+                <CopyToClipboard>{colorValue}</CopyToClipboard>
             </code>
 
-            <code className="color-swatch__value">
-                <strong>html</strong>.<Copy value={`color-${color}`} /><br/>                
-                <strong>css</strong><Copy value={`var(--color-${color})`} />
+            <code className="color-swatch__value" data-label-before="html">
+                <CopyToClipboard label="html">{`
+                    color-${color}
+                `}</CopyToClipboard><br />
             </code>
+
+            <code className="color-swatch__value" data-label-before="css">
+                <CopyToClipboard label="css">{`
+                    var(--color-${color})
+                `}</CopyToClipboard>
+            </code>
+
 
             <div
                 className="color-swatch__info"
@@ -46,11 +54,13 @@ export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
                 }}
             >
                 <code className="color-swatch__value">
-                    <Copy value={onColorValue} /><br/>
+                    <CopyToClipboard>{onColorValue}</CopyToClipboard><br />
                 </code>
 
-                <code className="color-swatch__value">
-                    <strong>css</strong><Copy value={`var(--color-on-${color})`} />
+                <code className="color-swatch__value" data-label-before="css">
+                    <CopyToClipboard label="css">{`
+                        var(--color-on-${color})
+                    `}</CopyToClipboard>
                 </code>
             </div>
         </div>
