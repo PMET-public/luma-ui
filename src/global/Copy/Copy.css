@@ -1,0 +1,52 @@
+
+.copy__input {
+    background: transparent;
+    border-color: transparent;
+    border-style: dashed;
+    border-width: 0 0 1px 0;
+    box-sizing: border-box;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    padding: 0 0 0.4rem;
+}
+
+.copy__input:focus {
+    outline: none;
+}
+
+.copy__input::selection {
+    background-color: var(--color-primary, black);
+    color: var(--color-on-primary, white);
+}
+
+.copy__input:hover {
+    border-color: inherit;
+}
+
+
+.copy::after {
+    content: "📋";
+    display: inline-block;
+    opacity: 0;
+    font-size: 1.6rem;
+}
+
+.copy:hover::after {
+    opacity: 1;
+}
+
+.copy--success::after,
+.copy--failed::after {
+    opacity: 1;
+}
+
+.copy--success::after {
+    content:"👍";
+}
+
+.copy--failed::after {
+    content:"💩";
+}

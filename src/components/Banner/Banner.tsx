@@ -11,7 +11,7 @@ export const Banner: FunctionComponent<BannerProps> = ({ }) => (
                     <h2>Subheadline</h2>
                 </div>
             </div>
-            <button className="banner__button">Button</button>
+            <button className="banner__cta">Button</button>
         </div>
     </Fragment>
 )

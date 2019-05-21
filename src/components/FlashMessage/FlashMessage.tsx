@@ -12,6 +12,6 @@ export const FlashMessage: FunctionComponent<FlashMessageProps> = ({ message, ty
     <div className={getClassNamesWithModifier('flash-message', type)}>
         {message}
 
-        <Button onClick={onClose}>Close</Button>
+        <Button className="flash-message__cta" onClick={onClose}>Close</Button>
     </div>
 )

@@ -1,0 +1,49 @@
+.color-swatch {
+    border-radius: 1rem;
+    box-shadow: 0 0.1rem 0.4rem #ccc;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin: 1rem;
+    overflow: hidden;
+    padding: 0.5rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.color-swatch > .color-swatch__value {
+    flex-grow: 1;
+}
+
+.color-swatch__info {
+    justify-self: flex-end;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.color-swatch_title {
+    font-family: var(--font-family-heading);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding: 0 1rem;
+    text-transform: uppercase;
+}
+
+.color-swatch__value {
+    display: block;
+    padding: 1rem;
+}
+
+.color-swatch__value > strong {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    display: inline-block;
+    margin-right: 0.75rem;
+    min-width: 5rem;
+    padding: 0 1rem;
+    text-align: center;
+}

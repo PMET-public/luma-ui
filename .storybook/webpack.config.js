@@ -10,6 +10,15 @@ module.exports = ({ config }) => {
             ],
             exclude: /node_modules/,
         },
+        {
+            test: /\.less$/,
+            exclude: /node_modules/,
+            use: [
+                'style-loader', // creates style nodes from JS strings
+                'css-loader', // translates CSS into CommonJS
+                'less-loader', // compiles Less to CSS
+            ]
+        }
     )
 
     config.resolve.extensions.push('.ts', '.tsx')

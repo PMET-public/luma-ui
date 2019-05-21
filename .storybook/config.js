@@ -1,3 +1,4 @@
+import '../src/global/styles'
 import { addDecorator, addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'
@@ -11,7 +12,7 @@ addDecorator(withA11y)
 addParameters({
     backgrounds: [
         { name: 'Light', value: '#f9f9f9', default: true },
-        { name: 'Dark', value: '#333' },
+        // { name: 'Dark', value: '#333', default: true },
     ],
     options: {
         theme: create({

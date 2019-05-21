@@ -33,19 +33,21 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
+                test: /\.less$/,
+                exclude: /node_modules/,
+                use: [
+                    'style-loader', // creates style nodes from JS strings
+                    'css-loader', // translates CSS into CommonJS
+                    'less-loader', // compiles Less to CSS
+                ]
+            },
+            {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            import: true,
-                            modules: true,
-                        },
-                    }
+                    'style-loader', // creates style nodes from JS strings
+                    'css-loader', // translates CSS into CommonJS
                 ]
-                
             }
         ]
     },

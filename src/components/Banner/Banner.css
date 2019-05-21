@@ -1,21 +1,17 @@
 .banner {
-    background-position: left top;
-    background-size: cover;
-    background-repeat: no-repeat;
     background-attachment: scroll;
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0;
     border-style: none;
     border-width: 1px;
-    border-radius: 0px;
-    padding: 40px;
-    min-height: 600px;
+    min-height: 60rem;
+    padding: 4rem;
     text-align: center;
 }
 
-.banner__content__overlay {
-    background-color: rgb(255, 255, 255);
-}
-
-.banner__button {
+.banner__cta {
     opacity: 1;
     visibility: visible;
 }
