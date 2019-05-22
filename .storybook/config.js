@@ -1,4 +1,4 @@
-import '../src/global/styles'
+import '../src/styles'
 import { addDecorator, addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'

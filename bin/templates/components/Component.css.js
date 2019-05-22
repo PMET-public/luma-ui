@@ -1,12 +1,14 @@
-module.exports = (name) => `
+const source = require('common-tags').source
 
-.${name} {
-    align-items: center;
-    background-color: #fff;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    padding: 1rem 2rem;
-}
+module.exports = (name) => source`
 
-`.trimLeft()
+    .${name} {
+        align-items: center;
+        background-color: #fff;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        padding: 1rem 2rem;
+    }
+
+`

@@ -1,13 +1,15 @@
-module.exports = (Name, filename) => `
+const source = require('common-tags').source
 
-import React, { Fragment, FunctionComponent } from 'react'
+module.exports = (Name, filename) => source`
 
-type ${Name}Props = { }
+    import React, { Fragment, FunctionComponent } from 'react'
 
-export const ${Name}: FunctionComponent<${Name}Props> = ({ }) => (
-    <Fragment>
-        <div className="${filename}">👋 Hi, I'm ${Name}</div>
-    </Fragment>
-)
+    type ${Name}Props = { }
 
-`.trimLeft()
+    export const ${Name}: FunctionComponent<${Name}Props> = ({ }) => (
+        <Fragment>
+            <div className="${filename}">👋 Hi, I'm ${Name}</div>
+        </Fragment>
+    )
+
+`

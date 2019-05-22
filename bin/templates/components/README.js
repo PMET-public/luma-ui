@@ -1,9 +1,11 @@
-module.exports = Name => `
+const source = require('common-tags').source
 
-# Components/${Name}
+module.exports = Name => source`
 
-\`\`\`
-import 'luma-storybook/dist/components/${Name}'
-\`\`\`
+    # Components/${Name}
 
-`.trimLeft()
+    javascript\`\`\`
+    import 'luma-storybook/dist/components/${Name}'
+    \`\`\`
+
+`

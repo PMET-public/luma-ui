@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
-import ColorSwatch from '../../components/ColorSwatch'
+import ColorSwatch from '../components/ColorSwatch'
 import centered from '@storybook/addon-centered/react';
 
-storiesOf('🌎 Global', module)
+storiesOf('Styles/🎨 Colors', module)
     .addDecorator(centered)
-    .add('🎨 Colors', () => (
+    .add('Theme', () => (
         <Fragment>
     
             <div className="container grid global-colors color-background">

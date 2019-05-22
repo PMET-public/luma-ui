@@ -1,7 +1,9 @@
-module.exports = Name => `
+const source = require('common-tags').source
 
-import './${Name}.css'
-export * from './${Name}'
-export { ${Name} as default } from './${Name}'
+module.exports = Name => source`
 
-`.trimLeft()
+    import './${Name}.css'
+    export * from './${Name}'
+    export { ${Name} as default } from './${Name}'
+
+`

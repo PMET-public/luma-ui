@@ -1,10 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from '../../components/CodeBlock'
+import CodeBlock from '../components/CodeBlock'
 import centered from '@storybook/addon-centered/react'
 
 
-storiesOf('🌎 Global/📝 Typography', module)
+storiesOf('Styles/📝 Typography', module)
     .addDecorator(centered)
     .add('Headings', () => (
         <div className="container">

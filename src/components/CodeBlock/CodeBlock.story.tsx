@@ -6,7 +6,7 @@ import { text } from '@storybook/addon-knobs';
 
 storiesOf('Components/ClodeBlock', module)
     .addDecorator(centered)
-    .add('React', () => (
+    .add('Default', () => (
         <React.Fragment>
             <ClodeBlock language={text('label', null, 'props')}>
                 {text('children', 'Pssst! Copy me.', 'props')}
