@@ -12,4 +12,3 @@ storiesOf('💅 Styles/📐 Layout', module)
             `}</CodeBlock>
         </div>
     ))
-

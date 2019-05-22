@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
 import CodeBlock from '../CodeBlock'
 
-type Props = {
+type ColorSwatchProps = {
     color: string,
 }
 
-export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
+export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
 
     const colorWatchEl: any = useRef(null)
     const [colorValue, setColorValue] = useState('#ccc')
@@ -45,12 +45,11 @@ export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
                 `}</CodeBlock>
             </div>
 
-
             <div
                 className="color-swatch__info"
                 style={{
-                    color: `var(--color-${color})`,
                     backgroundColor: `var(--color-on-${color})`,
+                    color: `var(--color-${color})`,
                 }}
             >
                 <div className="color-swatch__value">

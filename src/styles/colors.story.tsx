@@ -7,7 +7,7 @@ storiesOf('💅 Styles/🎨 Colors', module)
     .addDecorator(centered)
     .add('Theme', () => (
         <Fragment>
-    
+
             <div className="container grid global-colors color-background">
                 <ColorSwatch color="background" />
                 <ColorSwatch color="surface" />
@@ -31,4 +31,3 @@ storiesOf('💅 Styles/🎨 Colors', module)
             `}</style>
         </Fragment>
     ))
-

@@ -1,23 +1,36 @@
 {
+    "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended",
-        "tslint-react"
+        "tslint:recommended"
     ],
+    "jsRules": {},
     "rules": {
-        "jsx-alignment": true,
-        "jsx-boolean-value": true,
-        "jsx-curly-spacing": [true, "never"],
-        "jsx-equals-spacing": [true, "never"],
-        "jsx-key": true,
-        "jsx-no-bind": true,
-        "jsx-no-lambda": true,
-        "jsx-no-multiline-js": false,
-        "jsx-no-string-ref": true,
-        "jsx-self-close": true,
         "arrow-parens": false,
-        "quotemark": [true, "single", "jsx-double"],
-        "semicolon": [true, "never"],
+        "curly": false,
+        "no-empty": false,
+        "object-literal-sort-keys": false,
+        "variable-name": false,
+        "max-line-length": false,
+        "max-classes-per-file": false,
         "interface-over-type-literal": false,
-        "ordered-imports": false
+        "no-shadowed-variable": false,
+        "no-var-requires": false,
+        "semicolon": [true, "never"],
+        "quotemark": [false, "never"],
+        "ordered-imports": false,
+        "member-access": false,
+        "member-ordering": false,
+        "no-console": [
+            true,
+            "log"
+        ]
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/types/**"
+        ]
     }
 }

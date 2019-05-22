@@ -1,9 +1,9 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { getClassNamesWithModifier } from '../../lib/helpers'
 
-type SidePanelProps = {
-    position?: 'left' | 'right'
-    isOpen?: boolean
+export type SidePanelProps = {
+    position?: 'left' | 'right',
+    isOpen?: boolean,
     onClickClose: () => void,
 }
 
@@ -18,7 +18,7 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
             <button
                 aria-hidden={true}
                 tabIndex={-1}
-                className={getClassNamesWithModifier('side-panel-screen', ['open', isOpen])} 
+                className={getClassNamesWithModifier('side-panel-screen', ['open', isOpen])}
                 type="button"
                 onClick={onClickClose}
             />

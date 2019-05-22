@@ -1,14 +1,14 @@
 import React, { FunctionComponent, useState, useRef, useEffect } from 'react'
 import { stripIndent } from 'common-tags'
-import { getClassNamesWithModifier } from '../../lib/helpers'
+import { getClassNamesWithModifier } from "../../lib/helpers"
 import Prism from 'prismjs'
 
-type Props = { 
-    children: string
-    language?: string
+export type CodeBlockProps = {
+    children: string,
+    language?: string,
 }
 
-export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
+export const CodeBlock: FunctionComponent<CodeBlockProps> = ({ children, language }) => {
 
     const [hasCopied, setHasCopied] = useState(false)
     const [hasFailed, setHasFailed] = useState(false)
@@ -26,7 +26,7 @@ export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
 
         try {
             triggerSelect()
-            
+
             document.execCommand('copy')
 
             setHasCopied(true)
@@ -36,8 +36,6 @@ export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
             }, 1500)
 
         } catch (err) {
-            console.error(err)
-
             setHasFailed(true)
 
             setTimeout(() => {
@@ -52,21 +50,24 @@ export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
     }, [children, language])
 
     return children ? (
-        <pre 
+        <pre
             aria-label={`Copy to clipboard`}
             className={
                 getClassNamesWithModifier('code-block',
                     ['success', hasCopied],
-                    ['failed', hasFailed]
+                    ['failed', hasFailed],
                 )
             }
-            onClick={triggerCopy} 
+            onClick={triggerCopy}
         >
 
-            { language && <strong className="code-block__label">{language}</strong> }
-        
-            <code className={`language-${language} code-block__content`} ref={inputEl} dangerouslySetInnerHTML={{ __html: stripIndent`${children}` }}></code>
-           
+            {language && <strong className="code-block__label">{language}</strong>}
+
+            <code
+                className={`language-${language} code-block__content`}
+                ref={inputEl}
+                dangerouslySetInnerHTML={{ __html: stripIndent`${children}` }}
+            />
         </pre>
     ) : null
 }
