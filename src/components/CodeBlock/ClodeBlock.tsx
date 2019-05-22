@@ -15,7 +15,6 @@ export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
     const inputEl: any = useRef(null)
 
     function triggerSelect() {
-        // inputEl.current.select()
         const selection: any = window.getSelection();
         const range = document.createRange();
         range.selectNodeContents(inputEl.current);
@@ -66,7 +65,7 @@ export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
 
             { language && <strong className="code-block__label">{language}</strong> }
         
-            <code className={`language-${language} code-block__content`} ref={inputEl}>{stripIndent`${children}`}</code>
+            <code className={`language-${language} code-block__content`} ref={inputEl} dangerouslySetInnerHTML={{ __html: stripIndent`${children}` }}></code>
            
         </pre>
     ) : null

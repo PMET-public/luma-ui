@@ -8,7 +8,7 @@ storiesOf('📦 Components/ClodeBlock', module)
     .addDecorator(centered)
     .add('Default', () => (
         <React.Fragment>
-            <ClodeBlock language={text('label', null, 'props')}>
+            <ClodeBlock language={text('label', '', 'props')}>
                 {text('children', 'Pssst! Copy me.', 'props')}
             </ClodeBlock>
         </React.Fragment>
