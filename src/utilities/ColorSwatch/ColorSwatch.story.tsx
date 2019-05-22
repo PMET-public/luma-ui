@@ -12,7 +12,7 @@ const colors = {
     error: 'error',
 }
 
-storiesOf('📦 Components/ColorSwatch', module)
+storiesOf('🏗 Utilities/ColorSwatch', module)
     .addDecorator(centered)
     .add('Default', () => (
         <div>

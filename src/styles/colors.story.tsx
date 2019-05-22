@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
-import ColorSwatch from '../components/ColorSwatch'
+import ColorSwatch from '../utilities/ColorSwatch'
 import centered from '@storybook/addon-centered/react';
 
 storiesOf('💅 Styles/🎨 Colors', module)

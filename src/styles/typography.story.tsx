@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from '../components/CodeBlock'
+import CodeBlock from '../utilities/CodeBlock'
 import centered from '@storybook/addon-centered/react'
 
 

@@ -34,5 +34,5 @@
 }
 
 .color-swatch__value .token {
-    color: inherit;
+    color: inherit !important;
 }
