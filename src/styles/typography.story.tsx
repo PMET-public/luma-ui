@@ -4,7 +4,7 @@ import CodeBlock from '../components/CodeBlock'
 import centered from '@storybook/addon-centered/react'
 
 
-storiesOf('Styles/📝 Typography', module)
+storiesOf('💅 Styles/📝 Typography', module)
     .addDecorator(centered)
     .add('Headings', () => (
         <div className="container">

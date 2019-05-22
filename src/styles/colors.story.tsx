@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import ColorSwatch from '../components/ColorSwatch'
 import centered from '@storybook/addon-centered/react';
 
-storiesOf('Styles/🎨 Colors', module)
+storiesOf('💅 Styles/🎨 Colors', module)
     .addDecorator(centered)
     .add('Theme', () => (
         <Fragment>
