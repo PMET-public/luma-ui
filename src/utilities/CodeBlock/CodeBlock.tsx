@@ -66,8 +66,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({ children, languag
             <code
                 className={`language-${language} code-block__content`}
                 ref={inputEl}
-                dangerouslySetInnerHTML={{ __html: stripIndent`${children}` }}
-            />
+            >{stripIndent`${children}`}</code>
         </pre>
     ) : null
 }
