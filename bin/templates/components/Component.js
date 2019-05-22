@@ -12,4 +12,4 @@ module.exports = (Name, filename) => source`
         </Fragment>
     )
 
-`
+` + '\n'

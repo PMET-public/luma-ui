@@ -13,4 +13,4 @@ module.exports = Name => source`
             <${Name} />
         ))
 
-`
+` + '\n'

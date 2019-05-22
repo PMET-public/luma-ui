@@ -6,4 +6,4 @@ module.exports = Name => source`
     export * from './${Name}'
     export { ${Name} as default } from './${Name}'
 
-`
+` + '\n'

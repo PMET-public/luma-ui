@@ -11,4 +11,4 @@ module.exports = (name) => source`
         padding: 1rem 2rem;
     }
 
-`
+` + '\n'
