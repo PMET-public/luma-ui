@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
 import CodeBlock from '../CodeBlock'
+import Card from '../Card'
 
 type ColorSwatchProps = {
     color: string,
@@ -18,7 +19,7 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
     }, [color])
 
     return (
-        <div
+        <Card
             className={`color-swatch color-${color}`}
             ref={colorWatchEl}
             style={{
@@ -62,6 +63,6 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
                     `}</CodeBlock>
                 </div>
             </div>
-        </div>
+        </Card>
     )
 }

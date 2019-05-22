@@ -5,6 +5,19 @@ import centered from '@storybook/addon-centered/react'
 
 storiesOf('💅 Styles/📝 Typography', module)
     .addDecorator(centered)
+    .add('Variables', () => (
+        <CodeBlock language="css">{`
+            :root {
+                --font-size-base: 10px;
+                --font-family-body: source-sans-pro, sans-serif;
+                --font-weight-body: 400;
+                --font-style-body: normal;
+                --font-family-heading: rucksack, sans-serif;
+                --font-weight-heading: 400;
+                --font-style-heading: normal;
+            }
+        `}</CodeBlock>
+    ))
     .add('Headings', () => (
         <div className="container">
             <h1>Heading Level One</h1>

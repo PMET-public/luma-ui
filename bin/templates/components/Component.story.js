@@ -9,7 +9,7 @@ module.exports = Name => source`
 
     storiesOf('📦 Components/${Name}', module)
         .addDecorator(centered)
-        .add('React', () => (
+        .add('Default', () => (
             <${Name} />
         ))
 

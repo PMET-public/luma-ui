@@ -7,23 +7,22 @@
     "rules": {
         "arrow-parens": false,
         "curly": false,
-        "no-empty": false,
-        "object-literal-sort-keys": false,
-        "variable-name": false,
-        "max-line-length": false,
+        "ignore-template-strings": true,
         "max-classes-per-file": false,
-        "interface-over-type-literal": false,
-        "no-shadowed-variable": false,
-        "no-var-requires": false,
-        "semicolon": [true, "never"],
-        "quotemark": [false, "never"],
-        "ordered-imports": false,
+        "max-line-length": false,
         "member-access": false,
         "member-ordering": false,
-        "no-console": [
-            true,
-            "log"
-        ]
+        "no-console": [ true, "log" ],
+        "no-empty": false,
+        "no-shadowed-variable": false,
+        "no-trailing-whitespace": false,
+        "no-var-requires": false,
+        "object-literal-sort-keys": false,
+        "ordered-imports": false,
+        "quotemark": [false, "never"],
+        "semicolon": [true, "never"],
+        "variable-name": false,
+        "interface-over-type-literal": false
     },
     "rulesDirectory": [],
     "linterOptions": {

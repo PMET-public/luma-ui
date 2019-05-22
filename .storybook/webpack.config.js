@@ -11,6 +11,15 @@ module.exports = ({ config }) => {
             ],
             exclude: /node_modules/,
         },
+        {
+            test: /\.scss$/,
+            exclude: /node_modules/,
+            use: [
+                'style-loader',
+                'css-loader',
+                'sass-loader',
+            ]
+        },
     )
 
     config.resolve.extensions.push('.ts', '.tsx')

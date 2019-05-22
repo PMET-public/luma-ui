@@ -1,14 +1,9 @@
 .color-swatch {
-    border-radius: 1rem;
-    box-shadow: 0 0.1rem 0.4rem #ccc;
     display: flex;
     flex-direction: column;
     font-size: 1.3rem;
     line-height: 1.5;
-    overflow: hidden;
-    padding: 0.5rem;
     position: relative;
-    box-sizing: border-box;
 }
 
 .color-swatch__info {

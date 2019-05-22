@@ -3,6 +3,11 @@ import { stripIndent } from 'common-tags'
 import { getClassNamesWithModifier } from "../../lib/helpers"
 import Prism from 'prismjs'
 
+/** Prims Extra Languages */
+require('prismjs/components/prism-sass.js')
+require('prismjs/components/prism-jsx.js')
+require('prismjs/components/prism-typescript.js')
+
 export type CodeBlockProps = {
     children: string,
     language?: string,
