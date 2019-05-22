@@ -1,13 +1,14 @@
-import React, { FunctionComponent, useState, useRef } from 'react'
+import React, { FunctionComponent, useState, useRef, useEffect } from 'react'
 import { stripIndent } from 'common-tags'
 import { getClassNamesWithModifier } from '../../lib/helpers'
+import Prism from 'prismjs'
 
 type Props = { 
-    label?: string
     children: string
+    language?: string
 }
 
-export const CopyToClipboard: FunctionComponent<Props> = ({ children, label }) => {
+export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
 
     const [hasCopied, setHasCopied] = useState(false)
     const [hasFailed, setHasFailed] = useState(false)
@@ -47,11 +48,15 @@ export const CopyToClipboard: FunctionComponent<Props> = ({ children, label }) =
 
     }
 
+    useEffect(() => {
+        if (language) Prism.highlightAll()
+    }, [children, language])
+
     return children ? (
-        <div 
+        <pre 
             aria-label={`Copy to clipboard`}
             className={
-                getClassNamesWithModifier('copy',
+                getClassNamesWithModifier('code-block',
                     ['success', hasCopied],
                     ['failed', hasFailed]
                 )
@@ -59,10 +64,10 @@ export const CopyToClipboard: FunctionComponent<Props> = ({ children, label }) =
             onClick={triggerCopy} 
         >
 
-            { label && <strong className="copy__label">{label}</strong> }
+            { language && <strong className="code-block__label">{language}</strong> }
         
-            <pre className="copy__content" ref={inputEl}>{stripIndent`${children}`}</pre>
+            <code className={`language-${language} code-block__content`} ref={inputEl}>{stripIndent`${children}`}</code>
            
-        </div>
+        </pre>
     ) : null
 }

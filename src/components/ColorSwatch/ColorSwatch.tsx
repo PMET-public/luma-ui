@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
-import CopyToClipboard from '../CopyToClipboard';
+import CodeBlock from '../CodeBlock';
 
 type Props = {
     color: string
@@ -29,21 +29,21 @@ export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
                 {color}
             </h2>
 
-            <code className="color-swatch__value">
-                <CopyToClipboard>{colorValue}</CopyToClipboard>
-            </code>
+            <div className="color-swatch__value">
+                <CodeBlock>{colorValue}</CodeBlock>
+            </div>
 
-            <code className="color-swatch__value" data-label-before="html">
-                <CopyToClipboard label="html">{`
+            <div className="color-swatch__value" data-label-before="html">
+                <CodeBlock language="html">{`
                     color-${color}
-                `}</CopyToClipboard><br />
-            </code>
+                `}</CodeBlock><br />
+            </div>
 
-            <code className="color-swatch__value" data-label-before="css">
-                <CopyToClipboard label="css">{`
+            <div className="color-swatch__value" data-label-before="css">
+                <CodeBlock language="css">{`
                     var(--color-${color})
-                `}</CopyToClipboard>
-            </code>
+                `}</CodeBlock>
+            </div>
 
 
             <div
@@ -53,15 +53,15 @@ export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {
                     backgroundColor: `var(--color-on-${color})`,
                 }}
             >
-                <code className="color-swatch__value">
-                    <CopyToClipboard>{onColorValue}</CopyToClipboard><br />
-                </code>
+                <div className="color-swatch__value">
+                    <CodeBlock>{onColorValue}</CodeBlock><br />
+                </div>
 
-                <code className="color-swatch__value" data-label-before="css">
-                    <CopyToClipboard label="css">{`
+                <div className="color-swatch__value" data-label-before="css">
+                    <CodeBlock language="css">{`
                         var(--color-on-${color})
-                    `}</CopyToClipboard>
-                </code>
+                    `}</CodeBlock>
+                </div>
             </div>
         </div>
     )

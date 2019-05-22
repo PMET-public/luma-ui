@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
 import ColorSwatch from '../../components/ColorSwatch'
-import centered from '@storybook/addon-centered';
+import centered from '@storybook/addon-centered/react';
 
 storiesOf('🌎 Global', module)
     .addDecorator(centered)

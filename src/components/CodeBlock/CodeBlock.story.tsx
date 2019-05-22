@@ -1,16 +1,16 @@
 import React from 'react'
-import CopyToClipboard from '.'
+import ClodeBlock from '.'
 import centered from '@storybook/addon-centered/react'
 import { storiesOf } from '@storybook/react'
 import { text } from '@storybook/addon-knobs';
 
-storiesOf('Components/CopyToClipboard', module)
+storiesOf('Components/ClodeBlock', module)
     .addDecorator(centered)
     .add('React', () => (
         <React.Fragment>
-            <CopyToClipboard label={text('label', null, 'props')}>
+            <ClodeBlock language={text('label', null, 'props')}>
                 {text('children', 'Pssst! Copy me.', 'props')}
-            </CopyToClipboard>
+            </ClodeBlock>
         </React.Fragment>
     ))
 
