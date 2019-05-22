@@ -4,19 +4,24 @@ import { getClassNamesWithModifier } from '../../lib/helpers'
 type SidePanelProps = {
     position?: 'left' | 'right'
     isOpen?: boolean
-    onClickClose: () => void
+    onClickClose: () => void,
 }
 
-export const SidePanel: FunctionComponent<SidePanelProps> = ({ children, onClickClose, position = 'left', isOpen = true }) => {
+export const SidePanel: FunctionComponent<SidePanelProps> = ({
+    children,
+    onClickClose,
+    position = 'left',
+    isOpen = true,
+}) => {
     return (
         <Fragment>
-            <button 
+            <button
                 aria-hidden={true}
                 tabIndex={-1}
                 className={getClassNamesWithModifier('side-panel-screen', ['open', isOpen])} 
                 type="button"
                 onClick={onClickClose}
-            ></button>
+            />
 
             <div className={getClassNamesWithModifier('side-panel', position, ['open', isOpen])}>
                 {children}

@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
-import CodeBlock from '../CodeBlock';
+import CodeBlock from '../CodeBlock'
 
 type Props = {
-    color: string
+    color: string,
 }
 
 export const ColorSwatch: FunctionComponent<Props> = ({ color }) => {

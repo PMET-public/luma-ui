@@ -29,7 +29,15 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'awesome-typescript-loader',
+                use: [
+                    'awesome-typescript-loader',
+                    {
+                        loader: 'tslint-loader',
+                        options: {
+                            fix: true,
+                        }
+                    }
+                ],
                 exclude: /node_modules/,
             },
             {

@@ -7,6 +7,7 @@ module.exports = ({ config }) => {
             test: /\.tsx?$/,
             use: [
                 'awesome-typescript-loader',
+                'tslint-loader',
             ],
             exclude: /node_modules/,
         },

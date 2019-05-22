@@ -7,8 +7,8 @@ import { storiesOf } from '@storybook/react'
 storiesOf('📦 Components/SidePanel', module)
     .add('Default', () => (
         <SidePanel
-            position={ select('position', { left: 'left', right: 'right' }, 'left', 'props') }
-            isOpen={ boolean('isOpen', false, 'props') }
-            onClickClose={ action('onClickClose') }
+            position={select('position', { left: 'left', right: 'right' }, 'left', 'props')}
+            isOpen={boolean('isOpen', false, 'props')}
+            onClickClose={action('onClickClose')}
         />
     ))

@@ -15,11 +15,11 @@ export const CodeBlock: FunctionComponent<Props> = ({ children, language }) => {
     const inputEl: any = useRef(null)
 
     function triggerSelect() {
-        const selection: any = window.getSelection();
-        const range = document.createRange();
-        range.selectNodeContents(inputEl.current);
-        selection.removeAllRanges();
-        selection.addRange(range);
+        const selection: any = window.getSelection()
+        const range = document.createRange()
+        range.selectNodeContents(inputEl.current)
+        selection.removeAllRanges()
+        selection.addRange(range)
     }
 
     function triggerCopy() {
