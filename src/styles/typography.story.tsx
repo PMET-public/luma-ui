@@ -1,32 +1,36 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import CodeBlock from '../utilities/CodeBlock'
-import centered from '@storybook/addon-centered/react'
+import { text } from '@storybook/addon-knobs'
 
-storiesOf('💅 Styles/📝 Typography', module)
-    .addDecorator(centered)
-    .add('Variables', () => (
-        <CodeBlock lang="css">{`
-            :root {
-                --font-size-base: 10px;
-                --font-family-body: source-sans-pro, sans-serif;
-                --font-weight-body: 400;
-                --font-style-body: normal;
-                --font-family-heading: rucksack, sans-serif;
-                --font-weight-heading: 400;
-                --font-style-heading: normal;
-            }
-        `}</CodeBlock>
-    ))
-    .add('Headings', () => (
+storiesOf('💅 Styles', module)
+    .add('📝 Typography', () => (
         <div className="container">
+            <CodeBlock render={true} lang="css">{`
+                /**
+                 * Theme Colors
+                 */
+
+                :root {
+                    --font-size-base: ${text('--font-size-base', '10px')};
+                    --font-family-body: ${text('--font-family-body', 'source-sans-pro, sans-serif')};
+                    --font-weight-body: ${text('--font-weight-body', '400')};
+                    --font-style-body: ${text('--font-style-body', 'normal')};
+                    --font-family-heading: ${text('--font-family-heading', 'rucksack, sans-serif')};
+                    --font-weight-heading: ${text('--font-weight-heading', '400')};
+                    --font-style-heading: ${text('--font-style-heading', 'normal')};
+                }
+            `}</CodeBlock>
+
+            <hr />
+
             <CodeBlock render={true} lang="html">{`
                 <h1>Heading Level One</h1>
             `}</CodeBlock>
 
             <hr />
 
-            <CodeBlock  render={true} lang="html">{`
+            <CodeBlock render={true} lang="html">{`
                 <h2>Heading Level Two</h2>
             `}</CodeBlock>
 
@@ -54,10 +58,8 @@ storiesOf('💅 Styles/📝 Typography', module)
                 <h6>Heading Level Six</h6>
             `}</CodeBlock>
 
-        </div>
-    ))
-    .add('Paragraphs', () => (
-        <div className="container">
+            <hr />
+
             <CodeBlock render={true} lang="html">{`
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -75,11 +77,8 @@ storiesOf('💅 Styles/📝 Typography', module)
                 </p>
             `}</CodeBlock>
 
-        </div>
-    ))
+            <hr />
 
-    .add('Lists', () => (
-        <div className="container">
             <CodeBlock render={true} lang="html">{`
                 <ul>
                     <li>The first item in a list</li>
@@ -89,7 +88,7 @@ storiesOf('💅 Styles/📝 Typography', module)
                 </ul>
             `}</CodeBlock>
 
-            <hr/>
+            <hr />
 
             <CodeBlock render={true} lang="html">{`
                 <ol>
@@ -99,7 +98,7 @@ storiesOf('💅 Styles/📝 Typography', module)
                 </ol>
             `}</CodeBlock>
 
-            <hr/>
+            <hr />
 
             <CodeBlock render={true} lang="html">{`
                 <ul>
@@ -115,14 +114,13 @@ storiesOf('💅 Styles/📝 Typography', module)
                 </ul>
             `}</CodeBlock>
 
-        </div>
-    ))
-    .add('Quote', () => (
-        <div className="container">
+            <hr />
+
             <CodeBlock render={true} lang="html">{`
                 <blockquote>
                     Wow, this quote is so wonderful. I hope cheese quickly zaps a large mule.
                 </blockquote>
             `}</CodeBlock>
+
         </div>
     ))

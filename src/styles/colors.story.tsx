@@ -1,38 +1,39 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { storiesOf } from '@storybook/react'
 import ColorSwatch from '../utilities/ColorSwatch'
-import centered from '@storybook/addon-centered/react'
 import CodeBlock from '../utilities/CodeBlock'
+import { color } from '@storybook/addon-knobs'
 
-storiesOf('💅 Styles/🎨 Colors', module)
-    .addDecorator(centered)
-    .add('Variables', () => (
-        <CodeBlock lang="css">{`
-            :root {
-                --color-background: #fff;
-                --color-on-background: #222;
+storiesOf('💅 Styles', module)
+    .add('🎨 Colors', () => (
+        <div className="container">
 
-                --color-surface: #fff;
-                --color-on-surface: #222;
+            <CodeBlock render={true} lang="css">{`
+                /**
+                 * Theme Colors
+                 */
 
-                --color-primary: #f46f25;
-                --color-on-primary:#fff;
+                :root {
+                    --color-background: ${color('--color-background', '#fff')};
+                    --color-on-background: ${color('--color-on-background', '#222')};
 
-                --color-secondary: rgb(37, 169, 225);
-                --color-on-secondary: #fff;
+                    --color-surface: ${color('--color-surface', '#fff')};
+                    --color-on-surface: ${color('--color-on-surface', '#222')};
 
-                --color-error: #b00020;
-                --color-on-error: white;
+                    --color-primary: ${color('--color-primary', '#f46f25')};
+                    --color-on-primary: ${color('--color-on-primary', '#fff')};
 
-                --color-code: rgba(0, 0, 0, 0.75);
-                --color-on-code: white;
-            }
-        `}</CodeBlock>
-    ))
-    .add('Theme', () => (
-        <Fragment>
+                    --color-secondary: ${color('--color-secondary', 'rgb(37, 169, 225)')};
+                    --color-on-secondary: ${color('--color-secondary', '#fff')};
 
-            <div className="container grid global-colors color-background">
+                    --color-error: ${color('--color-error', '#b00020')};
+                    --color-on-error: ${color('--color-error', 'white')};
+                }
+            `}</CodeBlock>
+
+            <hr/>
+
+            <div className="grid global-colors color-background">
                 <ColorSwatch color="background" />
                 <ColorSwatch color="surface" />
                 <ColorSwatch color="primary" />
@@ -53,5 +54,5 @@ storiesOf('💅 Styles/🎨 Colors', module)
                     }
                 }
             `}</style>
-        </Fragment>
+        </div>
     ))
