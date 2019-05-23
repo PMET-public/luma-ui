@@ -63,7 +63,7 @@ storiesOf('💅 Styles', module)
                 }
             `}</CodeBlock>
 
-            <CodeBlock lang="less" render={true} hideSource={true}>{`
+            <CodeBlock lang="less" render={true} showSource={false}>{`
                 @import "/breakpoints.less";
 
                 .my-html-element > div {

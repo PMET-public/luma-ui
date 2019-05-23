@@ -10,13 +10,13 @@ require('prismjs/components/prism-jsx.js')
 require('prismjs/components/prism-typescript.js')
 
 export type CodeBlockProps = { children: string } & ({
-    hideSource?: undefined,
     lang?: string,
     render?: undefined,
+    showSource?: undefined,
 } | {
-    hideSource?: boolean,
     lang: 'html' | 'css' | 'js' | 'less',
     render?: boolean,
+    showSource?: boolean,
 })
 
 /**
@@ -47,7 +47,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     children,
     lang,
     render = false,
-    hideSource = false,
+    showSource = true,
 }) => {
 
     const [hasCopied, setHasCopied] = useState(false)
@@ -102,7 +102,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
             {render && lang === 'js' && renderJS(source)}
 
-            {hideSource === false && (
+            {showSource && (
                 <pre
                     aria-label={`Copy to clipboard`}
                     className={
