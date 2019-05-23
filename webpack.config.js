@@ -43,12 +43,23 @@ module.exports = {
                 ]
             },
             {
-                test: /\.scss$/,
+                test: /\.less$/,
                 exclude: /node_modules/,
                 use: [
                     'style-loader',
-                    'css-loader',
-                    'sass-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            paths: [ path.resolve('src/styles/') ],
+                            sourceMap: true,
+                        },
+                    },
                 ]
             },
         ]

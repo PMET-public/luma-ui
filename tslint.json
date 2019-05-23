@@ -7,7 +7,6 @@
     "rules": {
         "arrow-parens": false,
         "curly": false,
-        "ignore-template-strings": true,
         "max-classes-per-file": false,
         "max-line-length": false,
         "member-access": false,

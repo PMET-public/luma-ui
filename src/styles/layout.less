@@ -1,4 +1,4 @@
-@import "./_mixins";
+@import "/breakpoints.less";
 
 :root {
     /* Grid proportions */
@@ -17,7 +17,7 @@
     /* Container Width */
     --container-width: 100vw;
 
-    @include breakpoint('xlarge') {
+    @media @xlarge-screen {
         --container-width: 1300px;
     }
 }
