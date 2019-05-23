@@ -6,6 +6,8 @@ import { text } from '@storybook/addon-knobs'
 storiesOf('💅 Styles', module)
     .add('📝 Typography', () => (
         <div className="container">
+            <h2>CSS Variables</h2>
+
             <CodeBlock render={true} lang="css">{`
                 /**
                  * Theme Colors
@@ -60,6 +62,8 @@ storiesOf('💅 Styles', module)
 
             <hr />
 
+            <h2>Paragraph</h2>
+
             <CodeBlock render={true} lang="html">{`
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -78,6 +82,8 @@ storiesOf('💅 Styles', module)
             `}</CodeBlock>
 
             <hr />
+            
+            <h2>Unordered List</h2>
 
             <CodeBlock render={true} lang="html">{`
                 <ul>
@@ -88,8 +94,10 @@ storiesOf('💅 Styles', module)
                 </ul>
             `}</CodeBlock>
 
-            <hr />
+            <br/>
 
+            <h2>Ordered List</h2>
+            
             <CodeBlock render={true} lang="html">{`
                 <ol>
                     <li>How many ways can we list?</li>
@@ -98,7 +106,9 @@ storiesOf('💅 Styles', module)
                 </ol>
             `}</CodeBlock>
 
-            <hr />
+            <hr/>
+
+            <h2>Nested List</h2>
 
             <CodeBlock render={true} lang="html">{`
                 <ul>
@@ -115,12 +125,18 @@ storiesOf('💅 Styles', module)
             `}</CodeBlock>
 
             <hr />
+            
+            <h2 style={{ marginBottom: '3rem' }}>Quote</h2>
 
             <CodeBlock render={true} lang="html">{`
                 <blockquote>
                     Wow, this quote is so wonderful. I hope cheese quickly zaps a large mule.
                 </blockquote>
             `}</CodeBlock>
+
+            <style>
+                
+            </style>
 
         </div>
     ))

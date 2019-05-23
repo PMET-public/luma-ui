@@ -6,6 +6,7 @@ storiesOf('💅 Styles', module)
     .add('📐 Layout', () => (
 
         <div className="container">
+            <h2>CSS Variables</h2>
             <CodeBlock lang="css">{`
                 :root {
                     --grid-width: 960;
@@ -16,6 +17,8 @@ storiesOf('💅 Styles', module)
 
             <hr />
             
+            <h2>Breakpoints</h2>
+
             <div className="global-layout-breakpoints grid">
                 <CodeBlock lang="less">{`
                     @media @medium-screen {
@@ -38,6 +41,8 @@ storiesOf('💅 Styles', module)
 
             <hr />
 
+            <h2>Grid</h2>
+                    
             <CodeBlock render={true} lang="html">{`
                 <div class="my-html-element grid">
                     <div>Uno</div>
@@ -66,10 +71,14 @@ storiesOf('💅 Styles', module)
             <CodeBlock lang="less" render={true} showSource={false}>{`
                 @import "/breakpoints.less";
 
+                .my-html-element {
+                    margin: 3rem 0;
+                }
+
                 .my-html-element > div {
                     align-items: center;
                     background-color: var(--color-surface);
-                    border-radius: 2rem;
+                    border-radius: 1rem;
                     box-shadow: 0.1rem 0 1rem #ccc;
                     color: var(--color-on-surface);
                     display: flex; 

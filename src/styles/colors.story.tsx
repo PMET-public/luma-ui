@@ -7,7 +7,7 @@ import { color } from '@storybook/addon-knobs'
 storiesOf('💅 Styles', module)
     .add('🎨 Colors', () => (
         <div className="container">
-
+            <h2> CSS Variables </h2>
             <CodeBlock render={true} lang="css">{`
                 /**
                  * Theme Colors
@@ -31,28 +31,28 @@ storiesOf('💅 Styles', module)
                 }
             `}</CodeBlock>
 
-            <hr/>
+            <hr />
 
-            <div className="grid global-colors color-background">
+            <div className="global-colors color-background grid">
                 <ColorSwatch color="background" />
                 <ColorSwatch color="surface" />
                 <ColorSwatch color="primary" />
                 <ColorSwatch color="secondary" />
                 <ColorSwatch color="error" />
             </div>
+            
+            <CodeBlock lang="less" render={true} showSource={false}>{`
+                @import "/breakpoints.less";
 
-            <style>{`
-                @media (min-width: 768px) {
-                    .global-colors {
+                .global-colors {
+                    @media @medium-screen {
                         --columns: 2;
                     }
-                }
 
-                @media (min-width: 1224px) {
-                    .global-colors {
+                    @media @large-screen {
                         --columns: 3;
                     }
                 }
-            `}</style>
+            `}</CodeBlock>
         </div>
     ))
