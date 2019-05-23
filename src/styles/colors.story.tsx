@@ -7,7 +7,7 @@ import CodeBlock from '../utilities/CodeBlock'
 storiesOf('💅 Styles/🎨 Colors', module)
     .addDecorator(centered)
     .add('Variables', () => (
-        <CodeBlock language="css">{`
+        <CodeBlock lang="css">{`
             :root {
                 --color-background: #fff;
                 --color-on-background: #222;

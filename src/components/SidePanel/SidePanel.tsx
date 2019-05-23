@@ -1,5 +1,5 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { getClassNamesWithModifier } from '../../lib/helpers'
+import { getbem } from '../../lib/helpers'
 
 export type SidePanelProps = {
     position?: 'left' | 'right',
@@ -18,12 +18,12 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
             <button
                 aria-hidden={true}
                 tabIndex={-1}
-                className={getClassNamesWithModifier('side-panel-screen', ['open', isOpen])}
+                className={getbem('side-panel-screen', ['open', isOpen])}
                 type="button"
                 onClick={onClickClose}
             />
 
-            <div className={getClassNamesWithModifier('side-panel', position, ['open', isOpen])}>
+            <div className={getbem('side-panel', position, ['open', isOpen])}>
                 {children}
             </div>
         </Fragment>

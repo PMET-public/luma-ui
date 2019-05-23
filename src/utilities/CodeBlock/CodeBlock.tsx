@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useState, useRef, useEffect } from 'react'
+import React, { FunctionComponent, useState, useRef, useEffect, Fragment } from 'react'
 import { stripIndent } from 'common-tags'
-import { getClassNamesWithModifier } from "../../lib/helpers"
+import { getbem } from "../../lib/helpers"
 import Prism from 'prismjs'
 
 /** Prims Extra Languages */
@@ -8,16 +8,26 @@ require('prismjs/components/prism-sass.js')
 require('prismjs/components/prism-jsx.js')
 require('prismjs/components/prism-typescript.js')
 
-export type CodeBlockProps = {
-    children: string,
-    language?: string,
+export type CodeBlockProps = { children: string } & ({
+    lang?: string,
+    render?: undefined,
+} | {
+    lang: 'html' | 'css' | 'js',
+    render?: boolean,
+})
+
+const execJs = (script: string) => {
+    const scriptEl = document.createElement('script')
+    scriptEl.innerHTML = script
+    document.body.append(scriptEl)
 }
 
-export const CodeBlock: FunctionComponent<CodeBlockProps> = ({ children, language }) => {
+export const CodeBlock: FunctionComponent<CodeBlockProps> = ({ children, lang, render = false }) => {
 
     const [hasCopied, setHasCopied] = useState(false)
     const [hasFailed, setHasFailed] = useState(false)
     const inputEl: any = useRef(null)
+    const source = stripIndent`${children}`
 
     function triggerSelect() {
         const selection: any = window.getSelection()
@@ -51,27 +61,41 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({ children, languag
     }
 
     useEffect(() => {
-        if (language) Prism.highlightAll()
-    }, [children, language])
+        if (lang) Prism.highlightAll()
+    }, [children, lang])
 
     return children ? (
-        <pre
-            aria-label={`Copy to clipboard`}
-            className={
-                getClassNamesWithModifier('code-block',
-                    ['success', hasCopied],
-                    ['failed', hasFailed],
-                )
-            }
-            onClick={triggerCopy}
-        >
+        <Fragment>
 
-            {language && <strong className="code-block__label">{language}</strong>}
+            {render && lang === 'html' && <div
+                className="code-block__render-html"
+                dangerouslySetInnerHTML={{ __html: source }}
+            ></div>}
 
-            <code
-                className={`language-${language} code-block__content`}
-                ref={inputEl}
-            >{stripIndent`${children}`}</code>
-        </pre>
+            {render && lang === 'css' && <style
+                dangerouslySetInnerHTML={{ __html: source }}
+            ></style>}
+
+            {render && lang === 'js' && execJs(source)}
+
+            <pre
+                aria-label={`Copy to clipboard`}
+                className={
+                    getbem('code-block',
+                        ['success', hasCopied],
+                        ['failed', hasFailed],
+                    )
+                }
+                onClick={triggerCopy}
+            >
+
+                {lang && <strong className="code-block__label">{lang}</strong>}
+
+                <code
+                    className={`language-${lang} code-block__content`}
+                    ref={inputEl}
+                >{source}</code>
+            </pre>
+        </Fragment>
     ) : null
 }

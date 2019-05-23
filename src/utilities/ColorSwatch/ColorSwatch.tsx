@@ -24,6 +24,7 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
             ref={colorWatchEl}
             style={{
                 borderColor: `var(--color-${color})`,
+                padding: '0.5rem',
             }}
         >
             <h2 className="color-swatch_title">
@@ -34,14 +35,14 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
                 <CodeBlock>{colorValue}</CodeBlock>
             </div>
 
-            <div className="color-swatch__value" data-label-before="html">
-                <CodeBlock language="html">{`
+            <div className="color-swatch__value">
+                <code>.</code><CodeBlock>{`
                     color-${color}
                 `}</CodeBlock><br />
             </div>
 
-            <div className="color-swatch__value" data-label-before="css">
-                <CodeBlock language="css">{`
+            <div className="color-swatch__value">
+                <CodeBlock lang="css">{`
                     var(--color-${color})
                 `}</CodeBlock>
             </div>
@@ -57,8 +58,8 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
                     <CodeBlock>{onColorValue}</CodeBlock><br />
                 </div>
 
-                <div className="color-swatch__value" data-label-before="css">
-                    <CodeBlock language="css">{`
+                <div className="color-swatch__value">
+                    <CodeBlock lang="css">{`
                         var(--color-on-${color})
                     `}</CodeBlock>
                 </div>

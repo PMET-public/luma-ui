@@ -16,6 +16,10 @@
     overflow: scroll;
 }
 
+.code-block__render-html {
+    margin-bottom: 2rem;
+}
+
 .code-block::after {
     content: "📋";
     margin-left: 1.5rem;
