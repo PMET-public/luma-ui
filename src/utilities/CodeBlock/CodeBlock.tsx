@@ -5,12 +5,12 @@ import Prism from 'prismjs'
 import less from 'less'
 
 /** Prims Extra Languages */
-require('prismjs/components/prism-less.js')
-require('prismjs/components/prism-jsx.js')
-require('prismjs/components/prism-typescript.js')
+require('prismjs/components/prism-less')
+require('prismjs/components/prism-jsx')
+require('prismjs/components/prism-tsx.js')
 
 export type CodeBlockProps = { children: string } & ({
-    lang?: string,
+    lang?: 'tsx' | 'jsx',
     render?: undefined,
     showSource?: undefined,
 } | {
@@ -89,7 +89,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     useEffect(() => {
         if (lang) Prism.highlightAll()
         if (lang === 'less') less.refreshStyles()
-    }, [children, lang])
+    }, [children, lang, showSource, render])
 
     return children ? (
         <Fragment>
