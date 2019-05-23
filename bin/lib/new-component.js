@@ -3,8 +3,7 @@ const fs = require('fs')
 const templateComponent = require('../templates/components/Component')
 const templateStory = require('../templates/components/Component.story')
 const templateIndex = require('../templates/components/index')
-const templateREADME = require('../templates/components/README')
-const templateCSS = require('../templates/components/Component.css')
+const templateCSS = require('../templates/components/Component.less')
 
 module.exports = (name) => {
     if (! /^[A-Z][a-z]+(?:[A-Z][a-z]+)*$/.test(name) ) {
@@ -22,8 +21,7 @@ module.exports = (name) => {
     writeFile(`${dir}/${name}.tsx`, templateComponent(name, hyphenatedName))
     writeFile(`${dir}/${name}.story.tsx`, templateStory(name))
     writeFile(`${dir}/index.ts`, templateIndex(name))
-    writeFile(`${dir}/README.md`, templateREADME(name))
-    writeFile(`${dir}/${name}.css`, templateCSS(hyphenatedName))
+    writeFile(`${dir}/${name}.less`, templateCSS(hyphenatedName))
 }
 
 function writeFile(path, content) {

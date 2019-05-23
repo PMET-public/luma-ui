@@ -29,7 +29,9 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'awesome-typescript-loader',
+                use: [
+                    'awesome-typescript-loader',
+                ],
                 exclude: /node_modules/,
             },
             {
@@ -37,16 +39,29 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     'style-loader',
+                    'css-loader',
+                ]
+            },
+            {
+                test: /\.less$/,
+                exclude: /node_modules/,
+                use: [
+                    'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
-                            import: true,
-                            modules: true,
+                            sourceMap: true,
                         },
-                    }
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            paths: [ path.resolve('src/styles/') ],
+                            sourceMap: true,
+                        },
+                    },
                 ]
-                
-            }
+            },
         ]
     },
 
