@@ -8,7 +8,8 @@ module.exports = (name) => source`
         border-radius: 1rem;
         display: flex;
         justify-content: center;
-        padding: 1rem 2rem;
+        padding: 2rem 3rem;
+        box-shadow: 0 0 1rem #ccc;
     }
 
 ` + '\n'

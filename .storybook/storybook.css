@@ -9,14 +9,3 @@ hr {
     border-right: 0;
     margin: var(--gutter-unit) 0;
 }
-
-
-.global-welcome__buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-.global-welcome__buttons > * {
-    padding: 1rem;
-}
