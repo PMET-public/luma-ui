@@ -41,7 +41,7 @@ storiesOf('💅 Styles', module)
                 <ColorSwatch color="error" />
             </div>
             
-            <CodeBlock lang="less" render={true} showSource={false}>{`
+            <CodeBlock lang="less" render={true}>{`
                 @import "breakpoints.less";
 
                 .global-colors {

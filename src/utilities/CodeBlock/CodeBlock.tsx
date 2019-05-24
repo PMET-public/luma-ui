@@ -1,127 +1,110 @@
-import React, { FunctionComponent, useState, useRef, useEffect, Fragment, ReactElement } from 'react'
+import React, { FunctionComponent, useEffect, Fragment, useState, ReactElement, useRef } from 'react'
 import { stripIndent } from 'common-tags'
-import { getbem } from "../../lib/helpers"
-import Prism from 'prismjs'
+import { getbem } from '../../lib/helpers'
 import less from 'less'
+import prism from 'prismjs'
 
-/** Prims Extra Languages */
 import 'prismjs/components/prism-less'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-graphql'
 
 export type CodeBlockProps = { children: string } & ({
-    lang?: 'tsx' | 'jsx',
+    lang: 'tsx' | 'jsx' | 'graphql' | 'js',
     render?: undefined,
-    showSource?: undefined,
 } | {
-    lang: 'html' | 'css' | 'js' | 'less',
+    lang: 'html' | 'css'| 'less',
     render?: boolean,
-    showSource?: boolean,
 })
 
 /**
  * Renders
  */
-export const renderJS = (script: string): void => {
+export const renderJS = (scriptSource: string): void => {
     const scriptEl = document.createElement('script')
-    scriptEl.innerHTML = script
+    scriptEl.innerHTML = scriptSource
     document.body.append(scriptEl)
 }
 
-export const renderLESS = (source: string): ReactElement => {
-    return <style type="text/less" dangerouslySetInnerHTML={{ __html: source }}></style>
+export const renderLESS = (lessSource: string): ReactElement => {
+    return <style type="text/less" dangerouslySetInnerHTML={{ __html: lessSource }}></style>
 }
 
-export const renderHTML = (source: string): ReactElement => (
+export const renderHTML = (htmlSource: string): ReactElement => (
     <div
         className="code-block__render-html"
-        dangerouslySetInnerHTML={{ __html: source }}
+        dangerouslySetInnerHTML={{ __html: htmlSource }}
     ></div>
 )
 
-const renderCSS = (source: string) => (
-    <style dangerouslySetInnerHTML={{ __html: source }}></style>
+export const renderCSS = (cssSource: string) => (
+    <style dangerouslySetInnerHTML={{ __html: cssSource }}></style>
 )
 
 export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     children,
     lang,
     render = false,
-    showSource = true,
 }) => {
+    const [source, setSource] = useState('')
+    const [copyStatus, setCopyStatus] = useState(0)
+    const inputEl: any = useRef()
+   
+    useEffect(() => {
+        const highlightedSource = stripIndent(prism.highlight(children, prism.languages[lang], lang))
+        
+        setSource(highlightedSource)
 
-    const [hasCopied, setHasCopied] = useState(false)
-    const [hasFailed, setHasFailed] = useState(false)
-    const inputEl: any = useRef(null)
-    const source = stripIndent`${children}`
-
-    const triggerSelect = () => {
-        const selection: any = window.getSelection()
-        const range = document.createRange()
-        range.selectNodeContents(inputEl.current)
-        selection.removeAllRanges()
-        selection.addRange(range)
-    }
+        if ( render && lang === 'less') less.refreshStyles()
+    }, [source, render])
 
     const triggerCopy = () => {
-
         try {
-            triggerSelect()
-
+            const selection: any = window.getSelection()
+            const range = document.createRange()
+            range.selectNodeContents(inputEl.current)
+            selection.removeAllRanges()
+            selection.addRange(range)
             document.execCommand('copy')
 
-            setHasCopied(true)
+            setCopyStatus(1)
 
             setTimeout(() => {
-                setHasCopied(false)
+                setCopyStatus(0)
             }, 1500)
 
         } catch (err) {
-            setHasFailed(true)
+            setCopyStatus(-1)
 
             setTimeout(() => {
-                setHasFailed(false)
+                setCopyStatus(0)
             }, 1500)
         }
 
     }
 
-    useEffect(() => {
-        if (lang && showSource === true) Prism.highlightAll()
-        if (lang === 'less') less.refreshStyles()
-    }, [children, lang, showSource, render])
-
-    return children ? (
+    return (
         <Fragment>
 
-            {render && lang === 'html' && renderHTML(source)}
+            {render && lang === 'html' && renderHTML(children)}
 
-            {render && lang === 'css' && renderCSS(source)}
+            {render && lang === 'css' && renderCSS(children)}
 
-            {render && lang === 'less' && renderLESS(source)}
+            {render && lang === 'less' && renderLESS(children)}
 
-            {render && lang === 'js' && renderJS(source)}
-
-            {showSource && (
-                <pre
-                    aria-label={`Copy to clipboard`}
-                    className={
-                        getbem('code-block',
-                            ['success', hasCopied],
-                            ['failed', hasFailed],
-                        )
-                    }
-                    onClick={triggerCopy}
-                >
-
-                    {lang && <strong className="code-block__label">{lang}</strong>}
-
-                    <code
-                        className={`language-${lang} code-block__content`}
-                        ref={inputEl}
-                    >{source}</code>
-                </pre>
-            )}
+            <pre 
+                className={getbem(`code-block`, ['success', copyStatus === 1], ['error', copyStatus === -1])} 
+                onClick={triggerCopy} 
+            >
+                <span className="code-block__label">{lang}</span>
+                <code
+                    className="code-block__source"
+                    dangerouslySetInnerHTML={{ __html: source }}
+                    ref={inputEl}
+                    spellCheck={false}
+                ></code>
+            </pre>
+            
         </Fragment>
-    ) : null
+    )
 }

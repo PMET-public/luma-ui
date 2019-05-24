@@ -6,77 +6,46 @@ import { select } from '@storybook/addon-knobs'
 
 storiesOf('🏗 Utilities/CodeBlock', module)
     .addDecorator(centered)
-    .add('Default', () => (
-        <CodeBlock>Psst... Copy me!</CodeBlock>
-    ))
     .add('css', () => (
-        <div className="wrapper">
-
         <CodeBlock 
             lang="css"
             render={select('render', { true: true, false: false }, true)}
-            showSource={select('showSource', { true: true, false: false }, true)}
-            >{`
-                .wrapper {
-                    background-color: #eee;
-                    padding: 3rem;
-                    border-radius: 3rem;
-                }
-            `}</CodeBlock>
-        </div>
+        >{`
+            :root {
+                background-color: var(--color-secondary);
+                padding: 3rem;
+                border-radius: 3rem;
+            }
+        `}</CodeBlock>
     ))
     .add('less', () => (
         <CodeBlock 
             lang="less"
             render={select('render', { true: true, false: false }, true)}
-            showSource={select('showSource', { true: true, false: false }, true)}
             >{`
+                // Resize me ↔
+
                 @import "breakpoints.less";
 
                 :root {
-                    background-color: pink;
+                    background-color: var(--color-primary);
                     padding: 3rem;
                     border-radius: 3rem;
 
                     @media @medium-screen {
-                        background-color: cyan;
+                        background-color: var(--color-secondary);
                     }
 
                     @media @large-screen {
-                        background-color: white;
-                    }
-                    &:before {
-                        content: "Small Screen";
-                        font-size: 1.3rem;
-                        color: gray;
-                        font-style: italic;
-
-                        @media @medium-screen {
-                            content: "@medium-screen";
-                        }
-
-                        @media @large-screen {
-                            content: "@large-screen";
-                        }
-
-                        @media @xlarge-screen {
-                            content: "@xlarge-screen";
-                        }
+                        background-color: var(--color-background);
                     }
                 }
             `}</CodeBlock>
     ))
     .add('js', () => (
-        <div className="wrapper">
-
-        <CodeBlock 
-            lang="js"
-            render={select('render', { true: true, false: false }, true)}
-            showSource={select('showSource', { true: true, false: false }, true)}
-            >{`
+        <CodeBlock lang="js">{`
                 console.log('🏡 I live in the console')
-            `}</CodeBlock>
-        </div>
+        `}</CodeBlock>
     ))
     .add('html', () => (
         <div className="wrapper">
@@ -84,7 +53,6 @@ storiesOf('🏗 Utilities/CodeBlock', module)
         <CodeBlock 
             lang="html"
             render={select('render', { true: true, false: false }, true)}
-            showSource={select('showSource', { true: true, false: false }, true)}
             >{`
                 <h1>My name is Header</h1>  
             `}</CodeBlock>

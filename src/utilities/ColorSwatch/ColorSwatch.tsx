@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
-import CodeBlock from '../CodeBlock'
 import Card from '../Card'
 
 type ColorSwatchProps = {
@@ -32,19 +31,15 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
             </h2>
 
             <div className="color-swatch__value">
-                <CodeBlock>{colorValue}</CodeBlock>
+                {colorValue}
             </div>
 
             <div className="color-swatch__value">
-                <code>.</code><CodeBlock>{`
-                    color-${color}
-                `}</CodeBlock><br />
+                .color-{color}
             </div>
 
             <div className="color-swatch__value">
-                <CodeBlock lang="css">{`
-                    var(--color-${color})
-                `}</CodeBlock>
+                var(--color-{color})
             </div>
 
             <div
@@ -55,13 +50,11 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
                 }}
             >
                 <div className="color-swatch__value">
-                    <CodeBlock>{onColorValue}</CodeBlock><br />
+                    {onColorValue}
                 </div>
 
                 <div className="color-swatch__value">
-                    <CodeBlock lang="css">{`
-                        var(--color-on-${color})
-                    `}</CodeBlock>
+                   var(--color-on-{color})
                 </div>
             </div>
         </Card>
