@@ -24,10 +24,10 @@ storiesOf('💅 Styles', module)
                     --color-on-primary: ${color('--color-on-primary', '#fff')};
 
                     --color-secondary: ${color('--color-secondary', 'rgb(37, 169, 225)')};
-                    --color-on-secondary: ${color('--color-secondary', '#fff')};
+                    --color-on-secondary: ${color('--color-on-secondary', '#fff')};
 
                     --color-error: ${color('--color-error', '#b00020')};
-                    --color-on-error: ${color('--color-error', 'white')};
+                    --color-on-error: ${color('--color-on-error', '#fff')};
                 }
             `}</CodeBlock>
 
