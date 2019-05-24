@@ -1,0 +1,38 @@
+@import "./breakpoints";
+
+:root {
+    /* Grid proportions */
+    --grid-width: 960;
+    --grid-column-width: 60;
+    --grid-columns: 12;
+    /* Grid logic */
+    --grid-gutters: calc(var(--grid-columns) - 1);
+    /* Grid proportion logic */
+    --column-proportion: calc(var(--grid-column-width) / var(--grid-width));
+    --gutter-proportion: calc((1 - (var(--grid-columns) * var(--column-proportion))) / var(--grid-gutters));
+    /* Container Units */
+    --column-unit: calc(var(--column-proportion) * var(--container-width));
+    --gutter-unit: calc(var(--gutter-proportion) * var(--container-width));
+    --column-and-gutter-unit: calc(var(--column-unit) + var(--gutter-unit));
+    /* Container Width */
+    --container-width: 100vw;
+
+    @media @xlarge-screen {
+        --container-width: 1300px;
+    }
+}
+
+.container {
+    width: var(--container-width);
+    padding: var(--gutter-unit);
+    margin: 0 auto;
+}
+
+.grid {
+    --columns: 1;
+    --gap: var(--gutter-unit);
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-gap: var(--gap);
+}

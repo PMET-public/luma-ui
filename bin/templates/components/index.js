@@ -1,6 +1,9 @@
-module.exports = Name => `
+const source = require('common-tags').source
 
-export * from './${Name}'
-export { ${Name} as default } from './${Name}'
+module.exports = Name => source`
 
-`.trim()
+    import './${Name}.less'
+    export * from './${Name}'
+    export { ${Name} as default } from './${Name}'
+
+` + '\n'

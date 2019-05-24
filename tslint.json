@@ -1,0 +1,34 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "arrow-parens": false,
+        "curly": false,
+        "max-classes-per-file": false,
+        "max-line-length": false,
+        "member-access": false,
+        "member-ordering": false,
+        "no-console": [ true, "log" ],
+        "no-empty": false,
+        "no-shadowed-variable": false,
+        "no-trailing-whitespace": false,
+        "no-var-requires": false,
+        "object-literal-sort-keys": false,
+        "ordered-imports": false,
+        "quotemark": [false, "never"],
+        "semicolon": [true, "never"],
+        "variable-name": false,
+        "interface-over-type-literal": false
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/types/**"
+        ]
+    }
+}
