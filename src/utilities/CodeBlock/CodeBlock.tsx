@@ -5,9 +5,9 @@ import Prism from 'prismjs'
 import less from 'less'
 
 /** Prims Extra Languages */
-require('prismjs/components/prism-less')
-require('prismjs/components/prism-jsx')
-require('prismjs/components/prism-tsx.js')
+import 'prismjs/components/prism-less'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-tsx'
 
 export type CodeBlockProps = { children: string } & ({
     lang?: 'tsx' | 'jsx',

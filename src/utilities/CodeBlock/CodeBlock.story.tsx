@@ -26,8 +26,6 @@ storiesOf('🏗 Utilities/CodeBlock', module)
         </div>
     ))
     .add('less', () => (
-        <div className="wrapper">
-
         <CodeBlock 
             lang="less"
             render={select('render', { true: true, false: false }, true)}
@@ -35,8 +33,8 @@ storiesOf('🏗 Utilities/CodeBlock', module)
             >{`
                 @import "breakpoints.less";
 
-                .wrapper {
-                    background-color: #eee;
+                :root {
+                    background-color: pink;
                     padding: 3rem;
                     border-radius: 3rem;
 
@@ -45,11 +43,28 @@ storiesOf('🏗 Utilities/CodeBlock', module)
                     }
 
                     @media @large-screen {
-                        background-color: yellow;
+                        background-color: white;
+                    }
+                    &:before {
+                        content: "Small Screen";
+                        font-size: 1.3rem;
+                        color: gray;
+                        font-style: italic;
+
+                        @media @medium-screen {
+                            content: "@medium-screen";
+                        }
+
+                        @media @large-screen {
+                            content: "@large-screen";
+                        }
+
+                        @media @xlarge-screen {
+                            content: "@xlarge-screen";
+                        }
                     }
                 }
             `}</CodeBlock>
-        </div>
     ))
     .add('js', () => (
         <div className="wrapper">
