@@ -87,7 +87,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     }
 
     useEffect(() => {
-        if (lang) Prism.highlightAll()
+        if (lang && showSource === true) Prism.highlightAll()
         if (lang === 'less') less.refreshStyles()
     }, [children, lang, showSource, render])
 
