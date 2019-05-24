@@ -9,9 +9,10 @@ import 'prismjs/components/prism-less'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-graphql'
+import 'prismjs/components/prism-bash'
 
 export type CodeBlockProps = { children: string } & ({
-    lang: 'tsx' | 'jsx' | 'graphql' | 'js',
+    lang: 'tsx' | 'jsx' | 'graphql' | 'js' | 'bash',
     render?: undefined,
 } | {
     lang: 'html' | 'css'| 'less',
@@ -57,7 +58,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         setSource(highlightedSource)
 
         if ( render && lang === 'less') less.refreshStyles()
-    }, [source, render])
+    }, [children, source, render])
 
     const triggerCopy = () => {
         try {
