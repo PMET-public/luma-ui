@@ -1,6 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from './CodeBlock'
+import CodeBlock from '../../utilities/CodeBlock'
+import './layout.story.less'
 
 storiesOf('💅 Styles', module)
     .add('📐 Layout', () => (
@@ -69,43 +70,5 @@ storiesOf('💅 Styles', module)
                     }
                 `}</CodeBlock>
             </div>
-
-            <CodeBlock lang="less" render={true}>{`
-                @import "breakpoints.less";
-
-                .my-html-element {
-                    margin: 3rem 0;
-                }
-
-                .my-html-element > div {
-                    align-items: center;
-                    background-color: var(--color-surface);
-                    border-radius: 1rem;
-                    box-shadow: 0.1rem 0 1rem #ccc;
-                    color: var(--color-on-surface);
-                    display: flex; 
-                    justify-content: center;
-                    padding: 4rem 2rem;
-                }
-
-                .global-layout__codeblock {
-                    margin: 2rem 0;
-                }
-                
-                .global-layout-source {
-                    @media @medium-screen {
-                        --columns: 2;
-                    }
-                }
-
-                .global-layout-breakpoints {
-                    @media @medium-screen {
-                        --columns: 2;
-                    }
-                    @media @large-screen {
-                        --columns: 3;
-                    }
-                }
-            `}</CodeBlock>
         </div>
     ))

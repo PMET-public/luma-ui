@@ -1,8 +1,9 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import ColorSwatch from './ColorSwatch'
-import CodeBlock from './CodeBlock'
+import ColorSwatch from '../../utilities/ColorSwatch'
+import CodeBlock from '../../utilities/CodeBlock'
 import { color } from '@storybook/addon-knobs'
+import './colors.story.less'
 
 storiesOf('💅 Styles', module)
     .add('🎨 Colors', () => (
@@ -40,19 +41,5 @@ storiesOf('💅 Styles', module)
                 <ColorSwatch color="secondary" />
                 <ColorSwatch color="error" />
             </div>
-            
-            <CodeBlock lang="less" render={true}>{`
-                @import "breakpoints.less";
-
-                .global-colors {
-                    @media @medium-screen {
-                        --columns: 2;
-                    }
-
-                    @media @large-screen {
-                        --columns: 3;
-                    }
-                }
-            `}</CodeBlock>
         </div>
     ))

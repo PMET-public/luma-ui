@@ -1,7 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from './CodeBlock'
+import CodeBlock from '../../utilities/CodeBlock'
 import { text } from '@storybook/addon-knobs'
+import './typography.story.less'
 
 storiesOf('💅 Styles', module)
     .add('📝 Typography', () => (
