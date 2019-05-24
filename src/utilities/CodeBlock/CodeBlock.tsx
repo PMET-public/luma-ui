@@ -3,6 +3,7 @@ import { stripIndent } from 'common-tags'
 import { getbem } from '../../lib/helpers'
 import less from 'less'
 import prism from 'prismjs'
+import Card from '../Card'
 
 import 'prismjs/components/prism-less'
 import 'prismjs/components/prism-jsx'
@@ -92,18 +93,20 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
             {render && lang === 'less' && renderLESS(children)}
 
-            <pre 
+            <Card
                 className={getbem(`code-block`, ['success', copyStatus === 1], ['error', copyStatus === -1])} 
                 onClick={triggerCopy} 
             >
                 <span className="code-block__label">{lang}</span>
-                <code
-                    className="code-block__source"
-                    dangerouslySetInnerHTML={{ __html: source }}
-                    ref={inputEl}
-                    spellCheck={false}
-                ></code>
-            </pre>
+                <pre>
+                    <code
+                        className="code-block__source"
+                        dangerouslySetInnerHTML={{ __html: source }}
+                        ref={inputEl}
+                        spellCheck={false}
+                    ></code>
+                </pre>
+            </Card>
             
         </Fragment>
     )
