@@ -61,6 +61,7 @@
     "prismjs": "^1.16.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-github-btn": "^1.0.5",
     "rimraf": "^2.6.3",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",

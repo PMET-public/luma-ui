@@ -13,6 +13,7 @@ addDecorator(withA11y)
 addParameters({
     options: {
         panelPosition: 'bottom',
+        sortStoriesByKind: true,
         theme: create({
             base: 'dark',
             brandTitle: 'Luma Storybook',
@@ -30,6 +31,7 @@ addParameters({
 const req = require.context('../src', true, /\.(story|stories)\.tsx$/)
 
 function loadStories() {
+    require('./welcome.js')
     req.keys().forEach(req)
 }
 
