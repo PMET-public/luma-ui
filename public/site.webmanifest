@@ -1,6 +1,7 @@
 {
     "name": "Luma StoryBook",
     "short_name": "Luma StoryBook",
+    "start_url": "./",
     "icons": [
         {
             "src": "android-chrome-192x192.png",

@@ -56,7 +56,7 @@ storiesOf('💅 Styles', module)
             
             <div className="global-layout__codeblock">
                 <CodeBlock render={true} lang="less">{`
-                    @import "breakpoints";
+                    @import "breakpoints.less";
 
                     .my-html-element {
                         @media @medium-screen {
@@ -71,7 +71,7 @@ storiesOf('💅 Styles', module)
             </div>
 
             <CodeBlock lang="less" render={true} showSource={false}>{`
-                @import "breakpoints";
+                @import "breakpoints.less";
 
                 .my-html-element {
                     margin: 3rem 0;

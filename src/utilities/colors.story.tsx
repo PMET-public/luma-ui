@@ -42,7 +42,7 @@ storiesOf('💅 Styles', module)
             </div>
             
             <CodeBlock lang="less" render={true} showSource={false}>{`
-                @import "breakpoints";
+                @import "breakpoints.less";
 
                 .global-colors {
                     @media @medium-screen {

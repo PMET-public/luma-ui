@@ -33,7 +33,7 @@ storiesOf('🏗 Utilities/CodeBlock', module)
             render={select('render', { true: true, false: false }, true)}
             showSource={select('showSource', { true: true, false: false }, true)}
             >{`
-                @import "breakpoints";
+                @import "breakpoints.less";
 
                 .wrapper {
                     background-color: #eee;
