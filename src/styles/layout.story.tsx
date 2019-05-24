@@ -42,31 +42,33 @@ storiesOf('💅 Styles', module)
             <hr />
 
             <h2>Grid</h2>
-                    
-            <CodeBlock render={true} lang="html">{`
-                <div class="my-html-element grid">
-                    <div>Uno</div>
-                    <div>Dos</div>
-                    <div>Tres</div>
-                    <div>Catorce 🎶</div>
-                </div>
-            `}</CodeBlock>
             
-            <br/>
+            <div className="global-layout__codeblock">
+                <CodeBlock render={true} lang="html">{`
+                    <div class="my-html-element grid">
+                        <div>Uno</div>
+                        <div>Dos</div>
+                        <div>Tres</div>
+                        <div>Catorce 🎶</div>
+                    </div>
+                `}</CodeBlock>
+            </div>
             
-            <CodeBlock render={true} lang="less">{`
-                @import "/breakpoints.less";
+            <div className="global-layout__codeblock">
+                <CodeBlock render={true} lang="less">{`
+                    @import "/breakpoints.less";
 
-                .my-html-element {
-                    @media @medium-screen {
-                        --columns: 2;
-                    }
+                    .my-html-element {
+                        @media @medium-screen {
+                            --columns: 2;
+                        }
 
-                    @media @large-screen {
-                        --columns: 4;
+                        @media @large-screen {
+                            --columns: 4;
+                        }
                     }
-                }
-            `}</CodeBlock>
+                `}</CodeBlock>
+            </div>
 
             <CodeBlock lang="less" render={true} showSource={false}>{`
                 @import "/breakpoints.less";
@@ -84,6 +86,10 @@ storiesOf('💅 Styles', module)
                     display: flex; 
                     justify-content: center;
                     padding: 4rem 2rem;
+                }
+
+                .global-layout__codeblock {
+                    margin: 2rem 0;
                 }
                 
                 .global-layout-source {
