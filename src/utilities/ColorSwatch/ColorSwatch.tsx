@@ -30,17 +30,17 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
                 {color}
             </h2>
 
-            <div className="color-swatch__value">
+            <code className="color-swatch__value">
                 {colorValue}
-            </div>
+            </code>
 
-            <div className="color-swatch__value">
+            <code className="color-swatch__value">
                 .color-{color}
-            </div>
+            </code>
 
-            <div className="color-swatch__value">
+            <code className="color-swatch__value">
                 var(--color-{color})
-            </div>
+            </code>
 
             <div
                 className="color-swatch__info"
@@ -49,13 +49,13 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
                     color: `var(--color-${color})`,
                 }}
             >
-                <div className="color-swatch__value">
+                <code className="color-swatch__value">
                     {onColorValue}
-                </div>
+                </code>
 
-                <div className="color-swatch__value">
+                <code className="color-swatch__value">
                    var(--color-on-{color})
-                </div>
+                </code>
             </div>
         </Card>
     )
