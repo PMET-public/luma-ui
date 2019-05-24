@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from '../utilities/CodeBlock'
+import CodeBlock from './CodeBlock'
 import { text } from '@storybook/addon-knobs'
 
 storiesOf('💅 Styles', module)

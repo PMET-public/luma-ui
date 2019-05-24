@@ -20,8 +20,8 @@
     "build": "webpack --mode=production",
     "prepare": "yarn build",
     "generate": "./bin/generate.js",
-    "storybook-watch": "start-storybook -p 5001 --quiet -s ./src/styles",
-    "build-storybook": "build-storybook -s ./src/styles",
+    "storybook-watch": "start-storybook -p 5001 --quiet -s ./src/styles,./public",
+    "build-storybook": "build-storybook -s ./src/styles,./public",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "peerDependencies": {

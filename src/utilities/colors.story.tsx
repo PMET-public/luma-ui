@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import ColorSwatch from '../utilities/ColorSwatch'
-import CodeBlock from '../utilities/CodeBlock'
+import ColorSwatch from './ColorSwatch'
+import CodeBlock from './CodeBlock'
 import { color } from '@storybook/addon-knobs'
 
 storiesOf('💅 Styles', module)
