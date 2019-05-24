@@ -84,7 +84,9 @@ storiesOf('💅 Styles', module)
 
             <hr />
             
-            <h2>Unordered List</h2>
+            <h2>Lists</h2>
+
+            <h3>Unordered List</h3>
 
             <CodeBlock render={true} lang="html">{`
                 <ul>
@@ -97,7 +99,7 @@ storiesOf('💅 Styles', module)
 
             <br/>
 
-            <h2>Ordered List</h2>
+            <h3>Ordered List</h3>
             
             <CodeBlock render={true} lang="html">{`
                 <ol>
@@ -109,7 +111,7 @@ storiesOf('💅 Styles', module)
 
             <hr/>
 
-            <h2>Nested List</h2>
+            <h3>Nested List</h3>
 
             <CodeBlock render={true} lang="html">{`
                 <ul>
