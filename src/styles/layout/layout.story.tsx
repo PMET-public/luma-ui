@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import CodeBlock from '../../utilities/CodeBlock'
 import './layout.story.less'
+import { number } from '@storybook/addon-knobs'
 
 storiesOf('💅 Styles', module)
     .add('📐 Layout', () => (
@@ -10,9 +11,9 @@ storiesOf('💅 Styles', module)
             <h2>CSS Variables</h2>
             <CodeBlock lang="css">{`
                 :root {
-                    --grid-width: 960;
-                    --grid-column-width: 60;
-                    --grid-columns: 12;
+                    --grid-width: ${number('--grid-width', 960)};
+                    --grid-column-width: ${number('--grid-column-width', 60)};
+                    --grid-columns: ${number('--grid-columns', 12)};
                 }
             `}</CodeBlock>
 
