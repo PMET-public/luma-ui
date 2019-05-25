@@ -8,7 +8,7 @@ import { source } from 'common-tags'
 storiesOf('👋 Welcome', module)
     .addDecorator(centered)
     .add('Getting Started', () => (
-        <Fragment>
+        <div className="container">
             <h2>☝️ Install Dependencies</h2>
             <CodeBlock lang="bash">{`
                 yarn install
@@ -25,7 +25,7 @@ storiesOf('👋 Welcome', module)
             `}</CodeBlock>
 
 
-            <pre style={{ paddingLeft: '3rem' }}>
+            <pre style={{ paddingLeft: '3rem', overflowX: 'auto' }}>
                 <code>{source`
                     $ ./bin/generate.js component FooBar
                     👌 src/components/FooBar/FooBar.tsx created
@@ -36,7 +36,7 @@ storiesOf('👋 Welcome', module)
                 `}</code>
             </pre>
 
-            <div style={{ marginTop: '4rem', textAlign: 'center' }}>
+            <div style={{ padding: '3rem 0', textAlign: 'center' }}>
                 <span style={{ display: 'inline-block', marginRight: '1rem' }}>
                     <GitHubButton href="https://github.com/PMET-public/luma-storybook/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork PMET-public/luma-storybook on GitHub">Fork</GitHubButton>
                 </span>
@@ -44,5 +44,5 @@ storiesOf('👋 Welcome', module)
                     <GitHubButton href="https://github.com/PMET-public/luma-storybook/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PMET-public/luma-storybook on GitHub">Issue</GitHubButton>
                 </span>
             </div>
-        </Fragment>
+        </div>
     ))

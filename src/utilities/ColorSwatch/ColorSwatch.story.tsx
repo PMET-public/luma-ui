@@ -15,9 +15,7 @@ const colors = {
 storiesOf('🏗 Utilities/ColorSwatch', module)
     .addDecorator(centered)
     .add('Default', () => (
-        <div>
-            <div style={{ width: '40rem' }}>
-                <ColorSwatch color={select('color', colors, 'primary', 'props')} />
-            </div>
+        <div className="container">
+            <ColorSwatch color={select('color', colors, 'primary', 'props')} />
         </div>
     ))
