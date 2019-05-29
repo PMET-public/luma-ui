@@ -21,7 +21,7 @@ storiesOf('👋 Welcome', module)
 
             <h2>🤙 Generate New Component</h2>
             <CodeBlock lang="bash">{`
-                yarn generate component FooBars
+                yarn generate component FooBar
             `}</CodeBlock>
 
 
