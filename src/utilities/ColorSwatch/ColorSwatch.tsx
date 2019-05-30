@@ -2,7 +2,7 @@ import React, { FunctionComponent, useRef, useEffect, useState } from 'react'
 import Card from '../Card'
 
 type ColorSwatchProps = {
-    color: string,
+    color: string
 }
 
 export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
