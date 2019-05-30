@@ -1,0 +1,81 @@
+.hot-spot {
+    position: absolute;
+}
+
+.hot-spot__button {
+    align-items: center;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    border: 0 none;
+    bottom: 0;
+    display: flex;
+    height: 3rem;
+    justify-content: center;
+    position: relative;
+    right: 0;
+    transition: background-color 150ms ease-in-out;
+    width: 3rem;
+    z-index: 1;
+    &--open {
+        background-color: transparent;
+    }
+}
+
+.hot-spot__button:not(.hot-spot__button--open)::before {
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-name:  hotspot__animation--pulsate;
+    animation-timing-function: ease-out;
+    background-color: var(--color-primary);
+    border-radius: inherit;
+    content: "";
+    height: inherit;
+    position: absolute;
+    transform-origin: center;
+    width: inherit;
+}
+
+.hot-spot__button__icon {
+    fill: var(--color-on-primary);
+    transform-origin: center;
+    transition: transform 250ms ease;
+    width: 100%;
+
+    &--open {
+        fill: var(--color-primary);
+        transform: rotate(45deg);
+    }
+}
+
+.hot-spot__content {
+    margin-left: -0.5rem;
+    margin-top: -3.5rem;
+    padding-top: 4rem;
+
+    &.css-transition {
+        opacity: 0.1;
+        transform-origin: top left;
+        transform: scale(0.75);
+        transition-duration: var(--transition-duration);
+        transition-property: opacity transform;
+        transition-timing-function: ease-out;
+
+        &--active {
+            opacity: 1;
+            transform: scale(1);
+            transition-timing-function: ease-in;
+        }
+    }
+}
+
+@keyframes hotspot__animation--pulsate {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    20%, 100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
