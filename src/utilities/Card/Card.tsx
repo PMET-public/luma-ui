@@ -1,11 +1,12 @@
-import React, { FunctionComponent, forwardRef } from 'react'
+import React, { FunctionComponent, forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react'
+import { mergeString } from '../../lib/helpers'
 
-export type CardProps = any
+export type CardProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
-export const Card: FunctionComponent<CardProps> = forwardRef(({ children, className = '', ...props }, ref) => (
+export const Card: FunctionComponent<CardProps> = forwardRef(({ children, className, ...props }, ref) => (
     <div 
         {...props}
-        className={`card ${className}`}
+        className={mergeString('card', className)}
         ref={ref}
     >{children}</div>
 ))

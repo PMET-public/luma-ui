@@ -1,0 +1,123 @@
+.hot-spot {
+    --size: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    left: var(--cords-x);
+    position: absolute;
+    top: var(--cords-y);
+    
+    &--right {
+        left: unset;
+        right: calc(100% - var(--cords-x))
+    }
+
+    &--right &__button {
+        align-self: flex-end;
+    }
+
+    &--bottom {
+        top: unset;
+        bottom: calc(100% - var(--cords-y))
+    }
+
+    &--bottom &__button {
+        order: 2;
+    }
+}
+
+.hot-spot__button {
+    align-items: center;
+    background-color: transparent;
+    border: 0 none;
+    cursor: pointer;
+    display: flex;
+    display: flex;
+    font-size: var(--size);
+    height: var(--size);
+    justify-content: center;
+    position: relative;
+    transition: all 150ms ease-in-out;
+    width: var(--size);
+    z-index: 1;
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:not(&--open) {
+        background-color: var(--color-primary);
+        border-radius: 50%;
+        border: 0.1em solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+
+        &::before {
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-name: hotspot__animation--pulsate;
+            animation-timing-function: ease-out;
+            background-color: var(--color-primary);
+            border-radius: inherit;
+            content: "";
+            height: inherit;
+            position: absolute;
+            transform-origin: center;
+            width: inherit;
+        }
+    }
+
+
+    &--open {
+        --size: 3rem;
+    }
+}
+
+
+.hot-spot__button__icon {
+    fill: var(--color-on-primary);
+    height: 100%;
+    transform-origin: center;
+    transition: transform 250ms ease;
+    width: 100%;
+    
+    &--open {
+        fill: var(--color-primary);
+        transform: rotate(45deg);
+    }
+}
+
+.hot-spot__content {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    padding: 2rem;
+
+    &.css-transition {
+        opacity: 0.1;
+        transform-origin: top left;
+        transform: scale(0.75);
+        transition-duration: var(--transition-duration);
+        transition-property: opacity transform;
+        transition-timing-function: ease-out;
+
+        &--active {
+            opacity: 1;
+            transform: scale(1);
+            transition-timing-function: ease-in;
+        }
+    }
+}
+
+/** Animations */
+
+@keyframes hotspot__animation--pulsate {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    20%,
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
