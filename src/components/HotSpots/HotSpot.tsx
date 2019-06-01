@@ -7,7 +7,7 @@ import { HotSpotsContext } from './HotSpotContainer'
 export type HotSpotProps = {
     children: ReactNode
     coords: { x: number, y: number }
-    id: string|number
+    id: string | number
     label: string
     size?: number
 }
@@ -29,13 +29,15 @@ export const HotSpot: FunctionComponent<HotSpotProps> = ({
     }
 
     return (
-        <div 
+        <div
             className={getbem(
-                'hot-spot', 
-                ['bottom', coords.y > 60],
-                ['right', coords.x > 60]
+                'hot-spot',
+                ['open', isOpen],
+                ['bottom', coords.y > 50],
+                ['right', coords.x > 50],
+                ['open', isOpen]
             )}
-            style={{ 
+            style={{
                 ['--cords-x' as any]: `${coords.x}%`,
                 ['--cords-y' as any]: `${coords.y}%`,
                 ['--size' as any]: `${size}rem`,
@@ -56,7 +58,7 @@ export const HotSpot: FunctionComponent<HotSpotProps> = ({
             </button>
 
             {contentTransition && (
-                <Card className="hot-spot__content" ref={contentEl}>
+                <Card className={getbem('hot-spot__content', ['open', isOpen])} ref={contentEl}>
                     {children}
                 </Card>
             )}

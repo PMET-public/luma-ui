@@ -4,39 +4,41 @@ import { storiesOf } from '@storybook/react'
 import { object, number } from '@storybook/addon-knobs'
 import centered from '@storybook/addon-centered/react'
 
+const PriceTagMock = ({ label, price }: any) => (
+    <div style={{ fontWeight: 600, fontSize: '1.6rem'}}>
+        <a href="" onClick={e => e.preventDefault()} style={{ marginRight: '1rem' }}>{label}</a>
+        <em style={{ borderRadius: '1rem', padding: '0.5rem 1rem', backgroundColor: 'var(--color-secondary', color: 'var(--color-on-secondary' }}>{price}</em>
+    </div>
+)
+
 storiesOf('📦 Components/HotSpot', module)
     .addDecorator(centered)
     .add('Default', () => (
         <div style={{
-            border: '2px dashed #ddd',
             maxWidth: '96rem',
-            margin: '1rem',
-            borderRadius: '1rem',
         }}>
             <HotSpotContainer
                 image={require('../../../public/images/llama.jpg')}
                 description="La llama que más llama"
             >
                 <HotSpot
-                    coords={object('coords', { x: 65, y: 42 })}
+                    coords={object('coords', { x: 70, y: 42 })}
                     id={0}
                     label="Why did the Llama miss his flight to Imagine?"
                     size={number('size', 5)}
                 >
-                    <p style={{ fontSize: '1.8rem' }}>
-                        <strong style={{ fontWeight: 600 }}>🤔 Why did the Llama miss his flight to Imagine?</strong><br />
-                        <div style={{ paddingTop: '1rem' }}>🥁 He was busy Alpacking.</div>
-                    </p>
+                    <div style={{ fontSize: '1.8rem' }}>
+                        <div style={{ marginBottom: '1rem', fontWeight: 600 }}>🦙 Why did the Llama miss his flight to Imagine?</div>
+                        😂 He was busy Alpacking.
+                    </div>
                 </HotSpot>
             </HotSpotContainer>
         </div>
     ))
     .add('Multiple', () => (
         <div style={{
-            border: '2px dashed #ddd',
             maxWidth: '96rem',
             margin: '1rem',
-            borderRadius: '1rem',
         }}>
             <HotSpotContainer
                 image={require('../../../public/images/products-hotspots.jpg')}
@@ -47,21 +49,21 @@ storiesOf('📦 Components/HotSpot', module)
                     id={0}
                     label="Sweater"
                 >
-                    Hello
+                    <PriceTagMock label="Knit Sweater" price="$29.99" />
                 </HotSpot>
                 <HotSpot
                     coords={{ x: 78, y: 30 }}
                     id={1}
                     label="Bag"
                 >
-                    Hi
+                    <PriceTagMock label="Handbag" price="$19.99" />
                 </HotSpot>
                 <HotSpot
                     coords={{ x: 63, y: 75 }}
                     id={2}
                     label="Pants"
                 >
-                    Again
+                    <PriceTagMock label="Cotton Chinos" price="$29.99" />
                 </HotSpot>
             </HotSpotContainer>
         </div>

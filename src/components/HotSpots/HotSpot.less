@@ -1,75 +1,70 @@
+@import './breakpoints.less';
+
 .hot-spot {
     --size: 3rem;
+    --bottom: unset;
+    --left: var(--cords-x);
+    --right: unset;
+    --top: calc(var(--cords-y) + var(--size) + 1rem);
 
-    display: flex;
-    flex-direction: column;
-    left: var(--cords-x);
-    position: absolute;
-    top: var(--cords-y);
-    
     &--right {
-        left: unset;
-        right: calc(100% - var(--cords-x))
-    }
-
-    &--right &__button {
-        align-self: flex-end;
+        --left: unset;
+        --right: calc(100% - var(--cords-x) - var(--size));
     }
 
     &--bottom {
-        top: unset;
-        bottom: calc(100% - var(--cords-y))
+        --bottom: calc(100% - var(--cords-y) + 1rem);
+        --top: unset;
     }
 
-    &--bottom &__button {
-        order: 2;
+    &--open {
+        --size: 3rem;
     }
 }
 
 .hot-spot__button {
     align-items: center;
-    background-color: transparent;
-    border: 0 none;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    border: 0.1em solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    display: flex;
     display: flex;
     font-size: var(--size);
     height: var(--size);
     justify-content: center;
-    position: relative;
-    transition: all 150ms ease-in-out;
+    left: var(--cords-x);
+    position: absolute;
+    top: var(--cords-y);
+    transition-duration: 200ms;
+    transition-property: background-color, width, height;
+    transition-timing-function: ease-in-out;
     width: var(--size);
     z-index: 1;
+
+    &:not(&--open)::before {
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-name: hotspot__animation--pulsate;
+        animation-timing-function: ease-out;
+        background-color: var(--color-primary);
+        border-radius: inherit;
+        content: "";
+        height: inherit;
+        position: absolute;
+        transform-origin: center;
+        width: inherit;
+    }
 
     &:focus {
         outline: 0;
     }
 
-    &:not(&--open) {
-        background-color: var(--color-primary);
-        border-radius: 50%;
-        border: 0.1em solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-
-        &::before {
-            animation-duration: 4s;
-            animation-iteration-count: infinite;
-            animation-name: hotspot__animation--pulsate;
-            animation-timing-function: ease-out;
-            background-color: var(--color-primary);
-            border-radius: inherit;
-            content: "";
-            height: inherit;
-            position: absolute;
-            transform-origin: center;
-            width: inherit;
-        }
-    }
-
-
     &--open {
-        --size: 3rem;
+        background-color: var(--color-on-primary);
+        z-index: 2;
     }
+
 }
 
 
@@ -79,7 +74,7 @@
     transform-origin: center;
     transition: transform 250ms ease;
     width: 100%;
-    
+
     &--open {
         fill: var(--color-primary);
         transform: rotate(45deg);
@@ -87,22 +82,40 @@
 }
 
 .hot-spot__content {
+    align-items: center;
     background-color: var(--color-surface);
+    bottom: var(--bottom);
+    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.5);
     color: var(--color-on-surface);
+    display: flex;
+    justify-content: center;
+    left: 0;
     padding: 2rem;
+    position: absolute;
+    right: 0;
+    top: var(--top);
+
+    @media @medium-screen {
+        left: var(--left);
+        right: var(--right);
+    }
+
+    &--open {
+        z-index: 2;
+    }
 
     &.css-transition {
         opacity: 0.1;
-        transform-origin: top left;
-        transform: scale(0.75);
+        transform-origin: center;
+        transform: scale(0.9);
         transition-duration: var(--transition-duration);
         transition-property: opacity transform;
-        transition-timing-function: ease-out;
+        transition-timing-function: ease-in;
 
         &--active {
             opacity: 1;
             transform: scale(1);
-            transition-timing-function: ease-in;
+            transition-timing-function: ease-out;
         }
     }
 }
