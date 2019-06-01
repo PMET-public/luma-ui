@@ -12,11 +12,11 @@ import 'prismjs/components/prism-graphql'
 import 'prismjs/components/prism-bash'
 
 export type CodeBlockProps = { children: string } & ({
-    lang: 'tsx' | 'jsx' | 'graphql' | 'js' | 'bash',
-    render?: undefined,
+    lang: 'tsx' | 'jsx' | 'graphql' | 'js' | 'bash'
+    render?: undefined
 } | {
-    lang: 'html' | 'css'| 'less',
-    render?: boolean,
+    lang: 'html' | 'css'| 'less'
+    render?: boolean
 })
 
 /**

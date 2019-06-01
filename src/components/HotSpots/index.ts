@@ -1,0 +1,5 @@
+import './HotSpot.less'
+export * from './HotSpot'
+import './HotSpotContainer.less'
+export * from './HotSpotContainer'
+export { HotSpot as default } from './HotSpot'
