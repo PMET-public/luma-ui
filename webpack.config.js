@@ -12,7 +12,9 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: './[name].js',
         library: '',
-        libraryTarget: 'commonjs'
+        libraryTarget: 'umd',
+        umdNamedDefine: true,
+        globalObject: 'this' //!!!This line
     },
 
     externals: [nodeExternals()],
@@ -56,7 +58,7 @@ module.exports = {
                     {
                         loader: 'less-loader',
                         options: {
-                            paths: [ path.resolve('src/styles/variables') ],
+                            paths: [path.resolve('src/styles/variables')],
                             sourceMap: true,
                         },
                     },
