@@ -43,10 +43,12 @@ export const HotSpot: FunctionComponent<HotSpotProps> = ({
                 ['--size' as any]: `${size}rem`,
             }}
         >
-            <button
+            <div
                 aria-label={label}
                 className={getbem('hot-spot__button', ['open', isOpen])}
                 onClick={handleToggle}
+                role="button"
+                tabIndex={0}
             >
                 <svg
                     className={getbem('hot-spot__button__icon', ['open', isOpen])}
@@ -55,7 +57,7 @@ export const HotSpot: FunctionComponent<HotSpotProps> = ({
                 >
                     <polygon points="511 191.97 319.02 191.97 319.02 0 191.97 0 191.97 191.97 0 191.97 0 319.02 191.97 319.02 191.97 511 319.02 511 319.02 319.02 511 319.02 511 191.97" />
                 </svg>
-            </button>
+            </div>
 
             {contentTransition && (
                 <Card className={getbem('hot-spot__content', ['open', isOpen])} ref={contentEl}>

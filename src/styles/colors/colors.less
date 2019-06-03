@@ -3,6 +3,9 @@
 */
 
 :root {
+    --color-link: rgb(37, 169, 225);
+    --color-link--hover: rgb(25, 136, 184);
+
     --color-background: #fff;
     --color-on-background: #222;
 
@@ -10,16 +13,30 @@
     --color-on-surface: #222;
 
     --color-primary: #f46f25;
-    --color-on-primary:#fff;
-    
+    --color-primary--hover: rgb(219, 85, 11);
+    --color-on-primary: #fff;
+    --color-on-primary--hover: #fff;
+
     --color-secondary: rgb(37, 169, 225);
+    --color-secondary--hover: rgb(25, 136, 184);
     --color-on-secondary: #fff;
-    
+    --color-on-secondary--hover: #fff;
+
     --color-error: #b00020;
     --color-on-error: white;
 
+    /** Global styles */
+
     background: var(--color-background);
     color: var(--color-on-background);
+
+    a {
+        color: var(--color-link);
+
+        &:hover {
+            color: var(--color-link--hover);
+        }
+    }
 }
 
 .color-surface {
@@ -35,11 +52,21 @@
 .color-primary {
     background: var(--color-primary);
     color: var(--color-on-primary);
+
+    &:hover {
+        background: var(--color-primary--hover);
+        color: var(--color-on-primary--hover);
+    }
 }
 
 .color-secondary {
     background: var(--color-secondary);
     color: var(--color-on-secondary);
+
+    &:hover {
+        background: var(--color-secondary--hover);
+        color: var(--color-on-secondary--hover);
+    }
 }
 
 .color-error {

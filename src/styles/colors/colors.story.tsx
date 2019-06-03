@@ -15,6 +15,9 @@ storiesOf('💅 Styles', module)
                  */
 
                 :root {
+                    --color-link: ${color('--color-link', 'rgb(37, 169, 225)')};
+                    --color-link--hover: ${color('--color-link--hover', 'rgb(25, 136, 184)')};
+
                     --color-background: ${color('--color-background', '#fff')};
                     --color-on-background: ${color('--color-on-background', '#222')};
 
@@ -22,10 +25,14 @@ storiesOf('💅 Styles', module)
                     --color-on-surface: ${color('--color-on-surface', '#222')};
 
                     --color-primary: ${color('--color-primary', '#f46f25')};
+                    --color-primary--hover: ${color('--color-primary--hover', 'rgb(219, 85, 11)')};
                     --color-on-primary: ${color('--color-on-primary', '#fff')};
+                    --color-on-primary--hover: ${color('--color-on-primary--hover', '#fff')};
 
                     --color-secondary: ${color('--color-secondary', 'rgb(37, 169, 225)')};
                     --color-on-secondary: ${color('--color-on-secondary', '#fff')};
+                    --color-secondary--hover: ${color('--color-secondary--hover', 'rgb(25, 136, 184)')};
+                    --color-on-secondary--hover: ${color('--color-on-secondary--hover', '#fff')};
 
                     --color-error: ${color('--color-error', '#b00020')};
                     --color-on-error: ${color('--color-on-error', '#fff')};
