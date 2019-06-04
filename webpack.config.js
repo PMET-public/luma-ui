@@ -11,8 +11,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: './[name].js',
-        library: '',
-        libraryTarget: 'commonjs'
+        library: 'Storybook',
+        libraryTarget: 'umd',
+        globalObject: 'this',
     },
 
     externals: [nodeExternals()],
@@ -66,8 +67,8 @@ module.exports = {
     },
 
     externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
+        'react': 'react',
+        'react-dom': 'react-dom',
     },
 }
 
