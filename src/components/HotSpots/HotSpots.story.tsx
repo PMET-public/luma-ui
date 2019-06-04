@@ -1,5 +1,5 @@
 import React from 'react'
-import HotSpot, { HotSpotContainer } from '.'
+import { HotSpot, HotSpotContainer } from './'
 import { storiesOf } from '@storybook/react'
 import { object, number } from '@storybook/addon-knobs'
 import centered from '@storybook/addon-centered/react'

@@ -31,7 +31,12 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: [
-                    'awesome-typescript-loader',
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: {
+                            declaration: true,
+                        },
+                    }
                 ],
                 exclude: /node_modules/,
             },
@@ -57,7 +62,7 @@ module.exports = {
                     {
                         loader: 'less-loader',
                         options: {
-                            paths: [ path.resolve('src/styles/variables') ],
+                            paths: [path.resolve('src/styles/variables')],
                             sourceMap: true,
                         },
                     },
