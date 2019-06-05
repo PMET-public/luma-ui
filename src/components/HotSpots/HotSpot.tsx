@@ -40,7 +40,7 @@ export const HotSpot: FunctionComponent<HotSpotProps> = ({
             style={{
                 ['--cords-x' as any]: `${coords.x}%`,
                 ['--cords-y' as any]: `${coords.y}%`,
-                ['--size' as any]: `${size}rem`,
+                ['--size' as any]: `${size * 10 / 16}rem`,
             }}
         >
             <div

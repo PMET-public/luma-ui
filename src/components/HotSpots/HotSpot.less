@@ -1,11 +1,11 @@
-@import './breakpoints.less';
+@import './utilities';
 
 .hot-spot {
-    --size: 3rem;
+    --size: 30/@px;
     --bottom: unset;
     --left: var(--cords-x);
     --right: unset;
-    --top: calc(var(--cords-y) + var(--size) + 1rem);
+    --top: calc(var(--cords-y) + var(--size) + 1.2rem);
 
     &--right {
         --left: unset;
@@ -13,12 +13,12 @@
     }
 
     &--bottom {
-        --bottom: calc(100% - var(--cords-y) + 1rem);
+        --bottom: calc(100% - var(--cords-y) + 1.2rem);
         --top: unset;
     }
 
     &--open {
-        --size: 3rem;
+        --size: 30/@px;
     }
 }
 
@@ -48,7 +48,7 @@
         background-color: var(--color-primary);
         border-radius: 50%;
         border: 0.1em solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 10/@px rgba(0, 0, 0, 0.3);
         content: "";
         height: inherit;
         position: absolute;
@@ -105,12 +105,12 @@
     align-items: center;
     background-color: var(--color-surface);
     bottom: var(--bottom);
-    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30/@px rgba(0, 0, 0, 0.5);
     color: var(--color-on-surface);
     display: flex;
     justify-content: center;
     left: 0;
-    padding: 2rem;
+    padding: 20/@px;
     position: absolute;
     right: 0;
     top: var(--top);

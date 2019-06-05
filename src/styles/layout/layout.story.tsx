@@ -10,6 +10,9 @@ storiesOf('💅 Styles', module)
         <div className="container">
             <h2>CSS Variables</h2>
             <CodeBlock lang="css">{`
+                /**
+                 * Layout
+                 */
                 :root {
                     --grid-width: ${number('--grid-width', 960)};
                     --grid-column-width: ${number('--grid-column-width', 60)};
@@ -58,7 +61,7 @@ storiesOf('💅 Styles', module)
             
             <div className="global-layout__codeblock">
                 <CodeBlock render={true} lang="less">{`
-                    @import "breakpoints.less";
+                    @import "/utilities";
 
                     .my-html-element {
                         @media @medium-screen {

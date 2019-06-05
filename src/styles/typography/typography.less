@@ -1,5 +1,6 @@
+@import "/utilities";
+
 :root {
-    --font-size-base: 10px;
     --font-family-body: source-sans-pro, sans-serif;
     --font-weight-body: 400;
     --font-style-body: normal;
@@ -16,25 +17,26 @@ html {
     /* Change default typefaces here */
     -webkit-font-smoothing: antialiased;
     font-family: var(--font-family-body);
-    font-size: var(--font-size-base);
+    font-size: 100%;
     font-style: var(--font-style-body);
     font-weight: var(--font-weight-body);
 }
 
 body {
-    font-size: 1.6rem;
+    font-size: 16/@px;
 }
 
 /* Copy & Lists */
 
 p {
     line-height: 1.5;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20/@px;
+    margin-top: 20/@px;
 }
 
 ul, ol {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 10/@px;
+    margin-bottom: 10/@px;
 }
 
 ul {
@@ -46,12 +48,12 @@ ul li, ol li {
 }
 
 blockquote {
-    font-size: 2.7rem;
+    font-size: 24/@px;
     font-style: italic;
     line-height: 1.5;
-    margin-bottom: 1.5rem;
-    margin-top: 1.5rem;
-    padding-left: 2.4rem;
+    margin-bottom: 10/@px;
+    margin-top: 10/@px;
+    padding-left: 24/@px;
     position: relative;
 }
 
@@ -59,8 +61,8 @@ blockquote:before {
     content: "\"";
     position: absolute;
     left: 0;
-    font-size: 4rem;
-    top: 0rem;
+    font-size: 40/@px;
+    top: 0;
     line-height: 1;
     opacity: 0.5;
 }
@@ -73,44 +75,43 @@ h1, h2, h3, h4, h5, h6 {
     font-style: var(--font-style-heading);
     font-weight: var(--font-weight-heading);
     line-height: 1.1;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 20/@px;
+    margin-bottom: 20/@px;
 }
 
 h1 {
-    font-size: 4.242rem;
+    font-size: 32/@px;
 }
 
 h2 {
-    font-size: 2.7rem;
+    font-size: 26/@px;
 }
 
 h3 {
-    font-size: 1.9rem;
+    font-size: 22/@px;
 }
 
 h4, h5, h6 {
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 20/@px;
 }
 
 /* Tables */
 
 table {
-    margin-top: 1.5rem;
+    margin-top: 10/@px;
     border-spacing: 0;
     border-collapse: collapse;
 }
 
 table td, table th {
     padding: 0;
-    line-height: 33px;
+    // line-height: 33px;
 }
 
 /* Code blocks */
 
 code {
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 1.3rem;
+    font-size: 14/@px;
     line-height: 1.5;
 }

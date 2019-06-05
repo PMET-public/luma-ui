@@ -11,11 +11,10 @@ storiesOf('💅 Styles', module)
 
             <CodeBlock render={true} lang="css">{`
                 /**
-                 * Theme Colors
+                 * Typography
                  */
 
                 :root {
-                    --font-size-base: ${text('--font-size-base', '10px')};
                     --font-family-body: ${text('--font-family-body', 'source-sans-pro, sans-serif')};
                     --font-weight-body: ${text('--font-weight-body', '400')};
                     --font-style-body: ${text('--font-style-body', 'normal')};

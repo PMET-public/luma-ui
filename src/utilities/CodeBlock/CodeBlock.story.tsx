@@ -28,7 +28,7 @@ storiesOf('🏗 Utilities/CodeBlock', module)
             >{`
                     // Resize me ↔
 
-                    @import "breakpoints.less";
+                    @import "/utilities";
 
                     :root {
                         background-color: var(--color-primary);
