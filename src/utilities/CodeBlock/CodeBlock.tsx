@@ -12,10 +12,10 @@ import 'prismjs/components/prism-graphql'
 import 'prismjs/components/prism-bash'
 
 export type CodeBlockProps = { children: string } & ({
-    lang: 'tsx' | 'jsx' | 'graphql' | 'js' | 'bash'
+    lang: 'tsx' | 'jsx' | 'graphql' | 'bash'
     render?: undefined
 } | {
-    lang: 'html' | 'css'| 'less'
+    lang: 'html' | 'css' | 'less' | 'js'
     render?: boolean
 })
 
@@ -23,9 +23,12 @@ export type CodeBlockProps = { children: string } & ({
  * Renders
  */
 export const renderJS = (scriptSource: string): void => {
-    const scriptEl = document.createElement('script')
-    scriptEl.innerHTML = scriptSource
-    document.body.append(scriptEl)
+    try {
+        // tslint:disable-next-line: no-eval
+        eval(scriptSource)
+    } catch (e) {
+        console.error('renderJS: ', e)
+    }
 }
 
 export const renderLESS = (lessSource: string): ReactElement => {
@@ -51,13 +54,13 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     const [source, setSource] = useState('')
     const [copyStatus, setCopyStatus] = useState(0)
     const inputEl: any = useRef()
-   
+
     useEffect(() => {
         const highlightedSource = stripIndent(prism.highlight(children, prism.languages[lang], lang))
-        
+
         setSource(highlightedSource)
 
-        if ( render && lang === 'less') less.refreshStyles()
+        if (render && lang === 'less') less.refreshStyles()
     }, [children, source, render])
 
     const triggerCopy = () => {
@@ -94,9 +97,11 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
             {render && lang === 'less' && renderLESS(children)}
 
+            {render && lang === 'js' && renderJS(children)}
+
             <Card
-                className={getbem(`code-block`, ['success', copyStatus === 1], ['error', copyStatus === -1])} 
-                onClick={triggerCopy} 
+                className={getbem(`code-block`, ['success', copyStatus === 1], ['error', copyStatus === -1])}
+                onDoubleClick={triggerCopy}
             >
                 <span className="code-block__label">{lang}</span>
                 <pre>
@@ -108,7 +113,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                     ></code>
                 </pre>
             </Card>
-            
+
         </Fragment>
     )
 }

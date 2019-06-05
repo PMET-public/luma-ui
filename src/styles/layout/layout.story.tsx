@@ -2,22 +2,30 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import CodeBlock from '../../utilities/CodeBlock'
 import './layout.story.less'
-import { number } from '@storybook/addon-knobs'
+
+// tslint:disable-next-line: no-string-literal
+// window['createTheme'] = require('../../styles').createTheme
 
 storiesOf('💅 Styles', module)
     .add('📐 Layout', () => (
 
         <div className="container">
-            <h2>CSS Variables</h2>
-            <CodeBlock lang="css">{`
-                /**
-                 * Layout
-                 */
-                :root {
-                    --grid-width: ${number('--grid-width', 960)};
-                    --grid-column-width: ${number('--grid-column-width', 60)};
-                    --grid-columns: ${number('--grid-columns', 12)};
-                }
+            <h1>📐 Layout</h1>
+
+            <CodeBlock lang="js">{`
+                import { createTheme } from 'luma-storybook/dist/styles'
+            `}</CodeBlock>
+            
+            <hr/>
+
+            <CodeBlock lang="js" render={false}>{`
+                createTheme({
+                    grid: {
+                        columns: 12,
+                        columnWidth: 60,
+                        width: 960,
+                    }
+                })
             `}</CodeBlock>
 
             <hr />

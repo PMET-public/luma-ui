@@ -1,27 +1,38 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import CodeBlock from '../../utilities/CodeBlock'
-import { text } from '@storybook/addon-knobs'
+import { text, number } from '@storybook/addon-knobs'
 import './typography.story.less'
 
+// tslint:disable-next-line: no-string-literal
+window['createTheme'] = require('../../styles').createTheme
+
 storiesOf('💅 Styles', module)
-    .add('📝 Typography', () => (
+    .add('✍️ Typography', () => (
         <div className="container">
-            <h2>CSS Variables</h2>
+            <h2>✍️ Typography</h2>
 
-            <CodeBlock render={true} lang="css">{`
-                /**
-                 * Typography
-                 */
+            <CodeBlock lang="js">{`
+                import { createTheme } from 'luma-storybook/dist/styles'
+            `}</CodeBlock>
 
-                :root {
-                    --font-family-body: ${text('--font-family-body', 'source-sans-pro, sans-serif')};
-                    --font-weight-body: ${text('--font-weight-body', '400')};
-                    --font-style-body: ${text('--font-style-body', 'normal')};
-                    --font-family-heading: ${text('--font-family-heading', 'rucksack, sans-serif')};
-                    --font-weight-heading: ${text('--font-weight-heading', '400')};
-                    --font-style-heading: ${text('--font-style-heading', 'normal')};
-                }
+            <hr />
+
+            <CodeBlock lang="js" render={true}>{`
+                createTheme({
+                    typography: {
+                        body: {
+                            family: '${text('body family', 'source-sans pro, sans-serif')}',
+                            style: '${text('body style', 'normal')}',
+                            weight: ${number('body weight', 400, { range: true, min: 400, max: 800, step: 200 })},     
+                        },
+                        headings: {
+                            family: '${text('headings family', 'rucksack, sans-serif')}',
+                            style: '${text('headings style', 'normal')}',
+                            weight: ${number('headings weight', 400, { range: true, min: 400, max: 800, step: 200 })},            
+                        },
+                    }
+                })
             `}</CodeBlock>
 
             <hr />
@@ -82,7 +93,7 @@ storiesOf('💅 Styles', module)
             `}</CodeBlock>
 
             <hr />
-            
+
             <h2>Lists</h2>
 
             <h3>Unordered List</h3>
@@ -96,10 +107,10 @@ storiesOf('💅 Styles', module)
                 </ul>
             `}</CodeBlock>
 
-            <br/>
+            <br />
 
             <h3>Ordered List</h3>
-            
+
             <CodeBlock render={true} lang="html">{`
                 <ol>
                     <li>How many ways can we list?</li>
@@ -108,7 +119,7 @@ storiesOf('💅 Styles', module)
                 </ol>
             `}</CodeBlock>
 
-            <hr/>
+            <hr />
 
             <h3>Nested List</h3>
 
@@ -127,7 +138,7 @@ storiesOf('💅 Styles', module)
             `}</CodeBlock>
 
             <hr />
-            
+
             <h2 style={{ marginBottom: '3rem' }}>Quote</h2>
 
             <CodeBlock render={true} lang="html">{`
@@ -137,7 +148,7 @@ storiesOf('💅 Styles', module)
             `}</CodeBlock>
 
             <style>
-                
+
             </style>
 
         </div>

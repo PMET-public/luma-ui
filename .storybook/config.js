@@ -1,11 +1,22 @@
 import './storybook.css'
-import '../src/styles/index.less' // global styles
+import { createTheme } from '../src/styles' // global styles
 import { addDecorator, addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'
 import { withA11y } from '@storybook/addon-a11y'
 
 import Logo from './static/logo.png'
+
+createTheme({
+    typography: {
+        body: {
+            family: 'source-sans pro, sans-serif'
+        },
+        headings: {
+            family: 'rucksack, sans-serif'
+        }
+    }
+})
 
 addDecorator(withKnobs)
 addDecorator(withA11y)

@@ -5,7 +5,8 @@ const glob = require('glob')
 module.exports = {
     entry: {
         ...getGlobsPaths('./src/components/**/index.{ts,tsx}'),
-        ...getGlobsPaths('./src/lib/**/*.{ts,tsx}')
+        ...getGlobsPaths('./src/lib/**/*.{ts,tsx}'),
+        styles: './src/styles'
     },
 
     output: {
