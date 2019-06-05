@@ -6,7 +6,7 @@ import './colors.story.less'
 import { color } from '@storybook/addon-knobs'
 
 // tslint:disable-next-line: no-string-literal
-window['createTheme'] = require('../../styles').createTheme
+window['createTheme'] = require('../../lib/theme').createTheme
 
 const colorKnobs = (variable: string, values: [string, string]) => `['${color(variable, values[0])}', '${color(`${variable} (dark)`, values[1])}']`
 
@@ -16,7 +16,7 @@ storiesOf('💅 Styles', module)
             <h1>🎨 Colors</h1>
             
             <CodeBlock lang="js">{`
-                import { createTheme } from 'luma-storybook/dist/styles'
+                import { createTheme } from 'luma-storybook/dist/theme'
             `}</CodeBlock>
 
             <hr/>

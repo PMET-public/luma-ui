@@ -13,7 +13,7 @@ storiesOf('💅 Styles', module)
             <h1>📐 Layout</h1>
 
             <CodeBlock lang="js">{`
-                import { createTheme } from 'luma-storybook/dist/styles'
+                import { createTheme } from 'luma-storybook/dist/theme'
             `}</CodeBlock>
             
             <hr/>

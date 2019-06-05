@@ -1,7 +1,7 @@
-import './reset.less'
-import './colors/colors.less'
-import './layout/layout.less'
-import './typography/typography.less'
+import '../styles/reset.less'
+import '../styles/colors/colors.less'
+import '../styles/layout/layout.less'
+import '../styles/typography/typography.less'
 
 type Color = [string, string] | string
 

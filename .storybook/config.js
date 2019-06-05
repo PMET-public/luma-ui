@@ -1,5 +1,5 @@
 import './storybook.css'
-import { createTheme } from '../src/styles' // global styles
+import { createTheme } from '../src/lib/theme' // global styles
 import { addDecorator, addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'

@@ -5,7 +5,7 @@ import { text, number } from '@storybook/addon-knobs'
 import './typography.story.less'
 
 // tslint:disable-next-line: no-string-literal
-window['createTheme'] = require('../../styles').createTheme
+window['createTheme'] = require('../../lib/theme').createTheme
 
 storiesOf('💅 Styles', module)
     .add('✍️ Typography', () => (
@@ -13,7 +13,7 @@ storiesOf('💅 Styles', module)
             <h2>✍️ Typography</h2>
 
             <CodeBlock lang="js">{`
-                import { createTheme } from 'luma-storybook/dist/styles'
+                import { createTheme } from 'luma-storybook/dist/theme'
             `}</CodeBlock>
 
             <hr />
