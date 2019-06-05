@@ -22,14 +22,6 @@ export type CodeBlockProps = { children: string } & ({
 /**
  * Renders
  */
-export const renderJS = (scriptSource: string): void => {
-    try {
-        // tslint:disable-next-line: no-eval
-        eval(scriptSource)
-    } catch (e) {
-        console.error('renderJS: ', e)
-    }
-}
 
 export const renderLESS = (lessSource: string): ReactElement => {
     return <style type="text/less" dangerouslySetInnerHTML={{ __html: lessSource }}></style>
@@ -61,6 +53,11 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         setSource(highlightedSource)
 
         if (render && lang === 'less') less.refreshStyles()
+        
+        if (render && lang === 'js') {
+            // tslint:disable-next-line: no-eval
+            eval(children)
+        }
     }, [children, source, render])
 
     const triggerCopy = () => {
@@ -96,8 +93,6 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
             {render && lang === 'css' && renderCSS(children)}
 
             {render && lang === 'less' && renderLESS(children)}
-
-            {render && lang === 'js' && renderJS(children)}
 
             <Card
                 className={getbem(`code-block`, ['success', copyStatus === 1], ['error', copyStatus === -1])}

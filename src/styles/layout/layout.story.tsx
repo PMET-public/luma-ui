@@ -69,7 +69,7 @@ storiesOf('💅 Styles', module)
             
             <div className="global-layout__codeblock">
                 <CodeBlock render={true} lang="less">{`
-                    @import "/utilities";
+                    @import "utilities.less";
 
                     .my-html-element {
                         @media @medium-screen {
