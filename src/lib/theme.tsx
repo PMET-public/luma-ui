@@ -1,34 +1,36 @@
+import React, { createContext, FunctionComponent, Context } from 'react'
+
 import '../styles/reset.less'
 import '../styles/colors/colors.less'
 import '../styles/layout/layout.less'
 import '../styles/typography/typography.less'
 
-type Color = [string, string] | string
+type Color = [string, string] | [string] | string | undefined
 
 type Colors = {
-    link: Color
-    linkHover: Color
+    link?: Color
+    linkHover?: Color
 
-    background: Color
-    onBackground: Color
+    background?: Color
+    onBackground?: Color
 
-    surface: Color
-    onSurface: Color
+    surface?: Color
+    onSurface?: Color
 
-    primary: Color
-    onPrimary: Color
+    primary?: Color
+    onPrimary?: Color
 
-    secondary: Color
-    onSecondary: Color
+    secondary?: Color
+    onSecondary?: Color
 
-    error: Color
-    onError: Color
+    error?: Color
+    onError?: Color
 
-    warning: Color
-    onWarning: Color
+    warning?: Color
+    onWarning?: Color
 
-    notice: Color
-    onNotice: Color
+    notice?: Color
+    onNotice?: Color
 }
 
 type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
@@ -36,12 +38,12 @@ type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
 type FontWeight = 'normal' | 'bold' | 'bolder' | 'lighter' | number | 'initial' | 'inherit'
 
 type Typography = {
-    body?: {
+    body: {
         family?: string
         style?: FontStyle
         weight?: FontWeight
     }
-    headings?: {
+    headings: {
         family?: string
         style?: FontStyle
         weight?: FontWeight
@@ -60,9 +62,22 @@ type Theme = {
     typography?: Typography
 }
 
-const getColor = (color: Color, isDark?: boolean) => typeof color === 'string' ? color : color[(isDark && color.length > 1) ? 1 : 0]
+type ThemeProviderProps = {
+    theme?: Theme
+}
 
-export const createTheme = (theme: Theme) => {
+const getColor = (color: Color, isDark?: boolean) => {
+    return color && (
+        typeof color === 'string' ?
+            color :
+            color[(isDark && color.length > 1) ? 1 : 0]
+    )
+}
+
+export const ThemeContext: Context<{ theme: Theme }> = createContext({ theme: {} })
+
+export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ theme, children }) => {
+
     const colors: Colors = {
         link: ['#263238', '#ECEFF1'],
         linkHover: ['#37474F', '#CFD8DC'],
@@ -88,24 +103,7 @@ export const createTheme = (theme: Theme) => {
         notice: ['#fff', '#222'],
         onNotice: ['#039be5', '#e1f5fe'],
 
-        ...theme.colors,
-    }
-
-    const typography = {
-        body: {
-            family: 'sans-serif',
-            style: 'normal',
-            weight: 400,
-
-            ...(theme.typography && theme.typography.body),
-        },
-        headings: {
-            family: 'serif',
-            style: 'normal',
-            weight: 600,
-
-            ...(theme.typography && theme.typography.headings),
-        },
+        ...(theme && theme.colors),
     }
 
     const grid: Grid = {
@@ -113,7 +111,24 @@ export const createTheme = (theme: Theme) => {
         columnWidth: 60,
         width: 960,
 
-        ...theme.grid,
+        ...(theme && theme.grid),
+    }
+
+    const typography: Typography = {
+        body: {
+            family: 'sans-serif',
+            style: 'normal',
+            weight: 400,
+
+            ...(theme && theme.typography &&  theme.typography.body),
+        },
+        headings: {
+            family: 'serif',
+            style: 'normal',
+            weight: 600,
+
+            ...(theme && theme.typography && theme.typography.headings),
+        },
     }
 
     const styles = `
@@ -161,22 +176,18 @@ export const createTheme = (theme: Theme) => {
             --font-weight-body: ${typography.body.weight};
             --font-style-body: ${typography.body.style};
 
-            --font-family-heading: ${typography.headings.family}
+            --font-family-heading: ${typography.headings.family};
             --font-weight-heading: ${typography.headings.weight};
             --font-style-heading: ${typography.headings.style};
         }
     `
 
-    const currentEl = document.getElementById('luma-theme')
-    
-    if (currentEl) {
-        currentEl.innerHTML = styles
-    } else {
-        const css = document.createElement('style')
-        css.type = 'text/css'
-        css.id = 'luma-theme'
-        css.innerHTML = styles
-        document.getElementsByTagName('head')[0].appendChild(css)
-    }
-    
+    return (
+        <ThemeContext.Provider value={{ theme: { colors, grid, typography } }}>
+            <style dangerouslySetInnerHTML={{ __html: styles }}></style>
+            {children}
+        </ThemeContext.Provider>
+    )
 }
+
+export default ThemeProvider
