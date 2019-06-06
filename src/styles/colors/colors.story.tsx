@@ -18,6 +18,8 @@ storiesOf('💅 Styles', module)
         const onPrimary = color('onPrimary', '#fff')
         const secondary = color('secondary', '#212121')
         const onSecondary = color('onSecondary', '#fafafa')
+        const accent = color('accent', '#a14a24')
+        const onAccent = color('onAccent', '#fafafa')
         const error = color('error', 'transparent')
         const onError = color('onError', '#ef5350')
         const warning = color('warning', 'transparent')
@@ -49,6 +51,9 @@ storiesOf('💅 Styles', module)
                     
                             secondary: '${secondary}',
                             onSecondary: '${onSecondary}',
+
+                            accent: '${accent}',
+                            onAccent: '${onAccent}',
                     
                             error: '${error}',
                             onError: '${onError}',
@@ -80,6 +85,9 @@ storiesOf('💅 Styles', module)
             
                         --color-secondary: ${secondary};
                         --color-on-secondary:${onSecondary};
+                        
+                        --color-accent: ${accent};
+                        --color-on-accent:${onAccent};
                     
                         --color-error: ${error};
                         --color-on-error: ${onError};
@@ -99,6 +107,7 @@ storiesOf('💅 Styles', module)
                     <ColorSwatch color="surface" />
                     <ColorSwatch color="primary" />
                     <ColorSwatch color="secondary" />
+                    <ColorSwatch color="accent" />
                     <ColorSwatch color="error" />
                     <ColorSwatch color="warning" />
                     <ColorSwatch color="notice" />

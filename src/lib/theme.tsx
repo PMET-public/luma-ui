@@ -23,6 +23,9 @@ type Colors = {
     secondary?: Color
     onSecondary?: Color
 
+    accent?: Color
+    onAccent?: Color
+
     error?: Color
     onError?: Color
 
@@ -94,6 +97,9 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ theme, ch
         secondary: ['#212121', '#fafafa'],
         onSecondary: ['#fafafa', '#212121'],
 
+        accent: ['#a14a24'],
+        onAccent: ['#fafafa'],
+
         error: ['#fff', '#222'],
         onError: ['#ef5350', '#ef5350'],
 
@@ -151,6 +157,9 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ theme, ch
 
             --color-secondary: ${getColor(colors.secondary)};
             --color-on-secondary:${getColor(colors.onSecondary)};
+            
+            --color-accent: ${getColor(colors.accent)};
+            --color-on-accent:${getColor(colors.onAccent)};
         
             --color-error: ${getColor(colors.error)};
             --color-on-error: ${getColor(colors.onError)};

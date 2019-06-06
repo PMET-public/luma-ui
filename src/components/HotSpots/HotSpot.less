@@ -40,14 +40,14 @@
     &:focus {
         outline: 0;
         &::after {
-            border-color: rgba(255, 255, 255, 0.75);
+            transform: scale(1.1);
         }
     }
 
     &::after {
         background-color: var(--color-primary);
         border-radius: 50%;
-        border: 0.1em solid rgba(255, 255, 255, 0.5);
+        border: 0.1em solid var(--color-on-primary);
         box-shadow: 0 0 10/@px rgba(0, 0, 0, 0.3);
         content: "";
         height: inherit;
@@ -68,7 +68,7 @@
         animation-iteration-count: infinite;
         animation-name: hotspot__animation--pulsate;
         animation-timing-function: ease-out;
-        background-color: var(--color-primary);
+        background-color: var(--color-accent);
         border-radius: 50%;
         content: "";
         height: inherit;
