@@ -22,16 +22,18 @@ storiesOf('💅 Styles', module)
                     import ThemeProvider from 'luma-storybook/dist/lib/theme'
 
                     <ThemeProvider theme={{
-                        body: {
-                            family: '${bodyFamily}',
-                            style: '${bodyStyle}',
-                            weight: ${bodyWeight},     
-                        },
-                        headings: {
-                            family: '${headingsFamily}',
-                            style: '${headingsStyle}',
-                            weight: ${headingsWeight},            
-                        },
+                        typography: {
+                            body: {
+                                family: '${bodyFamily}',
+                                style: '${bodyStyle}',
+                                weight: ${bodyWeight},     
+                            },
+                            headings: {
+                                family: '${headingsFamily}',
+                                style: '${headingsStyle}',
+                                weight: ${headingsWeight},            
+                            },
+                        }
                     }}>
                         {/* ... */}
                     </ThemeProvider>

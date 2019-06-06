@@ -14,15 +14,16 @@
   ],
   "scripts": {
     "predev": "rimraf dist",
-    "dev": "concurrently -n webpack,storybook -c cyan,magenta 'yarn webpack-watch' 'yarn storybook-watch'",
-    "webpack-watch": "webpack --watch --preserveWatchOutput --mode=production",
+    "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup-watch' 'yarn storybook-watch'",
+    "rollup-watch": "rollup -c -w",
     "prebuild": "rimraf dist",
-    "build": "webpack --mode=production",
+    "build": "rollup -c --environment BUILD:production",
     "prepare": "yarn build",
     "generate": "./bin/generate.js",
     "storybook-watch": "start-storybook -p 5001 --quiet -s ./src/styles/variables,./public",
     "build-storybook": "build-storybook -s ./src/styles/variables,./public",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "tsc": "tsc"
   },
   "peerDependencies": {
     "react": "^16.8.6",
@@ -63,14 +64,17 @@
     "react-dom": "^16.8.6",
     "react-github-btn": "^1.0.5",
     "rimraf": "^2.6.3",
+    "rollup": "^1.13.1",
+    "rollup-plugin-less": "^1.1.2",
+    "rollup-plugin-node-resolve": "^5.0.1",
+    "rollup-plugin-typescript2": "^0.21.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "tslint": "^5.16.0",
     "tslint-loader": "^3.5.4",
     "typescript": "^3.4.5",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-cli": "^3.3.1"
   },
   "dependencies": {}
 }
