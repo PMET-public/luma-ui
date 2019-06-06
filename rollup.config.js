@@ -1,6 +1,6 @@
-import resolve from 'rollup-plugin-node-resolve'
 import typescript from 'rollup-plugin-typescript2'
 import less from 'rollup-plugin-less'
+
 import glob from 'glob'
 import path from 'path'
 
@@ -14,17 +14,37 @@ const fromSrcToDist = (srcPath, cb) => glob
         })
     ], [])
 
-const plugins = [
-    resolve(),
-    typescript(),
-    less({
-        insert: true,
-        output: false,
-        option: {
-            paths: './src/styles/variables'
-        }
-    }),
-]
+const plugins = (src) => {
+    return [
+        typescript({
+            useTsconfigDeclarationDir: true,
+            tsconfigOverride: {
+                compilerOptions: {
+                    declaration: true,
+                    declarationDir: './dist',
+                },
+                include: [src]
+            }
+        }),
+        less({
+            insert: true,
+            output: false,
+            option: {
+                paths: './src/styles/variables'
+            }
+        }),
+    ]
+}
+
+const output = {
+    dir: './dist',
+    format: 'umd',
+    exports: 'named',
+    globals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+    }
+}
 
 const external = [
     'react',
@@ -32,14 +52,39 @@ const external = [
 ]
 
 export default [
-    ...fromSrcToDist('components/**/index.{ts,tsx,js,jsx}', ({ inputFile, outputDir }) => (
+    ...fromSrcToDist('components/**/index.ts', ({ inputFile, outputDir }) => (
         {
             input: inputFile,
             output: {
+                ...output,
+                name: 'components',
                 dir: outputDir,
-                format: 'esm',
             },
-            plugins,
+            plugins: plugins(inputFile),
+            external,
+        }
+    )),
+    ...fromSrcToDist('lib/**/*.{ts,tsx,js,jsx}', ({ inputFile, outputDir }) => (
+        {
+            input: inputFile,
+            output: {
+                ...output,
+                name: 'lib',
+                dir: outputDir,
+            },
+            plugins: plugins(inputFile),
+            external,
+        }
+    )),
+    ...fromSrcToDist('hooks/**/*.{ts,tsx,js,jsx}', ({ inputFile, outputDir }) => (
+        {
+            input: inputFile,
+            output: {
+                ...output,
+                name: 'hooks',
+                dir: outputDir,
+            },
+            plugins: plugins(inputFile),
             external,
         }
     ))

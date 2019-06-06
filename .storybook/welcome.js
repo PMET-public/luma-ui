@@ -14,18 +14,18 @@ storiesOf('👋 Welcome', module)
                 yarn install
             `}</CodeBlock>
 
-            <h2>✌️ Run Storybook Locally</h2>
+            <h2 style={{ marginTop: '3rem' }}>✌️ Run Storybook Locally</h2>
             <CodeBlock lang="bash">{`
                 yarn dev
             `}</CodeBlock>
 
-            <h2>🤙 Generate New Component</h2>
+            <h2 style={{ marginTop: '3rem' }}>🤙 Generate New Component</h2>
             <CodeBlock lang="bash">{`
                 yarn generate component FooBar
             `}</CodeBlock>
 
 
-            <pre style={{ paddingLeft: '3rem', overflowX: 'auto' }}>
+            <pre style={{ paddingLeft: '1.25rem', overflowX: 'auto', marginTop: '1.5rem' }}>
                 <code>{source`
                     $ ./bin/generate.js component FooBar
                     👌 src/components/FooBar/FooBar.tsx created
@@ -36,7 +36,7 @@ storiesOf('👋 Welcome', module)
                 `}</code>
             </pre>
 
-            <div style={{ padding: '3rem 0', textAlign: 'center' }}>
+            <div style={{ padding: '2rem 0', textAlign: 'center' }}>
                 <span style={{ display: 'inline-block', marginRight: '1rem' }}>
                     <GitHubButton href="https://github.com/PMET-public/luma-storybook/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork PMET-public/luma-storybook on GitHub">Fork</GitHubButton>
                 </span>

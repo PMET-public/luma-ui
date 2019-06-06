@@ -22,7 +22,8 @@
     "generate": "./bin/generate.js",
     "storybook-watch": "start-storybook -p 5001 --quiet -s ./src/styles/variables,./public",
     "build-storybook": "build-storybook -s ./src/styles/variables,./public",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "tsc": "tsc"
   },
   "peerDependencies": {
     "react": "^16.8.6",

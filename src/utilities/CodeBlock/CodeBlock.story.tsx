@@ -28,7 +28,7 @@ storiesOf('🏗 Utilities/CodeBlock', module)
             >{`
                     // Resize me ↔
 
-                    @import "breakpoints.less";
+                    @import "utilities.less";
 
                     :root {
                         background-color: var(--color-primary);
@@ -48,7 +48,10 @@ storiesOf('🏗 Utilities/CodeBlock', module)
     ))
     .add('js', () => (
         <div className="container">
-            <CodeBlock lang="js">{`
+            <CodeBlock 
+                lang="js"
+                render={select('render', { true: true, false: false }, true)}
+            >{`
                     console.log('🏡 I live in the console')
             `}</CodeBlock>
         </div>

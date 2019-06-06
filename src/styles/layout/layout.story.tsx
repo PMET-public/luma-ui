@@ -5,71 +5,94 @@ import './layout.story.less'
 import { number } from '@storybook/addon-knobs'
 
 storiesOf('💅 Styles', module)
-    .add('📐 Layout', () => (
+    .add('📐 Layout', () => {
+        const columns = number('columns', 12)
+        const columnWidth = number('columnWidth', 60)
+        const width = number('width', 960)
 
-        <div className="container">
-            <h2>CSS Variables</h2>
-            <CodeBlock lang="css">{`
-                :root {
-                    --grid-width: ${number('--grid-width', 960)};
-                    --grid-column-width: ${number('--grid-column-width', 60)};
-                    --grid-columns: ${number('--grid-columns', 12)};
-                }
-            `}</CodeBlock>
+        return (
+            <div className="container">
+                <h1>📐 Layout</h1>
 
-            <hr />
-            
-            <h2>Breakpoints</h2>
+                <CodeBlock lang="jsx">{`
+                    import ThemeProvider from 'luma-storybook/dist/lib/theme'
 
-            <div className="global-layout-breakpoints grid">
-                <CodeBlock lang="less">{`
-                    @media @medium-screen {
-                        // ...
+                    <ThemeProvider theme={{
+                        grid: {
+                            columns: ${width},
+                            columnWidth: ${columnWidth},
+                            width: ${columns},
+                        }
+                    }}>
+                        {/* ... */}
+                    </ThemeProvider>
+                `}</CodeBlock>
+
+                <style>{`
+                    :root {
+                        /**
+                         * Layout
+                         */
+                        --grid-width: ${width};
+                        --grid-column-width: ${columnWidth};
+                        --grid-columns: ${columns};
                     }
-                `}</CodeBlock>
+                `}</style>
 
-                <CodeBlock lang="less">{`
-                    @media @large-screen {
-                        // ...
-                    }
-                `}</CodeBlock>
+                <hr />
 
-                <CodeBlock lang="less">{`
-                    @media @xlarge-screen {
-                        // ...
-                    }
-                `}</CodeBlock>
-            </div>
+                <h2>Breakpoints</h2>
 
-            <hr />
-
-            <h2>Grid</h2>
-            
-            <div className="global-layout__codeblock">
-                <CodeBlock render={true} lang="html">{`
-                    <div class="my-html-element grid">
-                        <div>Uno</div>
-                        <div>Dos</div>
-                        <div>Tres</div>
-                        <div>Catorce 🎶</div>
-                    </div>
-                `}</CodeBlock>
-            </div>
-            
-            <div className="global-layout__codeblock">
-                <CodeBlock render={true} lang="less">{`
-                    @import "breakpoints.less";
-
-                    .my-html-element {
+                <div className="global-layout-breakpoints grid">
+                    <CodeBlock lang="less">{`
                         @media @medium-screen {
-                            --columns: 2;
+                            // ...
                         }
+                    `}</CodeBlock>
 
+                    <CodeBlock lang="less">{`
                         @media @large-screen {
-                            --columns: 4;
+                            // ...
                         }
-                    }
-                `}</CodeBlock>
+                    `}</CodeBlock>
+
+                    <CodeBlock lang="less">{`
+                        @media @xlarge-screen {
+                            // ...
+                        }
+                    `}</CodeBlock>
+                </div>
+
+                <hr />
+
+                <h2>Grid</h2>
+
+                <div className="global-layout__codeblock">
+                    <CodeBlock render={true} lang="html">{`
+                        <div class="my-html-element grid">
+                            <div>Uno</div>
+                            <div>Dos</div>
+                            <div>Tres</div>
+                            <div>Catorce 🎶</div>
+                        </div>
+                    `}</CodeBlock>
+                </div>
+
+                <div className="global-layout__codeblock">
+                    <CodeBlock render={true} lang="less">{`
+                        @import "utilities.less";
+
+                        .my-html-element {
+                            @media @medium-screen {
+                                --columns: 2;
+                            }
+
+                            @media @large-screen {
+                                --columns: 4;
+                            }
+                        }
+                    `}</CodeBlock>
+                </div>
             </div>
-        </div>
-    ))
+        )
+    })

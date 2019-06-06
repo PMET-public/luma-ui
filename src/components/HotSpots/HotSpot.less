@@ -1,11 +1,11 @@
-@import './breakpoints.less';
+@import 'utilities';
 
 .hot-spot {
-    --size: 3rem;
+    --size: 30/@px;
     --bottom: unset;
     --left: var(--cords-x);
     --right: unset;
-    --top: calc(var(--cords-y) + var(--size) + 1rem);
+    --top: calc(var(--cords-y) + var(--size) + 1.2rem);
 
     &--right {
         --left: unset;
@@ -13,12 +13,12 @@
     }
 
     &--bottom {
-        --bottom: calc(100% - var(--cords-y) + 1rem);
+        --bottom: calc(100% - var(--cords-y) + 1.2rem);
         --top: unset;
     }
 
     &--open {
-        --size: 3rem;
+        --size: 30/@px;
     }
 }
 
@@ -40,15 +40,15 @@
     &:focus {
         outline: 0;
         &::after {
-            border-color: rgba(255, 255, 255, 0.75);
+            transform: scale(1.1);
         }
     }
 
     &::after {
         background-color: var(--color-primary);
         border-radius: 50%;
-        border: 0.1em solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+        border: 0.1em solid var(--color-on-primary);
+        box-shadow: 0 0 10/@px rgba(0, 0, 0, 0.3);
         content: "";
         height: inherit;
         position: absolute;
@@ -68,7 +68,7 @@
         animation-iteration-count: infinite;
         animation-name: hotspot__animation--pulsate;
         animation-timing-function: ease-out;
-        background-color: var(--color-primary);
+        background-color: var(--color-accent);
         border-radius: 50%;
         content: "";
         height: inherit;
@@ -80,7 +80,7 @@
     }
 
     &:not(&--open):hover::after {
-        background-color: var(--color-primary--hover);
+        transform: scale(1.1);
     }
 }
 
@@ -105,12 +105,12 @@
     align-items: center;
     background-color: var(--color-surface);
     bottom: var(--bottom);
-    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30/@px rgba(0, 0, 0, 0.5);
     color: var(--color-on-surface);
     display: flex;
     justify-content: center;
     left: 0;
-    padding: 2rem;
+    padding: 20/@px;
     position: absolute;
     right: 0;
     top: var(--top);

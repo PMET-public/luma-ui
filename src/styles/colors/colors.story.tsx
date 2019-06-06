@@ -2,51 +2,116 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import ColorSwatch from '../../utilities/ColorSwatch'
 import CodeBlock from '../../utilities/CodeBlock'
-import { color } from '@storybook/addon-knobs'
 import './colors.story.less'
+import { color } from '@storybook/addon-knobs'
 
 storiesOf('💅 Styles', module)
-    .add('🎨 Colors', () => (
-        <div className="container">
-            <h2> CSS Variables </h2>
-            <CodeBlock render={true} lang="css">{`
-                /**
-                 * Theme Colors
-                 */
+    .add('🎨 Colors', () => {
 
-                :root {
-                    --color-link: ${color('--color-link', 'rgb(37, 169, 225)')};
-                    --color-link--hover: ${color('--color-link--hover', 'rgb(25, 136, 184)')};
+        const link = color('link', '#263238')
+        const linkHover = color('linkHover', '#37474F')
+        const background = color('background', '#fff')
+        const onBackground = color('onBackground', '#222')
+        const surface = color('surface', '#fff')
+        const onSurface = color('onSurface', '#222')
+        const primary = color('primary', '#111')
+        const onPrimary = color('onPrimary', '#fff')
+        const secondary = color('secondary', '#212121')
+        const onSecondary = color('onSecondary', '#fafafa')
+        const accent = color('accent', '#a14a24')
+        const onAccent = color('onAccent', '#fafafa')
+        const error = color('error', 'transparent')
+        const onError = color('onError', '#ef5350')
+        const warning = color('warning', 'transparent')
+        const onWarning = color('onWarning', '#f57c00')
+        const notice = color('notice', 'transparent')
+        const onNotice = color('onNotice', '#039be5')
+        
+        return (
+            <div className="container">
+                <h1>🎨 Colors</h1>
 
-                    --color-background: ${color('--color-background', '#fff')};
-                    --color-on-background: ${color('--color-on-background', '#222')};
+                <CodeBlock lang="jsx">{`
 
-                    --color-surface: ${color('--color-surface', '#fff')};
-                    --color-on-surface: ${color('--color-on-surface', '#222')};
+                    import ThemeProvider from 'luma-storybook/dist/lib/theme'
 
-                    --color-primary: ${color('--color-primary', '#f46f25')};
-                    --color-primary--hover: ${color('--color-primary--hover', 'rgb(219, 85, 11)')};
-                    --color-on-primary: ${color('--color-on-primary', '#fff')};
-                    --color-on-primary--hover: ${color('--color-on-primary--hover', '#fff')};
+                    <ThemeProvider theme={{
+                        colors: {
+                            link: '${link}',
+                            linkHover: '${linkHover}',
+                    
+                            background: '${background}',
+                            onBackground: '${onBackground}',
+                    
+                            surface: '${surface}',
+                            onSurface: '${onSurface}',
+                    
+                            primary: '${primary}',
+                            onPrimary: '${onPrimary}',
+                    
+                            secondary: '${secondary}',
+                            onSecondary: '${onSecondary}',
 
-                    --color-secondary: ${color('--color-secondary', 'rgb(37, 169, 225)')};
-                    --color-on-secondary: ${color('--color-on-secondary', '#fff')};
-                    --color-secondary--hover: ${color('--color-secondary--hover', 'rgb(25, 136, 184)')};
-                    --color-on-secondary--hover: ${color('--color-on-secondary--hover', '#fff')};
+                            accent: '${accent}',
+                            onAccent: '${onAccent}',
+                    
+                            error: '${error}',
+                            onError: '${onError}',
+                    
+                            warning: '${warning}',
+                            onWarning: '${onWarning}',
+                    
+                            notice: '${notice}',
+                            onNotice: '${onNotice}',
+                        }
+                    }}>
+                        {/* ... */}
+                    </ThemeProvider>
+                `}</CodeBlock>
 
-                    --color-error: ${color('--color-error', '#b00020')};
-                    --color-on-error: ${color('--color-on-error', '#fff')};
-                }
-            `}</CodeBlock>
+                <style>{`
+                    :root {
+                        --color-link: ${link};
+                        --color-link--hover: ${linkHover};
+            
+                        --color-background: ${background};
+                        --color-on-background: ${onBackground};
+            
+                        --color-surface: ${surface};
+                        --color-on-surface: ${onSurface};
+            
+                        --color-primary: ${primary};
+                        --color-on-primary: ${onPrimary};
+            
+                        --color-secondary: ${secondary};
+                        --color-on-secondary:${onSecondary};
+                        
+                        --color-accent: ${accent};
+                        --color-on-accent:${onAccent};
+                    
+                        --color-error: ${error};
+                        --color-on-error: ${onError};
+            
+                        --color-warning: ${warning};
+                        --color-on-warning: ${onWarning};
+            
+                        --color-notice: ${notice};
+                        --color-on-notice: ${onNotice};
+                    }
+                `}</style>
 
-            <hr />
+                <hr />
 
-            <div className="global-colors color-background grid">
-                <ColorSwatch color="background" />
-                <ColorSwatch color="surface" />
-                <ColorSwatch color="primary" />
-                <ColorSwatch color="secondary" />
-                <ColorSwatch color="error" />
+                <div className="global-colors color-background grid">
+                    <ColorSwatch color="background" />
+                    <ColorSwatch color="surface" />
+                    <ColorSwatch color="primary" />
+                    <ColorSwatch color="secondary" />
+                    <ColorSwatch color="accent" />
+                    <ColorSwatch color="error" />
+                    <ColorSwatch color="warning" />
+                    <ColorSwatch color="notice" />
+                </div>
             </div>
-        </div>
-    ))
+        )
+    })
