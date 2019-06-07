@@ -194,7 +194,9 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ theme, ch
     return (
         <ThemeContext.Provider value={{ theme: { colors, grid, typography } }}>
             <style dangerouslySetInnerHTML={{ __html: styles }}></style>
-            {children}
+            <div className="container">
+                {children}
+            </div>
         </ThemeContext.Provider>
     )
 }
