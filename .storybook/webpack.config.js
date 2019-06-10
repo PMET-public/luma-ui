@@ -25,7 +25,7 @@ module.exports = ({ config }) => {
                 {
                     loader: 'less-loader',
                     options: {
-                        paths: [ path.resolve('src/styles/variables') ],
+                        paths: [ path.resolve('src/theme/variables') ],
                         sourceMap: true,
                     },
                 },

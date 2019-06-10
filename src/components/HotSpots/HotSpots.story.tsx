@@ -2,7 +2,6 @@ import React from 'react'
 import { HotSpot, HotSpotContainer } from './'
 import { storiesOf } from '@storybook/react'
 import { object, number } from '@storybook/addon-knobs'
-import centered from '@storybook/addon-centered/react'
 
 const PriceTagMock = ({ label, price }: any) => (
     <div style={{ fontWeight: 600, fontSize: '1rem'}}>
@@ -12,7 +11,6 @@ const PriceTagMock = ({ label, price }: any) => (
 )
 
 storiesOf('📦 Components/HotSpot', module)
-    .addDecorator(centered)
     .add('Default', () => (
         <div style={{
             maxWidth: '96rem',

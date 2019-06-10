@@ -30,7 +30,7 @@ const plugins = (src) => {
             insert: true,
             output: false,
             option: {
-                paths: './src/styles/variables'
+                paths: './src/theme/variables'
             }
         }),
     ]
@@ -87,5 +87,17 @@ export default [
             plugins: plugins(inputFile),
             external,
         }
-    ))
+    )),
+    ...fromSrcToDist('theme/index.ts', ({ inputFile, outputDir }) => (
+        {
+            input: inputFile,
+            output: {
+                ...output,
+                name: 'theme',
+                dir: outputDir,
+            },
+            plugins: plugins(inputFile),
+            external,
+        }
+    )),
 ]

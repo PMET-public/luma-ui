@@ -1,10 +1,5 @@
 import React, { createContext, FunctionComponent, Context } from 'react'
 
-import '../styles/reset.less'
-import '../styles/colors/colors.less'
-import '../styles/layout/layout.less'
-import '../styles/typography/typography.less'
-
 type Color = [string, string] | [string] | string | undefined
 
 type Colors = {
@@ -100,13 +95,13 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ theme, ch
         accent: ['#a14a24'],
         onAccent: ['#fafafa'],
 
-        error: ['#fff', '#222'],
+        error: ['transparent'],
         onError: ['#ef5350', '#ef5350'],
 
-        warning: ['#fff', '#222'],
+        warning: ['transparent'],
         onWarning: ['#f57c00', '#ffd54f'],
 
-        notice: ['#fff', '#222'],
+        notice: ['transparent'],
         onNotice: ['#039be5', '#e1f5fe'],
 
         ...(theme && theme.colors),
@@ -194,7 +189,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ theme, ch
     return (
         <ThemeContext.Provider value={{ theme: { colors, grid, typography } }}>
             <style dangerouslySetInnerHTML={{ __html: styles }}></style>
-            <div className="container">
+            <div className="theme-container">
                 {children}
             </div>
         </ThemeContext.Provider>

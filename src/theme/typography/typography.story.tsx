@@ -4,7 +4,7 @@ import CodeBlock from '../../utilities/CodeBlock'
 import { text, number } from '@storybook/addon-knobs'
 import './typography.story.less'
 
-storiesOf('💅 Styles', module)
+storiesOf('🖼 Theme', module)
     .add('✍️ Typography', () => {
 
         const bodyFamily = text('body family', 'source-sans pro, sans-serif')
@@ -15,31 +15,8 @@ storiesOf('💅 Styles', module)
         const headingsWeight = number('headings weight', 600, { range: true, min: 400, max: 800, step: 200 })
 
         return (
-            <div className="container">
+            <React.Fragment>
                 <h2>✍️ Typography</h2>
-
-                <CodeBlock lang="jsx">{`
-                    import ThemeProvider from 'luma-storybook/dist/lib/theme'
-
-                    <ThemeProvider theme={{
-                        typography: {
-                            body: {
-                                family: '${bodyFamily}',
-                                style: '${bodyStyle}',
-                                weight: ${bodyWeight},     
-                            },
-                            headings: {
-                                family: '${headingsFamily}',
-                                style: '${headingsStyle}',
-                                weight: ${headingsWeight},            
-                            },
-                        }
-                    }}>
-                        {/* ... */}
-                    </ThemeProvider>
-                `}</CodeBlock>
-
-                <hr />
 
                 <style>{`
                       :root {
@@ -173,6 +150,6 @@ storiesOf('💅 Styles', module)
 
                 </style>
 
-            </div>
+            </React.Fragment>
         )
     })

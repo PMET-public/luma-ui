@@ -1,11 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import ColorSwatch from '../../utilities/ColorSwatch'
-import CodeBlock from '../../utilities/CodeBlock'
 import './colors.story.less'
 import { color } from '@storybook/addon-knobs'
 
-storiesOf('💅 Styles', module)
+storiesOf('🖼 Theme', module)
     .add('🎨 Colors', () => {
 
         const link = color('link', '#263238')
@@ -28,46 +27,8 @@ storiesOf('💅 Styles', module)
         const onNotice = color('onNotice', '#039be5')
         
         return (
-            <div className="container">
+            <React.Fragment>
                 <h1>🎨 Colors</h1>
-
-                <CodeBlock lang="jsx">{`
-
-                    import ThemeProvider from 'luma-storybook/dist/lib/theme'
-
-                    <ThemeProvider theme={{
-                        colors: {
-                            link: '${link}',
-                            linkHover: '${linkHover}',
-                    
-                            background: '${background}',
-                            onBackground: '${onBackground}',
-                    
-                            surface: '${surface}',
-                            onSurface: '${onSurface}',
-                    
-                            primary: '${primary}',
-                            onPrimary: '${onPrimary}',
-                    
-                            secondary: '${secondary}',
-                            onSecondary: '${onSecondary}',
-
-                            accent: '${accent}',
-                            onAccent: '${onAccent}',
-                    
-                            error: '${error}',
-                            onError: '${onError}',
-                    
-                            warning: '${warning}',
-                            onWarning: '${onWarning}',
-                    
-                            notice: '${notice}',
-                            onNotice: '${onNotice}',
-                        }
-                    }}>
-                        {/* ... */}
-                    </ThemeProvider>
-                `}</CodeBlock>
 
                 <style>{`
                     :root {
@@ -112,6 +73,6 @@ storiesOf('💅 Styles', module)
                     <ColorSwatch color="warning" />
                     <ColorSwatch color="notice" />
                 </div>
-            </div>
+            </React.Fragment>
         )
     })

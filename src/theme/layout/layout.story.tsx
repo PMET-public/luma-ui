@@ -4,29 +4,15 @@ import CodeBlock from '../../utilities/CodeBlock'
 import './layout.story.less'
 import { number } from '@storybook/addon-knobs'
 
-storiesOf('💅 Styles', module)
+storiesOf('🖼 Theme', module)
     .add('📐 Layout', () => {
         const columns = number('columns', 12)
         const columnWidth = number('columnWidth', 60)
         const width = number('width', 960)
 
         return (
-            <div className="container">
+            <React.Fragment>
                 <h1>📐 Layout</h1>
-
-                <CodeBlock lang="jsx">{`
-                    import ThemeProvider from 'luma-storybook/dist/lib/theme'
-
-                    <ThemeProvider theme={{
-                        grid: {
-                            columns: ${width},
-                            columnWidth: ${columnWidth},
-                            width: ${columns},
-                        }
-                    }}>
-                        {/* ... */}
-                    </ThemeProvider>
-                `}</CodeBlock>
 
                 <style>{`
                     :root {
@@ -93,6 +79,6 @@ storiesOf('💅 Styles', module)
                         }
                     `}</CodeBlock>
                 </div>
-            </div>
+            </React.Fragment>
         )
     })

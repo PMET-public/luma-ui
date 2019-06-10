@@ -1,14 +1,12 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
 import CodeBlock from '../src/utilities/CodeBlock'
-import centered from '@storybook/addon-centered/react'
 import GitHubButton from 'react-github-btn'
 import { source } from 'common-tags'
 
 storiesOf('👋 Welcome', module)
-    .addDecorator(centered)
     .add('Getting Started', () => (
-        <div className="container">
+        <React.Fragment>
             <h2>☝️ Install Dependencies</h2>
             <CodeBlock lang="bash">{`
                 yarn install
@@ -44,5 +42,5 @@ storiesOf('👋 Welcome', module)
                     <GitHubButton href="https://github.com/PMET-public/luma-storybook/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PMET-public/luma-storybook on GitHub">Issue</GitHubButton>
                 </span>
             </div>
-        </div>
+        </React.Fragment>
     ))
