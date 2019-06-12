@@ -26,14 +26,11 @@
 .grid() {
     --columns: 1;
     --gap: var(--gutter-unit);
-    --template-columns: repeat(var(--columns), 1fr);
 
     display: grid;
-    grid-template-columns: var(--template-columns);
     grid-gap: var(--gap);
 
     &.fluid {
-        --template-columns: unset;
         grid-auto-flow: column;
     }
 

@@ -76,7 +76,7 @@ storiesOf('🖼 Theme', module)
                             }
 
                             @media @large-screen {
-                                .grid.fluid(); // <-- Set columns to have  auto flow
+                                .grid.auto();
                             }
                         }
                     `}</CodeBlock>
