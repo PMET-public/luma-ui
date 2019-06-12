@@ -55,7 +55,7 @@ storiesOf('🖼 Theme', module)
 
                 <div className="global-layout__codeblock">
                     <CodeBlock render={true} lang="html">{`
-                        <div class="my-html-element grid">
+                        <div class="my-html-element">
                             <div>Uno</div>
                             <div>Dos</div>
                             <div>Tres</div>
@@ -69,12 +69,14 @@ storiesOf('🖼 Theme', module)
                         @import "utilities.less";
 
                         .my-html-element {
+                            .grid(); // <- Grid Mixin
+
                             @media @medium-screen {
                                 --columns: 2;
                             }
 
                             @media @large-screen {
-                                --columns: 4;
+                                .grid.fluid(); // <-- Set columns to have  auto flow
                             }
                         }
                     `}</CodeBlock>

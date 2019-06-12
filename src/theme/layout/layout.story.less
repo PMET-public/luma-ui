@@ -1,0 +1,35 @@
+@import "/utilities.less";
+
+.my-html-element {
+    margin: 30/@px 0 ;
+}
+
+.my-html-element > div {
+    align-items: center;
+    background-color: var(--color-surface);
+    border-radius: 1rem;
+    box-shadow: 1/@px 0 10/@px #ccc;
+    color: var(--color-on-surface);
+    display: flex; 
+    justify-content: center;
+    padding: 40/@px 20/@px;
+}
+
+.global-layout__codeblock {
+    margin: 20/@px 0;
+}
+
+.global-layout-source {
+    @media @medium-screen {
+        --columns: 2;
+    }
+}
+
+.global-layout-breakpoints {
+    @media @medium-screen {
+        --columns: 2;
+    }
+    @media @large-screen {
+        --columns: 3;
+    }
+}

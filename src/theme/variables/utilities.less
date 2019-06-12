@@ -7,4 +7,46 @@
 
 // Fonts
 // i.e. 16/@px = 1rem
+@font-base: 16;
 @px: 16rem;
+
+//  BG Opacity
+.bg-opacity() {
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    height: 100%;
+    left: 0;
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.grid() {
+    --columns: 1;
+    --gap: var(--gutter-unit);
+    --template-columns: repeat(var(--columns), 1fr);
+
+    display: grid;
+    grid-template-columns: var(--template-columns);
+    grid-gap: var(--gap);
+
+    &.fluid {
+        --template-columns: unset;
+        grid-auto-flow: column;
+    }
+
+    &.auto {
+        grid-auto-columns: 1fr;
+        grid-auto-flow: column;
+    }
+}
+
+
+.container() {
+    margin: 0 auto;
+    max-width: var(--container-width);
+    padding-left: var(--gutter-unit);
+    padding-right: var(--gutter-unit);
+}

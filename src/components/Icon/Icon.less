@@ -1,0 +1,11 @@
+@import "/utilities.less";
+
+.icon {
+    --icon-size: 24;
+    display: inline-block;
+
+    svg {
+        width: calc(var(--icon-size) * 1rem/@font-base);
+        height: calc(var(--icon-size) * 1rem/@font-base);
+    }
+}
