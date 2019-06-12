@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from '../../utilities/CodeBlock'
+import CodeBlock from '../../../.storybook/components/CodeBlock'
 import './layout.story.less'
 import { number } from '@storybook/addon-knobs'
 

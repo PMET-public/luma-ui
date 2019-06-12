@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, Fragment, useState, ReactElement, useRef } from 'react'
 import { stripIndent } from 'common-tags'
-import { getbem } from '../../lib/helpers'
+import { getbem } from '../../../src/lib/helpers'
 import less from 'less'
 import prism from 'prismjs'
 import Card from '../Card'

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from '../src/utilities/CodeBlock'
+import CodeBlock from './components/CodeBlock'
 import GitHubButton from 'react-github-btn'
 import { source } from 'common-tags'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import ColorSwatch from '../../utilities/ColorSwatch'
+import ColorSwatch from '../../../.storybook/components/ColorSwatch'
 import './colors.story.less'
 import { color } from '@storybook/addon-knobs'
 

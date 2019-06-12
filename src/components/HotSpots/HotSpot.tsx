@@ -1,6 +1,5 @@
 import React, { FunctionComponent, ReactNode, useRef, useContext } from 'react'
 import { getbem } from '../../lib/helpers'
-import Card from '../../utilities/Card'
 import { useCSSTransition } from '../../hooks/useCSSTransition'
 import { HotSpotsContext } from './HotSpotContainer'
 
@@ -60,9 +59,9 @@ export const HotSpot: FunctionComponent<HotSpotProps> = ({
             </div>
 
             {contentTransition && (
-                <Card className={getbem('hot-spot__content', ['open', isOpen])} ref={contentEl}>
+                <div className={getbem('hot-spot__content', ['open', isOpen])} ref={contentEl}>
                     {children}
-                </Card>
+                </div>
             )}
 
         </div>

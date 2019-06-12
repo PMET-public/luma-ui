@@ -1,5 +1,5 @@
 import React, { FunctionComponent, forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react'
-import { mergeString } from '../../lib/helpers'
+import { mergeString } from '../../../src/lib/helpers'
 
 export type CardProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
