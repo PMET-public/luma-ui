@@ -1,6 +1,8 @@
 @import "utilities.less";
 
 :root {
+    --padding: 1rem;
+    
     /* Grid logic */
     --grid-gutters: calc(var(--grid-columns) - 1);
     /* Grid proportion logic */
@@ -24,4 +26,14 @@
 
 .grid {
     .grid();
+}
+
+.grid.fluid {
+    .grid();
+    .grid.fluid();
+}
+
+.grid.auto {
+    .grid();
+    .grid.auto();
 }
