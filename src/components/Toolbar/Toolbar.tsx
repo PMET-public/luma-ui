@@ -1,7 +1,7 @@
-import React, { FunctionComponent, ReactElement } from 'react'
+import React, { FunctionComponent, ReactElement, useEffect, useState } from 'react'
 // import Svg from 'react-svg'
 import { getbem } from '../../lib/helpers'
-import { useWheelEvent } from '../../hooks/useWheelEvent'
+import { useScroll } from '../../hooks/useScroll'
 
 /**
  * Toolbar
@@ -21,10 +21,18 @@ export const Toolbar: FunctionComponent<ToolbarProps> = ({
     storeUrl,
     logoSrc,
 }) => {
-    const { scrollTop, deltaY } = useWheelEvent()
-    const isScrolled = scrollTop > hideOnOffset
-    const isHidden = hideOnOffset > 0 && scrollTop > hideOnOffset && deltaY > 0
+    const { scrollY } = useScroll()
+    const [lastScrollY, setlastScrollY] = useState(0)
+    const [isScrolled, setIsScrolled] = useState(false)
+    const [isHidden, setIsHidden] = useState(false)
 
+    useEffect(() => {
+        const deltaY = scrollY - lastScrollY
+        setIsScrolled(scrollY > hideOnOffset)
+        setIsHidden(hideOnOffset > 0 && scrollY > hideOnOffset && (deltaY > 0))    
+        setlastScrollY(scrollY)
+    }, [scrollY])
+    
     return (
         <div className={getbem('toolbar', ['hidden', isHidden], ['scrolled', isScrolled])}>
             <h1 className="toolbar__logo">
