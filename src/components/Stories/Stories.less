@@ -1,0 +1,52 @@
+@import "/utilities";
+
+.stories {
+    .grid();
+    .grid.fluid();
+
+    --gap: 1.5rem;
+
+    overflow-x: scroll;
+    padding: var(--padding) var(--padding) 1.5rem;
+    -webkit-overflow-scrolling: touch;
+
+    &__item {
+        --image: "";
+        --size: 70;
+        --sizeRem: calc(var(--size) * 1rem/@font-base);
+
+        align-items: center;
+        color: var(--color-on-surface);
+        display: inline-flex;
+        flex-direction: column;
+
+        &__image {
+            background-color: var(--color-surface);
+            background-image: var(--imageUrl);
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            display: inline-block;
+            height: var(--sizeRem);
+            overflow: hidden;
+            width: var(--sizeRem);
+            border: 2px solid var(--border-color);
+        }
+
+        &__label {
+            margin-top: 10/@px;
+            font-size: 12/@px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: var(--sizeRem);
+            text-align: center;
+        }
+
+        &[href] {
+            text-decoration: none;
+        }
+
+    }
+
+}
