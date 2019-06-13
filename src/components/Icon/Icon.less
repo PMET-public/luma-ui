@@ -1,11 +1,47 @@
 @import "/utilities.less";
 
 .icon {
+    --color: var(--color-on-surface);
     --icon-size: 24;
-    display: inline-block;
+    --icon-size-rem: calc(var(--icon-size) * 1rem/@font-base);
+    --icon-label-size-rem: calc(var(--icon-size) * 1rem/@font-base / 2);
+    color: var(--color);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
 
     svg {
-        width: calc(var(--icon-size) * 1rem/@font-base);
-        height: calc(var(--icon-size) * 1rem/@font-base);
+        width: var(--icon-size-rem);
+        height: var(--icon-size-rem);
+
+        * {
+            fill: var(--color);
+        }
     }
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__label {
+        font-size: var(--icon-label-size-rem);
+        font-weight: 600;
+        margin-top: 5%;
+        text-overflow: ellipsis;
+    }
+
+    &__count {
+        font-size: var(--icon-label-size-rem);
+        left: 110%;
+        position: absolute;
+        top: -5%;
+
+        &--over::before {
+            content: "+";
+            font-size: 90%;
+            font-style: italic;
+            padding-right: 0.1rem;
+        }
+    }
+
 }

@@ -23,16 +23,7 @@ export const TabBarLink: FunctionComponent<TabBarLink> = ({
     <a className={getbem('tab-bar-link', ['active', isActive])} 
         href={src}
     >
-        <span className="tab-bar-link__icon">
-            <Icon  name={icon} size={24} />
-            {count ? (
-                <div className={getbem('tab-bar-link__count', ['over', count > 99])}>
-                    {count > 99 ? 99 : count}
-                </div>
-            ) : null}
-        </span>
-        
-        <div className="tab-bar-link__label">{label}</div>
+        <Icon name={icon} size={24} label={label} count={count} />
     </a>
 )
 

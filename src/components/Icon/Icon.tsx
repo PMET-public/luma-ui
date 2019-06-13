@@ -1,15 +1,19 @@
 import React, { FunctionComponent } from 'react'
 import Svg from 'react-svg'
-import { mergeString } from '../../lib/helpers'
+import { mergeString, getbem } from '../../lib/helpers'
 
 export type IconProps = {
     className?: string
-    name?: string
+    count?: number
+    label?: string
+    name: string
     size?: number
 }
 
 export const Icon: FunctionComponent<IconProps> = ({
     className,
+    count,
+    label,
     name,
     size = 24,
 }) => {
@@ -20,10 +24,22 @@ export const Icon: FunctionComponent<IconProps> = ({
     } catch (e) { }
 
     return (
-        <Svg className={mergeString('icon', className)}
-            src={icon}
+        <span className={mergeString('icon', className)}
             style={{ ['--icon-size' as any]: size }}
-            wrapper="span"
-        />
+        >
+            <span className="icon__wrapper">
+                <Svg src={icon} wrapper="span" />
+
+                {count ? (
+                    <span className={getbem('icon__count', ['over', count > 99])}>
+                        {count > 99 ? 99 : count}
+                    </span>
+                ) : null}
+            </span>
+
+            {label ? (
+                <span className="icon__label">{label}</span>
+            ) : null}
+        </span>
     )
 }

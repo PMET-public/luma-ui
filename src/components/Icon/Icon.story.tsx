@@ -5,5 +5,10 @@ import { number, text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Icon', module)
     .add('Default', () => (
-        <Icon name={text('icon', 'home')} size={number('size (px)', 100)} />
+        <Icon 
+            name={text('icon', 'home')} 
+            size={number('size (px)', 100)} 
+            label={text('label', '')}
+            count={number('count', 0)} 
+        />
     ))
