@@ -1,36 +1,59 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Toolbar, ToolbarActions, ToolbarLink } from './'
+import { Toolbar, ToolbarActions } from './'
+import Icon from '../Icon'
+import { number } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Toolbar', module)
     .add('Default', () => (
         <React.Fragment>
-            <Toolbar logoSrc="images/new-luma.svg" storeName="Luma" storeUrl="#">
+            <Toolbar 
+                logoSrc="images/new-luma.svg" 
+                storeName="Luma" 
+                storeUrl="#"
+                hideOnOffset={number('hideOnScroll', 100)}
+            >
                 <ToolbarActions type="primary">
-                    <ToolbarLink icon="shirt" label="Catalog" src="#" isActive={true} />
-                    <ToolbarLink icon="heart" label="Favorites" src="#" count={2} />
-                    <ToolbarLink icon="search" label="Search" src="#" />
-                    <ToolbarLink icon="basket" label="Basket" src="#" count={3} />
+                    <a href="#">What's New</a>
+                    <a href="#">Catalog</a>
+                    <a href="#">Sale</a>
+                    <a href="#">Gift Cards</a>
                 </ToolbarActions>
 
-                <ToolbarActions type="nav">
-                    <ToolbarLink icon="basket" label="Basket" src="#" count={3} />
-                    <ToolbarLink label="What's New" src="#" />
-                    <ToolbarLink label="Women" src="#" />
-                </ToolbarActions>
-                
                 <ToolbarActions type="secondary">
-                    <ToolbarLink icon="bubble" label="Help" src="#" />
-                    <ToolbarLink icon="user" label="Account" src="#" />
+
+                    <a href="">
+                        Live Chat
+                    </a>
+
+                    <a href="">
+                        Account
+                    </a>
+
+                    <a href="">
+                        <Icon name="search" size={22} />
+                    </a>
+
+                    <a href="">
+                        <Icon name="basket" size={24} count={1} />
+                    </a>
                 </ToolbarActions>
             </Toolbar>
 
             <style>{`
-                :root {
-                    background-image: url(${require('../../../public/images/selfie.jpeg')});
-                    background-repeat: no-repeat;
-                    background-size: 100vh;
-                    background-position: top center;
+                body {
+                    background-color: #ddd;
+                    height: 300vh;
+                }
+
+                body::after {
+                    content: '↑ scroll ↓';
+                    position: fixed;
+                    top: 40%;
+                    text-align: center;
+                    width: 100%;
+                    opacity: 0.25;
+                    font-weight: 600;
                 }
             `}</style>
         </React.Fragment>
