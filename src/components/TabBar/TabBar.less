@@ -29,7 +29,10 @@
     flex-direction: column;
     justify-content: center;
     padding: 10/@px;
-    text-decoration: none;
+
+    &[href] {
+        text-decoration: none;
+    }
 
     &--active {
         border-color: var(--color-primary);
