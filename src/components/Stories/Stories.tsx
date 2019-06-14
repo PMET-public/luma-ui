@@ -14,6 +14,7 @@ export const Stories: FunctionComponent<StoriesProps> = ({
         >
             {items.map(({ label, url, imageUrl, size = 70}, i) => (
                 <a className="stories__item"
+                    key={`stories__item--${i}`}
                     aria-label={label}
                     href={url}
                     style={{

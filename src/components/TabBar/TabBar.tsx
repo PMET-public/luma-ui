@@ -15,10 +15,11 @@ export type TabBarProps = {
 export const TabBar: FunctionComponent<TabBarProps> = ({ items }) => (
     <nav className="tab-bar">
         {items.map(({ count, iconSrc, isActive, label, src }, i) => (
-            <a className={getbem('tab-bar__link', ['active', !!isActive])}
+            <a className={getbem('tab-bar__item', ['active', !!isActive])}
                 href={src}
+                key={`tab-bar__item--${i}`}
             >
-                <Icon className="tan-bar__link__icon" 
+                <Icon className="tan-bar__item__icon" 
                     src={iconSrc} 
                     label={label} 
                     count={count} 
