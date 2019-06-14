@@ -1,40 +1,40 @@
 @import "/utilities.less";
 
 .icon {
-    --color: var(--color-on-surface);
-    --icon-size: 24;
-    --icon-size-rem: calc(var(--icon-size) * 1rem/@font-base);
-    --icon-label-size-rem: calc(var(--icon-size) * 1rem/@font-base / 2);
-    color: var(--color);
+    align-items: center;
+    color: inherit;
     display: inline-flex;
     flex-direction: column;
-    align-items: center;
-
-    svg {
-        width: var(--icon-size-rem);
-        height: var(--icon-size-rem);
-
-        * {
-            fill: var(--color);
+    font-size: inherit;
+    &__svg svg {
+        width: auto;
+        height: 1em;
+        * {            
+            fill: none;
+            stroke: currentColor;
         }
     }
-
+    
     &__wrapper {
         position: relative;
     }
 
     &__label {
-        font-size: var(--icon-label-size-rem);
+        font-size: 0.45em;
+        color: inherit;
         font-weight: 600;
-        margin-top: 5%;
+        margin-top: 5/@px;
         text-overflow: ellipsis;
     }
 
     &__count {
-        font-size: var(--icon-label-size-rem);
-        left: 110%;
+        border-radius: 0.2em;
+        color: inherit;
+        left: 100%;
+        padding: 0.3em;
         position: absolute;
-        top: -5%;
+        top: -0.5em;
+        font-size: 0.5em;
 
         &--over::before {
             content: "+";

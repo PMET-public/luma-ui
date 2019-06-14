@@ -1,5 +1,8 @@
 import typescript from 'rollup-plugin-typescript2'
 import less from 'rollup-plugin-less'
+import nodeResolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+import builtins from 'rollup-plugin-node-builtins'
 
 import glob from 'glob'
 import path from 'path'
@@ -33,6 +36,13 @@ const plugins = (src) => {
                 paths: './src/theme/variables'
             }
         }),
+        builtins(),
+        nodeResolve({
+            preferBuiltins: false,
+        }),
+        commonjs({
+            include: /node_modules/,
+        }),
     ]
 }
 
@@ -43,12 +53,14 @@ const output = {
     globals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
+        'prop-types': 'PropTypes',
     }
 }
 
 const external = [
     'react',
     'react-dom',
+    'prop-types',
 ]
 
 export default [
