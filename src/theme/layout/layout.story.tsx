@@ -11,7 +11,7 @@ storiesOf('🖼 Theme', module)
         const width = number('width', 960)
 
         return (
-            <React.Fragment>
+            <div className="story--padded">
                 <h1>📐 Layout</h1>
 
                 <style>{`
@@ -81,6 +81,6 @@ storiesOf('🖼 Theme', module)
                         }
                     `}</CodeBlock>
                 </div>
-            </React.Fragment>
+            </div>
         )
     })

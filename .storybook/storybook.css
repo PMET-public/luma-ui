@@ -22,3 +22,7 @@ hr.or:after {
     top: 50%;
 
 }
+
+.story--padded {
+    padding: 3rem;
+}

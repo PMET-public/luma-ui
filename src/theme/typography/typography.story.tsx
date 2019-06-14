@@ -15,7 +15,7 @@ storiesOf('🖼 Theme', module)
         const headingsWeight = number('headings weight', 600, { range: true, min: 400, max: 800, step: 200 })
 
         return (
-            <React.Fragment>
+            <div className="story--padded">
                 <h2>✍️ Typography</h2>
 
                 <style>{`
@@ -150,6 +150,6 @@ storiesOf('🖼 Theme', module)
 
                 </style>
 
-            </React.Fragment>
+            </div>
         )
     })

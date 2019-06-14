@@ -27,7 +27,7 @@ storiesOf('🖼 Theme', module)
         const onNotice = color('onNotice', '#039be5')
         
         return (
-            <React.Fragment>
+            <div className="story--padded">
                 <h1>🎨 Colors</h1>
 
                 <style>{`
@@ -73,6 +73,6 @@ storiesOf('🖼 Theme', module)
                     <ColorSwatch color="warning" />
                     <ColorSwatch color="notice" />
                 </div>
-            </React.Fragment>
+            </div>
         )
     })

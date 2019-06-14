@@ -4,7 +4,12 @@ import CodeBlock from '../../.storybook/components/CodeBlock'
 
 storiesOf('🖼 Theme', module)
     .add('⚛️ ThemeProvider', () => (
-        <React.Fragment>
+        <div className="story--padded">
+
+            <h1>⚛️ ThemeProvider</h1>
+
+            <hr />
+
             <CodeBlock lang="jsx">{`
                 import ThemeProvider from 'luma-storybook/dist/theme'
 
@@ -58,7 +63,7 @@ storiesOf('🖼 Theme', module)
                     {/* <App /> */}
                 </ThemeProvider>
             `}</CodeBlock>
-        </React.Fragment>
+        </div>
     ))
     // .add('html', () => (
     //     <React.Fragment>
@@ -67,55 +72,55 @@ storiesOf('🖼 Theme', module)
     //                 /**
     //                  * Theme Colors
     //                  */
-        
+
     //                 --color-link: #263238;
     //                 --color-link--hover: #37474F;
-        
+
     //                 --color-background: #fff;
     //                 --color-on-background: #222#;
-        
+
     //                 --color-surface: #fff;
     //                 --color-on-surface: #222;
-        
+
     //                 --color-primary: #111;
     //                 --color-on-primary: #fff;
-        
+
     //                 --color-secondary: #212121;
     //                 --color-on-secondary: #fafafa;
-                    
+
     //                 --color-accent: #a14a24;
     //                 --color-on-accent: #fafafa;
-                
+
     //                 --color-error: transparent;
     //                 --color-on-error: #ef5350;
-        
+
     //                 --color-warning: transparent;
     //                 --color-on-warning: #f57c00;
-        
+
     //                 --color-notice: transparent;
     //                 --color-on-notice: #039be5;
-        
+
     //                 /**
     //                  * Layout
     //                  */
     //                 --grid-column-width: 60;
     //                 --grid-columns: 12;
     //                 --grid-width: 960;
-        
+
     //                 /**
     //                  * Typography
     //                  */
-        
+
     //                 --font-family-body: source-sans pro, sans-serif;
     //                 --font-style-body: normal;
     //                 --font-weight-body: 400;
-        
+
     //                 --font-family-heading: rucksack, sans-serif;
     //                 --font-style-heading: normal;
     //                 --font-weight-heading: 600;
     //             }
     //         `}</CodeBlock>
-            
+
     //         <hr/>
 
     //         <CodeBlock lang="html">{`

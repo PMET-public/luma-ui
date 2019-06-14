@@ -3,8 +3,10 @@ import { storiesOf } from '@storybook/react'
 import CodeBlock from './components/CodeBlock'
 import GitHubButton from 'react-github-btn'
 import { source } from 'common-tags'
+import centered from '@storybook/addon-centered/react'
 
 storiesOf('👋 Welcome', module)
+    .addDecorator(centered)
     .add('Getting Started', () => (
         <React.Fragment>
             <h2>☝️ Install Dependencies</h2>
