@@ -16,26 +16,24 @@
         .bg-opacity();
         content: "";
     }
-}
 
-/**
- * TabBarLink
- */
- .tab-bar-link {
-    align-items: center;
-    border-top: 2/@px solid transparent;
-    display: flex;
-    filter: contrast(0%);
-    flex-direction: column;
-    justify-content: center;
-    padding: 10/@px;
+    &__link {
+        align-items: center;
+        border-top: 2/@px solid transparent;
+        display: flex;
+        filter: contrast(0%);
+        flex-direction: column;
+        justify-content: center;
+        padding: 10/@px;
 
-    &[href] {
-        text-decoration: none;
+        &[href] {
+            text-decoration: none;
+        }
+
+        &--active {
+            border-color: var(--color-primary);
+            filter: contrast(100%);
+        }
     }
 
-    &--active {
-        border-color: var(--color-primary);
-        filter: contrast(100%);
-    }
 }

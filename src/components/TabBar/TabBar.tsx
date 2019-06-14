@@ -1,38 +1,25 @@
-import React, { FunctionComponent, ReactElement } from 'react'
+import React, { FunctionComponent } from 'react'
 import Icon from '../Icon'
 import { getbem } from '../../lib/helpers'
 
-/**
- * TabBarLink
- */
-type TabBarLink = {
-    count?: number
-    icon: string
-    isActive?: boolean
-    label: string
-    src: string
-}
-
-export const TabBarLink: FunctionComponent<TabBarLink> = ({ 
-    count, 
-    icon, 
-    isActive = false, 
-    label, 
-    src,
-}) => (
-    <a className={getbem('tab-bar-link', ['active', isActive])} 
-        href={src}
-    >
-        <Icon name={icon} size={24} label={label} count={count} />
-    </a>
-)
-
 export type TabBarProps = {
-    children: ReactElement<TabBarLink> | Array<ReactElement<TabBarLink>> 
+    items: Array<{
+        count?: number
+        icon: string
+        isActive?: boolean
+        label: string
+        src: string
+    }>
 }
 
-export const TabBar: FunctionComponent<TabBarProps> = ({ children }) => (
+export const TabBar: FunctionComponent<TabBarProps> = ({ items }) => (
     <nav className="tab-bar">
-        {children}
+        {items.map(({ count, icon, isActive, label, src }, i) => (
+            <a className={getbem('tab-bar__link', ['active', !!isActive])}
+                href={src}
+            >
+                <Icon name={icon} size={24} label={label} count={count} />
+            </a>
+        ))}
     </nav>
 )
