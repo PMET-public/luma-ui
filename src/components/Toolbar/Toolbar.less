@@ -4,11 +4,7 @@
  * Toolbar
  */
 .toolbar {
-    .grid();
-
-    grid-template-areas: 'logo primary secondary';
-    grid-template-columns: auto 1fr auto;
-
+    display: flex;   
     align-items: center;
     box-sizing: border-box;
     min-height: 60/@px;
@@ -23,60 +19,9 @@
         .bg-opacity();
         content: "";
     }
-    
-    &__logo {
-        grid-area: logo;
-        margin: 0;
-        line-height: 0;
-        
-        &__image {
-            width: 120/@px;
-            max-height: 30/@px;
-        }
-    }
-    
+
     &--hidden {
         opacity: 0;
         transform: translateY(-100%);
-    }
-}
-
-
-/**
- * ToolbarActions
- */
-
-.toolbar-actions {
-    .grid();
-    .grid.fluid();
-
-    --gap: 1.5rem;
-
-    align-items: center;
-    font-size: 14/@px;
-
-    a {
-        text-decoration: none;
-        color: var(--color-link);
-        svg {
-            --color: var(--color-link);
-        }
-
-        &:hover {
-            text-decoration: none;
-            color: var(--color-link--hover);
-            svg {
-                --color: var(--color-link--hover);
-            }
-        }
-    }
-
-    &--primary {
-        justify-content: center;
-        grid-area: primary;
-    }
-
-    &--secondary {
-        grid-area: secondary;
     }
 }
