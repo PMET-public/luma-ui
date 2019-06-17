@@ -1,4 +1,5 @@
 import React from 'react'
+import Svg from 'react-svg'
 import Icon from './'
 import { storiesOf } from '@storybook/react'
 import { number, text, color } from '@storybook/addon-knobs'
@@ -12,7 +13,7 @@ storiesOf('📦 Components/Icon', module)
             <Icon className="story-icon"
                 count={number('count', 0)}
                 label={text('label', '')}
-                src={require('./svgs/thin/gift.svg')}
+                svg={<Svg src={require('../Icon/svgs/thin/hanger.svg')} />}
             />
 
             <style>{`

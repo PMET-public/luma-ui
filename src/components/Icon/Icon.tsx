@@ -1,29 +1,27 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { FunctionComponent, HTMLAttributes, ReactElement } from 'react'
 import { mergeString, getbem } from '../../lib/helpers'
-
-const ReactSVG = require('react-svg').default
+import { SvgProperties } from 'csstype'
 
 export type IconProps = {
     className?: string
     count?: number
     label: string
-    src: string
+    svg: ReactElement<SvgProperties>
 } & HTMLAttributes<HTMLSpanElement>
 
 export const Icon: FunctionComponent<IconProps> = ({
     className,
     count,
     label,
-    src,
+    svg,
     ...props
 }) => (
         <span className={mergeString('icon', className)} {...props}>
             <span className={getbem('icon__wrapper', ['has-count', typeof count === 'number'])}>
 
-                <ReactSVG className="icon__svg"
-                    src={src}
-                    wrapper="span"
-                />
+                <span className="icon__svg">
+                    {svg}
+                </span>
 
                 {count ? (
                     <span className={getbem('icon__count', ['over', count > 99])} >
