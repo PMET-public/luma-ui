@@ -4,8 +4,6 @@
  * Toolbar
  */
 .toolbar {
-    display: flex;   
-    align-items: center;
     box-sizing: border-box;
     min-height: 60/@px;
     padding: 0 var(--padding);
@@ -23,5 +21,11 @@
     &--hidden {
         opacity: 0;
         transform: translateY(-100%);
+    }
+
+    &__content {
+        .container();
+        display: flex;   
+        align-items: center;
     }
 }

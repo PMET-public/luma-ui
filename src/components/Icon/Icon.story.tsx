@@ -10,8 +10,8 @@ storiesOf('📦 Components/Icon', module)
         <React.Fragment>
 
             <Icon className="story-icon"
-                label={text('label', '')}
                 count={number('count', 0)}
+                label={text('label', '')}
                 src={require('./svgs/thin/gift.svg')}
             />
 

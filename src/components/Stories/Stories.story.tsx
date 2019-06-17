@@ -1,8 +1,10 @@
 import React from 'react'
 import Stories from '.'
 import { storiesOf } from '@storybook/react'
+import centered from '@storybook/addon-centered/dist/react'
 
 storiesOf('📦 Components/Stories', module)
+    .addDecorator(centered)
     .add('Default', () => (
         <Stories label='Shop the Look'
             items={[

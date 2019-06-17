@@ -6,7 +6,9 @@ import { number } from '@storybook/addon-knobs'
 storiesOf('📦 Components/Toolbar', module)
     .add('Default', () => (
         <React.Fragment>
-            <Toolbar hideOnOffset={number('hideOnScroll', 100)} />
+            <Toolbar hideOnOffset={number('hideOnScroll', 100)}>
+                <h1>Toolbar</h1>
+            </Toolbar>
 
             <style>{`
                 body {

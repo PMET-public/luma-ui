@@ -27,7 +27,9 @@ export const Toolbar: FunctionComponent<ToolbarProps> = ({
     
     return (
         <div className={getbem('toolbar', ['hidden', isHidden], ['scrolled', isScrolled])}>
-            {children}
+            <div className="toolbar__content">
+                {children}
+            </div>
         </div>
     )
 }

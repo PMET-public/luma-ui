@@ -1,5 +1,7 @@
-import React, { FunctionComponent, useEffect, useState, HTMLAttributes } from 'react'
+import React, { FunctionComponent, HTMLAttributes } from 'react'
 import { mergeString, getbem } from '../../lib/helpers'
+
+const ReactSVG = require('react-svg').default
 
 export type IconProps = {
     className?: string
@@ -14,21 +16,14 @@ export const Icon: FunctionComponent<IconProps> = ({
     label,
     src,
     ...props
-}) => {
-
-    const [svg, setSvg] = useState('')
-
-    useEffect(() => {
-        fetch(src)
-            .then(res => res.text())
-            .then(setSvg)
-
-    }, [src])
-
-    return (
+}) => (
         <span className={mergeString('icon', className)} {...props}>
             <span className={getbem('icon__wrapper', ['has-count', typeof count === 'number'])}>
-                <span className="icon__svg" dangerouslySetInnerHTML={{ __html: svg }}></span>
+
+                <ReactSVG className="icon__svg"
+                    src={src}
+                    wrapper="span"
+                />
 
                 {count ? (
                     <span className={getbem('icon__count', ['over', count > 99])} >
@@ -44,4 +39,3 @@ export const Icon: FunctionComponent<IconProps> = ({
             ) : null}
         </span>
     )
-}
