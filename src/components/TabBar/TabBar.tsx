@@ -6,8 +6,8 @@ import { getbem } from '../../lib/helpers'
 export type TabBarProps = {
     routerLink?: ReactComponentLike
     items: Array<{
-        isActive?: boolean
         icon: ReactElement<IconProps>
+        isActive?: boolean
         route: any
     }>
 }

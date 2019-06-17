@@ -3,45 +3,49 @@ import Stories from '.'
 import { storiesOf } from '@storybook/react'
 import centered from '@storybook/addon-centered/dist/react'
 
+const Link = ({ href, children }: any) => <a href={href}>{children}</a>
+
 storiesOf('📦 Components/Stories', module)
     .addDecorator(centered)
     .add('Default', () => (
-        <Stories label='Shop the Look'
+        <Stories 
+            label='Shop the Look'
+            routerLink={Link}
             items={[
                 {
                     imageUrl: require('../../../public/images/selfie.jpeg'),
                     label: 'Minimalist',
-                    url: '#',
+                    route: { href: '#' },
                 },
                 {
                     imageUrl: require('../../../public/images/selfie.jpeg'),
                     label: 'Beachy',
-                    url: '#',
+                    route: { href: '#' },
                 },
                 {
                     imageUrl: require('../../../public/images/selfie.jpeg'),
                     label: 'Dress Time',
-                    url: '#',
+                    route: { href: '#' },
                 },
                 {
                     imageUrl: require('../../../public/images/selfie.jpeg'),
                     label: 'Essentials',
-                    url: '#',
+                    route: { href: '#' },
                 },
                 {
                     imageUrl: require('../../../public/images/selfie.jpeg'),
                     label: 'Carefree',
-                    url: '#',
+                    route: { href: '#' },
                 },
                 {
                     imageUrl: require('../../../public/images/selfie.jpeg'),
                     label: 'All Day',
-                    url: '#',
+                    route: { href: '#' },
                 },
                 {
                     imageUrl: require('../../../public/images/selfie.jpeg'),
                     label: 'Ageless',
-                    url: '#',
+                    route: { href: '#' },
                 },
             ]} />
     ))
