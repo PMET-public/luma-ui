@@ -1,30 +1,30 @@
-import React, { FunctionComponent } from 'react'
-import Icon from '../Icon'
+import React, { FunctionComponent, ReactElement } from 'react'
+import { IconProps } from '../Icon'
+import { ReactComponentLike } from 'prop-types'
 import { getbem } from '../../lib/helpers'
 
 export type TabBarProps = {
+    routerLink?: ReactComponentLike
     items: Array<{
-        count?: number
         isActive?: boolean
-        label: string
-        src: string
-        url: string
+        icon: ReactElement<IconProps>
+        route: any
     }>
 }
 
-export const TabBar: FunctionComponent<TabBarProps> = ({ items }) => (
+export const TabBar: FunctionComponent<TabBarProps> = ({ 
+    items, 
+    routerLink: Link = ({ ...props }) => <a {...props} />,
+}) => (
     <nav className="tab-bar">
-        {items.map(({ count, src, isActive, label, url }, i) => (
-            <a className={getbem('tab-bar__item', ['active', !!isActive])}
-                href={url}
+        {items.map(({ isActive, icon, route }, i) => (
+            <span className={getbem('tab-bar__item', ['active', !!isActive])} 
                 key={`tab-bar__item--${i}`}
             >
-                <Icon className="tan-bar__item__icon" 
-                    src={src} 
-                    label={label} 
-                    count={count} 
-                />
-            </a>
+                <Link {...route}>
+                    {icon}
+                </Link>
+            </span>
         ))}
     </nav>
 )
