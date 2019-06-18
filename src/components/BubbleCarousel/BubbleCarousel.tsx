@@ -23,13 +23,10 @@ export const BubbleCarousel: FunctionComponent<BubbleCarouselProps> = ({
             {items.map(({ label, route, imageUrl, size = 70 }, i) => (
                 <React.Fragment key={`bubble-carousel__item--${i}`}>
                     <Link {...route}>
-                        <span className="bubble-carousel__item"
-                            aria-label={label}
-                            style={{ ['--size' as any]: size }}
-                        >
+                        <figure className="bubble-carousel__item" style={{ ['--size' as any]: size }}>
                             <img className="bubble-carousel__item__image" src={imageUrl} alt={label} />
-                            <span className="bubble-carousel__item__label">{label}</span>
-                        </span>
+                            <figcaption className="bubble-carousel__item__label">{label}</figcaption>
+                        </figure>
                     </Link>
                 </React.Fragment>
             ))}
