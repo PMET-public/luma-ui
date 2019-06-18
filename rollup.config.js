@@ -45,7 +45,9 @@ const output = {
         'react': 'React',
         'react-dom': 'ReactDOM',
         'prop-types': 'PropTypes',
-    }
+    },
+    banner: '/* Luma Storybook UI Library */',
+    footer: '/* 🐦 @fnhipster */',
 }
 
 const external = [
