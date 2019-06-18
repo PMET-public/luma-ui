@@ -13,39 +13,40 @@ storiesOf('📦 Components/Stories', module)
             routerLink={Link}
             items={[
                 {
-                    imageUrl: require('../../../public/images/selfie.jpeg'),
+                    imageUrl: 'https://lorempixel.com/800/600/fashion/1',
                     label: 'Minimalist',
                     route: { href: '#' },
                 },
                 {
-                    imageUrl: require('../../../public/images/selfie.jpeg'),
+                    imageUrl: 'https://lorempixel.com/800/600/fashion/8',
                     label: 'Beachy',
                     route: { href: '#' },
                 },
                 {
-                    imageUrl: require('../../../public/images/selfie.jpeg'),
+                    imageUrl: 'https://lorempixel.com/800/600/fashion/3',
                     label: 'Dress Time',
                     route: { href: '#' },
                 },
                 {
-                    imageUrl: require('../../../public/images/selfie.jpeg'),
+                    imageUrl: 'https://lorempixel.com/800/600/fashion/4',
                     label: 'Essentials',
                     route: { href: '#' },
                 },
                 {
-                    imageUrl: require('../../../public/images/selfie.jpeg'),
+                    imageUrl: 'https://lorempixel.com/800/600/fashion/5',
                     label: 'Carefree',
                     route: { href: '#' },
                 },
                 {
-                    imageUrl: require('../../../public/images/selfie.jpeg'),
+                    imageUrl: 'https://lorempixel.com/800/600/fashion/6',
                     label: 'All Day',
                     route: { href: '#' },
                 },
                 {
-                    imageUrl: require('../../../public/images/selfie.jpeg'),
+                    imageUrl: 'https://lorempixel.com/800/600/fashion/7',
                     label: 'Ageless',
                     route: { href: '#' },
                 },
-            ]} />
+            ]} 
+        />
     ))

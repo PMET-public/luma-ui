@@ -1,6 +1,6 @@
 @import "/utilities";
 
-.stories {
+.bubble-carousel {
     .grid();
     .grid.fluid();
 
@@ -11,7 +11,6 @@
     -webkit-overflow-scrolling: touch;
 
     &__item {
-        --image: "";
         --size: 70;
         --sizeRem: calc(var(--size) * 1rem/@font-base);
 
@@ -22,16 +21,14 @@
 
         &__image {
             background-color: var(--color-surface);
-            background-image: var(--imageUrl);
-            background-position: top center;
-            background-repeat: no-repeat;
-            background-size: cover;
             border-radius: 50%;
+            border: 2px solid var(--border-color);
             display: inline-block;
             height: var(--sizeRem);
+            object-fit: cover;
+            object-position: center;
             overflow: hidden;
             width: var(--sizeRem);
-            border: 2px solid var(--border-color);
         }
 
         &__label {
