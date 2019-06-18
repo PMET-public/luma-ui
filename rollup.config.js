@@ -3,7 +3,7 @@ import less from 'rollup-plugin-less'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import builtins from 'rollup-plugin-node-builtins'
-
+import execute from 'rollup-plugin-execute'
 import glob from 'glob'
 import path from 'path'
 
@@ -13,38 +13,29 @@ const fromSrcToDist = (srcPath, cb) => glob
         ...acc,
         cb({
             inputFile: file,
-            outputDir: path.resolve('./dist', path.parse(file).dir.split('src/')[1]),
+            outputDir: './dist/' + path.parse(file).dir.split('src/')[1],
         })
     ], [])
 
-const plugins = (src) => {
-    return [
-        typescript({
-            useTsconfigDeclarationDir: true,
-            tsconfigOverride: {
-                compilerOptions: {
-                    declaration: true,
-                    declarationDir: './dist',
-                },
-                include: [src]
-            }
-        }),
-        less({
-            insert: true,
-            output: false,
-            option: {
-                paths: './src/theme/variables'
-            }
-        }),
-        builtins(),
-        nodeResolve({
-            preferBuiltins: false,
-        }),
-        commonjs({
-            include: /node_modules/,
-        }),
-    ]
-}
+const plugins = (src) => [
+    typescript(),
+    less({
+        insert: true,
+        output: false,
+        option: {
+            paths: './src/theme/variables'
+        }
+    }),
+    builtins(),
+    nodeResolve({
+        preferBuiltins: false,
+    }),
+    commonjs({
+        include: /node_modules/,
+    }),
+    execute([ `yarn tsc --declaration --emitDeclarationOnly --rootDir ./src --jsx react --esModuleInterop --outDir ./dist ${src}` ])
+]
+
 
 const output = {
     dir: './dist',
@@ -84,7 +75,7 @@ export default [
                 name: 'lib',
                 dir: outputDir,
             },
-            plugins: plugins(inputFile),
+            plugins: plugins(inputFile, outputDir),
             external,
         }
     )),
@@ -96,7 +87,7 @@ export default [
                 name: 'hooks',
                 dir: outputDir,
             },
-            plugins: plugins(inputFile),
+            plugins: plugins(inputFile, outputDir),
             external,
         }
     )),
@@ -108,7 +99,7 @@ export default [
                 name: 'theme',
                 dir: outputDir,
             },
-            plugins: plugins(inputFile),
+            plugins: plugins(inputFile, outputDir),
             external,
         }
     )),
