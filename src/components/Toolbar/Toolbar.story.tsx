@@ -6,17 +6,17 @@ import { number } from '@storybook/addon-knobs'
 storiesOf('📦 Components/Toolbar', module)
     .add('Default', () => (
         <React.Fragment>
-            <Toolbar hideOnOffset={number('hideOnScroll', 100)}>
+            <Toolbar hideOnOffset={number('hideOnScroll', 200)}>
                 <h1>Toolbar</h1>
             </Toolbar>
 
             <style>{`
-                body {
+                .theme-container {
                     background-color: #ddd;
                     height: 300vh;
                 }
 
-                body::after {
+                .theme-container::after {
                     content: '↑ scroll ↓';
                     position: fixed;
                     top: 40%;

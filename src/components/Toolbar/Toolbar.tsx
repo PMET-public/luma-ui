@@ -20,8 +20,9 @@ export const Toolbar: FunctionComponent<ToolbarProps> = ({
 
     useEffect(() => {
         const deltaY = scrollY - lastScrollY
-        setIsScrolled(scrollY > hideOnOffset)
-        setIsHidden(hideOnOffset > 0 && scrollY > hideOnOffset && (deltaY > 0))    
+        const isScrolled = scrollY > hideOnOffset
+        setIsScrolled(isScrolled)
+        setIsHidden(hideOnOffset > 0 && isScrolled && (deltaY > 0))    
         setlastScrollY(scrollY)
     }, [scrollY])
     
