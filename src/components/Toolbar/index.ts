@@ -1,3 +1,3 @@
-import './Toolbar.less'
-export * from './Toolbar'
-export { Toolbar as default } from './Toolbar'
+import './ToolBar.less'
+export * from './ToolBar'
+export { ToolBar as default } from './ToolBar'

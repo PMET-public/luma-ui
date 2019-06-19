@@ -1,14 +1,14 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Toolbar } from './'
+import { ToolBar } from '.'
 import { number } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/Toolbar', module)
+storiesOf('📦 Components/ToolBar', module)
     .add('Default', () => (
         <React.Fragment>
-            <Toolbar hideOnOffset={number('hideOnScroll', 200)}>
-                <h1>Toolbar</h1>
-            </Toolbar>
+            <ToolBar hideOnOffset={number('hideOnScroll', 200)}>
+                <h1>ToolBar</h1>
+            </ToolBar>
 
             <style>{`
                 .theme-container {

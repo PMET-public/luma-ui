@@ -1,53 +1,48 @@
 import typescript from 'rollup-plugin-typescript2'
-import less from 'rollup-plugin-less'
+import postcss from 'rollup-plugin-postcss'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import builtins from 'rollup-plugin-node-builtins'
-import execute from 'rollup-plugin-execute'
-import glob from 'glob'
-import path from 'path'
+import multiInput from 'rollup-plugin-multi-input'
+import { version } from './package.json'
+import { spawn } from 'child_process'
 
-const fromSrcToDist = (srcPath, cb) => glob
-    .sync(path.resolve('./src', srcPath))
-    .reduce((acc, file) => [
-        ...acc,
-        cb({
-            inputFile: file,
-            outputDir: './dist/' + path.parse(file).dir.split('src/')[1],
-        })
-    ], [])
 
-const plugins = (src) => [
+const plugins = [
+    multiInput(),
     typescript(),
-    less({
-        insert: true,
-        output: false,
-        option: {
-            paths: './src/theme/variables'
-        }
+    tsDeclarations({ outDir: './dist', rootDir: './src' }),
+    postcss({
+        inject: true,
+        minimize: true,
+        use: [
+            ['less', {
+                paths: './src/theme/variables'
+            }]
+        ],
     }),
     builtins(),
     nodeResolve({
-        preferBuiltins: false,
+        preferBuiltins: false
     }),
     commonjs({
-        include: /node_modules/,
+        include: /node_modules/
     }),
-    execute([ `yarn tsc --declaration --emitDeclarationOnly --rootDir ./src --jsx react --esModuleInterop --outDir ./dist ${src}` ])
 ]
 
 
 const output = {
-    dir: './dist',
-    format: 'umd',
+    banner: `/* Luma Storybook UI Library v.${version} */`,
+    compact: false,
+    dir: './dist/',
     exports: 'named',
+    footer: '/* by @fnhipster */',
+    format: 'cjs',
     globals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
         'prop-types': 'PropTypes',
     },
-    banner: '/* Luma Storybook UI Library */',
-    footer: '/* 🐦 @fnhipster */',
 }
 
 const external = [
@@ -57,52 +52,46 @@ const external = [
 ]
 
 export default [
-    ...fromSrcToDist('components/**/index.ts', ({ inputFile, outputDir }) => (
-        {
-            input: inputFile,
-            output: {
-                ...output,
-                name: 'components',
-                dir: outputDir,
-            },
-            plugins: plugins(inputFile),
-            external,
-        }
-    )),
-    ...fromSrcToDist('lib/**/*.{ts,tsx,js,jsx}', ({ inputFile, outputDir }) => (
-        {
-            input: inputFile,
-            output: {
-                ...output,
-                name: 'lib',
-                dir: outputDir,
-            },
-            plugins: plugins(inputFile, outputDir),
-            external,
-        }
-    )),
-    ...fromSrcToDist('hooks/**/*.{ts,tsx,js,jsx}', ({ inputFile, outputDir }) => (
-        {
-            input: inputFile,
-            output: {
-                ...output,
-                name: 'hooks',
-                dir: outputDir,
-            },
-            plugins: plugins(inputFile, outputDir),
-            external,
-        }
-    )),
-    ...fromSrcToDist('theme/index.ts', ({ inputFile, outputDir }) => (
-        {
-            input: inputFile,
-            output: {
-                ...output,
-                name: 'theme',
-                dir: outputDir,
-            },
-            plugins: plugins(inputFile, outputDir),
-            external,
-        }
-    )),
+    {
+        input: [
+            './src/**/*.{ts,tsx}', 
+            '!./src/**/*.{story,stories}.*', 
+            '!./src/**/*.test.*',
+        ],
+        output,
+        plugins,
+        external,
+    },
 ]
+
+/**
+ * RollUp Plugins
+ */
+
+function tsDeclarations({ outDir, rootDir = './' }) {
+    return {
+        name: 'ts-declarations',
+
+        buildStart({ input }) {
+            const files = Object.keys(input).map(k => input[k]).join(' ')
+
+            spawn(`yarn tsc \
+                --allowSyntheticDefaultImports \
+                --declaration \
+                --emitDeclarationOnly \
+                --esModuleInterop \
+                --jsx react \
+                --moduleResolution node \
+                --outDir ${outDir} \
+                --rootDir ${rootDir} \
+                --target esnext \
+                ${files}`, {
+                    shell: true,
+                    stdio: 'ignore',
+                    env: process.env
+                }).on('close', () => {
+                    console.log(`*.d.ts → ${outDir}.`)
+                })
+        }
+    }
+}

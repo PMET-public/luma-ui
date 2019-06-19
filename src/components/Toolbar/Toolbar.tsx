@@ -3,13 +3,13 @@ import { getbem } from '../../lib/helpers'
 import { useScroll } from '../../hooks/useScroll'
 
 /**
- * Toolbar
+ * ToolBar
  */
-export type ToolbarProps = {
+export type ToolBarProps = {
     hideOnOffset?: number
 }
 
-export const Toolbar: FunctionComponent<ToolbarProps> = ({
+export const ToolBar: FunctionComponent<ToolBarProps> = ({
     children,
     hideOnOffset = 0,
 }) => {
@@ -27,8 +27,8 @@ export const Toolbar: FunctionComponent<ToolbarProps> = ({
     }, [scrollY])
     
     return (
-        <div className={getbem('toolbar', ['hidden', isHidden], ['scrolled', isScrolled])}>
-            <div className="toolbar__content">
+        <div className={getbem('tool-bar', ['hidden', isHidden], ['scrolled', isScrolled])}>
+            <div className="tool-bar__content">
                 {children}
             </div>
         </div>
