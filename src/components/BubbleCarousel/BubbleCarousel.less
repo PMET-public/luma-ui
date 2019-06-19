@@ -4,22 +4,33 @@
     .grid();
     .grid.fluid();
 
-    --gap: 1.5rem;
-
     overflow-x: scroll;
-    padding: var(--padding) var(--padding) 1.5rem;
     -webkit-overflow-scrolling: touch;
+
+    // Trick to pad an overflown grid 🤷‍
+    margin: 0 var(--padding);
+    padding: var(--padding) 0;
+  
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     &__item {
         --size: 70;
         --sizeRem: calc(var(--size) * 1rem/@font-base);
-
         align-items: center;
         color: var(--color-on-surface);
         display: inline-flex;
         flex-direction: column;
+        flex: 0 0 auto;
 
-        &__picture {
+        &__image.image {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__image__picture.image__picture {
             background-color: var(--color-surface);
             border-radius: 50%;
             border: 2px solid var(--border-color);
@@ -31,13 +42,15 @@
             width: var(--sizeRem);
         }
 
-        &__caption {
-            margin-top: 10/@px;
+        &__image__caption.image__caption {
             font-size: 12/@px;
+            margin-top: 10/@px;
             overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: var(--sizeRem);
+            padding: 0;
             text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: calc(var(--sizeRem) + 14px);
         }
 
 
