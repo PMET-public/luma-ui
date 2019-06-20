@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 const fs = require('fs')
+const path = require('path')
 const templateComponent = require('../templates/components/Component')
 const templateStory = require('../templates/components/Component.story')
 const templateIndex = require('../templates/components/index')
@@ -24,13 +25,13 @@ module.exports = (name) => {
     writeFile(`${dir}/${name}.less`, templateCSS(hyphenatedName))
 }
 
-function writeFile(path, content) {
-    const [ friendlyPath ] = path.match(/(src\/components\/.*)/)
-    if ( fs.existsSync(path) ) {
-        console.log(`💥 \x1b[31m${friendlyPath} \x1b[0malready exists`) 
+function writeFile(filePath, content) {
+    const relativePath = path.relative('.', filePath)
+    if ( fs.existsSync(filePath) ) {
+        console.log(`💥 \x1b[31m${relativePath} \x1b[0malready exists`) 
     }
     else {
-        fs.writeFileSync(path, content)
-        console.log(`👌 \x1b[32m${friendlyPath} \x1b[0mcreated`) 
+        fs.writeFileSync(filePath, content)
+        console.log(`👌 \x1b[32m${relativePath} \x1b[0mcreated`) 
     }
 }
