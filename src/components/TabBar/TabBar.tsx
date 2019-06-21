@@ -1,27 +1,25 @@
 import React, { FunctionComponent, ReactElement } from 'react'
+import Link from '../Link'
 import { IconProps } from '../Icon'
-import { ReactComponentLike } from 'prop-types'
 import { getbem } from '../../lib/helpers'
 
 export type TabBarProps = {
-    routerLink?: ReactComponentLike
     items: Array<{
         icon: ReactElement<IconProps>
         isActive?: boolean
-        route: any
+        link: any
     }>
 }
 
 export const TabBar: FunctionComponent<TabBarProps> = ({ 
     items, 
-    routerLink: Link = ({ ...props }) => <a {...props} />,
 }) => (
     <nav className="tab-bar">
-        {items.map(({ isActive, icon, route }, i) => (
+        {items.map(({ isActive, icon, link }, i) => (
             <span className={getbem('tab-bar__item', ['active', !!isActive])} 
                 key={`tab-bar__item--${i}`}
             >
-                <Link {...route}>
+                <Link {...link}>
                     {icon}
                 </Link>
             </span>

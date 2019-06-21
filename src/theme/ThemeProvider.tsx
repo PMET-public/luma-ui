@@ -1,4 +1,5 @@
 import React, { createContext, FunctionComponent, Reducer, useReducer, useEffect, ReactNode } from 'react'
+import { ReactComponentLike } from 'prop-types';
 
 type Color = [string, string] | [string] | string | undefined
 
@@ -58,11 +59,12 @@ type Theme = {
     colors: Colors
     grid: Grid
     typography: Typography
+    routerLink: ReactComponentLike
 }
 
 type ThemeProviderProps = {
     children: ReactNode
-    theme?: Theme
+    value: Theme
 }
 
 const getColor = (color: Color, isDark?: boolean) => {
@@ -71,6 +73,38 @@ const getColor = (color: Color, isDark?: boolean) => {
             color :
             color[(isDark && color.length > 1) ? 1 : 0]
     )
+}
+
+const reducer: Reducer<Theme, { type: string, payload: any }> = (state, action) => {
+    switch (action.type) {
+        case 'update':
+            return {
+                ...state,
+                ...action.payload,
+
+                colors: {
+                    ...state.colors,
+                    ...action.payload.colors,
+                },
+                grid: {
+                    ...state.grid,
+                    ...action.payload.grid,
+                },
+                typography: {
+                    body: {
+                        ...(state.typography && state.typography.body),
+                        ...(action.payload.typography && action.payload.typography.body),
+                    },
+                    headings: {
+                        ...(state.typography && state.typography.headings),
+                        ...(action.payload.typography && action.payload.typography.headings),
+                    },
+                },
+            }
+
+        default:
+            return state
+    }
 }
 
 const defaultTheme: Theme = {
@@ -109,6 +143,8 @@ const defaultTheme: Theme = {
         width: 960,
     },
 
+    routerLink: (props: any) => <a {...props} />,
+
     typography: {
         body: {
             family: 'sans-serif',
@@ -123,51 +159,26 @@ const defaultTheme: Theme = {
     },
 }
 
-const reducer: Reducer<Theme, { type: string, payload: any }> = (state, action) => {
-    switch (action.type) {
-        case 'update':
-            return {
-                colors: {
-                    ...state.colors,
-                    ...action.payload.colors,
-                },
-                grid: {
-                    ...state.grid,
-                    ...action.payload.grid,
-                },
-                typography: {
-                    body: {
-                        ...(state.typography && state.typography.body),
-                        ...(action.payload.typography && action.payload.typography.body),
-                    },
-                    headings: {
-                        ...(state.typography && state.typography.headings),
-                        ...(action.payload.typography && action.payload.typography.headings),
-                    },
-                },
-            }
+export const ThemeContext = createContext({ value: defaultTheme, set: ({ }) => { } })
 
-        default:
-            return state
-    }
-}
-
-export const ThemeContext = createContext({ theme: defaultTheme, set: ({}) => {} })
-
-export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ children, theme }) => {
-
+export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
+    children,
+    value,
+}) => {
     const [state, dispatch] = useReducer(reducer, defaultTheme)
 
-    const set = (payload: any) => {
-        dispatch({ type: 'update', payload })
-    }
+    const set = (payload: any) => dispatch({ type: 'update', payload })
 
     useEffect(() => {
-        set(theme)
-    }, [theme])
+        if (!value) return
+        set(value)
+    }, [value])
 
     return (
-        <ThemeContext.Provider value={{ theme: state, set }}>
+        <ThemeContext.Provider value={{
+            set,
+            value: state,
+        }}>
             <style>{`
                 :root {
                     /**

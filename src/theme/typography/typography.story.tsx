@@ -25,13 +25,13 @@ storiesOf('🖼 Theme', module)
                     },
                     headings: {
                         family: text('headings family', 'rucksack, sans-serif'),
-                        weight: number('body weight', 400, { range: true, min: 400, max: 800, step: 200 }),
+                        weight: number('headings weight', 600, { range: true, min: 400, max: 800, step: 200 }),
                         style: text('headings style', 'normal'),
                     },
                 },
             }} />
 
-            <h2>✍️ Typography</h2>
+            <h1>✍️ Typography</h1>
 
             <hr />
 

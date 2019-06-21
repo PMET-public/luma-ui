@@ -4,12 +4,9 @@ import Icon from '../Icon'
 import Svg from 'react-svg'
 import { storiesOf } from '@storybook/react'
 
-const Link = ({ href, children }: any) => <a href={href}>{children}</a>
-
 storiesOf('📦 Components/TabBar', module)
     .add('Default', () => (
         <TabBar 
-            routerLink={Link}
             items={[
                 {
                     isActive: true,
@@ -17,7 +14,7 @@ storiesOf('📦 Components/TabBar', module)
                         label="Shop" 
                         svg={<Svg src={require('../Icon/svgs/thin/hanger.svg')} />} 
                     />,
-                    route: { href: '#shop' },
+                    link: { href: '#shop' },
                 },
                 {
                     icon: <Icon 
@@ -25,14 +22,14 @@ storiesOf('📦 Components/TabBar', module)
                         svg={<Svg src={require('../Icon/svgs/thin/heart.svg')} />} 
                         count={3} 
                     />,
-                    route: { href: '#favorites' },
+                    link: { href: '#favorites' },
                 },
                 {
                     icon: <Icon 
                         label="Search" 
                         svg={<Svg src={require('../Icon/svgs/thin/magnifier.svg')} />} 
                     />,
-                    route: { href: '#search' },
+                    link: { href: '#search' },
                 },
                 {
                     icon: <Icon 
@@ -40,7 +37,7 @@ storiesOf('📦 Components/TabBar', module)
                         svg={<Svg src={require('../Icon/svgs/thin/bag.svg')} />} 
                         count={1} 
                     />,
-                    route: { href: '#bag' },
+                    link: { href: '#bag' },
                 },
             ]} 
         />
