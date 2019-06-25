@@ -40,7 +40,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
                     color: ${colors.onSurface};
                     min-height: 6rem;
                     opacity: ${isHidden ? 0 : 1};
-                    padding: 0 ${padding};
+                    padding: ${padding};
                     position: sticky;
                     top: 0;
                     transform: translateY(${isHidden ? '-100%' : 0});

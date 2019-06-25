@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, ReactElement } from 'react'
 import { ColorProperty, FontStyleProperty, FontWeightProperty, FontFamilyProperty } from 'csstype'
 import { ThemeContext, useTheme } from '../hooks/useTheme'
 import ResetStyles from './ResetStyles'
@@ -54,13 +54,16 @@ type ThemeProviderProps = {
     colors?: Colors
     typography?: Typography
     padding?: string
+    routerLink?: ReactElement
 }
 
 export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     children,
     colors: newColors,
-    typography: newTypography,
     padding = '2rem',
+    routerLink = (props: any) => <a {...props} />,
+    typography: newTypography,
+    
 }) => {
     const [isDark, setDark] = useState(false)
     const { 
@@ -106,14 +109,22 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         grid-auto-columns: ${fluid ? 'minmax(max-content, max-content)' : auto ? 'column' : 'unset'};
     `
 
+    const breakpoints = {
+        medium: 'min-width: 767px',
+        large: 'min-width: 767px',
+        xlarge: 'min-width: 1200px',
+    }
+
     return (
         <ThemeContext.Provider value={{ 
-            typography, 
+            breakpoints,
             colors,
-            isDark, 
-            setDark, 
-            padding,
             grid,
+            isDark, 
+            padding,
+            routerLink,
+            setDark, 
+            typography, 
         }}>
             <div className="theme-container">
                 {children}

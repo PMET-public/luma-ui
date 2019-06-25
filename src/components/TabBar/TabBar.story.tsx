@@ -1,40 +1,38 @@
 import React from 'react'
 import TabBar, { TabBarItem } from './'
 import Icon from '../Icon'
-import Svg from 'react-svg'
 import { storiesOf } from '@storybook/react'
+
+import IconHanger from '../Icon/svgs/thin/hanger.svg'
+import IconHeart from '../Icon/svgs/thin/heart.svg'
+import IconMagnifier from '../Icon/svgs/thin/magnifier.svg'
+import IconBag from '../Icon/svgs/thin/bag.svg'
 
 storiesOf('📦 Components/TabBar', module)
     .add('Default', () => (
         <TabBar>
             <TabBarItem isActive={true}>
-                <Icon 
-                    label="Shop" 
-                    svg={<Svg src={require('../Icon/svgs/thin/hanger.svg')} />} 
-                />
+                <Icon label="Shop">
+                    <IconHanger />
+                </Icon>
             </TabBarItem>
 
             <TabBarItem>
-                <Icon 
-                    label="Favorites" 
-                    svg={<Svg src={require('../Icon/svgs/thin/heart.svg')} />} 
-                    count={3} 
-                />
+                <Icon label="Favorites" count={3}>
+                    <IconHeart />
+                </Icon>
             </TabBarItem>
 
             <TabBarItem>
-                <Icon 
-                    label="Search" 
-                    svg={<Svg src={require('../Icon/svgs/thin/magnifier.svg')} />} 
-                />
+                <Icon label="Search">
+                    <IconMagnifier />
+                </Icon>
             </TabBarItem>
 
             <TabBarItem>
-                <Icon 
-                    label="Bag" 
-                    svg={<Svg src={require('../Icon/svgs/thin/bag.svg')} />} 
-                    count={1} 
-                />
+                <Icon label="Bag" count={1}>
+                    <IconBag />
+                </Icon>
             </TabBarItem>
         </TabBar>
     ))

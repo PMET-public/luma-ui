@@ -3,6 +3,7 @@ import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import builtins from 'rollup-plugin-node-builtins'
 import multiInput from 'rollup-plugin-multi-input'
+import reactSvg from 'rollup-plugin-react-svg'
 import { version } from './package.json'
 import { spawn } from 'child_process'
 
@@ -22,6 +23,8 @@ const plugins = [
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         exclude: 'node_modules/**',
     }),
+
+    reactSvg(),
 
 
     tsDeclarations({ outDir: './dist', rootDir: './src' }),

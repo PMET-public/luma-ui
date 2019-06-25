@@ -46,7 +46,9 @@ export const ThemeContext = createContext({
     isDark: false,
     setDark: (v: boolean) => { },
     padding: '0',
+    breakpoints: { medium: '', large: '', xlarge: '' },
     grid: ({ columns = 1, gap = 0, fluid = false, auto = false }) => ``,
+    routerLink: ({ ...props }) => <a {...props} />,
 })
 
 export const useTheme = () => useContext(ThemeContext)
