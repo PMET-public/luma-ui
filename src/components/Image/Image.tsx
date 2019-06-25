@@ -1,40 +1,40 @@
 import React, { FunctionComponent, HTMLProps } from 'react'
-import { mergeString } from '../../lib/helpers'
 
 export type ImageProps = {
-    className?: string
     src: string
     alt: string
-    title?: string
-    caption?: string
 } & HTMLProps<HTMLElement>
 
 export const Image: FunctionComponent<ImageProps> = ({
     alt,
-    caption,
-    className,
-    title,
+    children,
     src,
-    ...props
 }) => (
-    <figure className={mergeString('image', className)} {...props}>
-        <img className={mergeString('image__picture', className && `${className}__picture`)}
+    <figure className="image">
+        <img className="image__img"
             alt={alt}
             src={src}
         />
 
-        <figcaption>
-            {title ? (
-                <span className={mergeString('image__title', className && `${className}__title`)}>
-                    {title}
-                </span>)
-                : null}
+        {children && (
+            <figcaption>
+                {children}
+            </figcaption>
+        )}
 
-            {caption ? (
-                <span className={mergeString('image__caption', className && `${className}__caption`)}>
-                    {caption}
-                </span>
-            ) : null}
-        </figcaption>
+        <style jsx>{`
+            .image {
+                position: relative;
+                width: 100%;
+            }
+
+            .image__img {
+                max-height: 100%;
+                object-fit: cover;
+                object-position: center;
+                overflow: hidden;
+                max-width: 100%;
+            }
+        `}</style>
     </figure>
 )

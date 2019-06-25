@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import throttle from 'lodash.throttle'
+import { throttle } from '../lib/helpers'
 
 type UseScroll = {
     scrollY: number
@@ -12,7 +12,7 @@ export const useScroll = (): UseScroll => {
         scrollX: 0,
     })
 
-    const throttled = useRef(throttle(e => {
+    const throttled = useRef(throttle((e: any) => {
         setWheelEvent({
             scrollY: window.scrollY,
             scrollX: window.scrollX,

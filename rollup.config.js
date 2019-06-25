@@ -1,5 +1,4 @@
-import typescript from 'rollup-plugin-typescript2'
-import postcss from 'rollup-plugin-postcss'
+import babel from 'rollup-plugin-babel'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import builtins from 'rollup-plugin-node-builtins'
@@ -10,21 +9,29 @@ import { spawn } from 'child_process'
 
 const plugins = [
     multiInput(),
-    typescript(),
-    tsDeclarations({ outDir: './dist', rootDir: './src' }),
-    postcss({
-        inject: true,
-        minimize: true,
-        use: [
-            ['less', {
-                paths: './src/theme/variables'
-            }]
+
+    babel({
+        presets: [
+            ['@babel/preset-env', { modules: false }],
+            '@babel/typescript',
+            '@babel/react',
         ],
+        plugins: [
+            'styled-jsx/babel',
+        ],
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     }),
+
+
+    tsDeclarations({ outDir: './dist', rootDir: './src' }),
+
     builtins(),
+
     nodeResolve({
-        preferBuiltins: false
+        preferBuiltins: false,
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     }),
+
     commonjs({
         include: /node_modules/
     }),
@@ -38,24 +45,26 @@ const output = {
     exports: 'named',
     footer: '/* by @fnhipster */',
     format: 'cjs',
-    globals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        'prop-types': 'PropTypes',
-    },
+    // globals: {
+    //     'react': 'React',
+    //     'react-dom': 'ReactDOM',
+    //     'prop-types': 'PropTypes',
+    //     'styled-jsx/style': '_JSXStyle',
+    // },
 }
 
 const external = [
     'react',
     'react-dom',
     'prop-types',
+    'styled-jsx/style',
 ]
 
 export default [
     {
         input: [
-            './src/**/*.{ts,tsx}', 
-            '!./src/**/*.{story,stories}.*', 
+            './src/**/*.{ts,tsx}',
+            '!./src/**/*.{story,stories}.*',
             '!./src/**/*.test.*',
         ],
         output,

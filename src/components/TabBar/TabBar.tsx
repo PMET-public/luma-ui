@@ -1,28 +1,33 @@
 import React, { FunctionComponent, ReactElement } from 'react'
-import Link from '../Link'
-import { IconProps } from '../Icon'
-import { getbem } from '../../lib/helpers'
+import { TabBarItemProps } from './TabBarItem'
+import { useTheme } from '../../hooks/useTheme'
 
 export type TabBarProps = {
-    items: Array<{
-        icon: ReactElement<IconProps>
-        isActive?: boolean
-        link: any
-    }>
+   children: ReactElement<TabBarItemProps> | Array<ReactElement<TabBarItemProps>>
 }
 
 export const TabBar: FunctionComponent<TabBarProps> = ({ 
-    items, 
-}) => (
-    <nav className="tab-bar">
-        {items.map(({ isActive, icon, link }, i) => (
-            <span className={getbem('tab-bar__item', ['active', !!isActive])} 
-                key={`tab-bar__item--${i}`}
-            >
-                <Link {...link}>
-                    {icon}
-                </Link>
-            </span>
-        ))}
-    </nav>
-)
+    children, 
+}) => {
+    const { grid, colors } = useTheme()
+    return  (
+        <nav className="tab-bar">
+            {children}
+
+            <style jsx>{`
+                    .tab-bar {
+                        ${grid({ auto: true })}
+                        background-color: ${colors.surface};
+                        border-top: 0.1rem solid #eee;
+                        bottom: 0;
+                        color: ${colors.onSurface};
+                        left: 0;
+                        padding-bottom: 1.6rem;
+                        padding-top: 1rem;
+                        position: fixed;
+                        right: 0;
+                    }
+            `}</style>
+        </nav>
+    )
+}

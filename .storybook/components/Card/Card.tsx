@@ -1,12 +1,22 @@
 import React, { FunctionComponent, forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react'
-import { mergeString } from '../../../src/lib/helpers'
 
 export type CardProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 export const Card: FunctionComponent<CardProps> = forwardRef(({ children, className, ...props }, ref) => (
     <div 
+        className="card"
         {...props}
-        className={mergeString('card', className)}
         ref={ref}
-    >{children}</div>
+    >
+        {children}
+
+        <style jsx>{`
+            .card {
+                border-radius: 1rem;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+                box-sizing: border-box;
+                padding: 10px;
+            }
+        `}</style>
+    </div>
 ))

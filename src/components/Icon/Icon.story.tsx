@@ -8,19 +8,11 @@ import centered from '@storybook/addon-centered/dist/react'
 storiesOf('📦 Components/Icon', module)
     .addDecorator(centered)
     .add('Default', () => (
-        <React.Fragment>
-
+        <div style={{ color: color('color', 'inherit'), fontSize: number('size', 4.5) + 'rem' }}>
             <Icon className="story-icon"
                 count={number('count', 0)}
                 label={text('label', '')}
-                svg={<Svg src={require('../Icon/svgs/thin/hanger.svg')} />}
+                svg={<Svg src={require('../Icon/svgs/thin/store.svg')} wrapper="span" />}
             />
-
-            <style>{`
-                .story-icon {
-                    font-size: ${number('size (px)', 30)}px;
-                    color: ${color('color', 'black')};
-                }    
-            `}</style>
-        </React.Fragment>
+        </div>
     ))

@@ -6,7 +6,7 @@ hr {
     border-left: 0;
     border-right: 0;
     border-top: 0;
-    margin: var(--gutter-unit) 0;
+    margin: 20px 0;
 }
 
 hr.or {
@@ -14,7 +14,6 @@ hr.or {
 }
 
 hr.or:after {
-    background: var(--color-background);
     content: "or";
     left: 50%;
     position: relative;

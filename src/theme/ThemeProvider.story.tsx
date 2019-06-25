@@ -11,11 +11,11 @@ storiesOf('🖼 Theme', module)
             <hr />
 
             <CodeBlock lang="jsx">{`
-                import ThemeProvider from 'luma-storybook/dist/theme'
+                    import ThemeProvider from 'luma-storybook/dist/theme'
 
-                <ThemeProvider>
-                    {/* <App /> */}
-                </ThemeProvider>
-            `}</CodeBlock>
+                    <ThemeProvider>
+                        {/* <App /> */}
+                    </ThemeProvider>
+                `}</CodeBlock>
         </div>
     ))

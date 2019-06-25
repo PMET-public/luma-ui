@@ -1,241 +1,127 @@
-import React, { createContext, FunctionComponent, Reducer, useReducer, useEffect, ReactNode } from 'react'
-import { ReactComponentLike } from 'prop-types';
+import React, { FunctionComponent, useState } from 'react'
+import { ColorProperty, FontStyleProperty, FontWeightProperty, FontFamilyProperty } from 'csstype'
+import { ThemeContext, useTheme } from '../hooks/useTheme'
+import ResetStyles from './ResetStyles'
+import GlobalStyles from './GlobalStyles'
+import TypographyStyles from './TypographyStyles'
 
-type Color = [string, string] | [string] | string | undefined
+type Color = [ColorProperty, ColorProperty] | [ColorProperty] | ColorProperty | undefined
 
 type Colors = {
-    link: Color
-    linkHover: Color
+    link?: Color
+    linkHover?: Color
 
-    background: Color
-    onBackground: Color
+    background?: Color
+    onBackground?: Color
 
-    surface: Color
-    onSurface: Color
+    surface?: Color
+    onSurface?: Color
 
-    primary: Color
-    onPrimary: Color
+    primary?: Color
+    onPrimary?: Color
 
-    secondary: Color
-    onSecondary: Color
+    secondary?: Color
+    onSecondary?: Color
 
-    accent: Color
-    onAccent: Color
+    accent?: Color
+    onAccent?: Color
 
-    error: Color
-    onError: Color
+    error?: Color
+    onError?: Color
 
-    warning: Color
-    onWarning: Color
+    warning?: Color
+    onWarning?: Color
 
-    notice: Color
-    onNotice: Color
+    notice?: Color
+    onNotice?: Color
 }
-
-type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
-
-type FontWeight = 'normal' | 'bold' | 'bolder' | 'lighter' | number | 'initial' | 'inherit'
 
 type Typography = {
-    body: {
-        family: string
-        style: FontStyle
-        weight: FontWeight
+    body?: {
+        family?: FontFamilyProperty
+        style?: FontStyleProperty
+        weight?: FontWeightProperty
     }
-    headings: {
-        family: string
-        style: FontStyle
-        weight: FontWeight
+    headings?: {
+        family?: FontFamilyProperty
+        style?: FontStyleProperty
+        weight?: FontWeightProperty
     }
-}
 
-type Grid = {
-    columns: number
-    columnWidth: number
-    width: number
-}
-
-type Theme = {
-    colors: Colors
-    grid: Grid
-    typography: Typography
-    routerLink: ReactComponentLike
 }
 
 type ThemeProviderProps = {
-    children: ReactNode
-    value: Theme
+    colors?: Colors
+    typography?: Typography
+    padding?: string
 }
-
-const getColor = (color: Color, isDark?: boolean) => {
-    return color && (
-        typeof color === 'string' ?
-            color :
-            color[(isDark && color.length > 1) ? 1 : 0]
-    )
-}
-
-const reducer: Reducer<Theme, { type: string, payload: any }> = (state, action) => {
-    switch (action.type) {
-        case 'update':
-            return {
-                ...state,
-                ...action.payload,
-
-                colors: {
-                    ...state.colors,
-                    ...action.payload.colors,
-                },
-                grid: {
-                    ...state.grid,
-                    ...action.payload.grid,
-                },
-                typography: {
-                    body: {
-                        ...(state.typography && state.typography.body),
-                        ...(action.payload.typography && action.payload.typography.body),
-                    },
-                    headings: {
-                        ...(state.typography && state.typography.headings),
-                        ...(action.payload.typography && action.payload.typography.headings),
-                    },
-                },
-            }
-
-        default:
-            return state
-    }
-}
-
-const defaultTheme: Theme = {
-    colors: {
-        link: ['#263238', '#ECEFF1'],
-        linkHover: ['#37474F', '#CFD8DC'],
-
-        background: ['#fff', '#222'],
-        onBackground: ['#222', '#fff'],
-
-        surface: ['#fff', '#222'],
-        onSurface: ['#222', '#fff'],
-
-        primary: ['#111', '#fff'],
-        onPrimary: ['#fff', '#111'],
-
-        secondary: ['#212121', '#fafafa'],
-        onSecondary: ['#fafafa', '#212121'],
-
-        accent: ['#a14a24'],
-        onAccent: ['#fafafa'],
-
-        error: ['transparent'],
-        onError: ['#ef5350', '#ef5350'],
-
-        warning: ['transparent'],
-        onWarning: ['#f57c00', '#ffd54f'],
-
-        notice: ['transparent'],
-        onNotice: ['#039be5', '#e1f5fe'],
-    },
-
-    grid: {
-        columns: 12,
-        columnWidth: 60,
-        width: 960,
-    },
-
-    routerLink: (props: any) => <a {...props} />,
-
-    typography: {
-        body: {
-            family: 'sans-serif',
-            style: 'normal',
-            weight: 400,
-        },
-        headings: {
-            family: 'serif',
-            style: 'normal',
-            weight: 600,
-        },
-    },
-}
-
-export const ThemeContext = createContext({ value: defaultTheme, set: ({ }) => { } })
 
 export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     children,
-    value,
+    colors: newColors,
+    typography: newTypography,
+    padding = '2rem',
 }) => {
-    const [state, dispatch] = useReducer(reducer, defaultTheme)
+    const [isDark, setDark] = useState(false)
+    const { 
+        colors: defaultColors,
+        typography: defaultTypography,
+    } = useTheme()
 
-    const set = (payload: any) => dispatch({ type: 'update', payload })
+    const mergedColors = {
+        ...defaultColors,
+        ...newColors,
+    }
 
-    useEffect(() => {
-        if (!value) return
-        set(value)
-    }, [value])
+    const colors: any = Object.keys(mergedColors)
+        .reduce((acc, key) => {
+            const color = mergedColors[key]
+            return {
+                ...acc,
+                [key]: color && (
+                    typeof color === 'string' ?
+                        color :
+                        color[(isDark && color.length > 1) ? 1 : 0]
+                ),
+            }
+        }, {})
+
+    const typography: any = {
+        ...defaultTypography,
+        body: {
+            ...defaultTypography && defaultTypography.body,
+            ...newTypography && newTypography.body,
+        },
+        headings: {
+            ...defaultTypography && defaultTypography.headings,
+            ...newTypography && newTypography.headings,
+        },
+    }
+
+    const grid = ({ columns = 1, gap = padding, fluid = false, auto = false }) => `
+        display: grid;
+        grid-gap: ${gap};
+        grid-template-columns: ${fluid || auto ? 'unset' : `repeat(${columns}, 1fr)` };
+        grid-auto-flow: ${fluid || auto ? 'column' : 'unset' };
+        grid-auto-columns: ${fluid ? 'minmax(max-content, max-content)' : auto ? 'column' : 'unset'};
+    `
 
     return (
-        <ThemeContext.Provider value={{
-            set,
-            value: state,
+        <ThemeContext.Provider value={{ 
+            typography, 
+            colors,
+            isDark, 
+            setDark, 
+            padding,
+            grid,
         }}>
-            <style>{`
-                :root {
-                    /**
-                     * Theme Colors
-                     */
-
-                    --color-link: ${getColor(state.colors.link)};
-                    --color-link--hover: ${getColor(state.colors.linkHover)};
-
-                    --color-background: ${getColor(state.colors.background)};
-                    --color-on-background: ${getColor(state.colors.onBackground)};
-
-                    --color-surface: ${getColor(state.colors.surface)};
-                    --color-on-surface: ${getColor(state.colors.onSurface)};
-
-                    --color-primary: ${getColor(state.colors.primary)};
-                    --color-on-primary: ${getColor(state.colors.onPrimary)};
-
-                    --color-secondary: ${getColor(state.colors.secondary)};
-                    --color-on-secondary:${getColor(state.colors.onSecondary)};
-                    
-                    --color-accent: ${getColor(state.colors.accent)};
-                    --color-on-accent:${getColor(state.colors.onAccent)};
-                
-                    --color-error: ${getColor(state.colors.error)};
-                    --color-on-error: ${getColor(state.colors.onError)};
-
-                    --color-warning: ${getColor(state.colors.warning)};
-                    --color-on-warning: ${getColor(state.colors.onWarning)};
-
-                    --color-notice: ${getColor(state.colors.notice)};
-                    --color-on-notice: ${getColor(state.colors.onNotice)};
-
-                    /**
-                     * Layout
-                     */
-                    --grid-width: ${state.grid.width};
-                    --grid-column-width: ${state.grid.columnWidth};
-                    --grid-columns: ${state.grid.columns};
-
-                    /**
-                     * Typography
-                     */
-
-                    --font-family-body: ${state.typography.body.family};
-                    --font-weight-body: ${state.typography.body.weight};
-                    --font-style-body: ${state.typography.body.style};
-
-                    --font-family-heading: ${state.typography.headings.family};
-                    --font-weight-heading: ${state.typography.headings.weight};
-                    --font-style-heading: ${state.typography.headings.style};
-                }
-            `}</style>
-
             <div className="theme-container">
                 {children}
             </div>
+
+            <ResetStyles />
+            <GlobalStyles />
+            <TypographyStyles />
         </ThemeContext.Provider>
     )
 } 

@@ -1,22 +1,22 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { ToolBar } from '.'
+import { AppBar } from '.'
 import { number } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/ToolBar', module)
+storiesOf('📦 Components/AppBar', module)
     .add('Default', () => (
-        <React.Fragment>
-            <ToolBar hideOnOffset={number('hideOnScroll', 200)}>
-                <h1>ToolBar</h1>
-            </ToolBar>
+        <div className="story">
+            <AppBar hideOnOffset={number('hideOnScroll', 200)}>
+                <h1>AppBar</h1>
+            </AppBar>
 
-            <style>{`
-                .theme-container {
+            <style jsx>{`
+                .story {
                     background-color: #ddd;
                     height: 300vh;
                 }
 
-                .theme-container::after {
+                .story::after {
                     content: '↑ scroll ↓';
                     position: fixed;
                     top: 40%;
@@ -26,5 +26,5 @@ storiesOf('📦 Components/ToolBar', module)
                     font-weight: 600;
                 }
             `}</style>
-        </React.Fragment>
+        </div>
     ))
