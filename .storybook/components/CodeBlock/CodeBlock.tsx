@@ -104,7 +104,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                 </pre>
             </Card>
 
-            <style jsx>{`
+            <style global jsx>{`
                 .code-block {
                     position: relative;
                 }
