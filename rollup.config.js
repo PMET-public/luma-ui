@@ -20,6 +20,7 @@ const plugins = [
             'styled-jsx/babel',
         ],
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        exclude: 'node_modules/**',
     }),
 
 
@@ -53,12 +54,15 @@ const output = {
     // },
 }
 
-const external = [
-    'react',
-    'react-dom',
-    'prop-types',
-    'styled-jsx/style',
-]
+// const external = [
+//     'react',
+//     'react-dom',
+//     'prop-types',
+//     'styled-jsx/style',
+// ]
+
+const external = id => /^react|styled-jsx/.test(id)
+
 
 export default [
     {
