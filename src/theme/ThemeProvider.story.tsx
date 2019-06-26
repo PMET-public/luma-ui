@@ -4,7 +4,7 @@ import CodeBlock from '../../.storybook/components/CodeBlock'
 
 storiesOf('🖼 Theme', module)
     .add('⚛️ ThemeProvider', () => (
-        <div className="story--padded">
+        <div className="story">
 
             <h1>⚛️ ThemeProvider</h1>
 
@@ -69,6 +69,12 @@ storiesOf('🖼 Theme', module)
                     weight?: number
                 }
             `}</CodeBlock>
+
+            <style jsx>{`
+                .story {
+                    padding: 2rem;
+                }
+            `}</style>
 
         </div>
     ))

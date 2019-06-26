@@ -6,24 +6,24 @@ import { source } from 'common-tags'
 
 storiesOf('👋 Welcome', module)
     .add('Getting Started', () => (
-        <div className="story--padded" style={{ padding: '1rem', maxWidth: '96rem', margin: '0 auto' }}>
+        <div className="story">
             <h2>☝️ Install Dependencies</h2>
             <CodeBlock lang="bash">{`
                 yarn install
             `}</CodeBlock>
 
-            <h2 style={{ marginTop: '3rem' }}>✌️ Run Storybook Locally</h2>
+            <h2>✌️ Run Storybook Locally</h2>
             <CodeBlock lang="bash">{`
                 yarn dev
             `}</CodeBlock>
 
-            <h2 style={{ marginTop: '3rem' }}>🤙 Generate New Component</h2>
+            <h2>🤙 Generate New Component</h2>
             <CodeBlock lang="bash">{`
                 yarn generate component FooBar
             `}</CodeBlock>
 
 
-            <pre style={{ paddingLeft: '1.25rem', overflowX: 'auto', marginTop: '1.5rem' }}>
+            <pre className="source">
                 <code>{source`
                     $ ./bin/generate.js component FooBar
                     👌 src/components/FooBar/FooBar.tsx created
@@ -33,13 +33,43 @@ storiesOf('👋 Welcome', module)
                 `}</code>
             </pre>
 
-            <div style={{ padding: '2rem 0', textAlign: 'center' }}>
-                <span style={{ display: 'inline-block', marginRight: '1rem' }}>
-                    <GitHubButton href="https://github.com/PMET-public/luma-storybook/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork PMET-public/luma-storybook on GitHub">Fork</GitHubButton>
-                </span>
-                <span>
-                    <GitHubButton href="https://github.com/PMET-public/luma-storybook/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PMET-public/luma-storybook on GitHub">Issue</GitHubButton>
-                </span>
+            <div className="github-buttons">
+                <GitHubButton href="https://github.com/PMET-public/luma-storybook/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork PMET-public/luma-storybook on GitHub">Fork</GitHubButton>
+                <GitHubButton href="https://github.com/PMET-public/luma-storybook/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PMET-public/luma-storybook on GitHub">Issue</GitHubButton>
             </div>
+
+            <style global jsx>{`
+                .theme-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    height: 100%;  
+                    width: 100%;  
+                    left: 0;
+                    top: 0;
+                }
+            `}</style>
+
+            <style jsx>{`
+                h2 {
+                    margin-top: 4rem;
+                }
+
+                .source {
+                    padding-left: 1.25rem; 
+                    overflow: auto;
+                    margin-top: 2rem;
+                }
+
+                .github-buttons {
+                    padding: 2rem 0; 
+                    text-align: center;
+                }
+
+                .github-buttons > * {
+                    margin: 0 1rem;
+                }
+            `}</style>
         </div>
     ))
