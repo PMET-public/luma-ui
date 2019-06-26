@@ -17,7 +17,8 @@ export const TabBar: FunctionComponent<TabBarProps> = ({
             <style jsx>{`
                     .tab-bar {
                         ${grid({ auto: true })}
-                        background-color: ${colors.surface};
+                        background-color: ${colors.translucentSurface};
+                        color: ${colors.onTranslucentSurface};
                         border-top: 0.1rem solid #eee;
                         bottom: 0;
                         color: ${colors.onSurface};

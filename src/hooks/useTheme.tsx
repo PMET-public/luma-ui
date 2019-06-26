@@ -5,11 +5,17 @@ export const ThemeContext = createContext({
         link: ['#263238', '#ECEFF1'],
         linkHover: ['#37474F', '#CFD8DC'],
 
+        translucent: [],
+        onTranslucent: [],
+
         background: ['#fff', '#222'],
         onBackground: ['#222', '#fff'],
 
         surface: ['#fff', '#222'],
         onSurface: ['#222', '#fff'],
+
+        translucentSurface: ['rgba(255, 255, 255, 0.95)', 'rgba(0, 0, 0, 0.95)'],
+        onTranslucentSurface: ['#222', '#fff'],
 
         primary: ['#111', '#fff'],
         onPrimary: ['#fff', '#111'],

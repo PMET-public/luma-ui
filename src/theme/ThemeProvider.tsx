@@ -17,6 +17,9 @@ type Colors = {
     surface?: Color
     onSurface?: Color
 
+    translucentSurface?: Color
+    onTranslucentSurface?: Color
+
     primary?: Color
     onPrimary?: Color
 

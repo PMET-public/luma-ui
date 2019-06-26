@@ -35,12 +35,13 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
 
             <style jsx>{`
                 .app-bar {
-                    background-color: ${colors.surface};
+                    align-items: center;
+                    background-color: ${colors.translucentSurface};
                     box-sizing: border-box;
-                    color: ${colors.onSurface};
-                    min-height: 6rem;
+                    color: ${colors.onTranslucentSurface};
+                    display: flex;
                     opacity: ${isHidden ? 0 : 1};
-                    padding: 0.1rem ${padding};
+                    padding: 1rem ${padding};
                     position: sticky;
                     top: 0;
                     transform: translateY(${isHidden ? '-100%' : 0});
