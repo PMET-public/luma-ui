@@ -36,7 +36,7 @@ export const Drawer: FunctionComponent<DrawerProps> = ({
                 </animated.div>
             ))}
     
-            {onClose && fadeTransitions.map(fadeTransition => (
+            {onClose && fadeTransitions.map(fadeTransition => fadeTransition.item && (
                 <animated.button key={fadeTransition.key} style={fadeTransition.props} className="drawer__close-button"
                     arial-label="close"
                     onClick={onClose}
