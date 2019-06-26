@@ -6,7 +6,7 @@ import { number } from '@storybook/addon-knobs'
 storiesOf('📦 Components/AppBar', module)
     .add('Default', () => (
         <div className="story">
-            <AppBar hideOnOffset={number('hideOnScroll', 200)}>
+            <AppBar hideOnOffset={number('hideOnScroll', 100)}>
                 <h1>AppBar</h1>
             </AppBar>
 

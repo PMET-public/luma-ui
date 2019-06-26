@@ -16,13 +16,11 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     const { padding, colors } = useTheme()
     const { scrollY } = useScroll()
     const [lastScrollY, setlastScrollY] = useState(0)
-    // const [isScrolled, setIsScrolled] = useState(false)
     const [isHidden, setIsHidden] = useState(false)
 
     useEffect(() => {
         const deltaY = scrollY - lastScrollY
         const isScrolled = scrollY > hideOnOffset
-        // setIsScrolled(isScrolled)
         setIsHidden(hideOnOffset > 0 && isScrolled && (deltaY > 0))    
         setlastScrollY(scrollY) 
     }, [scrollY])

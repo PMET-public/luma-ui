@@ -6,7 +6,7 @@ export const throttle = (fn: any, delay = 100, trail?: boolean) => {
 
     return function context() {
         // we subtract the delay to prevent double executions
-        const now = +new Date
+        const now = +new Date()
         const elapsed = (now - last - offset)
         const args = arguments
 
