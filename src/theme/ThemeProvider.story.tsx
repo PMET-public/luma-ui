@@ -55,21 +55,19 @@ storiesOf('🖼 Theme', module)
                     }
                     
                     typography?: {
-                        body?: {
-                            family?: string
-                            style?: string
-                            weight?: number
-                        }
-                        headings?: {
-                            family?: string
-                            style?: string
-                            weight?: number
-                        }
+                        body?: Typography
+                        headings?: Typography
                     }
-                    padding?: string
+
                 }    
 
-                type Color = [string, string] | [string] | string //  ⃪ [light mode, dark mode] | [one mode]
+                type Color = [string, string?] //  ⃪ [☀️ mode, 🌑 mode]
+
+                type Typography = {
+                    family?: string
+                    style?: string
+                    weight?: number
+                }
             `}</CodeBlock>
 
         </div>

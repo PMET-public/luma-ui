@@ -5,7 +5,7 @@ import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
 
-type Color = [ColorProperty, ColorProperty] | [ColorProperty] | ColorProperty | undefined
+type Color = [ColorProperty, ColorProperty?]
 
 type Colors = {
     link?: Color
