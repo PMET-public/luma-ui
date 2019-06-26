@@ -7,6 +7,7 @@ export const useCSSTransition = (refEl: MutableRefObject<HTMLElement | null>, is
     useLayoutEffect(() => {
         if (refEl.current === null) return
         refEl.current.style.setProperty('--transition-duration', `${duration}ms`)
+        refEl.current.style.setProperty('transition-duration', `${duration}ms`)
         refEl.current.classList.add('css-transition')
     })
 

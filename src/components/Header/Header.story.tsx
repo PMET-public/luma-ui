@@ -11,7 +11,7 @@ storiesOf('📦 Components/Header', module)
         <div style={{ padding: '2rem' }}>
             <Header>
                 <HeaderLogo>
-                    <Logo height="35" />
+                    <Logo height="25" />
                 </HeaderLogo>
 
                 <HeaderSecondaryNavigation>

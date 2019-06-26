@@ -1,6 +1,5 @@
-import React, { FunctionComponent, ReactElement } from 'react'
+import React, { FunctionComponent } from 'react'
 import { useTheme } from '../../hooks/useTheme'
-import { SvgProperties } from 'csstype'
 
 export type HeaderProps = { }
 
@@ -74,6 +73,7 @@ export const HeaderSecondaryNavigation: FunctionComponent<HeaderSecondaryNavigat
                 .header-secondary-navigation {
                     ${grid({ fluid: true, gap: '3rem' })}
                     -webkit-overflow-scrolling: touch;
+                    display: none;
                     font-size: 1.4rem;
                     grid-area: secondaryNav;
                     overflow-x: scroll;
@@ -82,6 +82,7 @@ export const HeaderSecondaryNavigation: FunctionComponent<HeaderSecondaryNavigat
 
                 @media (${breakpoints.medium}) {
                     .header-secondary-navigation {
+                        display: grid;
                         justify-content: center;
                     }
                 }

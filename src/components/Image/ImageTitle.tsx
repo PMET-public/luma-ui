@@ -23,7 +23,7 @@ export const ImageTitle: FunctionComponent<ImageTitleProps> = ({ children }) => 
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    font-size: 3rem;
+                    font-size: 8vw;
                 }    
             `}</style>
         </span>
