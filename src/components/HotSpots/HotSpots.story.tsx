@@ -1,7 +1,6 @@
 import React from 'react'
 import HotSpots, { HotSpotItem } from './'
 import { storiesOf } from '@storybook/react'
-import { object } from '@storybook/addon-knobs'
 import centered from '@storybook/addon-centered/dist/react'
 
 const PriceTagMock = ({ label, price }: any) => (
@@ -14,47 +13,6 @@ const PriceTagMock = ({ label, price }: any) => (
 storiesOf('📦 Components/HotSpot', module)
     .addDecorator(centered)
     .add('Default', () => (
-        <div style={{
-            maxWidth: '96rem',
-        }}>
-            <HotSpots
-                image={require('../../../public/images/llama.jpg')}
-                description="La llama que más llama"
-            >
-                <HotSpotItem
-                    coords={object('coords', { x: 60, y: 42 })}
-                    id={0}
-                    label="Why did the Llama miss his flight to Imagine?"
-                >
-                    <div style={{ fontSize: '2rem' }}>
-                        <div style={{ marginBottom: '1rem', fontWeight: 600 }}>🦙 Why did the Llama miss his flight to Imagine?</div>
-                        😂 He was busy Alpacking.
-                    </div>
-                </HotSpotItem>
-            </HotSpots>
-        </div>
-    ))
-    .add('w/ Link', () => (
-        <div style={{
-            maxWidth: '96rem',
-            margin: '1rem',
-        }}>
-            <HotSpots
-                image={require('../../../public/images/products-hotspots.jpg')}
-                description="A lot of stuffs"
-            >
-                <a href="https://magento.com" target="blank">
-                    <HotSpotItem
-                        coords={{ x: 15, y: 42 }}
-                        id={0}
-                        label="Sweater"
-                    />
-                </a>
-            </HotSpots>
-        </div>
-        
-    ))
-    .add('w/ Multiple', () => (
         <div style={{
             maxWidth: '96rem',
             margin: '1rem',
@@ -84,6 +42,25 @@ storiesOf('📦 Components/HotSpot', module)
                 >
                     <PriceTagMock label="Cotton Chinos" price="$29.99" />
                 </HotSpotItem>
+            </HotSpots>
+        </div>
+    ))
+    .add('w/ Link', () => (
+        <div style={{
+            maxWidth: '96rem',
+            margin: '1rem',
+        }}>
+            <HotSpots
+                image={require('../../../public/images/products-hotspots.jpg')}
+                description="A lot of stuffs"
+            >
+                <a href="https://magento.com" target="blank">
+                    <HotSpotItem
+                        coords={{ x: 15, y: 42 }}
+                        id={0}
+                        label="Sweater"
+                    />
+                </a>
             </HotSpots>
         </div>
         

@@ -1,16 +1,4 @@
 
-// export const throttle = (func: any, limit: number) => {
-//     let inThrottle: boolean
-//     return function context() {
-//         const args = arguments
-//         if (!inThrottle) {
-//             func.apply(context, args)
-//             inThrottle = true
-//             setTimeout(() => inThrottle = false, limit)
-//         }
-//     }
-// }
-
 export const throttle = (fn: any, delay = 100, trail?: boolean) => {
     const offset: any = (trail === false) ? 0 : delay
     let last = 0
