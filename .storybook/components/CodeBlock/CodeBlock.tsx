@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, Fragment, useState, ReactElement, useRef } from 'react'
+import React, { FunctionComponent, useEffect, useState, ReactElement, useRef } from 'react'
 import { stripIndent } from 'common-tags'
 import prism from 'prismjs'
 import Card from '../Card'
@@ -6,6 +6,7 @@ import Card from '../Card'
 import 'prismjs/components/prism-less'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-graphql'
 import 'prismjs/components/prism-bash'
 
@@ -13,17 +14,13 @@ export type CodeBlockProps = { children: string } & ({
     lang: 'tsx' | 'jsx' | 'graphql' | 'bash'
     render?: undefined
 } | {
-    lang: 'html' | 'css' | 'less' | 'js'
+    lang: 'html' | 'css' | 'less' | 'js' | 'typescript'
     render?: boolean
 })
 
 /**
  * Renders
  */
-
-// export const renderLESS = (lessSource: string): ReactElement => {
-//     return <style type="text/less" dangerouslySetInnerHTML={{ __html: lessSource }}></style>
-// }
 
 export const renderHTML = (htmlSource: string): ReactElement => (
     <div
@@ -49,8 +46,6 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         const highlightedSource = stripIndent(prism.highlight(children, prism.languages[lang], lang))
 
         setSource(highlightedSource)
-
-        // if (render && lang === 'less') less.refreshStyles()
 
         if (render && lang === 'js') {
             // tslint:disable-next-line: no-eval
