@@ -57,14 +57,12 @@ const output = {
     // },
 }
 
-// const external = [
-//     'react',
-//     'react-dom',
-//     'prop-types',
-//     'styled-jsx/style',
-// ]
-
-const external = id => /^react|styled-jsx/.test(id)
+const external = [
+    'react',
+    'react-dom',
+    'prop-types',
+    'styled-jsx/style',
+]
 
 
 export default [
