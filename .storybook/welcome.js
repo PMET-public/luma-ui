@@ -31,7 +31,6 @@ storiesOf('👋 Welcome', module)
                     👌 src/components/FooBar/FooBar.tsx created
                     👌 src/components/FooBar/FooBar.story.tsx created
                     👌 src/components/FooBar/index.ts created
-                    👌 src/components/FooBar/FooBar.less created
                     ✨  Done in 0.18s.
                 `}</code>
             </pre>
