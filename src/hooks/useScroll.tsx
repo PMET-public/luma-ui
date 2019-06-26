@@ -17,7 +17,7 @@ export const useScroll = (): UseScroll => {
             scrollY: window.scrollY,
             scrollX: window.scrollX,
         })
-    }, 250))
+    }, 250, true))
 
     useEffect(() => {
         document.addEventListener('scroll', throttled.current)
