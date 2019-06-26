@@ -1,10 +1,8 @@
 import React from 'react'
 import BubbleCarousel, { BubbleCarouselItem } from '.'
 import { storiesOf } from '@storybook/react'
-import centered from '@storybook/addon-centered/dist/react'
 
 storiesOf('📦 Components/BubbleCarousel', module)
-    .addDecorator(centered)
     .add('Default', () => (
         <BubbleCarousel label='Shop the Look'>
             <BubbleCarouselItem 
