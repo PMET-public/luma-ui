@@ -89,7 +89,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
             <Card onDoubleClick={triggerCopy}>
                 <span className="code-block__label">{lang}</span>
-                <pre>
+                <pre className="code-block__pre">
                     <code
                         className="code-block__source"
                         dangerouslySetInnerHTML={{ __html: source }}
@@ -114,7 +114,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                     padding: 1.5rem;
                 }
 
-                .code-block > pre {
+                .code-block__pre {
                     overflow-x: auto;
                 }
 

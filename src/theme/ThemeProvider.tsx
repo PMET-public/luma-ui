@@ -133,6 +133,13 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
                 {children}
             </div>
 
+            <style jsx>{`
+                .theme-container {
+                    max-width: 1800px;
+                    margin: 0 auto;
+                }
+            `}</style>
+
             <ResetStyles />
             <GlobalStyles />
             <TypographyStyles />
