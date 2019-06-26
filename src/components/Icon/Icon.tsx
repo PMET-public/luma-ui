@@ -1,5 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, ReactElement } from 'react'
 import { SvgProperties } from 'csstype'
+import {useTransition, animated} from 'react-spring'
 
 export type IconProps = {
     count?: number
@@ -11,7 +12,15 @@ export const Icon: FunctionComponent<IconProps> = ({
     count,
     label,
     children,
-}) => (
+}) => {
+    
+    const countTransitions = useTransition(count, p => p, {
+        from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
+        enter: { opacity: 1, transform: 'scale(1) translateY(0)' },
+        leave: { opacity: 0, transform: 'scale(0) translateY(4rem)' },
+    })
+    
+    return (
         <span className="icon">
             <span className="icon__wrapper">
 
@@ -19,11 +28,11 @@ export const Icon: FunctionComponent<IconProps> = ({
                     {children}
                 </span>
 
-                {count ? (
-                    <span className="icon__count" >
-                        {count > 99 ? '+99' : count}
-                    </span>
-                ) : null}
+                {countTransitions.map(({ item, props, key }) => item ? (
+                    <animated.span className="icon__count" style={props} key={key}>
+                        {item > 99 ? '+99' : count}
+                    </animated.span>
+                ) : null)}
             </span>
 
             {label ? (
@@ -64,7 +73,7 @@ export const Icon: FunctionComponent<IconProps> = ({
                     text-overflow: ellipsis;
                 }
 
-                .icon__count {
+                .icon :global(.icon__count) {
                     border-radius: 0.2em;
                     color: inherit;
                     font-size: 0.45em;
@@ -75,3 +84,4 @@ export const Icon: FunctionComponent<IconProps> = ({
             `}</style>
         </span>
     )
+}

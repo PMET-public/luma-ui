@@ -12,11 +12,5 @@ storiesOf('📦 Components/Panel', module)
                 isOpen={boolean('isOpen', true)}
                 onClose={action('onClose')}
             />
-
-            <style jsx global>{`
-                :root {
-                    background-color: #ccc;
-                }
-            `}</style>
         </div>
     ))

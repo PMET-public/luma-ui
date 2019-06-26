@@ -1,7 +1,7 @@
-import React, { FunctionComponent, ReactNode, useRef, useContext } from 'react'
-import { useCSSTransition } from '../../hooks/useCSSTransition'
+import React, { FunctionComponent, ReactNode, useContext } from 'react'
 import { HotSpotsContext } from './HotSpots'
 import { useTheme } from '../../hooks/useTheme'
+import { useTransition, animated } from 'react-spring'
 
 export type HotSpotItemProps = {
     children?: ReactNode
@@ -19,8 +19,11 @@ export const HotSpotItem: FunctionComponent<HotSpotItemProps> = ({
     const { colors } = useTheme()
     const context = useContext(HotSpotsContext)
     const isActive = id === context.active
-    const contentEl = useRef(null)
-    const contentTransition = useCSSTransition(contentEl, isActive, 250)
+    const transitions = useTransition(isActive, null, {
+        from: { opacity: 0, transform: 'scale(0.9)' },
+        enter: { opacity: 1, transform: 'scale(1)' },
+        leave: { opacity: 0, transform: 'scale(0.9)' },
+    })
 
     const handleToggle = () => {
         context.set(isActive ? null : id)
@@ -35,11 +38,11 @@ export const HotSpotItem: FunctionComponent<HotSpotItemProps> = ({
                 type="button"
             ></button>
 
-            {children && contentTransition && (
-                <div className="hot-spot__content" ref={contentEl}>
+            {transitions.map(({ item, key, props}) => item && (
+                <animated.div className="hot-spot__content" key={key} style={props}>
                     {children}
-                </div>
-            )}
+                </animated.div>
+            ))}
 
             <style jsx>{`
                 .hot-spot__button {                 
@@ -76,7 +79,7 @@ export const HotSpotItem: FunctionComponent<HotSpotItemProps> = ({
                     display: ${isActive ? 'none' : 'block'};
                 }
 
-                .hot-spot__content {
+                .hot-spot :global(.hot-spot__content) {
                     ${coords.x > 50 ? `
                         --left: unset;
                         --right: calc(${100 - coords.x}% - 1.3em);
@@ -106,21 +109,6 @@ export const HotSpotItem: FunctionComponent<HotSpotItemProps> = ({
                     z-index: 3;
                 }
 
-                :global(.hot-spot__content.css-transition) {
-                    opacity: 0.1;
-                    transform-origin: center;
-                    transform: scale(0.9);
-                    transition-duration: var(--transition-duration);
-                    transition-property: opacity transform;
-                    transition-timing-function: ease-in;
-                }
-
-                :global(.hot-spot__content.css-transition--active) {
-                    opacity: 1;
-                    transform: scale(1);
-                    transition-timing-function: ease-out;
-                }
-                
                 @keyframes pulse {
                     0% {
                         transform: scale(1);
