@@ -69,7 +69,7 @@ storiesOf('🖼 Theme', module)
                     padding?: string
                 }    
 
-                type Color = [string, string] | [string] | string | undefined
+                type Color = [string, string] | [string] | string //  ⃪ [light mode, dark mode] | [one mode]
             `}</CodeBlock>
 
         </div>
