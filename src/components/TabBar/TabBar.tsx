@@ -1,12 +1,19 @@
 import React, { FunctionComponent, ReactElement } from 'react'
-import { TabBarItemProps } from './TabBarItem'
 import { useTheme } from '../../hooks/useTheme'
 
 export type TabBarProps = {
    children: ReactElement<TabBarItemProps> | Array<ReactElement<TabBarItemProps>>
 }
 
-export const TabBar: FunctionComponent<TabBarProps> = ({ 
+export type TabBarItemProps = { 
+    isActive?: boolean
+}
+
+type CompoundComponent = {
+    Item: FunctionComponent<TabBarItemProps>
+}
+
+export const TabBar: FunctionComponent<TabBarProps> & CompoundComponent = ({ 
     children, 
 }) => {
     const { grid, colors } = useTheme()
@@ -32,3 +39,24 @@ export const TabBar: FunctionComponent<TabBarProps> = ({
         </nav>
     )
 }
+
+TabBar.Item = ({ isActive, children }) => (
+    <span className="tab-bar-item">
+        {children}
+
+        <style jsx>{`
+            .tab-bar-item {
+                align-items: center;
+                display: flex;
+                filter: contrast(${ isActive ? '100%' : '0%' });
+                flex-direction: column;
+                font-size: 2.4rem;
+                justify-content: center;
+            }
+
+            a {
+                text-decoration: none;
+            }
+        `}</style>
+    </span>
+)
