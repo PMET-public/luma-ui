@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import { useTheme } from '../../hooks/useTheme'
-import Image, { ImageCaption } from '../Image'
+import Image from '../Image'
 
 export type BubbleCarouselProps = {
     children: ReactElement | ReactElement[]
@@ -48,7 +48,7 @@ export const BubbleCarousel: FunctionComponent<BubbleCarouselProps> & CompoundCo
 BubbleCarousel.Item = ({ label, image }) => (
     <div className="bubble-carousel-item">
         <Image alt={label} src={image}>
-            <ImageCaption>{label}</ImageCaption>
+            <Image.Caption>{label}</Image.Caption>
         </Image>
 
         <style jsx>{`
