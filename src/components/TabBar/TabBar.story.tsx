@@ -18,7 +18,7 @@ storiesOf('📦 Components/TabBar', module)
             </TabBarItem>
 
             <TabBarItem>
-                <Icon label="Favorites" count={3}>
+                <Icon label="Favorites" count={3100}>
                     <IconHeart />
                 </Icon>
             </TabBarItem>

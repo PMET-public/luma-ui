@@ -23,5 +23,9 @@ storiesOf('📦 Components/Icon', module)
             <Icon count={number('count', 0)} label={text('label', '')}>
                 <IconCart />
             </Icon>
+            
+            <Icon count={number('count', 0)} label={text('label', '')}>
+                <IconCart />
+            </Icon>
         </div>
     ))

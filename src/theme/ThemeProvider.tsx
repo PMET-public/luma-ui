@@ -104,8 +104,8 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         },
     }
 
-    const grid = ({ columns = 1, gap = padding, fluid = false, auto = false }) => `
-        display: grid;
+    const grid = ({ columns = 1, gap = padding, fluid = false, auto = false, inline = false }) => `
+        display: ${inline ? 'inline-grid' : 'grid'};
         grid-gap: ${gap};
         grid-template-columns: ${fluid || auto ? 'unset' : `repeat(${columns}, 1fr)` };
         grid-auto-flow: ${fluid || auto ? 'column' : 'unset' };
