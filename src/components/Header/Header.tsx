@@ -5,13 +5,13 @@ export type HeaderProps = { }
 
 export type HeaderLogoProps = { }
 
-export type HeaderNavigationProps = { }
+export type HeaderMenuProps = { }
 
 export type HeaderUtilitiesProps = { }
 
 type CompoundComponent = {
     Logo: FunctionComponent<HeaderLogoProps>
-    Navigation: FunctionComponent<HeaderNavigationProps>
+    Menu: FunctionComponent<HeaderMenuProps>
     Utilities: FunctionComponent<HeaderUtilitiesProps>
 }
 
@@ -56,7 +56,7 @@ export const Header: FunctionComponent<HeaderProps> & CompoundComponent = ({ chi
                 }
 
                 .header :global(.icon) {
-                    font-size: 2.3rem;
+                    font-size: 2.4rem;
                 }
 
                 
@@ -84,29 +84,30 @@ Header.Logo = ({ children }) => (
     </div>
 )
 
-Header.Navigation = ({ children }) => {
+Header.Menu = ({ children }) => {
     const { grid } = useTheme()
      
     return (
-        <div className="header-navigation">
-            <div className="header-navigation__content">
+        <div className="header-menu">
+            <div className="header-menu__content">
                 {children}
             </div>
 
             <style jsx>{`
-                .header-navigation {
+                .header-menu {
                     -webkit-overflow-scrolling: touch;
                     grid-area: navigation;
                     overflow-x: auto;
                     text-align: center;
                 }
 
-                .header-navigation::-webkit-scrollbar {
+                .header-menu::-webkit-scrollbar {
                     display: none;
                 }
 
-                .header-navigation__content {
+                .header-menu__content {
                     ${grid({ fluid: true, gap: '3rem', inline: true })}
+                    text-align: initial;
                 }
 
             `}</style>

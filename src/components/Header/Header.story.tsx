@@ -17,7 +17,7 @@ storiesOf('📦 Components/Header', module)
                     </a>
                 </Header.Logo>
 
-                <Header.Navigation>
+                <Header.Menu>
                     <Dropdown>
                         <Dropdown.Label>
                             <a href="#">New In</a>
@@ -31,7 +31,7 @@ storiesOf('📦 Components/Header', module)
                     <a href="#">Categories</a>
                     <a href="#">Categories</a>
                     <a href="#">Shop the Look</a>
-                </Header.Navigation>
+                </Header.Menu>
                 
                 <Header.Utilities>
                     <a href="#">Help</a>

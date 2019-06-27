@@ -51,6 +51,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
                 .app-bar__content {
                     display: flex;   
                     align-items: center;
+                    width: 100%;
                 }
             `}</style>
         </div>

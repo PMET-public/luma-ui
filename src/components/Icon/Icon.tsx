@@ -1,17 +1,21 @@
 import React, { FunctionComponent, HTMLAttributes, ReactElement } from 'react'
 import { SvgProperties } from 'csstype'
 import {useTransition, animated} from 'react-spring'
+import { ReactComponentLike } from 'prop-types'
 
 export type IconProps = {
     count?: number
     label?: string
     children: ReactElement<SvgProperties>
+    as?: ReactComponentLike
 } & HTMLAttributes<HTMLSpanElement>
 
 export const Icon: FunctionComponent<IconProps> = ({
     count,
     label,
     children,
+    as: Wrapper = (props: any) => <span {...props} />,
+    ...rest
 }) => {    
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
@@ -20,7 +24,7 @@ export const Icon: FunctionComponent<IconProps> = ({
     })
     
     return (
-        <span className="icon">
+        <Wrapper className="icon" {...rest}>
             <span className="icon__wrapper">
 
                 <span className="icon__svg">
@@ -50,9 +54,9 @@ export const Icon: FunctionComponent<IconProps> = ({
                     line-height: 1;
                 }
 
-                .icon :global(a) {
-                    border: 0 none !important;
-                    text-decoration: none !important;
+                .icon[href], a.icon {
+                    border-bottom: 0 none;
+                    text-decoration: none;
                 }
 
                 .icon__svg :global(svg) {
@@ -84,11 +88,11 @@ export const Icon: FunctionComponent<IconProps> = ({
                     display: flex;
                     font-size: 0.5em;
                     justify-content: center;
-                    left: calc(100% + 0.1em);
+                    left: calc(100% + 0.2em);
                     position: absolute;
                     top: -0.3em;
                 }
             `}</style>
-        </span>
+        </Wrapper>
     )
 }
