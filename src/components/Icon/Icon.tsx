@@ -1,6 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes, ReactElement } from 'react'
 import { SvgProperties } from 'csstype'
 import {useTransition, animated} from 'react-spring'
+import { useTheme } from '../../hooks/useTheme'
 
 export type IconProps = {
     count?: number
@@ -13,6 +14,8 @@ export const Icon: FunctionComponent<IconProps> = ({
     label,
     children,
 }) => {
+
+    const { colors } = useTheme()
     
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
@@ -62,7 +65,6 @@ export const Icon: FunctionComponent<IconProps> = ({
                 } 
 
                 .icon__wrapper {
-                    padding: 0 0.5em;
                     position: relative;
                 }
 
@@ -74,10 +76,12 @@ export const Icon: FunctionComponent<IconProps> = ({
                 }
 
                 .icon :global(.icon__count) {
-                    border-radius: 0.2em;
+                    align-items: center;
                     color: inherit;
+                    display: flex;
                     font-size: 0.45em;
-                    left: calc(100% - 0.9em);
+                    justify-content: center;
+                    left: calc(100% + 0.1em);
                     position: absolute;
                     top: -0.5em;
                 }
