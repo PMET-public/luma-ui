@@ -1,5 +1,5 @@
 import React from 'react'
-import HotSpots, { HotSpotItem } from './'
+import HotSpots from './'
 import { storiesOf } from '@storybook/react'
 import centered from '@storybook/addon-centered/dist/react'
 
@@ -10,7 +10,7 @@ const PriceTagMock = ({ label, price }: any) => (
     </div>
 )
 
-storiesOf('📦 Components/HotSpot', module)
+storiesOf('📦 Components/HotSpots', module)
     .addDecorator(centered)
     .add('Default', () => (
         <div style={{
@@ -21,27 +21,27 @@ storiesOf('📦 Components/HotSpot', module)
                 image={require('../../../public/images/products-hotspots.jpg')}
                 description="A lot of stuffs"
             >
-                <HotSpotItem
+                <HotSpots.Item
                     coords={{ x: 15, y: 42 }}
                     id={0}
                     label="Sweater"
                 >
                     <PriceTagMock label="Knit Sweater" price="$29.99" />
-                </HotSpotItem>
-                <HotSpotItem
+                </HotSpots.Item>
+                <HotSpots.Item
                     coords={{ x: 78, y: 30 }}
                     id={1}
                     label="Bag"
                 >
                     <PriceTagMock label="Handbag" price="$19.99" />
-                </HotSpotItem>
-                <HotSpotItem
+                </HotSpots.Item>
+                <HotSpots.Item
                     coords={{ x: 63, y: 75 }}
                     id={2}
                     label="Pants"
                 >
                     <PriceTagMock label="Cotton Chinos" price="$29.99" />
-                </HotSpotItem>
+                </HotSpots.Item>
             </HotSpots>
         </div>
     ))
@@ -55,7 +55,7 @@ storiesOf('📦 Components/HotSpot', module)
                 description="A lot of stuffs"
             >
                 <a href="https://magento.com" target="blank">
-                    <HotSpotItem
+                    <HotSpots.Item
                         coords={{ x: 15, y: 42 }}
                         id={0}
                         label="Sweater"
