@@ -13,10 +13,11 @@ module.exports = (Name, filename) => source`
 
                 <style jsx>{\`
                     .${filename} {
-                        padding: 2rem;
-                        background: white;
-                        border-radius: 1rem;
-                        box-shadow: 0 0 1rem #ccc;
+                        align-items: center;
+                        display: flex;
+                        height: 100vh;
+                        justify-content: center;
+                        width: 100vw;
                     }
                 \`}</style>
             </div>

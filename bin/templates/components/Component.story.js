@@ -1,16 +1,22 @@
 const source = require('common-tags').source
 
-module.exports = Name => source`
+module.exports = (Name, folder = 'components') => {
 
-    import React from 'react'
-    import ${Name} from './'
-    import { storiesOf } from '@storybook/react'
-    import centered from '@storybook/addon-centered/dist/react'
+    labels = {
+        components: '📦 Components',
+        templates: '📑 Templates',
+    }
+    
+    return source`
 
-    storiesOf('📦 Components/${Name}', module)
-        .addDecorator(centered)
-        .add('Default', () => (
-            <${Name} />
-        ))
+        import React from 'react'
+        import ${Name} from './'
+        import { storiesOf } from '@storybook/react'
 
-` + '\n'
+        storiesOf('${labels[folder]}/${Name}', module)
+            .add('Default', () => (
+                <${Name} />
+            ))
+
+    ` + '\n'
+}
