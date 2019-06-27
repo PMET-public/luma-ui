@@ -6,7 +6,9 @@ export type DropdownProps = {}
 
 export type DropdownLabelProps = {}
 
-export type DropdownContentProps = {}
+export type DropdownContentProps = {
+    isMenu?: boolean
+}
 
 type CompoundComponent = {
     Label: FunctionComponent<DropdownLabelProps>
@@ -34,7 +36,7 @@ export const Dropdown: FunctionComponent<DropdownProps> & CompoundComponent = ({
                     }
 
                     .dropdown :global(.dropdown-label) {
-                        display: flex;
+                        display: inline-flex;
                         align-items: center;
                     }
 
@@ -47,7 +49,7 @@ export const Dropdown: FunctionComponent<DropdownProps> & CompoundComponent = ({
                         margin-top: -0.4rem;
                         padding: 0.3rem;
                         transform: rotate(${state ? '-135deg' : '45deg'});
-                        opacity: ${state ? 0 : 1};
+                        opacity: ${state ? 0.3 : 1};
                         transform-origin: center;
                         transition: opacity 350ms ease, transform 250ms ease;
                     }
@@ -63,9 +65,9 @@ Dropdown.Label = ({ children }) => (
     </div>
 )
 
-Dropdown.Content = ({ children }) => {
+Dropdown.Content = ({ children, isMenu = false }) => {
     const isOpen = useContext(DropdownContext)
-    const { colors } = useTheme()
+    const { colors, grid } = useTheme()
 
     const transitions = useTransition(isOpen, null, {
         from: { opacity: 0, transform: 'translateY(-0.5rem)' },
@@ -89,7 +91,9 @@ Dropdown.Content = ({ children }) => {
                     position: absolute;
                     z-index: 1;
                     padding: 1rem;
-                    margin-left: -0.5rem;
+                    margin-left: -0.8rem;
+
+                    ${isMenu ? grid({ gap: '0.4rem'}) : ''}
                 }
             `}</style>
         </div>
