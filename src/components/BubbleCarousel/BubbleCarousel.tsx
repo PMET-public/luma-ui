@@ -1,12 +1,22 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import { useTheme } from '../../hooks/useTheme'
+import Image, { ImageCaption } from '../Image'
 
 export type BubbleCarouselProps = {
     children: ReactElement | ReactElement[]
     label: string
 }
 
-export const BubbleCarousel: FunctionComponent<BubbleCarouselProps> = ({
+export type BubbleCarouselItemProps = {
+    label: string
+    image: string
+}
+
+type CompoundComponent = {
+    Item: FunctionComponent<BubbleCarouselItemProps>
+}
+
+export const BubbleCarousel: FunctionComponent<BubbleCarouselProps> & CompoundComponent = ({
     children,
     label,
 }) => {
@@ -34,3 +44,43 @@ export const BubbleCarousel: FunctionComponent<BubbleCarouselProps> = ({
         </div>
     )
 }
+
+BubbleCarousel.Item = ({ label, image }) => (
+    <div className="bubble-carousel-item">
+        <Image alt={label} src={image}>
+            <ImageCaption>{label}</ImageCaption>
+        </Image>
+
+        <style jsx>{`
+            .bubble-carousel-item :global(.image) {
+                align-items: center;
+                display: inline-flex;
+                flex-direction: column;
+                flex: 0 0 auto;
+            }
+
+
+            .bubble-carousel-item :global(.image__img) {
+                border-radius: 50%;
+                display: inline-block;
+                height: 7rem;
+                object-fit: cover;
+                object-position: center;
+                overflow: hidden;
+                width: 7rem;
+            }
+
+            .bubble-carousel-item :global(.image-caption) {
+                font-size: 1.2rem;
+                margin-top: 1rem;
+                overflow: hidden;
+                padding: 0;
+                text-align: center;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 9rem;
+            }
+            
+        `}</style>
+    </div>
+)
