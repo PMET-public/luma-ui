@@ -2,7 +2,7 @@ import React, { FunctionComponent, createContext, useState, useContext } from 'r
 import { useTransition, animated } from 'react-spring'
 import { useTheme } from '../../hooks/useTheme'
 
-export type DropdownWrapperProps = {}
+export type DropdownProps = {}
 
 export type DropdownLabelProps = {}
 
@@ -15,7 +15,7 @@ type CompoundComponent = {
 
 const DropdownContext = createContext(false)
 
-export const Dropdown: FunctionComponent<DropdownWrapperProps> & CompoundComponent = ({ children }) => {
+export const Dropdown: FunctionComponent<DropdownProps> & CompoundComponent = ({ children }) => {
     const [state, setState] = useState(false)
 
     return (
