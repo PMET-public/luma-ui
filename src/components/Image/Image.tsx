@@ -1,11 +1,21 @@
 import React, { FunctionComponent, HTMLProps } from 'react'
+import { useTheme } from '../../hooks/useTheme'
 
 export type ImageProps = {
     src: string
     alt: string
 } & HTMLProps<HTMLElement>
 
-export const Image: FunctionComponent<ImageProps> = ({
+export type ImageCaptionProps = {}
+
+export type ImageTitleProps = {}
+
+type CompoundComponent = {
+    Caption: FunctionComponent<ImageCaptionProps>
+    Title: FunctionComponent<ImageTitleProps>
+}
+
+export const Image: FunctionComponent<ImageProps> & CompoundComponent = ({
     alt,
     children,
     src,
@@ -38,3 +48,42 @@ export const Image: FunctionComponent<ImageProps> = ({
         `}</style>
     </figure>
 )
+
+Image.Caption = ({ children }) => (
+    <span className="image-caption">
+        {children}
+
+        <style jsx>{`
+            .image-caption {
+                display: block;
+                padding: 0.8rem 0.5rem;
+            }    
+        `}</style>
+    </span>
+)
+
+Image.Title = ({ children }) => {
+    const { typography } = useTheme()
+
+    return (
+        <span className="image-title">
+            {children}
+
+            <style jsx>{`
+                .image-title {
+                    font-family: ${typography.headings.family};
+                    font-weight: ${typography.headings.weight};
+                    text-transform: uppercase;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 8vw;
+                }    
+            `}</style>
+        </span>
+    )
+}
