@@ -5,9 +5,6 @@ export const ThemeContext = createContext({
         link: ['#263238', '#ECEFF1'],
         linkHover: ['#37474F', '#CFD8DC'],
 
-        translucent: [],
-        onTranslucent: [],
-
         background: ['#fff', '#222'],
         onBackground: ['#222', '#fff'],
 
