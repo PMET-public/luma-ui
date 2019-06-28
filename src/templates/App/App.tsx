@@ -27,7 +27,6 @@ export type AppProps = {
     menu?: Array<{
         label: string
         link: LinkRoute
-        menu?: Array<{ label: string, link: LinkRoute }> 
     }>
 
     help?: {
@@ -72,7 +71,7 @@ export const App: FunctionComponent<AppProps> = ({
 }) => {
     return (
         <div className="app">
-            <AppBar>
+            <AppBar hideOnOffset={100}>
                 <Header>
                     <Header.Logo>
                         <Link {...logo.link }>
@@ -88,26 +87,11 @@ export const App: FunctionComponent<AppProps> = ({
 
                     {menu && menu.length > 0 && (
                         <Header.Menu>
-                            {menu.map((item, key) => item.menu && item.menu.length > 0 ? (
-                                <Dropdown key={key}>
-                                    <Dropdown.Label>
-                                        <Link {...item.link}>
-                                            {item.label}
-                                        </Link>
-                                    </Dropdown.Label>
-                                    <Dropdown.Content isMenu={true}>
-                                        {item.menu.map((submenu, sk) => (
-                                            <Link {...submenu.link}>
-                                                {submenu.label}
-                                            </Link>
-                                        ))}
-                                    </Dropdown.Content>
-                                </Dropdown>
-                            ) : (
+                            {menu.map((item, key) => (
                                 <Link key={key} {...item.link}>{item.label}</Link>
                             ))}
                         </Header.Menu>
-                    )}             
+                    )} 
                          
                     <Header.Utilities>
                         {help && <Link {...help.link}>
@@ -134,11 +118,11 @@ export const App: FunctionComponent<AppProps> = ({
                                 {myAccount.label || 'My Account'}
                             </Link>
                         )}
-
+                        
                         <Icon as={Link} {...search.link}>
                             <IconSearch arial-label={search.label || 'Search'} />
                         </Icon>
-                    
+
                         <Icon count={cart.count} as={Link} {...cart.link}>
                             <IconBag aria-label={cart.label || 'My Bag'} />
                         </Icon>
@@ -147,7 +131,7 @@ export const App: FunctionComponent<AppProps> = ({
             </AppBar>
             
             {children}
-
+            
             <TabBar>
                 <TabBar.Item isActive={true}>
                     <Icon label={home.label || 'Home'} as={Link} {...home.link}>

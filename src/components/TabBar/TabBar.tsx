@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactElement } from 'react'
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '../../theme'
 
 export type TabBarProps = {
    children: ReactElement<TabBarItemProps> | Array<ReactElement<TabBarItemProps>>
@@ -30,11 +30,19 @@ export const TabBar: FunctionComponent<TabBarProps> & CompoundComponent = ({
                         bottom: 0;
                         color: ${colors.onSurface};
                         left: 0;
-                        padding-bottom: 1.6rem;
-                        padding-top: 1rem;
+                        padding: 1.3rem;
                         position: fixed;
                         right: 0;
                     }
+
+                    @supports(padding: max(0px)) {
+                        .tab-bar {
+                            padding-left: max(1.3rem, env(safe-area-inset-left));
+                            padding-right: max(1.3rem, env(safe-area-inset-right));
+                            padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
+                        }
+                    }
+
             `}</style>
         </nav>
     )

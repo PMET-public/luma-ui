@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useState, ReactElement } from 'react'
-import { ColorProperty, FontStyleProperty, FontWeightProperty, FontFamilyProperty } from 'csstype'
-import { ThemeContext, useTheme } from '../hooks/useTheme'
+import React, { FunctionComponent, useState, createContext, useContext } from 'react'
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
+import { ReactComponentLike } from 'prop-types'
+import { ColorProperty, FontFamilyProperty, FontStyleProperty, FontWeightProperty } from 'csstype'
 
 type Color = [ColorProperty, ColorProperty?]
 
@@ -53,12 +53,80 @@ type Typography = {
 
 }
 
+type Theme = {
+    colors?: Colors
+    isDark?: boolean
+    padding?: string
+    routerLink?: ReactComponentLike
+    setDark?: (v: boolean) => any
+    typography?: Typography
+    breakpoints?: { smallOnly: string, medium: string, large: string, xlarge: string },
+    grid: (p?: { columns?: number, gap?: string, fluid: boolean, auto: boolean }) => string
+}
+
 type ThemeProviderProps = {
     colors?: Colors
     typography?: Typography
     padding?: string
-    routerLink?: ReactElement
+    routerLink?: ReactComponentLike
 }
+
+const defaultTheme: Theme = {
+    colors: {
+        link: ['#263238', '#ECEFF1'],
+        linkHover: ['#37474F', '#CFD8DC'],
+
+        background: ['#fff', '#222'],
+        onBackground: ['#222', '#fff'],
+
+        surface: ['#fff', '#222'],
+        onSurface: ['#222', '#fff'],
+
+        translucentSurface: ['rgba(255, 255, 255, 0.95)', 'rgba(0, 0, 0, 0.95)'],
+        onTranslucentSurface: ['#222', '#fff'],
+
+        primary: ['#111', '#fff'],
+        onPrimary: ['#fff', '#111'],
+
+        secondary: ['#212121', '#fafafa'],
+        onSecondary: ['#fafafa', '#212121'],
+
+        accent: ['#a14a24'],
+        onAccent: ['#fafafa'],
+
+        error: ['transparent'],
+        onError: ['#ef5350', '#ef5350'],
+
+        warning: ['transparent'],
+        onWarning: ['#f57c00', '#ffd54f'],
+
+        notice: ['transparent'],
+        onNotice: ['#039be5', '#e1f5fe'],
+    },
+
+    typography: {
+        body: {
+            family: 'sans-serif',
+            style: 'normal',
+            weight: 400,
+        },
+        headings: {
+            family: 'serif',
+            style: 'normal',
+            weight: 600,
+        },
+    },
+    isDark: false,
+    setDark: (v: boolean) => { },
+    padding: '0',
+    breakpoints: { smallOnly: '', medium: '', large: '', xlarge: '' },
+    grid: (props) => ``,
+    routerLink: ({ ...props }) => <a {...props} />,
+}
+
+const ThemeContext = createContext(defaultTheme)
+
+export const useTheme = () => useContext(ThemeContext)
 
 export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     children,
@@ -104,6 +172,13 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         },
     }
 
+    const breakpoints = {
+        smallOnly: 'max-width: 767px',
+        medium: 'min-width: 768px',
+        large: 'min-width: 992px',
+        xlarge: 'min-width: 1800px',
+    }
+
     const grid = ({ columns = 1, gap = padding, fluid = false, auto = false, inline = false }) => `
         display: ${inline ? 'inline-grid' : 'grid'};
         grid-gap: ${gap};
@@ -111,12 +186,6 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         grid-auto-flow: ${fluid || auto ? 'column' : 'unset' };
         grid-auto-columns: ${fluid ? 'minmax(max-content, max-content)' : auto ? 'column' : 'unset'};
     `
-
-    const breakpoints = {
-        medium: 'min-width: 767px',
-        large: 'min-width: 767px',
-        xlarge: 'min-width: 1200px',
-    }
 
     return (
         <ThemeContext.Provider value={{ 
@@ -141,8 +210,8 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
             `}</style>
 
             <ResetStyles />
-            <GlobalStyles />
-            <TypographyStyles />
+            <GlobalStyles colors={colors} />
+            <TypographyStyles typography={typography} />
         </ThemeContext.Provider>
     )
 } 

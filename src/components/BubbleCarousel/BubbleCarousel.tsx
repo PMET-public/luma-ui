@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactElement } from 'react'
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '../../theme'
 import Image from '../Image'
 
 export type BubbleCarouselProps = {

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '../../theme'
 
 export type HeaderProps = { }
 
@@ -25,7 +25,7 @@ export const Header: FunctionComponent<HeaderProps> & CompoundComponent = ({ chi
             <style jsx>{`
                 .header {
                     display: grid;
-                    grid-gap: 3rem;
+                    grid-gap: 1rem 2rem;
                     align-items: center;
                     font-size: 1.4rem;
                     grid-template-areas: "logo utilities"
@@ -35,10 +35,15 @@ export const Header: FunctionComponent<HeaderProps> & CompoundComponent = ({ chi
                     grid-template-rows: auto;
                 }
 
-                @media (${breakpoints.large}) {
+                @media (${breakpoints.medium}) {
                     .header {
                         grid-template-areas: "logo navigation utilities";
                         grid-template-columns: auto 1fr auto;
+                    }
+
+                    .header :global(.header-menu__content) {
+                        display: inline-grid;
+                        grid-auto-columns: minmax(max-content, max-content);
                     }
                 }
 
@@ -106,8 +111,10 @@ Header.Menu = ({ children }) => {
                 }
 
                 .header-menu__content {
-                    ${grid({ fluid: true, gap: '3rem', inline: true })}
+                    ${grid({ auto: true, gap: '2rem' })}
                     text-align: initial;
+                    justify-items: center;
+                    white-space: nowrap;
                 }
 
             `}</style>
@@ -124,7 +131,7 @@ Header.Utilities = ({ children }) => {
 
             <style jsx>{`
                 .header-utilities {
-                    ${grid({ fluid: true, gap: '2.5rem' })}
+                    ${grid({ fluid: true, gap: '2rem' })}
                     align-items: center;
                     grid-area: utilities;
                     justify-content: flex-end;

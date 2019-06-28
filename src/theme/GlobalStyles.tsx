@@ -1,8 +1,6 @@
 import React from 'react'
-import { useTheme } from '../hooks/useTheme'
 
-export default () => { 
-    const { colors } = useTheme()
+export default ({ colors }: any) => { 
 
     return (
         <style jsx global>{`
@@ -21,3 +19,4 @@ export default () => {
         `}</style>
     )
 }
+

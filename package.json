@@ -55,6 +55,7 @@
     "babel-loader": "^8.0.5",
     "common-tags": "^1.8.0",
     "concurrently": "^4.1.0",
+    "csstype": "^2.6.5",
     "prismjs": "^1.16.0",
     "prop-types": "^15.0.0-0",
     "react": "^16.8.6",

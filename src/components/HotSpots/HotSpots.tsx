@@ -1,6 +1,6 @@
 import React, { FunctionComponent, createContext, ReactNode, useState, useContext } from 'react'
 import Image from '../Image'
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '../../theme'
 import { useTransition, animated } from 'react-spring'
 
 export type HotSpotsProps = {

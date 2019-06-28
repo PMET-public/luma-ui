@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import { useTheme } from '../hooks/useTheme'
 
-const FontStyles: FunctionComponent = () => {
-    const { typography } = useTheme()
-
+const FontStyles: FunctionComponent = ({ typography }: any) => {
     return (
         <style global jsx>{`
             html {

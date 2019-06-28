@@ -18,19 +18,12 @@ storiesOf('📦 Components/Header', module)
                 </Header.Logo>
 
                 <Header.Menu>
-                    <Dropdown>
-                        <Dropdown.Label>
-                            <a href="#">New In</a>
-                        </Dropdown.Label>
-                        <Dropdown.Content>
-                            Yay!
-                        </Dropdown.Content>
-                    </Dropdown>
-                    <a href="#">Best Sellers</a>
-                    <a href="#">Categories</a>
-                    <a href="#">Categories</a>
-                    <a href="#">Categories</a>
-                    <a href="#">Shop the Look</a>
+                    <a href="#">New In</a>
+                    <a href="#">Women</a>
+                    <a href="#">Men</a>
+                    <a href="#">Gear</a>
+                    <a href="#">Training</a>
+                    <a href="#">Gift Cards</a>
                 </Header.Menu>
                 
                 <Header.Utilities>
@@ -38,7 +31,7 @@ storiesOf('📦 Components/Header', module)
 
                     <Dropdown>
                         <Dropdown.Label>
-                            <a href="#">Katherina</a>
+                            <a href="#">Account</a>
                         </Dropdown.Label>
                         <Dropdown.Content isMenu={true}>
                             <a href="#">My Account</a>

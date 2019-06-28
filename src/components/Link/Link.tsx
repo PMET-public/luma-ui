@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '../../theme'
 
 export type LinkProps = any
 

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, HTMLProps } from 'react'
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '../../theme'
 
 export type ImageProps = {
     src: string

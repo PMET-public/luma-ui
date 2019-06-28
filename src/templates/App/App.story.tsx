@@ -16,32 +16,18 @@ storiesOf('📑 Templates/App', module)
                 { 
                     label: 'Bottoms', 
                     link: { href: '#' },
-                    menu: [
-                        { label: 'Pants & Shorts', link: { href: '#' } },
-                        { label: 'Skirts', link: { href: '#' } },
-                    ],
                 },
                 { 
                     label: 'Tops', 
                     link: { href: '#' },
-                    menu: [
-                        { label: 'Blouses & Shirts', link: { href: '#' } },
-                        { label: 'Sweaters', link: { href: '#' } },
-                    ],
                 },
                 { 
                     label: 'Dresses', 
                     link: { href: '#' },
-                    menu: [],
                 },
                 { 
                     label: 'Accessories', 
                     link: { href: '#' },
-                    menu: [
-                        { label: 'Belts', link: { href: '#' } },
-                        { label: 'Jewelry', link: { href: '#' } },
-                        { label: 'Scarves', link: { href: '#' } },
-                    ],
                 },
             ]}
             help={{
@@ -67,6 +53,13 @@ storiesOf('📑 Templates/App', module)
                 link: { href: '#cart' },
             }}
         >
-            {/* ... */}
+            <div className="story__content"></div>
+
+            <style jsx>{`
+                .story__content {
+                    height: 300vh;
+                    background: #ddd;
+                }    
+            `}</style>
         </App>
     ))
