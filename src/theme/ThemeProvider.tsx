@@ -40,34 +40,27 @@ type Colors = {
 }
 
 type Typography = {
-    body?: {
-        family?: FontFamilyProperty
-        style?: FontStyleProperty
-        weight?: FontWeightProperty
-    }
-    headings?: {
-        family?: FontFamilyProperty
-        style?: FontStyleProperty
-        weight?: FontWeightProperty
-    }
+    bodyFamily?: FontFamilyProperty
+    bodyStyle?: FontStyleProperty
+    bodyWeight?: FontWeightProperty
 
+    headingFamily?: FontFamilyProperty
+    headingStyle?: FontStyleProperty
+    headingWeight?: FontWeightProperty
 }
 
 type Theme = {
-    colors?: Colors
-    isDark?: boolean
-    padding?: string
-    routerLink?: ReactComponentLike
-    setDark?: (v: boolean) => any
-    typography?: Typography
-    breakpoints?: { smallOnly: string, medium: string, large: string, xlarge: string },
-    grid: (p?: { columns?: number, gap?: string, fluid: boolean, auto: boolean }) => string
+    colors: Colors
+    isDark: boolean
+    routerLink: ReactComponentLike
+    setDark: (v: boolean) => any
+    typography: Typography
+    grid: (p?: { columns?: number, gap?: string, fluid?: boolean, auto?: boolean , inline?: boolean}) => string
 }
 
 type ThemeProviderProps = {
     colors?: Colors
     typography?: Typography
-    padding?: string
     routerLink?: ReactComponentLike
 }
 
@@ -105,21 +98,15 @@ const defaultTheme: Theme = {
     },
 
     typography: {
-        body: {
-            family: 'sans-serif',
-            style: 'normal',
-            weight: 400,
-        },
-        headings: {
-            family: 'serif',
-            style: 'normal',
-            weight: 600,
-        },
+        bodyFamily: 'sans-serif',
+        bodyStyle: 'normal',
+        bodyWeight: 400,
+        headingFamily: 'serif',
+        headingStyle: 'normal',
+        headingWeight: 600,
     },
     isDark: false,
     setDark: (v: boolean) => { },
-    padding: '0',
-    breakpoints: { smallOnly: '', medium: '', large: '', xlarge: '' },
     grid: (props) => ``,
     routerLink: ({ ...props }) => <a {...props} />,
 }
@@ -131,7 +118,6 @@ export const useTheme = () => useContext(ThemeContext)
 export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     children,
     colors: newColors,
-    padding = '2rem',
     routerLink = (props: any) => <a {...props} />,
     typography: newTypography,
     
@@ -162,24 +148,10 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
 
     const typography: any = {
         ...defaultTypography,
-        body: {
-            ...defaultTypography && defaultTypography.body,
-            ...newTypography && newTypography.body,
-        },
-        headings: {
-            ...defaultTypography && defaultTypography.headings,
-            ...newTypography && newTypography.headings,
-        },
+        ...newTypography,
     }
 
-    const breakpoints = {
-        smallOnly: 'max-width: 767px',
-        medium: 'min-width: 768px',
-        large: 'min-width: 992px',
-        xlarge: 'min-width: 1800px',
-    }
-
-    const grid = ({ columns = 1, gap = padding, fluid = false, auto = false, inline = false }) => `
+    const grid = ({ columns = 1, gap = '2rem', fluid = false, auto = false, inline = false }) => `
         display: ${inline ? 'inline-grid' : 'grid'};
         grid-gap: ${gap};
         grid-template-columns: ${fluid || auto ? 'unset' : `repeat(${columns}, 1fr)` };
@@ -189,11 +161,9 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
 
     return (
         <ThemeContext.Provider value={{ 
-            breakpoints,
             colors,
             grid,
             isDark, 
-            padding,
             routerLink,
             setDark, 
             typography, 
@@ -202,7 +172,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
                 {children}
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .theme-container {
                     max-width: 1800px;
                     margin: 0 auto;

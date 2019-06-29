@@ -25,7 +25,7 @@ storiesOf('📦 Components/Dropdown', module)
                 </Dropdown.Content>
             </Dropdown>
             
-            <style jsx>{`
+            <style jsx global>{`
                 :global(.theme-container) {
                     background-color: #eee;
                     height: 100vh;

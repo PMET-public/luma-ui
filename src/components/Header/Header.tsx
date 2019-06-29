@@ -1,49 +1,50 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
-export type HeaderProps = { }
+export type HeaderProps = {}
 
-export type HeaderLogoProps = { }
+export type HeaderLogoProps = {}
 
-export type HeaderMenuProps = { }
+export type HeaderMenuProps = {}
 
-export type HeaderUtilitiesProps = { }
+export type HeaderUtilitiesProps = {}
 
 type CompoundComponent = {
-    Logo: FunctionComponent<HeaderLogoProps>
-    Menu: FunctionComponent<HeaderMenuProps>
-    Utilities: FunctionComponent<HeaderUtilitiesProps>
+    Logo: Component<HeaderLogoProps>
+    Menu: Component<HeaderMenuProps>
+    Utilities: Component<HeaderUtilitiesProps>
 }
 
-export const Header: FunctionComponent<HeaderProps> & CompoundComponent = ({ children }) => {
-    const { colors, breakpoints } = useTheme()
+export const Header: Component<HeaderProps> & CompoundComponent = ({
+    as: Header = 'div',
+    children,
+    ...props
+}) => {
+    const { colors } = useTheme()
 
     return (
-        <div className="header">
+        <Header {...props} className={classes('header', props.className)}>
             {children}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .header {
                     display: grid;
                     grid-gap: 1rem 2rem;
                     align-items: center;
                     font-size: 1.4rem;
                     grid-template-areas: "logo utilities"
-                                         "navigation navigation";
+                                        "navigation navigation";
                     width: 100%;
                     grid-template-columns: auto;
                     grid-template-rows: auto;
-                }
 
-                @media (${breakpoints.medium}) {
-                    .header {
+                    @media (--medium-screen) {
                         grid-template-areas: "logo navigation utilities";
-                        grid-template-columns: auto 1fr auto;
-                    }
-
-                    .header :global(.header-menu__content) {
-                        display: inline-grid;
-                        grid-auto-columns: minmax(max-content, max-content);
+                        
+                        & :global(.header-menu) {
+                            text-align: center;
+                        }
                     }
                 }
 
@@ -66,15 +67,20 @@ export const Header: FunctionComponent<HeaderProps> & CompoundComponent = ({ chi
 
                 
             `}</style>
-        </div>
+        </Header>
     )
 }
 
-Header.Logo = ({ children }) => (
-    <div className="header-logo">
-        {children}
+Header.Logo = ({
+    as: HeaderLogo = 'div',
+    className,
+    children,
+    ...props
+}) => (
+        <HeaderLogo {...props} className={classes('header-logo', className)}>
+            {children}
 
-        <style jsx>{`
+            <style jsx global>{`
             .header-logo {
                 align-items: center;
                 display: flex;
@@ -86,24 +92,28 @@ Header.Logo = ({ children }) => (
                 text-decoration: none !important;
             }
         `}</style>
-    </div>
-)
+        </HeaderLogo>
+    )
 
-Header.Menu = ({ children }) => {
+Header.Menu = ({
+    as: HeaderMenu = 'div',
+    children,
+    className,
+    ...props
+}) => {
     const { grid } = useTheme()
-     
+
     return (
-        <div className="header-menu">
+        <HeaderMenu {...props} className={classes('header-menu', className)}>
             <div className="header-menu__content">
                 {children}
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .header-menu {
                     -webkit-overflow-scrolling: touch;
                     grid-area: navigation;
                     overflow-x: auto;
-                    text-align: center;
                 }
 
                 .header-menu::-webkit-scrollbar {
@@ -111,32 +121,38 @@ Header.Menu = ({ children }) => {
                 }
 
                 .header-menu__content {
-                    ${grid({ auto: true, gap: '2rem' })}
+                    ${grid({ fluid: true, inline: true })}
                     text-align: initial;
                     justify-items: center;
                     white-space: nowrap;
+                    display: inline-grid;                  
                 }
 
             `}</style>
-        </div>
+        </HeaderMenu>
     )
 }
 
-Header.Utilities = ({ children }) => {
+Header.Utilities = ({
+    as: HeaderUtilities = 'div',
+    children,
+    className,
+    ...props
+}) => {
     const { grid } = useTheme()
 
     return (
-        <div className="header-utilities">
-            {children}
+        <HeaderUtilities className={classes('header-utilities', className)} {...props}>
+                {children}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .header-utilities {
-                    ${grid({ fluid: true, gap: '2rem' })}
+                    ${grid({ fluid: true })}
                     align-items: center;
                     grid-area: utilities;
                     justify-content: flex-end;
                 }
             `}</style>
-        </div>
+        </HeaderUtilities>
     )
 }

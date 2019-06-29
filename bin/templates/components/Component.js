@@ -1,17 +1,25 @@
 const source = require('common-tags').source
+const path = require ('path')
 
 module.exports = (Name, filename) => source`
 
-    import React, { FunctionComponent } from 'react'
+    import React from 'react'
+    import { Component, classes } from '../../lib'
+    
+    export type ${Name}Props = {
 
-    export type ${Name}Props = { }
+    }
 
-    export const ${Name}: FunctionComponent<${Name}Props> = ({ }) => {
+    export const ${Name}: Component<${Name}Props> = ({ 
+        as: ${Name} = 'div', 
+        ...props
+    }) => {
+        
         return (
-            <div className="${filename}">
+            <${Name} {...props} className={classes('${filename}', props.className)}>
                 👋 Hi, I'm ${Name}
 
-                <style jsx>{\`
+                <style jsx global>{\`
                     .${filename} {
                         align-items: center;
                         display: flex;
@@ -20,7 +28,7 @@ module.exports = (Name, filename) => source`
                         width: 100vw;
                     }
                 \`}</style>
-            </div>
+            </${Name}>
         )
     }
 

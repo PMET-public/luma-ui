@@ -10,7 +10,7 @@ storiesOf('📦 Components/AppBar', module)
                 <h1>AppBar</h1>
             </AppBar>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .story {
                     background-color: #ddd;
                     height: 300vh;

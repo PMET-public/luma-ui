@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useScroll } from '../../hooks/useScroll'
 import { useTheme } from '../../theme'
+import { Component, classes } from '../../lib'
 
 /**
  * AppBar
@@ -9,11 +10,13 @@ export type AppBarProps = {
     hideOnOffset?: number
 }
 
-export const AppBar: FunctionComponent<AppBarProps> = ({
+export const AppBar: Component<AppBarProps> = ({
+    as: AppBar = 'div',
     children,
     hideOnOffset = 0,
+    ...props
 }) => {
-    const { padding, colors } = useTheme()
+    const { colors } = useTheme()
     const { scrollY } = useScroll()
     const [lastScrollY, setlastScrollY] = useState(0)
     const [isHidden, setIsHidden] = useState(false)
@@ -26,12 +29,12 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     }, [scrollY])
     
     return (
-        <div className="app-bar">
+        <AppBar {...props} className={classes('app-bar', props.className)}>
             <div className="app-bar__content">
                 {children}
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .app-bar {
                     align-items: center;
                     background-color: ${colors.translucentSurface};
@@ -39,7 +42,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
                     color: ${colors.onTranslucentSurface};
                     display: flex;
                     opacity: ${isHidden ? 0 : 1};
-                    padding: 1rem ${padding};
+                    padding: 1rem 2rem;
                     position: sticky;
                     top: 0;
                     transform: translateY(${isHidden ? '-100%' : 0});
@@ -54,6 +57,6 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
                     width: 100%;
                 }
             `}</style>
-        </div>
+        </AppBar>
     )
 }

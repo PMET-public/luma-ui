@@ -18,7 +18,9 @@ const plugins = [
             '@babel/react',
         ],
         plugins: [
-            'styled-jsx/babel',
+            ['styled-jsx/babel', { 
+                plugins: ['styled-jsx-plugin-postcss'] 
+            }]
         ],
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         exclude: 'node_modules/**',

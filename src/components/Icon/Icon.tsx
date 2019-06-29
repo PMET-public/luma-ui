@@ -1,21 +1,20 @@
-import React, { FunctionComponent, HTMLAttributes, ReactElement } from 'react'
+import React, { ReactElement } from 'react'
+import { Component, classes } from '../../lib'
 import { SvgProperties } from 'csstype'
-import {useTransition, animated} from 'react-spring'
-import { ReactComponentLike } from 'prop-types'
+import { useTransition, animated } from 'react-spring'
 
 export type IconProps = {
     count?: number
     label?: string
     children: ReactElement<SvgProperties>
-    as?: ReactComponentLike
-} & HTMLAttributes<HTMLSpanElement>
+}
 
-export const Icon: FunctionComponent<IconProps> = ({
+export const Icon: Component<IconProps> = ({
+    as: Icon = 'span',
     count,
     label,
     children,
-    as: Wrapper = (props: any) => <span {...props} />,
-    ...rest
+    ...props
 }) => {    
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
@@ -24,7 +23,7 @@ export const Icon: FunctionComponent<IconProps> = ({
     })
     
     return (
-        <Wrapper className="icon" {...rest}>
+        <Icon {...props} className={classes('icon', props.className)}>
             <span className="icon__wrapper">
 
                 <span className="icon__svg">
@@ -44,7 +43,7 @@ export const Icon: FunctionComponent<IconProps> = ({
                 </span>
             ) : null}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .icon {
                     align-items: center;
                     color: inherit;
@@ -93,6 +92,6 @@ export const Icon: FunctionComponent<IconProps> = ({
                     top: -0.3em;
                 }
             `}</style>
-        </Wrapper>
+        </Icon>
     )
 }

@@ -1,4 +1,5 @@
-import React, { FunctionComponent, createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext } from 'react'
+import { Component, classes } from '../../lib'
 import { useTransition, animated } from 'react-spring'
 import { useTheme } from '../../theme'
 
@@ -11,13 +12,17 @@ export type DropdownContentProps = {
 }
 
 type CompoundComponent = {
-    Label: FunctionComponent<DropdownLabelProps>
-    Content: FunctionComponent<DropdownContentProps>
+    Label: Component<DropdownLabelProps>
+    Content: Component<DropdownContentProps>
 }
 
 const DropdownContext = createContext(false)
 
-export const Dropdown: FunctionComponent<DropdownProps> & CompoundComponent = ({ children }) => {
+export const Dropdown: Component<DropdownProps> & CompoundComponent = ({ 
+    as: Dropdown = 'div',
+    children,
+    ...props
+}) => {
     const [state, setState] = useState(false)
 
     const triggerUpdate = (value: boolean) => {
@@ -26,13 +31,16 @@ export const Dropdown: FunctionComponent<DropdownProps> & CompoundComponent = ({
 
     return (
         <DropdownContext.Provider value={state}>
-            <div className="dropdown"
-                onMouseEnter={() => triggerUpdate(true)}
-                onMouseLeave={() => triggerUpdate(false)}
-            >
-                {children}
+            <Dropdown {...props} className={classes('dropdown', props.className)}>
+                    <div className="dropdown"
+                        onMouseEnter={() => triggerUpdate(true)}
+                        onMouseLeave={() => triggerUpdate(false)}
+                    >
+                        {children}
 
-                <style jsx>{`
+                    </div>
+
+                <style jsx global>{`
                     .dropdown {
                         display: inline-flex;
                         flex-direction: column;
@@ -44,16 +52,20 @@ export const Dropdown: FunctionComponent<DropdownProps> & CompoundComponent = ({
                         opacity: ${state ? 0.3 : 1};
                     }
                 `}</style>
-            </div>
+            </Dropdown>
         </DropdownContext.Provider>
     )
 }
 
-Dropdown.Label = ({ children }) => (
-    <div className="dropdown-label">
+Dropdown.Label = ({ 
+    as: DropdownLabel = 'div',
+    children,
+    ...props
+}) => (
+    <DropdownLabel {...props} className={classes('dropdown-label', props.className)}>
         {children}
 
-        <style jsx>{`
+        <style jsx global>{`
             .dropdown-label {
                 display: inline-flex;
                 align-items: center;
@@ -72,10 +84,15 @@ Dropdown.Label = ({ children }) => (
                 transition: opacity 350ms ease, transform 250ms ease;
             }
         `}</style>
-    </div>
+    </DropdownLabel>
 )
 
-Dropdown.Content = ({ children, isMenu = false }) => {
+Dropdown.Content = ({ 
+    as: DropdownContent = 'div',
+    children, 
+    isMenu = false,
+    ...props 
+}) => {
     const isOpen = useContext(DropdownContext)
     const { colors, grid } = useTheme()
 
@@ -88,14 +105,14 @@ Dropdown.Content = ({ children, isMenu = false }) => {
     return  (
         <React.Fragment>
             {children && (
-                <div className="dropdown-content">
+                <DropdownContent {...props} className={classes('dropdown-content', props.className)}>
                     {transitions.map(({ item, key, props }) => item && (
                         <animated.div className="dropdown-content__animated" key={key} style={props}>
                             {children}
                         </animated.div>
                     ))}
 
-                    <style jsx>{`
+                    <style jsx global>{`
                         .dropdown-content :global(.dropdown-content__animated) {
                             background-color: ${colors.translucentSurface};
                             color: ${colors.onTranslucentSurface};
@@ -107,9 +124,8 @@ Dropdown.Content = ({ children, isMenu = false }) => {
                             ${isMenu ? grid({ gap: '0.4rem'}) : ''}
                         }
                     `}</style>
-                </div>
+                </DropdownContent>
             )}
         </React.Fragment>
     )
-
 }

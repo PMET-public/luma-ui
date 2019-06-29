@@ -29,12 +29,8 @@ addParameters({
     },
     withTheme: {
         typography: {
-            body: {
-                family: 'source-sans pro, sans-serif'
-            },
-            headings: {
-                family: 'rucksack, sans-serif'
-            }
+            bodyFamily: 'source-sans pro, sans-serif',
+            headingFamily: 'rucksack, sans-serif',
         }
     }
 })

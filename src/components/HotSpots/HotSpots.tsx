@@ -1,4 +1,5 @@
-import React, { FunctionComponent, createContext, ReactNode, useState, useContext } from 'react'
+import React, { createContext, ReactNode, useState, useContext } from 'react'
+import { Component, classes } from '../../lib'
 import Image from '../Image'
 import { useTheme } from '../../theme'
 import { useTransition, animated } from 'react-spring'
@@ -17,15 +18,17 @@ export type HotSpotItemProps = {
 }
 
 type CompoundComponent = {
-    Item: FunctionComponent<HotSpotItemProps>
+    Item: Component<HotSpotItemProps>
 }
 
 const HotSpotsContext = createContext({ active: null, set: (id: string|number|null) => {}})
 
-export const HotSpots: FunctionComponent<HotSpotsProps> & CompoundComponent = ({
+export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
+    as: HotSpots = 'div',
     children,
     description,
     image,
+    ...props
 }) => {
     const [active, setActive] = useState()
 
@@ -35,30 +38,32 @@ export const HotSpots: FunctionComponent<HotSpotsProps> & CompoundComponent = ({
 
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
-            <div className="hot-spots">
+            <HotSpots {...props} className={classes('hot-spots', props.className)}>
                 <Image src={image} alt={description} />
                 {children}
+            </HotSpots>
 
-                <style jsx>{`
-                    .hot-spots {
-                        position: relative;
-                    }
+            <style jsx global>{`
+                .hot-spots {
+                    position: relative;
+                }
 
-                    .hot-spots :global(.image) {
-                        width: 100%;
-                        z-index: 0;
-                    }
-                `}</style>
-            </div>
+                .hot-spots :global(.image) {
+                    width: 100%;
+                    z-index: 0;
+                }
+            `}</style>
         </HotSpotsContext.Provider>
     )
 }
 
 HotSpots.Item = ({
+    as: HotSpotsItem = 'div',
     children,
     coords,
     id,
     label,
+    ...props
 }) => {
     const { colors } = useTheme()
     const context = useContext(HotSpotsContext)
@@ -74,7 +79,7 @@ HotSpots.Item = ({
     }
 
     return (
-        <div className="hot-spot">
+        <HotSpotsItem {...props} className={classes('hot-spot', props.className)}>
             <button className="hot-spot__button"
                 aria-label={label}
                 onClick={handleToggle}
@@ -88,7 +93,7 @@ HotSpots.Item = ({
                 </animated.div>
             ))}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .hot-spot__button {                 
                     background-color: ${isActive ? colors.primary : colors.accent};
                     border-radius: 50%;
@@ -169,7 +174,6 @@ HotSpots.Item = ({
                     }
                 }                        
             `}</style>
-
-        </div>
+        </HotSpotsItem>
     )
 }

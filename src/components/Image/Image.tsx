@@ -1,89 +1,69 @@
-import React, { FunctionComponent, HTMLProps } from 'react'
+import React from 'react'
+import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
 export type ImageProps = {
-    src: string
     alt: string
-} & HTMLProps<HTMLElement>
-
-export type ImageCaptionProps = {}
-
-export type ImageTitleProps = {}
-
-type CompoundComponent = {
-    Caption: FunctionComponent<ImageCaptionProps>
-    Title: FunctionComponent<ImageTitleProps>
+    src: string
+    title?: string
 }
 
-export const Image: FunctionComponent<ImageProps> & CompoundComponent = ({
+export const Image: Component<ImageProps> = ({
     alt,
+    as: Image = 'div',
     children,
     src,
-}) => (
-    <figure className="image">
-        <img className="image__img"
-            alt={alt}
-            src={src}
-        />
-
-        {children && (
-            <figcaption>
-                {children}
-            </figcaption>
-        )}
-
-        <style jsx>{`
-            .image {
-                position: relative;
-                width: 100%;
-            }
-
-            .image__img {
-                max-height: 100%;
-                object-fit: cover;
-                object-position: center;
-                overflow: hidden;
-                max-width: 100%;
-            }
-        `}</style>
-    </figure>
-)
-
-Image.Caption = ({ children }) => (
-    <span className="image-caption">
-        {children}
-
-        <style jsx>{`
-            .image-caption {
-                display: block;
-                padding: 0.8rem 0.5rem;
-            }    
-        `}</style>
-    </span>
-)
-
-Image.Title = ({ children }) => {
+    title,
+    ...props
+}) => {
     const { typography } = useTheme()
 
     return (
-        <span className="image-title">
-            {children}
+        <Image {...props} className={classes('image', props.className)}>
+            <figure>
+                <img className="image__img"
+                    alt={alt}
+                    src={src}
+                />
 
-            <style jsx>{`
-                .image-title {
-                    font-family: ${typography.headings.family};
-                    font-weight: ${typography.headings.weight};
-                    text-transform: uppercase;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    display: flex;
-                    justify-content: center;
+                {children && (
+                    <figcaption className="image__title">
+                        {children}
+                    </figcaption>
+                )}
+            </figure>
+
+            <style jsx global>{`
+                .image {
+                    position: relative;
+                    width: 100%;
+                }
+
+                .image__img {
+                    max-height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    overflow: hidden;
+                    max-width: 100%;
+                }
+
+                .image__title {
                     align-items: center;
+                    bottom: 0;
+                    display: flex;
+                    font-family: ${typography.headingFamily};
                     font-size: 8vw;
-                }    
+                    font-weight: ${typography.headingWeight};
+                    justify-content: center;
+                    left: 0;
+                    position: absolute;
+                    right: 0;
+                    text-align: center;
+                    text-transform: uppercase;
+                    top: 0;
+                    z-index: 1;
+                }   
             `}</style>
-        </span>
+        </Image>
     )
 }

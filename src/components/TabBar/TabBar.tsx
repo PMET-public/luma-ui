@@ -1,70 +1,79 @@
-import React, { FunctionComponent, ReactElement } from 'react'
+import React, { ReactElement } from 'react'
+import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
 export type TabBarProps = {
-   children: ReactElement<TabBarItemProps> | Array<ReactElement<TabBarItemProps>>
+    children: ReactElement<TabBarItemProps> | Array<ReactElement<TabBarItemProps>>
 }
 
-export type TabBarItemProps = { 
+export type TabBarItemProps = {
     isActive?: boolean
 }
 
 type CompoundComponent = {
-    Item: FunctionComponent<TabBarItemProps>
+    Item: Component<TabBarItemProps>
 }
 
-export const TabBar: FunctionComponent<TabBarProps> & CompoundComponent = ({ 
-    children, 
+export const TabBar: Component<TabBarProps> & CompoundComponent = ({
+    as: TabBar = 'nav',
+    children,
+    ...props
 }) => {
     const { grid, colors } = useTheme()
-    return  (
-        <nav className="tab-bar">
+    return (
+        <TabBar {...props} className={classes('tab-bar', props.className)}>
             {children}
 
-            <style jsx>{`
+            <style jsx global>{`
+                .tab-bar {
+                    ${grid({ auto: true })}
+                    background-color: ${colors.translucentSurface};
+                    color: ${colors.onTranslucentSurface};
+                    border-top: 0.1rem solid #eee;
+                    bottom: 0;
+                    color: ${colors.onSurface};
+                    left: 0;
+                    padding: 1.3rem;
+                    position: fixed;
+                    right: 0;
+                }
+
+                @supports(padding: max(0px)) {
                     .tab-bar {
-                        ${grid({ auto: true })}
-                        background-color: ${colors.translucentSurface};
-                        color: ${colors.onTranslucentSurface};
-                        border-top: 0.1rem solid #eee;
-                        bottom: 0;
-                        color: ${colors.onSurface};
-                        left: 0;
-                        padding: 1.3rem;
-                        position: fixed;
-                        right: 0;
+                        padding-left: max(1.3rem, env(safe-area-inset-left));
+                        padding-right: max(1.3rem, env(safe-area-inset-right));
+                        padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
                     }
-
-                    @supports(padding: max(0px)) {
-                        .tab-bar {
-                            padding-left: max(1.3rem, env(safe-area-inset-left));
-                            padding-right: max(1.3rem, env(safe-area-inset-right));
-                            padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
-                        }
-                    }
-
+                }
             `}</style>
-        </nav>
+        </TabBar>
     )
 }
 
-TabBar.Item = ({ isActive, children }) => (
-    <span className="tab-bar-item">
-        {children}
+TabBar.Item = ({ 
+    as: TabBarItem = 'span',
+    isActive, 
+    children,
+    ...props
+}) => {
+    return (
+        <TabBarItem {...props} className={classes('tab-bar-item', props.className)}>
+            {children}
+            
+            <style jsx global>{`
+                .tab-bar-item {
+                    align-items: center;
+                    display: flex;
+                    filter: contrast(${ isActive ? '100%' : '0%'});
+                    flex-direction: column;
+                    font-size: 2.4rem;
+                    justify-content: center;
+                }
 
-        <style jsx>{`
-            .tab-bar-item {
-                align-items: center;
-                display: flex;
-                filter: contrast(${ isActive ? '100%' : '0%' });
-                flex-direction: column;
-                font-size: 2.4rem;
-                justify-content: center;
-            }
-
-            a {
-                text-decoration: none;
-            }
-        `}</style>
-    </span>
-)
+                a {
+                    text-decoration: none;
+                }
+            `}</style>
+        </TabBarItem>
+    )
+}

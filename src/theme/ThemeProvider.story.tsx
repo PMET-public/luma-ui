@@ -55,22 +55,22 @@ storiesOf('🖼 Theme', module)
                     }
                     
                     typography?: {
-                        body?: Typography
-                        headings?: Typography
+                        bodyFamily?: FontFamilyProperty
+                        bodyStyle?: FontStyleProperty
+                        bodyWeight?: FontWeightProperty
+                    
+                        headingFamily?: FontFamilyProperty
+                        headingStyle?: FontStyleProperty
+                        headingWeight?: FontWeightProperty
                     }
 
                 }    
 
                 type Color = [string, string?] //  ⃪ [☀️ mode, 🌑 mode]
 
-                type Typography = {
-                    family?: string
-                    style?: string
-                    weight?: number
-                }
             `}</CodeBlock>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .story {
                     padding: 2rem;
                 }

@@ -1,20 +1,20 @@
-import React, { FunctionComponent } from 'react'
 
-const FontStyles: FunctionComponent = ({ typography }: any) => {
+import React from 'react'
+
+export default ({ typography }: any) => {
     return (
-        <style global jsx>{`
+        <style jsx global>{`
             html {
                 -webkit-font-smoothing: antialiased;
-                font-family: ${typography.body.family};
+                font-family: ${typography.bodyFamily};
                 font-size: 62.5%; /* ~10px = 1rem! */
-                font-style: ${typography.body.style};
-                font-weight: ${typography.body.weight};
+                font-style: ${typography.bodyStyle};
+                font-weight: ${typography.bodyWeight};
             }
             
             body {
                 font-size: 16px; /* px fallback */
                 font-size: 1.6rem; /* default font-size for document */
-                line-height: 1.5; /* a nice line-height */
             }
             
             /* Copy & Lists */
@@ -51,9 +51,9 @@ const FontStyles: FunctionComponent = ({ typography }: any) => {
             
             h1, h2, h3, h4, h5, h6 {
                 /* Change heading typefaces here */
-                font-family: ${typography.headings.family};
-                font-style: ${typography.headings.style};
-                font-weight: ${typography.headings.weight};
+                font-family: ${typography.headingFamily};
+                font-style: ${typography.headingStyle};
+                font-weight: ${typography.headingWeight};
                 line-height: 1.1;
                 margin-top: 2rem;
                 margin-bottom: 2rem;
@@ -85,7 +85,7 @@ const FontStyles: FunctionComponent = ({ typography }: any) => {
             
             table td, table th {
                 padding: 0;
-                // line-height: 3.3rem;
+                line-height: 3.3rem;
             }
             
             /* Code blocks */
@@ -98,5 +98,3 @@ const FontStyles: FunctionComponent = ({ typography }: any) => {
         `}</style>
     )
 }
-
-export default FontStyles

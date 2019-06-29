@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ colors }: any) => { 
+export default ({ colors }: any) => {
 
     return (
         <style jsx global>{`
@@ -19,4 +19,3 @@ export default ({ colors }: any) => {
         `}</style>
     )
 }
-

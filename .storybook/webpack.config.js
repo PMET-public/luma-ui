@@ -23,7 +23,9 @@ module.exports = ({ config }) => {
                             '@babel/react',
                         ],
                         plugins: [
-                            ['styled-jsx/babel', { }]
+                            ['styled-jsx/babel', { 
+                                plugins: ['styled-jsx-plugin-postcss'] 
+                            }]
                         ],
                     },
                 },

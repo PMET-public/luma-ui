@@ -1,9 +1,9 @@
-import React, { FunctionComponent, ReactElement } from 'react'
+import React from 'react'
+import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 import Image from '../Image'
 
 export type BubbleCarouselProps = {
-    children: ReactElement | ReactElement[]
     label: string
 }
 
@@ -13,45 +13,54 @@ export type BubbleCarouselItemProps = {
 }
 
 type CompoundComponent = {
-    Item: FunctionComponent<BubbleCarouselItemProps>
+    Item: Component<BubbleCarouselItemProps>
 }
 
-export const BubbleCarousel: FunctionComponent<BubbleCarouselProps> & CompoundComponent = ({
+export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent = ({
+    as: BubbleCarousel = 'div',
     children,
     label,
+    ...props
 }) => {
-    const { padding, grid } = useTheme()
+    const { grid } = useTheme()
 
     return (
-        <div className="bubble-carousel" aria-label={label}>
+        <BubbleCarousel {...props} className={classes('bubble-carousel', props.className)} aria-label={label}>
             {children}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .bubble-carousel {
                     ${grid({ fluid: true })}
                     overflow-x: scroll;
                     -webkit-overflow-scrolling: touch;
 
                     /* Trick to pad an overflown grid 🤷‍ */
-                    margin: 0 ${padding};
-                    padding: ${padding} 0;        
+                    margin: 0 2rem;
+                    padding: 2rem 0;        
                 }
 
                 .bubble-carousel::-webkit-scrollbar {
                     display: none;
                 }
             `}</style>
-        </div>
+        </BubbleCarousel>
     )
 }
 
-BubbleCarousel.Item = ({ label, image }) => (
-    <div className="bubble-carousel-item">
-        <Image alt={label} src={image}>
-            <Image.Caption>{label}</Image.Caption>
-        </Image>
+BubbleCarousel.Item = ({ 
+    as: BabelCarouselItem = 'div',
+    label, 
+    image,
+    ...props
+}) => (
+    <BabelCarouselItem {...props} className={classes('bubble-carousel-item', props.className)}>
+        <Image alt={label} src={image} />
+        
+        <div className="bubble-carousel-item__label">
+            {label}
+        </div>
 
-        <style jsx>{`
+        <style jsx global>{`
             .bubble-carousel-item :global(.image) {
                 align-items: center;
                 display: inline-flex;
@@ -70,7 +79,7 @@ BubbleCarousel.Item = ({ label, image }) => (
                 width: 7rem;
             }
 
-            .bubble-carousel-item :global(.image-caption) {
+            .bubble-carousel-item__label {
                 font-size: 1.2rem;
                 margin-top: 1rem;
                 overflow: hidden;
@@ -82,5 +91,5 @@ BubbleCarousel.Item = ({ label, image }) => (
             }
             
         `}</style>
-    </div>
+    </BabelCarouselItem>
 )
