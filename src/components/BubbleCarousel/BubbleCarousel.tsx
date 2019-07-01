@@ -31,8 +31,8 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
             <style jsx global>{`
                 .bubble-carousel {
                     ${grid({ fluid: true })}
-                    overflow-x: scroll;
                     -webkit-overflow-scrolling: touch;
+                    overflow-x: scroll;
 
                     /* Trick to pad an overflown grid 🤷‍ */
                     margin: 0 2rem;
