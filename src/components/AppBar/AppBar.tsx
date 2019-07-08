@@ -34,7 +34,7 @@ export const AppBar: Component<AppBarProps> = ({
                 {children}
             </div>
 
-            <style jsx global>{`
+            <style jsx>{`
                 .app-bar {
                     align-items: center;
                     background-color: ${colors.translucentSurface};

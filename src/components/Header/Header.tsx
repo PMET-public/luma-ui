@@ -27,7 +27,7 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
         <Header {...props} className={classes('header', props.className)}>
             {children}
 
-            <style jsx global>{`
+            <style jsx>{`
                 .header {
                     display: grid;
                     grid-gap: 1rem 2rem;
@@ -80,7 +80,7 @@ Header.Logo = ({
         <HeaderLogo {...props} className={classes('header-logo', className)}>
             {children}
 
-            <style jsx global>{`
+            <style jsx>{`
             .header-logo {
                 align-items: center;
                 display: flex;
@@ -109,7 +109,7 @@ Header.Menu = ({
                 {children}
             </div>
 
-            <style jsx global>{`
+            <style jsx>{`
                 .header-menu {
                     -webkit-overflow-scrolling: touch;
                     grid-area: navigation;
@@ -127,7 +127,6 @@ Header.Menu = ({
                     white-space: nowrap;
                     display: inline-grid;                  
                 }
-
             `}</style>
         </HeaderMenu>
     )
@@ -145,7 +144,7 @@ Header.Utilities = ({
         <HeaderUtilities className={classes('header-utilities', className)} {...props}>
                 {children}
 
-            <style jsx global>{`
+            <style jsx>{`
                 .header-utilities {
                     ${grid({ fluid: true })}
                     align-items: center;

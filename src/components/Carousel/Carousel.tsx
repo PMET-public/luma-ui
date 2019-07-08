@@ -32,7 +32,7 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
                 {children}
             </div>
 
-            <style jsx global>{`
+            <style jsx>{`
                 .carousel {
                     -webkit-overflow-scrolling: touch;   
                     overflow-x: auto;
@@ -52,8 +52,8 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
                     width: calc(${items.length * 100}% - ${items.length * padding}rem);
                 }
 
-                .carousel .carousel-item {
-                width: calc(100% - ${padding}rem);
+                .carousel :global(.carousel-item) {
+                    width: calc(100% - ${padding}rem);
                 }
             `}</style>
         </Carousel>
@@ -70,7 +70,7 @@ Carousel.Item = ({
         <CarouselItem {...props} className={classes('carousel-item', props.className)}>
             {children}
 
-            <style jsx global>{`
+            <style jsx>{`
                 .carousel-item {
                     scroll-snap-align: center;
                 }

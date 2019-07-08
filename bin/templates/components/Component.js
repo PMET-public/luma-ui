@@ -19,7 +19,7 @@ module.exports = (Name, filename) => source`
             <${Name} {...props} className={classes('${filename}', props.className)}>
                 👋 Hi, I'm ${Name}
 
-                <style jsx global>{\`
+                <style jsx>{\`
                     .${filename} {
                         align-items: center;
                         display: flex;

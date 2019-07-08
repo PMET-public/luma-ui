@@ -32,15 +32,14 @@ export const Dropdown: Component<DropdownProps> & CompoundComponent = ({
     return (
         <DropdownContext.Provider value={state}>
             <Dropdown {...props} className={classes('dropdown', props.className)}>
-                    <div className="dropdown"
-                        onMouseEnter={() => triggerUpdate(true)}
-                        onMouseLeave={() => triggerUpdate(false)}
-                    >
-                        {children}
+                <div className="dropdown"
+                    onMouseEnter={() => triggerUpdate(true)}
+                    onMouseLeave={() => triggerUpdate(false)}
+                >
+                    {children}
+                </div>
 
-                    </div>
-
-                <style jsx global>{`
+                <style jsx>{`
                     .dropdown {
                         display: inline-flex;
                         flex-direction: column;
@@ -49,7 +48,7 @@ export const Dropdown: Component<DropdownProps> & CompoundComponent = ({
 
                     .dropdown :global(.dropdown-label::after) {
                         transform: rotate(${state ? '-135deg' : '45deg'});
-                        opacity: ${state ? 0.3 : 1};
+                        opacity: ${state ? 0.15 : 1};
                     }
                 `}</style>
             </Dropdown>
@@ -65,7 +64,7 @@ Dropdown.Label = ({
     <DropdownLabel {...props} className={classes('dropdown-label', props.className)}>
         {children}
 
-        <style jsx global>{`
+        <style jsx>{`
             .dropdown-label {
                 display: inline-flex;
                 align-items: center;
@@ -112,16 +111,16 @@ Dropdown.Content = ({
                         </animated.div>
                     ))}
 
-                    <style jsx global>{`
+                    <style jsx>{`
                         .dropdown-content :global(.dropdown-content__animated) {
                             background-color: ${colors.translucentSurface};
                             color: ${colors.onTranslucentSurface};
                             position: absolute;
                             z-index: 1;
-                            padding: 1rem;
+                            padding: 1.3rem 1rem;
                             margin-left: -0.8rem;
 
-                            ${isMenu ? grid({ gap: '0.4rem'}) : ''}
+                            ${isMenu ? grid({ gap: '1rem'}) : ''}
                         }
                     `}</style>
                 </DropdownContent>

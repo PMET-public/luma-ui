@@ -7,7 +7,7 @@ import { ColorProperty, FontFamilyProperty, FontStyleProperty, FontWeightPropert
 
 type Color = [ColorProperty, ColorProperty?]
 
-type Colors = {
+export type Colors = {
     link?: Color
     linkHover?: Color
 
@@ -39,7 +39,7 @@ type Colors = {
     onNotice?: Color
 }
 
-type Typography = {
+export type Typography = {
     bodyFamily?: FontFamilyProperty
     bodyStyle?: FontStyleProperty
     bodyWeight?: FontWeightProperty
@@ -172,7 +172,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
                 {children}
             </div>
 
-            <style jsx global>{`
+            <style jsx>{`
                 .theme-container {
                     max-width: 1800px;
                     margin: 0 auto;

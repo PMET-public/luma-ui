@@ -55,7 +55,7 @@ storiesOf('📑 Templates/App', module)
         >
             <div className="story__content"></div>
 
-            <style jsx global>{`
+            <style jsx>{`
                 .story__content {
                     height: 300vh;
                     background: #ddd;

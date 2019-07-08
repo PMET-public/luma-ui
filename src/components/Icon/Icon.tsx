@@ -43,7 +43,7 @@ export const Icon: Component<IconProps> = ({
                 </span>
             ) : null}
 
-            <style jsx global>{`
+            <style jsx>{`
                 .icon {
                     align-items: center;
                     color: inherit;
@@ -53,7 +53,8 @@ export const Icon: Component<IconProps> = ({
                     line-height: 1;
                 }
 
-                .icon[href], a.icon {
+                .icon[href], a.icon, 
+                .icon :global([href]) {
                     border-bottom: 0 none;
                     text-decoration: none;
                 }
@@ -76,7 +77,6 @@ export const Icon: Component<IconProps> = ({
                 .icon__label {
                     color: inherit;
                     font-size: 0.45em;
-                    font-weight: 600;
                     text-overflow: ellipsis;
                     padding-right: ${typeof count === 'number' ? '0.9em' : 0};
                 }

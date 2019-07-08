@@ -20,6 +20,7 @@ export type AppProps = {
         label?: string
         link: LinkRoute
     }
+    
     logo: {
         title: string
         src?: string
@@ -166,7 +167,7 @@ export const App: Component<AppProps> = ({
             </TabBar>
 
             <style jsx global>{`
-                .app__header__logo {
+                .app__header__logo.header-logo {
                     margin: 0;
                     padding: 0;
                     line-height: 0;
@@ -181,9 +182,9 @@ export const App: Component<AppProps> = ({
                 }    
 
                 @media(--small-screen-only) {
-                    .app__header__menu,
-                    .app__header__utilities__search,
-                    .app__header__utilities__cart {
+                    .app__header__menu.header-menu,
+                    .app__header__utilities__search.icon,
+                    .app__header__utilities__cart.icon {
                         display: none;
                     }
 
@@ -193,7 +194,7 @@ export const App: Component<AppProps> = ({
                 }
 
                 @media(--medium-screen) {
-                    .app__tab-bar {
+                    .app__tab-bar.tab-bar {
                         display: none;
                     }
                 }

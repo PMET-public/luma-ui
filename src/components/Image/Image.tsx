@@ -33,7 +33,7 @@ export const Image: Component<ImageProps> = ({
                 )}
             </figure>
 
-            <style jsx global>{`
+            <style jsx>{`
                 .image {
                     position: relative;
                     width: 100%;

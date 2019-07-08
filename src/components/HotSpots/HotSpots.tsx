@@ -41,18 +41,18 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
             <HotSpots {...props} className={classes('hot-spots', props.className)}>
                 <Image src={image} alt={description} />
                 {children}
+                
+                <style jsx>{`
+                    .hot-spots {
+                        position: relative;
+                    }
+
+                    .hot-spots :global(.image) {
+                        width: 100%;
+                        z-index: 0;
+                    }
+                `}</style>
             </HotSpots>
-
-            <style jsx global>{`
-                .hot-spots {
-                    position: relative;
-                }
-
-                .hot-spots :global(.image) {
-                    width: 100%;
-                    z-index: 0;
-                }
-            `}</style>
         </HotSpotsContext.Provider>
     )
 }
@@ -93,7 +93,7 @@ HotSpots.Item = ({
                 </animated.div>
             ))}
 
-            <style jsx global>{`
+            <style jsx>{`
                 .hot-spot__button {                 
                     background-color: ${isActive ? colors.primary : colors.accent};
                     border-radius: 50%;
@@ -109,7 +109,6 @@ HotSpots.Item = ({
                     width: 1em;
                     z-index: 2;    
                 }
-
 
                 .hot-spot__button:focus {
                     outline: 0;

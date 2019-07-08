@@ -58,7 +58,7 @@ export const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({ color }) => {
                 </code>
             </div>
 
-            <style global jsx>{`
+            <style jsx>{`
                 .color-swatch {
                     display: flex;
                     flex-direction: column;

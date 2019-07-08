@@ -24,7 +24,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
         <TabBar {...props} className={classes('tab-bar', props.className)}>
             {children}
 
-            <style jsx global>{`
+            <style jsx>{`
                 .tab-bar {
                     ${grid({ auto: true })}
                     background-color: ${colors.translucentSurface};
@@ -60,13 +60,13 @@ TabBar.Item = ({
         <TabBarItem {...props} className={classes('tab-bar-item', props.className)}>
             {children}
             
-            <style jsx global>{`
+            <style jsx>{`
                 .tab-bar-item {
                     align-items: center;
                     display: flex;
                     filter: contrast(${ isActive ? '100%' : '0%'});
                     flex-direction: column;
-                    font-size: 2.4rem;
+                    font-size: 2.3rem;
                     justify-content: center;
                 }
 

@@ -46,7 +46,7 @@ export const Drawer: Component<DrawerProps> = ({
                 ></animated.button>
             ))}
 
-            <style jsx global>{`
+            <style jsx>{`
                 .drawer :global(.drawer__content) {
                     background-color: ${colors.surface};
                     bottom: 0;
