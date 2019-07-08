@@ -34,12 +34,8 @@ storiesOf('📑 Templates/App', module)
                 link: { href: '#help'},
             }}
             myAccount={{
-                label: 'Kate',
+                label: 'Login',
                 link: { href: '#account' },
-                menu: [
-                    { label: 'Favorites (3)', link: { href: '#favorites'} },
-                    { label: 'Sign Out', link: { href: '#account'} },
-                ],
             }}
             search={{
                 link: { href: '#search' },

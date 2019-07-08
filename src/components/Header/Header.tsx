@@ -48,17 +48,20 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
                     }
                 }
 
-                .header a {
+                .header-menu__content > a,
+                .header-utilities > a,
+                .header-utilities .dropdown-label > a {
                     border-bottom: 0.1rem solid transparent;
                     color: ${colors.primary};
-                    padding-top: 0.1rem;
+                    padding-top: 0.4rem;
+                    padding-bottom: 0.3rem;
                     text-decoration: none;
                     transition: border 700ms ease;
-                }
 
-                .header a:hover {
-                    border-color: ${colors.primary};
-                    color: ${colors.primary};
+                    &:hover {
+                        border-color: ${colors.primary};
+                        color: ${colors.primary};
+                    }
                 }
 
                 .header .icon {

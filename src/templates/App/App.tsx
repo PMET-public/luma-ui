@@ -4,7 +4,6 @@ import { Component, classes } from '../../lib'
 import AppBar from '../../components/AppBar'
 import Header from '../../components/Header'
 import Icon from '../../components/Icon'
-import Dropdown from '../../components/Dropdown'
 import TabBar from '../../components/TabBar'
 import Logo from '../../../public/images/new-luma.svg'
 import Link, { LinkRoute } from '../../components/Link'
@@ -40,7 +39,7 @@ export type AppProps = {
     myAccount: {
         label?: string
         link: LinkRoute
-        menu?: Array<{ label: string, link: LinkRoute }>
+        count?: number
     }
 
     search: {
@@ -100,27 +99,10 @@ export const App: Component<AppProps> = ({
                         {help && <Link {...help.link}>
                             {help.label || 'Help'}
                         </Link>}
-
-                        {myAccount.menu && myAccount.menu.length ? (
-                            <Dropdown className="app__header__utilities__account">
-                                <Dropdown.Label>
-                                    <Link {...myAccount.link}>
-                                        {myAccount.label || 'My Account'}
-                                    </Link>
-                                </Dropdown.Label>
-                                <Dropdown.Content isMenu={true}>
-                                    {myAccount.menu.map((item, key) => (
-                                        <Link {...item.link} key={key}>
-                                            {item.label}
-                                        </Link>
-                                    ))}
-                                </Dropdown.Content>
-                            </Dropdown>
-                        ) : (
-                                <Link className="app__header__utilities__account" {...myAccount.link}>
-                                    {myAccount.label || 'My Account'}
-                                </Link>
-                            )}
+                       
+                        <Link className="app__header__utilities__account" {...myAccount.link}>
+                            {myAccount.label || 'My Account'}
+                        </Link>
 
                         <Icon className="app__header__utilities__search"
                             as={Link} {...search.link}
