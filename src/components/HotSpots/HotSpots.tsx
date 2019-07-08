@@ -42,12 +42,12 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
                 <Image src={image} alt={description} />
                 {children}
                 
-                <style jsx>{`
+                <style jsx global>{`
                     .hot-spots {
                         position: relative;
                     }
 
-                    .hot-spots :global(.image) {
+                    .hot-spots .image {
                         width: 100%;
                         z-index: 0;
                     }
@@ -79,8 +79,15 @@ HotSpots.Item = ({
     }
 
     return (
-        <HotSpotsItem {...props} className={classes('hot-spot', props.className)}>
-            <button className="hot-spot__button"
+        <HotSpotsItem {...props} 
+            className={classes('hot-spot', props.className, 
+                ['--right', coords.x > 50], 
+                ['--left', coords.x < 50],
+                ['--bottom', coords.y > 50], 
+                ['--top', coords.y < 50]
+            )}
+        >
+            <button className={classes('hot-spot__button', ['--active', isActive])}
                 aria-label={label}
                 onClick={handleToggle}
                 tabIndex={0}
@@ -88,26 +95,32 @@ HotSpots.Item = ({
             ></button>
 
             {transitions.map(({ item, key, props}) => item && (
-                <animated.div className="hot-spot__content" key={key} style={props}>
+                <animated.div className="hot-spot__content"
+                    key={key} 
+                    style={props}
+                >
                     {children}
                 </animated.div>
             ))}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .hot-spot__button {                 
-                    background-color: ${isActive ? colors.primary : colors.accent};
+                    background-color: ${colors.accent};
                     border-radius: 50%;
                     border: none;
                     cursor: pointer;
                     font-size: 2rem;
                     height: 1em;
-                    left: ${coords.x}%;
                     opacity: 0.85;
                     padding: 0;
                     position: absolute;
-                    top: ${coords.y}%;
                     width: 1em;
-                    z-index: 2;    
+                    z-index: 2; 
+
+                    &.--active {
+                        background-color: ${colors.primary};
+                    }   
+                    
                 }
 
                 .hot-spot__button:focus {
@@ -124,32 +137,16 @@ HotSpots.Item = ({
                     position: absolute;
                     top: 0;
                     width: 100%;
-                    display: ${isActive ? 'none' : 'block'};
-                }
+                    display: block;
+                }  
 
-                .hot-spot :global(.hot-spot__content) {
-                    ${coords.x > 50 ? `
-                        --left: unset;
-                        --right: calc(${100 - coords.x}% - 1.3em);
-                    ` : `
-                        --left: ${coords.x}%;
-                        --right: unset;
-                    `}
-
-                    ${coords.y > 50 ? `
-                        --bottom: calc(${100 - coords.y}% + 0.5em );
-                        --top: unset;
-                    ` : `
-                        --top: calc(${coords.y}% + 1.8em);
-                        --bottom: unset;
-                    `}
-                    
+                .hot-spot__content {     
                     align-items: center;
                     background-color: ${colors.surface};
                     bottom: var(--bottom);
                     padding: 1rem 1.3rem;
                     border-radius: 1rem;
-                    colors: ${colors.onSurface};
+                    color: ${colors.onSurface};
                     left: var(--left);
                     position: absolute;
                     right: var(--right);
@@ -172,6 +169,38 @@ HotSpots.Item = ({
                         opacity: 0;
                     }
                 }                        
+            `}</style>
+            
+            <style jsx>{`
+                /**
+                    Dynamic Styles (Scoped)
+                 */
+                .hot-spot__button {
+                    left: ${coords.x}%;
+                    top: ${coords.y}%;
+                }
+
+                .hot-spot {     
+                    &.--left {
+                        --left: ${coords.x}%;
+                        --right: unset;
+                    }
+
+                    &.--right {
+                        --left: unset;
+                        --right: calc(${100 - coords.x}% - 1.3em);
+                    }
+
+                    &.--top {
+                        --top: calc(${coords.y}% + 1.8em);
+                        --bottom: unset;
+                    }
+
+                    &.--bottom {
+                        --bottom: calc(${100 - coords.y}% + 0.5em );
+                        --top: unset;
+                    }
+                }
             `}</style>
         </HotSpotsItem>
     )

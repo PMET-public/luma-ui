@@ -28,7 +28,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
         <BubbleCarousel {...props} className={classes('bubble-carousel', props.className)} aria-label={label}>
             {children}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .bubble-carousel {
                     ${grid({ fluid: true })}
                     -webkit-overflow-scrolling: touch;
@@ -60,8 +60,8 @@ BubbleCarousel.Item = ({
             {label}
         </div>
 
-        <style jsx>{`
-            .bubble-carousel-item :global(.image) {
+        <style jsx global>{`
+            .bubble-carousel-item .image {
                 align-items: center;
                 display: inline-flex;
                 flex-direction: column;
@@ -69,7 +69,7 @@ BubbleCarousel.Item = ({
             }
 
 
-            .bubble-carousel-item :global(.image__img) {
+            .bubble-carousel-item .image__img {
                 border-radius: 50%;
                 display: inline-block;
                 height: 7rem;

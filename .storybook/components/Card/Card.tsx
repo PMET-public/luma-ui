@@ -10,7 +10,7 @@ export const Card: FunctionComponent<CardProps> = forwardRef(({ children, classN
     >
         {children}
 
-        <style jsx>{`
+        <style jsx global>{`
             .card {
                 border-radius: 1rem;
                 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);

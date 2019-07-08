@@ -24,7 +24,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
         <TabBar {...props} className={classes('tab-bar', props.className)}>
             {children}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .tab-bar {
                     ${grid({ auto: true })}
                     background-color: ${colors.translucentSurface};
@@ -52,22 +52,26 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
 
 TabBar.Item = ({ 
     as: TabBarItem = 'span',
-    isActive, 
+    isActive = false, 
     children,
     ...props
 }) => {
     return (
-        <TabBarItem {...props} className={classes('tab-bar-item', props.className)}>
+        <TabBarItem {...props} className={classes('tab-bar-item', props.className, ['--active', isActive])}>
             {children}
             
-            <style jsx>{`
+            <style jsx global>{`
                 .tab-bar-item {
                     align-items: center;
                     display: flex;
-                    filter: contrast(${ isActive ? '100%' : '0%'});
                     flex-direction: column;
                     font-size: 2.3rem;
                     justify-content: center;
+                    filter: contrast(0%);
+
+                    &.--active {
+                        filter: contrast(100%);
+                    }
                 }
 
                 a {

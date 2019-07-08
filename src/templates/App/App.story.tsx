@@ -34,7 +34,7 @@ storiesOf('📑 Templates/App', module)
                 link: { href: '#help'},
             }}
             myAccount={{
-                label: 'Katherina',
+                label: 'Kate',
                 link: { href: '#account' },
                 menu: [
                     { label: 'Favorites (3)', link: { href: '#favorites'} },
@@ -55,7 +55,7 @@ storiesOf('📑 Templates/App', module)
         >
             <div className="story__content"></div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .story__content {
                     height: 300vh;
                     background: #ddd;

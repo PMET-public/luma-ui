@@ -21,10 +21,12 @@ export const Icon: Component<IconProps> = ({
         enter: { opacity: 1, transform: 'scale(1) translateY(0)' },
         leave: { opacity: 0, transform: 'scale(0) translateY(4rem)' },
     })
+
+    const hasCount = typeof count === 'number'
     
     return (
         <Icon {...props} className={classes('icon', props.className)}>
-            <span className="icon__wrapper">
+            <span className={classes('icon__wrapper', ['--count', hasCount])}>
 
                 <span className="icon__svg">
                     {children}
@@ -38,12 +40,12 @@ export const Icon: Component<IconProps> = ({
             </span>
 
             {label ? (
-                <span className="icon__label">
+                <span className={classes('icon__label', ['--count', hasCount])}>
                     {label}
                 </span>
             ) : null}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .icon {
                     align-items: center;
                     color: inherit;
@@ -54,34 +56,40 @@ export const Icon: Component<IconProps> = ({
                 }
 
                 .icon[href], a.icon, 
-                .icon :global([href]) {
+                .icon [href] {
                     border-bottom: 0 none;
                     text-decoration: none;
                 }
 
-                .icon__svg :global(svg) {
+                .icon__svg svg {
                     height: 1em;
                     width: auto;
                 }
 
-                .icon__svg :global(svg *) {
+                .icon__svg svg * {
                     fill: none;
                     stroke: currentColor;
                 } 
 
                 .icon__wrapper {
                     position: relative;
-                    margin-right: ${typeof count === 'number' ? '0.4em' : 0}
+
+                    &.--count {
+                        margin-right: 0.4em;
+                    }
                 }
 
                 .icon__label {
                     color: inherit;
                     font-size: 0.45em;
                     text-overflow: ellipsis;
-                    padding-right: ${typeof count === 'number' ? '0.9em' : 0};
+
+                    &.--count {
+                        padding-right: 0.9em;
+                    }
                 }
 
-                .icon :global(.icon__count) {
+                .icon .icon__count {
                     align-items: center;
                     color: inherit;
                     display: flex;

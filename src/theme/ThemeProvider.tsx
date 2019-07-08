@@ -172,7 +172,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
                 {children}
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .theme-container {
                     max-width: 1800px;
                     margin: 0 auto;

@@ -55,7 +55,7 @@ storiesOf('👋 Welcome', module)
                 <GitHubButton href="https://github.com/PMET-public/luma-storybook/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PMET-public/luma-storybook on GitHub">Issue</GitHubButton>
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 h2 {
                     margin-top: 4rem;
                 }

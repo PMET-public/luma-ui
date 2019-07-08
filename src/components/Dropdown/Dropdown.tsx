@@ -39,16 +39,11 @@ export const Dropdown: Component<DropdownProps> & CompoundComponent = ({
                     {children}
                 </div>
 
-                <style jsx>{`
+                <style jsx global>{`
                     .dropdown {
                         display: inline-flex;
                         flex-direction: column;
                         overflow: visible;
-                    }
-
-                    .dropdown :global(.dropdown-label::after) {
-                        transform: rotate(${state ? '-135deg' : '45deg'});
-                        opacity: ${state ? 0.15 : 1};
                     }
                 `}</style>
             </Dropdown>
@@ -60,31 +55,40 @@ Dropdown.Label = ({
     as: DropdownLabel = 'div',
     children,
     ...props
-}) => (
-    <DropdownLabel {...props} className={classes('dropdown-label', props.className)}>
-        {children}
+}) => {
+    const isOpen = useContext(DropdownContext)
 
-        <style jsx>{`
-            .dropdown-label {
-                display: inline-flex;
-                align-items: center;
-            }
+    return (
+        <DropdownLabel {...props} className={classes('dropdown-label', props.className, ['--open', isOpen])}>
+            {children}
 
-            .dropdown-label::after {
-                border-style: solid;
-                border-width: 0 0.1rem 0.1rem 0;
-                content: "";
-                display: inline-block;
-                margin-left: 0.5rem;
-                margin-top: -0.4rem;
-                padding: 0.3rem;
-                transform: rotate(45deg);
-                transform-origin: center;
-                transition: opacity 350ms ease, transform 250ms ease;
-            }
-        `}</style>
-    </DropdownLabel>
-)
+            <style jsx global>{`
+                .dropdown-label {
+                    display: inline-flex;
+                    align-items: center;
+
+                    &.--open::after {
+                        transform: rotate(-135deg);
+                        opacity: 0.15;
+                    }
+                }
+
+                .dropdown-label::after {
+                    border-style: solid;
+                    border-width: 0 0.1rem 0.1rem 0;
+                    content: "";
+                    display: inline-block;
+                    margin-left: 0.5rem;
+                    margin-top: -0.4rem;
+                    padding: 0.3rem;
+                    transform: rotate(45deg);
+                    transform-origin: center;
+                    transition: opacity 350ms ease, transform 250ms ease;
+                }
+            `}</style>
+        </DropdownLabel>
+    )
+}
 
 Dropdown.Content = ({ 
     as: DropdownContent = 'div',
@@ -93,7 +97,7 @@ Dropdown.Content = ({
     ...props 
 }) => {
     const isOpen = useContext(DropdownContext)
-    const { colors, grid } = useTheme()
+    const { colors } = useTheme()
 
     const transitions = useTransition(isOpen, null, {
         from: { opacity: 0, transform: 'translateY(-0.5rem)' },
@@ -106,13 +110,16 @@ Dropdown.Content = ({
             {children && (
                 <DropdownContent {...props} className={classes('dropdown-content', props.className)}>
                     {transitions.map(({ item, key, props }) => item && (
-                        <animated.div className="dropdown-content__animated" key={key} style={props}>
+                        <animated.div className={classes('dropdown-content__wrapper', ['--menu', isMenu])} 
+                            key={key} 
+                            style={props}
+                        >
                             {children}
                         </animated.div>
                     ))}
 
-                    <style jsx>{`
-                        .dropdown-content :global(.dropdown-content__animated) {
+                    <style jsx global>{`
+                        .dropdown-content__wrapper {
                             background-color: ${colors.translucentSurface};
                             color: ${colors.onTranslucentSurface};
                             position: absolute;
@@ -120,7 +127,10 @@ Dropdown.Content = ({
                             padding: 1.3rem 1rem;
                             margin-left: -0.8rem;
 
-                            ${isMenu ? grid({ gap: '1rem'}) : ''}
+                            &.--menu {
+                                display: grid;
+                                grid-gap: 0.8rem;
+                            }
                         }
                     `}</style>
                 </DropdownContent>

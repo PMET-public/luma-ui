@@ -24,7 +24,7 @@ storiesOf('📦 Components/Carousel', module)
                 </Carousel.Item>
             </Carousel>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .story__item {
                     align-items: center;
                     color: #fff;

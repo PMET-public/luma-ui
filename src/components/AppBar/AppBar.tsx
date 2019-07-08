@@ -29,26 +29,29 @@ export const AppBar: Component<AppBarProps> = ({
     }, [scrollY])
     
     return (
-        <AppBar {...props} className={classes('app-bar', props.className)}>
+        <AppBar {...props} className={classes('app-bar', props.className, ['--hidden', isHidden])}>
             <div className="app-bar__content">
                 {children}
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .app-bar {
                     align-items: center;
                     background-color: ${colors.translucentSurface};
                     box-sizing: border-box;
                     color: ${colors.onTranslucentSurface};
                     display: flex;
-                    opacity: ${isHidden ? 0 : 1};
                     padding: 1rem 2rem;
                     position: sticky;
                     top: 0;
-                    transform: translateY(${isHidden ? '-100%' : 0});
                     transition: transform 402ms ease, opacity 305ms ease;
                     width: 100%;
                     z-index: 3;
+
+                    &.--hidden {
+                        opacity: 0;
+                        transform: translateY(-100%);
+                    }
                 }
 
                 .app-bar__content {

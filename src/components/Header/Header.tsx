@@ -27,7 +27,7 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
         <Header {...props} className={classes('header', props.className)}>
             {children}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .header {
                     display: grid;
                     grid-gap: 1rem 2rem;
@@ -42,30 +42,29 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
                     @media (--medium-screen) {
                         grid-template-areas: "logo navigation utilities";
                         
-                        & :global(.header-menu) {
+                        & .header-menu {
                             text-align: center;
                         }
                     }
                 }
 
-                .header :global(a) {
-                    --color: ${colors.primary};
+                .header a {
                     border-bottom: 0.1rem solid transparent;
-                    color: var(--color);
+                    color: ${colors.primary};
                     padding-top: 0.1rem;
                     text-decoration: none;
-                    transition: border 500ms ease;
+                    transition: border 700ms ease;
                 }
 
-                .header :global(a:hover) {
-                    border-color: var(--color);
+                .header a:hover {
+                    border-color: ${colors.primary};
+                    color: ${colors.primary};
                 }
 
-                .header :global(.icon) {
+                .header .icon {
                     font-size: 2.4rem;
                 }
-
-                
+             
             `}</style>
         </Header>
     )
@@ -80,18 +79,18 @@ Header.Logo = ({
         <HeaderLogo {...props} className={classes('header-logo', className)}>
             {children}
 
-            <style jsx>{`
-            .header-logo {
-                align-items: center;
-                display: flex;
-                grid-area: logo;
-            }
+            <style jsx global>{`
+                .header-logo {
+                    align-items: center;
+                    display: flex;
+                    grid-area: logo;
+                }
 
-            .header-logo :global(a) {
-                border: 0 none !important;
-                text-decoration: none !important;
-            }
-        `}</style>
+                .header-logo a {
+                    border: 0 none !important;
+                    text-decoration: none !important;
+                }
+            `}</style>
         </HeaderLogo>
     )
 
@@ -109,7 +108,7 @@ Header.Menu = ({
                 {children}
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
                 .header-menu {
                     -webkit-overflow-scrolling: touch;
                     grid-area: navigation;
@@ -141,10 +140,10 @@ Header.Utilities = ({
     const { grid } = useTheme()
 
     return (
-        <HeaderUtilities className={classes('header-utilities', className)} {...props}>
-                {children}
+        <HeaderUtilities {...props} className={classes('header-utilities', className)}>
+            {children}
 
-            <style jsx>{`
+            <style jsx global>{`
                 .header-utilities {
                     ${grid({ fluid: true })}
                     align-items: center;

@@ -34,11 +34,14 @@ export const Drawer: Component<DrawerProps> = ({
     return (
         <Drawer {...props} className={classes('drawer', props.className)}>
             {slideTransitions.map(slideTransition => slideTransition.item && (
-                <animated.div className="drawer__content" key={slideTransition.key} style={slideTransition.props}>
+                <animated.div className={classes('drawer__content', ['--left', position === 'left'], ['--right', position === 'right'])} 
+                    key={slideTransition.key} 
+                    style={slideTransition.props}
+                >
                     {children}
                 </animated.div>
             ))}
-    
+
             {onClose && fadeTransitions.map(fadeTransition => fadeTransition.item && (
                 <animated.button key={fadeTransition.key} style={fadeTransition.props} className="drawer__close-button"
                     arial-label="close"
@@ -46,8 +49,8 @@ export const Drawer: Component<DrawerProps> = ({
                 ></animated.button>
             ))}
 
-            <style jsx>{`
-                .drawer :global(.drawer__content) {
+            <style jsx global>{`
+                .drawer__content {
                     background-color: ${colors.surface};
                     bottom: 0;
                     color: ${colors.onSurface};
@@ -58,16 +61,18 @@ export const Drawer: Component<DrawerProps> = ({
                     width: calc(100% - 3rem);
                     z-index: 3;
 
-                    ${position === 'left' ? `
+                    &.--left {
                         box-shadow: 0.1rem 0 0.5rem rgba(0, 0, 0, 0.15);
                         left: 0;
-                    ` : `
+                    }
+
+                    &.--right {
                         box-shadow: -0.1rem 0 0.5rem rgba(0, 0, 0, 0.15);
                         right: 0;
-                    `}
+                    }
                 }
 
-                .drawer :global(.drawer__close-button) {
+                .drawer__close-button {
                     background: rgba(0, 0, 0, 0.25);
                     border: 0;
                     height: 100%;
