@@ -1,6 +1,5 @@
 import React from 'react'
 import { Component, classes } from '../../lib'
-import { useTheme } from '../../theme'
 import Image from '../Image'
 
 export type BubbleCarouselProps = {
@@ -22,25 +21,32 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
     label,
     ...props
 }) => {
-    const { grid } = useTheme()
-
     return (
         <BubbleCarousel {...props} className={classes('bubble-carousel', props.className)} aria-label={label}>
-            {children}
+            <div className="bubble-carousel__wrapper">
+                {children}
+            </div>
 
             <style jsx global>{`
                 .bubble-carousel {
-                    ${grid({ fluid: true })}
-                    -webkit-overflow-scrolling: touch;
-                    overflow-x: scroll;
-
-                    /* Trick to pad an overflown grid 🤷‍ */
-                    margin: 0 2rem;
-                    padding: 2rem 0;        
+                    /* 
+                        This is... this is just unfortunate.
+                        https://stackoverflow.com/questions/40733385/hiding-webkit-scrollbar-when-overflow-scrolling-touch-is-enabled 
+                    */
+                    overflow-y: hidden;
+                    height: 10rem;
+                    margin-bottom: 1rem;
                 }
 
-                .bubble-carousel::-webkit-scrollbar {
+                .bubble-carousel__wrapper::-webkit-scrollbar {
                     display: none;
+                }
+
+                .bubble-carousel__wrapper {
+                    -webkit-overflow-scrolling: touch;
+                    overflow-x: scroll;
+                    padding: 1rem 0;
+                    display: flex;
                 }
             `}</style>
         </BubbleCarousel>
@@ -61,13 +67,24 @@ BubbleCarousel.Item = ({
         </div>
 
         <style jsx global>{`
+            .bubble-carousel-item {
+                text-decoration: none;   
+                padding: 0 0.25rem; 
+
+                &:last-of-type {
+                    padding-right: 1rem;
+                }
+                &:first-of-type {
+                    padding-left: 1rem;
+                }
+            }
+
             .bubble-carousel-item .image {
                 align-items: center;
                 display: inline-flex;
                 flex-direction: column;
                 flex: 0 0 auto;
             }
-
 
             .bubble-carousel-item .image__img {
                 border-radius: 50%;
@@ -80,14 +97,16 @@ BubbleCarousel.Item = ({
             }
 
             .bubble-carousel-item__label {
-                font-size: 1.2rem;
-                margin-top: 1rem;
+                font-size: 1.1rem;
+                margin-top: 0.2rem;
                 overflow: hidden;
                 padding: 0;
                 text-align: center;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                width: 9rem;
+                width: 8rem;
+                line-height: 1.5;
+                text-transform: uppercase;
             }
             
         `}</style>
