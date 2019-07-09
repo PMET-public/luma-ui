@@ -22,23 +22,20 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
     padding = 0,
     ...props
 }) => {
-    const items = React.Children.toArray(children)
-
     return (
         <Carousel {...props} className={classes('carousel', props.className)}
             aria-label={label}
         >
-            <div className="carousel__wrapper">
                 {children}
-            </div>
 
             <style jsx global>{`
                 .carousel {
                     -webkit-overflow-scrolling: touch;   
-                    overflow-x: auto;
-                    scroll-snap-type: x mandatory;       
-                    scroll-padding: 0 ${padding}rem;
-                    width: 100%;
+                    scroll-snap-type: x mandatory;
+                    scroll-padding: ${padding}vw;
+                    overflow-x: scroll;
+                    overflow-y: hidden;
+                    white-space: nowrap;
                 }
 
                 ul.carousel {
@@ -47,13 +44,8 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
                     padding: 0;
                 }
 
-                .carousel__wrapper {
-                    display: flex;
-                    width: calc(${items.length * 100}% - ${items.length * padding}rem);
-                }
-
                 .carousel .carousel-item {
-                    width: calc(100% - ${padding}rem);
+                    width: calc(100% - ${padding}vw);
                 }
             `}</style>
         </Carousel>
@@ -73,6 +65,7 @@ Carousel.Item = ({
             <style jsx global>{`
                 .carousel-item {
                     scroll-snap-align: center;
+                    display: inline-block;
                 }
             `}</style>
         </CarouselItem>
