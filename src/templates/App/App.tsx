@@ -12,7 +12,7 @@ import Image from '../../components/Image'
 import IconSearch from '../../components/Icon/svgs/thin/magnifier.svg'
 import IconBag from '../../components/Icon/svgs/thin/bag.svg'
 import IconHome from '../../components/Icon/svgs/thin/store.svg'
-import IconHeart from '../../components/Icon/svgs/thin/heart.svg'
+import IconAccount from '../../components/Icon/svgs/thin/user.svg'
 
 export type AppProps = {
     home: {
@@ -47,12 +47,6 @@ export type AppProps = {
         link: LinkRoute
     }
 
-    favorites: {
-        count?: number
-        label?: string
-        link: LinkRoute
-    }
-
     cart: {
         count?: number
         label?: string
@@ -64,7 +58,6 @@ export const App: Component<AppProps> = ({
     as: App = 'div',
     cart,
     children,
-    favorites,
     help,
     home,
     logo,
@@ -124,25 +117,25 @@ export const App: Component<AppProps> = ({
 
             <TabBar className="app__tab-bar">
                 <TabBar.Item isActive={true}>
-                    <Icon label={home.label || 'Home'} as={Link} {...home.link}>
+                    <Icon as={Link} {...home.link}>
                         <IconHome />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon label={favorites.label || 'Favorites'} count={favorites.count} as={Link} {...favorites.link}>
-                        <IconHeart />
+                    <Icon count={myAccount.count} as={Link} {...myAccount.link}>
+                        <IconAccount />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon label={search.label || 'Search'} as={Link} {...search.link}>
+                    <Icon as={Link} {...search.link}>
                         <IconSearch />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon label={cart.label || 'Bag'} count={cart.count} as={Link} {...cart.link}>
+                    <Icon count={cart.count} as={Link} {...cart.link}>
                         <IconBag />
                     </Icon>
                 </TabBar.Item>
@@ -156,7 +149,7 @@ export const App: Component<AppProps> = ({
                 }
 
                 .app__header__logo__image {
-                    max-height: 2.5rem;
+                    max-height: 3rem;
 
                     @media(--large-screen) {
                         max-height: 3.5rem;

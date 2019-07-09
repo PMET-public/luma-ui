@@ -37,13 +37,15 @@ export const Image: Component<ImageProps> = ({
                 .image {
                     position: relative;
                     width: 100%;
+                    display: inline-block;
+                    overflow: hidden;
                 }
 
                 .image__img {
                     max-height: 100%;
                     object-fit: cover;
                     object-position: center;
-                    overflow: hidden;
+                    width: 100%;
                     max-width: 100%;
                 }
 
