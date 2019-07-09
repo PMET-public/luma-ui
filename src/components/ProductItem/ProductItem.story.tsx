@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductItem from './'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
+import { text, array } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ProductItem', module)
     .add('Default', () => (
@@ -13,6 +13,7 @@ storiesOf('📦 Components/ProductItem', module)
                 priceSpecial={text('priceSpecial', '$49.00')}
                 priceLabel={text('priceLabel', 'Starting at')}
                 title={text('title', 'Circle Hooded Ice Flee')}
+                colors={array('colors', ['green', 'blue', 'gray'])}
             />
 
             <style jsx global>{`

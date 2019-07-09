@@ -10,11 +10,14 @@ export type ProductItemProps = {
     priceSpecial?: string
     priceLabel?: string
     title: string
+    colors?: [string]
+    sizes?: [string]
 }
 
 export const ProductItem: Component<ProductItemProps> = ({ 
     as: ProductItem = 'div', 
     badge,
+    colors,
     image,
     price,
     priceLabel,
@@ -22,13 +25,24 @@ export const ProductItem: Component<ProductItemProps> = ({
     title,
     ...props
 }) => {
-    const { colors } = useTheme()
+    const theme = useTheme()
     
     return (
         <ProductItem {...props} className={classes('product-item', props.className)}>
             <Image className="product-item__image"
                 src={image} alt={title} 
             >
+                 {!!colors && (
+                    <ul className="product-item__details__colors">
+                        {colors.map((color, index) => (
+                            <li className="product-item__details__colors__item"
+                                key={`color--${index}`} 
+                                style={{ backgroundColor: color }}
+                            ></li>
+                        ))}
+                    </ul> 
+                 )}
+
                 <span className="product-item__details">
                     <strong className="product-item__details__title">{title}</strong>
                     
@@ -62,8 +76,8 @@ export const ProductItem: Component<ProductItemProps> = ({
                 }
 
                 .product-item__details__badge {
-                    background-color: ${colors.primary.fade(0.92)};
-                    color: ${colors.primary};
+                    background-color: ${theme.colors.primary.fade(0.92)};
+                    color: ${theme.colors.primary};
                     font-size: 1.1rem;
                     letter-spacing: 0.1rem;
                     left: 0;
@@ -74,6 +88,18 @@ export const ProductItem: Component<ProductItemProps> = ({
                     top: 0;
                     transform-origin: bottom left;
                     transform: rotate(90deg);
+                }
+
+                .product-item__details__colors {
+                    display: grid;
+                    grid-auto-flow: column;
+                    margin: -1rem 0 1rem;
+                }
+
+                .product-item__details__colors__item {
+                    display: inline-block;
+                    height: 0.65rem;
+                    width: 100%;
                 }
 
                 .product-item__details__title {

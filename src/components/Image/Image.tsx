@@ -45,10 +45,6 @@ export const Image: Component<ImageProps> = ({
                     width: 100%;
                     max-width: 100%;
                 }
-
-                .image__caption {
-                   margin-top: 1rem;
-                }   
             `}</style>
         </Image>
     )
