@@ -37,9 +37,9 @@ export const AppBar: Component<AppBarProps> = ({
             <style jsx global>{`
                 .app-bar {
                     align-items: center;
-                    background-color: ${colors.translucentSurface};
+                    background-color: ${colors.surface};
                     box-sizing: border-box;
-                    color: ${colors.onTranslucentSurface};
+                    color: ${colors.onSurface};
                     display: flex;
                     padding: 1rem 2rem;
                     position: sticky;

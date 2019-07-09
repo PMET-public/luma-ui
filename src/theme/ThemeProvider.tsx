@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState, createContext, useContext } from 'react'
+import color from 'color'
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
@@ -16,9 +17,6 @@ export type Colors = {
 
     surface?: Color
     onSurface?: Color
-
-    translucentSurface?: Color
-    onTranslucentSurface?: Color
 
     primary?: Color
     onPrimary?: Color
@@ -65,36 +63,34 @@ type ThemeProviderProps = {
 }
 
 const defaultTheme: Theme = {
+    // hsla() values. pretty please
     colors: {
-        link: ['#263238', '#ECEFF1'],
-        linkHover: ['#37474F', '#CFD8DC'],
+        link: ['hsla(200, 19.1%, 18.4%, 1)', 'hsla(204, 15.2%, 93.5%, 1)'],
+        linkHover: ['hsla(200, 17.9%, 26.3%, 1)', 'hsla(198.5, 15.7%, 83.7%, 1)'],
 
-        background: ['#fff', '#222'],
-        onBackground: ['#222', '#fff'],
+        background: ['#f6f6f6', 'hsla(0, 0%, 13.3%, 1)'],
+        onBackground: ['hsla(0, 0%, 13.3%, 1)', 'hsla(0, 0%, 100%, 1)'],
 
-        surface: ['#fff', '#222'],
-        onSurface: ['#222', '#fff'],
+        surface: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 13.3%, 1)'],
+        onSurface: ['hsla(0, 0%, 13.3%, 1)', 'hsla(0, 0%, 100%, 1)'],
 
-        translucentSurface: ['rgba(255, 255, 255, 0.95)', 'rgba(0, 0, 0, 0.95)'],
-        onTranslucentSurface: ['#222', '#fff'],
+        primary: ['hsla(0, 0%, 6.7%, 1)', 'hsla(0, 0%, 100%, 1)'],
+        onPrimary: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 6.7%, 1)'],
 
-        primary: ['#111', '#fff'],
-        onPrimary: ['#fff', '#111'],
+        secondary: ['hsla(0, 0%, 12.9%, 1)', 'hsla(0, 0%, 98%, 1)'],
+        onSecondary: ['hsla(0, 0%, 98%, 1)', 'hsla(0, 0%, 12.9%, 1)'],
 
-        secondary: ['#212121', '#fafafa'],
-        onSecondary: ['#fafafa', '#212121'],
+        accent: ['hsla(18.2, 63.5%, 38.6%, 1)'],
+        onAccent: ['hsla(0, 0%, 98%, 1)'],
 
-        accent: ['#a14a24'],
-        onAccent: ['#fafafa'],
+        error: ['hsla(0, 0%, 100%, 1)', 'hsla(1.1, 83.2%, 62.5%, 1)'],
+        onError: ['hsla(1.1, 83.2%, 62.5%, 1)', 'hsla(0, 0%, 100%, 1)'],
 
-        error: ['transparent'],
-        onError: ['#ef5350', '#ef5350'],
+        warning: ['hsla(0, 0%, 100%, 1)', 'hsla(30.4, 100%, 48%, 1)'],
+        onWarning: ['hsla(30.4, 100%, 48%, 1)', 'hsla(0, 0%, 100%, 1)'],
 
-        warning: ['transparent'],
-        onWarning: ['#f57c00', '#ffd54f'],
-
-        notice: ['transparent'],
-        onNotice: ['#039be5', '#e1f5fe'],
+        notice: ['hsla(0, 0%, 100%, 1)', 'hsla(199.6, 97.4%, 45.5%, 1)'],
+        onNotice: ['hsla(199.6, 97.4%, 45.5%, 1)', 'hsla(0, 0%, 100%, 1)'],
     },
 
     typography: {
@@ -135,14 +131,15 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
 
     const colors: any = Object.keys(mergedColors)
         .reduce((acc, key) => {
-            const color = mergedColors[key]
+            const colorsByKey = mergedColors[key]
+            // https://github.com/Qix-/color
             return {
                 ...acc,
-                [key]: color && (
-                    typeof color === 'string' ?
-                        color :
-                        color[(isDark && color.length > 1) ? 1 : 0]
-                ),
+                [key]: color(colorsByKey && (
+                    typeof colorsByKey === 'string' ?
+                        colorsByKey :
+                        colorsByKey[(isDark && colorsByKey.length > 1) ? 1 : 0]
+                )),
             }
         }, {})
 

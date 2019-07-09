@@ -68,6 +68,8 @@ storiesOf('🖼 Theme', module)
 
                 type Color = [string, string?] //  ⃪ [☀️ mode, 🌑 mode]
 
+                // i.e. primary: ['hsla(0, 0%, 6.7%, 1)', 'hsla(200, 17.9%, 26.3%, 1)']
+
             `}</CodeBlock>
 
             <style jsx global>{`

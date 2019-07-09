@@ -3,7 +3,6 @@ import { Component, classes } from '../../lib'
 
 export type CarouselProps = {
     children: ReactElement<CarouselItemProps> | Array<ReactElement<CarouselItemProps>>
-    label: string
     padding?: number
 }
 
@@ -18,13 +17,11 @@ type CompoundComponent = {
 export const Carousel: Component<CarouselProps> & CompoundComponent = ({
     as: Carousel = 'div',
     children,
-    label,
     padding = 0,
     ...props
 }) => {
     return (
         <Carousel {...props} className={classes('carousel', props.className)}
-            aria-label={label}
         >
                 {children}
 

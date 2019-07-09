@@ -120,8 +120,8 @@ Dropdown.Content = ({
 
                     <style jsx global>{`
                         .dropdown-content__wrapper {
-                            background-color: ${colors.translucentSurface};
-                            color: ${colors.onTranslucentSurface};
+                            background-color: ${colors.surface};
+                            color: ${colors.onSurface};
                             position: absolute;
                             z-index: 1;
                             padding: 1.3rem 1rem;
