@@ -29,7 +29,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
                     ${grid({ auto: true })}
                     background-color: ${colors.translucentSurface};
                     color: ${colors.onTranslucentSurface};
-                    border-top: 0.1rem solid #eee;
+                    box-shadow: inset 0 0.1rem 0 rgba(0, 0, 0, 0.07), inset 0 0.2rem 0 rgba(255, 255, 255, 0.07);
                     bottom: 0;
                     color: ${colors.onSurface};
                     left: 0;
