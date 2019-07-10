@@ -68,7 +68,7 @@ const defaultTheme: Theme = {
         link: ['hsla(200, 19.1%, 18.4%, 1)', 'hsla(204, 15.2%, 93.5%, 1)'],
         linkHover: ['hsla(200, 17.9%, 26.3%, 1)', 'hsla(198.5, 15.7%, 83.7%, 1)'],
 
-        background: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 13.3%, 1)'],
+        background: ['#f6f6f6', 'hsla(0, 0%, 13.3%, 1)'],
         onBackground: ['hsla(0, 0%, 13.3%, 1)', 'hsla(0, 0%, 100%, 1)'],
 
         surface: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 13.3%, 1)'],
@@ -165,15 +165,16 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
             setDark, 
             typography, 
         }}>
-            <div className="theme-container">
+            <div className="theme">
                 {children}
             </div>
 
             <style jsx global>{`
                 .theme-container {
-                    max-width: 1800px;
                     margin: 0 auto;
+                    max-width: 1800px;
                     padding: 0 1rem;
+                    width: 100%;
                 }
             `}</style>
 
@@ -183,3 +184,9 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         </ThemeContext.Provider>
     )
 } 
+
+export const Container: FunctionComponent = ({ children }) => (
+    <div className="theme-container">
+        {children}
+    </div>
+)

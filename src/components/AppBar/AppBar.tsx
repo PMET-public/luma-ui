@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useScroll } from '../../hooks/useScroll'
-import { useTheme } from '../../theme'
+import { useTheme, Container } from '../../theme'
 import { Component, classes } from '../../lib'
 
 /**
@@ -31,7 +31,9 @@ export const AppBar: Component<AppBarProps> = ({
     return (
         <AppBar {...props} className={classes('app-bar', props.className, ['--hidden', isHidden])}>
             <div className="app-bar__content">
-                {children}
+                <Container>
+                    {children}
+                </Container>
             </div>
 
             <style jsx global>{`

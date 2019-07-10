@@ -67,7 +67,7 @@ export const Banner: Component<BannerProps> = ({
                 .banner__content {
                     color: #ffffff;
                     position: absolute;
-                    padding: 5rem;
+                    padding: 2rem;
 
                     &.--top {
                         top: 0;
@@ -105,6 +105,10 @@ export const Banner: Component<BannerProps> = ({
                 }
 
                 @media(--medium-screen) {
+                    .banner__content {
+                        padding: 5rem;
+                    }
+
                     .banner__content__titles__item {
                         &.--large {
                             font-size: 5rem;

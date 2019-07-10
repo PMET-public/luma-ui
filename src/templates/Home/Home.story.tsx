@@ -36,10 +36,42 @@ export const HomeMockData: HomeProps = {
             },
         ],
     },
-    productsCarousels: [
+
+    sections: [
+        {
+            type: 'banner',
+            content: {
+                image: {
+                    alt: '',
+                    src: require('../../../public/images/banner-1.jpg'),
+                    mobile: require('../../../public/images/banner-1--mobile.jpg'),
+                },
+                titles: [
+                    { title: 'A sense of renewal', large: true },
+                    { title: 'Enjoy comfort of body and mind with Luma eco-friendly choices' },
+                ],
+                position: 'top',
+            },
+        },
+        {
+            type: 'banner',
+            content: {
+                image: {
+                    alt: '',
+                    src: require('../../../public/images/banner-2.jpg'),
+                    mobile: require('../../../public/images/banner-2--mobile.jpg'),
+                },
+                titles: [
+                    { title: 'Twice around, twice as nice', large: true },
+                    { title: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                ],
+                position: 'top',
+            },
+        },
         {
             title: 'New Arrivals',
-            items: [
+            type: 'carousel',
+            content: [
                 { 
                     link: { href: '#story1' },
                     image: require('../../../public/images/product-item-sample.jpg'),
@@ -84,7 +116,8 @@ export const HomeMockData: HomeProps = {
         },
         {
             title: 'Sale',
-            items: [
+            type: 'carousel',
+            content: [
                 { 
                     link: { href: '#story1' },
                     image: require('../../../public/images/product-item-sample.jpg'),

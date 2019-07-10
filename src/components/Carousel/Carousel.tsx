@@ -48,7 +48,7 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
                     &::-webkit-scrollbar-track {
                         margin: 0 10%;
                         border-radius: 3rem;
-                        background: ${colors.primary.fade(0.95)};
+                        background: ${colors.primary.fade(0.95)}; /* TODO: Fix TS Type */
                     }
 
                     &::-webkit-scrollbar-thumb {
