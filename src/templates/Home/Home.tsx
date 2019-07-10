@@ -56,39 +56,46 @@ export const Home: Component<HomeProps> = ({
                     </BubbleCarousel>
                 )}
 
-                { sections.map((section, index) => (
-                    <section className="home__section" 
-                        key={`home__section__${index}`}
-                    >
+                <div className="home__sections">
+                    { sections.map((section, index) => (
+                        <section className="home__section" 
+                            key={`home__section__${index}`}
+                        >
 
-                        { section.title && <h2>{section.title}</h2> }
+                            { section.title && <h2>{section.title}</h2> }
 
-                        { section.type === 'banner' && (
-                            <Banner  {...section.content}/>
-                        )}
+                            { section.type === 'banner' && (
+                                <Banner  {...section.content}/>
+                            )}
 
-                        { section.type === 'carousel' && (
-                            <Carousel className="home__section__carousel">
-                                {section.content.map(({ link, ...item }, index) => (
-                                    <Carousel.Item className="home__section__carousel__item" 
-                                        key={`home__section__carousel__item--${index}`}
-                                        as={link ? Link : 'div'}
-                                        {...link}
-                                    >
-                                        <ProductItem className="home__section__carousel__item__product" 
-                                            {...item} 
-                                        />
-                                    </Carousel.Item>
-                                ))}
-                            </Carousel>
-                        )}       
-                    </section>
-                ))}
+                            { section.type === 'carousel' && (
+                                <Carousel className="home__section__carousel">
+                                    {section.content.map(({ link, ...item }, index) => (
+                                        <Carousel.Item className="home__section__carousel__item" 
+                                            key={`home__section__carousel__item--${index}`}
+                                            as={link ? Link : 'div'}
+                                            {...link}
+                                        >
+                                            <ProductItem className="home__section__carousel__item__product" 
+                                                {...item} 
+                                            />
+                                        </Carousel.Item>
+                                    ))}
+                                </Carousel>
+                            )}       
+                        </section>
+                    ))}
+                </div>
 
                 <style jsx global>{`
                     .home__section__carousel {
                         grid-auto-columns: calc(100% - 4rem);
                         grid-gap: 2.5rem;
+                    }
+
+                    .home__sections {
+                        display: grid;
+                        grid-gap: 2rem;
                     }
 
                     @media(--medium-screen) {    
