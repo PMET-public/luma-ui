@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, createContext, useContext } from 'react'
+import React, { FunctionComponent, useState, createContext, useContext, useEffect } from 'react'
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
@@ -244,7 +244,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     typography: newTypography,
     
 }) => {
-    const [isDark, setDark] = useState(false)
+    const [isDark, setDark] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches || false)
 
     const mergedColors = {
         ...defaultColors,
