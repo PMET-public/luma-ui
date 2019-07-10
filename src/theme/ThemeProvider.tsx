@@ -48,7 +48,7 @@ export type Typography = {
 }
 
 type Theme = {
-    colors: Colors
+    colors: Colors,
     isDark: boolean
     routerLink: ReactComponentLike
     setDark: (v: boolean) => any
@@ -68,7 +68,7 @@ const defaultTheme: Theme = {
         link: ['hsla(200, 19.1%, 18.4%, 1)', 'hsla(204, 15.2%, 93.5%, 1)'],
         linkHover: ['hsla(200, 17.9%, 26.3%, 1)', 'hsla(198.5, 15.7%, 83.7%, 1)'],
 
-        background: ['#f6f6f6', 'hsla(0, 0%, 13.3%, 1)'],
+        background: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 13.3%, 1)'],
         onBackground: ['hsla(0, 0%, 13.3%, 1)', 'hsla(0, 0%, 100%, 1)'],
 
         surface: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 13.3%, 1)'],
@@ -103,7 +103,7 @@ const defaultTheme: Theme = {
     },
     isDark: false,
     setDark: (v: boolean) => { },
-    grid: (props) => ``,
+    grid: (props: any) => ``,
     routerLink: ({ ...props }) => <a {...props} />,
 }
 
@@ -173,6 +173,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
                 .theme-container {
                     max-width: 1800px;
                     margin: 0 auto;
+                    padding: 0 1rem;
                 }
             `}</style>
 

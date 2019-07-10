@@ -38,6 +38,7 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
                     width: 100%;
                     grid-template-columns: auto;
                     grid-template-rows: auto;
+                    padding: 0 0.75rem;
 
                     @media (--medium-screen) {
                         grid-template-areas: "logo navigation utilities";

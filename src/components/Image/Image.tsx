@@ -1,28 +1,41 @@
 import React from 'react'
 import { Component, classes } from '../../lib'
-import { useTheme } from '../../theme'
 
 export type ImageProps = {
     alt: string
     src: string
+    mobile?: string
 }
 
 export const Image: Component<ImageProps> = ({
-    alt,
     as: Image = 'div',
+    alt,
     children,
+    mobile,
     src,
     ...props
 }) => {
-    const { typography } = useTheme()
-
     return (
         <Image {...props} className={classes('image', props.className)}>
             <figure>
-                <img className="image__img"
-                    alt={alt}
-                    src={src}
-                />
+                <picture>
+                    {!!mobile && (
+                        <source 
+                        srcSet={mobile} 
+                        media="(max-width: 599px)"
+                        />
+                    )}
+
+                    <source 
+                        srcSet={src} 
+                        media="(min-width: 600px)"
+                    />
+                
+                    <img className="image__img"
+                        alt={alt}
+                        src={src}
+                    />
+                </picture>
 
                 {children && (
                     <figcaption className="image__caption">
@@ -39,11 +52,12 @@ export const Image: Component<ImageProps> = ({
                 }
 
                 .image__img {
+                    height: 100%;
                     max-height: 100%;
+                    max-width: 100%;
                     object-fit: cover;
                     object-position: center;
                     width: 100%;
-                    max-width: 100%;
                 }
             `}</style>
         </Image>

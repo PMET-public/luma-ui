@@ -41,7 +41,7 @@ export const AppBar: Component<AppBarProps> = ({
                     box-sizing: border-box;
                     color: ${colors.onSurface};
                     display: flex;
-                    padding: 1rem 2rem;
+                    padding: 1rem 0;
                     position: sticky;
                     top: 0;
                     transition: transform 402ms ease, opacity 305ms ease;

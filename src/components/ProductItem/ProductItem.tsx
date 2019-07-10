@@ -10,8 +10,7 @@ export type ProductItemProps = {
     priceSpecial?: string
     priceLabel?: string
     title: string
-    colors?: [string]
-    sizes?: [string]
+    colors?: string[]
 }
 
 export const ProductItem: Component<ProductItemProps> = ({ 
@@ -42,7 +41,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                         ))}
                     </ul> 
                  )}
-
+                 
                 <span className="product-item__details">
                     <strong className="product-item__details__title">{title}</strong>
                     
@@ -76,11 +75,11 @@ export const ProductItem: Component<ProductItemProps> = ({
                 }
 
                 .product-item__details__badge {
-                    background-color: ${theme.colors.primary.fade(0.92)};
-                    color: ${theme.colors.primary};
-                    font-size: 1.1rem;
-                    letter-spacing: 0.1rem;
+                    background-color: ${theme.colors.primary.fade(0.9)};
+                    color: ${theme.colors.primary.fade(0.4)};
+                    font-size: 1rem;
                     left: 0;
+                    letter-spacing: 0.1rem;
                     padding: 0.5rem 1.5rem;
                     position: absolute;
                     text-align: center;
@@ -89,6 +88,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                     transform-origin: bottom left;
                     transform: rotate(90deg);
                 }
+
 
                 .product-item__details__colors {
                     display: grid;
@@ -122,10 +122,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                     &.--special {
                         text-decoration: line-through;
                     }
-                }
-
-                .product-item__details__price__special {
-                    color: ${colors.accent};
                 }
             `}</style>
         </ProductItem>

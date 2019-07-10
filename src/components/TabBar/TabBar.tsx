@@ -34,7 +34,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
                     color: ${colors.onSurface};
                     left: 0;
                     padding: 1.3rem;
-                    position: fixed;
+                    position: sticky;
                     right: 0;
                 }
 
