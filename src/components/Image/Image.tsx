@@ -46,9 +46,7 @@ export const Image: Component<ImageProps> = ({
 
             <style jsx global>{`
                 .image {
-                    width: 100%;
                     display: inline-block;
-                    overflow: hidden;
                 }
 
                 .image__img {
