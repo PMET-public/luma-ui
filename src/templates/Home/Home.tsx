@@ -93,9 +93,9 @@ export const Home: Component<HomeProps> = ({
                         grid-gap: 2.5rem;
                     }
 
-                    .home__sections {
-                        display: grid;
-                        grid-gap: 2rem;
+                    .home__section {
+                        margin-bottom: 2rem;
+    
                     }
 
                     @media(--medium-screen) {    
