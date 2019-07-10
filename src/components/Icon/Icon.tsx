@@ -52,7 +52,7 @@ export const Icon: Component<IconProps> = ({
                     display: inline-flex;
                     flex-direction: column;
                     font-size: inherit;
-                    line-height: 1;
+                    line-height: 1.1;
                 }
 
                 .icon[href], a.icon, 
@@ -81,7 +81,8 @@ export const Icon: Component<IconProps> = ({
 
                 .icon__label {
                     color: inherit;
-                    font-size: 0.45em;
+                    font-size: 0.5em;
+                    font-weight: 600;
                     text-overflow: ellipsis;
 
                     &.--count {
