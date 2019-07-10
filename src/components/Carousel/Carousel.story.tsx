@@ -6,7 +6,7 @@ import { number } from '@storybook/addon-knobs'
 storiesOf('📦 Components/Carousel', module)
     .add('Default', () => (
         <div className="story">
-            <Carousel label="Carousel Story" padding={number('padding', 4)}>
+            <Carousel padding={number('padding', 4)}>
                 <Carousel.Item>
                     <span className="story__item" style={{ backgroundColor: '#999' }}>
                         1

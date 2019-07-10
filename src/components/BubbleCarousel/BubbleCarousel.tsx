@@ -38,15 +38,15 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
                     margin-bottom: 1rem;
                 }
 
-                .bubble-carousel__wrapper::-webkit-scrollbar {
-                    display: none;
-                }
-
                 .bubble-carousel__wrapper {
                     -webkit-overflow-scrolling: touch;
                     overflow-x: scroll;
                     padding: 1rem 0;
                     display: flex;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
                 }
             `}</style>
         </BubbleCarousel>

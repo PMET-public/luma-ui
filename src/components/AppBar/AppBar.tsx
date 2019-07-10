@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useScroll } from '../../hooks/useScroll'
-import { useTheme } from '../../theme'
+import { useTheme, Container } from '../../theme'
 import { Component, classes } from '../../lib'
 
 /**
@@ -31,17 +31,19 @@ export const AppBar: Component<AppBarProps> = ({
     return (
         <AppBar {...props} className={classes('app-bar', props.className, ['--hidden', isHidden])}>
             <div className="app-bar__content">
-                {children}
+                <Container>
+                    {children}
+                </Container>
             </div>
 
             <style jsx global>{`
                 .app-bar {
                     align-items: center;
-                    background-color: ${colors.translucentSurface};
+                    background-color: ${colors.surface};
                     box-sizing: border-box;
-                    color: ${colors.onTranslucentSurface};
+                    color: ${colors.onSurface};
                     display: flex;
-                    padding: 1rem 2rem;
+                    padding: 1rem 0;
                     position: sticky;
                     top: 0;
                     transition: transform 402ms ease, opacity 305ms ease;

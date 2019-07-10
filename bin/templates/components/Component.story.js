@@ -15,7 +15,19 @@ module.exports = (Name, folder = 'components') => {
 
         storiesOf('${labels[folder]}/${Name}', module)
             .add('Default', () => (
-                <${Name} />
+                <div className="story">
+                    <${Name} />
+
+                    <style jsx global>{\`
+                        .story {
+                            align-items: center;
+                            display: flex;
+                            height: 100vh;
+                            justify-content: center;
+                            width: 100%;
+                        }
+                    \`}</style>
+                </div>
             ))
 
     ` + '\n'

@@ -9,6 +9,6 @@ storiesOf('📦 Components/Image', module)
             alt={text('alt', 'Lorem')}
             src={text('src', require('../../../public/images/selfie.jpeg'))} 
         >
-            {text('title', '')}
+            {text('caption', '')}
         </Image>
     ))

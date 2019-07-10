@@ -27,14 +27,14 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
             <style jsx global>{`
                 .tab-bar {
                     ${grid({ auto: true })}
-                    background-color: ${colors.translucentSurface};
-                    color: ${colors.onTranslucentSurface};
+                    background-color: ${colors.surface};
+                    color: ${colors.onSurface};
                     box-shadow: inset 0 0.1rem 0 rgba(0, 0, 0, 0.07), inset 0 0.2rem 0 rgba(255, 255, 255, 0.07);
                     bottom: 0;
                     color: ${colors.onSurface};
                     left: 0;
                     padding: 1.3rem;
-                    position: fixed;
+                    position: sticky;
                     right: 0;
                 }
 
@@ -56,6 +56,7 @@ TabBar.Item = ({
     children,
     ...props
 }) => {
+    const { colors } = useTheme()
     return (
         <TabBarItem {...props} className={classes('tab-bar-item', props.className, ['--active', isActive])}>
             {children}
@@ -63,14 +64,19 @@ TabBar.Item = ({
             <style jsx global>{`
                 .tab-bar-item {
                     align-items: center;
+                    color: ${colors.primary};
                     display: flex;
                     flex-direction: column;
                     font-size: 2.3rem;
                     justify-content: center;
-                    filter: contrast(0%);
+                    opacity: 0.5;
+
+                    & a {
+                        color: inherit;
+                    }
 
                     &.--active {
-                        filter: contrast(100%);
+                        opacity: 1;
                     }
                 }
 

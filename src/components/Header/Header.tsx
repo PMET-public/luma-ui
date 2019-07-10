@@ -38,6 +38,7 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
                     width: 100%;
                     grid-template-columns: auto;
                     grid-template-rows: auto;
+                    padding: 0 0.75rem;
 
                     @media (--medium-screen) {
                         grid-template-areas: "logo navigation utilities";
@@ -103,7 +104,7 @@ Header.Menu = ({
     className,
     ...props
 }) => {
-    const { grid } = useTheme()
+    const { grid, typography } = useTheme()
 
     return (
         <HeaderMenu {...props} className={classes('header-menu', className)}>
@@ -124,10 +125,11 @@ Header.Menu = ({
 
                 .header-menu__content {
                     ${grid({ fluid: true, inline: true })}
+                    font-family: ${typography.headingFamily};
+                    font-weight: 600;
                     text-align: initial;
-                    justify-items: center;
+                    text-transform: uppercase;
                     white-space: nowrap;
-                    display: inline-grid;                  
                 }
             `}</style>
         </HeaderMenu>
@@ -141,7 +143,7 @@ Header.Utilities = ({
     ...props
 }) => {
     const { grid } = useTheme()
-
+    
     return (
         <HeaderUtilities {...props} className={classes('header-utilities', className)}>
             {children}
@@ -152,6 +154,7 @@ Header.Utilities = ({
                     align-items: center;
                     grid-area: utilities;
                     justify-content: flex-end;
+                    font-size: 1.3rem;
                 }
             `}</style>
         </HeaderUtilities>

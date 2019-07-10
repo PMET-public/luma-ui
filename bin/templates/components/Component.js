@@ -21,11 +21,7 @@ module.exports = (Name, filename) => source`
 
                 <style jsx global>{\`
                     .${filename} {
-                        align-items: center;
-                        display: flex;
-                        height: 100vh;
-                        justify-content: center;
-                        width: 100vw;
+                        
                     }
                 \`}</style>
             </${Name}>

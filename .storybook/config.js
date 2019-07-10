@@ -29,7 +29,7 @@ addParameters({
     },
     withTheme: {
         typography: {
-            bodyFamily: 'source-sans pro, sans-serif',
+            bodyFamily: 'source-sans-pro, sans-serif',
             headingFamily: 'rucksack, sans-serif',
         }
     }

@@ -3,7 +3,21 @@ import { Component, classes } from '../../lib'
 import Link, { LinkRoute } from '../../components/Link'
 import BubbleCarousel from '../../components/BubbleCarousel'
 import Carousel from '../../components/Carousel'
-import Image from '../../components/Image'
+import ProductItem, { ProductItemProps } from '../../components/ProductItem'
+import Banner, { BannerProps } from '../../components/Banner'
+import { Container } from '../../theme'
+
+type BannerSection = {
+    title?: string
+    type: 'banner'
+    content: BannerProps
+}
+
+type ProductSection = {
+    title?: string
+    type: 'carousel'
+    content: Array<{ link: LinkRoute } & ProductItemProps>
+}
 
 export type HomeProps = {
     stories?: {
@@ -15,74 +29,93 @@ export type HomeProps = {
         }>
     }
 
-    categories?: {
-        label: string
-        items: Array<{
-            image: string
-            label: string
-            link: LinkRoute
-        }>
-    }
+    sections: Array<ProductSection | BannerSection>
 }
 
 export const Home: Component<HomeProps> = ({ 
     as: Home = 'div', 
     stories,
-    categories,
+    sections,
     ...props
 }) => {
     
     return (
         <Home {...props} className={classes('home', props.className)}>
-            { stories && (
-                <BubbleCarousel className="home__stories" label={stories.label}>
-                    {stories.items.map((story, index) => (
-                        <BubbleCarousel.Item className="home__stories__item"
-                            image={story.image}
-                            label={story.label}
-                            key={`story--${index}`}
-                            as={Link}
-                            {...story.link}
-                        />
-                    ))}
-                </BubbleCarousel>
-            )}
+            <Container>
+                { stories && (
+                    <BubbleCarousel className="home__stories" label={stories.label}>
+                        {stories.items.map((story, index) => (
+                            <BubbleCarousel.Item className="home__stories__item"
+                                image={story.image}
+                                label={story.label}
+                                key={`story--${index}`}
+                                as={Link}
+                                {...story.link}
+                            />
+                        ))}
+                    </BubbleCarousel>
+                )}
 
-            { categories && (
-                <Carousel className="home_carousel" 
-                    label={categories.label} 
-                    padding={10}
-                >
-                    {categories.items.map((category, index) => (
-                        <Carousel.Item className="home_carousel__item" 
-                            key={`category--${index}`}
-                            as={Link}
-                            {...category.link}
-                        >
-                            <Image className="home_carousel__item__image"
-                                alt={category.label}
-                                src={category.image}
-                            >
-                                {category.label}
-                            </Image>
-                        </Carousel.Item>
-                    ))}
-                </Carousel>
-            )}
+                { sections.map((section, index) => (
+                    <section className="home__section" 
+                        key={`home__section__${index}`}
+                    >
 
-            <style jsx global>{`
-                .home_carousel__item__image {
-                    width: 100%;
-                    max-height: 70rem;
-                    color: #fff;
-                }
+                        { section.title && <h2>{section.title}</h2> }
 
-                @media(--medium-screen) {
-                    .home__stories {
-                        display: none;
+                        { section.type === 'banner' && (
+                            <Banner  {...section.content}/>
+                        )}
+
+                        { section.type === 'carousel' && (
+                            <Carousel className="home__section__carousel">
+                                {section.content.map(({ link, ...item }, index) => (
+                                    <Carousel.Item className="home__section__carousel__item" 
+                                        key={`home__section__carousel__item--${index}`}
+                                        as={link ? Link : 'div'}
+                                        {...link}
+                                    >
+                                        <ProductItem className="home__section__carousel__item__product" 
+                                            {...item} 
+                                        />
+                                    </Carousel.Item>
+                                ))}
+                            </Carousel>
+                        )}       
+                    </section>
+                ))}
+
+                <style jsx global>{`
+                    .home__section__carousel {
+                        grid-auto-columns: calc(100% - 4rem);
+                        grid-gap: 2.5rem;
                     }
-                }
-            `}</style>
+
+                    @media(--medium-screen) {    
+                        .home__stories {
+                            display: none;
+                        }
+
+                        .home__section__carousel {
+                            grid-auto-columns: calc((100% / 2) - 4rem);
+                        }
+
+                    }
+
+                    @media(--xlarge-screen) {
+                        .home__section__carousel {
+                            grid-auto-columns: calc((100% / 3) - 4rem);
+                        }
+                    }
+                    /*
+                    @media(--xlarge-screen) {
+                        .home__section__carousel {
+                            grid-auto-columns: calc((100% / 4) - 4rem);
+                        }
+                    }
+                    */
+                `}</style>
+            </Container>
         </Home>
     )
 }
