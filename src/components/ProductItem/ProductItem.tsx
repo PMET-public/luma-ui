@@ -93,7 +93,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__details__colors {
                     display: grid;
                     grid-auto-flow: column;
-                    margin: -1rem 0 1rem;
+                    margin: -0.5rem 0 0.5rem;
                 }
 
                 .product-item__details__colors__item {

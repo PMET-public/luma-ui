@@ -41,21 +41,21 @@ export const Home: Component<HomeProps> = ({
     
     return (
         <Home {...props} className={classes('home', props.className)}>
-            <Container>
-                { stories && (
-                    <BubbleCarousel className="home__stories" label={stories.label}>
-                        {stories.items.map((story, index) => (
-                            <BubbleCarousel.Item className="home__stories__item"
-                                image={story.image}
-                                label={story.label}
-                                key={`story--${index}`}
-                                as={Link}
-                                {...story.link}
-                            />
-                        ))}
-                    </BubbleCarousel>
-                )}
+            { stories && (
+                <BubbleCarousel className="home__stories" label={stories.label}>
+                    {stories.items.map((story, index) => (
+                        <BubbleCarousel.Item className="home__stories__item"
+                            image={story.image}
+                            label={story.label}
+                            key={`story--${index}`}
+                            as={Link}
+                            {...story.link}
+                        />
+                    ))}
+                </BubbleCarousel>
+            )}
 
+            <Container>
                 <div className="home__sections">
                     { sections.map((section, index) => (
                         <section className="home__section" 

@@ -53,7 +53,7 @@ export const Button: Component<ButtonProps> = ({
                             --color: ${colors.onPrimary};
                             
                             &:hover {
-                                --background: ${colors.primary.fade(0.5)};
+                                --background: ${colors.primary.fade(0.2)};
                             }
 
                         }
@@ -67,7 +67,7 @@ export const Button: Component<ButtonProps> = ({
                             --color: ${colors.onSecondary};
 
                             &:hover {
-                                --background: ${colors.secondary.fade(0.5)};
+                                --background: ${colors.secondary.fade(0.2)};
                             }
                        }
                     }
