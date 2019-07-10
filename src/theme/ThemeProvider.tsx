@@ -77,8 +77,8 @@ const defaultTheme: Theme = {
         primary: ['hsla(0, 0%, 6.7%, 1)', 'hsla(0, 0%, 100%, 1)'],
         onPrimary: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 6.7%, 1)'],
 
-        secondary: ['hsla(0, 0%, 12.9%, 1)', 'hsla(0, 0%, 98%, 1)'],
-        onSecondary: ['hsla(0, 0%, 98%, 1)', 'hsla(0, 0%, 12.9%, 1)'],
+        secondary: ['hsla(0, 0%, 98%, 1)', 'hsla(0, 0%, 12.9%, 1)'],
+        onSecondary: ['hsla(0, 0%, 12.9%, 1)', 'hsla(0, 0%, 98%, 1)'],
 
         accent: ['hsla(18.2, 63.5%, 38.6%, 1)'],
         onAccent: ['hsla(0, 0%, 98%, 1)'],
