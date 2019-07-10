@@ -39,7 +39,7 @@ const plugins = [
     }),
 
     commonjs({
-        include: /node_modules/
+        include: /node_modules/,
     }),
 ]
 
@@ -51,12 +51,6 @@ const output = {
     exports: 'named',
     footer: '/* by @fnhipster */',
     format: 'cjs',
-    // globals: {
-    //     'react': 'React',
-    //     'react-dom': 'ReactDOM',
-    //     'prop-types': 'PropTypes',
-    //     'styled-jsx/style': '_JSXStyle',
-    // },
 }
 
 const external = [

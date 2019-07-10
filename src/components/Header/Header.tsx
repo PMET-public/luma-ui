@@ -104,7 +104,7 @@ Header.Menu = ({
     className,
     ...props
 }) => {
-    const { grid, typography } = useTheme()
+    const { typography } = useTheme()
 
     return (
         <HeaderMenu {...props} className={classes('header-menu', className)}>
@@ -124,9 +124,11 @@ Header.Menu = ({
                 }
 
                 .header-menu__content {
-                    ${grid({ fluid: true, inline: true })}
+                    display: inline-grid;
                     font-family: ${typography.headingFamily};
                     font-weight: 600;
+                    grid-auto-columns: minmax(max-content, max-content);
+                    grid-auto-flow: column;
                     text-align: initial;
                     text-transform: uppercase;
                     white-space: nowrap;
@@ -141,20 +143,20 @@ Header.Utilities = ({
     children,
     className,
     ...props
-}) => {
-    const { grid } = useTheme()
-    
+}) => {    
     return (
         <HeaderUtilities {...props} className={classes('header-utilities', className)}>
             {children}
 
             <style jsx global>{`
                 .header-utilities {
-                    ${grid({ fluid: true })}
                     align-items: center;
-                    grid-area: utilities;
-                    justify-content: flex-end;
+                    display: grid;
                     font-size: 1.3rem;
+                    grid-area: utilities;
+                    grid-auto-columns: minmax(max-content, max-content);
+                    grid-auto-flow: column;
+                    justify-content: flex-end;
                 }
             `}</style>
         </HeaderUtilities>

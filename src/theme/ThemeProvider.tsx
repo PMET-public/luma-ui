@@ -1,113 +1,239 @@
 import React, { FunctionComponent, useState, createContext, useContext } from 'react'
-import color from 'color'
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
 import { ReactComponentLike } from 'prop-types'
 import { ColorProperty, FontFamilyProperty, FontStyleProperty, FontWeightProperty } from 'csstype'
 
-type Color = [ColorProperty, ColorProperty?]
+import ColorObject from 'color'
+const color = require('color')
 
-export type Colors = {
-    link?: Color
-    linkHover?: Color
+type Colors = {
+    link: ColorObject
+    linkHover: ColorObject
 
-    background?: Color
-    onBackground?: Color
+    background: ColorObject
+    onBackground: ColorObject
 
-    surface?: Color
-    onSurface?: Color
+    surface: ColorObject
+    onSurface: ColorObject
 
-    primary?: Color
-    onPrimary?: Color
+    primary: ColorObject
+    onPrimary: ColorObject
 
-    secondary?: Color
-    onSecondary?: Color
+    secondary: ColorObject
+    onSecondary: ColorObject
 
-    accent?: Color
-    onAccent?: Color
+    accent: ColorObject
+    onAccent: ColorObject
 
-    error?: Color
-    onError?: Color
+    error: ColorObject
+    onError: ColorObject
 
-    warning?: Color
-    onWarning?: Color
+    warning: ColorObject
+    onWarning: ColorObject
 
-    notice?: Color
-    onNotice?: Color
+    notice: ColorObject
+    onNotice: ColorObject
 }
 
-export type Typography = {
-    bodyFamily?: FontFamilyProperty
-    bodyStyle?: FontStyleProperty
-    bodyWeight?: FontWeightProperty
+type Typography = {
+    bodyFamily: FontFamilyProperty
+    bodyStyle: FontStyleProperty
+    bodyWeight: FontWeightProperty
 
-    headingFamily?: FontFamilyProperty
-    headingStyle?: FontStyleProperty
-    headingWeight?: FontWeightProperty
+    headingFamily: FontFamilyProperty
+    headingStyle: FontStyleProperty
+    headingWeight: FontWeightProperty
 }
 
 type Theme = {
-    colors: Colors,
+    colors: Colors
+    typography: Typography
     isDark: boolean
     routerLink: ReactComponentLike
     setDark: (v: boolean) => any
-    typography: Typography
-    grid: (p?: { columns?: number, gap?: string, fluid?: boolean, auto?: boolean , inline?: boolean}) => string
 }
 
 type ThemeProviderProps = {
-    colors?: Colors
-    typography?: Typography
+    colors?: {
+        link?: [ ColorProperty, ColorProperty? ]
+        linkHover?: [ ColorProperty, ColorProperty? ]
+    
+        background?: [ ColorProperty, ColorProperty? ]
+        onBackground?: [ ColorProperty, ColorProperty? ]
+    
+        surface?: [ ColorProperty, ColorProperty? ]
+        onSurface?: [ ColorProperty, ColorProperty? ]
+    
+        primary?: [ ColorProperty, ColorProperty? ]
+        onPrimary?: [ ColorProperty, ColorProperty? ]
+    
+        secondary?: [ ColorProperty, ColorProperty? ]
+        onSecondary?: [ ColorProperty, ColorProperty? ]
+    
+        accent?: [ ColorProperty, ColorProperty? ]
+        onAccent?: [ ColorProperty, ColorProperty? ]
+    
+        error?: [ ColorProperty, ColorProperty? ]
+        onError?: [ ColorProperty, ColorProperty? ]
+    
+        warning?: [ ColorProperty, ColorProperty? ]
+        onWarning?: [ ColorProperty, ColorProperty? ]
+    
+        notice?: [ ColorProperty, ColorProperty? ]
+        onNotice?: [ ColorProperty, ColorProperty? ]
+    }
+    
+    typography?: {
+        bodyFamily?: FontFamilyProperty
+        bodyStyle?: FontStyleProperty
+        bodyWeight?: FontWeightProperty
+    
+        headingFamily?: FontFamilyProperty
+        headingStyle?: FontStyleProperty
+        headingWeight?: FontWeightProperty
+    }
+
     routerLink?: ReactComponentLike
 }
 
-const defaultTheme: Theme = {
-    // hsla() values. pretty please
+const defaultColors = {
+    link: [
+        color('hsla(200, 19.1%, 18.4%, 1)'), 
+        color('hsla(204, 15.2%, 93.5%, 1)'),
+    ],
+
+    linkHover: [
+        color('hsla(200, 17.9%, 26.3%, 1)'), 
+        color('hsla(198.5, 15.7%, 83.7%, 1)'),
+    ],
+
+    background: [
+        color('#f6f6f6'), 
+        color('hsla(0, 0%, 13.3%, 1)'),
+    ],
+
+    onBackground: [
+        color('hsla(0, 0%, 13.3%, 1)'), 
+        color('hsla(0, 0%, 100%, 1)'),
+    ],
+
+    surface: [
+        color('hsla(0, 0%, 100%, 1)'), 
+        color('hsla(0, 0%, 13.3%, 1)'),
+    ],
+
+    onSurface: [
+        color('hsla(0, 0%, 13.3%, 1)'), 
+        color('hsla(0, 0%, 100%, 1)'),
+    ],
+
+    primary: [
+        color('hsla(0, 0%, 6.7%, 1)'), 
+        color('hsla(0, 0%, 100%, 1)'),
+    ],
+
+    onPrimary: [
+        color('hsla(0, 0%, 100%, 1)'), 
+        color('hsla(0, 0%, 6.7%, 1)'),
+    ],
+
+    secondary: [
+        color('hsla(0, 0%, 98%, 1)'), 
+        color('hsla(0, 0%, 12.9%, 1)'),
+    ],
+
+    onSecondary: [
+        color('hsla(0, 0%, 12.9%, 1)'), 
+        color('hsla(0, 0%, 98%, 1)'),
+    ],
+
+    accent: [
+        color('hsla(18.2, 63.5%, 38.6%, 1)'),
+    ],
+
+    onAccent: [
+        color('hsla(0, 0%, 98%, 1)'),
+    ],
+
+    error: [
+        color('hsla(0, 0%, 100%, 1)'), 
+        color('hsla(1.1, 83.2%, 62.5%, 1)'),
+    ],
+    onError: [
+        color('hsla(1.1, 83.2%, 62.5%, 1)'), 
+        color('hsla(0, 0%, 100%, 1)'),
+    ],
+
+    warning: [
+        color('hsla(0, 0%, 100%, 1)'), 
+        color('hsla(30.4, 100%, 48%, 1)'),
+    ],
+    onWarning: [
+        color('hsla(30.4, 100%, 48%, 1)'), 
+        color('hsla(0, 0%, 100%, 1)'),
+    ],
+
+    notice: [
+        color('hsla(0, 0%, 100%, 1)'), 
+        color('hsla(199.6, 97.4%, 45.5%, 1)'),
+    ],
+    onNotice: [
+        color('hsla(199.6, 97.4%, 45.5%, 1)'), 
+        color('hsla(0, 0%, 100%, 1)'),
+    ],
+}
+
+const defaultTypography = {
+    bodyFamily: 'sans-serif',
+    bodyStyle: 'normal',
+    bodyWeight: 400,
+    headingFamily: 'serif',
+    headingStyle: 'normal',
+    headingWeight: 600,
+}
+
+const initialTheme: Theme = {
     colors: {
-        link: ['hsla(200, 19.1%, 18.4%, 1)', 'hsla(204, 15.2%, 93.5%, 1)'],
-        linkHover: ['hsla(200, 17.9%, 26.3%, 1)', 'hsla(198.5, 15.7%, 83.7%, 1)'],
+        link: defaultColors.link[0],
+        linkHover: defaultColors.linkHover[0],
 
-        background: ['#f6f6f6', 'hsla(0, 0%, 13.3%, 1)'],
-        onBackground: ['hsla(0, 0%, 13.3%, 1)', 'hsla(0, 0%, 100%, 1)'],
+        background: defaultColors.background[0],
+        onBackground: defaultColors.onBackground[0],
 
-        surface: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 13.3%, 1)'],
-        onSurface: ['hsla(0, 0%, 13.3%, 1)', 'hsla(0, 0%, 100%, 1)'],
+        surface: defaultColors.surface[0],
+        onSurface: defaultColors.onSurface[0],
 
-        primary: ['hsla(0, 0%, 6.7%, 1)', 'hsla(0, 0%, 100%, 1)'],
-        onPrimary: ['hsla(0, 0%, 100%, 1)', 'hsla(0, 0%, 6.7%, 1)'],
+        primary: defaultColors.primary[0],
+        onPrimary: defaultColors.onPrimary[0],
 
-        secondary: ['hsla(0, 0%, 98%, 1)', 'hsla(0, 0%, 12.9%, 1)'],
-        onSecondary: ['hsla(0, 0%, 12.9%, 1)', 'hsla(0, 0%, 98%, 1)'],
+        secondary: defaultColors.secondary[0],
+        onSecondary: defaultColors.onSecondary[0],
 
-        accent: ['hsla(18.2, 63.5%, 38.6%, 1)'],
-        onAccent: ['hsla(0, 0%, 98%, 1)'],
+        accent: defaultColors.accent[0],
+        onAccent: defaultColors.onAccent[0],
 
-        error: ['hsla(0, 0%, 100%, 1)', 'hsla(1.1, 83.2%, 62.5%, 1)'],
-        onError: ['hsla(1.1, 83.2%, 62.5%, 1)', 'hsla(0, 0%, 100%, 1)'],
+        error: defaultColors.error[0],
+        onError: defaultColors.onError[0],
 
-        warning: ['hsla(0, 0%, 100%, 1)', 'hsla(30.4, 100%, 48%, 1)'],
-        onWarning: ['hsla(30.4, 100%, 48%, 1)', 'hsla(0, 0%, 100%, 1)'],
+        warning: defaultColors.warning[0],
+        onWarning: defaultColors.onWarning[0],
 
-        notice: ['hsla(0, 0%, 100%, 1)', 'hsla(199.6, 97.4%, 45.5%, 1)'],
-        onNotice: ['hsla(199.6, 97.4%, 45.5%, 1)', 'hsla(0, 0%, 100%, 1)'],
+        notice: defaultColors.notice[0],
+        onNotice: defaultColors.onNotice[0],
     },
 
-    typography: {
-        bodyFamily: 'sans-serif',
-        bodyStyle: 'normal',
-        bodyWeight: 400,
-        headingFamily: 'serif',
-        headingStyle: 'normal',
-        headingWeight: 600,
-    },
+    typography: defaultTypography,
+
     isDark: false,
+
     setDark: (v: boolean) => { },
-    grid: (props: any) => ``,
+    
     routerLink: ({ ...props }) => <a {...props} />,
 }
 
-const ThemeContext = createContext(defaultTheme)
+const ThemeContext = createContext(initialTheme)
 
 export const useTheme = () => useContext(ThemeContext)
 
@@ -119,10 +245,6 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     
 }) => {
     const [isDark, setDark] = useState(false)
-    const { 
-        colors: defaultColors,
-        typography: defaultTypography,
-    } = useTheme()
 
     const mergedColors = {
         ...defaultColors,
@@ -132,14 +254,12 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     const colors: any = Object.keys(mergedColors)
         .reduce((acc, key) => {
             const colorsByKey = mergedColors[key]
+            const selectedColor = colorsByKey[(isDark && colorsByKey.length > 1) ? 1 : 0]
+            
             // https://github.com/Qix-/color
             return {
                 ...acc,
-                [key]: color(colorsByKey && (
-                    typeof colorsByKey === 'string' ?
-                        colorsByKey :
-                        colorsByKey[(isDark && colorsByKey.length > 1) ? 1 : 0]
-                )),
+                [key]: typeof selectedColor === 'string' ? color(colorsByKey) : selectedColor,
             }
         }, {})
 
@@ -148,18 +268,9 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         ...newTypography,
     }
 
-    const grid = ({ columns = 1, gap = '2rem', fluid = false, auto = false, inline = false }) => `
-        display: ${inline ? 'inline-grid' : 'grid'};
-        grid-gap: ${gap};
-        grid-template-columns: ${fluid || auto ? 'unset' : `repeat(${columns}, 1fr)` };
-        grid-auto-flow: ${fluid || auto ? 'column' : 'unset' };
-        grid-auto-columns: ${fluid ? 'minmax(max-content, max-content)' : auto ? 'column' : 'unset'};
-    `
-
     return (
         <ThemeContext.Provider value={{ 
             colors,
-            grid,
             isDark, 
             routerLink,
             setDark, 

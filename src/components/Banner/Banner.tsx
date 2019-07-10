@@ -34,7 +34,9 @@ export const Banner: Component<BannerProps> = ({
                     {titles && (
                          <div className="banner__content__titles">
                              {titles.map(({ title, large = false }, index) => (
-                                <p className={classes('banner__content__titles__item', ['--large', large])}>
+                                <p className={classes('banner__content__titles__item', ['--large', large])}
+                                    key={`'banner__content__titles__item--${index}`}
+                                >
                                     {title}
                                 </p>
                              ))}

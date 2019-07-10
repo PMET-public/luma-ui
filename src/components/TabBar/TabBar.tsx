@@ -19,19 +19,20 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
     children,
     ...props
 }) => {
-    const { grid, colors } = useTheme()
+    const { colors } = useTheme()
     return (
         <TabBar {...props} className={classes('tab-bar', props.className)}>
             {children}
 
             <style jsx global>{`
                 .tab-bar {
-                    ${grid({ auto: true })}
                     background-color: ${colors.surface};
-                    color: ${colors.onSurface};
-                    box-shadow: inset 0 0.1rem 0 rgba(0, 0, 0, 0.07), inset 0 0.2rem 0 rgba(255, 255, 255, 0.07);
                     bottom: 0;
+                    box-shadow: inset 0 0.1rem 0 rgba(0, 0, 0, 0.07), inset 0 0.2rem 0 rgba(255, 255, 255, 0.07);
                     color: ${colors.onSurface};
+                    color: ${colors.onSurface};
+                    display: grid;
+                    grid-auto-flow: column;
                     left: 0;
                     padding: 1.3rem;
                     position: sticky;
