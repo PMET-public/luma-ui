@@ -38,34 +38,37 @@ export const HomeMockData: HomeProps = {
     },
 
     sections: [
-        {
-            type: 'banner',
-            content: {
-                image: {
-                    alt: '',
-                    src: require('../../../public/images/banner-1.jpg'),
-                    mobile: require('../../../public/images/banner-1--mobile.jpg'),
-                },
-                titles: [
-                    { title: 'A sense of renewal', large: true },
-                    { title: 'Enjoy comfort of body and mind with Luma eco-friendly choices' },
-                ],
-                position: 'top',
-            },
-        },
+        // {
+        //     type: 'banner',
+        //     content: {
+        //         image: {
+        //             alt: '',
+        //             src: require('../../../public/images/banner-1.jpg'),
+        //             mobile: require('../../../public/images/banner-1--mobile.jpg'),
+        //         },
+        //         titles: [
+        //             { title: 'A sense of renewal', large: true },
+        //             { title: 'Enjoy comfort of body and mind with Luma eco-friendly choices' },
+        //         ],
+        //         position: 'top',
+        //     },
+        // },
         {
             type: 'banner',
             content: {
                 image: {
                     alt: '',
                     src: require('../../../public/images/banner-2.jpg'),
-                    mobile: require('../../../public/images/banner-2--mobile.jpg'),
+                    mobile: require('../../../public/images/banner-2.1--mobile.jpg'),
                 },
                 titles: [
                     { title: 'Twice around, twice as nice', large: true },
                     { title: 'Find conscientious, comfy clothing in our eco-friendly collection' },
                 ],
-                position: 'top',
+                position: 'bottom',
+                buttons: [
+                    { label: 'Shop Performance', primary: true, link: { href: '#performance' } },
+                ],
             },
         },
         {
@@ -115,7 +118,7 @@ export const HomeMockData: HomeProps = {
             ],
         },
         {
-            title: 'Sale',
+            title: 'Summer Sale',
             type: 'carousel',
             content: [
                 { 

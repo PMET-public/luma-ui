@@ -22,13 +22,13 @@ export const Image: Component<ImageProps> = ({
                     {!!mobile && (
                         <source 
                         srcSet={mobile} 
-                        media="(max-width: 599px)"
+                        media="(max-width: 767px)"
                         />
                     )}
 
                     <source 
                         srcSet={src} 
-                        media="(min-width: 600px)"
+                        media="(min-width:768px)"
                     />
                 
                     <img className="image__img"

@@ -101,7 +101,7 @@ export const Banner: Component<BannerProps> = ({
                     grid-auto-columns: minmax(max-content, max-content);
                     grid-auto-flow: column;
                     grid-gap: 1rem;
-                    margin-top: 3rem;
+                    margin-top: 2rem;
                 }
 
                 @media(--medium-screen) {
@@ -117,6 +117,10 @@ export const Banner: Component<BannerProps> = ({
                 }
 
                 @media(--large-screen) {
+                    .banner__content__buttons {
+                        margin-top: 3rem;
+                    }
+                    
                     .banner__content__titles__item {
                         &.--large {
                             font-size: 6rem;
