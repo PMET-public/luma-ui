@@ -38,21 +38,6 @@ export const HomeMockData: HomeProps = {
     },
 
     sections: [
-        // {
-        //     type: 'banner',
-        //     content: {
-        //         image: {
-        //             alt: '',
-        //             src: require('../../../public/images/banner-1.jpg'),
-        //             mobile: require('../../../public/images/banner-1--mobile.jpg'),
-        //         },
-        //         titles: [
-        //             { title: 'A sense of renewal', large: true },
-        //             { title: 'Enjoy comfort of body and mind with Luma eco-friendly choices' },
-        //         ],
-        //         position: 'top',
-        //     },
-        // },
         {
             type: 'banner',
             content: {

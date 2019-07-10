@@ -5,7 +5,7 @@ import AppBar from '../../components/AppBar'
 import Header from '../../components/Header'
 import Icon from '../../components/Icon'
 import TabBar from '../../components/TabBar'
-import Logo from '../../../public/images/new-luma.svg'
+import Logo from '../../../public/images/luma.svg'
 import Link, { LinkRoute } from '../../components/Link'
 import Image from '../../components/Image'
 
@@ -149,7 +149,7 @@ export const App: Component<AppProps> = ({
                 }
 
                 .app__header__logo__image {
-                    max-height: 3rem;
+                    max-height: 2.8rem;
 
                     @media(--large-screen) {
                         max-height: 3.5rem;

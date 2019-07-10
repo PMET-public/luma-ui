@@ -93,6 +93,7 @@ Header.Logo = ({
                 .header-logo a {
                     border: 0 none !important;
                     text-decoration: none !important;
+                    color: inherit !important;
                 }
             `}</style>
         </HeaderLogo>
