@@ -5,47 +5,47 @@ import { AppProps } from './App'
 
 export const AppMockData: AppProps = {
     home: {
-        link: { href: '#home' },
+        link: { href: '#' },
     },
     logo: {
         title: 'Luma',
-        link: { href: '#logo' },
+        link: { href: '#' },
     },
     menu: [
         { 
             label: 'Women',
-            link: { href: '#story1' },
+            link: { href: '#' },
         },
         { 
             label: 'Men',
-            link: { href: '#story2' },
+            link: { href: '#' },
         },
         { 
             label: 'Gear',
-            link: { href: '#story3' },
+            link: { href: '#' },
         },
         { 
             label: 'Training',
-            link: { href: '#story4' },
+            link: { href: '#' },
         },
         { 
             label: 'Sale',
-            link: { href: '#story4' },
+            link: { href: '#' },
         },
     ],
     help: {
-        link: { href: '#help'},
+        link: { href: '#'},
     },
     myAccount: {
         label: 'Login',
-        link: { href: '#account' },
+        link: { href: '#' },
     },
     search: {
-        link: { href: '#search' },
+        link: { href: '#' },
     },
     cart: {
         count: 2,
-        link: { href: '#cart' },
+        link: { href: '#' },
     },
 }
 

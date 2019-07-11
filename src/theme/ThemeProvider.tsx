@@ -280,15 +280,6 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
                 {children}
             </div>
 
-            <style jsx global>{`
-                .theme-container {
-                    margin: 0 auto;
-                    max-width: 1800px;
-                    padding: 0 1rem;
-                    width: 100%;
-                }
-            `}</style>
-
             <ResetStyles />
             <GlobalStyles colors={colors} />
             <TypographyStyles typography={typography} />

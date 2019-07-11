@@ -18,26 +18,29 @@ storiesOf('📦 Components/HotSpots', module)
             margin: '1rem',
         }}>
             <HotSpots
-                image={require('../../../public/images/products-hotspots.jpg')}
+                image={{
+                    alt: 'Shop the Look',
+                    src: require('../../../public/images/products-hotspots.jpg'),
+                }}
                 description="A lot of stuffs"
             >
                 <HotSpots.Item
                     coords={{ x: 15, y: 42 }}
-                    id={0}
+                    id="0"
                     label="Sweater"
                 >
                     <PriceTagMock label="Knit Sweater" price="$29.99" />
                 </HotSpots.Item>
                 <HotSpots.Item
                     coords={{ x: 78, y: 30 }}
-                    id={1}
+                    id="1"
                     label="Bag"
                 >
                     <PriceTagMock label="Handbag" price="$19.99" />
                 </HotSpots.Item>
                 <HotSpots.Item
                     coords={{ x: 63, y: 75 }}
-                    id={2}
+                    id="2"
                     label="Pants"
                 >
                     <PriceTagMock label="Cotton Chinos" price="$29.99" />

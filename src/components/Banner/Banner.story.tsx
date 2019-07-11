@@ -8,7 +8,8 @@ storiesOf('📦 Components/Banner', module)
         <div className="story">
             <Banner 
                 image={object('image', {
-                    alt: '',                    src: require('../../../public/images/banner-1.jpg'),
+                    alt: '',                    
+                    src: require('../../../public/images/banner-1.jpg'),
                     width: '100%',
                     height: 700,
                 })}
@@ -18,9 +19,9 @@ storiesOf('📦 Components/Banner', module)
                     { title: 'Twice around, twice as nice', large: true },
                 ])}
                 buttons={object('buttons', [
-                    { label: 'Button 1', fill: true, link: { href: '#button1' } },
-                    { label: 'Button 2', link: { href: '#button2' } },
-                    { label: 'Button 3', link: { href: '#button3' } },
+                    { label: 'Button 1', fill: true, link: { href: '#' } },
+                    { label: 'Button 2', link: { href: '#' } },
+                    { label: 'Button 3', link: { href: '#' } },
                 ])}
             />
 

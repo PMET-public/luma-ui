@@ -60,7 +60,7 @@ BubbleCarousel.Item = ({
     ...props
 }) => (
     <BabelCarouselItem {...props} className={classes('bubble-carousel-item', props.className)}>
-        <Image {...image} />
+        <Image alt={label} {...image} />
         
         <div className="bubble-carousel-item__label">
             {label}

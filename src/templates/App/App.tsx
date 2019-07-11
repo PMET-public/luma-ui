@@ -99,15 +99,17 @@ export const App: Component<AppProps> = ({
 
                         <Icon className="app__header__utilities__search"
                             as={Link} {...search.link}
+                            aria-label={search.label || 'Search'}
                         >
-                            <IconSearch arial-label={search.label || 'Search'} />
+                            <IconSearch />
                         </Icon>
 
                         <Icon className="app__header__utilities__cart"
                             as={Link} {...cart.link}
+                            aria-label={cart.label || 'My Bag'}
                             count={cart.count}
                         >
-                            <IconBag aria-label={cart.label || 'My Bag'} />
+                            <IconBag />
                         </Icon>
                     </Header.Utilities>
                 </Header>

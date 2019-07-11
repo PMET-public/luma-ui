@@ -1,21 +1,19 @@
 import React, { createContext, ReactNode, useState, useContext } from 'react'
 import { Component, classes } from '../../lib'
-import Image from '../Image'
+import Image, { ImageProps } from '../Image'
 import { useTheme } from '../../theme'
 import { useTransition, animated } from 'react-spring'
 
 export type HotSpotsProps = {
     children: ReactNode
     description: string
-    height?: string | number
-    image: string
-    width?: string | number
+    image: ImageProps
 }
 
 export type HotSpotItemProps = {
     children?: ReactNode
     coords: { x: number, y: number }
-    id: string | number
+    id: string
     label: string
 }
 
@@ -29,9 +27,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     as: HotSpots = 'div',
     children,
     description,
-    height,
     image,
-    width = '100%',
     ...props
 }) => {
     const [active, setActive] = useState()
@@ -43,7 +39,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
             <HotSpots {...props} className={classes('hot-spots', props.className)}>
-                <Image src={image} alt={description} {...{width, height}} />
+                <Image width="100%" {...image} />
                 {children}
                 
                 <style jsx global>{`

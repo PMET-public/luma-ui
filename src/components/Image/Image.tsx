@@ -3,7 +3,7 @@ import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
 export type ImageProps = {
-    alt: string
+    alt?: string
     height?: string | number
     src: string
     width?: string | number
@@ -25,10 +25,9 @@ export const Image: Component<ImageProps> = ({
             <figure>
                 <picture> 
                     <img className={classes('image__img')}
-                        alt={alt}
                         srcSet={src} 
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
-                        {...{width, height}}
+                        {...{alt, width, height}}
                     />
                 </picture>
 

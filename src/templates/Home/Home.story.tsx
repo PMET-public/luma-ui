@@ -11,7 +11,7 @@ export const HomeMockData: HomeProps = {
         items: [
             { 
                 label: 'Women',
-                link: { href: '#story1' },
+                link: { href: '#' },
                 image: {
                     alt: 'Women',
                     src: require('../../../public/images/fashion-thumb1.jpg'),
@@ -19,7 +19,7 @@ export const HomeMockData: HomeProps = {
             },
             { 
                 label: 'Men',
-                link: { href: '#story2' },
+                link: { href: '#' },
                 image: {
                     alt: 'Men',
                     src: require('../../../public/images/fashion-thumb2.jpg'),
@@ -27,7 +27,7 @@ export const HomeMockData: HomeProps = {
             },
             { 
                 label: 'Gear',
-                link: { href: '#story3' },
+                link: { href: '#' },
                 image: {
                     alt: 'Gear',
                     src: require('../../../public/images/fashion-thumb3.jpg'),
@@ -35,7 +35,7 @@ export const HomeMockData: HomeProps = {
             },
             { 
                 label: 'Training',
-                link: { href: '#story4' },
+                link: { href: '#' },
                 image: {
                     alt: 'Training',
                     src: require('../../../public/images/fashion-thumb4.jpg'),
@@ -43,7 +43,7 @@ export const HomeMockData: HomeProps = {
             },
             { 
                 label: 'Sale',
-                link: { href: '#story4' },
+                link: { href: '#' },
                 image: {
                     alt: 'Sale',
                     src: require('../../../public/images/fashion-thumb5.jpg'),
@@ -68,7 +68,7 @@ export const HomeMockData: HomeProps = {
                 ],
                 position: 'bottom',
                 buttons: [
-                    { label: 'Shop Performance', fill: true, link: { href: '#performance' } },
+                    { label: 'Shop Performance', fill: true, link: { href: '#' } },
                 ],
             },
         },
@@ -77,7 +77,7 @@ export const HomeMockData: HomeProps = {
             type: 'carousel',
             content: [
                 { 
-                    link: { href: '#story1' },
+                    link: { href: '#' },
                     image: {
                         alt: '',
                         src: require('../../../public/images/product-item-sample.jpg'),
@@ -88,7 +88,7 @@ export const HomeMockData: HomeProps = {
                     colors: ['brown', 'gray', 'black', 'blue'],
                 },
                 { 
-                    link: { href: '#story1' },
+                    link: { href: '#' },
                     image: {
                         alt: '',
                         src: require('../../../public/images/product-item-sample.jpg'),
@@ -99,7 +99,7 @@ export const HomeMockData: HomeProps = {
                     colors: ['brown', 'gray', 'black', 'blue'],
                 },
                 { 
-                    link: { href: '#story1' },
+                    link: { href: '#' },
                     image: {
                         alt: '',
                         src: require('../../../public/images/product-item-sample.jpg'),
@@ -110,7 +110,7 @@ export const HomeMockData: HomeProps = {
                     colors: ['brown', 'gray', 'black', 'blue'],
                 },
                 { 
-                    link: { href: '#story1' },
+                    link: { href: '#' },
                     image: {
                         alt: '',
                         src: require('../../../public/images/product-item-sample.jpg'),
@@ -121,7 +121,7 @@ export const HomeMockData: HomeProps = {
                     colors: ['brown', 'gray', 'black', 'blue'],
                 },
                 { 
-                    link: { href: '#story1' },
+                    link: { href: '#' },
                     image: {
                         alt: '',
                         src: require('../../../public/images/product-item-sample.jpg'),

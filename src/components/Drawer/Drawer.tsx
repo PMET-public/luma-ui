@@ -43,10 +43,15 @@ export const Drawer: Component<DrawerProps> = ({
             ))}
 
             {onClose && fadeTransitions.map(fadeTransition => fadeTransition.item && (
-                <animated.button key={fadeTransition.key} style={fadeTransition.props} className="drawer__close-button"
-                    arial-label="close"
+                <animated.button className="drawer__close-button"
+                    key={fadeTransition.key} 
+                    style={fadeTransition.props} 
                     onClick={onClose}
-                ></animated.button>
+                >
+                    <span className="visuallyhidden">
+                        Close
+                    </span>
+                </animated.button>
             ))}
 
             <style jsx global>{`
