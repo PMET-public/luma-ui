@@ -8,9 +8,9 @@ storiesOf('📦 Components/Banner', module)
         <div className="story">
             <Banner 
                 image={object('image', {
-                    src: require('../../../public/images/banner-1.jpg'),
-                    mobile: require('../../../public/images/banner-1--mobile.jpg'),
-                    alt: '',
+                    alt: '',                    src: require('../../../public/images/banner-1.jpg'),
+                    width: '100%',
+                    height: 700,
                 })}
                 position={select('position', { top: 'top', bottom: 'bottom' }, 'top')}
                 titles={object('titles', [

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, classes } from '../../lib'
-import Image from '../Image'
+import Image, { ImageProps } from '../Image'
 
 export type BubbleCarouselProps = {
     label: string
@@ -8,7 +8,7 @@ export type BubbleCarouselProps = {
 
 export type BubbleCarouselItemProps = {
     label: string
-    image: string
+    image: ImageProps
 }
 
 type CompoundComponent = {
@@ -60,7 +60,7 @@ BubbleCarousel.Item = ({
     ...props
 }) => (
     <BabelCarouselItem {...props} className={classes('bubble-carousel-item', props.className)}>
-        <Image alt={label} src={image} />
+        <Image {...image} />
         
         <div className="bubble-carousel-item__label">
             {label}

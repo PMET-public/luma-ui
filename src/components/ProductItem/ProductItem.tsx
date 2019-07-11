@@ -1,11 +1,11 @@
 import React from 'react'
 import { Component, classes } from '../../lib'
-import Image from '../Image'
+import Image, { ImageProps } from '../Image'
 import { useTheme } from '../../theme'
 
 export type ProductItemProps = {
     badge?: string
-    image: string
+    image: ImageProps
     price?: string
     priceSpecial?: string
     priceLabel?: string
@@ -29,7 +29,9 @@ export const ProductItem: Component<ProductItemProps> = ({
     return (
         <ProductItem {...props} className={classes('product-item', props.className)}>
             <Image className="product-item__image"
-                src={image} alt={title} 
+                height={600}
+                width="100%"
+                {...image}
             >
                  {!!colors && (
                     <ul className="product-item__details__colors">

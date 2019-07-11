@@ -1,7 +1,7 @@
 import React from 'react'
 import { Component, classes } from '../../lib'
 import Link, { LinkRoute } from '../../components/Link'
-import BubbleCarousel from '../../components/BubbleCarousel'
+import BubbleCarousel, { BubbleCarouselItemProps } from '../../components/BubbleCarousel'
 import Carousel from '../../components/Carousel'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
 import Banner, { BannerProps } from '../../components/Banner'
@@ -23,10 +23,8 @@ export type HomeProps = {
     stories?: {
         label: string
         items: Array<{
-            image: string
-            label: string
             link: LinkRoute
-        }>
+        } & BubbleCarouselItemProps>
     }
 
     sections: Array<ProductSection | BannerSection>
@@ -43,13 +41,12 @@ export const Home: Component<HomeProps> = ({
         <Home {...props} className={classes('home', props.className)}>
             { stories && (
                 <BubbleCarousel className="home__stories" label={stories.label}>
-                    {stories.items.map((story, index) => (
+                    {stories.items.map(({ link, ...item }, index) => (
                         <BubbleCarousel.Item className="home__stories__item"
-                            image={story.image}
-                            label={story.label}
                             key={`story--${index}`}
                             as={Link}
-                            {...story.link}
+                            {...link}
+                            {...item}
                         />
                     ))}
                 </BubbleCarousel>

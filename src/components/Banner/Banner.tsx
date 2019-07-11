@@ -64,6 +64,7 @@ export const Banner: Component<BannerProps> = ({
             <style jsx global>{`
                 .banner {
                     position: relative;
+                    width: 100%;
                 }
 
                 .banner__content {

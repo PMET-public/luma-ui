@@ -7,7 +7,9 @@ import { useTransition, animated } from 'react-spring'
 export type HotSpotsProps = {
     children: ReactNode
     description: string
+    height?: string | number
     image: string
+    width?: string | number
 }
 
 export type HotSpotItemProps = {
@@ -27,7 +29,9 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     as: HotSpots = 'div',
     children,
     description,
+    height,
     image,
+    width = '100%',
     ...props
 }) => {
     const [active, setActive] = useState()
@@ -39,7 +43,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
             <HotSpots {...props} className={classes('hot-spots', props.className)}>
-                <Image src={image} alt={description} />
+                <Image src={image} alt={description} {...{width, height}} />
                 {children}
                 
                 <style jsx global>{`

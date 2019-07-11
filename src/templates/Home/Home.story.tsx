@@ -10,29 +10,44 @@ export const HomeMockData: HomeProps = {
         label: 'Categories',
         items: [
             { 
-                image: require('../../../public/images/fashion-thumb1.jpg'),
                 label: 'Women',
                 link: { href: '#story1' },
+                image: {
+                    alt: 'Women',
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
+                },
             },
             { 
-                image: require('../../../public/images/fashion-thumb2.jpg'),
                 label: 'Men',
                 link: { href: '#story2' },
+                image: {
+                    alt: 'Men',
+                    src: require('../../../public/images/fashion-thumb2.jpg'),
+                },
             },
             { 
-                image: require('../../../public/images/fashion-thumb3.jpg'),
                 label: 'Gear',
                 link: { href: '#story3' },
+                image: {
+                    alt: 'Gear',
+                    src: require('../../../public/images/fashion-thumb3.jpg'),
+                },
             },
             { 
-                image: require('../../../public/images/fashion-thumb4.jpg'),
                 label: 'Training',
                 link: { href: '#story4' },
+                image: {
+                    alt: 'Training',
+                    src: require('../../../public/images/fashion-thumb4.jpg'),
+                },
             },
             { 
-                image: require('../../../public/images/fashion-thumb4.jpg'),
                 label: 'Sale',
                 link: { href: '#story4' },
+                image: {
+                    alt: 'Sale',
+                    src: require('../../../public/images/fashion-thumb5.jpg'),
+                },
             },
         ],
     },
@@ -44,7 +59,8 @@ export const HomeMockData: HomeProps = {
                 image: {
                     alt: '',
                     src: require('../../../public/images/banner-2.jpg'),
-                    mobile: require('../../../public/images/banner-2.1--mobile.jpg'),
+                    height: 700,
+                    width: '100%',
                 },
                 titles: [
                     { title: 'Twice around, twice as nice', large: true },
@@ -62,7 +78,10 @@ export const HomeMockData: HomeProps = {
             content: [
                 { 
                     link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
                     price: '$49.99',
                     priceSpecial: '$39.99',
                     title: 'Circle Hooded Ice Flee',
@@ -70,7 +89,10 @@ export const HomeMockData: HomeProps = {
                 },
                 { 
                     link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
                     price: '$49.99',
                     priceSpecial: '$39.99',
                     title: 'Circle Hooded Ice Flee',
@@ -78,7 +100,10 @@ export const HomeMockData: HomeProps = {
                 },
                 { 
                     link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
                     price: '$49.99',
                     priceSpecial: '$39.99',
                     title: 'Circle Hooded Ice Flee',
@@ -86,7 +111,10 @@ export const HomeMockData: HomeProps = {
                 },
                 { 
                     link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
                     price: '$49.99',
                     priceSpecial: '$39.99',
                     title: 'Circle Hooded Ice Flee',
@@ -94,7 +122,10 @@ export const HomeMockData: HomeProps = {
                 },
                 { 
                     link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
                     price: '$49.99',
                     priceSpecial: '$39.99',
                     title: 'Circle Hooded Ice Flee',
@@ -102,52 +133,7 @@ export const HomeMockData: HomeProps = {
                 },
             ],
         },
-        {
-            title: 'Summer Sale',
-            type: 'carousel',
-            content: [
-                { 
-                    link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
-                    price: '$49.99',
-                    priceSpecial: '$39.99',
-                    title: 'Circle Hooded Ice Flee',
-                    colors: ['brown', 'gray', 'black', 'blue'],
-                },
-                { 
-                    link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
-                    price: '$49.99',
-                    priceSpecial: '$39.99',
-                    title: 'Circle Hooded Ice Flee',
-                    colors: ['brown', 'gray', 'black', 'blue'],
-                },
-                { 
-                    link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
-                    price: '$49.99',
-                    priceSpecial: '$39.99',
-                    title: 'Circle Hooded Ice Flee',
-                    colors: ['brown', 'gray', 'black', 'blue'],
-                },
-                { 
-                    link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
-                    price: '$49.99',
-                    priceSpecial: '$39.99',
-                    title: 'Circle Hooded Ice Flee',
-                    colors: ['brown', 'gray', 'black', 'blue'],
-                },
-                { 
-                    link: { href: '#story1' },
-                    image: require('../../../public/images/product-item-sample.jpg'),
-                    price: '$49.99',
-                    priceSpecial: '$39.99',
-                    title: 'Circle Hooded Ice Flee',
-                    colors: ['brown', 'gray', 'black', 'blue'],
-                },
-            ],
-        },
+
     ],
 }
 

@@ -6,23 +6,38 @@ storiesOf('📦 Components/BubbleCarousel', module)
     .add('Default', () => (
         <BubbleCarousel label='Shop the Look'>
             <BubbleCarousel.Item 
-                image={require('../../../public/images/fashion-thumb1.jpg')}
+                image={{
+                    alt: 'Minimalist',
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
+                }}
                 label="Minimalist"
             />
             <BubbleCarousel.Item 
-                image={require('../../../public/images/fashion-thumb2.jpg')}
+                image={{
+                    alt: 'MinimaDressylist',
+                    src: require('../../../public/images/fashion-thumb2.jpg'),
+                }}
                 label="Dressy"
             />
             <BubbleCarousel.Item 
-                image={require('../../../public/images/fashion-thumb3.jpg')}
+                image={{
+                    alt: 'Beachy',
+                    src: require('../../../public/images/fashion-thumb3.jpg'),
+                }}
                 label="Beachy"
             />
             <BubbleCarousel.Item 
-                image={require('../../../public/images/fashion-thumb4.jpg')}
+                image={{
+                    alt: 'Biz Cas’',
+                    src: require('../../../public/images/fashion-thumb4.jpg'),
+                }}
                 label="Biz Cas’"
             />
             <BubbleCarousel.Item 
-                image={require('../../../public/images/fashion-thumb5.jpg')}
+                image={{
+                    alt: 'All Time',
+                    src: require('../../../public/images/fashion-thumb5.jpg'),
+                }}
                 label="All Time"
             />
         </BubbleCarousel>

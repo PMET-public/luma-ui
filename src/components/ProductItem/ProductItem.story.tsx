@@ -8,7 +8,10 @@ storiesOf('📦 Components/ProductItem', module)
         <div className="story">
             <ProductItem className="story__product-item"
                 badge={text('badge', 'New Arrival')}
-                image={text('image', require('../../../public/images/product-item-sample.jpg'))}
+                image={{
+                    alt: '',
+                    src: text('image', require('../../../public/images/product-item-sample.jpg')),
+                }}
                 price={text('price', '$149.99')}
                 priceSpecial={text('priceSpecial', '$49.00')}
                 priceLabel={text('priceLabel', 'Starting at')}
