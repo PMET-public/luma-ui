@@ -18,7 +18,7 @@ storiesOf('📦 Components/Banner', module)
                     { title: 'Twice around, twice as nice', large: true },
                 ])}
                 buttons={object('buttons', [
-                    { label: 'Button 1', primary: true, link: { href: '#button1' } },
+                    { label: 'Button 1', fill: true, link: { href: '#button1' } },
                     { label: 'Button 2', link: { href: '#button2' } },
                     { label: 'Button 3', link: { href: '#button3' } },
                 ])}

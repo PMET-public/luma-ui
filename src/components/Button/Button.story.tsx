@@ -7,11 +7,10 @@ storiesOf('📦 Components/Button', module)
     .add('Default', () => (
         <div className="story">
             <Button 
-                color={select('color', { primary: 'primary', secondary: 'secondary'}, 'primary')}
+                color={select('color', { primary: 'primary', secondary: 'secondary'}, undefined)}
                 fill={boolean('fill', false)}
-            >
-                {text('label', 'Button')}
-            </Button>
+                label={text('label', 'Button')}
+            />
 
             <style jsx global>{`
                 .story {

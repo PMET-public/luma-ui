@@ -1,33 +1,36 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
 export type ButtonProps = {
-    children: string
-    color?: 'primary' | 'secondary'
     fill?: boolean
-    white?: boolean
+    color?: 'primary' | 'secondary',
+    label?: ReactNode
 }
 
 export const Button: Component<ButtonProps> = ({ 
     as: Button = 'button', 
     children,
-    color = 'secondary',
+    color,
     fill = false,
+    label = null,
     ...props
 }) => {
     const { colors } = useTheme()
     
     return (
         <Button {...props} className={classes('button', props.className, `--${color}`, ['--fill', fill])}>
-            {children}
+            <span className="button__wrapper">
+                {label || children}
+            </span>
 
             <style jsx global>{`
                 .button {
+                    --color: inherit;
+
                     background-color: var(--background, transparent);
                     border-radius: 2rem;
-                    border: 0 none;
-                    box-shadow: inset 0 0 0 0.1rem;
+                    border: 0.1rem solid;
                     color: var(--color);
                     cursor: pointer;
                     font-size: 1.6rem;
@@ -42,36 +45,24 @@ export const Button: Component<ButtonProps> = ({
                     }
 
                     &.--fill {
-                        box-shadow: none;
+                        background-color: currentColor;
+
+                        &:hover {
+                            opacity: 0.83;
+                        }
+
+                        & .button__wrapper {
+                            filter: invert(1);
+                        }
                     }
 
                     &.--primary {
                         --color: ${colors.primary};
-                        
-                        &.--fill {
-                            --background: ${colors.primary};
-                            --color: ${colors.onPrimary};
-                            
-                            &:hover {
-                                --background: ${colors.primary.fade(0.2)};
-                            }
-
-                        }
                     }
 
                     &.--secondary {
-                       --color: ${colors.secondary};
-
-                       &.--fill {
-                            --background: ${colors.secondary};
-                            --color: ${colors.onSecondary};
-
-                            &:hover {
-                                --background: ${colors.secondary.fade(0.2)};
-                            }
-                       }
+                        --color: ${colors.secondary};
                     }
-
                 }
             `}</style>
         </Button>

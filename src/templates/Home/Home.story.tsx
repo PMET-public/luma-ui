@@ -68,7 +68,7 @@ export const HomeMockData: HomeProps = {
                 ],
                 position: 'bottom',
                 buttons: [
-                    { label: 'Shop Performance', primary: true, link: { href: '#performance' } },
+                    { label: 'Shop Performance', fill: true, link: { href: '#performance' } },
                 ],
             },
         },

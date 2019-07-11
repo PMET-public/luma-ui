@@ -3,17 +3,13 @@ import { Component, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 import Link, { LinkRoute } from '../Link'
 import { useTheme } from '../../theme'
-import Button from '../Button'
+import Button, { ButtonProps } from '../Button'
 
 export type BannerProps = {
     image: ImageProps
     titles?: Array<{ title: string, large?: boolean }>
     position?: 'top' | 'bottom'
-    buttons?: Array<{
-        label: string
-        link: LinkRoute
-        primary?: boolean
-    }>
+    buttons?: Array<{  link: LinkRoute } & ButtonProps>
 }
 
 export const Banner: Component<BannerProps> = ({ 
@@ -45,16 +41,13 @@ export const Banner: Component<BannerProps> = ({
 
                     {buttons && (
                         <div className="banner__content__buttons">
-                            {buttons.map(({ label, link, primary = false }, index) => (
+                            {buttons.map(({ link, ...button }, index) => (
                                 <Button className={classes('banner__content__buttons__item')} 
                                     as={Link}
                                     key={`'banner__content__buttons__item--${index}`}
-                                    color="secondary"
-                                    fill={primary}
+                                    {...button}
                                     {...link}
-                                >
-                                    {label}
-                                </Button>
+                                />
                             ))}
                         </div>
                     )}
