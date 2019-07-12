@@ -1,17 +1,15 @@
-import React, { FunctionComponent, useState, createContext, useContext, useEffect } from 'react'
+import React, { FunctionComponent, useState, createContext, useContext } from 'react'
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
 import { ReactComponentLike } from 'prop-types'
 import { ColorProperty, FontFamilyProperty, FontStyleProperty, FontWeightProperty } from 'csstype'
-
+import { Component, classes } from '../lib'
 import ColorObject from 'color'
+
 const color = require('color')
 
 type Colors = {
-    link: ColorObject
-    linkHover: ColorObject
-
     background: ColorObject
     onBackground: ColorObject
 
@@ -56,10 +54,7 @@ type Theme = {
 }
 
 type ThemeProviderProps = {
-    colors?: {
-        link?: [ ColorProperty, ColorProperty? ]
-        linkHover?: [ ColorProperty, ColorProperty? ]
-    
+    colors?: {    
         background?: [ ColorProperty, ColorProperty? ]
         onBackground?: [ ColorProperty, ColorProperty? ]
     
@@ -99,19 +94,9 @@ type ThemeProviderProps = {
 }
 
 const defaultColors = {
-    link: [
-        color('hsla(200, 19.1%, 18.4%, 1)'), 
-        color('hsla(204, 15.2%, 93.5%, 1)'),
-    ],
-
-    linkHover: [
-        color('hsla(200, 17.9%, 26.3%, 1)'), 
-        color('hsla(198.5, 15.7%, 83.7%, 1)'),
-    ],
-
     background: [
         color('#f6f6f6'), 
-        color('hsla(0, 0%, 13.3%, 1)'),
+        color('#292929'),
     ],
 
     onBackground: [
@@ -196,9 +181,6 @@ const defaultTypography = {
 
 const initialTheme: Theme = {
     colors: {
-        link: defaultColors.link[0],
-        linkHover: defaultColors.linkHover[0],
-
         background: defaultColors.background[0],
         onBackground: defaultColors.onBackground[0],
 
@@ -286,9 +268,3 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         </ThemeContext.Provider>
     )
 } 
-
-export const Container: FunctionComponent = ({ children }) => (
-    <div className="theme-container">
-        {children}
-    </div>
-)

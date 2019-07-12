@@ -61,7 +61,6 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
 
                     &:hover {
                         border-color: ${colors.primary};
-                        color: ${colors.primary};
                     }
                 }
 
@@ -130,7 +129,7 @@ Header.Menu = ({
                     font-weight: 600;
                     grid-auto-columns: minmax(max-content, max-content);
                     grid-auto-flow: column;
-                    grid-gap: 1.5rem;
+                    grid-gap: 2.5rem;
                     text-align: initial;
                     text-transform: uppercase;
                     white-space: nowrap;
@@ -158,7 +157,7 @@ Header.Utilities = ({
                     grid-area: utilities;
                     grid-auto-columns: minmax(max-content, max-content);
                     grid-auto-flow: column;
-                    grid-gap: 1.5rem;
+                    grid-gap: 2.5rem;
                     justify-content: flex-end;
                 }
             `}</style>

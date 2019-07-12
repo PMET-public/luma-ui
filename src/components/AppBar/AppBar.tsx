@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useScroll } from '../../hooks/useScroll'
-import { useTheme, Container } from '../../theme'
+import { useTheme } from '../../theme'
 import { Component, classes } from '../../lib'
+import Container from '../Container'
 
 /**
  * AppBar

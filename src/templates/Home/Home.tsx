@@ -5,7 +5,7 @@ import BubbleCarousel, { BubbleCarouselItemProps } from '../../components/Bubble
 import Carousel from '../../components/Carousel'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
 import Banner, { BannerProps } from '../../components/Banner'
-import { Container } from '../../theme'
+import Container from '../../components/Container'
 
 type BannerSection = {
     title?: string

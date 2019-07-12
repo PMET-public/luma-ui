@@ -2,9 +2,9 @@ import React from 'react'
 import Header from './'
 import { storiesOf } from '@storybook/react'
 import Icon from '../Icon'
-import Logo from '../../../public/images/new-luma.svg'
-import IconSearch from '../Icon/svgs/thin/magnifier.svg'
-import IconBasket from '../Icon/svgs/thin/basket.svg'
+import Logo from '../../../public/images/luma.svg'
+import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
+import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
 
 storiesOf('📦 Components/Header', module)
     .add('Default', () => (
@@ -37,7 +37,7 @@ storiesOf('📦 Components/Header', module)
                 
                     <Icon count={10}>
                         <a href="#">
-                            <IconBasket aria-label="My Basket" />
+                            <IconBag aria-label="My Basket" />
                         </a>
                     </Icon>
                 </Header.Utilities>

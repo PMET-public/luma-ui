@@ -62,14 +62,10 @@ export const Icon: Component<IconProps> = ({
                 }
 
                 .icon__svg svg {
+                    fill: currentColor;
                     height: 1em;
                     width: auto;
                 }
-
-                .icon__svg svg * {
-                    fill: none;
-                    stroke: currentColor;
-                } 
 
                 .icon__wrapper {
                     position: relative;

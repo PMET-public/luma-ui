@@ -3,17 +3,17 @@ import TabBar from './'
 import Icon from '../Icon'
 import { storiesOf } from '@storybook/react'
 
-import IconHanger from '../Icon/svgs/thin/hanger.svg'
-import IconHeart from '../Icon/svgs/thin/heart.svg'
-import IconMagnifier from '../Icon/svgs/thin/magnifier.svg'
-import IconBag from '../Icon/svgs/thin/bag.svg'
+import IconHome from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
+import IconHeart from '@fortawesome/fontawesome-free/svgs/solid/heart.svg'
+import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
+import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
 
 storiesOf('📦 Components/TabBar', module)
     .add('Default', () => (
         <TabBar>
             <TabBar.Item isActive={true}>
                 <Icon label="Shop">
-                    <IconHanger />
+                    <IconHome />
                 </Icon>
             </TabBar.Item>
 
@@ -25,7 +25,7 @@ storiesOf('📦 Components/TabBar', module)
 
             <TabBar.Item>
                 <Icon label="Search">
-                    <IconMagnifier />
+                    <IconSearch />
                 </Icon>
             </TabBar.Item>
 

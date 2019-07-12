@@ -22,10 +22,7 @@ storiesOf('🖼 Theme', module)
 
             <CodeBlock lang="typescript">{`
                 type ThemeProviderProps = {
-                    colors?: {
-                        link?: Color
-                        linkHover?: Color
-                    
+                    colors?: {                    
                         background?: Color
                         onBackground?: Color
                     

@@ -47,6 +47,24 @@ export const AppMockData: AppProps = {
         count: 2,
         link: { href: '#' },
     },
+    footer: {
+        copyright: '© 2019 Magento, Inc. All Rights Reserved.',
+        menu: [
+            { label: 'Blog', link: { href: '#' } },
+            { label: 'About', link: { href: '#' } },
+            { label: 'Orders & Returns', link: { href: '#' } },
+            { label: 'Customer Service', link: { href: '#' } },
+            { label: 'Contact', link: { href: '#' } },
+            { label: 'Privacy Policy', link: { href: '#' } },
+            { label: 'Terms of Use', link: { href: '#' } },
+        ],
+        social: {
+            facebook: { title: 'Facebook', href: 'https://facebook.com', target: 'blank' },
+            twitter: { title: 'Twitter', href: 'https://twitter.com', target: 'blank' },
+            pinterest: { title: 'Pinterest', href: 'https://pinterest.com', target: 'blank' },
+            instragram: { title: 'Instagram', href: 'https://instagram.com', target: 'blank' },
+        },
+    },
 }
 
 storiesOf('📑 Templates/App', module)

@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 export type ButtonProps = {
     fill?: boolean
     color?: 'primary' | 'secondary',
-    label?: ReactNode
+    label?: ReactNode | string
 }
 
 export const Button: Component<ButtonProps> = ({ 

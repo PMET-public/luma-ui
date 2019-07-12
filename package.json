@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "@storybook/addon-a11y": "^5.1.8",
     "@storybook/addon-actions": "^5.1.8",
     "@storybook/addon-backgrounds": "^5.1.8",

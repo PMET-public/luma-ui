@@ -8,11 +8,16 @@ import TabBar from '../../components/TabBar'
 import Logo from '../../../public/images/luma.svg'
 import Link, { LinkRoute } from '../../components/Link'
 import Image from '../../components/Image'
+import Footer from '../../components/Footer'
 
-import IconSearch from '../../components/Icon/svgs/thin/magnifier.svg'
-import IconBag from '../../components/Icon/svgs/thin/bag.svg'
-import IconHome from '../../components/Icon/svgs/thin/store.svg'
-import IconAccount from '../../components/Icon/svgs/thin/user.svg'
+import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
+import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
+import IconHome from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
+import IconAccount from '@fortawesome/fontawesome-free/svgs/solid/user.svg'
+import IconTwitter from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
+import IconFacebook from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
+import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
+import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
 
 export type AppProps = {
     home: {
@@ -52,12 +57,24 @@ export type AppProps = {
         label?: string
         link: LinkRoute
     }
+
+    footer: {
+        copyright: string
+        menu?: Array<{ link: LinkRoute, label: string }>
+        social?: {
+            facebook?: LinkRoute
+            instragram?: LinkRoute
+            pinterest?: LinkRoute
+            twitter?: LinkRoute
+        }
+    }
 }
 
 export const App: Component<AppProps> = ({
     as: App = 'div',
     cart,
     children,
+    footer,
     help,
     home,
     logo,
@@ -117,6 +134,53 @@ export const App: Component<AppProps> = ({
 
             {children}
 
+            <Footer className="app__footer">
+                {footer.menu && (
+                    <div className="app__footer__menu">
+                        {footer.menu.map(({ label, link }, index) => (
+                            <Link className="app__footer__menu__link" 
+                                {...link}
+                            >
+                                {label}
+                            </Link>
+                        ))}
+                    </div>
+                )}
+
+                {footer.social && (
+                    <div className="app__footer__social">
+                        {footer.social.pinterest && (
+                            <Icon as={Link} {...footer.social.pinterest}>
+                                <IconPinterest />
+                            </Icon>
+                        )}
+
+                        {footer.social.instragram && (
+                            <Icon as={Link} {...footer.social.instragram}>
+                                <IconInstagram />
+                            </Icon>
+                        )}
+
+                        {footer.social.facebook && (
+                            <Icon as={Link} {...footer.social.facebook}>
+                                <IconFacebook />
+                            </Icon>
+                        )}
+
+                        {footer.social.twitter && (
+                            <Icon as={Link} {...footer.social.twitter}>
+                                <IconTwitter />
+                            </Icon>
+                        )}
+
+                    </div>
+                )}
+
+                <div className="app__footer__copyright">
+                    {footer.copyright}
+                </div>
+            </Footer>
+
             <TabBar className="app__tab-bar">
                 <TabBar.Item isActive={true}>
                     <Icon as={Link} {...home.link}>
@@ -156,8 +220,39 @@ export const App: Component<AppProps> = ({
                     @media(--large-screen) {
                         max-height: 3.5rem;
                     }
-                }    
+                }
 
+                .app__footer__menu {
+                    display: flex;
+                    flex-grow: 1;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    margin-bottom: 2rem;
+                }
+
+                .app__footer__menu__link {
+                    margin: 1rem;
+                    display: inline-block;
+                }
+
+                .app__footer__social {
+                    display: grid;
+                    flex-grow: 1;
+                    font-size: 2.4rem;
+                    grid-auto-columns: max-content;
+                    grid-auto-flow: column;
+                    grid-auto-rows: max-content;
+                    grid-gap: 2rem;
+                    justify-content: center;
+                    margin-bottom: 3rem;
+                }
+
+                .app__footer__copyright {
+                    filter: opacity(0.6);
+                    text-align: center;
+                    width: 100%;
+                }
+                
                 @media(--small-screen-only) {
                     .app__header__menu,
                     .app__header__utilities__search,

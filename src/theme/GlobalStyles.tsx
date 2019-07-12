@@ -9,19 +9,9 @@ export default ({ colors }: any) => {
                 color: ${colors.onBackground};
             }    
 
-            .theme-container {
-                margin: 0 auto;
-                max-width: 1800px;
-                padding: 0 1rem;
-                width: 100%;
-            }
-
             a {
-                color: ${colors.link};
-            }
-
-            a:hover {
-                color: ${colors.linkHover};
+                color: inherit;
+                text-decoration: none;
             }
 
             .visuallyhidden { 
