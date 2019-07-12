@@ -28,13 +28,16 @@ export const Button: Component<ButtonProps> = ({
                 .button {
                     --color: inherit;
 
+                    align-items: center;
                     background-color: var(--background, transparent);
                     border-radius: 2rem;
                     border: 0.1rem solid;
                     color: var(--color);
                     cursor: pointer;
+                    display: inline-flex;
                     font-size: 1.6rem;
                     font-weight: 600;
+                    justify-content: center;
                     line-height: 1;
                     padding: 1.2rem 2.8rem;
                     transition: all 305ms ease;

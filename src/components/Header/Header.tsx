@@ -127,7 +127,7 @@ Header.Menu = ({
                     display: inline-grid;
                     font-family: ${typography.headingFamily};
                     font-weight: 600;
-                    grid-auto-columns: minmax(max-content, max-content);
+                    grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-gap: 2.5rem;
                     text-align: initial;
@@ -155,7 +155,7 @@ Header.Utilities = ({
                     display: grid;
                     font-size: 1.3rem;
                     grid-area: utilities;
-                    grid-auto-columns: minmax(max-content, max-content);
+                    grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-gap: 2.5rem;
                     justify-content: flex-end;

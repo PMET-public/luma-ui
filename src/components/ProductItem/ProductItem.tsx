@@ -119,7 +119,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                     display: grid;
                     grid-gap: 0.75rem;
                     grid-auto-flow: column;
-                    grid-auto-columns: minmax(max-content, max-content);
+                    grid-auto-columns: max-content;
                 }
 
                 .product-item__details__price__label {

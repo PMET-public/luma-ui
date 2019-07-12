@@ -20,7 +20,7 @@ storiesOf('📦 Components/Footer', module)
 
                 .story__footer__column {
                     display: grid;
-                    grid-auto-rows: minmax(max-content, max-content);
+                    grid-auto-rows: max-content;
                     grid-gap: 1.5rem;
 
                     &.--social {

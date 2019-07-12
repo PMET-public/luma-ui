@@ -93,11 +93,14 @@ export const Banner: Component<BannerProps> = ({
                 }
 
                 .banner__content__buttons {
-                    display: grid;
-                    grid-auto-columns: minmax(max-content, max-content);
-                    grid-auto-flow: column;
-                    grid-gap: 1rem;
-                    margin-top: 2rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: -0.75rem;
+                    padding-top: 3rem;
+                }
+
+                .banner__content__buttons__item {
+                    margin: 0.75rem;
                 }
 
                 @media(--medium-screen) {
@@ -112,11 +115,7 @@ export const Banner: Component<BannerProps> = ({
                     }
                 }
 
-                @media(--large-screen) {
-                    .banner__content__buttons {
-                        margin-top: 3rem;
-                    }
-                    
+                @media(--large-screen) {                    
                     .banner__content__titles__item {
                         &.--large {
                             font-size: 6rem;

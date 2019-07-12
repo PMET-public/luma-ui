@@ -35,7 +35,7 @@ storiesOf('📦 Components/Dropdown', module)
                     display: grid;
                     grid-gap: 3rem;
                     grid-auto-flow: column;
-                    grid-auto-columns: minmax(max-content, max-content);
+                    grid-auto-columns: max-content;
                 }
             `}</style>
         </div>

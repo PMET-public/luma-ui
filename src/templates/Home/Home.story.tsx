@@ -59,7 +59,7 @@ export const HomeMockData: HomeProps = {
                 image: {
                     alt: '',
                     src: require('../../../public/images/banner-2.jpg'),
-                    height: 700,
+                    height: 650,
                     width: '100%',
                 },
                 titles: [
