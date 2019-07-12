@@ -79,8 +79,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__details {
                     display: grid;
                     line-height: 1.5;
-                    justify-content: center;
-                    text-align: center;
+                    padding-left: 1rem;
                 }
 
                 .product-item__details__badge {
