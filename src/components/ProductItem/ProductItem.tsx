@@ -29,8 +29,8 @@ export const ProductItem: Component<ProductItemProps> = ({
     return (
         <ProductItem {...props} className={classes('product-item', props.className)}>
             <Image className="product-item__image"
-                height={600}
-                width="100%"
+                height="1580"
+                width="1274"
                 {...image}
             >
                  {!!colors && (
@@ -67,6 +67,13 @@ export const ProductItem: Component<ProductItemProps> = ({
             <style jsx global>{`
                 .product-item__image {
                     position: relative;
+                    line-height: 0;
+
+                    & .image__img {
+                        height: 100%;
+                        width: 100%;
+                        min-height: 100%;
+                    }
                 }
 
                 .product-item__details {
@@ -90,7 +97,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                     transform-origin: bottom left;
                     transform: rotate(90deg);
                 }
-
 
                 .product-item__details__colors {
                     display: grid;

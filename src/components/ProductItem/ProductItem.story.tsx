@@ -29,7 +29,7 @@ storiesOf('📦 Components/ProductItem', module)
                 }
 
                 .story__product-item {
-                    width: 40rem;
+                    width: 60rem;
                 }
             `}</style>
         </div>
