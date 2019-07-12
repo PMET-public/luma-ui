@@ -227,12 +227,14 @@ export const App: Component<AppProps> = ({
                     flex-grow: 1;
                     flex-wrap: wrap;
                     justify-content: center;
-                    margin-bottom: 2rem;
+                    margin: -0.75rem -1.5rem;
+                    padding-bottom: 3rem;
                 }
 
                 .app__footer__menu__link {
-                    margin: 1rem;
+                    margin: 0.75rem 1.5rem;
                     display: inline-block;
+                    text-transform: uppercase;
                 }
 
                 .app__footer__social {

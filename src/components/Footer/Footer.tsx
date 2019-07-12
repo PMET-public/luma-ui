@@ -23,7 +23,7 @@ export const Footer: Component<FooterProps> = ({
             <style jsx global>{`
                 .footer {     
                     background: ${colors.surface};  
-                    color: ${colors.onSurface.fade(0.4)};  
+                    color: ${colors.onSurface.fade(0.3)};  
 
                     & a:hover {
                         filter: opacity(0.75);
@@ -31,8 +31,8 @@ export const Footer: Component<FooterProps> = ({
                 }
 
                 .footer__container {
-                    font-size: 1.4rem;
-                    padding: 10rem 6rem;
+                    font-size: 1.3rem;
+                    padding: 6rem 4rem;
                 }
             `}</style>
         </Footer>
