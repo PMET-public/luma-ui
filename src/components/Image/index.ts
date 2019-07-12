@@ -1,2 +1,2 @@
 export * from './Image'
-export { Image as default } from './Image'
+export { ImageComponent as default } from './Image'

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
@@ -9,8 +9,8 @@ export type ImageProps = {
     width?: string | number
 }
 
-export const Image: Component<ImageProps> = ({
-    as: Image = 'div',
+export const ImageComponent: Component<ImageProps> = ({
+    as: ImageComponent = 'div',
     alt,
     children,
     height,
@@ -19,12 +19,19 @@ export const Image: Component<ImageProps> = ({
     ...props
 }) => {
     const { colors } = useTheme()
+    const [ loaded, setLoaded ] = useState(false)
+
+    useEffect(() => {
+        const image = new Image()
+        image.onload = () => setLoaded(true)
+        image.src = src
+    }, [src])
 
     return (
-        <Image {...props} className={classes('image', props.className)}>
+        <ImageComponent {...props} className={classes('image', props.className)}>
             <figure>
                 <picture> 
-                    <img className={classes('image__img')}
+                    <img className={classes('image__img', ['--loaded', loaded])}
                         srcSet={src} 
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                         {...{alt, width, height}}
@@ -40,12 +47,19 @@ export const Image: Component<ImageProps> = ({
 
             <style jsx global>{`
                 .image__img {
-                    background-color: ${colors.onSurface.fade(0.95)};
-                    animation-name: pulsate;
                     animation-duration: 2s;
                     animation-iteration-count: infinite;
+                    animation-name: pulsate;
+                    background-color: ${colors.onSurface.fade(0.95)};
+                    filter: blur(10px);
                     object-fit: cover;
                     object-position: center;
+                    transition: filter 100ms ease;
+
+                    &.--loaded {
+                        filter: blur(0);
+                    }
+                    
                 }
 
 
@@ -61,6 +75,6 @@ export const Image: Component<ImageProps> = ({
                     }
                 }
             `}</style>
-        </Image>
+        </ImageComponent>
     )
 }
