@@ -1,6 +1,6 @@
 /* Breakpoints Queries */
 @custom-media --small-screen-only (max-width: 599px);    
 @custom-media --medium-screen (min-width: 600px);    
-@custom-media --large-screen (min-width: 768px);    
+@custom-media --large-screen (min-width: 992px);    
 @custom-media --xlarge-screen (min-width: 1600px);    
 

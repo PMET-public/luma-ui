@@ -106,18 +106,12 @@ export const Home: Component<HomeProps> = ({
 
                     }
 
-                    @media(--xlarge-screen) {
+                    @media(--large-screen) {
                         .home__section__carousel {
                             grid-auto-columns: calc((100% / 3) - 4rem);
                         }
                     }
-                    /*
-                    @media(--xlarge-screen) {
-                        .home__section__carousel {
-                            grid-auto-columns: calc((100% / 4) - 4rem);
-                        }
-                    }
-                    */
+                  
                 `}</style>
             </Container>
         </Home>
