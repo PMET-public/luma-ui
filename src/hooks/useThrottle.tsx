@@ -1,5 +1,6 @@
+import { useRef } from 'react'
 
-export const throttle = (fn: any, delay = 100, trail?: boolean) => {
+const throttle = (fn: any, delay = 100, trail?: boolean) => {
     const offset: any = (trail === false) ? 0 : delay
     let last = 0
     let timeout: any
@@ -23,3 +24,5 @@ export const throttle = (fn: any, delay = 100, trail?: boolean) => {
         else if (!timeout && trail !== false) timeout = setTimeout(exec, delay)
     }
 }
+
+export const useThrottle = (callback: any, delay?: number, trail?: boolean) => useRef(throttle(callback, delay, trail)).current

@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import { throttle } from '../lib/helpers'
+import { useState, useEffect } from 'react'
+import { useThrottle } from './useThrottle'
 
 type UseScroll = {
     scrollY: number
@@ -12,18 +12,18 @@ export const useScroll = (): UseScroll => {
         scrollX: 0,
     })
 
-    const throttled = useRef(throttle((e: any) => {
+    const throttled = useThrottle((e: any) => {
         setWheelEvent({
             scrollY: window.scrollY,
             scrollX: window.scrollX,
         })
-    }, 250, true))
+    }, 150, true)
 
     useEffect(() => {
-        document.addEventListener('scroll', throttled.current)
+        document.addEventListener('scroll', throttled)
 
         return () => {
-            document.removeEventListener('scroll', throttled.current)
+            document.removeEventListener('scroll', throttled)
         }
     })
 
