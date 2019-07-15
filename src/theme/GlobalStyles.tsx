@@ -23,11 +23,14 @@ export default ({ colors }: any) => {
             }
 
             *:focus {
-                outline-style: solid;
-                outline-color: currentColor;
-                outline-width: 0.2rem;
-                outline-offset: 0.2rem;
+                outline: none;
             }
+
+            *:focus-visible {
+                outline: currentColor solid 0.2rem;
+                background: red;
+            }            
+
         `}</style>
     )
 }

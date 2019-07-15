@@ -123,10 +123,6 @@ HotSpots.Item = ({
                     
                 }
 
-                .hot-spot__button:focus {
-                    outline: 0;
-                }
-
                 .hot-spot__button::after {
                     animation: pulse 2s infinite;
                     border-radius: 50%;

@@ -40,7 +40,9 @@ export const Button: Component<ButtonProps> = ({
                     justify-content: center;
                     line-height: 1;
                     padding: 1.2rem 2.8rem;
-                    transition: all 305ms ease;
+                    transition-duration: 305ms;
+                    transition-property: opacity, color, background-color;
+                    transition-timing-function: ease;
 
                     &[href] {
                         text-decoration: none !important;

@@ -74,14 +74,18 @@ export const SearchBar: Component<SearchBarProps> = ({
                             </React.Fragment>
                         )}
                     </span>
-
-                    <Icon className="search-bar__reset"
-                        aria-label="reset"
-                        as="button" 
-                        onClick={handleReset}
-                    >
-                        <IconReset />
-                    </Icon>
+                    
+                    <span className="search-bar__reset">
+                        {value.length > 0 && (
+                            <Icon 
+                                aria-label="reset"
+                                as={props => <button type="reset" {...props} />} 
+                                onClick={handleReset}
+                            >
+                                <IconReset />
+                            </Icon>
+                        )}   
+                    </span>
                 </label>
             </form>
 
@@ -117,11 +121,6 @@ export const SearchBar: Component<SearchBarProps> = ({
                     font-size: 1.6rem;
                     font-weight: 600;
                     width: 100%;
-
-                    &:focus {
-                        outline: none;
-                        box-shadow: none;
-                    }
                 }
 
                 .search-bar__count {
@@ -142,5 +141,3 @@ export const SearchBar: Component<SearchBarProps> = ({
         </SearchBar>
     )
 }
-
-// box-shadow: 0 0 0.2rem ${colors.onSurface.fade(0.75)};
