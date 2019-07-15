@@ -22,7 +22,7 @@ export const ImageComponent: Component<ImageProps> = ({
 
     return (
         <ImageComponent {...props} className={classes('image', props.className)}>
-            <figure>
+            <figure className="image__figure">
                 <div className="image__wrapper">
                     <img className="image__img image__tag"
                         src={src}
@@ -30,6 +30,7 @@ export const ImageComponent: Component<ImageProps> = ({
                     />
                     <img className="image__img image__placeholder"
                         arial-hidden="true"
+                        srcSet={src}
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                         {...{width, height}}
                     />
@@ -43,9 +44,18 @@ export const ImageComponent: Component<ImageProps> = ({
             </figure>
 
             <style jsx global>{`
+                .image {
+                    display: inherit;
+                }
+
+                .image__figure {
+                    display: inherit;
+                }
+
                 .image__wrapper {
                     position: relative;
                     z-index: -1;
+                    display: inherit;
                 }
 
                 .image__tag {
@@ -56,6 +66,7 @@ export const ImageComponent: Component<ImageProps> = ({
                     background-color: ${colors.onSurface.fade(0.95)};
                     object-fit: cover;
                     object-position: center;
+                    z-index: 1;
                 }
 
                 .image__placeholder {

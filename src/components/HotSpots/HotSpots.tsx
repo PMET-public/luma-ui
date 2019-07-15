@@ -45,10 +45,10 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
                 <style jsx global>{`
                     .hot-spots {
                         position: relative;
+                        display: inline-block;
                     }
 
                     .hot-spots .image {
-                        width: 100%;
                         z-index: 0;
                     }
                 `}</style>
