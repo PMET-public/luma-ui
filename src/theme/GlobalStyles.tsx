@@ -21,6 +21,13 @@ export default ({ colors }: any) => {
                 overflow: hidden; 
                 position: absolute; 
             }
+
+            *:focus {
+                outline-style: solid;
+                outline-color: currentColor;
+                outline-width: 0.2rem;
+                outline-offset: 0.2rem;
+            }
         `}</style>
     )
 }

@@ -3,7 +3,7 @@ import SearchBar from './'
 import { storiesOf } from '@storybook/react'
 import Container from '../Container'
 import { action } from '@storybook/addon-actions'
-import { text } from '@storybook/addon-knobs'
+import { text, number } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/SearchBar', module)
     .add('Default', () => (
@@ -12,7 +12,8 @@ storiesOf('📦 Components/SearchBar', module)
                 <SearchBar 
                     onUpdate={(query: string) => action(`onUpdate(${query})`)()}
                     onSearch={(query: string) => action(`onSubmit(${query})`)()}
-                    value={text('value', '')}
+                    count={number('count', 0)}
+                    value={text('value', 'Shoes')}
                 />
 
                 <style jsx global>{`

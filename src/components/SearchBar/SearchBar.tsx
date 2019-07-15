@@ -1,9 +1,13 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react'
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { Component, classes } from '../../lib'
 import { useTheme } from '../../theme'
 import { useThrottle } from '../../hooks/useThrottle'
+import Icon from '../Icon'
+import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
+import IconReset from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
 
 export type SearchBarProps = {
+    count?: number
     label?: string
     value?: string
     onUpdate?: (query: string) => any
@@ -12,69 +16,131 @@ export type SearchBarProps = {
 
 export const SearchBar: Component<SearchBarProps> = ({ 
     as: SearchBar = 'div', 
+    count,
     label = 'Search',
-    value: defaultValue = 'ss',
+    value: defaultValue = '',
     onSearch,
     onUpdate,
     ...props
 }) => {
     const { colors } = useTheme()
     const [ value, setValue ] = useState(defaultValue)
-    const throttledUpdate = useThrottle(() => onUpdate && onUpdate(value), 1500, true)
 
-    const handleUpdate = (event: ChangeEvent<HTMLInputElement>) => {
+    const throttledUpdate = useThrottle(() => {
+        if (onUpdate) onUpdate(value)
+    }, 250)
+
+    useEffect(throttledUpdate, [value])
+
+    useEffect(() => setValue (defaultValue), [defaultValue])
+        
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const query = event.currentTarget.value
         setValue(query)
-        if (onUpdate && value.length > 2) throttledUpdate()
     }
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
-        if (onSearch) onSearch(value)
+        if (onSearch && value) onSearch(value)
+    }
+
+    const handleReset = () => {
+        setValue('')
     }
     
     return (
         <SearchBar {...props} className={classes('search-bar', props.className)}>
             <form onSubmit={handleSubmit}>
-                <input className="search-bar__field"
-                    aria-label={label} 
-                    placeholder={label}
-                    type="search"
-                    value={value}
-                    onChange={handleUpdate}
-                />
+                <label className="search-bar__wrapper">
+                    <Icon className="search-bar__icon"
+                        as="span" 
+                        aria-hidden
+                    >
+                        <IconSearch />
+                    </Icon>
+
+                    <input className="search-bar__field"
+                        aria-label={label} 
+                        onChange={handleChange}
+                        placeholder={label}
+                        type="text"
+                        value={value}
+                    />
+                    
+                    <span className="search-bar__count">
+                        {typeof count === 'number' && (
+                            <React.Fragment>
+                                {count > 999 ? '+999' : count} {count === 0 || count > 1 ? 'results' : 'result'}
+                            </React.Fragment>
+                        )}
+                    </span>
+
+                    <Icon className="search-bar__reset"
+                        aria-label="reset"
+                        as="button" 
+                        onClick={handleReset}
+                    >
+                        <IconReset />
+                    </Icon>
+                </label>
             </form>
 
             <style jsx global>{`
-                .search-bar {
-                    width: 100%;
-                }
-                .search-bar__field {
+                .search-bar__wrapper {
+                    --opacity: 0.5;
+
+                    align-items: center;
                     background-color: ${colors.surface};
+                    border-radius: 0.5rem;
                     color: ${colors.onSurface};
-                    font-size: 1.6rem;
-                    font-weight: 600;
-                    padding: 1.5rem 2rem;
+                    display: grid;
+                    grid-gap: 1rem;
+                    grid-template-columns: auto 1fr auto auto;
+                    padding: 1.6rem;
                     width: 100%;
-                    border: 0 none;
-                    border-radius: 3rem;
-                    appearance: none;
 
-                    &::-webkit-search-cancel-button {
-                        appearance: none;
-                         /* Now your own custom styles */
-                        height: 14px;
-                        width: 14px;
-                        display: block;
-                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAn0lEQVR42u3UMQrDMBBEUZ9WfQqDmm22EaTyjRMHAlM5K+Y7lb0wnUZPIKHlnutOa+25Z4D++MRBX98MD1V/trSppLKHqj9TTBWKcoUqffbUcbBBEhTjBOV4ja4l4OIAZThEOV6jHO8ARXD+gPPvKMABinGOrnu6gTNUawrcQKNCAQ7QeTxORzle3+sDfjJpPCqhJh7GixZq4rHcc9l5A9qZ+WeBhgEuAAAAAElFTkSuQmCC);
-                        /* setup all the background tweaks for our custom icon */
-                        background-repeat: no-repeat;
-
-                        /* icon size */
-                        background-size: 14px;
+                    &:hover, &:focus-within {
+                        --opacity: 1;
                     }
                 }
+
+                .search-bar__icon {           
+                    transition: opacity 305ms ease;         
+                    opacity: var(--opacity);
+                }
+
+                .search-bar__field {   
+                    appearance: none;
+                    background-color: inherit;
+                    border: 0 none;
+                    color: inherit;
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    width: 100%;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+
+                .search-bar__count {
+                    font-size: 1.4rem;
+                    white-space: nowrap;
+                    opacity: var(--opacity);
+                    transition: opacity 305ms ease;         
+
+                }
+
+                .search-bar__reset {
+                    opacity: var(--opacity);
+                    transition: opacity 305ms ease;         
+
+                }
+
             `}</style>
         </SearchBar>
     )
 }
+
+// box-shadow: 0 0 0.2rem ${colors.onSurface.fade(0.75)};

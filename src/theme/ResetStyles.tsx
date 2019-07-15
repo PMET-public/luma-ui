@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default () => (
-    <style jsx global>{`
+    <style jsx global>{`       
         /* http://meyerweb.com/eric/tools/css/reset/ 
         v2.0 | 20110126
         License: none (public domain)
@@ -50,6 +50,12 @@ export default () => (
         table {
             border-collapse: collapse;
             border-spacing: 0;
+        }
+        button {
+            background: none;
+            border: 0;
+            line-height: 0;
+            padding: 0;
         }
     `}</style>
 )
