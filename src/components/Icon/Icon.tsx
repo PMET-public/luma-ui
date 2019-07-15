@@ -11,9 +11,9 @@ export type IconProps = {
 
 export const Icon: Component<IconProps> = ({
     as: Icon = 'span',
+    children,
     count,
     label,
-    children,
     ...props
 }) => {    
     const countTransitions = useTransition(count, p => p, {
@@ -52,7 +52,7 @@ export const Icon: Component<IconProps> = ({
                     display: inline-flex;
                     flex-direction: column;
                     font-size: inherit;
-                    line-height: 1.1;
+                    line-height: 0;
                 }
 
                 .icon[href], a.icon, 
@@ -80,6 +80,8 @@ export const Icon: Component<IconProps> = ({
                     font-size: 0.5em;
                     font-weight: 600;
                     text-overflow: ellipsis;
+                    line-height: 1.1;
+                    margin-top: 0.6rem;
 
                     &.--count {
                         padding-right: 0.9em;

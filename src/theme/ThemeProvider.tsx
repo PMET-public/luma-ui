@@ -4,7 +4,6 @@ import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
 import { ReactComponentLike } from 'prop-types'
 import { ColorProperty, FontFamilyProperty, FontStyleProperty, FontWeightProperty } from 'csstype'
-import { Component, classes } from '../lib'
 import ColorObject from 'color'
 
 const color = require('color')

@@ -1,7 +1,6 @@
 import React from 'react'
 import HotSpots from './'
 import { storiesOf } from '@storybook/react'
-import centered from '@storybook/addon-centered/dist/react'
 
 const PriceTagMock = ({ label, price }: any) => (
     <div style={{ fontWeight: 600 }}>
@@ -11,16 +10,14 @@ const PriceTagMock = ({ label, price }: any) => (
 )
 
 storiesOf('📦 Components/HotSpots', module)
-    .addDecorator(centered)
     .add('Default', () => (
-        <div style={{
-            maxWidth: '96rem',
-            margin: '1rem',
-        }}>
+        <div>
             <HotSpots
                 image={{
                     alt: 'Shop the Look',
                     src: require('../../../public/images/products-hotspots.jpg'),
+                    height: 600,
+                    width: 600,
                 }}
                 description="A lot of stuffs"
             >
@@ -49,18 +46,20 @@ storiesOf('📦 Components/HotSpots', module)
         </div>
     ))
     .add('w/ Link', () => (
-        <div style={{
-            maxWidth: '96rem',
-            margin: '1rem',
-        }}>
+        <div>
             <HotSpots
-                image={require('../../../public/images/products-hotspots.jpg')}
+                image={{
+                    alt: 'Shop the look',
+                    src: require('../../../public/images/products-hotspots.jpg'),
+                    height: 600,
+                    width: 600,
+                }}
                 description="A lot of stuffs"
             >
                 <a href="https://magento.com" target="blank">
                     <HotSpots.Item
                         coords={{ x: 15, y: 42 }}
-                        id={0}
+                        id="0"
                         label="Sweater"
                     />
                 </a>

@@ -1,7 +1,7 @@
 module.exports = {
     plugins: [
         require('postcss-preset-env')({
-            stage: 0,
+            stage: 2,
             features: {
                 'nesting-rules': true
             },
