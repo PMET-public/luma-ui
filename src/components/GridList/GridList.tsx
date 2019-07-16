@@ -27,7 +27,7 @@ export const GridList: Component<GridListProps> & CompoundComponent = ({
                 .grid-list {
                     display: grid;
                     grid-gap: 3rem 0.65rem;
-                    grid-template-columns: repeat(6, 1fr);
+                    grid-template-columns: repeat(12, 1fr);
                 }
             `}</style>
         </GridList>
@@ -45,29 +45,23 @@ GridList.Item = ({
 
             <style jsx global>{`
                 .grid-list-item {
-                    grid-column-end: span 3;
-                    
-                    &:nth-child(3n + 1) {
+                    @media(--small-screen-only) {
                         grid-column-end: span 6;
+                        
+                        &:nth-child(3n + 1) {
+                            grid-column-end: span 12;
+                        }
                     }
 
-                    @media(--large-screen) {
-                        grid-column-end: span 2;
+                    @media(--medium-screen) {
+                        grid-column-end: span 4;
 
                         &:nth-child(5n+1),
                         &:nth-child(5n+2) {
-                            grid-column-end: span 3 !important;
+                            grid-column-end: span 6;
                         }
-
-                        &:nth-child(3n + 1) {
-                            grid-column-end: span 2;
-                        }
-                       
-                    }
-                    
+                    }                    
                 }
-
-            
             `}</style>
         </GridListItem>
 

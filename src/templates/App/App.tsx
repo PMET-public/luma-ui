@@ -137,8 +137,9 @@ export const App: Component<AppProps> = ({
             <Footer className="app__footer">
                 {footer.menu && (
                     <div className="app__footer__menu">
-                        {footer.menu.map(({ label, link }, index) => (
+                        {footer.menu.map(({ label, link }, key) => (
                             <Link className="app__footer__menu__link" 
+                                key={`app__footer__meny__link--${key}`}
                                 {...link}
                             >
                                 {label}
