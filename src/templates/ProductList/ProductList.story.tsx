@@ -7,6 +7,10 @@ import App from '../App'
 import { AppMockData } from '../App/App.story'
 
 export const ProductListMockData: ProductListProps = {
+    search: {
+        value: 'Sweater',
+        count: 10,
+    },
     products: new Array(number('# items', 10)).fill(true).map(() => ({
         image: {
             alt: '',

@@ -90,27 +90,29 @@ export const SearchBar: Component<SearchBarProps> = ({
             </form>
 
             <style jsx global>{`
-                .search-bar__wrapper {
-                    --opacity: 0.5;
-
-                    align-items: center;
-                    background-color: ${colors.surface};
-                    border-radius: 0.5rem;
+                .search-bar {
+                    --opacity: 0.64;
+                    background-color: ${colors.onSurface.fade(0.95)};
+                    border-radius: 1rem;
                     color: ${colors.onSurface};
-                    display: grid;
-                    grid-gap: 1rem;
-                    grid-template-columns: auto 1fr auto auto;
-                    padding: 1.6rem;
-                    width: 100%;
 
-                    &:hover, &:focus-within {
+                    &:hover,
+                    &:focus-within {
                         --opacity: 1;
                     }
                 }
 
+                .search-bar__wrapper {
+                    align-items: center;
+                    display: grid;
+                    grid-gap: 1.6rem;
+                    grid-template-columns: auto 1fr auto auto;
+                    padding: 1em;
+                    width: 100%;
+                }
+
                 .search-bar__icon {           
-                    transition: opacity 305ms ease;         
-                    opacity: var(--opacity);
+                    font-size: 1.1sem;
                 }
 
                 .search-bar__field {   
@@ -118,23 +120,22 @@ export const SearchBar: Component<SearchBarProps> = ({
                     background-color: inherit;
                     border: 0 none;
                     color: inherit;
-                    font-size: 1.6rem;
+                    font-size: inherit;
                     font-weight: 600;
                     width: 100%;
                 }
 
                 .search-bar__count {
-                    font-size: 1.4rem;
-                    white-space: nowrap;
+                    font-size: 0.8em;
                     opacity: var(--opacity);
-                    transition: opacity 305ms ease;         
-
+                    transition: opacity 305ms ease;
+                    white-space: nowrap;
                 }
 
                 .search-bar__reset {
+                    font-size: 1.6rem;    
                     opacity: var(--opacity);
-                    transition: opacity 305ms ease;         
-
+                    transition: opacity 305ms ease;
                 }
 
             `}</style>

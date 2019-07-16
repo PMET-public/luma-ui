@@ -209,6 +209,11 @@ export const App: Component<AppProps> = ({
             </TabBar>
 
             <style jsx global>{`
+                .app {
+                    display: grid;
+                    grid-gap: 2rem;
+                }
+                
                 .app__header__logo {
                     margin: 0;
                     padding: 0;
@@ -221,6 +226,10 @@ export const App: Component<AppProps> = ({
                     @media(--large-screen) {
                         max-height: 3.5rem;
                     }
+                }
+
+                .app__footer {
+                    margin-top: 4rem;
                 }
 
                 .app__footer__menu {
