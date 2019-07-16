@@ -4,37 +4,6 @@ import { storiesOf } from '@storybook/react'
 import { FiltersItemProps } from './Filters'
 
 const filters: FiltersItemProps[] = [
-    // {
-    //     label: 'Category',
-    //     link: { href: '#', alt: '' },
-    //     items: [
-    //         {
-    //             label: 'Bottoms',
-    //             link: { href: '#', alt: '' },
-    //             count: 24,
-    //         },
-    //         {
-    //             label: 'Tops',
-    //             link: { href: '#', alt: '' },
-    //             count: 24,
-    //         },
-    //         {
-    //             label: 'Dresses',
-    //             link: { href: '#', alt: '' },
-    //             count: 12,
-    //         },
-    //         {
-    //             label: 'Accessories',
-    //             link: { href: '#', alt: '' },
-    //             count: 22,
-    //         },
-    //         {
-    //             label: 'Shop The Look',
-    //             link: { href: '#', alt: '' },
-    //             count: 10,
-    //         },
-    //     ],
-    // },
     {
         label: 'Fashion',
         items: [

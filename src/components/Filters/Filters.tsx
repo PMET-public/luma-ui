@@ -1,9 +1,9 @@
 import React, { ReactElement, useState, useRef, useEffect } from 'react'
 import { Component, classes } from '../../lib'
+import Link, { LinkRoute } from '../Link'
 
 import ToggleIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
 import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/check.svg'
-import Link, { LinkRoute } from '../Link';
 
 export type FiltersProps = {
     children: ReactElement<FiltersItemProps> | Array<ReactElement<FiltersItemProps>>
@@ -38,6 +38,8 @@ export const Filters: Component<FiltersProps> & CompoundComponent = ({
                 .filters {
                     display: grid;
                     grid-gap: 4rem;
+                    grid-auto-rows: max-content;
+                    grid-auto-flow: row;
                 }
             `}</style>
         </Filters>
@@ -132,7 +134,7 @@ Filters.Item = ({
                     transition: max-height var(--transition-duration) ease;
                 }
 
-                .filters-item__list{
+                .filters-item__list {
                     display: grid;
                     grid-gap: 1.4rem;
                 }

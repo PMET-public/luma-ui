@@ -53,7 +53,15 @@ GridList.Item = ({
                         }
                     }
 
-                    @media(--medium-screen) {
+                    @media(--medium-screen-only) {
+                        grid-column-end: span 6;
+                        
+                        &:nth-child(3n + 1) {
+                            grid-column-end: span 12;
+                        }
+                    }
+
+                    @media(--large-screen) {
                         grid-column-end: span 4;
 
                         &:nth-child(5n+1),
