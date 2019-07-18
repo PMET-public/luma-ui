@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Component, classes } from '../../lib'
 
 import { useTheme } from '../../theme'
 import { useResize } from '../../hooks/useResize'
+import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
 import GridList from '../../components/GridList'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
@@ -17,30 +18,34 @@ import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/ellipsis-v.svg
 export type ProductListProps = {
     search: SearchBarProps
     filters: {
-        buttons?: {
-            apply?: ButtonProps
-            reset?: ButtonProps
-        },
+        label: string
+        open?: boolean
+        buttons?: ButtonProps[],
         items: FiltersItemProps[]
     }
     products: ProductItemProps[]
 }
 
-export const ProductList: Component<ProductListProps> = ({ 
+export const ProductList: Component<ProductListProps> = ({
     as: ProductList = 'div', 
     search,
     filters,
     products,
     ...props
 }) => {
-    const [showFilter, setShowFilter] = useState(false)
+    const [showFilter, setShowFilter] = useState(!!filters.open)
     const { colors } = useTheme()
     const { vHeight, vWidth } = useResize()
+    const filtersRef = useRef(null)
+
+    useOnClickOutside(filtersRef, () => setShowFilter(false))
 
     return (
         <ProductList {...props} className={classes('product-list', props.className)}>
             <Container className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
-                <div className="product-list__filters">
+                <div className="product-list__filters"
+                    ref={filtersRef}
+                >
                     <Filters>
                         {filters.items.map((item, index) => (
                             <Filters.Item key={index} {...item} />
@@ -48,12 +53,13 @@ export const ProductList: Component<ProductListProps> = ({
                     </Filters>
 
                     {filters.buttons && (
-                        <div className="product-list__filters__buttons">   
-                            <Button 
-                                fill 
-                                onClick={() => setShowFilter(false)}
-                                {...filters.buttons.apply} 
-                            />
+                        <div className="product-list__filters__buttons">  
+                            {filters.buttons.map((button, index) => (
+                                <Button 
+                                    key={`product-list__filters__buttons__item--${index}`}
+                                    {...button} 
+                                />
+                            ))} 
                         </div>
                     )}
                 </div>
@@ -64,7 +70,7 @@ export const ProductList: Component<ProductListProps> = ({
 
                         <Icon className="product-list__grid__search-bar__filters-btn"
                             as="button"
-                            arial-label="Filters"
+                            arial-label={filters.label}
                             onClick={() => setShowFilter(!showFilter)}
                         >
                             <FiltersIcon />
@@ -86,7 +92,7 @@ export const ProductList: Component<ProductListProps> = ({
 
             <style jsx global>{`
                 @media(--small-screen-only) {
-                    .product-list__wrapper .product-list__filters  { 
+                    .product-list__filters  { 
                         width: calc(${vWidth}px - 6rem);
                         height: calc(${vHeight}px - 0rem);
                     }
@@ -146,9 +152,10 @@ export const ProductList: Component<ProductListProps> = ({
 
                         & .product-list__filters {
                             -webkit-overflow-scrolling: touch;   
-                            
                             background-color: ${colors.surface};
                             color: ${colors.onSurface};
+                            display: flex;
+                            flex-direction: column;
                             left: 0;
                             overflow: scroll;
                             position: fixed;
@@ -159,6 +166,7 @@ export const ProductList: Component<ProductListProps> = ({
                             
                             & .filters {
                                 padding: 4rem;
+                                flex-grow: 1;
                             }
                         }
 

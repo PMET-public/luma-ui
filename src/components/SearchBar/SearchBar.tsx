@@ -7,6 +7,7 @@ import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
 import IconReset from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
 
 export type SearchBarProps = {
+    clearButton?: boolean
     count?: number
     label?: string
     value?: string
@@ -14,8 +15,9 @@ export type SearchBarProps = {
     onSearch?: (query: string) => any
 }
 
-export const SearchBar: Component<SearchBarProps> = ({ 
-    as: SearchBar = 'div', 
+export const SearchBar: Component<SearchBarProps> = ({
+    as: SearchBar = 'div',
+    clearButton = true,
     count,
     label = 'Search',
     value: defaultValue = '',
@@ -24,7 +26,7 @@ export const SearchBar: Component<SearchBarProps> = ({
     ...props
 }) => {
     const { colors } = useTheme()
-    const [ value, setValue ] = useState(defaultValue)
+    const [value, setValue] = useState(defaultValue)
 
     const throttledUpdate = useThrottle(() => {
         if (onUpdate) onUpdate(value)
@@ -32,8 +34,8 @@ export const SearchBar: Component<SearchBarProps> = ({
 
     useEffect(throttledUpdate, [value])
 
-    useEffect(() => setValue (defaultValue), [defaultValue])
-        
+    useEffect(() => setValue(defaultValue), [defaultValue])
+
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const query = event.currentTarget.value
         setValue(query)
@@ -47,45 +49,45 @@ export const SearchBar: Component<SearchBarProps> = ({
     const handleReset = () => {
         setValue('')
     }
-    
+
     return (
         <SearchBar {...props} className={classes('search-bar', props.className)}>
             <form onSubmit={handleSubmit}>
                 <label className="search-bar__wrapper">
                     <Icon className="search-bar__icon"
-                        as="span" 
+                        as="span"
                         aria-hidden
                     >
                         <IconSearch />
                     </Icon>
 
                     <input className="search-bar__field"
-                        aria-label={label} 
+                        aria-label={label}
                         onChange={handleChange}
                         placeholder={label}
                         type="text"
                         value={value}
                     />
-                    
-                    <span className="search-bar__count">
-                        {typeof count === 'number' && (
+
+                    {typeof count === 'number' && (
+                        <span className="search-bar__count">
                             <React.Fragment>
                                 {count > 999 ? '+999' : count} {count === 0 || count > 1 ? 'results' : 'result'}
                             </React.Fragment>
-                        )}
-                    </span>
-                    
-                    <span className="search-bar__reset">
-                        {value.length > 0 && (
-                            <Icon 
+                        </span>
+                    )}
+
+                    {clearButton && value.length > 0 && (
+                        <span className="search-bar__reset">
+                            <Icon
                                 aria-label="reset"
-                                as={props => <button type="reset" {...props} />} 
+                                as={props => <button type="reset" {...props} />}
                                 onClick={handleReset}
                             >
                                 <IconReset />
                             </Icon>
-                        )}   
-                    </span>
+                        </span>
+                    )}
                 </label>
             </form>
 
@@ -104,15 +106,19 @@ export const SearchBar: Component<SearchBarProps> = ({
 
                 .search-bar__wrapper {
                     align-items: center;
-                    display: grid;
-                    grid-gap: 1rem;
-                    grid-template-columns: auto 1fr auto auto;
-                    padding: 1em;
+                    
+                    padding: 0.5rem 0.75rem;
                     width: 100%;
+                    display: flex;
+
+                    & > * {
+                    padding: 1rem;
+                        padding: 0.75rem;
+                    }
                 }
 
                 .search-bar__icon {           
-                    font-size: 1.1sem;
+                    font-size: 1.1em;
                 }
 
                 .search-bar__field {   
@@ -120,9 +126,9 @@ export const SearchBar: Component<SearchBarProps> = ({
                     background-color: inherit;
                     border: 0 none;
                     color: inherit;
+                    flex-grow: 1;
                     font-size: inherit;
                     font-weight: 600;
-                    width: 100%;
                 }
 
                 .search-bar__count {
