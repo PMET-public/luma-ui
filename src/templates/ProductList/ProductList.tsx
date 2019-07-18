@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Component, classes } from '../../lib'
+
 import { useTheme } from '../../theme'
+import { useResize } from '../../hooks/useResize'
 
 import GridList from '../../components/GridList'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
@@ -8,8 +10,9 @@ import SearchBar, { SearchBarProps } from '../../components/SearchBar'
 import Container from '../../components/Container'
 import Filters, { FiltersItemProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
+import Icon from '../../components/Icon'
 
-import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/sliders-h.svg'
+import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/ellipsis-v.svg'
 
 export type ProductListProps = {
     search: SearchBarProps
@@ -31,8 +34,8 @@ export const ProductList: Component<ProductListProps> = ({
     ...props
 }) => {
     const [showFilter, setShowFilter] = useState(false)
-    const triggerToggleFilters = (state: boolean) => setShowFilter(state)
     const { colors } = useTheme()
+    const { vHeight, vWidth } = useResize()
 
     return (
         <ProductList {...props} className={classes('product-list', props.className)}>
@@ -59,11 +62,14 @@ export const ProductList: Component<ProductListProps> = ({
                     <div className="product-list__grid__search-bar">
                         <SearchBar {...search} />
 
-                        <button className="product-list__grid__search-bar__filters-btn"
-                            onClick={() => triggerToggleFilters(!showFilter)}
+                        <Icon className="product-list__grid__search-bar__filters-btn"
+                            as="button"
+                            arial-label="Filters"
+                            onClick={() => setShowFilter(!showFilter)}
                         >
                             <FiltersIcon />
-                        </button>
+                        </Icon>
+
                     </div>
 
                     <GridList className="product-list__grid__results">
@@ -79,18 +85,27 @@ export const ProductList: Component<ProductListProps> = ({
             </Container>
 
             <style jsx global>{`
+                @media(--small-screen-only) {
+                    .product-list__wrapper .product-list__filters  { 
+                        width: calc(${vWidth}px - 6rem);
+                        height: calc(${vHeight}px - 0rem);
+                    }
+                }
+            `}</style>
+            
+            <style jsx global>{`
                 .product-list__grid {
                     display: grid;
                     grid-gap: 2rem;
                 }
 
                 .product-list__grid__search-bar {
-                    justify-self: center;
-                    width: 100%;
                     display: grid;
                     grid-auto-flow: column;
-                    grid-template-columns: 1fr auto;
                     grid-gap: 1rem;
+                    grid-template-columns: 1fr auto;
+                    justify-self: center;
+                    width: 100%;
 
                     & .search-bar {
                         background-color: transparent;
@@ -111,11 +126,11 @@ export const ProductList: Component<ProductListProps> = ({
                 }
 
                 .product-list__grid__search-bar__filters-btn {
-                    color: inherit;
-                    cursor: pointer;
-                    fill: currentColor;
+                    display: inline-flex;
+                    font-size: 2.4rem;
+                    justify-content: center;
                     width: 2.4rem;
-
+                    
                     @media(--medium-screen) {
                         display: none;
                     }
@@ -123,48 +138,50 @@ export const ProductList: Component<ProductListProps> = ({
 
                 .product-list__wrapper {
                     display: grid;
-                    grid-auto-flow: column;
                     grid-auto-columns: max-content 1fr;
+                    grid-auto-flow: column;
 
                     @media(--small-screen-only) {
                         grid-auto-columns: 1fr;
 
                         & .product-list__filters {
                             -webkit-overflow-scrolling: touch;   
-
-                            position: fixed;
-                            background-color: ${colors.surface.fade(0.03)};
+                            
+                            background-color: ${colors.surface};
                             color: ${colors.onSurface};
-                            padding: 0;
-                            z-index: 4;
-                            top: 0;
                             left: 0;
-                            bottom: 0;
                             overflow: scroll;
-                            transition: transform 305ms ease-out;
+                            position: fixed;
+                            top: 0;
                             transform: translateX(-100%);
-                            width:  calc(100vw - 0rem);
-
+                            transition: transform 305ms ease-out;
+                            z-index: 4;
+                            
                             & .filters {
-                                padding: 2rem;
+                                padding: 4rem;
                             }
                         }
 
                         & .product-list__filters__buttons {
+                            background-color: ${colors.surface};
+                            bottom: 0;
+                            border-top: 0.1rem solid rgba(0, 0, 0, 0.15);
+                            color: ${colors.onSurface};
                             display: grid;
                             grid-auto-flow: column;
                             grid-gap: 2rem;
+                            padding: 2rem;
                             position: sticky;
-                            bottom: 0;
-                            padding: 3rem 2rem;
-                            box-shadow: 0.1rem 0 1rem rgba(0, 0, 0, 0.15);
-                            background-color: ${colors.surface.fade(0.1)};
-                            color: ${colors.onSurface};
+
+                            @supports(padding: max(0px)) {
+                                padding-bottom: max(2rem, env(safe-area-inset-bottom));
+                            }
                         }
 
                         &.--show-filters {
                             & .product-list__filters {
                                 transform: translateX(0);
+                                box-shadow: 3rem 0 6rem rgba(0, 0, 0, 0.75);
                             }
                         }
                     }

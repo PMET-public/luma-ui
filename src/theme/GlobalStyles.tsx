@@ -21,7 +21,7 @@ export default ({ colors }: any) => {
                 overflow: hidden; 
                 position: absolute; 
             }
-
+/*
             *:focus {
                 outline: none;
             }
@@ -30,7 +30,7 @@ export default ({ colors }: any) => {
                 outline: currentColor solid 0.2rem;
                 background: red;
             }            
-
+*/
         `}</style>
     )
 }
