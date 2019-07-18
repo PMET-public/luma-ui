@@ -72,7 +72,7 @@ Filters.Item = ({
         <FiltersItem {...props} className={classes('filters-item', props.className)}
             style={{
                 ['--transition-duration' as any]: (items.length * 20 ) + 'ms',
-                ['--height' as any]: open ? `${height / 10}rem` : `calc(2.11em * ${offset})`,
+                ['--height' as any]: open ? `${height / 10}rem` : `calc(2.3em * ${offset})`,
             }}
         >
             <span className={classes('filters-item__wrapper', ['--open', open])}>
@@ -153,7 +153,7 @@ Filters.Item = ({
 
                 .filters-item__item__link {
                     align-items: center;
-                    display: grid;
+                    display: inline-grid;
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-gap: 1rem;
