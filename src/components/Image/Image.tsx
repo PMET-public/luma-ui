@@ -30,7 +30,6 @@ export const ImageComponent: Component<ImageProps> = ({
                     />
                     <img className="image__img image__placeholder"
                         arial-hidden="true"
-                        srcSet={src}
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                         {...{width, height}}
                     />
