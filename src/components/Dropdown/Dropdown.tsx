@@ -56,10 +56,10 @@ Dropdown.Label = ({
     children,
     ...props
 }) => {
-    const isOpen = useContext(DropdownContext)
+    const open = useContext(DropdownContext)
 
     return (
-        <DropdownLabel {...props} className={classes('dropdown-label', props.className, ['--open', isOpen])}>
+        <DropdownLabel {...props} className={classes('dropdown-label', props.className, ['--open', open])}>
             {children}
 
             <style jsx global>{`
@@ -96,10 +96,10 @@ Dropdown.Content = ({
     isMenu = false,
     ...props 
 }) => {
-    const isOpen = useContext(DropdownContext)
+    const open = useContext(DropdownContext)
     const { colors } = useTheme()
 
-    const transitions = useTransition(isOpen, null, {
+    const transitions = useTransition(open, null, {
         from: { opacity: 0, transform: 'translateY(-0.5rem)' },
         enter: { opacity: 1, transform: 'translateY(0)' },
         leave: { opacity: 0, transform: 'translateY(-0.5rem)'},

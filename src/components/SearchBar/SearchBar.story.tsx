@@ -3,7 +3,7 @@ import SearchBar from './'
 import { storiesOf } from '@storybook/react'
 import Container from '../Container'
 import { action } from '@storybook/addon-actions'
-import { text, number } from '@storybook/addon-knobs'
+import { text, number, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/SearchBar', module)
     .add('Default', () => {
@@ -18,6 +18,8 @@ storiesOf('📦 Components/SearchBar', module)
                         onSearch={(query: string) => action(`onSubmit(${query})`)()}
                         count={count}
                         value={value}
+                        clearButton={boolean('clearButton', false)}
+                        
                     />
 
                     <style jsx global>{`

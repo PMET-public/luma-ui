@@ -5,27 +5,27 @@ import { Component, classes } from '../../lib'
 
 export type DrawerProps = {
     position?: 'left' | 'right'
-    isOpen?: boolean
+    open?: boolean
     onClose?: (...args: any) => any
 }
 
 export const Drawer: Component<DrawerProps> = ({
     as: Drawer = 'div',
     children,
-    isOpen = false,
+    open = false,
     position = 'left',
     onClose,
     ...props
 }) => {
     const { colors } = useTheme()
 
-    const slideTransitions = useTransition(isOpen, null, {
+    const slideTransitions = useTransition(open, null, {
         from: { opacity: 0, transform: `translateX(${position === 'left' ? '-105%' : '105%'}` },
         enter: { opacity: 1, transform: 'translateX(0)' },
         leave: { opacity: 0, transform: `translateX(${position === 'left' ? '-105%' : '105%'}` },
     })
 
-    const fadeTransitions = useTransition(isOpen, null, {
+    const fadeTransitions = useTransition(open, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },

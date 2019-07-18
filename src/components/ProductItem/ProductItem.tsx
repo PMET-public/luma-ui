@@ -69,6 +69,21 @@ export const ProductItem: Component<ProductItemProps> = ({
                     position: relative;
                     line-height: 0;
 
+                    & .image__wrapper {
+                        position: relative;
+
+                        &::before {
+                            bottom: 0;
+                            box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.15);
+                            content: "";
+                            left: 0;
+                            pointer-events: none;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            z-index: 2;
+                        }
+                    }
                     & .image__img {
                         height: 100%;
                         width: 100%;

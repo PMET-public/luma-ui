@@ -137,8 +137,9 @@ export const App: Component<AppProps> = ({
             <Footer className="app__footer">
                 {footer.menu && (
                     <div className="app__footer__menu">
-                        {footer.menu.map(({ label, link }, index) => (
+                        {footer.menu.map(({ label, link }, key) => (
                             <Link className="app__footer__menu__link" 
+                                key={`app__footer__meny__link--${key}`}
                                 {...link}
                             >
                                 {label}
@@ -208,6 +209,11 @@ export const App: Component<AppProps> = ({
             </TabBar>
 
             <style jsx global>{`
+                .app {
+                    display: grid;
+                    grid-gap: 2rem;
+                }
+                
                 .app__header__logo {
                     margin: 0;
                     padding: 0;
@@ -220,6 +226,10 @@ export const App: Component<AppProps> = ({
                     @media(--large-screen) {
                         max-height: 3.5rem;
                     }
+                }
+
+                .app__footer {
+                    margin-top: 4rem;
                 }
 
                 .app__footer__menu {
