@@ -105,7 +105,7 @@ export const SearchBar: Component<SearchBarProps> = ({
                 .search-bar__wrapper {
                     align-items: center;
                     display: grid;
-                    grid-gap: 1.6rem;
+                    grid-gap: 1rem;
                     grid-template-columns: auto 1fr auto auto;
                     padding: 1em;
                     width: 100%;

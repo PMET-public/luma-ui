@@ -1,9 +1,11 @@
-import React, { ReactElement, useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, ReactElement } from 'react'
 import { Component, classes } from '../../lib'
+
 import Link, { LinkRoute } from '../Link'
 
 import ToggleIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
-import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/check.svg'
+import CheckedIcon from '@fortawesome/fontawesome-free/svgs/solid/check-circle.svg'
+import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
 
 export type FiltersProps = {
     children: ReactElement<FiltersItemProps> | Array<ReactElement<FiltersItemProps>>
@@ -29,7 +31,7 @@ export const Filters: Component<FiltersProps> & CompoundComponent = ({
     as: Filters = 'div', 
     children,
     ...props
-}) => {    
+}) => {  
     return (
         <Filters {...props} className={classes('filters', props.className)}>
             {children}
@@ -60,6 +62,7 @@ Filters.Item = ({
     const Element = link ? Link : 'span'
 
     useEffect(() => {
+        if (!el.current) return
         setHeight(el.current.offsetHeight)
     }, [items])
 
@@ -69,7 +72,7 @@ Filters.Item = ({
         <FiltersItem {...props} className={classes('filters-item', props.className)}
             style={{
                 ['--transition-duration' as any]: (items.length * 20 ) + 'ms',
-                ['--height' as any]: open ? `${height / 10}rem` : `calc(2.08em * ${offset})`,
+                ['--height' as any]: open ? `${height / 10}rem` : `calc(2.11em * ${offset})`,
             }}
         >
             <span className={classes('filters-item__wrapper', ['--open', open])}>
@@ -92,7 +95,11 @@ Filters.Item = ({
                                 <Element className="filters-item__item__link" 
                                     {...item.link}
                                 >
-                                    {item.active && <CheckIcon className="filters-item__item__checked" />}
+                                    {item.active ? (
+                                        <CheckedIcon className="filters-item__item__check --active" />
+                                    ) : (
+                                        <CheckIcon className="filters-item__item__check" />
+                                    )}
                                     
                                     <span className="filters-item__item__label">
                                         {item.label}
@@ -150,11 +157,21 @@ Filters.Item = ({
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-gap: 1rem;
-                }
 
-                .filters-item__item__checked {
+                    &:hover .filters-item__item__check {
+                        opacity: 0.25;
+                    }
+                }
+                
+                .filters-item__item__check {
                     fill: currentColor;
+                    opacity: 0.1;
+                    transition: opacity 305ms ease;
                     width: 1em;
+
+                    &.--active {
+                        opacity: 1;
+                    }
                 }
 
                 .filters-item__item__count {
