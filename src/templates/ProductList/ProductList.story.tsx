@@ -13,12 +13,25 @@ export const ProductListMockData: ProductListProps = {
         clearButton: false,
     },
     filters: {
-        label: "Filters",
+        label: 'Filters',
         open: false,
         buttons: [
             { label: 'Done', fill: true },
         ],
         items: [
+            {
+                label: 'Sort By',
+                items: [
+                    {
+                        label: 'Price: High-Low',
+                        link: { href: '#' },
+                    },
+                    {
+                        label: 'Price: Low-High',
+                        link: { href: '#' },
+                    },
+                ],
+            },
             {
                 label: 'Category',
 
@@ -310,9 +323,9 @@ export const ProductListMockData: ProductListProps = {
             src: require('../../../public/images/product-item-sample.jpg'),
             height: 650,
         },
-        price: "$49.99",
-        priceSpecial: "$39.99",
-        title: "Circle Hooded Ice Flee",
+        price: '$49.99',
+        priceSpecial: '$39.99',
+        title: 'Circle Hooded Ice Flee',
         colors: ['brown', 'gray', 'black', 'blue'],
     })),
 }
