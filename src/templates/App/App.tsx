@@ -85,43 +85,46 @@ export const App: Component<AppProps> = ({
 }) => {
     return (
         <App {...props} className={classes('app', props.className)}>
-            <AppBar hideOnOffset={100}>
-                <Header className="app__header">
-                    <Header.Logo className="app__header__logo" as="h1">
+            <AppBar className="app__app-bar" 
+                as="header" 
+                hideOnOffset={100}
+            >
+                <Header className="app__app-bar__header">
+                    <Header.Logo className="app__app-bar__header__logo" as="h1">
                         <Link {...logo.link}>
                             {logo.src ? (
-                                <Image className="app__header__logo__image" src={logo.src} alt={logo.title} />
+                                <Image className="app__app-bar__header__logo__image" src={logo.src} alt={logo.title} />
                             ) : (
-                                <Logo className="app__header__logo__image" height="40" aria-label={logo.title} />
+                                <Logo className="app__app-bar__header__logo__image" height="40" aria-label={logo.title} />
                             )}
                         </Link>
                     </Header.Logo>
 
                     {menu && menu.length > 0 && (
-                        <Header.Menu className="app__header__menu">
+                        <Header.Menu as="nav" className="app__app-bar__header__menu">
                             {menu.map((item, key) => (
                                 <Link key={key} {...item.link}>{item.label}</Link>
                             ))}
                         </Header.Menu>
                     )}
 
-                    <Header.Utilities className="app__header__utilities">
+                    <Header.Utilities className="app__app-bar__header__utilities">
                         {help && <Link {...help.link}>
                             {help.label || 'Help'}
                         </Link>}
                        
-                        <Link className="app__header__utilities__account" {...myAccount.link}>
+                        <Link className="app__app-bar__header__utilities__account" {...myAccount.link}>
                             {myAccount.label || 'My Account'}
                         </Link>
 
-                        <Icon className="app__header__utilities__search"
+                        <Icon className="app__app-bar__header__utilities__search"
                             as={Link} {...search.link}
                             aria-label={search.label || 'Search'}
                         >
                             <IconSearch />
                         </Icon>
 
-                        <Icon className="app__header__utilities__cart"
+                        <Icon className="app__app-bar__header__utilities__cart"
                             as={Link} {...cart.link}
                             aria-label={cart.label || 'My Bag'}
                             count={cart.count}
@@ -131,10 +134,12 @@ export const App: Component<AppProps> = ({
                     </Header.Utilities>
                 </Header>
             </AppBar>
+            
+            <main className="app__main">
+                {children}
+            </main>
 
-            {children}
-
-            <Footer className="app__footer">
+            <Footer as="footer" className="app__footer">
                 {footer.menu && (
                     <div className="app__footer__menu">
                         {footer.menu.map(({ label, link }, key) => (
@@ -182,7 +187,7 @@ export const App: Component<AppProps> = ({
                 </div>
             </Footer>
 
-            <TabBar className="app__tab-bar">
+            <TabBar as="nav" className="app__tab-bar">
                 <TabBar.Item isActive={true}>
                     <Icon as={Link} {...home.link}>
                         <IconHome />
@@ -212,15 +217,18 @@ export const App: Component<AppProps> = ({
                 .app {
                     display: grid;
                     grid-gap: 2rem;
+                    grid-auto-columns: minmax(0, 1fr);
+                    grid-template-rows: auto 1fr auto auto;
+                    height: 100vh;
                 }
                 
-                .app__header__logo {
+                .app__app-bar__header__logo {
                     margin: 0;
                     padding: 0;
                     line-height: 0;
                 }
 
-                .app__header__logo__image {
+                .app__app-bar__header__logo__image {
                     max-height: 2.8rem;
 
                     @media(--large-screen) {
@@ -228,51 +236,57 @@ export const App: Component<AppProps> = ({
                     }
                 }
 
+                /** Footer */
+
                 .app__footer {
-                    margin-top: 4rem;
+                    & .footer__container {
+                        display: grid;
+                        filter: opacity(0.65);
+                        grid-gap: 2.6rem;
+                    }
                 }
 
                 .app__footer__menu {
                     display: flex;
-                    flex-grow: 1;
-                    flex-wrap: wrap;
+                    flex-direction: column;
                     justify-content: center;
-                    margin: -0.75rem -1.5rem;
-                    padding-bottom: 3rem;
-                }
-
-                .app__footer__menu__link {
-                    margin: 0.75rem 1.5rem;
-                    display: inline-block;
+                    text-align: center;
                     text-transform: uppercase;
+
+                    & .app__footer__menu__link {
+                        margin: 1rem 0.75rem;
+                    }
+
+                    @media(--medium-screen) {
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                    }
                 }
 
                 .app__footer__social {
                     display: grid;
-                    flex-grow: 1;
                     font-size: 2.4rem;
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-auto-rows: max-content;
                     grid-gap: 2rem;
                     justify-content: center;
-                    margin-bottom: 3rem;
                 }
 
                 .app__footer__copyright {
-                    filter: opacity(0.6);
                     text-align: center;
                     width: 100%;
                 }
                 
+
                 @media(--small-screen-only) {
-                    .app__header__menu,
-                    .app__header__utilities__search,
-                    .app__header__utilities__cart {
+                    .app__app-bar__header__menu,
+                    .app__app-bar__header__utilities__search,
+                    .app__app-bar__header__utilities__cart {
                         display: none;
                     }
 
-                    .app__header {
+                    .app__app-bar__header {
                         grid-template-areas: "logo utilities";
                     }
                 }

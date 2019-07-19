@@ -59,8 +59,6 @@ export const ImageComponent: Component<ImageProps> = ({
 
                 .image__tag {
                     position: absolute;
-                    width: 100%;
-                    height: 100%;
                 }
 
                 .image__img {

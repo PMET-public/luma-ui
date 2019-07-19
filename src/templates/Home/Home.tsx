@@ -65,7 +65,10 @@ export const Home: Component<HomeProps> = ({
                         )}
 
                         { section.type === 'carousel' && (
-                            <Carousel className="home__section__carousel">
+                            <Carousel className="home__section__carousel"
+                                gap={2.3}
+                                padding={4}
+                            >
                                 {section.content.map(({ link, ...item }, index) => (
                                     <Carousel.Item className="home__section__carousel__item" 
                                         key={`home__section__carousel__item--${index}`}
@@ -83,30 +86,32 @@ export const Home: Component<HomeProps> = ({
                 ))}
 
                 <style jsx global>{`
-                    .home__container {
+                    .home {
                         display: grid;
+                        grid-auto-columns: minmax(0, 1fr);
                         grid-gap: 2rem;
                     }
 
-                    .home__section__carousel {
-                        grid-auto-columns: calc(100% - 4rem);
-                        grid-gap: 2.5rem;
+                    .home__container {
+                        display: inherit;
+                        grid-auto-columns: inherit;
+                        grid-gap: inherit;
                     }
-
+                    
                     @media(--medium-screen) {    
                         .home__stories {
                             display: none;
                         }
 
                         .home__section__carousel {
-                            grid-auto-columns: calc((100% / 2) - 4rem);
+                            --show: 2;
                         }
 
                     }
 
                     @media(--large-screen) {
                         .home__section__carousel {
-                            grid-auto-columns: calc((100% / 3) - 4rem);
+                            --show: 3;
                         }
                     }
                   

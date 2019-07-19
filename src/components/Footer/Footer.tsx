@@ -32,7 +32,7 @@ export const Footer: Component<FooterProps> = ({
 
                 .footer__container {
                     font-size: 1.3rem;
-                    padding: 6rem 4rem;
+                    padding: 3rem;
                 }
             `}</style>
         </Footer>

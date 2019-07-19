@@ -10,8 +10,8 @@ storiesOf('📦 Components/Banner', module)
                 image={object('image', {
                     alt: '',                    
                     src: require('../../../public/images/banner-1.jpg'),
-                    width: '100%',
-                    height: 700,
+                    width: 1920,
+                    height: 1320,
                 })}
                 position={select('position', { top: 'top', bottom: 'bottom' }, 'top')}
                 titles={object('titles', [

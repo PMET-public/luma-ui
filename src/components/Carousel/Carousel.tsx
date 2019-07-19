@@ -4,7 +4,9 @@ import { useTheme } from '../../theme'
 
 export type CarouselProps = {
     children: ReactElement<CarouselItemProps> | Array<ReactElement<CarouselItemProps>>
+    gap?: number
     padding?: number
+    show?: number
 }
 
 export type CarouselItemProps = {
@@ -18,28 +20,38 @@ type CompoundComponent = {
 export const Carousel: Component<CarouselProps> & CompoundComponent = ({
     as: Carousel = 'div',
     children,
+    gap = 0,
     padding = 0,
+    show = 1,
     ...props
 }) => {
     const { colors } = useTheme()
 
     return (
-        <Carousel {...props} className={classes('carousel', props.className)}
-        >
+        <Carousel {...props} className={classes('carousel', props.className)}>
             {children}
+            
+            <style jsx>{`
+                --padding: ${padding}rem;
+                --show: ${show};
+                --gap: ${gap}rem;
+                --itemWidth: calc(100% / var(--show) - var(--padding));
+            `}</style>
 
             <style jsx global>{`                    
                 .carousel {
                     -webkit-overflow-scrolling: touch;   
                     display: grid;
-                    grid-auto-columns: calc(100% - ${padding}rem);
+                    grid-auto-columns: var(--itemWidth);
                     grid-auto-flow: column;
+                    grid-gap: var(--gap);
+                    margin-bottom: 1.5rem;
                     overflow-x: scroll;
                     overflow-y: hidden;
                     padding-bottom: 1.5rem;
-                    margin-bottom: 1.5rem;
-                    scroll-padding: ${padding}rem;
+                    scroll-padding: var(--padding);
                     scroll-snap-type: x mandatory;
+                    width: 100%;
 
                     &::-webkit-scrollbar {
                         height: 0.2rem;

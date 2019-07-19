@@ -3,11 +3,16 @@ import Carousel from './'
 import { storiesOf } from '@storybook/react'
 import { number } from '@storybook/addon-knobs'
 import ProductItem from '../ProductItem'
+import Container from '../Container'
 
 storiesOf('📦 Components/Carousel', module)
     .add('Default', () => (
         <div className="story">
-            <Carousel padding={number('padding', 4)}>
+            <Carousel 
+                padding={number('padding', 4)}
+                gap={number('gap', 2)}
+                show={number('show', 1)}
+            >
                 <Carousel.Item>
                     <span className="story__item" style={{ backgroundColor: '#999' }}>
                         1
@@ -38,14 +43,20 @@ storiesOf('📦 Components/Carousel', module)
         </div>
     ))
     .add('w/ Products', () => (
-        <div className="story">
-            <Carousel padding={number('padding', 4)}>
-                {[null, null, null].map((_, key) => (
+        <Container className="story">
+            <Carousel 
+                padding={number('padding', 4)}
+                gap={number('gap', 2)}
+                show={number('show', 3)}
+            >
+                {new Array(number('# items', 10)).fill(null).map((_, key) => (
                     <Carousel.Item key={key}>
                         <ProductItem className="story__product" 
                             image={{
                                 alt: '',
                                 src: require('../../../public/images/product-item-sample.jpg'),
+                                width: 2,
+                                height: 1,
                             }}
                             price="$49.99"
                             priceSpecial="$39.99"
@@ -55,23 +66,5 @@ storiesOf('📦 Components/Carousel', module)
                     </Carousel.Item>
                 ))}
             </Carousel>
-
-            <style jsx global>{`
-                .story {
-                    align-items: center;
-                    display: flex;
-                    height: 100vh;
-                    justify-content: center;
-                    width: 100vw;
-                }
-                .story__item {
-                    align-items: center;
-                    color: #fff;
-                    display: flex;
-                    height: 50vh;
-                    justify-content: center;
-                    font-size: 4rem;
-                }
-            `}</style>
-        </div>
+        </Container>
     ))

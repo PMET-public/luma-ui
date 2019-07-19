@@ -102,6 +102,7 @@ export const ProductList: Component<ProductListProps> = ({
             <style jsx global>{`
                 .product-list__grid {
                     display: grid;
+                    grid-auto-columns: minmax(0, 1fr);
                     grid-gap: 2rem;
                 }
 
@@ -144,11 +145,10 @@ export const ProductList: Component<ProductListProps> = ({
 
                 .product-list__wrapper {
                     display: grid;
-                    grid-auto-columns: max-content 1fr;
-                    grid-auto-flow: column;
+                    grid-template-columns: max-content 1fr;
 
                     @media(--small-screen-only) {
-                        grid-auto-columns: 1fr;
+                        grid-template-columns: 1fr;
 
                         & .product-list__filters {
                             -webkit-overflow-scrolling: touch;   
