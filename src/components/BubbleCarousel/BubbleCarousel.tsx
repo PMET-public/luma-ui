@@ -35,7 +35,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
                     */
                     overflow-y: hidden;
                     height: 10rem;
-                    margin-bottom: 1rem;
+                    margin-top: -1rem;
                 }
 
                 .bubble-carousel__wrapper {
@@ -69,7 +69,7 @@ BubbleCarousel.Item = ({
         <style jsx global>{`
             .bubble-carousel-item {
                 text-decoration: none;   
-                padding: 0 0.35rem; 
+                padding: 0 0.6rem; 
 
                 &:last-of-type {
                     padding-right: 1rem;
@@ -104,7 +104,7 @@ BubbleCarousel.Item = ({
                 text-align: center;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                width: 8rem;
+                width: 7rem;
                 line-height: 1.5;
                 text-transform: uppercase;
             }

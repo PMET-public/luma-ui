@@ -49,22 +49,6 @@ export const HomeMockData: HomeProps = {
                     src: require('../../../public/images/fashion-thumb5.jpg'),
                 },
             },
-            { 
-                label: 'Training',
-                link: { href: '#' },
-                image: {
-                    alt: 'Training',
-                    src: require('../../../public/images/fashion-thumb4.jpg'),
-                },
-            },
-            { 
-                label: 'Sale',
-                link: { href: '#' },
-                image: {
-                    alt: 'Sale',
-                    src: require('../../../public/images/fashion-thumb5.jpg'),
-                },
-            },
         ],
     },
 

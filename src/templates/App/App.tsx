@@ -18,6 +18,7 @@ import IconTwitter from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
 import IconFacebook from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
 import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
 import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
+import { useResize } from '../../hooks/useResize';
 
 export type AppProps = {
     home: {
@@ -83,6 +84,8 @@ export const App: Component<AppProps> = ({
     search,
     ...props
 }) => {
+    const { vHeight } = useResize()
+
     return (
         <App {...props} className={classes('app', props.className)}>
             <AppBar className="app__app-bar" 
@@ -213,13 +216,19 @@ export const App: Component<AppProps> = ({
                 </TabBar.Item>
             </TabBar>
 
+            <style jsx>{`
+                .app {
+                    min-height: calc(${vHeight}px - 0rem);
+                }      
+            `}</style>
+
             <style jsx global>{`
                 .app {
                     display: grid;
                     grid-gap: 2rem;
                     grid-auto-columns: minmax(0, 1fr);
                     grid-template-rows: auto 1fr auto auto;
-                    height: 100vh;
+                    
                 }
                 
                 .app__app-bar__header__logo {

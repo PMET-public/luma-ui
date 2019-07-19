@@ -22,11 +22,11 @@ export const Footer: Component<FooterProps> = ({
 
             <style jsx global>{`
                 .footer {     
-                    background: ${colors.surface};  
-                    color: ${colors.onSurface.fade(0.3)};  
+                    background: ${colors.onSurface.fade};  
+                    color: ${colors.onSurface.fade(0.25)};  
 
                     & a:hover {
-                        filter: opacity(0.75);
+                        filter: opacity(0.5);
                     }
                 }
 
