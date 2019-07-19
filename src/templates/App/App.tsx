@@ -18,7 +18,7 @@ import IconTwitter from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
 import IconFacebook from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
 import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
 import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
-import { useResize } from '../../hooks/useResize';
+import { useResize } from '../../hooks/useResize'
 
 export type AppProps = {
     home: {
@@ -251,24 +251,20 @@ export const App: Component<AppProps> = ({
                     & .footer__container {
                         display: grid;
                         filter: opacity(0.65);
-                        grid-gap: 2.6rem;
+                        grid-gap: 3rem;
                     }
                 }
 
                 .app__footer__menu {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
+                    flex-wrap: wrap;
                     justify-content: center;
                     text-align: center;
                     text-transform: uppercase;
 
                     & .app__footer__menu__link {
                         margin: 1rem 0.75rem;
-                    }
-
-                    @media(--medium-screen) {
-                        flex-direction: row;
-                        flex-wrap: wrap;
                     }
                 }
 
