@@ -88,6 +88,8 @@ export const ProductItem: Component<ProductItemProps> = ({
                         height: 100%;
                         width: 100%;
                         min-height: 100%;
+                        max-height: 90vh;
+
                     }
                 }
 
@@ -98,12 +100,12 @@ export const ProductItem: Component<ProductItemProps> = ({
                 }
 
                 .product-item__details__badge {
-                    background-color: ${theme.colors.primary.fade(0.9)};
+                    background-color: ${theme.colors.onPrimary.fade(0.45)};
                     color: ${theme.colors.primary.fade(0.4)};
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     left: 0;
                     letter-spacing: 0.1rem;
-                    padding: 0.5rem 1.5rem;
+                    padding: 0.5rem 2rem;
                     position: absolute;
                     text-align: center;
                     text-transform: uppercase;

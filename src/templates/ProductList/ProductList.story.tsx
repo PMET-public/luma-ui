@@ -321,7 +321,6 @@ export const ProductListMockData: ProductListProps = {
         image: {
             alt: '',
             src: require('../../../public/images/product-item-sample.jpg'),
-            height: 650,
         },
         price: '$49.99',
         priceSpecial: '$39.99',
