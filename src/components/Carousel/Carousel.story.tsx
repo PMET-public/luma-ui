@@ -55,8 +55,6 @@ storiesOf('📦 Components/Carousel', module)
                             image={{
                                 alt: '',
                                 src: require('../../../public/images/product-item-sample.jpg'),
-                                width: 2,
-                                height: 1,
                             }}
                             price="$49.99"
                             priceSpecial="$39.99"
