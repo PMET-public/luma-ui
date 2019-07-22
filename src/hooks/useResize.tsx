@@ -11,11 +11,12 @@ const getValues = (): UseResize => ({
     vWidth: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
 })
 
-export const useResize = (): UseResize => {
+export const useResize = (fn?: (props?: any) => any): UseResize => {
     const [resize, setResize] = useState(getValues())
 
     const throttled = useThrottle((e: Event) => {
         setResize(getValues())
+        if (fn) fn()
     }, 150, true)
 
     useEffect(() => {

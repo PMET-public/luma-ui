@@ -66,7 +66,7 @@ export const Home: Component<HomeProps> = ({
 
                         { section.type === 'carousel' && (
                             <Carousel className="home__section__carousel"
-                                gap={2.3}
+                                gap={1}
                                 padding={4}
                             >
                                 {section.content.map(({ link, ...item }, index) => (

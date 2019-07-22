@@ -19,16 +19,6 @@ export default ({ typography }: any) => {
             
             /* Copy & Lists */
             
-            p {
-                margin-bottom: 2rem;
-                margin-top: 2rem;
-            }
-            
-            ul, ol {
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-            }
-            
             ul {
                 list-style-type: circle;
             }
@@ -55,8 +45,6 @@ export default ({ typography }: any) => {
                 font-style: ${typography.headingStyle};
                 font-weight: ${typography.headingWeight};
                 line-height: 1.1;
-                margin-top: 2rem;
-                margin-bottom: 2rem;
             }
             
             h1 {

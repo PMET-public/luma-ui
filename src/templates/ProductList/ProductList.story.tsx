@@ -322,8 +322,11 @@ export const ProductListMockData: ProductListProps = {
             alt: '',
             src: require('../../../public/images/product-item-sample.jpg'),
         },
-        price: '$49.99',
-        priceSpecial: '$39.99',
+        price: {
+            price: '$49.99',
+            priceSpecial: '$39.99',
+            priceLabel: 'Starting at',
+        },
         title: 'Circle Hooded Ice Flee',
         colors: ['brown', 'gray', 'black', 'blue'],
     })),

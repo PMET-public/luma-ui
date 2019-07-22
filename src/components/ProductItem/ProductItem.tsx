@@ -2,13 +2,12 @@ import React from 'react'
 import { Component, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 import { useTheme } from '../../theme'
+import Price, { PriceProps } from '../Price'
 
 export type ProductItemProps = {
     badge?: string
     image: ImageProps
-    price?: string
-    priceSpecial?: string
-    priceLabel?: string
+    price: PriceProps
     title: string
     colors?: string[]
 }
@@ -19,8 +18,6 @@ export const ProductItem: Component<ProductItemProps> = ({
     colors,
     image,
     price,
-    priceLabel,
-    priceSpecial,
     title,
     ...props
 }) => {
@@ -31,6 +28,7 @@ export const ProductItem: Component<ProductItemProps> = ({
             <Image className="product-item__image"
                 height="1580"
                 width="1274"
+                vignette
                 {...image}
             >
                  {!!colors && (
@@ -49,17 +47,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                     
                     { !!badge && <span className="product-item__details__badge">{badge}</span> }
 
-                    { price && (
-                        <span className="product-item__details__price">
-                            {!!priceLabel && <em className="product-item__details__price__label">{priceLabel}</em>}
-                            
-                            <span className={classes('product-item__details__price__original', ['--special', !!priceSpecial])}>
-                                {price}
-                            </span> 
-
-                            { !!priceSpecial && <span className="product-item__details_price__special">{priceSpecial}</span> }
-                        </span>
-                    )}
+                    { price && <Price className="product-item__price" {...price} /> }
                 </span>
 
             </Image>
@@ -68,28 +56,12 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__image {
                     position: relative;
                     line-height: 0;
-
-                    & .image__wrapper {
-                        position: relative;
-
-                        &::before {
-                            bottom: 0;
-                            box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.15);
-                            content: "";
-                            left: 0;
-                            pointer-events: none;
-                            position: absolute;
-                            right: 0;
-                            top: 0;
-                            z-index: 2;
-                        }
-                    }
+                    
                     & .image__img {
                         height: 100%;
                         width: 100%;
                         min-height: 100%;
                         max-height: 90vh;
-
                     }
                 }
 
@@ -130,22 +102,8 @@ export const ProductItem: Component<ProductItemProps> = ({
                     font-weight: 600;
                 }
 
-                .product-item__details__price {
-                    font-size: 0.95em;
-                    display: grid;
-                    grid-gap: 0.75rem;
-                    grid-auto-flow: column;
-                    grid-auto-columns: max-content;
-                }
-
-                .product-item__details__price__label {
-                    font-style: italic;
-                }
-
-                .product-item__details__price__original {
-                    &.--special {
-                        text-decoration: line-through;
-                    }
+                .product-item__price {
+                    font-size: 0.9em;
                 }
             `}</style>
         </ProductItem>
