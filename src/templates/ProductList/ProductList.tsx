@@ -13,7 +13,7 @@ import Filters, { FiltersItemProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
 import Icon from '../../components/Icon'
 
-import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/ellipsis-v.svg'
+import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/ellipsis-h.svg'
 
 export type ProductListProps = {
     search: SearchBarProps
