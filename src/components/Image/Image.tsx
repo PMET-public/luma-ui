@@ -7,7 +7,7 @@ export type ImageProps = {
     height?: string | number
     src: string
     width?: string | number
-    vignette?: boolean
+    filter?: 'vignette'
 }
 
 export const ImageComponent: Component<ImageProps> = ({
@@ -17,7 +17,7 @@ export const ImageComponent: Component<ImageProps> = ({
     height,
     src,
     width,
-    vignette = false,
+    filter,
     ...props
 }) => {
     const { colors } = useTheme()
@@ -25,7 +25,7 @@ export const ImageComponent: Component<ImageProps> = ({
     return (
         <ImageComponent {...props} className={classes('image', props.className)}>
             <figure className="image__figure">
-                <div className={classes('image__wrapper', ['--vignette', vignette])}>
+                <div className={classes('image__wrapper', `--${filter}`)}>
                     <img className="image__img image__tag"
                         src={src}
                         {...{alt, width, height}}
@@ -63,7 +63,7 @@ export const ImageComponent: Component<ImageProps> = ({
 
                         &::before {
                             bottom: 0;
-                            box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.15);
+                            box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.1);
                             content: "";
                             left: 0;
                             pointer-events: none;
