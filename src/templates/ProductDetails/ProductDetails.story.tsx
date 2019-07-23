@@ -6,6 +6,10 @@ import App from '../App'
 import { AppMockData } from '../App/App.story'
 
 const ProductDetailsMockData = {
+    buttons: [
+        { label: 'Add to Cart', fill: true },
+        { label: 'Add to Favorite' },
+    ],
     category: text('category', 'Hoodies & Sweatshirts'),
     title: text('title', 'Circle Hooded Ice Flee'),
     badge: text('badge', 'New Arrival'),
