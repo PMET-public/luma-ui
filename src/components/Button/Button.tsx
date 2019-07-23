@@ -30,7 +30,7 @@ export const Button: Component<ButtonProps> = ({
 
                     align-items: center;
                     background-color: var(--background, transparent);
-                    border-radius: 2rem;
+                    border-radius: 2.4rem;
                     border: 0.1rem solid;
                     color: var(--color);
                     cursor: pointer;
@@ -39,7 +39,7 @@ export const Button: Component<ButtonProps> = ({
                     font-weight: 600;
                     justify-content: center;
                     line-height: 1;
-                    padding: 1.2rem 2.8rem;
+                    padding: 1.6rem 2.8rem;
                     transition-duration: 305ms;
                     transition-property: opacity, color, background-color;
                     transition-timing-function: ease;
