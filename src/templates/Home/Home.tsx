@@ -89,6 +89,11 @@ export const Home: Component<HomeProps> = ({
                     .home {
                         display: grid;
                         grid-auto-columns: minmax(0, 1fr);
+                        grid-gap: 4rem;
+                    }
+
+                    .home__section {
+                        display: grid;
                         grid-gap: 2rem;
                     }
 
