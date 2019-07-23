@@ -317,7 +317,7 @@ export const ProductListMockData: ProductListProps = {
             },
         ],
     },
-    products: new Array(number('# items', 10)).fill(true).map(() => ({
+    products: new Array(10).fill(true).map(() => ({
         image: {
             alt: '',
             src: require('../../../public/images/product-item-sample.jpg'),

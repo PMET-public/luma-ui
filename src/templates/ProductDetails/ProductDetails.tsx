@@ -69,7 +69,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     <Price className="product-details__info__header__price" {...price} /> 
                 </header>
 
-
                 <div className="product-details__info__buttons">
                     {buttons.map((button, index) => (
                         <Button className="product-details__info__buttons__item"

@@ -6,18 +6,22 @@ type UseResize = {
    vWidth: number
 }
 
-const getValues = (): UseResize => ({
-    vHeight: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
-    vWidth: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-})
-
 export const useResize = (fn?: (props?: any) => any): UseResize => {
-    const [resize, setResize] = useState(getValues())
+    const [resize, setResize] = useState({ 
+        vHeight: 0,
+        vWidth: 0,
+    })
 
-    const throttled = useThrottle((e: Event) => {
-        setResize(getValues())
+    const triggerResize = () => {
         if (fn) fn()
-    }, 150, true)
+
+        setResize({
+            vHeight: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+            vWidth: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        })
+    }    
+
+    const throttled = useThrottle(triggerResize, 150, true)
 
     useEffect(() => {
         window.addEventListener('resize', throttled)

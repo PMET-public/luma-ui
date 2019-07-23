@@ -1,7 +1,6 @@
 import React from 'react'
 import ProductDetails from './'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
 import App from '../App'
 import { AppMockData } from '../App/App.story'
 
@@ -10,9 +9,9 @@ const ProductDetailsMockData = {
         { label: 'Add to Cart', fill: true },
         { label: 'Add to Favorite' },
     ],
-    category: text('category', 'Hoodies & Sweatshirts'),
-    title: text('title', 'Circle Hooded Ice Flee'),
-    badge: text('badge', 'New Arrival'),
+    category: 'Hoodies & Sweatshirts',
+    title: 'Circle Hooded Ice Flee,',
+    badge: 'New Arrival',
     price: {
         price: '$49.99',
         priceSpecial: '$39.99',
