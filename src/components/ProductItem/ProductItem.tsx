@@ -4,6 +4,8 @@ import Image, { ImageProps } from '../Image'
 import { useTheme } from '../../theme'
 import Price, { PriceProps } from '../Price'
 
+import TagIcon from '@fortawesome/fontawesome-free/svgs/solid/tags.svg'
+
 export type ProductItemProps = {
     badge?: string
     image: ImageProps
@@ -28,7 +30,7 @@ export const ProductItem: Component<ProductItemProps> = ({
             <Image className="product-item__image"
                 height="1580"
                 width="1274"
-                vignette
+                filter="vignette"
                 {...image}
             >
                  {!!colors && (
@@ -43,11 +45,21 @@ export const ProductItem: Component<ProductItemProps> = ({
                  )}
                  
                 <span className="product-item__details">
-                    <strong className="product-item__details__title">{title}</strong>
-                    
-                    { !!badge && <span className="product-item__details__badge">{badge}</span> }
 
-                    { price && <Price className="product-item__price" {...price} /> }
+                    <strong className="product-item__details__title">
+                        {title}
+                    </strong>
+                    
+                    { !!badge && (
+                        <span className="product-item__details__badge">
+                            <TagIcon />
+                            {badge}
+                        </span> 
+                    )}
+                    
+                    <span>
+                        { price && <Price className="product-item__details__price" {...price} as="span" /> }
+                    </span>
                 </span>
 
             </Image>
@@ -65,25 +77,34 @@ export const ProductItem: Component<ProductItemProps> = ({
                     }
                 }
 
+               
+
                 .product-item__details {
                     display: grid;
                     line-height: 1.5;
                     padding-left: 1rem;
                 }
 
+                .product-item__details__title {
+                    font-weight: 600;
+                }
+
+                .product-item__details__price {
+                    font-size: 0.9em;
+                }
+
                 .product-item__details__badge {
-                    background-color: ${theme.colors.onPrimary.fade(0.45)};
-                    color: ${theme.colors.primary.fade(0.4)};
-                    font-size: 1.1rem;
-                    left: 0;
-                    letter-spacing: 0.1rem;
-                    padding: 0.5rem 2rem;
-                    position: absolute;
-                    text-align: center;
+                    filter: opacity(0.65);
+                    font-size: 0.8em;
+                    letter-spacing: 0.05rem;
                     text-transform: uppercase;
-                    top: 0;
-                    transform-origin: bottom left;
-                    transform: rotate(90deg);
+
+                    & > svg {
+                        vertical-align: middle;
+                        fill: currentColor;
+                        width: 1em;
+                        margin-right: 0.75rem;
+                    }
                 }
 
                 .product-item__details__colors {
@@ -96,14 +117,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                     display: inline-block;
                     height: 0.65rem;
                     width: 100%;
-                }
-
-                .product-item__details__title {
-                    font-weight: 600;
-                }
-
-                .product-item__price {
-                    font-size: 0.9em;
                 }
             `}</style>
         </ProductItem>
