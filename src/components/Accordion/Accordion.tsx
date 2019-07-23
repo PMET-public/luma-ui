@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useContext, useRef } from 'react'
+import React, { createContext, useState, ReactNode, useContext, useRef, useEffect, ReactElement } from 'react'
 import { Component, classes } from '../../lib'
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
@@ -7,11 +7,11 @@ import { ReactComponentLike } from 'prop-types'
 
 import ArrowIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-down.svg'
 
-const Context = createContext([ -1, (id: number) => {} ])
+const Context = createContext({ active: -1, setActive: (id: number) => {} })
 
 export type AccordionProps = {
-    children: ReactNode[]
-    init?: number
+    children: Array<ReactElement<AccordionItemProps>>
+    selected?: number
 }
 
 export type AccordionItemProps = {
@@ -28,16 +28,20 @@ type CompoundComponent = {
 export const Accordion: Component<AccordionProps> & CompoundComponent = ({ 
     as: Accordion = 'div', 
     children,
-    init = 0,
+    selected = 0,
     ...props
 }) => {
-    const [active, setActive] = useState(init)
+    const [active, setActive] = useState(selected)
+
+    useEffect(() => {
+        setActive(selected)
+    }, [selected])
 
     return (
         <Accordion {...props} className={classes('accordion', props.className)}>
-            <Context.Provider value={[ active, setActive ]}>
+            <Context.Provider value={{ active, setActive }}>
                 {React.Children.map(children, (child, index) => {
-                    return React.cloneElement(child, { active: active === index, _id: index })
+                    return React.cloneElement(child as ReactElement<AccordionItemProps>, { active: active === index, _id: index })
                 })}
             </Context.Provider>
 
@@ -54,7 +58,7 @@ Accordion.Item = ({
     as: AccordionItem = 'div', 
     active = false,
     children,
-    _id,
+    _id = -1,
     label,
     labelAs: Label = 'h3',
     ...props
@@ -73,7 +77,7 @@ Accordion.Item = ({
         opacity: 0,
     })
 
-    const [, setActive] = useContext(Context)
+    const { setActive } = useContext(Context)
 
     const triggerActivate = () => {
         setActive(active ? -1 : _id)
@@ -103,7 +107,7 @@ Accordion.Item = ({
             <style jsx global>{`
                 .accordion-item {
                     border-bottom-width: 0.1rem;
-                    border-color: ${colors.onSurface.fade(0.75)};
+                    border-color: ${colors.onSurface.fade(0.87)};
                     border-style: solid;
                     display: grid;
                     grid-auto-columns: 1fr;
@@ -126,7 +130,7 @@ Accordion.Item = ({
 
                     &.--active {
                         & .accordion-item__button__icon {
-                            transform: rotate(180deg);
+                            transform: rotateX(180deg);
                         }
                     }
                 }

@@ -6,7 +6,7 @@ import { number } from '@storybook/addon-knobs'
 storiesOf('📦 Components/Accordion', module)
     .add('Default', () => (
         <div className="story">
-            <Accordion init={number('init', 0)}>
+            <Accordion selected={number('init', 0)}>
                 <Accordion.Item label="Uno">
                     <div className="content">
                         👋
