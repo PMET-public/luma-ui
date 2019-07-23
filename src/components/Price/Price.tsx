@@ -33,10 +33,6 @@ export const Price: Component<PriceProps> = ({
                     grid-auto-columns: max-content;
                 }
 
-                .price__label {
-                    font-style: italic;
-                }
-
                 .price__original {
                     &.--special {
                         text-decoration: line-through;

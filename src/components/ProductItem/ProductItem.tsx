@@ -97,7 +97,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                     filter: opacity(0.65);
                     font-size: 0.8em;
                     letter-spacing: 0.05rem;
-                    text-transform: uppercase;
 
                     & > svg {
                         vertical-align: middle;

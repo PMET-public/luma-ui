@@ -57,7 +57,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             <div className="product-details__info">
                 <header className="product-details__info__header">
                     {category && <span className="product-details__info__header__category">{category}</span>}
-                
                     <h2 className="product-details__info__header__title">{title}</h2>
                 
                     {badge && (
@@ -66,9 +65,10 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                             {badge}
                         </span>
                     )}
+                
+                    <Price className="product-details__info__header__price" {...price} /> 
                 </header>
 
-                <Price className="product-details__info__price" {...price} /> 
 
                 <div className="product-details__info__buttons">
                     {buttons.map((button, index) => (
@@ -96,11 +96,13 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     display: grid;
                     grid-gap: 2rem;
                     grid-template-areas: "images" "info";
-                    grid-template-rows: minmax(20rem, 56rem) calc(var(--vHeight) - 0rem);
+                    grid-template-rows: max-content calc(var(--vHeight) - 0rem);
                 }
 
                 .product-details__images {
                     grid-area: images;
+                    height: calc(var(--vHeight) - 30rem);
+                    max-height: 70rem;
 
                     & .image, 
                     & .image__figure, 
@@ -117,15 +119,18 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     color: ${colors.onSurface};
                     grid-area: info;
                     display: grid;
-                    grid-gap: 2rem;
+                    grid-gap: 3rem;
                     grid-auto-rows: minmax(max-content, max-content);
+                    grid-auto-columns: 1fr;
+                    grid-template-areas: "dividor" "header" "buttons";
 
                     &::before {
+                        grid-area: dividor;
                         box-shadow: 0 1px 10px;
                         content: "";
                         height: 1px;
                         justify-self: center;
-                        position: relative;
+                        position: absolute;
                         width: 90%;
                         z-index: -1;
                     }
@@ -133,15 +138,24 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
 
 
                 .product-details__info__header {
+                    grid-area: header;
                     display: grid;
                     grid-gap: 1rem;
+                    grid-template-columns: 1fr;
+                    grid-template-areas: "category" "title" "badge" "price";
                 }
 
+                .product-details-_info__header__category {
+                    grid-area: category;
+                }
+
+                .product-details__info__header__title {
+                    grid-area: title;
+                }
 
                 .product-details__info__header__badge {
+                    grid-area: badge;
                     filter: opacity(0.65);
-                    font-size: 1.4rem;
-                    text-transform: uppercase;
                     letter-spacing: 0.05rem;
 
                     & > svg {
@@ -152,7 +166,12 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     }
                 }
 
+                .product-details__info__header__price {
+                    grid-area: price;
+                }
+
                 .product-details__info__buttons {
+                    grid-area: buttons;
                     display: grid;
                     grid-gap: 1rem;
                 }
