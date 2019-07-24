@@ -27,9 +27,11 @@ export const Assembler: Component<AssemblerProps> = ({
             {components.map(({ name, props }, index) => {
                 const Component = React.lazy(() => import(`../${name}`))
                 return (
-                    <ErrorBoundary>
-                        <Component key={`assembler__item--${index}`} {...props} />
-                    </ErrorBoundary>
+                    <React.Fragment key={`assembler__item--${index}`}>
+                        <ErrorBoundary>
+                            <Component {...props} />
+                        </ErrorBoundary>
+                    </React.Fragment>
                 )
             })}
         </Suspense>

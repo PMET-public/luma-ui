@@ -1,12 +1,13 @@
 import React from 'react'
 import Assembler from './'
 import { storiesOf } from '@storybook/react'
+import { object } from '@storybook/addon-knobs'
 import { BannerProps } from '../Banner'
 
 storiesOf('📦 Components/Assembler', module)
     .add('Default', () => (
         <div className="story">
-            <Assembler components={[
+            <Assembler components={object('components', [
                 {
                     name: 'Banner',
                     props: {
@@ -26,7 +27,7 @@ storiesOf('📦 Components/Assembler', module)
                         ],
                     } as BannerProps,
                 },
-                
+
                 // {
                 //     name: 'Carousel',
                 //     props: {
@@ -61,6 +62,6 @@ storiesOf('📦 Components/Assembler', module)
                 //         colors: ['brown', 'gray', 'black', 'blue'],
                 //     }),
                 // },
-            ]} />
+            ])} />
         </div>
     ))
