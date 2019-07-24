@@ -19,7 +19,7 @@ export const Container: Component<ContainerProps> = ({
                 .container {
                     margin: 0 auto;
                     max-width: 1800px;
-                    padding: 0 1.6rem;
+                    padding: 0 1.5rem;
                     width: 100%;
                 }
             `}</style>

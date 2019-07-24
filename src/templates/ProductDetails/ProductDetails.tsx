@@ -111,7 +111,10 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 .product-details__images__carousel {
                     grid-area: images;
                     height: calc(var(--vHeight) - 30rem);
+                    margin-bottom: -1.5rem;
+                    margin-left: -1.5rem;
                     max-height: 70rem;
+                    width: calc(100% + 3rem);
 
                     & .image, 
                     & .image__figure, 

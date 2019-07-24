@@ -45,6 +45,7 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
                     display: grid;
                     grid-gap: 2rem;
                     grid-auto-columns: minmax(0, 1fr);
+                    width: 100%;
                 }
 
                 .products-carousel__carousel {
