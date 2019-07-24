@@ -1,3 +1,4 @@
+import React from 'react'
 import { FunctionComponent, HTMLAttributes } from 'react'
 import { ReactComponentLike } from 'prop-types'
 
@@ -14,4 +15,31 @@ export const classes = (...args: Array<string|[string, boolean]|undefined>) => {
         })
         .filter(x => x !== null)
         .join(' ')
+}
+
+/**
+ * Error Boundary
+ */
+export class ErrorBoundary extends React.Component<any, { hasError: boolean }> {
+    constructor(props: any) {
+        super(props)
+        this.state = { hasError: false }
+    }
+
+    static getDerivedStateFromError() {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: true }
+    }
+
+    // componentDidCatch(error) {
+    //     // You can also log the error to an error reporting service
+    // }
+
+    render() {
+        if (this.state.hasError) {
+            return null
+        }
+
+        return this.props.children
+    }
 }
