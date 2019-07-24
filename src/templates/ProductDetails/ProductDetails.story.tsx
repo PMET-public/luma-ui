@@ -20,7 +20,29 @@ const ProductDetailsMockData = {
     images: new Array(5).fill({
         alt: '',
         src: require('../../../public/images/product-item-sample.jpg'),
-    }),  
+    }),
+    related:
+    {
+        content: {
+            title: 'You might also like',
+            items: new Array(10).fill({
+                link: { href: '#' },
+                image: {
+                    alt: '',
+                    src: require('../../../public/images/product-item-sample.jpg'),
+                    width: 4,
+                    height: 5,
+                },
+                price: {
+                    price: '$49.99',
+                    priceSpecial: '$39.99',
+                    priceLabel: 'Starting at',
+                },
+                title: 'Circle Hooded Ice Flee',
+                colors: ['brown', 'gray', 'black', 'blue'],
+            }),
+        },
+    },
 }
 
 storiesOf('📑 Templates/ProductDetails', module)
