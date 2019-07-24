@@ -90,7 +90,7 @@ Accordion.Item = ({
                 onClick={triggerActivate}
             >
                 <Label className="accordion-item__button__label">
-                    {label} | {height}
+                    {label}
                 </Label>
 
                 <ArrowIcon className="accordion-item__button__icon" />

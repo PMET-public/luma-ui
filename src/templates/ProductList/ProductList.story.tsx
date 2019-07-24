@@ -2,7 +2,6 @@ import React from 'react'
 import ProductList from './'
 import { storiesOf } from '@storybook/react'
 import { ProductListProps } from './ProductList'
-import { number } from '@storybook/addon-knobs'
 import App from '../App'
 import { AppMockData } from '../App/App.story'
 

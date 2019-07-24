@@ -9,7 +9,7 @@ import { useResize } from '../../hooks/useResize'
 import { useTheme } from '../../theme'
 import ProductsCarousel, { ProductsCarouselProps } from '../../components/ProductsCarousel'
 import { useScroll } from '../../hooks/useScroll'
-import { useMeasure } from '../../hooks/useMeasure';
+import { useMeasure } from '../../hooks/useMeasure'
 
 export type ProductDetailsProps = {
     category?: string
