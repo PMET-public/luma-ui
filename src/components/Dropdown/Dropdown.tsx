@@ -1,7 +1,8 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext, useRef } from 'react'
 import { Component, classes } from '../../lib'
 import { useTransition, animated } from 'react-spring'
 import { useTheme } from '../../theme'
+import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
 export type DropdownProps = {}
 
@@ -24,6 +25,10 @@ export const Dropdown: Component<DropdownProps> & CompoundComponent = ({
     ...props
 }) => {
     const [state, setState] = useState(false)
+    
+    const elemRef = useRef(null)
+
+    useOnClickOutside(elemRef, () => setState(false))
 
     const triggerUpdate = (value: boolean) => {
         setState(value)
@@ -35,6 +40,7 @@ export const Dropdown: Component<DropdownProps> & CompoundComponent = ({
                 <div className="dropdown"
                     onMouseEnter={() => triggerUpdate(true)}
                     onMouseLeave={() => triggerUpdate(false)}
+                    ref={elemRef}
                 >
                     {children}
                 </div>

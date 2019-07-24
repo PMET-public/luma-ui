@@ -9,7 +9,7 @@ export const HomeMockData: HomeProps = {
     stories: {
         label: 'Categories',
         items: [
-            { 
+            {
                 label: 'Women',
                 link: { href: '#' },
                 image: {
@@ -17,7 +17,7 @@ export const HomeMockData: HomeProps = {
                     src: require('../../../public/images/fashion-thumb1.jpg'),
                 },
             },
-            { 
+            {
                 label: 'Men',
                 link: { href: '#' },
                 image: {
@@ -25,7 +25,7 @@ export const HomeMockData: HomeProps = {
                     src: require('../../../public/images/fashion-thumb2.jpg'),
                 },
             },
-            { 
+            {
                 label: 'Gear',
                 link: { href: '#' },
                 image: {
@@ -33,7 +33,7 @@ export const HomeMockData: HomeProps = {
                     src: require('../../../public/images/fashion-thumb3.jpg'),
                 },
             },
-            { 
+            {
                 label: 'Training',
                 link: { href: '#' },
                 image: {
@@ -41,7 +41,7 @@ export const HomeMockData: HomeProps = {
                     src: require('../../../public/images/fashion-thumb4.jpg'),
                 },
             },
-            { 
+            {
                 label: 'Sale',
                 link: { href: '#' },
                 image: {
@@ -73,38 +73,48 @@ export const HomeMockData: HomeProps = {
             },
         },
         {
-            title: 'New Arrivals',
             type: 'carousel',
-            content: new Array(10).fill({ 
-                link: { href: '#' },
-                image: {
-                    alt: '',
-                    src: require('../../../public/images/product-item-sample.jpg'),
-                    width: 4,
-                    height: 5,
-                },
-                price: '$49.99',
-                priceSpecial: '$39.99',
-                title: 'Circle Hooded Ice Flee',
-                colors: ['brown', 'gray', 'black', 'blue'],
-            }),
+            content: {
+                title: 'New Arrivals',
+                items: new Array(10).fill({
+                    link: { href: '#' },
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                        width: 4,
+                        height: 5,
+                    },
+                    price: {
+                        price: '$49.99',
+                        priceSpecial: '$39.99',
+                        priceLabel: 'Starting at',
+                    },
+                    title: 'Circle Hooded Ice Flee',
+                    colors: ['brown', 'gray', 'black', 'blue'],
+                }),
+            },
         },
         {
-            title: 'Summer Sale',
             type: 'carousel',
-            content: new Array(10).fill({ 
-                link: { href: '#' },
-                image: {
-                    alt: '',
-                    src: require('../../../public/images/product-item-sample.jpg'),
-                    width: 4,
-                    height: 5,
-                },
-                price: '$49.99',
-                priceSpecial: '$39.99',
-                title: 'Circle Hooded Ice Flee',
-                colors: ['brown', 'gray', 'black', 'blue'],
-            }),
+            content: {
+                title: 'Summer Sale',
+                items: new Array(10).fill({
+                    link: { href: '#' },
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                        width: 4,
+                        height: 5,
+                    },
+                    price: {
+                        price: '$49.99',
+                        priceSpecial: '$39.99',
+                        priceLabel: 'Starting at',
+                    },
+                    title: 'Circle Hooded Ice Flee',
+                    colors: ['brown', 'gray', 'black', 'blue'],
+                }),
+            },
         },
     ],
 }

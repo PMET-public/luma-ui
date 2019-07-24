@@ -225,7 +225,6 @@ export const App: Component<AppProps> = ({
             <style jsx global>{`
                 .app {
                     display: grid;
-                    grid-gap: 2rem;
                     grid-auto-columns: minmax(0, 1fr);
                     grid-template-rows: auto 1fr auto auto;
                     

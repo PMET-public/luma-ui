@@ -12,9 +12,11 @@ storiesOf('📦 Components/ProductItem', module)
                     alt: '',
                     src: text('image', require('../../../public/images/product-item-sample.jpg')),
                 }}
-                price={text('price', '$149.99')}
-                priceSpecial={text('priceSpecial', '$49.00')}
-                priceLabel={text('priceLabel', 'Starting at')}
+                price={{
+                    price: text('price', '$149.99'),
+                    priceSpecial: text('priceSpecial', '$49.00'),
+                    priceLabel: text('priceLabel', 'Starting at'),
+                }}
                 title={text('title', 'Circle Hooded Ice Flee')}
                 colors={array('colors', ['green', 'blue', 'gray'])}
             />

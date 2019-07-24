@@ -55,11 +55,11 @@ storiesOf('📦 Components/Carousel', module)
                             image={{
                                 alt: '',
                                 src: require('../../../public/images/product-item-sample.jpg'),
-                                width: 2,
-                                height: 1,
                             }}
-                            price="$49.99"
-                            priceSpecial="$39.99"
+                            price={{
+                                price: '$49.99', 
+                                priceSpecial: '$39.99',
+                            }}
                             title="Circle Hooded Ice Flee"
                             colors={['brown', 'gray', 'black', 'blue']}
                         />

@@ -2,10 +2,9 @@ import React from 'react'
 import { Component, classes } from '../../lib'
 import Link, { LinkRoute } from '../../components/Link'
 import BubbleCarousel, { BubbleCarouselItemProps } from '../../components/BubbleCarousel'
-import Carousel from '../../components/Carousel'
-import ProductItem, { ProductItemProps } from '../../components/ProductItem'
 import Banner, { BannerProps } from '../../components/Banner'
 import Container from '../../components/Container'
+import ProductsCarousel, { ProductsCarouselProps } from '../../components/ProductsCarousel'
 
 type BannerSection = {
     title?: string
@@ -16,7 +15,7 @@ type BannerSection = {
 type ProductSection = {
     title?: string
     type: 'carousel'
-    content: Array<{ link: LinkRoute } & ProductItemProps>
+    content: ProductsCarouselProps
 }
 
 export type HomeProps = {
@@ -57,30 +56,12 @@ export const Home: Component<HomeProps> = ({
                     <section className="home__section" 
                         key={`home__section__${index}`}
                     >
-
-                        { section.title && <h2>{section.title}</h2> }
-
                         { section.type === 'banner' && (
                             <Banner  {...section.content}/>
                         )}
 
                         { section.type === 'carousel' && (
-                            <Carousel className="home__section__carousel"
-                                gap={2.3}
-                                padding={4}
-                            >
-                                {section.content.map(({ link, ...item }, index) => (
-                                    <Carousel.Item className="home__section__carousel__item" 
-                                        key={`home__section__carousel__item--${index}`}
-                                        as={link ? Link : 'div'}
-                                        {...link}
-                                    >
-                                        <ProductItem className="home__section__carousel__item__product" 
-                                            {...item} 
-                                        />
-                                    </Carousel.Item>
-                                ))}
-                            </Carousel>
+                            <ProductsCarousel {...section.content} />
                         )}       
                     </section>
                 ))}
@@ -89,6 +70,11 @@ export const Home: Component<HomeProps> = ({
                     .home {
                         display: grid;
                         grid-auto-columns: minmax(0, 1fr);
+                        grid-gap: 4rem;
+                    }
+
+                    .home__section {
+                        display: grid;
                         grid-gap: 2rem;
                     }
 
@@ -102,19 +88,7 @@ export const Home: Component<HomeProps> = ({
                         .home__stories {
                             display: none;
                         }
-
-                        .home__section__carousel {
-                            --show: 2;
-                        }
-
-                    }
-
-                    @media(--large-screen) {
-                        .home__section__carousel {
-                            --show: 3;
-                        }
-                    }
-                  
+                    }          
                 `}</style>
             </Container>
         </Home>
