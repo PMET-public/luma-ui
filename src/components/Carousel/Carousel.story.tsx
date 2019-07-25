@@ -2,13 +2,11 @@ import React from 'react'
 import Carousel from './'
 import { storiesOf } from '@storybook/react'
 import { number } from '@storybook/addon-knobs'
-import ProductItem from '../ProductItem'
-import Container from '../Container'
 
 storiesOf('📦 Components/Carousel', module)
     .add('Default', () => (
         <div className="story">
-            <Carousel 
+            <Carousel
                 padding={number('padding', 4)}
                 gap={number('gap', 2)}
                 show={number('show', 1)}
@@ -41,30 +39,4 @@ storiesOf('📦 Components/Carousel', module)
                 }
             `}</style>
         </div>
-    ))
-    .add('w/ Products', () => (
-        <Container className="story">
-            <Carousel 
-                padding={number('padding', 4)}
-                gap={number('gap', 2)}
-                show={number('show', 3)}
-            >
-                {new Array(number('# items', 10)).fill(null).map((_, key) => (
-                    <Carousel.Item key={key}>
-                        <ProductItem className="story__product" 
-                            image={{
-                                alt: '',
-                                src: require('../../../public/images/product-item-sample.jpg'),
-                            }}
-                            price={{
-                                price: '$49.99', 
-                                priceSpecial: '$39.99',
-                            }}
-                            title="Circle Hooded Ice Flee"
-                            colors={['brown', 'gray', 'black', 'blue']}
-                        />
-                    </Carousel.Item>
-                ))}
-            </Carousel>
-        </Container>
     ))

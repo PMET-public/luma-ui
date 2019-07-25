@@ -1,37 +1,30 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import Carousel from '../Carousel'
-import Link, { LinkRoute } from '../Link'
 import ProductItem, { ProductItemProps } from '../ProductItem'
-import { ReactComponentLike } from 'prop-types'
 
-export type ProductsCarouselProps = {
-    title?: string
-    titleAs?: ReactComponentLike
-    items: Array<{ link?: LinkRoute } & ProductItemProps>
-}
+export type ProductsCarouselProps = Props<{
+    title?: Props<{ label: string }>
+    items: ProductItemProps[]
+}>
 
 export const ProductsCarousel: Component<ProductsCarouselProps> = ({ 
-    as: ProductsCarousel = 'div', 
     title,
-    titleAs: Title = 'h3',
     items,
     ...props
 }) => {
     
     return items ? (
-        <ProductsCarousel {...props} className={classes('products-carousel', props.className)}>
-            { title && <Title>{title}</Title> }
+        <Element {...props} className={classes('products-carousel', props.className)}>
+            { title && <Element as="h3" {...title}>{title.label}</Element> }
 
              <Carousel className="products-carousel__carousel"
                 gap={1}
                 padding={4}
             >
-                {items.map(({ link, ...item }, index) => (
+                {items.map((item, index) => (
                     <Carousel.Item className="products-carousel__carousel__item" 
                         key={`products-carousel__carousel__item--${index}`}
-                        as={link ? Link : 'div'}
-                        {...link}
                     >
                         <ProductItem className="products-carousel__carousel__item__product" 
                             {...item} 
@@ -58,6 +51,6 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
                     }
                 }
             `}</style>
-        </ProductsCarousel>
+        </Element>
     ) : null
 }

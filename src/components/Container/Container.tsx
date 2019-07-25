@@ -1,18 +1,15 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 
-export type ContainerProps = {
-
-}
+export type ContainerProps = Props<{ }>
 
 export const Container: Component<ContainerProps> = ({ 
-    as: Container = 'div',
     children, 
     ...props
 }) => {
     
     return (
-        <Container {...props} className={classes('container', props.className)}>
+        <Element {...props} className={classes('container', props.className)}>
            {children}
 
             <style jsx global>{`
@@ -23,6 +20,6 @@ export const Container: Component<ContainerProps> = ({
                     width: 100%;
                 }
             `}</style>
-        </Container>
+        </Element>
     )
 }

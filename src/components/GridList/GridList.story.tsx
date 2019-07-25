@@ -53,8 +53,15 @@ storiesOf('📦 Components/GridList', module)
                                 priceSpecial: '$39.99',
                                 priceLabel: 'Starting at',
                             }}
-                            title="Circle Hooded Ice Flee"
-                            colors={['brown', 'gray', 'black', 'blue']}
+                            title={{
+                                label: 'Circle Hooded Ice Flee',
+                            }}
+                            colors={[
+                                { value: 'brown' }, 
+                                { value: 'gray' }, 
+                                { value: 'black' }, 
+                                { value: 'blue' },
+                            ]}
                         />
                     </GridList.Item>
                 ))}

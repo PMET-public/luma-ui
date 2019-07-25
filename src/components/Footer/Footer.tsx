@@ -1,21 +1,18 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 import Container from '../Container'
 
-export type FooterProps = {
-
-}
+export type FooterProps = Props<{ }>
 
 export const Footer: Component<FooterProps> = ({ 
-    as: Footer = 'div', 
     children,
     ...props
 }) => {
     const { colors } = useTheme()
 
     return (
-        <Footer {...props} className={classes('footer', props.className)}>
+        <Element {...props} className={classes('footer', props.className)}>
             <Container className="footer__container">
                 {children}
             </Container>
@@ -35,6 +32,6 @@ export const Footer: Component<FooterProps> = ({
                     padding: 3rem;
                 }
             `}</style>
-        </Footer>
+        </Element>
     )
 }

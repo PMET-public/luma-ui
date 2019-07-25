@@ -7,7 +7,9 @@ storiesOf('📦 Components/ProductItem', module)
     .add('Default', () => (
         <div className="story">
             <ProductItem className="story__product-item"
-                badge={text('badge', 'New Arrival')}
+                badge={{
+                    label: text('badge', 'New Arrival'),
+                }}
                 image={{
                     alt: '',
                     src: text('image', require('../../../public/images/product-item-sample.jpg')),
@@ -17,8 +19,14 @@ storiesOf('📦 Components/ProductItem', module)
                     priceSpecial: text('priceSpecial', '$49.00'),
                     priceLabel: text('priceLabel', 'Starting at'),
                 }}
-                title={text('title', 'Circle Hooded Ice Flee')}
-                colors={array('colors', ['green', 'blue', 'gray'])}
+                title={{
+                    label: text('title', 'Circle Hooded Ice Flee'),
+                }}
+                colors={array('colors', [
+                    { value: 'green' }, 
+                    { value: 'blue' }, 
+                    { value: 'gray' },
+                ])}
             />
 
             <style jsx global>{`

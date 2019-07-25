@@ -1,31 +1,40 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
+import { ReactComponentLike } from 'prop-types'
+import Icon, { IconProps } from '../Icon'
 
-export type HeaderProps = {}
+export type HeaderLogoProps = Props<{ 
+    svg: ReactComponentLike
+}>
 
-export type HeaderLogoProps = {}
+export type HeaderMenuProps = Props<{ 
+    items: Array<Props<{ label?: string }>>
+}>
 
-export type HeaderMenuProps = {}
+export type HeaderUtilitiesProps = Props<{ 
+    items: Array<Props<{ label?: string, icon?: IconProps }>>
+}>
 
-export type HeaderUtilitiesProps = {}
+export type HeaderProps = Props<{
+    logo: HeaderLogoProps
+    menu: HeaderMenuProps
+    utilities: HeaderUtilitiesProps
+ }>
 
-type CompoundComponent = {
-    Logo: Component<HeaderLogoProps>
-    Menu: Component<HeaderMenuProps>
-    Utilities: Component<HeaderUtilitiesProps>
-}
-
-export const Header: Component<HeaderProps> & CompoundComponent = ({
-    as: Header = 'div',
-    children,
+export const Header: Component<HeaderProps> = ({
+    logo,
+    menu,
+    utilities,
     ...props
 }) => {
     const { colors } = useTheme()
 
     return (
-        <Header {...props} className={classes('header', props.className)}>
-            {children}
+        <Element {...props} className={classes('header', props.className)}>
+            <HeaderLogo {...logo} />
+            <HeaderMenu {...menu} />
+            <HeaderUtilities {...utilities} />
 
             <style jsx global>{`
                 .header {
@@ -69,24 +78,26 @@ export const Header: Component<HeaderProps> & CompoundComponent = ({
                 }
              
             `}</style>
-        </Header>
+        </Element>
     )
 }
 
-Header.Logo = ({
-    as: HeaderLogo = 'div',
+const HeaderLogo: Component<HeaderLogoProps> = ({
     className,
-    children,
+    svg: Svg,
     ...props
 }) => (
-        <HeaderLogo {...props} className={classes('header-logo', className)}>
-            {children}
-
+        <Element {...props} className={classes('header-logo', className)}>
+            <Svg />
             <style jsx global>{`
                 .header-logo {
                     align-items: center;
                     display: flex;
                     grid-area: logo;
+                }
+
+                .header-logo svg {
+                    height: 3rem;
                 }
 
                 .header-logo a {
@@ -95,21 +106,24 @@ Header.Logo = ({
                     color: inherit !important;
                 }
             `}</style>
-        </HeaderLogo>
+        </Element>
     )
 
-Header.Menu = ({
-    as: HeaderMenu = 'div',
-    children,
+const HeaderMenu: Component<HeaderMenuProps> = ({
     className,
+    items = [],
     ...props
 }) => {
     const { typography } = useTheme()
 
     return (
-        <HeaderMenu {...props} className={classes('header-menu', className)}>
+        <Element {...props} className={classes('header-menu', className)}>
             <div className="header-menu__content">
-                {children}
+                {items.map(({label, ...props}, index) => (
+                    <Element key={index} {...props}>
+                        {label}
+                    </Element>
+                ))}
             </div>
 
             <style jsx global>{`
@@ -135,19 +149,30 @@ Header.Menu = ({
                     white-space: nowrap;
                 }
             `}</style>
-        </HeaderMenu>
+        </Element>
     )
 }
 
-Header.Utilities = ({
-    as: HeaderUtilities = 'div',
-    children,
+const HeaderUtilities: Component<HeaderUtilitiesProps> = ({
     className,
+    items = [],
     ...props
 }) => {    
     return (
-        <HeaderUtilities {...props} className={classes('header-utilities', className)}>
-            {children}
+        <Element {...props} className={classes('header-utilities', className)}>
+            {items.map(({label, icon, ...props}, index) => (
+                <Element className={classes('header-utilities__item', ['--icon', !!icon])}
+                    key={index} 
+                    {...props}
+                >
+                   {icon ? (
+                        <Icon className="header-utilities__item__icon" 
+                            aria-label={label}
+                            {...icon}
+                        />
+                    ) : label}
+               </Element>
+            ))}
 
             <style jsx global>{`
                 .header-utilities {
@@ -160,7 +185,17 @@ Header.Utilities = ({
                     grid-gap: 2.5rem;
                     justify-content: flex-end;
                 }
+
+                .header-utilities__item {
+                    &.--icon {
+                        border-color: transparent !important;
+                    }
+                }
+
+                .header-utilities__item__icon {
+                    font-size: 2.4rem;
+                }
             `}</style>
-        </HeaderUtilities>
+        </Element>
     )
 }

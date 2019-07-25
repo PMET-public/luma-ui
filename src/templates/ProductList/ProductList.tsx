@@ -8,7 +8,6 @@ import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import GridList from '../../components/GridList'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
 import SearchBar, { SearchBarProps } from '../../components/SearchBar'
-import Container from '../../components/Container'
 import Filters, { FiltersItemProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
 import Icon from '../../components/Icon'
@@ -42,7 +41,7 @@ export const ProductList: Component<ProductListProps> = ({
 
     return (
         <ProductList {...props} className={classes('product-list', props.className)}>
-            <Container className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
+            <div className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
                 <div className="product-list__filters"
                     ref={filtersRef}
                 >
@@ -88,7 +87,7 @@ export const ProductList: Component<ProductListProps> = ({
                         ))}
                     </GridList>
                 </div>
-            </Container>
+            </div>
 
             <style jsx global>{`
                 @media(--small-screen-only) {

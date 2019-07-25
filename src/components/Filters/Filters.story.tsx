@@ -1,87 +1,102 @@
 import React from 'react'
 import Filters from './'
 import { storiesOf } from '@storybook/react'
-import { FiltersItemProps } from './Filters'
+import { FiltersGroupProps } from './Filters'
 
-const filters: FiltersItemProps[] = [
+const filters: FiltersGroupProps[] = [
     {
         label: 'Fashion',
         items: [
             {
                 label: '14K Gold',
-                link: { href: '#', alt: '' },
                 count: 7,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Acrylic',
-                link: { href: '#', alt: '' },
                 count: 68,
+                as: 'a',
+                href: '#',
                 active: true,
             },
             {
                 label: 'Cashmere',
-                link: { href: '#', alt: '' },
                 count: 68,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Sterling Silver',
-                link: { href: '#', alt: '' },
                 count: 5,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Cotton',
-                link: { href: '#', alt: '' },
                 count: 437,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Linen',
-                link: { href: '#', alt: '' },
                 count: 187,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Leather',
-                link: { href: '#', alt: '' },
                 count: 16,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Nylon',
-                link: { href: '#', alt: '' },
                 count: 119,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Organic Cotton',
-                link: { href: '#', alt: '' },
                 count: 310,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Polyester',
-                link: { href: '#', alt: '' },
                 count: 140,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Rayon',
-                link: { href: '#', alt: '' },
                 count: 221,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Silk',
-                link: { href: '#', alt: '' },
                 count: 89,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Spandex',
-                link: { href: '#', alt: '' },
                 count: 220,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Viscose',
-                link: { href: '#', alt: '' },
                 count: 361,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Wool',
-                link: { href: '#', alt: '' },
                 count: 51,
+                as: 'a',
+                href: '#',
             },
         ],
     },
@@ -90,99 +105,118 @@ const filters: FiltersItemProps[] = [
         items: [
             {
                 label: 'Above Knee',
-                link: { href: '#', alt: '' },
                 count: 195,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Below Knee',
-                link: { href: '#', alt: '' },
                 count: 68,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Ankle Length',
-                link: { href: '#', alt: '' },
                 count: 85,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Halter Top',
-                link: { href: '#', alt: '' },
                 count: 34,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Short Sleeve',
-                link: { href: '#', alt: '' },
                 count: 204,
+                as: 'a',
+                href: '#',
                 active: true,
             },
             {
                 label: 'Sleeveless',
-                link: { href: '#', alt: '' },
                 count: 170,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Long Sleeve',
-                link: { href: '#', alt: '' },
                 count: 102,
+                as: 'a',
+                href: '#',
             },
             {
                 label: '3/4 Sleeve',
-                link: { href: '#', alt: '' },
                 count: 102,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Slim Fit',
-                link: { href: '#', alt: '' },
                 count: 38,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Wide Leg',
-                link: { href: '#', alt: '' },
                 count: 51,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Capri',
-                link: { href: '#', alt: '' },
                 count: 21,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Full Length',
-                link: { href: '#', alt: '' },
                 count: 255,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Straight Leg',
-                link: { href: '#', alt: '' },
                 count: 51,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Open Front',
-                link: { href: '#', alt: '' },
                 count: 119,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Crew',
-                link: { href: '#', alt: '' },
                 count: 153,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Hooded',
-                link: { href: '#', alt: '' },
                 count: 17,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Scoopneck',
-                link: { href: '#', alt: '' },
                 count: 51,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'V-neck',
-                link: { href: '#', alt: '' },
                 count: 34,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Button-down',
-                link: { href: '#', alt: '' },
                 count: 51,
+                as: 'a',
+                href: '#',
             },
         ],
     },
@@ -191,53 +225,63 @@ const filters: FiltersItemProps[] = [
         items: [
             {
                 label: 'Gold',
-                link: { href: '#', alt: '' },
                 count: 72,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Peach',
-                link: { href: '#', alt: '' },
                 count: 156,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Khaki',
-                link: { href: '#', alt: '' },
                 count: 144,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Silver',
-                link: { href: '#', alt: '' },
                 count: 6,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Lilac',
-                link: { href: '#', alt: '' },
                 count: 223,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Rain',
-                link: { href: '#', alt: '' },
                 count: 223,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Mint',
-                link: { href: '#', alt: '' },
                 count: 134,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Lily',
-                link: { href: '#', alt: '' },
                 count: 97,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Latte',
-                link: { href: '#', alt: '' },
                 count: 91,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'Cocoa',
-                link: { href: '#', alt: '' },
                 count: 16,
+                as: 'a',
+                href: '#',
             },
         ],
     },
@@ -246,13 +290,15 @@ const filters: FiltersItemProps[] = [
         items: [
             {
                 label: 'Yes',
-                link: { href: '#', alt: '' },
                 count: 18,
+                as: 'a',
+                href: '#',
             },
             {
                 label: 'No',
-                link: { href: '#', alt: '' },
                 count: 1133,
+                as: 'a',
+                href: '#',
             },
         ],
     },
@@ -263,7 +309,7 @@ storiesOf('📦 Components/Filters', module)
         <div className='story'>
             <Filters>
                 {filters.map((item, index) => (
-                    <Filters.Item key={index} {...item} />
+                    <Filters.Group key={index} {...item} />
                 ))}
             </Filters>
 

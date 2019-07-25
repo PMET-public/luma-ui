@@ -1,17 +1,16 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
-export type ImageProps = {
+export type ImageProps = Props<{
     alt?: string
     height?: string | number
     src: string
     width?: string | number
     filter?: 'vignette'
-}
+}>
 
 export const ImageComponent: Component<ImageProps> = ({
-    as: ImageComponent = 'div',
     alt,
     children,
     height,
@@ -23,7 +22,7 @@ export const ImageComponent: Component<ImageProps> = ({
     const { colors } = useTheme()
 
     return (
-        <ImageComponent {...props} className={classes('image', props.className)}>
+        <Element {...props} className={classes('image', props.className)}>
             <figure className="image__figure">
                 <div className={classes('image__wrapper', `--${filter}`)}>
                     <img className="image__img image__tag"
@@ -104,6 +103,6 @@ export const ImageComponent: Component<ImageProps> = ({
                     }
                 }
             `}</style>
-        </ImageComponent>
+        </Element>
     )
 }

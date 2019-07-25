@@ -1,19 +1,19 @@
-import React, { ReactElement } from 'react'
-import { Component, classes } from '../../lib'
-import { SvgProperties } from 'csstype'
+import React from 'react'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTransition, animated } from 'react-spring'
+import { ReactComponentLike } from 'prop-types'
 
-export type IconProps = {
+export type IconProps = Props<{
     count?: number
-    label?: string
-    children: ReactElement<SvgProperties>
-}
+    label?: string | null
+    svg?: ReactComponentLike
+}>
 
 export const Icon: Component<IconProps> = ({
-    as: Icon = 'span',
     children,
     count,
     label,
+    svg: Svg,
     ...props
 }) => {    
     const countTransitions = useTransition(count, p => p, {
@@ -25,11 +25,11 @@ export const Icon: Component<IconProps> = ({
     const hasCount = typeof count === 'number'
     
     return (
-        <Icon {...props} className={classes('icon', props.className)}>
+        <Element as="span" {...props} className={classes('icon', props.className)}>
             <span className={classes('icon__wrapper', ['--count', hasCount])}>
 
                 <span className="icon__svg">
-                    {children}
+                   { Svg ? <Svg /> : children }
                 </span>
 
                 {countTransitions.map(({ item, props, key }) => item ? (
@@ -53,12 +53,6 @@ export const Icon: Component<IconProps> = ({
                     flex-direction: column;
                     font-size: inherit;
                     line-height: 0;
-                }
-
-                .icon[href], a.icon, 
-                .icon [href] {
-                    border-bottom: 0 none;
-                    text-decoration: none;
                 }
 
                 .icon__svg svg {
@@ -99,6 +93,6 @@ export const Icon: Component<IconProps> = ({
                     top: -0.3em;
                 }
             `}</style>
-        </Icon>
+        </Element>
     )
 }

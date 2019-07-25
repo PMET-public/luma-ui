@@ -1,29 +1,28 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 
-export type PriceProps = {
+export type PriceProps = Props<{
     price: string
     priceSpecial?: string
     priceLabel?: string
-}
+}>
 
-export const Price: Component<PriceProps> = ({ 
-    as: Price = 'div', 
+export const Price: Component<PriceProps> = ({
     price,
     priceLabel,
     priceSpecial,
     ...props
 }) => {
-    
+
     return (
-        <Price {...props} className={classes('price', props.className)}>
+        <Element {...props} className={classes('price', props.className)}>
             {!!priceLabel && <em className="price__label">{priceLabel}</em>}
-            
+
             <span className={classes('price__original', ['--special', !!priceSpecial])}>
                 {price}
-            </span> 
+            </span>
 
-            { !!priceSpecial && <span className="price__special">{priceSpecial}</span> }
+            {!!priceSpecial && <span className="price__special">{priceSpecial}</span>}
 
             <style jsx global>{`
                 .price {
@@ -39,6 +38,6 @@ export const Price: Component<PriceProps> = ({
                     }
                 }
             `}</style>
-        </Price>
+        </Element>
     )
 }

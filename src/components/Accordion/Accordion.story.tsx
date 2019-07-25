@@ -6,21 +6,21 @@ import { number } from '@storybook/addon-knobs'
 storiesOf('📦 Components/Accordion', module)
     .add('Default', () => (
         <div className="story">
-            <Accordion selected={number('init', 0)}>
-                <Accordion.Item label="Uno">
+            <Accordion selected={number('selected', 0)}>
+                <Accordion.Item label={<h3>Label</h3>}>
                     <div className="content">
                         👋
                     </div>
                 </Accordion.Item>
-                <Accordion.Item label="Dos">
+                <Accordion.Item label={<h3>Dos</h3>}>
                     <div className="content">
                         👐
                     </div>
                 </Accordion.Item>
-                <Accordion.Item label="Tres">
+                <Accordion.Item label={<h3>Tres</h3>} active>
                     <div className="content">
                         🥴
-                        </div>
+                    </div>
                 </Accordion.Item>
             </Accordion>
 

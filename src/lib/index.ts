@@ -1,11 +1,30 @@
-import React from 'react'
-import { FunctionComponent, HTMLAttributes } from 'react'
+import React, { AllHTMLAttributes } from 'react'
+import { FunctionComponent } from 'react'
 import { ReactComponentLike } from 'prop-types'
 
-export type Component<P = {}> = FunctionComponent<P & HTMLAttributes<HTMLElement> & {
-    as?: ReactComponentLike
-}>
+type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
 
+/**
+ * Component Types
+ */
+export type Props<P = {}> = Override<AllHTMLAttributes<HTMLElement>, {
+    as?: ReactComponentLike | string
+} & P>
+
+export type Component<P = {}> = FunctionComponent<P>
+
+/**
+ * Element Component
+ */
+export const Element: Component<Props> = ({ 
+    as = 'div', 
+    ...props
+}) => React.createElement(as, { ...props })
+    
+/**
+ * Classes
+ * @param args 
+ */
 export const classes = (...args: Array<string|[string, boolean]|undefined>) => {
     return args
         .map(x => {

@@ -1,30 +1,33 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 
-export type BubbleCarouselProps = {
+export type BubbleCarouselProps = Props<{
     label: string
-}
+    items?: BubbleCarouselItemProps[]
+}>
 
-export type BubbleCarouselItemProps = {
+export type BubbleCarouselItemProps = Props<{
     label: string
     image: ImageProps
-}
+}>
 
 type CompoundComponent = {
     Item: Component<BubbleCarouselItemProps>
 }
 
 export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent = ({
-    as: BubbleCarousel = 'div',
     children,
     label,
+    items,
     ...props
 }) => {
     return (
-        <BubbleCarousel {...props} className={classes('bubble-carousel', props.className)} aria-label={label}>
+        <Element {...props} className={classes('bubble-carousel', props.className)} aria-label={label}>
             <div className="bubble-carousel__wrapper">
-                {children}
+                {items ? items.map((item, index) => (
+                    <BubbleCarousel.Item key={index} {...item} />
+                )) : children}
             </div>
 
             <style jsx global>{`
@@ -49,17 +52,17 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
                     }
                 }
             `}</style>
-        </BubbleCarousel>
+        </Element>
     )
 }
 
 BubbleCarousel.Item = ({ 
-    as: BabelCarouselItem = 'div',
+    as: Wrapper = 'div',
     label, 
     image,
     ...props
 }) => (
-    <BabelCarouselItem {...props} className={classes('bubble-carousel-item', props.className)}>
+    <Element {...props} className={classes('bubble-carousel-item', props.className)}>
         <Image alt={label} {...image} />
         
         <div className="bubble-carousel-item__label">
@@ -110,5 +113,5 @@ BubbleCarousel.Item = ({
             }
             
         `}</style>
-    </BabelCarouselItem>
+    </Element>
 )

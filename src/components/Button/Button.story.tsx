@@ -2,6 +2,7 @@ import React from 'react'
 import Button from './'
 import { storiesOf } from '@storybook/react'
 import { text, select, boolean } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Button', module)
     .add('Default', () => (
@@ -10,6 +11,7 @@ storiesOf('📦 Components/Button', module)
                 color={select('color', { primary: 'primary', secondary: 'secondary'}, undefined)}
                 fill={boolean('fill', false)}
                 label={text('label', 'Button')}
+                onClick={action('onClick')}
             />
 
             <style jsx global>{`

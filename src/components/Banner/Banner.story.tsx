@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from './'
 import { storiesOf } from '@storybook/react'
 import { object, select } from '@storybook/addon-knobs'
+import Link from '../../components/Link'
 
 storiesOf('📦 Components/Banner', module)
     .add('Default', () => (
@@ -15,13 +16,13 @@ storiesOf('📦 Components/Banner', module)
                 })}
                 position={select('position', { top: 'top', bottom: 'bottom' }, 'top')}
                 titles={object('titles', [
-                    { title: 'Find conscientious, comfy clothing in our eco-friendly collection' },
-                    { title: 'Twice around, twice as nice', large: true },
+                    { label: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                    { label: 'Twice around, twice as nice', large: true },
                 ])}
                 buttons={object('buttons', [
-                    { label: 'Button 1', fill: true, link: { href: '#' } },
-                    { label: 'Button 2', link: { href: '#' } },
-                    { label: 'Button 3', link: { href: '#' } },
+                    { label: 'Button 1', fill: true, as: Link, href: '#' },
+                    { label: 'Button 2', as: Link, href: '#' },
+                    { label: 'Button 3', as: Link, href: '#' },
                 ])}
             />
 

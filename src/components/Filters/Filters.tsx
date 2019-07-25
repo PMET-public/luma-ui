@@ -1,40 +1,43 @@
-import React, { useState, useRef, useEffect, ReactElement } from 'react'
-import { Component, classes } from '../../lib'
-
-import Link, { LinkRoute } from '../Link'
+import React, { useState, useRef } from 'react'
+import { Component, Props, Element, classes } from '../../lib'
+import { useMeasure } from '../../hooks/useMeasure'
 
 import ToggleIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
 import CheckedIcon from '@fortawesome/fontawesome-free/svgs/solid/check-circle.svg'
 import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
 
-export type FiltersProps = {
-    children: ReactElement<FiltersItemProps> | Array<ReactElement<FiltersItemProps>>
-}
-
-export type FiltersItemProps = {
+export type FiltersItemProps = Props<{
+    active?: boolean
+    count?: number
     label: string
-    link?: LinkRoute
+}>
+
+export type FiltersGroupProps = Props<{
+    label: string
     offset?: number
-    items?: Array<{
-        active?: boolean
-        count?: number
-        label: string
-        link: LinkRoute
-    }>
-}
+    items: FiltersItemProps[]
+}>
+
+export type FiltersProps = Props<{
+    groups?: FiltersGroupProps[]
+}>
 
 type CompoundComponent = {
-    Item: Component<FiltersItemProps>
+    Group: Component<FiltersGroupProps>
 }
 
-export const Filters: Component<FiltersProps> & CompoundComponent = ({ 
-    as: Filters = 'div', 
+export const Filters: Component<FiltersProps> & CompoundComponent = ({
+    groups,
     children,
     ...props
-}) => {  
+}) => {
     return (
-        <Filters {...props} className={classes('filters', props.className)}>
-            {children}
+        <Element {...props} className={classes('filters', props.className)}>
+            {groups ? groups.map((group, index) => (
+                <Filters.Group key={index} 
+                    {...group} 
+                />
+            )) : children}
 
             <style jsx global>{`
                 .filters {
@@ -44,142 +47,99 @@ export const Filters: Component<FiltersProps> & CompoundComponent = ({
                     grid-auto-flow: row;
                 }
             `}</style>
-        </Filters>
+        </Element>
     )
 }
 
-Filters.Item = ({
-    as: FiltersItem = 'div', 
+Filters.Group = ({
     label,
-    link,
     offset = 5,
     items = [],
     ...props
 }) => {
     const [open, setOpen] = useState(false)
-    const [height, setHeight] = useState(0)
-    const el = useRef<any>(null)
-    const Element = link ? Link : 'span'
 
-    useEffect(() => {
-        if (!el.current) return
-        setHeight(el.current.offsetHeight)
-    }, [items])
+    const elRef = useRef<any>(null)
+
+    const { height } = useMeasure(elRef)
 
     const triggerToggle = () => setOpen(!open)
 
     return (
-        <FiltersItem {...props} className={classes('filters-item', props.className)}
+        <Element {...props} className={classes('filters-group', props.className)}
             style={{
-                ['--transition-duration' as any]: (items.length * 20 ) + 'ms',
+                ['--transition-duration' as any]: (items.length * 20) + 'ms',
                 ['--height' as any]: open ? `${height / 10}rem` : `calc(2.3em * ${offset})`,
             }}
         >
-            <span className={classes('filters-item__wrapper', ['--open', open])}>
-                <dl className="filters-item__list" 
-                    ref={el}
+            <span className={classes('filters-group__wrapper', ['--open', open])}>
+                <dl className="filters-group__list"
+                    ref={elRef}
                 >
-                    <dt className="filters-item__label">
-                        <Element {...link && link}>
-                            {label}
-                        </Element>
+                    <dt className="filters-group__label">
+                        {label}
                     </dt>
 
-                    {items.map((item, index) => {
-                        const Element = item.link ? Link : 'span'
+                    {items.map((item, index) => (
+                        <dd key={index}>
+                            <Element as="span" {...props} className={classes('filters-group__item', props.className)}>
+                                {item.active ? (
+                                    <CheckedIcon className="filters-group__item__check --active" />
+                                ) : (
+                                    <CheckIcon className="filters-group__item__check" />
+                                )}
 
-                        return (
-                            <dd className="filters-item__item"
-                                key={`filters-item__item--${index}`}
-                            >
-                                <Element className="filters-item__item__link" 
-                                    {...item.link}
-                                >
-                                    {item.active ? (
-                                        <CheckedIcon className="filters-item__item__check --active" />
-                                    ) : (
-                                        <CheckIcon className="filters-item__item__check" />
-                                    )}
-                                    
-                                    <span className="filters-item__item__label">
-                                        {item.label}
+                                <span className="filters-group__item__label">
+                                    {item.label}
+                                </span>
+
+                                {item.count && (
+                                    <span className="filters-group__item__count">
+                                        {item.count}
                                     </span>
-                                    {item.count && (
-                                        <span className="filters-item__item__count">
-                                            {item.count}
-                                        </span>
-                                    )}
-                                </Element>
-                            </dd>
-                        )
-                    })}
+                                )}
+                            </Element>
+                        </dd>
+                    ))}
                 </dl>
             </span>
-            
+
             {items.length > offset && (
                 <span>
-                    <button className="filters-item__toggle" 
+                    <button className="filters-group__toggle"
                         type="button"
                         onClick={triggerToggle}
                     >
-                        <ToggleIcon className={classes('filters-item__toggle__icon', ['--open', open])} />
+                        <ToggleIcon className={classes('filters-group__toggle__icon', ['--open', open])} />
                         {open ? 'Less' : 'More'}
                     </button>
                 </span>
             )}
 
             <style jsx global>{`
-                .filters-item {
+                .filters-group {
                    display: grid;
                    grid-gap: 1.6rem;
                 }
 
-                .filters-item__wrapper {
+                .filters-group__wrapper {
                     height: auto;
                     max-height: var(--height, auto);
                     overflow: hidden;
                     transition: max-height var(--transition-duration) ease;
                 }
 
-                .filters-item__list {
+                .filters-group__list {
                     display: grid;
                     grid-gap: 1.4rem;
                 }
 
-                .filters-item__label {
+                .filters-group__label {
                     font-size: 1.8rem;
                     font-weight: 600;
                 }
 
-                .filters-item__item__link {
-                    align-items: center;
-                    display: inline-grid;
-                    grid-auto-columns: max-content;
-                    grid-auto-flow: column;
-                    grid-gap: 1rem;
-
-                    &:hover .filters-item__item__check {
-                        opacity: 0.25;
-                    }
-                }
-                
-                .filters-item__item__check {
-                    fill: currentColor;
-                    opacity: 0.1;
-                    transition: opacity 305ms ease;
-                    width: 1em;
-
-                    &.--active {
-                        opacity: 1;
-                    }
-                }
-
-                .filters-item__item__count {
-                    filter: opacity(0.45);
-                    font-size: 0.9em;
-                }
-
-                .filters-item__toggle {
+                .filters-group__toggle {
                     align-items: center;
                     color: inherit;
                     cursor: pointer;
@@ -188,7 +148,7 @@ Filters.Item = ({
                     font-size: 1em;
                 }
 
-                .filters-item__toggle__icon {
+                .filters-group__toggle__icon {
                     fill: currentColor;
                     height: 0.8em;
                     margin-right: 0.5rem;
@@ -199,7 +159,35 @@ Filters.Item = ({
                         transform: rotate(180deg);
                     }
                 }
+
+                .filters-group__item {
+                    align-items: center;
+                    display: inline-grid;
+                    grid-auto-columns: max-content;
+                    grid-auto-flow: column;
+                    grid-gap: 1rem;
+
+                    &:hover .filters-group__item__check {
+                        opacity: 0.25;
+                    }
+                }
+                
+                .filters-group__item__check {
+                    fill: currentColor;
+                    opacity: 0.1;
+                    transition: opacity 305ms ease;
+                    width: 1em;
+
+                    &.--active {
+                        opacity: 1;
+                    }
+                }
+
+                .filters-group__item__count {
+                    filter: opacity(0.45);
+                    font-size: 0.9em;
+                }
             `}</style>
-        </FiltersItem>
+        </Element>
     )
 }

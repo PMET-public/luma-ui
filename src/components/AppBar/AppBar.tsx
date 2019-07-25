@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useScroll } from '../../hooks/useScroll'
 import { useTheme } from '../../theme'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import Container from '../Container'
 
 /**
  * AppBar
  */
-export type AppBarProps = {
+export type AppBarProps = Props<{
     hideOnOffset?: number
-}
+}>
 
 export const AppBar: Component<AppBarProps> = ({
-    as: AppBar = 'div',
     children,
     hideOnOffset = 0,
     ...props
@@ -30,7 +29,7 @@ export const AppBar: Component<AppBarProps> = ({
     }, [scrollY])
     
     return (
-        <AppBar {...props} className={classes('app-bar', props.className, ['--hidden', isHidden])}>
+        <Element {...props} className={classes('app-bar', props.className, ['--hidden', isHidden])}>
             <div className="app-bar__content">
                 <Container>
                     {children}
@@ -64,6 +63,6 @@ export const AppBar: Component<AppBarProps> = ({
                     width: 100%;
                 }
             `}</style>
-        </AppBar>
+        </Element>
     )
 }

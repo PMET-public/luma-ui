@@ -3,10 +3,12 @@ import Assembler from './'
 import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 import { BannerProps } from '../Banner'
+import { ProductsCarouselProps } from '../ProductsCarousel'
+import Container from '../Container'
 
 storiesOf('📦 Components/Assembler', module)
     .add('Default', () => (
-        <div className="story">
+        <Container className="story">
             <Assembler components={object('components', [
                 {
                     name: 'Banner',
@@ -23,45 +25,40 @@ storiesOf('📦 Components/Assembler', module)
                         ],
                         position: 'bottom',
                         buttons: [
-                            { label: 'Shop Performance', fill: true, link: { href: '#' } },
+                            { label: 'Shop Performance', fill: true, as: 'a', href: '#' },
                         ],
                     } as BannerProps,
                 },
 
-                // {
-                //     name: 'Carousel',
-                //     props: {
-                //         items: new Array(10).fill({
-                //             link: { href: '#' },
-                //             image: {
-                //                 alt: '',
-                //                 src: require('../../../public/images/product-item-sample.jpg'),
-                //                 width: 4,
-                //                 height: 5,
-                //             },
-                //             price: '$49.99',
-                //             priceSpecial: '$39.99',
-                //             title: 'Circle Hooded Ice Flee',
-                //             colors: ['brown', 'gray', 'black', 'blue'],
-                //         }),
-                //     } as CarouselProps,
-                // },
-                // {
-                //     name: 'Carousel',
-                //     props: new Array(10).fill({
-                //         link: { href: '#' },
-                //         image: {
-                //             alt: '',
-                //             src: require('../../../public/images/product-item-sample.jpg'),
-                //             width: 4,
-                //             height: 5,
-                //         },
-                //         price: '$49.99',
-                //         priceSpecial: '$39.99',
-                //         title: 'Circle Hooded Ice Flee',
-                //         colors: ['brown', 'gray', 'black', 'blue'],
-                //     }),
-                // },
+                {
+                    name: 'ProductsCarousel',
+                    props: {
+                        title: 'Most Popular',
+                        items: new Array(10).fill({
+                            as: 'a',
+                            href: '#',
+                            image: {
+                                alt: '',
+                                src: require('../../../public/images/product-item-sample.jpg'),
+                                width: 4,
+                                height: 5,
+                            },
+                            price: {
+                                price: '$49.99',
+                                priceSpecial: '$39.99',
+                            },
+                            title: {
+                                label: 'Circle Hooded Ice Flee',
+                            },
+                            colors: [
+                                { value: 'brown' }, 
+                                { value: 'gray' }, 
+                                { value: 'black' }, 
+                                { value: 'blue' },
+                            ],
+                        }),
+                    } as ProductsCarouselProps,
+                },
             ])} />
-        </div>
+        </Container>
     ))

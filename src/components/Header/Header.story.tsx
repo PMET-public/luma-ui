@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './'
 import { storiesOf } from '@storybook/react'
-import Icon from '../Icon'
+
 import Logo from '../../../public/images/luma.svg'
 import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
 import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
@@ -9,38 +9,77 @@ import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
 storiesOf('📦 Components/Header', module)
     .add('Default', () => (
         <div style={{ padding: '2rem' }}>
-            <Header>
-                <Header.Logo>
-                    <a href="#">
-                        <Logo height="30" />
-                    </a>
-                </Header.Logo>
-
-                <Header.Menu>
-                    <a href="#">New In</a>
-                    <a href="#">Women</a>
-                    <a href="#">Men</a>
-                    <a href="#">Gear</a>
-                    <a href="#">Training</a>
-                    <a href="#">Gift Cards</a>
-                </Header.Menu>
-                
-                <Header.Utilities>
-                    <a href="#">Help</a>
-                    <a href="#">My Account</a>
-                   
-                    <Icon>
-                        <a href="#">
-                            <IconSearch arial-label="Search" />
-                        </a>
-                    </Icon>
-                
-                    <Icon count={10}>
-                        <a href="#">
-                            <IconBag aria-label="My Basket" />
-                        </a>
-                    </Icon>
-                </Header.Utilities>
-            </Header>
+            <Header 
+                logo={{
+                    as: 'a',
+                    href: '#',
+                    svg: Logo,
+                }}
+                menu={{
+                    items: [
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'New In',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'Women',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'Men',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'Gear',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'Training',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'Gift Cards',
+                        },  
+                    ],
+                }}
+                utilities={{
+                    items: [
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'Help',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            label: 'My Account',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            icon: {
+                                svg: IconSearch,
+                            },
+                            label: 'Search',
+                        },
+                        {
+                            as: 'a',
+                            href: '#',
+                            icon: {
+                                svg: IconBag,
+                                count: 3,
+                            },
+                            label: 'My Basket',
+                        },
+                    ],
+                }}
+            />
         </div>
 ))

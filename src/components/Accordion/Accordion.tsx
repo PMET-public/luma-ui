@@ -1,46 +1,47 @@
 import React, { createContext, useState, ReactNode, useContext, useRef, useEffect, ReactElement } from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
 import { useTheme } from '../../theme'
-import { ReactComponentLike } from 'prop-types'
 
 import ArrowIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-down.svg'
 
 const Context = createContext({ active: -1, setActive: (id: number) => {} })
 
-export type AccordionProps = {
-    children: Array<ReactElement<AccordionItemProps>>
-    selected?: number
-}
-
-export type AccordionItemProps = {
-    active?: boolean
+export type AccordionItemProps = Props<{
     _id?: number
+    active?: boolean
     label: ReactNode | string
-    labelAs?: ReactComponentLike
-}
+}>
+
+export type AccordionProps = Props<{
+    items?: AccordionItemProps[]
+    selected?: number
+}>
 
 type CompoundComponent = {
     Item: Component<AccordionItemProps>
 }
 
 export const Accordion: Component<AccordionProps> & CompoundComponent = ({ 
-    as: Accordion = 'div', 
     children,
+    items,
     selected = 0,
     ...props
 }) => {
     const [active, setActive] = useState(selected)
 
-    useEffect(() => {
-        setActive(selected)
-    }, [selected])
-
     return (
-        <Accordion {...props} className={classes('accordion', props.className)}>
+        <Element {...props} className={classes('accordion', props.className)}>
             <Context.Provider value={{ active, setActive }}>
-                {React.Children.map(children, (child, index) => {
+                {items ? items.map((item, index) => (
+                    <Accordion.Item 
+                        key={index} 
+                        active={active === index} 
+                        _id={index} 
+                        {...item} 
+                    />
+                )) : React.Children.map(children, (child, index) => {
                     return React.cloneElement(child as ReactElement<AccordionItemProps>, { active: active === index, _id: index })
                 })}
             </Context.Provider>
@@ -50,17 +51,15 @@ export const Accordion: Component<AccordionProps> & CompoundComponent = ({
                     display: grid;
                 }
             `}</style>
-        </Accordion>
+        </Element>
     )
 }
 
 Accordion.Item = ({ 
-    as: AccordionItem = 'div', 
     active = false,
     children,
     _id = -1,
     label,
-    labelAs: Label = 'h3',
     ...props
 }) => {    
     const wrapperElemRef = useRef(null)
@@ -84,15 +83,14 @@ Accordion.Item = ({
     }
 
     return (
-        <AccordionItem {...props} className={classes('accordion-item', props.className)}>
+        <Element {...props} className={classes('accordion-item', props.className)}>
             <button className={classes('accordion-item__button', ['--active', active])}
                 type="button"
                 onClick={triggerActivate}
             >
-                <Label className="accordion-item__button__label">
+                <div className="accordion-item__button__label">
                     {label}
-                </Label>
-
+                </div>
                 <ArrowIcon className="accordion-item__button__icon" />
             </button>
 
@@ -149,6 +147,6 @@ Accordion.Item = ({
                     padding: 1rem 2rem 4rem;
                 }
             `}</style>
-        </AccordionItem>
+        </Element>
     )
 }

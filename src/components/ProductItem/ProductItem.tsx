@@ -1,19 +1,18 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 import { useTheme } from '../../theme'
 import Price, { PriceProps } from '../Price'
 
-export type ProductItemProps = {
-    badge?: string
+export type ProductItemProps = Props<{
+    badge?: Props<{ label: string }>
     image: ImageProps
     price: PriceProps
-    title: string
-    colors?: string[]
-}
+    title: Props<{ label: string }>
+    colors?: Array<Props<{ value: string }>>
+}>
 
 export const ProductItem: Component<ProductItemProps> = ({
-    as: ProductItem = 'div',
     badge,
     colors,
     image,
@@ -24,11 +23,14 @@ export const ProductItem: Component<ProductItemProps> = ({
     const theme = useTheme()
 
     return (
-        <ProductItem {...props} className={classes('product-item', props.className)}>
+        <Element {...props} className={classes('product-item', props.className)}>
             {!!badge && (
-                <span className="product-item__badge">
-                    {badge}
-                </span>
+                <Element className="product-item__badge"
+                    as="span"
+                    {...badge}
+                >
+                    {badge.label}
+                </Element>
             )}
 
             <Image className="product-item__image"
@@ -38,23 +40,25 @@ export const ProductItem: Component<ProductItemProps> = ({
                 {...image}
             >
 
-
                 <span className="product-item__details">
-                    <strong className="product-item__details__title">
-                        {title}
-                    </strong>
+                    <Element className="product-item__details__title"
+                        as="span"
+                        {...title}
+                    >
+                        {title.label}
+                    </Element>
 
                     <span>
-                        {price && <Price className="product-item__details__price" {...price} as="span" />}
+                        {price && <Price className="product-item__details__price" as="span" {...price} />}
                     </span>
                 </span>
 
                 {!!colors && (
                     <ul className="product-item__colors">
-                        {colors.map((color, index) => (
+                        {colors.map(({ value }, index) => (
                             <li className="product-item__colors__item"
                                 key={`color--${index}`}
-                                style={{ backgroundColor: color }}
+                                style={{ backgroundColor: value }}
                             ></li>
                         ))}
                     </ul>
@@ -64,6 +68,7 @@ export const ProductItem: Component<ProductItemProps> = ({
             <style jsx global>{`
                 .product-item {
                     border-radius: 1rem;
+                    display: block;
                     overflow: hidden;
                     position: relative;
                 }
@@ -125,6 +130,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                     width: 100%;
                 }
             `}</style>
-        </ProductItem>
+        </Element>
     )
 }
