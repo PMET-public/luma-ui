@@ -72,7 +72,7 @@ BubbleCarousel.Item = ({
         <style jsx global>{`
             .bubble-carousel-item {
                 text-decoration: none;   
-                padding: 0 0.6rem; 
+                padding: 0 1rem; 
 
                 &:last-of-type {
                     padding-right: 1rem;

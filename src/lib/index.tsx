@@ -9,6 +9,7 @@ type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
  */
 export type Props<P = {}> = Override<AllHTMLAttributes<HTMLElement>, {
     as?: ReactComponentLike | string
+    hideOnBreakpoint?: 'small-screen-only' | 'medium-screen' | 'medium-screen-only' | 'large-screen' | 'large-screen-only' | 'x-large-screen'
 } & P>
 
 export type Component<P = {}> = FunctionComponent<P>
@@ -17,9 +18,53 @@ export type Component<P = {}> = FunctionComponent<P>
  * Element Component
  */
 export const Element: Component<Props> = ({ 
-    as = 'div', 
+    as: Element = 'div',
+    hideOnBreakpoint,
+    children,
     ...props
-}) => React.createElement(as, { ...props })
+}) => (
+    <Element {...props} className={classes(props.className, [`element--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])}>
+        {children}
+
+        <style jsx global>{`
+            .element--hide-small-screen-only {
+                @media(--small-screen-only) {
+                    display: none;
+                }
+            }  
+            
+            .element--hide-medium-screen {
+                @media(--medium-screen) {
+                    display: none;
+                }
+            }
+
+            .element--hide-medium-screen-only {
+                @media(--medium-screen-only) {
+                    display: none;
+                }
+            }
+
+            .element--hide-large-screen {
+                @media(--large-screen) {
+                    display: none;
+                }
+            }
+
+            .element--hide-large-screen-only {
+                @media(--large-screen-only) {
+                    display: none;
+                }
+            }
+
+            .element--hide-xlarge-screen {
+                @media(--xlarge-screen) {
+                    display: none;
+                }
+            }
+        `}</style>
+    </Element>
+)
     
 /**
  * Classes

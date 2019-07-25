@@ -2,13 +2,11 @@ import React, { Suspense } from 'react'
 import { Component, Props, Element, classes, ErrorBoundary } from '../../lib'
 
 export type AssemblerProps = Props<{
-    components: AssemplerComponent[]
+    components: Array<{
+        name: string
+        props: any
+    }>
 }>
-
-export type AssemplerComponent<P = Props> = {
-    name: string
-    props: P
-}
 
 const Loading = () => {
     return (
@@ -29,7 +27,7 @@ export const Assembler: Component<AssemblerProps> = ({
                 {components.map(({ name, props }, index) => {
                     const Component = React.lazy(() => import(`../${name}`))
                     return (
-                        <React.Fragment key={`assembler__item--${index}`}>
+                        <React.Fragment key={index}>
                             <ErrorBoundary>
                                 <Component {...props} />
                             </ErrorBoundary>

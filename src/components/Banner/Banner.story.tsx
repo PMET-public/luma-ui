@@ -2,7 +2,6 @@ import React from 'react'
 import Banner from './'
 import { storiesOf } from '@storybook/react'
 import { object, select } from '@storybook/addon-knobs'
-import Link from '../../components/Link'
 
 storiesOf('📦 Components/Banner', module)
     .add('Default', () => (
@@ -20,9 +19,9 @@ storiesOf('📦 Components/Banner', module)
                     { label: 'Twice around, twice as nice', large: true },
                 ])}
                 buttons={object('buttons', [
-                    { label: 'Button 1', fill: true, as: Link, href: '#' },
-                    { label: 'Button 2', as: Link, href: '#' },
-                    { label: 'Button 3', as: Link, href: '#' },
+                    { label: 'Button 1', fill: true, as: 'a', href: '#' },
+                    { label: 'Button 2', as: 'a', href: '#' },
+                    { label: 'Button 3', as: 'a', href: '#' },
                 ])}
             />
 

@@ -14,9 +14,11 @@ export const Container: Component<ContainerProps> = ({
 
             <style jsx global>{`
                 .container {
+                    --containerMargins: 1.5rem;
+                    
                     margin: 0 auto;
                     max-width: 1800px;
-                    padding: 0 1.5rem;
+                    padding: 0 var(--containerMargins);
                     width: 100%;
                 }
             `}</style>

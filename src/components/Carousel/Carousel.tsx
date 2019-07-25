@@ -43,8 +43,6 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
                     -webkit-overflow-scrolling: touch;   
                     display: grid;                   
                     grid-gap: var(--gap);
-                    margin-bottom: 1.5rem;
-                    padding-bottom: 1.5rem;
                     scroll-padding: var(--padding);
                     width: 100%;
                     grid-auto-columns: var(--itemWidth);

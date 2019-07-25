@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Element, Props, classes } from '../../lib'
 
 import { useTheme } from '../../theme'
 import { useResize } from '../../hooks/useResize'
@@ -8,25 +8,24 @@ import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import GridList from '../../components/GridList'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
 import SearchBar, { SearchBarProps } from '../../components/SearchBar'
-import Filters, { FiltersItemProps } from '../../components/Filters'
+import Filters, { FiltersProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
 import Icon from '../../components/Icon'
 
 import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/ellipsis-h.svg'
 
-export type ProductListProps = {
+export type ProductListProps = Props<{
     search: SearchBarProps
     filters: {
         label: string
         open?: boolean
         buttons?: ButtonProps[],
-        items: FiltersItemProps[]
+        props: FiltersProps[]
     }
     products: ProductItemProps[]
-}
+}>
 
 export const ProductList: Component<ProductListProps> = ({
-    as: ProductList = 'div', 
     search,
     filters,
     products,
@@ -40,17 +39,13 @@ export const ProductList: Component<ProductListProps> = ({
     useOnClickOutside(filtersRef, () => setShowFilter(false))
 
     return (
-        <ProductList {...props} className={classes('product-list', props.className)}>
+        <Element {...props} className={classes('product-list', props.className)}>
             <div className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
                 <div className="product-list__filters"
                     ref={filtersRef}
                 >
-                    <Filters>
-                        {filters.items.map((item, index) => (
-                            <Filters.Item key={index} {...item} />
-                        ))}
-                    </Filters>
-
+                    <Filters {...filters.props} />
+                    
                     {filters.buttons && (
                         <div className="product-list__filters__buttons">  
                             {filters.buttons.map((button, index) => (
@@ -206,6 +201,6 @@ export const ProductList: Component<ProductListProps> = ({
                 }
 
             `}</style>
-        </ProductList>
+        </Element>
     )
 }

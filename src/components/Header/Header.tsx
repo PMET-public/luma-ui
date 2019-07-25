@@ -44,7 +44,6 @@ export const Header: Component<HeaderProps> = ({
                     font-size: 1.4rem;
                     grid-template-areas: "logo utilities"
                                         "navigation navigation";
-                    width: 100%;
                     grid-template-columns: auto;
                     grid-template-rows: auto;
                     padding: 0 0.75rem;

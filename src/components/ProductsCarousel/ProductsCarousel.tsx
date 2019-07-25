@@ -43,11 +43,11 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
 
                 .products-carousel__carousel {
                     @media(--medium-screen) { 
-                        --show: 2;
+                        --show: 2 !important;
                     }
 
                     @media(--large-screen) {
-                        --show: 3;
+                        --show: 3 !important;
                     }
                 }
             `}</style>

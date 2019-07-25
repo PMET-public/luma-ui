@@ -1,20 +1,19 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Element, Props, classes } from '../../lib'
 import Assembler, { AssemblerProps } from '../../components/Assembler'
 
-export type HomeProps = {
+export type HomeProps = Props<{
     assembler: AssemblerProps
-}
+}>
 
 export const Home: Component<HomeProps> = ({ 
-    as: Home = 'div', 
     assembler,
     ...props
 }) => {
     
     return (
-        <Home {...props} className={classes('home', props.className)}>
+        <Element {...props} className={classes('home', props.className)}>
             <Assembler {...assembler} />
-        </Home>
+        </Element>
     )
 }

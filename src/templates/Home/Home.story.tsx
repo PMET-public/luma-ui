@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/react'
 import { HomeProps } from './Home'
 import App from '../App'
 import { AppMockData } from '../App/App.story'
-import Link from '../../components/Link'
 
 export const HomeMockData: HomeProps = {
     assembler: {
@@ -13,10 +12,11 @@ export const HomeMockData: HomeProps = {
                 name: 'BubbleCarousel',
                 props: {
                     label: 'Categories',
+                    hideOnBreakpoint: 'medium-screen',
                     items: [
                         {
                             label: 'Women',
-                            as: Link,
+                            as: 'a',
                             href: '#',
                             image: {
                                 alt: 'Women',
@@ -25,7 +25,7 @@ export const HomeMockData: HomeProps = {
                         },
                         {
                             label: 'Men',
-                            as: Link,
+                            as: 'a',
                             href: '#',
                             image: {
                                 alt: 'Men',
@@ -34,7 +34,7 @@ export const HomeMockData: HomeProps = {
                         },
                         {
                             label: 'Gear',
-                            as: Link,
+                            as: 'a',
                             href: '#',
                             image: {
                                 alt: 'Gear',
@@ -43,7 +43,7 @@ export const HomeMockData: HomeProps = {
                         },
                         {
                             label: 'Training',
-                            as: Link,
+                            as: 'a',
                             href: '#',
                             image: {
                                 alt: 'Training',
@@ -52,7 +52,7 @@ export const HomeMockData: HomeProps = {
                         },
                         {
                             label: 'Sale',
-                            as: Link,
+                            as: 'a',
                             href: '#',
                             image: {
                                 alt: 'Sale',
@@ -60,13 +60,6 @@ export const HomeMockData: HomeProps = {
                             },
                         },
                     ],
-                },
-            },
-            {
-                name: 'BubbleCarousel',
-                props: {
-                    label: 'Categories',
-
                 },
             },
             {
@@ -91,7 +84,10 @@ export const HomeMockData: HomeProps = {
             {
                 name: 'ProductsCarousel',
                 props: {
-                    title: 'New Arrivals',
+                    title: {
+                        as: 'h3',
+                        label: 'New Arrivals',
+                    },
                     items: new Array(10).fill({
                         link: { href: '#' },
                         image: {
@@ -105,15 +101,26 @@ export const HomeMockData: HomeProps = {
                             priceSpecial: '$39.99',
                             priceLabel: 'Starting at',
                         },
-                        title: 'Circle Hooded Ice Flee',
-                        colors: ['brown', 'gray', 'black', 'blue'],
+                        title: {
+                            label: 'Circle Hooded Ice Flee',
+                        },
+                        colors: [
+                            { value: 'brown' },
+                            { value: 'gray' },
+                            { value: 'black' },
+                            { value: 'blue' },
+
+                        ],
                     }),
                 },
             },
             {
                 name: 'ProductsCarousel',
                 props: {
-                    title: 'Summer Sale',
+                    title: {
+                        as: 'h3',
+                        label: 'Summer Sale',
+                    },
                     items: new Array(10).fill({
                         link: { href: '#' },
                         image: {
@@ -127,8 +134,16 @@ export const HomeMockData: HomeProps = {
                             priceSpecial: '$39.99',
                             priceLabel: 'Starting at',
                         },
-                        title: 'Circle Hooded Ice Flee',
-                        colors: ['brown', 'gray', 'black', 'blue'],
+                        title: {
+                            label: 'Circle Hooded Ice Flee',
+                        },
+                        colors: [
+                            { value: 'brown' },
+                            { value: 'gray' },
+                            { value: 'black' },
+                            { value: 'blue' },
+
+                        ],
                     }),
                 },
             },

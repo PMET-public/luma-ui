@@ -31,6 +31,7 @@ export default ({ colors }: any) => {
                 background: red;
             }            
 */
+
         `}</style>
     )
 }

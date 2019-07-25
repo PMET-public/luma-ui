@@ -1,9 +1,8 @@
 import React, { useRef } from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Element, Props, classes } from '../../lib'
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
-import Container from '../../components/Container'
 import Button, { ButtonProps } from '../../components/Button'
 import { useResize } from '../../hooks/useResize'
 import { useTheme } from '../../theme'
@@ -11,7 +10,7 @@ import ProductsCarousel, { ProductsCarouselProps } from '../../components/Produc
 import { useScroll } from '../../hooks/useScroll'
 import { useMeasure } from '../../hooks/useMeasure'
 
-export type ProductDetailsProps = {
+export type ProductDetailsProps = Props<{
     category?: string
     title: string
     images: ImageProps[]
@@ -23,10 +22,9 @@ export type ProductDetailsProps = {
         title?: string
         content: ProductsCarouselProps
     }
-}
+}>
 
 export const ProductDetails: Component<ProductDetailsProps> = ({ 
-    as: ProductDetails = Container, 
     buttons,
     category,
     images, 
@@ -44,7 +42,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
     const { height: imagesHeight } = useMeasure(imagesElemRef)
 
     return (
-        <ProductDetails {...props} className={classes('product-details', props.className)}
+        <Element {...props} className={classes('product-details', props.className)}
             style={{ ['--vHeight' as any]: vHeight + 'px' }}
         >
             <div className="product-details__images"
@@ -176,6 +174,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 }
                 
             `}</style>
-        </ProductDetails>
+        </Element>
     )
 }

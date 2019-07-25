@@ -29,14 +29,13 @@ storiesOf('📦 Components/ProductsCarousel', module)
                     { value: 'gray' },
                     { value: 'black' },
                     { value: 'blue' },
-                    
                 ],
             }),
         }
 
         return (
             <div className="story">
-                <ProductsCarousel {...props} />
+                <ProductsCarousel {...props} className="story__product-carousel" />
 
                 <style jsx global>{`
                     .story {

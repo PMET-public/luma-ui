@@ -4,11 +4,10 @@ import { Component, Element, Props, classes } from '../../lib'
 import { useResize } from '../../hooks/useResize'
 
 import AppBar from '../../components/AppBar'
-import Header, { HeaderProps } from '../../components/Header'
+import Header from '../../components/Header'
 import Icon from '../../components/Icon'
 import TabBar from '../../components/TabBar'
 import Logo from '../../../public/images/luma.svg'
-import Image from '../../components/Image'
 import Footer from '../../components/Footer'
 import Container from '../../components/Container'
 
@@ -211,6 +210,7 @@ export const App: Component<AppProps> = ({
                 .app {
                     display: grid;
                     grid-auto-columns: minmax(0, 1fr);
+                    grid-gap: 2rem;
                     grid-template-rows: auto 1fr auto auto;
                     min-height: var(--vHeight);
                 }
@@ -227,6 +227,11 @@ export const App: Component<AppProps> = ({
                     @media(--large-screen) {
                         height: 3.5rem;
                     }
+                }
+
+                /** Main */
+                .app__main {
+                    box-sizing: border-box;
                 }
 
                 /** Footer */
