@@ -40,6 +40,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
                     padding: 1.3rem;
                     position: sticky;
                     right: 0;
+                    z-index: 1;
                 }
 
                 @supports(padding: max(0px)) {
