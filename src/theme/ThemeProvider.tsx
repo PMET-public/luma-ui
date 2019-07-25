@@ -92,8 +92,8 @@ type ThemeProviderProps = {
 
 const defaultColors = {
     background: [
-        color('hsla(0, 0%, 100%, 1)'), 
-        color('hsla(0, 0%, 13.3%, 1)'),
+        color('hsla(0, 0%, 94%, 1)'), 
+        color('hsla(0, 0%, 20.3%, 1)'),
     ],
 
     onBackground: [
