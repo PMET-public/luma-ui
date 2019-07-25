@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useContext, useRef, useEffect, ReactElement } from 'react'
+import React, { createContext, useState, ReactNode, useContext, useRef, ReactElement } from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'

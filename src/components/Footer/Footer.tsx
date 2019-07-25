@@ -1,7 +1,6 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Container, Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
-import Container from '../Container'
 
 export type FooterProps = Props<{ }>
 

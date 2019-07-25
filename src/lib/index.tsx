@@ -22,50 +22,75 @@ export const Element: Component<Props> = ({
     hideOnBreakpoint,
     children,
     ...props
-}) => (
-    <Element {...props} className={classes(props.className, [`element--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])}>
-        {children}
+}) => {
+    return (
+        <Element {...props} className={classes(props.className, [`element--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])}>
+            {children}
 
-        <style jsx global>{`
-            .element--hide-small-screen-only {
-                @media(--small-screen-only) {
-                    display: none;
+            <style jsx global>{`
+                .element--hide-small-screen-only {
+                    @media(--small-screen-only) {
+                        display: none;
+                    }
+                }  
+                
+                .element--hide-medium-screen {
+                    @media(--medium-screen) {
+                        display: none;
+                    }
                 }
-            }  
-            
-            .element--hide-medium-screen {
-                @media(--medium-screen) {
-                    display: none;
-                }
-            }
 
-            .element--hide-medium-screen-only {
-                @media(--medium-screen-only) {
-                    display: none;
+                .element--hide-medium-screen-only {
+                    @media(--medium-screen-only) {
+                        display: none;
+                    }
                 }
-            }
 
-            .element--hide-large-screen {
-                @media(--large-screen) {
-                    display: none;
+                .element--hide-large-screen {
+                    @media(--large-screen) {
+                        display: none;
+                    }
                 }
-            }
 
-            .element--hide-large-screen-only {
-                @media(--large-screen-only) {
-                    display: none;
+                .element--hide-large-screen-only {
+                    @media(--large-screen-only) {
+                        display: none;
+                    }
                 }
-            }
 
-            .element--hide-xlarge-screen {
-                @media(--xlarge-screen) {
-                    display: none;
+                .element--hide-xlarge-screen {
+                    @media(--xlarge-screen) {
+                        display: none;
+                    }
                 }
-            }
-        `}</style>
-    </Element>
-)
-    
+            `}</style>
+        </Element>
+    )
+}
+
+/** Container Component */
+export const Container: Component<Props> = ({ 
+    children, 
+    ...props
+}) => {
+    return (
+        <Element {...props} className={classes('container', props.className)}>
+           {children}
+
+            <style jsx global>{`
+                .container {
+                    --containerMargins: 1.5rem;
+                    
+                    margin: 0 auto;
+                    max-width: 1800px;
+                    padding: 0 var(--containerMargins);
+                    width: 100%;
+                }
+            `}</style>
+        </Element>
+    )
+}
+
 /**
  * Classes
  * @param args 

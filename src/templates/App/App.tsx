@@ -1,5 +1,5 @@
 import React from 'react'
-import { Component, Element, Props, classes } from '../../lib'
+import { Container, Component, Element, Props, classes } from '../../lib'
 
 import { useResize } from '../../hooks/useResize'
 
@@ -9,7 +9,6 @@ import Icon from '../../components/Icon'
 import TabBar from '../../components/TabBar'
 import Logo from '../../../public/images/luma.svg'
 import Footer from '../../components/Footer'
-import Container from '../../components/Container'
 
 import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
 import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'

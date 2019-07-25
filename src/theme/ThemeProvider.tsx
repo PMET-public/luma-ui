@@ -48,7 +48,6 @@ type Theme = {
     colors: Colors
     typography: Typography
     isDark: boolean
-    routerLink: ReactComponentLike
     setDark: (v: boolean) => any
 }
 
@@ -89,7 +88,6 @@ type ThemeProviderProps = {
         headingWeight?: FontWeightProperty
     }
 
-    routerLink?: ReactComponentLike
 }
 
 const defaultColors = {
@@ -211,7 +209,6 @@ const initialTheme: Theme = {
 
     setDark: (v: boolean) => { },
     
-    routerLink: ({ ...props }) => <a {...props} />,
 }
 
 const ThemeContext = createContext(initialTheme)
@@ -221,7 +218,6 @@ export const useTheme = () => useContext(ThemeContext)
 export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     children,
     colors: newColors,
-    routerLink = (props: any) => <a {...props} />,
     typography: newTypography,
     
 }) => {
@@ -253,7 +249,6 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         <ThemeContext.Provider value={{ 
             colors,
             isDark, 
-            routerLink,
             setDark, 
             typography, 
         }}>

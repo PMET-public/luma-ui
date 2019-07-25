@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 import { BannerProps } from '../Banner'
 import { ProductsCarouselProps } from '../ProductsCarousel'
-import Container from '../Container'
+import { Container } from '../../lib'
 
 storiesOf('📦 Components/Assembler', module)
     .add('Default', () => (
@@ -33,10 +33,10 @@ storiesOf('📦 Components/Assembler', module)
                 {
                     name: 'ProductsCarousel',
                     props: {
-                        title: 'Most Popular',
+                        title: object('title', {
+                            label: 'Title',
+                        }),
                         items: new Array(10).fill({
-                            as: 'a',
-                            href: '#',
                             image: {
                                 alt: '',
                                 src: require('../../../public/images/product-item-sample.jpg'),
@@ -46,14 +46,15 @@ storiesOf('📦 Components/Assembler', module)
                             price: {
                                 price: '$49.99',
                                 priceSpecial: '$39.99',
+                                priceLabel: 'Starting at',
                             },
                             title: {
                                 label: 'Circle Hooded Ice Flee',
                             },
                             colors: [
-                                { value: 'brown' }, 
-                                { value: 'gray' }, 
-                                { value: 'black' }, 
+                                { value: 'brown' },
+                                { value: 'gray' },
+                                { value: 'black' },
                                 { value: 'blue' },
                             ],
                         }),

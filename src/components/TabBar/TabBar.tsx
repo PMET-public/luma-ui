@@ -24,7 +24,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
     return (
         <Element {...props} className={classes('tab-bar', props.className)}>
             {items ? items.map((item, index) => (
-                <TabBar.Item key={key} {...item} />
+                <TabBar.Item key={index} {...item} />
             )) : children}
 
             <style jsx global>{`

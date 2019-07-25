@@ -3,7 +3,7 @@ import GridList from './'
 import { storiesOf } from '@storybook/react'
 import { number } from '@storybook/addon-knobs'
 import ProductItem from '../ProductItem'
-import Container from '../Container'
+import { Container } from '../../lib'
 
 storiesOf('📦 Components/GridList', module)
     .add('Default', () => (
