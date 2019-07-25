@@ -79,11 +79,28 @@ export const Container: Component<Props> = React.forwardRef(
             <style jsx global>{`
                 .container {
                     --containerMargins: 1.5rem;
-                    
                     margin: 0 auto;
                     max-width: 1800px;
                     padding: 0 var(--containerMargins);
                     width: 100%;
+                }
+            `}</style>
+        </Element>
+    )
+})
+
+export const EdgeContainer: Component<Props> = React.forwardRef(
+    ({ children, ...props }, ref) => {
+    return (
+        <Element {...props} className={classes('edge-container', props.className)}
+            ref={ref}
+        >
+           {children}
+
+            <style jsx global>{`
+                .edge-container {                    
+                    margin-left: calc(var(--containerMargins) * -1);
+                    width: calc(100% + (var(--containerMargins) * 2));
                 }
             `}</style>
         </Element>
