@@ -25,13 +25,12 @@ export const useResize = (fn?: (props?: any) => any): UseResize => {
 
     useEffect(() => {
         if (fn) fn()
-
         window.addEventListener('resize', throttled)
 
         return () => {
             window.removeEventListener('resize', throttled)
         }
-    })
+    }, [])
 
     return resize
 }

@@ -42,7 +42,7 @@ export const useScroll = (ref: MutableRefObject<any> = useRef(document), fn?: (p
         return () => {
             ref.current.removeEventListener('scroll', throttled)
         }
-    })
+    }, [])
 
     return scroll
 }
