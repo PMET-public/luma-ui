@@ -84,7 +84,6 @@ export const App: Component<AppProps> = ({
         >
             <AppBar className="app__app-bar" 
                 as="header" 
-                hideOnOffset={100}
             >
                 <Header className="app__app-bar__header"  
                     logo={{

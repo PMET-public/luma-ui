@@ -1,4 +1,4 @@
-import React, { AllHTMLAttributes } from 'react'
+import React, { AllHTMLAttributes, Ref } from 'react'
 import { FunctionComponent } from 'react'
 import { ReactComponentLike } from 'prop-types'
 
@@ -9,6 +9,7 @@ type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
  */
 export type Props<P = {}> = Override<AllHTMLAttributes<HTMLElement>, {
     as?: ReactComponentLike | string
+    ref?: Ref<any>
     hideOnBreakpoint?: 'small-screen-only' | 'medium-screen' | 'medium-screen-only' | 'large-screen' | 'large-screen-only' | 'x-large-screen'
 } & P>
 
@@ -17,14 +18,12 @@ export type Component<P = {}> = FunctionComponent<P>
 /**
  * Element Component
  */
-export const Element: Component<Props> = ({ 
-    as: Element = 'div',
-    hideOnBreakpoint,
-    children,
-    ...props
-}) => {
+export const Element: Component<Props> = React.forwardRef(
+    ({  as: Element = 'div', hideOnBreakpoint, children, ...props }, ref) => {
     return (
-        <Element {...props} className={classes(props.className, [`element--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])}>
+        <Element {...props} className={classes(props.className, [`element--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])}
+            ref={ref}
+        >
             {children}
 
             <style jsx global>{`
@@ -66,15 +65,15 @@ export const Element: Component<Props> = ({
             `}</style>
         </Element>
     )
-}
+}) 
 
 /** Container Component */
-export const Container: Component<Props> = ({ 
-    children, 
-    ...props
-}) => {
+export const Container: Component<Props> = React.forwardRef(
+    ({ children, ...props }, ref) => {
     return (
-        <Element {...props} className={classes('container', props.className)}>
+        <Element {...props} className={classes('container', props.className)}
+            ref={ref}
+        >
            {children}
 
             <style jsx global>{`
@@ -89,7 +88,7 @@ export const Container: Component<Props> = ({
             `}</style>
         </Element>
     )
-}
+})
 
 /**
  * Classes
