@@ -21,6 +21,17 @@ export default ({ colors }: any) => {
                 overflow: hidden; 
                 position: absolute; 
             }
+            
+            button {
+                &:not([disabled]) {
+                    cursor: pointer;
+                }
+
+                &[disabled] {
+                    opacity: 0.25;
+                }
+            }
+  
 /*
             *:focus {
                 outline: none;
