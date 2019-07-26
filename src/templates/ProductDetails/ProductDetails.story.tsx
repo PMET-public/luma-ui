@@ -28,55 +28,18 @@ const ProductDetailsMockData: ProductDetailsProps = {
     assembler: {
         components: [
             {
-                name: 'Banner',
+                name: "Accordion",
                 props: {
-                    image: {
-                        alt: '',
-                        src: require('../../../public/images/banner-2.jpg'),
-                        height: 650,
-                        width: '100%',
-                    },
-                    titles: [
-                        { title: 'Twice around, twice as nice', large: true },
-                        { title: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                    items: [
+                        {
+                            label: 'Hola',
+                            children: 'Hi',
+                        },
+                        {
+                            label: 'Hola',
+                            children: 'Hi',
+                        },
                     ],
-                    position: 'bottom',
-                    buttons: [
-                        { label: 'Shop Performance', fill: true, link: { href: '#' } },
-                    ],
-                },
-            },
-            {
-                name: 'ProductsCarousel',
-                props: {
-                    title: {
-                        as: 'h3',
-                        label: 'Summer Sale',
-                    },
-                    items: new Array(10).fill({
-                        link: { href: '#' },
-                        image: {
-                            alt: '',
-                            src: require('../../../public/images/product-item-sample.jpg'),
-                            width: 4,
-                            height: 5,
-                        },
-                        price: {
-                            price: '$49.99',
-                            priceSpecial: '$39.99',
-                            priceLabel: 'Starting at',
-                        },
-                        title: {
-                            label: 'Circle Hooded Ice Flee',
-                        },
-                        colors: [
-                            { value: 'brown' },
-                            { value: 'gray' },
-                            { value: 'black' },
-                            { value: 'blue' },
-
-                        ],
-                    }),
                 },
             },
         ],

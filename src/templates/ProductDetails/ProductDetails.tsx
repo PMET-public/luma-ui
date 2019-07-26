@@ -60,40 +60,42 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             <div className="product-details__info"
                 ref={infoElemRef}
             >
-                <header className="product-details__info__header">
-                    {category && (
-                        <Element className="product-details__info__header__category"
-                            as="span" 
+                <div className="product-details__info__main">
+                    <header className="product-details__info__main__header">
+                        {category && (
+                            <Element className="product-details__info__main__header__category"
+                                as="span" 
+                            >
+                                {category.label}
+                            </Element>
+                        )}
+
+                        <Element className="product-details__info__main__header__title"
+                            as="h2"
                         >
-                            {category.label}
+                            {title.label}
                         </Element>
-                    )}
 
-                    <Element className="product-details__info__header__title"
-                        as="h2"
-                    >
-                        {title.label}
-                    </Element>
+                        <Price className="product-details__info__main__header__price" {...price} /> 
+                    </header>
+                    
+                    <div className="product-details__info__buttons">
+                        {buttons.map((button, index) => (
+                            <Button className="product-details__info__buttons__item"
+                                key={`product-details__info__buttons__item--${index}`} 
+                                {...button} 
+                            />
+                        ))}
+                    </div> 
+                </div>
 
-                    <Price className="product-details__info__header__price" {...price} /> 
-                </header>
-
-                <div className="product-details__info__buttons">
-                    {buttons.map((button, index) => (
-                        <Button className="product-details__info__buttons__item"
-                            key={`product-details__info__buttons__item--${index}`} 
-                            {...button} 
-                        />
-                    ))}
-                </div> 
-
-                {assembler && (
+                 {assembler && (
                     <Assembler className="product-details__assembler" 
                         {...assembler} 
                     />
-                )}
+                )}           
             </div>
-
+    
             <style jsx global>{`
                 @media(--small-screen-only) {
                     html, body {
@@ -103,6 +105,50 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             `}</style>
 
             <style jsx global>{`
+                .product-details__images__carousel {
+                    & .image, 
+                    & .image__figure, 
+                    & .image__wrapper,
+                    & .image__img {
+                        width: 100%;
+                    }
+                }
+
+                .product-details__info {
+                    display: grid;
+                    grid-auto-columns: 1fr;
+                    grid-auto-rows: minmax(max-content, max-content);
+                    grid-gap: 1rem;
+                }
+
+                .product-details__info__main {
+                    display: grid;
+                    grid-gap: 3rem;
+                }
+
+                .product-details__info__main__header {
+                    display: grid;
+                    grid-gap: 1rem;
+                    grid-template-columns: 1fr;
+                    grid-template-areas: "category" "title" "price";
+                }
+
+                .product-details-_info__main__header__category {
+                    grid-area: category;
+                }
+
+                .product-details__info__main__header__title {
+                    grid-area: title;
+                }
+
+                .product-details__info__main__header__price {
+                    grid-area: price;
+                }
+
+                .product-details__info__buttons {
+                    display: grid;
+                    grid-gap: 1rem;
+                }
 
                 @media(--small-screen-only) {
                     .app-bar,
@@ -111,22 +157,19 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         scroll-snap-stop: always;
                     }
                     
-
                     .product-details {
                         display: grid;
-                        grid-template-areas: "images" "info";
                         grid-template-rows: max-content max-content;
                     }
 
                     .product-details__images {
                         position: sticky;
                         top: 0;
-                        z-index: 0;
+                        z-index: -1;
                         margin-bottom: -2rem;
                     }
 
                     .product-details__images__carousel {
-                        grid-area: images;
                         width: 100vw;
                         position: relative;
                         margin-left: -50vw;
@@ -136,8 +179,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     .product-details__info {
                         background-color: ${colors.surface};
                         color: ${colors.onSurface};
-                        grid-area: info;
-                        min-height: var(--vHeight);
                         padding-top: 3rem;
                         z-index: 1;
 
@@ -158,58 +199,69 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
                         border-radius: 1.5rem 1.5rem 0 0;
                     }
-                }
 
-                .product-details__images__carousel {
-                    & .image, 
-                    & .image__figure, 
-                    & .image__wrapper,
-                    & .image__img {
-                        width: 100%;
+                    .product-details__info__main__header {
+                        &::before {
+                            background-color: currentColor;
+                            border-radius: 0.5rem;
+                            content: "";
+                            height: 0.4rem;
+                            left: 50%;
+                            margin: auto;
+                            opacity: 0.2;
+                            position: absolute;
+                            top: 15px;
+                            transform: translateX(-50%);
+                            width: 4rem;
+                        }
                     }
                 }
 
-                .product-details__info {
-                    display: grid;
-                    grid-auto-columns: 1fr;
-                    grid-auto-rows: minmax(max-content, max-content);
-                    grid-gap: 4rem;
-                }
-
-                .product-details__info__header {
-                    &::before {
-                        background-color: currentColor;
-                        border-radius: 0.5rem;
-                        content: "";
-                        height: 0.4rem;
-                        left: 50%;
-                        margin: auto;
-                        opacity: 0.2;
-                        position: absolute;
-                        top: 15px;
-                        transform: translateX(-50%);
-                        width: 4rem;
+                @media(--medium-screen){
+                    .product-details {
+                        padding-top: 2rem;
+                        display: grid;
+                        grid-template-areas: "images info";
+                        grid-template-columns: 1fr 1fr;
+                        grid-template-rows: max-content max-content;
+                        grid-gap: 2rem;
                     }
 
-                    display: grid;
-                    grid-gap: 1rem;
-                    grid-template-columns: 1fr;
-                    grid-template-areas: "category" "title" "price";
+                    .product-details__images__carousel {
+                        grid-auto-flow: row;
+                        grid-template-columns: repeat(1, 1.5fr);
+                        overflow: unset;
+
+                        & .image {
+                            overflow: hidden;
+                            border-radius: 1rem;
+                        }
+                    }
+
+                    .product-details__info {
+                        position: sticky;
+                        top: 2rem;
+                        height: var(--vHeight);
+                    }
+
+                    .product-details__info__main {
+                        padding: 2rem;
+                        background-color: ${colors.surface};
+                        color: ${colors.onSurface};
+                        border-radius: 2rem;
+                    }
                 }
 
-                .product-details-_info__header__category {
-                    grid-area: category;
+                @media(--large-screen) {
+                    .product-details {
+                        grid-template-columns: 1.5fr 1fr;
+                    }
+                    
+                    .product-details__images__carousel {
+                        grid-auto-flow: row;
+                        grid-template-columns: repeat(2, 1fr);
+                    }
                 }
-
-                .product-details__info__header__title {
-                    grid-area: title;
-                }
-
-                .product-details__info__buttons {
-                    display: grid;
-                    grid-gap: 1rem;
-                }
-                
             `}</style>
         </Element>
     )

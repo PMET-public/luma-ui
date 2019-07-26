@@ -55,6 +55,7 @@ export const ImageComponent: Component<ImageProps> = ({
                 .image__wrapper {
                     position: relative;
                     display: inherit;
+                    line-height: 0;
 
                     &.--vignette {
                         position: relative;
@@ -75,6 +76,7 @@ export const ImageComponent: Component<ImageProps> = ({
 
                 .image__tag {
                     position: absolute;
+                    min-height: 100%;
                 }
 
                 .image__img {
