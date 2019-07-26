@@ -10,8 +10,19 @@ const ProductDetailsMockData: ProductDetailsProps = {
         { label: 'Add to Cart', fill: true },
         { label: 'Add to Favorite' },
     ],
-    category: {
-        label: 'Hoodies & Sweatshirts',
+    breadcrumbs: {
+        items: [
+            {
+                label: 'Women',
+                as: 'a',
+                href: '#',
+            },
+            {
+                label: 'Hoodies & Sweatshirts',
+                as: 'a',
+                href: '#',
+            },
+        ],
     },
     title: {
         label: 'Circle Hooded Ice Flee',

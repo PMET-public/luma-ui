@@ -11,11 +11,12 @@ import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
 import Assembler, { AssemblerProps } from '../../components/Assembler'
+import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs';
 
 export type ProductDetailsProps = Props<{
     assembler?: AssemblerProps
     buttons: ButtonProps[]
-    category?: Props<{ label: string }>
+    breadcrumbs?: BreadcrumbsProps
     images: ImageProps[]
     price: PriceProps
     sku?: Props<{ label: string }>
@@ -25,7 +26,7 @@ export type ProductDetailsProps = Props<{
 export const ProductDetails: Component<ProductDetailsProps> = ({ 
     assembler,
     buttons,
-    category,
+    breadcrumbs,
     images, 
     price,
     sku,
@@ -62,13 +63,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             >
                 <div className="product-details__info__main">
                     <header className="product-details__info__main__header">
-                        {category && (
-                            <Element className="product-details__info__main__header__category"
-                                as="span" 
-                            >
-                                {category.label}
-                            </Element>
-                        )}
+                        {breadcrumbs && <Breadcrumbs className="product-details__info__main__breadcrumbs" prefix="#" {...breadcrumbs} />}
 
                         <Element className="product-details__info__main__header__title"
                             as="h2"
@@ -130,11 +125,13 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     display: grid;
                     grid-gap: 1rem;
                     grid-template-columns: 1fr;
-                    grid-template-areas: "category" "title" "price";
+                    grid-template-areas: "breadcrumbs" "title" "price";
                 }
 
-                .product-details-_info__main__header__category {
-                    grid-area: category;
+                .product-details__info__main__breadcrumbs {
+                    grid-area: breadcrumbs;
+                    font-size: 1.4rem;
+                    opacity: 0.75;
                 }
 
                 .product-details__info__main__header__title {
