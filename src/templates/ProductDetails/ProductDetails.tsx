@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Component, Element, Props, classes } from '../../lib'
 
-import { useResize } from '../../hooks/useResize'
 import { useTheme } from '../../theme'
-// import { useScroll } from '../../hooks/useScroll'
-// import { useMeasure } from '../../hooks/useMeasure'
+import { useResize } from '../../hooks/useResize'
+import { useScroll } from '../../hooks/useScroll'
+import { useMeasure } from '../../hooks/useMeasure'
 
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
@@ -32,15 +32,15 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
     title,
     ...props
 }) => {    
-    const { vHeight } = useResize()
+    const infoElemRef = useRef(null)
     const { colors, margin } = useTheme()
-    // const { scrollY } = useScroll()
-    // const imagesElemRef = useRef(null)
-    // const { height: imagesHeight } = useMeasure(imagesElemRef)
+    const { vHeight } = useResize()
+    const { y: infoYPosition } = useMeasure(infoElemRef)
+    const { scrollY } = useScroll()
 
     return (
         <Element {...props} className={classes('product-details', props.className)}
-            style={{ ['--vHeight' as any]: vHeight + 'px' }}
+            style={{ ['--vHeight' as any]:  `calc(${vHeight}px - 0rem)` }}
         >
             <div className="product-details__images">
                 <Carousel className="product-details__images__carousel"
@@ -57,7 +57,9 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 </Carousel>
             </div>
 
-            <div className="product-details__info">
+            <div className="product-details__info"
+                ref={infoElemRef}
+            >
                 <header className="product-details__info__header">
                     {category && (
                         <Element className="product-details__info__header__category"
@@ -92,34 +94,31 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 )}
             </div>
 
-            {/* <style jsx global>{`
+            <style jsx global>{`
                 html, body {
-                    scroll-snap-type: y mandatory;
-                    scroll-padding: 7rem;
+                    scroll-snap-type: ${scrollY > infoYPosition ? 'unset' : 'y mandatory'};
                 }
-            `}</style> */}
+            `}</style>
 
             <style jsx global>{`
-                /*
-                .product-details__images,
+                .app-bar,
                 .product-details__info {
                     scroll-snap-align: start;
                     scroll-snap-stop: always;
                 }
-                */
+                
 
                 .product-details {
                     display: grid;
                     grid-gap: 2rem;
                     grid-template-areas: "images" "info";
                     grid-template-rows: max-content max-content;
-
                 }
 
                 .product-details__images {
                     position: sticky;
                     top: 0;
-                    z-index: 2;
+                    z-index: 0;
                 }
 
                 .product-details__images__carousel {
@@ -147,9 +146,15 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     grid-auto-columns: 1fr;
                     grid-auto-rows: minmax(max-content, max-content);
                     grid-gap: 4rem;
-                    min-height: calc(var(--vHeight) - 0rem);
+                    min-height: var(--vHeight);
                     padding-top: 3rem;
-                    z-index: 2;
+                    z-index: 1;
+
+                    /**
+                        Needed to fix this Safari bug
+                        https://css-tricks.com/forums/topic/safari-for-ios-z-index-ordering-bug-while-scrolling-a-page-with-a-fixed-element/
+                     */
+                    -webkit-transform: translate3d(0,0,0);
                     
                    
                     width: 100vw;
