@@ -45,7 +45,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             <div className="product-details__images">
                 <Carousel className="product-details__images__carousel"
                     gap={1}
-                    padding={4}
+                    padding={5}
                 >
                     {images.map((image, index) => (
                         <Carousel.Item className="product-details__images__carousel__item" 
@@ -95,89 +95,100 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             </div>
 
             <style jsx global>{`
-                html, body {
-                    scroll-snap-type: ${scrollY > infoYPosition ? 'unset' : 'y mandatory'};
+                @media(--small-screen-only) {
+                    html, body {
+                        scroll-snap-type: ${scrollY > infoYPosition ? 'unset' : 'y mandatory'};
+                    }
                 }
             `}</style>
 
             <style jsx global>{`
-                .app-bar,
-                .product-details__info {
-                    scroll-snap-align: start;
-                    scroll-snap-stop: always;
-                }
-                
 
-                .product-details {
-                    display: grid;
-                    grid-gap: 2rem;
-                    grid-template-areas: "images" "info";
-                    grid-template-rows: max-content max-content;
-                }
+                @media(--small-screen-only) {
+                    .app-bar,
+                    .product-details__info {
+                        scroll-snap-align: start;
+                        scroll-snap-stop: always;
+                    }
+                    
 
-                .product-details__images {
-                    position: sticky;
-                    top: 0;
-                    z-index: 0;
+                    .product-details {
+                        display: grid;
+                        grid-template-areas: "images" "info";
+                        grid-template-rows: max-content max-content;
+                    }
+
+                    .product-details__images {
+                        position: sticky;
+                        top: 0;
+                        z-index: 0;
+                        margin-bottom: -2rem;
+                    }
+
+                    .product-details__images__carousel {
+                        grid-area: images;
+                        width: 100vw;
+                        position: relative;
+                        margin-left: -50vw;
+                        left: 50%;
+                    }
+
+                    .product-details__info {
+                        background-color: ${colors.surface};
+                        color: ${colors.onSurface};
+                        grid-area: info;
+                        min-height: var(--vHeight);
+                        padding-top: 3rem;
+                        z-index: 1;
+
+                        /**
+                            Needed to fix this Safari bug
+                            https://css-tricks.com/forums/topic/safari-for-ios-z-index-ordering-bug-while-scrolling-a-page-with-a-fixed-element/
+                        */
+                        -webkit-transform: translate3d(0,0,0);
+                        
+                    
+                        width: 100vw;
+                        position: relative;
+                        margin-left: -50vw;
+                        left: 50%;
+
+                        padding-left: ${margin};
+                        padding-right: ${margin};
+                        box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
+                        border-radius: 1.5rem 1.5rem 0 0;
+                    }
                 }
 
                 .product-details__images__carousel {
-                    grid-area: images;
-                    width: 100vw;
-                    position: relative;
-                    margin-left: -50vw;
-                    left: 50%;
-        
                     & .image, 
                     & .image__figure, 
                     & .image__wrapper,
                     & .image__img {
-                        height: 100%;
                         width: 100%;
-                        min-height: 100%;
                     }
                 }
 
                 .product-details__info {
-                    background-color: ${colors.surface};
-                    color: ${colors.onSurface};
                     display: grid;
-                    grid-area: info;
                     grid-auto-columns: 1fr;
                     grid-auto-rows: minmax(max-content, max-content);
                     grid-gap: 4rem;
-                    min-height: var(--vHeight);
-                    padding-top: 3rem;
-                    z-index: 1;
-
-                    /**
-                        Needed to fix this Safari bug
-                        https://css-tricks.com/forums/topic/safari-for-ios-z-index-ordering-bug-while-scrolling-a-page-with-a-fixed-element/
-                     */
-                    -webkit-transform: translate3d(0,0,0);
-                    
-                   
-                    width: 100vw;
-                    position: relative;
-                    margin-left: -50vw;
-                    left: 50%;
-
-                    padding-left: ${margin};
-                    padding-right: ${margin};
-                    box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
-                    border-radius: 1.5rem 1.5rem 0 0;
                 }
-
 
                 .product-details__info__header {
                     &::before {
-                        content: "";
-                        width: 4rem;
-                        height: 0.4rem;
-                        background: currentColor;
+                        background-color: currentColor;
                         border-radius: 0.5rem;
-                        opacity: 0.35;
-                        margin: -1rem auto 0;
+                        content: "";
+                        height: 0.4rem;
+                        left: 50%;
+                        margin: auto;
+                        opacity: 0.2;
+                        position: absolute;
+                        top: 15px;
+                        transform: translateX(-50%);
+                        width: 4rem;
                     }
 
                     display: grid;
