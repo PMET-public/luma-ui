@@ -1,6 +1,7 @@
 import React, { AllHTMLAttributes, Ref } from 'react'
 import { FunctionComponent } from 'react'
 import { ReactComponentLike } from 'prop-types'
+import { useTheme } from '../theme'
 
 type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
 
@@ -68,44 +69,28 @@ export const Element: Component<Props> = React.forwardRef(
 }) 
 
 /** Container Component */
-export const Container: Component<Props> = React.forwardRef(
+export type ContainerProps = Props<{ }>
+export const Container: Component<ContainerProps> = React.forwardRef(
     ({ children, ...props }, ref) => {
-    return (
-        <Element {...props} className={classes('container', props.className)}
-            ref={ref}
-        >
-           {children}
+        const { margin } = useTheme()
+        return (
+            <Element {...props} className={classes('container', props.className)}
+                ref={ref}
+            >
+            {children}
 
-            <style jsx global>{`
-                .container {
-                    --containerMargins: 1.5rem;
-                    margin: 0 auto;
-                    max-width: 1800px;
-                    padding: 0 var(--containerMargins);
-                    width: 100%;
-                }
-            `}</style>
-        </Element>
-    )
-})
-
-export const EdgeContainer: Component<Props> = React.forwardRef(
-    ({ children, ...props }, ref) => {
-    return (
-        <Element {...props} className={classes('edge-container', props.className)}
-            ref={ref}
-        >
-           {children}
-
-            <style jsx global>{`
-                .edge-container {                    
-                    margin-left: calc(var(--containerMargins) * -1);
-                    width: calc(100% + (var(--containerMargins) * 2));
-                }
-            `}</style>
-        </Element>
-    )
-})
+                <style jsx global>{`
+                    .container {
+                        margin: auto;
+                        max-width: 1800px;
+                        width: 100%;
+                        padding-left: ${margin};
+                        padding-right: ${margin};
+                    }
+                `}</style>
+            </Element>
+        )
+    })
 
 /**
  * Classes

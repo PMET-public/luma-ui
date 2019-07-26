@@ -50,6 +50,7 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
                     overflow-x: scroll;
                     overflow-y: hidden;
                     scroll-snap-type: x mandatory;
+                    padding-bottom: 1rem;
 
                     &::-webkit-scrollbar {
                         height: 0.2rem;

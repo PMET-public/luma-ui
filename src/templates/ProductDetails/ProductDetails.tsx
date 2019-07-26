@@ -1,53 +1,48 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Component, Element, Props, classes } from '../../lib'
+
+import { useResize } from '../../hooks/useResize'
+import { useTheme } from '../../theme'
+// import { useScroll } from '../../hooks/useScroll'
+// import { useMeasure } from '../../hooks/useMeasure'
+
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
-import { useResize } from '../../hooks/useResize'
-import { useTheme } from '../../theme'
-import ProductsCarousel, { ProductsCarouselProps } from '../../components/ProductsCarousel'
-import { useScroll } from '../../hooks/useScroll'
-import { useMeasure } from '../../hooks/useMeasure'
+import Assembler, { AssemblerProps } from '../../components/Assembler'
 
 export type ProductDetailsProps = Props<{
-    category?: string
-    title: string
+    assembler?: AssemblerProps
+    buttons: ButtonProps[]
+    category?: Props<{ label: string }>
     images: ImageProps[]
     price: PriceProps
-    inStock?: string
-    sku?: string
-    buttons: ButtonProps[]
-    related?: {
-        title?: string
-        content: ProductsCarouselProps
-    }
+    sku?: Props<{ label: string }>
+    title: Props<{ label: string }>
 }>
 
 export const ProductDetails: Component<ProductDetailsProps> = ({ 
+    assembler,
     buttons,
     category,
     images, 
-    inStock,
     price,
-    related,
     sku,
     title,
     ...props
 }) => {    
     const { vHeight } = useResize()
-    const { colors } = useTheme()
-    const { scrollY } = useScroll()
-    const imagesElemRef = useRef(null)
-    const { height: imagesHeight } = useMeasure(imagesElemRef)
+    const { colors, margin } = useTheme()
+    // const { scrollY } = useScroll()
+    // const imagesElemRef = useRef(null)
+    // const { height: imagesHeight } = useMeasure(imagesElemRef)
 
     return (
         <Element {...props} className={classes('product-details', props.className)}
             style={{ ['--vHeight' as any]: vHeight + 'px' }}
         >
-            <div className="product-details__images"
-                ref={imagesElemRef}
-            >
+            <div className="product-details__images">
                 <Carousel className="product-details__images__carousel"
                     gap={1}
                     padding={4}
@@ -64,8 +59,20 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
 
             <div className="product-details__info">
                 <header className="product-details__info__header">
-                    {category && <span className="product-details__info__header__category">{category}</span>}
-                    <h2 className="product-details__info__header__title">{title}</h2>
+                    {category && (
+                        <Element className="product-details__info__header__category"
+                            as="span" 
+                        >
+                            {category.label}
+                        </Element>
+                    )}
+
+                    <Element className="product-details__info__header__title"
+                        as="h2"
+                    >
+                        {title.label}
+                    </Element>
+
                     <Price className="product-details__info__header__price" {...price} /> 
                 </header>
 
@@ -78,42 +85,50 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     ))}
                 </div> 
 
-                {related && (
-                    <ProductsCarousel className="product-details__info__related" 
-                        {...related.content} 
+                {assembler && (
+                    <Assembler className="product-details__assembler" 
+                        {...assembler} 
                     />
                 )}
             </div>
 
-            <style jsx global>{`
+            {/* <style jsx global>{`
                 html, body {
-                    scroll-snap-type: y ${scrollY < imagesHeight ? 'mandatory' : 'proximity'};
+                    scroll-snap-type: y mandatory;
                     scroll-padding: 7rem;
                 }
-            `}</style>
+            `}</style> */}
 
             <style jsx global>{`
+                /*
                 .product-details__images,
                 .product-details__info {
                     scroll-snap-align: start;
-                    scroll-snap-stop: normal;
+                    scroll-snap-stop: always;
                 }
+                */
 
                 .product-details {
                     display: grid;
                     grid-gap: 2rem;
                     grid-template-areas: "images" "info";
                     grid-template-rows: max-content max-content;
+
+                }
+
+                .product-details__images {
+                    position: sticky;
+                    top: 0;
+                    z-index: 2;
                 }
 
                 .product-details__images__carousel {
                     grid-area: images;
-                    height: calc(var(--vHeight) - 30rem);
-                    margin-bottom: -1.5rem;
-                    margin-left: -1.5rem;
-                    max-height: 70rem;
-                    width: calc(100% + 3rem);
-
+                    width: 100vw;
+                    position: relative;
+                    margin-left: -50vw;
+                    left: 50%;
+        
                     & .image, 
                     & .image__figure, 
                     & .image__wrapper,
@@ -134,22 +149,32 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     grid-gap: 4rem;
                     min-height: calc(var(--vHeight) - 0rem);
                     padding-top: 3rem;
+                    z-index: 2;
+                    
+                   
+                    width: 100vw;
+                    position: relative;
+                    margin-left: -50vw;
+                    left: 50%;
 
-                    &::before {
-                        box-shadow: 0 1px 10px;
-                        content: "";
-                        grid-area: dividor;
-                        height: 1px;
-                        justify-self: center;
-                        margin-top: -3rem;
-                        position: absolute;
-                        width: 90%;
-                        z-index: -1;
-                    }
+                    padding-left: ${margin};
+                    padding-right: ${margin};
+                    box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
+                    border-radius: 1.5rem 1.5rem 0 0;
                 }
 
 
                 .product-details__info__header {
+                    &::before {
+                        content: "";
+                        width: 4rem;
+                        height: 0.4rem;
+                        background: currentColor;
+                        border-radius: 0.5rem;
+                        opacity: 0.35;
+                        margin: -1rem auto 0;
+                    }
+
                     display: grid;
                     grid-gap: 1rem;
                     grid-template-columns: 1fr;
@@ -167,10 +192,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 .product-details__info__buttons {
                     display: grid;
                     grid-gap: 1rem;
-                }
-
-                .product-details__info__related {
-                    z-index: 1;
                 }
                 
             `}</style>

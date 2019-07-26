@@ -208,7 +208,6 @@ export const App: Component<AppProps> = ({
                 .app {
                     display: grid;
                     grid-auto-columns: minmax(0, 1fr);
-                    grid-gap: 2rem;
                     grid-template-rows: auto 1fr auto auto;
                     min-height: var(--vHeight);
                 }

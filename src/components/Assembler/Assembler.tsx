@@ -4,7 +4,7 @@ import { Component, Props, Element, classes, ErrorBoundary } from '../../lib'
 export type AssemblerProps = Props<{
     components: Array<{
         name: string
-        props: any
+        props: Props<any>
     }>
 }>
 
@@ -37,10 +37,17 @@ export const Assembler: Component<AssemblerProps> = ({
 
                 <style jsx global>{`
                     .assembler {
+                        --gap: 3rem;
                         display: grid;
-                        grid-gap: 4rem;
+                        padding-top: 2rem;
+                        padding-bottom: 2rem;
+                        grid-gap: var(--gap);
                         grid-auto-columns: minmax(0, 1fr);
-                        grid-auto-rows: minmax(0, max-content);
+                        grid-auto-rows: minmax(max-content, max-content);
+
+                        @media(--medium-screen) {
+                            --gap: 4rem;
+                        }
                     }
                 `}</style>
             </Suspense>

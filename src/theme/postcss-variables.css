@@ -1,4 +1,10 @@
-/* Breakpoints Queries */
+/** 
+    Breakpoints Queries 
+
+    @media(--small-screen-only) {
+        ...
+    }    
+*/
 @custom-media --small-screen-only (max-width: 599px);    
 @custom-media --medium-screen (min-width: 600px);    
 @custom-media --medium-screen-only (min-width: 600px) and (max-width: 991px);    

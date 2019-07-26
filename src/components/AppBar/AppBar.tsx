@@ -24,12 +24,6 @@ export const AppBar: Component<AppBarProps> = ({
             </div>
 
             <style jsx global>{`
-                .app-bar {
-                    position: sticky;
-                    top: 0;
-                    z-index: 1;
-                }
-                
                 .app-bar__content {
                     align-items: center;
                     background-color: ${colors.surface};

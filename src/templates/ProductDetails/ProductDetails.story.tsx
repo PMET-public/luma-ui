@@ -3,15 +3,19 @@ import ProductDetails from './'
 import { storiesOf } from '@storybook/react'
 import App from '../App'
 import { AppMockData } from '../App/App.story'
+import { ProductDetailsProps } from './ProductDetails'
 
-const ProductDetailsMockData = {
+const ProductDetailsMockData: ProductDetailsProps = {
     buttons: [
         { label: 'Add to Cart', fill: true },
         { label: 'Add to Favorite' },
     ],
-    category: 'Hoodies & Sweatshirts',
-    title: 'Circle Hooded Ice Flee,',
-    badge: 'New Arrival',
+    category: {
+        label: 'Hoodies & Sweatshirts',
+    },
+    title: {
+        label: 'Circle Hooded Ice Flee',
+    },
     price: {
         price: '$49.99',
         priceSpecial: '$39.99',
@@ -21,27 +25,61 @@ const ProductDetailsMockData = {
         alt: '',
         src: require('../../../public/images/product-item-sample.jpg'),
     }),
-    related:
-    {
-        content: {
-            title: 'You might also like',
-            items: new Array(10).fill({
-                link: { href: '#' },
-                image: {
-                    alt: '',
-                    src: require('../../../public/images/product-item-sample.jpg'),
-                    width: 4,
-                    height: 5,
+    assembler: {
+        components: [
+            {
+                name: 'Banner',
+                props: {
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/banner-2.jpg'),
+                        height: 650,
+                        width: '100%',
+                    },
+                    titles: [
+                        { title: 'Twice around, twice as nice', large: true },
+                        { title: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                    ],
+                    position: 'bottom',
+                    buttons: [
+                        { label: 'Shop Performance', fill: true, link: { href: '#' } },
+                    ],
                 },
-                price: {
-                    price: '$49.99',
-                    priceSpecial: '$39.99',
-                    priceLabel: 'Starting at',
+            },
+            {
+                name: 'ProductsCarousel',
+                props: {
+                    title: {
+                        as: 'h3',
+                        label: 'Summer Sale',
+                    },
+                    items: new Array(10).fill({
+                        link: { href: '#' },
+                        image: {
+                            alt: '',
+                            src: require('../../../public/images/product-item-sample.jpg'),
+                            width: 4,
+                            height: 5,
+                        },
+                        price: {
+                            price: '$49.99',
+                            priceSpecial: '$39.99',
+                            priceLabel: 'Starting at',
+                        },
+                        title: {
+                            label: 'Circle Hooded Ice Flee',
+                        },
+                        colors: [
+                            { value: 'brown' },
+                            { value: 'gray' },
+                            { value: 'black' },
+                            { value: 'blue' },
+
+                        ],
+                    }),
                 },
-                title: 'Circle Hooded Ice Flee',
-                colors: ['brown', 'gray', 'black', 'blue'],
-            }),
-        },
+            },
+        ],
     },
 }
 

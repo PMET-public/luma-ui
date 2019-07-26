@@ -54,22 +54,21 @@ export const ImageComponent: Component<ImageProps> = ({
 
                 .image__wrapper {
                     position: relative;
-                    z-index: -1;
                     display: inherit;
 
                     &.--vignette {
                         position: relative;
 
-                        &::before {
+                        &::after {
                             bottom: 0;
-                            box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.1);
+                            box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.2);
                             content: "";
                             left: 0;
                             pointer-events: none;
                             position: absolute;
                             right: 0;
                             top: 0;
-                            z-index: 2;
+                            
                         }
                     }
                 }
@@ -81,8 +80,8 @@ export const ImageComponent: Component<ImageProps> = ({
                 .image__img {
                     background-color: ${colors.onSurface.fade(0.95)};
                     object-fit: cover;
-                    object-position: center;
-                    z-index: 1;
+                    object-position: center;                    
+                    
                 }
 
                 .image__placeholder {

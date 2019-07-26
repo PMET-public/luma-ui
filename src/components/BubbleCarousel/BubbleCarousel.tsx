@@ -22,8 +22,14 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
     items,
     ...props
 }) => {
+
     return (
-        <Element {...props} className={classes('bubble-carousel', props.className)} aria-label={label}>
+        <Element {...props} className={classes('bubble-carousel', props.className)} 
+            aria-label={label}
+            style={{
+                ['--size' as any]: '8rem',
+            }}
+        >
             <div className="bubble-carousel__wrapper">
                 {items ? items.map((item, index) => (
                     <BubbleCarousel.Item key={index} {...item} />
@@ -37,14 +43,14 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
                         https://stackoverflow.com/questions/40733385/hiding-webkit-scrollbar-when-overflow-scrolling-touch-is-enabled 
                     */
                     overflow-y: hidden;
-                    height: 10rem;
-                    margin-top: -1rem;
+                    height: calc(var(--size) + 2rem);
                 }
 
                 .bubble-carousel__wrapper {
                     -webkit-overflow-scrolling: touch;
                     overflow-x: scroll;
-                    padding: 1rem 0;
+                    margin-top: -1rem;
+                    padding: 1rem 0 1rem;
                     display: flex;
 
                     &::-webkit-scrollbar {
@@ -72,13 +78,13 @@ BubbleCarousel.Item = ({
         <style jsx global>{`
             .bubble-carousel-item {
                 text-decoration: none;   
-                padding: 0 1rem; 
+                padding: 0 0.75rem; 
 
                 &:last-of-type {
-                    padding-right: 1rem;
+                    padding-right: 0.75rem;
                 }
                 &:first-of-type {
-                    padding-left: 1rem;
+                    padding-left: 0.75rem;
                 }
             }
 
@@ -92,11 +98,11 @@ BubbleCarousel.Item = ({
             .bubble-carousel-item .image__img {
                 border-radius: 50%;
                 display: inline-block;
-                height: 7rem;
+                height: var(--size);
                 object-fit: cover;
                 object-position: center;
                 overflow: hidden;
-                width: 7rem;
+                width: var(--size);
             }
 
             .bubble-carousel-item__label {
@@ -107,7 +113,7 @@ BubbleCarousel.Item = ({
                 text-align: center;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                width: 7rem;
+                width: var(--size);
                 line-height: 1.5;
                 text-transform: uppercase;
             }

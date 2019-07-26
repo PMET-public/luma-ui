@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState, createContext, useContext } from 'r
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
-import { ReactComponentLike } from 'prop-types'
 import { ColorProperty, FontFamilyProperty, FontStyleProperty, FontWeightProperty } from 'csstype'
 import ColorObject from 'color'
 
@@ -46,9 +45,10 @@ type Typography = {
 
 type Theme = {
     colors: Colors
-    typography: Typography
     isDark: boolean
+    margin: string
     setDark: (v: boolean) => any
+    typography: Typography
 }
 
 type ThemeProviderProps = {
@@ -88,6 +88,7 @@ type ThemeProviderProps = {
         headingWeight?: FontWeightProperty
     }
 
+    margin?: string
 }
 
 const defaultColors = {
@@ -208,6 +209,8 @@ const initialTheme: Theme = {
     isDark: false,
 
     setDark: (v: boolean) => { },
+
+    margin: '1rem',
     
 }
 
@@ -245,12 +248,15 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         ...newTypography,
     }
 
+    const margin = '1rem'
+
     return (
         <ThemeContext.Provider value={{ 
             colors,
             isDark, 
             setDark, 
             typography, 
+            margin,
         }}>
             <div className="theme">
                 {children}
