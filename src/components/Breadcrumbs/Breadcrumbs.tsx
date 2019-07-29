@@ -19,7 +19,7 @@ export const Breadcrumbs: Component<BreadcrumbsProps> = ({
     return (
         <Element {...props} className={classes('breadcrumbs', props.className)}>
             {items.map(({ label, ...item }, index) => (
-                <React.Fragment>
+                <React.Fragment key={index}>
                     <Element {...item} className={classes('breadcrumbs__item', item.className)}>
                         {prefix}{label}
                     </Element>
