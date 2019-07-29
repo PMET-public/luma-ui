@@ -1,7 +1,7 @@
 import React from 'react'
 import Breadcrumbs from './'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Breadcrumbs', module)
     .add('Default', () => (

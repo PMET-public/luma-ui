@@ -27,7 +27,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
         <Element {...props} className={classes('bubble-carousel', props.className)} 
             aria-label={label}
             style={{
-                ['--size' as any]: '8rem',
+                ['--size' as any]: '9rem',
             }}
         >
             <div className="bubble-carousel__wrapper">
@@ -63,7 +63,6 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
 }
 
 BubbleCarousel.Item = ({ 
-    as: Wrapper = 'div',
     label, 
     image,
     ...props

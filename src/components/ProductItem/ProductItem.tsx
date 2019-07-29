@@ -67,7 +67,6 @@ export const ProductItem: Component<ProductItemProps> = ({
 
             <style jsx global>{`
                 .product-item {
-                    border-radius: 1rem;
                     display: block;
                     overflow: hidden;
                     position: relative;
@@ -97,7 +96,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                     }
                     
                     & .image__caption {
-                        background-color: ${theme.colors.surface.fade(0.2)};
+                        background-color: ${theme.colors.surface.fade(0.05)};
                         bottom: 0;
                         color: ${theme.colors.onSurface};
                         position: absolute;

@@ -53,6 +53,25 @@ const ProductDetailsMockData: ProductDetailsProps = {
                     ],
                 },
             },
+            {
+                name: 'Banner',
+                props: {
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/banner-2.jpg'),
+                        height: 650,
+                        width: '100%',
+                    },
+                    titles: [
+                        { label: 'Twice around, twice as nice', large: true },
+                        { label: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                    ],
+                    position: 'bottom',
+                    buttons: [
+                        { label: 'Shop Performance', fill: true, link: { href: '#' } },
+                    ],
+                },
+            },
         ],
     },
 }

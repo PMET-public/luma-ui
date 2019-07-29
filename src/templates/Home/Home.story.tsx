@@ -16,8 +16,8 @@ export const HomeMockData: HomeProps = {
                     items: [
                         {
                             label: 'Women',
-                            as: 'a',
                             href: '#',
+                            target: 'blank',
                             image: {
                                 alt: 'Women',
                                 src: require('../../../public/images/fashion-thumb1.jpg'),
@@ -72,8 +72,8 @@ export const HomeMockData: HomeProps = {
                         width: '100%',
                     },
                     titles: [
-                        { title: 'Twice around, twice as nice', large: true },
-                        { title: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                        { label: 'Twice around, twice as nice', large: true },
+                        { label: 'Find conscientious, comfy clothing in our eco-friendly collection' },
                     ],
                     position: 'bottom',
                     buttons: [

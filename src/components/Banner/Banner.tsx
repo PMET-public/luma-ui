@@ -61,10 +61,7 @@ export const Banner: Component<BannerProps> = ({
                     
                 }
 
-                .banner__image {
-                    border-radius: 2rem;
-                    overflow: hidden;
-                    
+                .banner__image {   
                     & .image__img {
                         min-width: 100%;
                         min-height: 100%;

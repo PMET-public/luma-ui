@@ -11,7 +11,7 @@ import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
 import Assembler, { AssemblerProps } from '../../components/Assembler'
-import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs';
+import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 
 export type ProductDetailsProps = Props<{
     assembler?: AssemblerProps
@@ -225,14 +225,10 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     }
 
                     .product-details__images__carousel {
+                        grid-gap:0.5rem;
                         grid-auto-flow: row;
                         grid-template-columns: repeat(1, 1.5fr);
                         overflow: unset;
-
-                        & .image {
-                            overflow: hidden;
-                            border-radius: 1rem;
-                        }
                     }
 
                     .product-details__info {
