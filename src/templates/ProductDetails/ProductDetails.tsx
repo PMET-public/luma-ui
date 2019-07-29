@@ -162,6 +162,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     .product-details__images {
                         position: sticky;
                         top: 0;
+                        bottom: 0;
                         z-index: -1;
                         margin-bottom: -2rem;
                     }

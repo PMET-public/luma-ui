@@ -10,9 +10,12 @@ type UseScroll = {
     scrollY: number
 }
 
-export const useScroll = (ref: MutableRefObject<any> = useRef(document), fn?: (props?: any) => any): UseScroll => {
+export const useScroll = (
+    ref: MutableRefObject<any> = useRef(document), 
+    fn?: (props?: any) => any
+): UseScroll => {
 
-    const elem = (ref.current && ref.current.documentElement) || ref.current || { }
+    const elem = (ref.current.scrollingElement || ref.current.documentElement) || ref.current || { }
 
     const [scroll, setWheelEvent] = useState({
         scrollDeltaX: 0,
