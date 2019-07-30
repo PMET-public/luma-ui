@@ -5,6 +5,7 @@ export type AssemblerProps = Props<{
     components: Array<{
         name: string
         props: Props<any>
+        hideOnBreakpoint?: 'small-screen-only' | 'medium-screen' | 'medium-screen-only' | 'large-screen' | 'large-screen-only' | 'x-large-screen'
     }>
 }>
 
@@ -25,14 +26,14 @@ export const Assembler: Component<AssemblerProps> = ({
     useEffect(() => {
         setChildren(
             <Suspense fallback={<Loading />}>
-                {components.map(({ name, props }, index) => {
+                {components.map(({ name, hideOnBreakpoint, props }, index) => {
                     const DynamicComponent = React.lazy(() => import(`../${name}`))
                     return (
-                        <React.Fragment key={index}>
+                        <div className={classes('assembler__row', [`--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])} key={index}>
                             <ErrorBoundary>
                                 <DynamicComponent {...props} />
                             </ErrorBoundary>
-                        </React.Fragment>
+                        </div>
                     )
                 })}
             </Suspense>
@@ -47,8 +48,6 @@ export const Assembler: Component<AssemblerProps> = ({
                 .assembler {
                     --gap: 3rem;
                     display: grid;
-                    padding-top: 2rem;
-                    padding-bottom: 2rem;
                     grid-gap: var(--gap);
                     grid-auto-columns: minmax(0, 1fr);
                     grid-auto-rows: minmax(max-content, max-content);
@@ -56,6 +55,45 @@ export const Assembler: Component<AssemblerProps> = ({
                     @media(--medium-screen) {
                         --gap: 4rem;
                     }
+                }
+                .assembler__row {
+
+                    &.--hide-small-screen-only {
+                        @media(--small-screen-only) {
+                            display: none;
+                        }
+                    }  
+                    
+                    &.--hide-medium-screen {
+                        @media(--medium-screen) {
+                            display: none;
+                        }
+                    }
+
+                    &.--hide-medium-screen-only {
+                        @media(--medium-screen-only) {
+                            display: none;
+                        }
+                    }
+
+                    &.--hide-large-screen {
+                        @media(--large-screen) {
+                            display: none;
+                        }
+                    }
+
+                    &.--hide-large-screen-only {
+                        @media(--large-screen-only) {
+                            display: none;
+                        }
+                    }
+
+                    &.--hide-xlarge-screen {
+                        @media(--xlarge-screen) {
+                            display: none;
+                        }
+                    }
+
                 }
             `}</style>
         </Element>

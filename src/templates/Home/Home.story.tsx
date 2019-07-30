@@ -10,9 +10,9 @@ export const HomeMockData: HomeProps = {
         components: [
             {
                 name: 'BubbleCarousel',
+                hideOnBreakpoint: 'medium-screen',
                 props: {
                     text: 'Categories',
-                    hideOnBreakpoint: 'medium-screen',
                     items: [
                         {
                             text: 'Women',

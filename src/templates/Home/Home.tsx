@@ -14,6 +14,12 @@ export const Home: Component<HomeProps> = ({
     return (
         <Element {...props} className={classes('home', props.className)}>
             <Assembler {...assembler} />
+
+            <style jsx global>{`
+                .home {
+                    padding-top: 2rem;
+                }
+            `}</style>
         </Element>
     )
 }

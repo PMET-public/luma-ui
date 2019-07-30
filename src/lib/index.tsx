@@ -10,7 +10,6 @@ type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
  */
 export type Props<P = {}> = Override<AllHTMLAttributes<HTMLElement>, {
     as?: ReactComponentLike | string
-    hideOnBreakpoint?: 'small-screen-only' | 'medium-screen' | 'medium-screen-only' | 'large-screen' | 'large-screen-only' | 'x-large-screen'
     ref?: Ref<any>
     text?: string
 } & P>
@@ -21,50 +20,12 @@ export type Component<P = {}> = FunctionComponent<P>
  * Element Component
  */
 export const Element: Component<Props> = React.forwardRef(
-    ({  as: Element = 'div', hideOnBreakpoint, text, children = text, ...props }, ref) => {
+    ({  as: Element = 'div', text, children = text, ...props }, ref) => {
     return (
-        <Element {...props} className={classes(props.className, [`element--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])}
+        <Element {...props} className={classes(props.className)}
             ref={ref}
         >
             {children}
-
-            <style jsx global>{`
-                .element--hide-small-screen-only {
-                    @media(--small-screen-only) {
-                        display: none;
-                    }
-                }  
-                
-                .element--hide-medium-screen {
-                    @media(--medium-screen) {
-                        display: none;
-                    }
-                }
-
-                .element--hide-medium-screen-only {
-                    @media(--medium-screen-only) {
-                        display: none;
-                    }
-                }
-
-                .element--hide-large-screen {
-                    @media(--large-screen) {
-                        display: none;
-                    }
-                }
-
-                .element--hide-large-screen-only {
-                    @media(--large-screen-only) {
-                        display: none;
-                    }
-                }
-
-                .element--hide-xlarge-screen {
-                    @media(--xlarge-screen) {
-                        display: none;
-                    }
-                }
-            `}</style>
         </Element>
     )
 }) 
