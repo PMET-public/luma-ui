@@ -30,7 +30,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                         {image && (
                             <Image
                                 {...image}
-                                vignette={1}
+                                vignette={1.5}
                                 className={classes('thumb-swatches__item__image', image.className)}
                             />
                         )}
@@ -47,7 +47,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
 
                 .thumb-swatches__item {
                     border-radius: 0.5rem;
-                    border: 0.2rem solid transparent;
+                    border: 0.1rem solid transparent;
                     padding: 0.3rem;
                     transition: all 305ms ease;
 
@@ -60,7 +60,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                     }
 
                     &:hover:not(.--disabled) {
-                        border-color: ${colors.primary.fade(0.5)};
+                        border-color: ${colors.primary.fade(0.6)};
                     }
                 }
 
