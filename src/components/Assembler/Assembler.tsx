@@ -38,8 +38,9 @@ export const Assembler: Component<AssemblerProps> = ({
             </Suspense>
         )
     }, [components])
+    
     return (
-        <Element {...props} className={classes('assembler')}>
+        <Element {...props} className={classes('assembler', props.className)}>
             {children}
 
             <style jsx global>{`
