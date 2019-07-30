@@ -4,7 +4,7 @@ import { useTheme } from '../../theme'
 
 export type TextSwatchesProps = Props<{
     items: Array<Props<{
-        label: string | number
+        text: string
         active?: boolean
     }>>
 }>
@@ -17,7 +17,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
 
     return (
         <Element {...props} className={classes('text-swatches', props.className)}>
-            {items.map(({ active = false, label, className, ...item }, index) => (
+            {items.map(({ active = false, text, className, ...item }, index) => (
                 <Element 
                     as="button" 
                     {...item}
@@ -25,7 +25,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
                     key={index}
                 >
                     <span className="text-swatches__item__label">
-                        {label}
+                        {text}
                     </span>
                 </Element>
             ))}

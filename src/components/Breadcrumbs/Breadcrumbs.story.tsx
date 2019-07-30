@@ -10,9 +10,9 @@ storiesOf('📦 Components/Breadcrumbs', module)
                 dividor={text('dividor', '')}
                 prefix={text('prefix', '')}
                 items={[
-                    { as: 'a', href: '#', label: 'One' },
-                    { as: 'a', href: '#', label: 'Two' },
-                    { as: 'a', href: '#', label: 'Three' },
+                    { as: 'a', href: '#', text: 'One' },
+                    { as: 'a', href: '#', text: 'Two' },
+                    { as: 'a', href: '#', text: 'Three' },
                 ]}
             />
 

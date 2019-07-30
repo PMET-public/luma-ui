@@ -10,7 +10,7 @@ storiesOf('📦 Components/Button', module)
             <Button 
                 color={select('color', { primary: 'primary', secondary: 'secondary'}, undefined)}
                 fill={boolean('fill', false)}
-                label={text('label', 'Button')}
+                text={text('text', 'Button')}
                 onClick={action('onClick')}
             />
 

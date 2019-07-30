@@ -9,11 +9,11 @@ export type HeaderLogoProps = Props<{
 }>
 
 export type HeaderMenuProps = Props<{ 
-    items: Array<Props<{ label?: string }>>
+    items: Props[]
 }>
 
 export type HeaderUtilitiesProps = Props<{ 
-    items: Array<Props<{ label?: string, icon?: IconProps }>>
+    items: Array<Props<{ text: string, icon?: IconProps }>>
 }>
 
 export type HeaderProps = Props<{
@@ -118,10 +118,8 @@ const HeaderMenu: Component<HeaderMenuProps> = ({
     return (
         <Element {...props} className={classes('header-menu', className)}>
             <div className="header-menu__content">
-                {items.map(({label, ...props}, index) => (
-                    <Element key={index} {...props}>
-                        {label}
-                    </Element>
+                {items.map((item, index) => (
+                    <Element key={index} {...item} />
                 ))}
             </div>
 
@@ -159,17 +157,17 @@ const HeaderUtilities: Component<HeaderUtilitiesProps> = ({
 }) => {    
     return (
         <Element {...props} className={classes('header-utilities', className)}>
-            {items.map(({label, icon, ...props}, index) => (
+            {items.map(({text, icon, ...item}, index) => (
                 <Element className={classes('header-utilities__item', ['--icon', !!icon])}
                     key={index} 
-                    {...props}
+                    {...item}
                 >
                    {icon ? (
                         <Icon className="header-utilities__item__icon" 
-                            aria-label={label}
+                            aria-label={text}
                             {...icon}
                         />
-                    ) : label}
+                    ) : text}
                </Element>
             ))}
 

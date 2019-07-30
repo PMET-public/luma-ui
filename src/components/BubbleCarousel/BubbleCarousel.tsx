@@ -3,12 +3,10 @@ import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 
 export type BubbleCarouselProps = Props<{
-    label: string
     items?: BubbleCarouselItemProps[]
 }>
 
 export type BubbleCarouselItemProps = Props<{
-    label: string
     image: ImageProps
 }>
 
@@ -18,14 +16,12 @@ type CompoundComponent = {
 
 export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent = ({
     children,
-    label,
     items,
     ...props
 }) => {
 
     return (
         <Element {...props} className={classes('bubble-carousel', props.className)} 
-            aria-label={label}
             style={{
                 ['--size' as any]: '9rem',
             }}
@@ -63,16 +59,16 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
 }
 
 BubbleCarousel.Item = ({ 
-    label, 
+    text,
     image,
     ...props
 }) => (
     <Element {...props} className={classes('bubble-carousel-item', props.className)}>
-        <Image alt={label} {...image} />
+        <Image alt="null" {...image} />
         
-        <div className="bubble-carousel-item__label">
-            {label}
-        </div>
+        <Element className="bubble-carousel-item__label">
+            {text}
+        </Element>
 
         <style jsx global>{`
             .bubble-carousel-item {
@@ -105,7 +101,7 @@ BubbleCarousel.Item = ({
             }
 
             .bubble-carousel-item__label {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-top: 0.2rem;
                 overflow: hidden;
                 padding: 0;

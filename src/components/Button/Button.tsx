@@ -1,18 +1,17 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
 export type ButtonProps = Props<{
     fill?: boolean
     color?: 'primary' | 'secondary',
-    label?: ReactNode | string
 }>
 
 export const Button: Component<ButtonProps> = ({ 
-    children,
+    text,
+    children = text,
     color,
     fill = false,
-    label = children,
     ...props
 }) => {
     const { colors } = useTheme()
@@ -20,7 +19,7 @@ export const Button: Component<ButtonProps> = ({
     return (
         <Element {...props} className={classes('button', props.className, `--${color}`, ['--fill', fill])}>
             <span className="button__wrapper">
-                {label}
+                {children}
             </span>
 
             <style jsx global>{`
@@ -32,7 +31,6 @@ export const Button: Component<ButtonProps> = ({
                     border-radius: 2.4rem;
                     border: 0.1rem solid;
                     color: var(--color);
-                    cursor: pointer;
                     display: inline-flex;
                     font-size: 1.6rem;
                     font-weight: 600;

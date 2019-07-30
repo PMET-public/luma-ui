@@ -12,15 +12,15 @@ storiesOf('📦 Components/Icon', module)
     .addDecorator(centered)
     .add('Default', () => (
         <div style={{ display: 'grid', gridGap: '10rem', color: color('color', 'inherit'), fontSize: number('size', 4.5) + 'rem' }}>
-            <Icon count={number('count', 0)} label={text('label', '')}>
+            <Icon count={number('count', 0)} text={text('text', '')}>
                 <IconHome />
             </Icon>
 
-            <Icon count={number('count', 0)} label={text('label', '')}>
+            <Icon count={number('count', 0)} text={text('text', '')}>
                 <IconHeart />
             </Icon>
 
-            <Icon count={number('count', 0)} label={text('label', '')}>
+            <Icon count={number('count', 0)} text={text('text', '')}>
                 <IconCart />
             </Icon>
         </div>

@@ -22,13 +22,13 @@ export type ProductDetailsProps = Props<{
     description?: Props<{ html?: string, assembler?: AssemblerProps }>
     images: ImageProps[]
     swatches?: Array<{
-        title?: Props<{ label: string }>
+        title?: Props
         type: 'text' | 'thumb'
         props: Props<any>
     }>
     price: PriceProps
-    sku?: Props<{ label: string }>
-    title: Props<{ label: string }>
+    sku?: Props
+    title: Props
 }>
 
 export const ProductDetails: Component<ProductDetailsProps> = ({ 
@@ -82,9 +82,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                             <Element as="h2" 
                                 {...title} 
                                 className={classes('product-details__info__header__title', title.className)}
-                            >
-                                {title.label}
-                            </Element>
+                            />
 
                             <Price 
                                 {...price} 
@@ -96,9 +94,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                                     as="span" 
                                     {...sku} 
                                     className={classes('product-details__info__header__sku', sku.className)}
-                                >
-                                    {sku.label}
-                                </Element>
+                                />
                             )}
                         </header>
 
@@ -110,9 +106,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                                             as="h3" 
                                             {...title}
                                             className={classes('product-details__info__swatches__title', title.className)}
-                                        >
-                                            {title.label}
-                                        </Element>
+                                        />
                                     )}
                                     
                                     {type === 'text' && (

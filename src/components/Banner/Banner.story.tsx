@@ -10,18 +10,18 @@ storiesOf('📦 Components/Banner', module)
                 image={object('image', {
                     alt: '',                    
                     src: require('../../../public/images/banner-1.jpg'),
-                    width: 1920,
-                    height: 1320,
+                    width: 'auto',
+                    height: 700,
                 })}
                 position={select('position', { top: 'top', bottom: 'bottom' }, 'top')}
                 titles={object('titles', [
-                    { label: 'Find conscientious, comfy clothing in our eco-friendly collection' },
-                    { label: 'Twice around, twice as nice', large: true },
+                    { text: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                    { text: 'Twice around, twice as nice', large: true },
                 ])}
                 buttons={object('buttons', [
-                    { label: 'Button 1', fill: true, as: 'a', href: '#' },
-                    { label: 'Button 2', as: 'a', href: '#' },
-                    { label: 'Button 3', as: 'a', href: '#' },
+                    { text: 'Button 1', fill: true, as: 'a', href: '#' },
+                    { text: 'Button 2', as: 'a', href: '#' },
+                    { text: 'Button 3', as: 'a', href: '#' },
                 ])}
             />
 

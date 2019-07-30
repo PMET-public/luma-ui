@@ -5,14 +5,14 @@ import { ReactComponentLike } from 'prop-types'
 
 export type IconProps = Props<{
     count?: number
-    label?: string | null
+    text?: string | null
     svg?: ReactComponentLike
 }>
 
 export const Icon: Component<IconProps> = ({
     children,
     count,
-    label,
+    text,
     svg: Svg,
     ...props
 }) => {    
@@ -39,9 +39,9 @@ export const Icon: Component<IconProps> = ({
                 ) : null)}
             </span>
 
-            {label ? (
+            {text ? (
                 <span className={classes('icon__label', ['--count', hasCount])}>
-                    {label}
+                    {text}
                 </span>
             ) : null}
 

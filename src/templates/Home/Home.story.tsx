@@ -11,11 +11,11 @@ export const HomeMockData: HomeProps = {
             {
                 name: 'BubbleCarousel',
                 props: {
-                    label: 'Categories',
+                    text: 'Categories',
                     hideOnBreakpoint: 'medium-screen',
                     items: [
                         {
-                            label: 'Women',
+                            text: 'Women',
                             href: '#',
                             target: 'blank',
                             image: {
@@ -24,7 +24,7 @@ export const HomeMockData: HomeProps = {
                             },
                         },
                         {
-                            label: 'Men',
+                            text: 'Men',
                             as: 'a',
                             href: '#',
                             image: {
@@ -33,7 +33,7 @@ export const HomeMockData: HomeProps = {
                             },
                         },
                         {
-                            label: 'Gear',
+                            text: 'Gear',
                             as: 'a',
                             href: '#',
                             image: {
@@ -42,7 +42,7 @@ export const HomeMockData: HomeProps = {
                             },
                         },
                         {
-                            label: 'Training',
+                            text: 'Training',
                             as: 'a',
                             href: '#',
                             image: {
@@ -51,7 +51,7 @@ export const HomeMockData: HomeProps = {
                             },
                         },
                         {
-                            label: 'Sale',
+                            text: 'Sale',
                             as: 'a',
                             href: '#',
                             image: {
@@ -72,12 +72,22 @@ export const HomeMockData: HomeProps = {
                         width: '100%',
                     },
                     titles: [
-                        { label: 'Twice around, twice as nice', large: true },
-                        { label: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                        { 
+                            text: 'Twice around, twice as nice', 
+                            large: true,
+                        },
+                        { 
+                            text: 'Find conscientious, comfy clothing in our eco-friendly collection',
+                        },
                     ],
                     position: 'bottom',
                     buttons: [
-                        { label: 'Shop Performance', fill: true, link: { href: '#' } },
+                        { 
+                            as: 'a',
+                            text: 'Shop Performance', 
+                            fill: true, 
+                            href: '#',
+                        },
                     ],
                 },
             },
@@ -86,10 +96,11 @@ export const HomeMockData: HomeProps = {
                 props: {
                     title: {
                         as: 'h3',
-                        label: 'New Arrivals',
+                        text: 'New Arrivals',
                     },
                     items: new Array(10).fill({
-                        link: { href: '#' },
+                        as: 'a',
+                        href: '#',
                         image: {
                             alt: '',
                             src: require('../../../public/images/product-item-sample.jpg'),
@@ -102,7 +113,7 @@ export const HomeMockData: HomeProps = {
                             priceLabel: 'Starting at',
                         },
                         title: {
-                            label: 'Circle Hooded Ice Flee',
+                            text: 'Circle Hooded Ice Flee',
                         },
                         colors: [
                             { value: 'brown' },
@@ -119,10 +130,11 @@ export const HomeMockData: HomeProps = {
                 props: {
                     title: {
                         as: 'h3',
-                        label: 'Summer Sale',
+                        text: 'Summer Sale',
                     },
                     items: new Array(10).fill({
-                        link: { href: '#' },
+                        as: 'a',
+                        href: '#',
                         image: {
                             alt: '',
                             src: require('../../../public/images/product-item-sample.jpg'),
@@ -135,7 +147,7 @@ export const HomeMockData: HomeProps = {
                             priceLabel: 'Starting at',
                         },
                         title: {
-                            label: 'Circle Hooded Ice Flee',
+                            text: 'Circle Hooded Ice Flee',
                         },
                         colors: [
                             { value: 'brown' },

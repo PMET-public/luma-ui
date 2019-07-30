@@ -19,7 +19,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
 
     return (
         <Element {...props} className={classes('thumb-swatches', props.className)}>
-            {items.map(({ label, image, active = false, ...item }, index) => (
+            {items.map(({ image, active = false, ...item }, index) => (
                 <Element 
                     as="button" 
                     {...item} 
@@ -30,7 +30,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                         {image && (
                             <Image
                                 {...image}
-                                vignette={2}
+                                vignette={1}
                                 className={classes('thumb-swatches__item__image', image.className)}
                             />
                         )}
@@ -76,6 +76,8 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
 
                 .thumb-swatches__item__image {
                     background-color: white;
+                    overflow: hidden;
+                    border-radius: 0.5rem;
                     overflow: hidden;
 
                     & .image__img {

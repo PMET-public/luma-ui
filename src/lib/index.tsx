@@ -10,8 +10,9 @@ type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
  */
 export type Props<P = {}> = Override<AllHTMLAttributes<HTMLElement>, {
     as?: ReactComponentLike | string
-    ref?: Ref<any>
     hideOnBreakpoint?: 'small-screen-only' | 'medium-screen' | 'medium-screen-only' | 'large-screen' | 'large-screen-only' | 'x-large-screen'
+    ref?: Ref<any>
+    text?: string
 } & P>
 
 export type Component<P = {}> = FunctionComponent<P>
@@ -20,7 +21,7 @@ export type Component<P = {}> = FunctionComponent<P>
  * Element Component
  */
 export const Element: Component<Props> = React.forwardRef(
-    ({  as: Element = 'div', hideOnBreakpoint, children, ...props }, ref) => {
+    ({  as: Element = 'div', hideOnBreakpoint, text, children = text, ...props }, ref) => {
     return (
         <Element {...props} className={classes(props.className, [`element--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])}
             ref={ref}

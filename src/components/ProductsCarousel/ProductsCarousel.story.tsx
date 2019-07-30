@@ -7,7 +7,7 @@ storiesOf('📦 Components/ProductsCarousel', module)
     .add('Default', () => {
         const props = {
             title: object('title', {
-                label: 'Title',
+                text: 'Title',
             }),
             items: new Array(10).fill({
                 image: {
@@ -22,7 +22,7 @@ storiesOf('📦 Components/ProductsCarousel', module)
                     priceLabel: 'Starting at',
                 },
                 title: {
-                    label: 'Circle Hooded Ice Flee',
+                    text: 'Circle Hooded Ice Flee',
                 },
                 colors: [
                     { value: 'brown' },
@@ -32,7 +32,7 @@ storiesOf('📦 Components/ProductsCarousel', module)
                 ],
             }),
         }
-
+        
         return (
             <div className="story">
                 <ProductsCarousel {...props} className="story__product-carousel" />
@@ -43,7 +43,10 @@ storiesOf('📦 Components/ProductsCarousel', module)
                         display: flex;
                         height: 100vh;
                         justify-content: center;
-                        width: 100%;
+                    }
+
+                    .story__product-carousel {
+                        width: 90vw;
                     }
                 `}</style>
             </div>

@@ -4,7 +4,7 @@ import Carousel from '../Carousel'
 import ProductItem, { ProductItemProps } from '../ProductItem'
 
 export type ProductsCarouselProps = Props<{
-    title?: Props<{ label: string }>
+    title?: Props
     items: ProductItemProps[]
 }>
 
@@ -16,7 +16,9 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
     
     return items ? (
         <Element {...props} className={classes('products-carousel', props.className)}>
-            { title && <Element as="h3" {...title}>{title.label}</Element> }
+            { title && (
+                <Element as="h3" {...title} />
+            )}
 
              <Carousel className="products-carousel__carousel"
                 gap={1}

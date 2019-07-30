@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useContext, useRef, ReactElement } from 'react'
+import React, { createContext, useState, useContext, useRef, ReactElement } from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
@@ -11,7 +11,7 @@ const Context = createContext({ active: -1, setActive: (id: number) => {} })
 export type AccordionItemProps = Props<{
     _id?: number
     active?: boolean
-    label: ReactNode | string
+    label: Props
 }>
 
 export type AccordionProps = Props<{
@@ -88,9 +88,7 @@ Accordion.Item = ({
                 type="button"
                 onClick={triggerActivate}
             >
-                <div className="accordion-item__button__label">
-                    {label}
-                </div>
+                <Element {...label} className={classes('accordion-item__button__label', label.className)} />
                 <ArrowIcon className="accordion-item__button__icon" />
             </button>
 

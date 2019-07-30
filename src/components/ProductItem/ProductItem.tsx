@@ -1,15 +1,16 @@
 import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
-import { useTheme } from '../../theme'
 import Price, { PriceProps } from '../Price'
 
+import { useTheme } from '../../theme'
+
 export type ProductItemProps = Props<{
-    badge?: Props<{ label: string }>
+    badge?: Props
     image: ImageProps
     price: PriceProps
-    title: Props<{ label: string }>
-    colors?: Array<Props<{ value: string }>>
+    title: Props
+    colors?: Array<{ value: string }>
 }>
 
 export const ProductItem: Component<ProductItemProps> = ({
@@ -24,32 +25,36 @@ export const ProductItem: Component<ProductItemProps> = ({
 
     return (
         <Element {...props} className={classes('product-item', props.className)}>
-            {!!badge && (
-                <Element className="product-item__badge"
+            {badge && (
+                <Element 
                     as="span"
                     {...badge}
-                >
-                    {badge.label}
-                </Element>
+                    className={classes('product-item__badge', badge.className)}
+                />
             )}
 
-            <Image className="product-item__image"
+            <Image 
                 height="1580"
                 width="1274"
                 vignette={10}
                 {...image}
+                className={classes('product-item__image', image.className)}
             >
-
                 <span className="product-item__details">
-                    <Element className="product-item__details__title"
+                    <Element
                         as="span"
                         {...title}
-                    >
-                        {title.label}
-                    </Element>
+                        className={classes('product-item__details__title', title.className)}
+                    />
 
                     <span>
-                        {price && <Price className="product-item__details__price" as="span" {...price} />}
+                        {price && (
+                            <Price 
+                                as="span" 
+                                {...price} 
+                                className={classes('product-item__details__price', price.className)}
+                            />
+                        )}
                     </span>
                 </span>
 
@@ -75,18 +80,18 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__badge {
                     background-color: ${theme.colors.accent.fade(0.2)};
                     color: ${theme.colors.onAccent};
-                    font-size: 0.8em;
+                    font-size: 1.4rem;
+                    left: 2rem;
                     letter-spacing: 0.05rem;
                     padding: 0.5rem 0.75rem;
                     position: absolute;
                     text-transform: uppercase;
                     top: 2rem;
-                    left: 2rem;
+                    z-index: 1;
                 }
 
                 .product-item__image {
                     position: relative;
-                    line-height: 0;
                     
                     & .image__img {
                         height: 100%;
@@ -106,16 +111,18 @@ export const ProductItem: Component<ProductItemProps> = ({
 
                 .product-item__details {
                     display: grid;
-                    line-height: 1.5;
-                    padding: 0.5rem 2rem;
+                    grid-gap: 0.75rem;
+                    padding: 1rem 2rem;
                 }
 
                 .product-item__details__title {
+                    font-family: ${theme.typography.headingFamily};
+                    font-size: 1.7rem;
                     font-weight: 600;
                 }
 
                 .product-item__details__price {
-                    font-size: 0.9em;
+                    font-size: 1.6rem;
                 }
 
                 .product-item__colors {

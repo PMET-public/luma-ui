@@ -13,6 +13,7 @@ storiesOf('📦 Components/Header', module)
                 logo={{
                     as: 'a',
                     href: '#',
+                    title: 'Luma',
                     svg: Logo,
                 }}
                 menu={{
@@ -20,32 +21,32 @@ storiesOf('📦 Components/Header', module)
                         {
                             as: 'a',
                             href: '#',
-                            label: 'New In',
+                            text: 'New In',
                         },
                         {
                             as: 'a',
                             href: '#',
-                            label: 'Women',
+                            text: 'Women',
                         },
                         {
                             as: 'a',
                             href: '#',
-                            label: 'Men',
+                            text: 'Men',
                         },
                         {
                             as: 'a',
                             href: '#',
-                            label: 'Gear',
+                            text: 'Gear',
                         },
                         {
                             as: 'a',
                             href: '#',
-                            label: 'Training',
+                            text: 'Training',
                         },
                         {
                             as: 'a',
                             href: '#',
-                            label: 'Gift Cards',
+                            text: 'Gift Cards',
                         },  
                     ],
                 }}
@@ -54,12 +55,12 @@ storiesOf('📦 Components/Header', module)
                         {
                             as: 'a',
                             href: '#',
-                            label: 'Help',
+                            text: 'Help',
                         },
                         {
                             as: 'a',
                             href: '#',
-                            label: 'My Account',
+                            text: 'My Account',
                         },
                         {
                             as: 'a',
@@ -67,7 +68,7 @@ storiesOf('📦 Components/Header', module)
                             icon: {
                                 svg: IconSearch,
                             },
-                            label: 'Search',
+                            text: 'Search',
                         },
                         {
                             as: 'a',
@@ -76,7 +77,7 @@ storiesOf('📦 Components/Header', module)
                                 svg: IconBag,
                                 count: 3,
                             },
-                            label: 'My Basket',
+                            text: 'My Basket',
                         },
                     ],
                 }}

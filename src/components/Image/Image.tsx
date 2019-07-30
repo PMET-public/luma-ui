@@ -34,7 +34,7 @@ export const ImageComponent: Component<ImageProps> = ({
                         {...{alt, width, height}}
                     />
                     <img className="image__img image__placeholder"
-                        arial-hidden="true"
+                        aria-hidden="true"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                         {...{width, height}}
                     />

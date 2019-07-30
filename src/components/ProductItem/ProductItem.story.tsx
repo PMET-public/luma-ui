@@ -8,7 +8,7 @@ storiesOf('📦 Components/ProductItem', module)
         <div className="story">
             <ProductItem className="story__product-item"
                 badge={{
-                    label: text('badge', 'New Arrival'),
+                    text: text('badge', 'New Arrival'),
                 }}
                 image={{
                     alt: '',
@@ -20,7 +20,7 @@ storiesOf('📦 Components/ProductItem', module)
                     priceLabel: text('priceLabel', 'Starting at'),
                 }}
                 title={{
-                    label: text('title', 'Circle Hooded Ice Flee'),
+                    text: text('title', 'Circle Hooded Ice Flee'),
                 }}
                 colors={array('colors', [
                     { value: 'green' }, 

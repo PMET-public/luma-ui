@@ -1,13 +1,14 @@
 import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
-import { useTheme } from '../../theme'
 import Button, { ButtonProps } from '../Button'
+
+import { useTheme } from '../../theme'
 
 export type BannerProps = Props<{
     image: ImageProps
     titles?: Array<Props<{ 
-        label: string, 
+        text: string, 
         large?: boolean 
     }>>
     position?: 'top' | 'bottom'
@@ -30,13 +31,10 @@ export const Banner: Component<BannerProps> = ({
 
                     {titles && (
                          <div className="banner__content__titles">
-                             {titles.map(({ label, large = false, ...title }, index) => (
+                             {titles.map(({ large = false, ...title }, index) => (
                                 <Element {...title} className={classes('banner__content__titles__item', ['--large', large])}
                                     key={index}
-                                    {...title}
-                                >
-                                    {label}
-                                </Element>
+                                />
                              ))}
                          </div>
                     )}

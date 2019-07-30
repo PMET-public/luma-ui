@@ -22,7 +22,7 @@ export default ({ colors }: any) => {
                 position: absolute; 
             }
             
-            a, button {
+            a[href], button[onClick] {
 
                 &:not([disabled]) {
                     cursor: pointer;

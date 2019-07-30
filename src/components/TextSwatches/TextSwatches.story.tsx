@@ -9,10 +9,10 @@ storiesOf('📦 Components/TextSwatches', module)
             <div className="story__wrapper">
                 <TextSwatches
                     items={object('list', [
-                        { label: 2, as: 'button', disabled: true },
-                        { label: 4, active: true, as: 'button' },
-                        { label: 6 },
-                        { label: 8 },
+                        { text: '2', as: 'button', disabled: true },
+                        { text: '4', active: true, as: 'button' },
+                        { text: '6' },
+                        { text: '8' },
                     ])}
                 />
             </div>

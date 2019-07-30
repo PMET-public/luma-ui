@@ -7,25 +7,25 @@ import { ProductDetailsProps } from './ProductDetails'
 
 const ProductDetailsMockData: ProductDetailsProps = {
     buttons: [
-        { label: 'Add to Cart', fill: true },
-        { label: 'Add to Favorite' },
+        { text: 'Add to Cart', fill: true },
+        { text: 'Add to Favorite' },
     ],
     breadcrumbs: {
         items: [
             {
-                label: 'Women',
+                text: 'Women',
                 as: 'a',
                 href: '#',
             },
             {
-                label: 'Hoodies & Sweatshirts',
+                text: 'Hoodies & Sweatshirts',
                 as: 'a',
                 href: '#',
             },
         ],
     },
     title: {
-        label: 'Circle Hooded Ice Flee',
+        text: 'Circle Hooded Ice Flee',
     },
     price: {
         price: '$49.99',
@@ -33,7 +33,7 @@ const ProductDetailsMockData: ProductDetailsProps = {
         priceLabel: 'Starting at',
     },
     sku: {
-        label: 'SKU. VSK12-LA',        
+        text: 'SKU. VSK12-LA',        
     },
     images: new Array(5).fill({
         alt: '',
@@ -42,7 +42,7 @@ const ProductDetailsMockData: ProductDetailsProps = {
     swatches: [
         {
             title: {
-                label: 'Blue',
+                text: 'Blue',
                 as: 'h3',
             },
             type: 'thumb',
@@ -87,21 +87,24 @@ const ProductDetailsMockData: ProductDetailsProps = {
         },
         {
             title: {
-                label: 'Size',
+                text: 'Size',
                 as: 'h3',
             },
             type: 'text',
             props: {
                 items: [
-                    { label: 'XS', disabled: true },
-                    { label: 'S' },
-                    { label: 'M', active: true },
-                    { label: 'L' },
-                    { label: 'XL' },
+                    { text: 'XS', disabled: true },
+                    { text: 'S' },
+                    { text: 'M', active: true },
+                    { text: 'L' },
+                    { text: 'XL' },
                 ],
             },
         },
     ],
+    description: {
+        html: `<p>The Isadora Skirt has just the right amount of flounce to make it playful and yet still chic. Lovely wrap detail and draped layering in the front add a bit of sophistication to the lush print. </p><p>Features:</p><ul><li>Side zip</li><li>Length: 17\"</li><li>Hits mid thigh</li><li>Set on waist</li><li>Dry clean recommended</li></ul>`,
+    },
     assembler: {
         components: [
             {
@@ -109,7 +112,7 @@ const ProductDetailsMockData: ProductDetailsProps = {
                 props: {
                     title: {
                         as: 'h3',
-                        label: 'You may also like',
+                        text: 'You may also like',
                     },
                     items: new Array(6).fill({
                         link: { href: '#' },
@@ -125,7 +128,7 @@ const ProductDetailsMockData: ProductDetailsProps = {
                             priceLabel: 'Starting at',
                         },
                         title: {
-                            label: 'Circle Hooded Ice Flee',
+                            text: 'Circle Hooded Ice Flee',
                         },
                         colors: [
                             { value: 'brown' },

@@ -15,7 +15,7 @@ export type HotSpotItemProps = Props<{
     children?: ReactNode
     coords: { x: number, y: number }
     id: string
-    label: string
+    text: string
 }>
 
 type CompoundComponent = {
@@ -65,7 +65,7 @@ HotSpots.Item = ({
     children,
     coords,
     id,
-    label,
+    text,
     ...props
 }) => {
     const { colors } = useTheme()
@@ -91,7 +91,7 @@ HotSpots.Item = ({
             )}
         >
             <button className={classes('hot-spot__button', ['--active', isActive])}
-                aria-label={label}
+                aria-label={text}
                 onClick={handleToggle}
                 tabIndex={0}
                 type="button"

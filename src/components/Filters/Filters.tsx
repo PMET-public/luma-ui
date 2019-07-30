@@ -9,11 +9,11 @@ import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
 export type FiltersItemProps = Props<{
     active?: boolean
     count?: number
-    label: string
+    text: string
 }>
 
 export type FiltersGroupProps = Props<{
-    label: string
+    title: Props
     offset?: number
     items: FiltersItemProps[]
 }>
@@ -52,7 +52,7 @@ export const Filters: Component<FiltersProps> & CompoundComponent = ({
 }
 
 Filters.Group = ({
-    label,
+    title,
     offset = 5,
     items = [],
     ...props
@@ -76,26 +76,30 @@ Filters.Group = ({
                 <dl className="filters-group__list"
                     ref={elRef}
                 >
-                    <dt className="filters-group__label">
-                        {label}
+                    <dt>
+                        <Element {...title} className={classes('filters-group__label', title.className)} />
                     </dt>
 
-                    {items.map((item, index) => (
+                    {items.map(({text, count, active = false, ...item}, index) => (
                         <dd key={index}>
-                            <Element as="span" {...props} className={classes('filters-group__item', props.className)}>
-                                {item.active ? (
+                            <Element 
+                                as="span" 
+                                {...item} 
+                                className={classes('filters-group__item', item.className)}
+                            >
+                                {active ? (
                                     <CheckedIcon className="filters-group__item__check --active" />
                                 ) : (
                                     <CheckIcon className="filters-group__item__check" />
                                 )}
 
                                 <span className="filters-group__item__label">
-                                    {item.label}
+                                    {text}
                                 </span>
 
-                                {item.count && (
+                                {count && (
                                     <span className="filters-group__item__count">
-                                        {item.count}
+                                        {count}
                                     </span>
                                 )}
                             </Element>

@@ -5,7 +5,7 @@ import { useResize } from '../../hooks/useResize'
 
 import AppBar from '../../components/AppBar'
 import Header from '../../components/Header'
-import Icon from '../../components/Icon'
+import Icon, { IconProps } from '../../components/Icon'
 import TabBar from '../../components/TabBar'
 import Logo from '../../../public/images/luma.svg'
 import Footer from '../../components/Footer'
@@ -20,44 +20,42 @@ import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.s
 import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
 
 export type AppProps = Props<{
-    home: Props<{
-        label?: string
-    }>
+    home: Props
 
-    logo: Props<{
-        title: string
-    }>
+    logo: Props
 
-    menu: Array<Props<{
-        label: string
-    }>>
+    menu: Props[]
 
-    help?: Props<{
-        label?: string
+    help: Props<{ 
+        icon?: IconProps 
+        text: string
     }>
 
     myAccount: Props<{
-        label?: string
         count?: number
+        icon?: IconProps 
+        text: string
     }>
 
-    search: Props<{
-        label?: string
+    search: Props<{ 
+        text: string
+        icon?: IconProps 
     }>
 
     cart: Props<{
         count?: number
-        label?: string
+        icon?: IconProps
+        text: string
     }>
 
     footer: {
         copyright: string
-        menu?: Array<Props<{ label: string }>>
+        menu?: Props[]
         social?: {
-            facebook?: Props<{ title: string }>
-            instragram?: Props<{ title: string }>
-            pinterest?: Props<{ title: string }>
-            twitter?: Props<{ title: string }>
+            facebook?: Props
+            instragram?: Props
+            pinterest?: Props
+            twitter?: Props
         }
     }
 }>
@@ -180,25 +178,25 @@ export const App: Component<AppProps> = ({
 
             <TabBar as="nav" className="app__tab-bar">
                 <TabBar.Item>
-                    <Icon {...home} label={null}>
+                    <Icon aria-label={home.text} {...home} text={undefined}>
                         <IconHome />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon {...myAccount} label={null}>
+                    <Icon aria-label={myAccount.text} {...myAccount} text={undefined}>
                         <IconAccount />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon {...search} label={null}>
+                    <Icon aria-label={search.text} {...search} text={undefined}>
                         <IconSearch />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon {...cart} label={null}>
+                    <Icon aria-label={cart.text} {...cart} text={undefined}>
                         <IconBag />
                     </Icon>
                 </TabBar.Item>
@@ -250,7 +248,7 @@ export const App: Component<AppProps> = ({
                     text-transform: uppercase;
 
                     & .app__footer__menu__link {
-                        margin: 1rem 0.75rem;
+                        margin: 1rem;
                     }
                 }
 
