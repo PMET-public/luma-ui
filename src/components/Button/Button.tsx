@@ -4,7 +4,7 @@ import { useTheme } from '../../theme'
 
 export type ButtonProps = Props<{
     fill?: boolean
-    color?: 'primary' | 'secondary',
+    color?: 'primary' | 'secondary'
 }>
 
 export const Button: Component<ButtonProps> = ({ 
