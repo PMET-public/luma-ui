@@ -1,9 +1,7 @@
-import React, { useRef, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { Component, Element, Props, classes } from '../../lib'
 
 import { useTheme } from '../../theme'
-import { useScroll } from '../../hooks/useScroll'
-import { useMeasure } from '../../hooks/useMeasure'
 
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
@@ -43,10 +41,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
     title,
     ...props
 }) => {    
-    const infoElemRef = useRef(null)
     const { colors, margin } = useTheme()
-    const { y: infoYPosition } = useMeasure(infoElemRef)
-    const { scrollY } = useScroll()
 
     return (
         <Element {...props} className={classes('product-details', props.className)}>
@@ -66,9 +61,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     </Carousel>
                 </div>
 
-                <div className="product-details__info__wrapper"
-                    ref={infoElemRef}
-                >
+                <div className="product-details__info__wrapper">
                     <div className="product-details__info">
                         <header className="product-details__info__header">
                             {breadcrumbs && (
@@ -152,14 +145,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             )}           
     
             <style jsx global>{`
-                @media(--small-screen-only) {
-                    html, body {
-                        scroll-snap-type: ${scrollY > infoYPosition ? 'unset' : 'y mandatory'};
-                    }
-                }
-            `}</style>
-
-            <style jsx global>{`
                 .product-details {
                     display: grid;
                     grid-gap: 4rem;
@@ -221,12 +206,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 }
 
                 @media(--small-screen-only) {
-                    .app-bar,
-                    .product-details__info__wrapper {
-                        scroll-snap-align: start;
-                        scroll-snap-stop: always;
-                    }
-    
                     .product-details__wrapper {
                         display: grid;
                         grid-auto-rows: max-content;
