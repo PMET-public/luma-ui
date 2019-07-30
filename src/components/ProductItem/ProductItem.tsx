@@ -36,7 +36,7 @@ export const ProductItem: Component<ProductItemProps> = ({
             <Image className="product-item__image"
                 height="1580"
                 width="1274"
-                filter="vignette"
+                vignette={10}
                 {...image}
             >
 
@@ -57,7 +57,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                     <ul className="product-item__colors">
                         {colors.map(({ value }, index) => (
                             <li className="product-item__colors__item"
-                                key={`color--${index}`}
+                                key={index}
                                 style={{ backgroundColor: value }}
                             ></li>
                         ))}

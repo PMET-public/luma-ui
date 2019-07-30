@@ -20,7 +20,7 @@ export type ProductListProps = Props<{
         label: string
         open?: boolean
         buttons?: ButtonProps[],
-        props: FiltersProps[]
+        props: FiltersProps
     }
     products: ProductItemProps[]
 }>
@@ -50,7 +50,7 @@ export const ProductList: Component<ProductListProps> = ({
                         <div className="product-list__filters__buttons">  
                             {filters.buttons.map((button, index) => (
                                 <Button 
-                                    key={`product-list__filters__buttons__item--${index}`}
+                                    key={index}
                                     {...button} 
                                 />
                             ))} 
@@ -74,7 +74,7 @@ export const ProductList: Component<ProductListProps> = ({
 
                     <GridList className="product-list__grid__results">
                         {products && products.map((product, index) => (
-                            <GridList.Item key={`product-list__results__grid__item--${index}`}>
+                            <GridList.Item key={index}>
                                 <ProductItem className="product-list__results__grid__item" 
                                     {...product}
                                 />

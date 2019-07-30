@@ -1,19 +1,22 @@
 import React from 'react'
-import Swatches from '.'
+import TextSwatches from './'
 import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/Swatches', module)
+storiesOf('📦 Components/TextSwatches', module)
     .add('Default', () => (
         <div className="story">
             <div className="story__wrapper">
-                <Swatches items={object('list', [
-                    { label: 2, as: 'button', disabled: true },
-                    { label: 4, active: true , as: 'button'},
-                    { label: 6 },
-                    { label: 8 },
-                ])}/>
+                <TextSwatches
+                    items={object('list', [
+                        { label: 2, as: 'button', disabled: true },
+                        { label: 4, active: true, as: 'button' },
+                        { label: 6 },
+                        { label: 8 },
+                    ])}
+                />
             </div>
+
             <style jsx global>{`
                 .story {
                     align-items: center;

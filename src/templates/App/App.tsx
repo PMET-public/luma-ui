@@ -133,9 +133,9 @@ export const App: Component<AppProps> = ({
             <Footer as="footer" className="app__footer">
                 {footer.menu && (
                     <div className="app__footer__menu">
-                        {footer.menu.map(({ label, ...item }, key) => (
+                        {footer.menu.map(({ label, ...item }, index) => (
                             <Element className="app__footer__menu__link" 
-                                key={`app__footer__meny__link--${key}`}
+                                key={index}
                                 {...item}
                             >
                                 {label}

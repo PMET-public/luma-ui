@@ -1,8 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useRef, Suspense } from 'react'
 import { Component, Element, Props, classes } from '../../lib'
 
 import { useTheme } from '../../theme'
-import { useResize } from '../../hooks/useResize'
 import { useScroll } from '../../hooks/useScroll'
 import { useMeasure } from '../../hooks/useMeasure'
 
@@ -13,11 +12,19 @@ import Button, { ButtonProps } from '../../components/Button'
 import Assembler, { AssemblerProps } from '../../components/Assembler'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 
+const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
+const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
+
 export type ProductDetailsProps = Props<{
     assembler?: AssemblerProps
-    buttons: ButtonProps[]
     breadcrumbs?: BreadcrumbsProps
+    buttons: ButtonProps[]
     images: ImageProps[]
+    swatches?: Array<{
+        title?: Props<{ label: string }>
+        type: 'text' | 'thumb'
+        props: Props<any>
+    }>
     price: PriceProps
     sku?: Props<{ label: string }>
     title: Props<{ label: string }>
@@ -25,9 +32,10 @@ export type ProductDetailsProps = Props<{
 
 export const ProductDetails: Component<ProductDetailsProps> = ({ 
     assembler,
-    buttons,
     breadcrumbs,
+    buttons,
     images, 
+    swatches,
     price,
     sku,
     title,
@@ -35,61 +43,107 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
 }) => {    
     const infoElemRef = useRef(null)
     const { colors, margin } = useTheme()
-    const { vHeight } = useResize()
     const { y: infoYPosition } = useMeasure(infoElemRef)
     const { scrollY } = useScroll()
 
     return (
-        <Element {...props} className={classes('product-details', props.className)}
-            style={{ ['--vHeight' as any]:  `calc(${vHeight}px - 0rem)` }}
-        >
-            <div className="product-details__images">
-                <Carousel className="product-details__images__carousel"
-                    gap={1}
-                    padding={5}
-                >
-                    {images.map((image, index) => (
-                        <Carousel.Item className="product-details__images__carousel__item" 
-                            key={`product-details__images__carousel__item--${index}`}
-                        >
-                            <Image filter="vignette" {...image} />
-                        </Carousel.Item>
-                    ))}
-                </Carousel>
-            </div>
-
-            <div className="product-details__info"
-                ref={infoElemRef}
-            >
-                <div className="product-details__info__main">
-                    <header className="product-details__info__main__header">
-                        {breadcrumbs && <Breadcrumbs className="product-details__info__main__breadcrumbs" prefix="#" {...breadcrumbs} />}
-
-                        <Element className="product-details__info__main__header__title"
-                            as="h2"
-                        >
-                            {title.label}
-                        </Element>
-
-                        <Price className="product-details__info__main__header__price" {...price} /> 
-                    </header>
-                    
-                    <div className="product-details__info__buttons">
-                        {buttons.map((button, index) => (
-                            <Button className="product-details__info__buttons__item"
-                                key={`product-details__info__buttons__item--${index}`} 
-                                {...button} 
-                            />
+        <Element {...props} className={classes('product-details', props.className)}>
+            <div className="product-details__wrapper">
+                <div className="product-details__images">
+                    <Carousel className="product-details__images__carousel"
+                        gap={1}
+                        padding={3}
+                    >
+                        {images.map((image, index) => (
+                            <Carousel.Item className="product-details__images__carousel__item" 
+                                key={index}
+                            >
+                                <Image vignette={10} {...image} />
+                            </Carousel.Item>
                         ))}
-                    </div> 
+                    </Carousel>
                 </div>
 
-                 {assembler && (
-                    <Assembler className="product-details__assembler" 
-                        {...assembler} 
-                    />
-                )}           
+                <div className="product-details__info"
+                    ref={infoElemRef}
+                >
+                    <div className="product-details__info__main">
+                        <header className="product-details__info__main__header">
+                            {breadcrumbs && (
+                                <Breadcrumbs
+                                    prefix="#" 
+                                    {...breadcrumbs} 
+                                    className={classes('product-details__info__main__header__breadcrumbs', breadcrumbs.className)}
+                                />
+                            )}
+
+                            <Element as="h2" 
+                                {...title} 
+                                className={classes('product-details__info__main__header__title', title.className)}
+                            >
+                                {title.label}
+                            </Element>
+
+                            <Price 
+                                {...price} 
+                                className={classes('product-details__info__main__header__price', price.className)} 
+                            /> 
+
+                            {sku && (
+                                <Element 
+                                    as="span" 
+                                    {...sku} 
+                                    className={classes('produce-details__info__main__header__sku', sku.className)}
+                                >
+                                    {sku.label}
+                                </Element>
+                            )}
+                        </header>
+
+                        {swatches && swatches.map(({type, title, props}, index) => (
+                            <Suspense fallback="Loading...." key={index}>
+                                <div className="product-details__info__swatches">
+                                    {title && (
+                                        <Element 
+                                            as="h3" 
+                                            {...title}
+                                            className={classes('product-details__info__swatches__title', title.className)}
+                                        >
+                                            {title.label}
+                                        </Element>
+                                    )}
+                                    
+                                    {type === 'text' && (
+                                        <TextSwatches {...props} />
+                                    )}
+
+                                    {type === 'thumb' && (
+                                        <ThumbSwatches {...props} />
+                                    )}
+                                
+                                </div> 
+                            </Suspense>
+                        ))}
+                    
+                        <div className="product-details__info__buttons">
+                            {buttons.map((button, index) => (
+                                <Button 
+                                    {...button}
+                                    className={classes('product-details__info__buttons__item', button.className)}
+                                    key={index} 
+                                />
+                            ))}
+                        </div> 
+                    </div>
+                </div>
+                
             </div>
+
+            {assembler && (
+                <Assembler className="product-details__assembler" 
+                    {...assembler} 
+                />
+            )}           
     
             <style jsx global>{`
                 @media(--small-screen-only) {
@@ -100,6 +154,11 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             `}</style>
 
             <style jsx global>{`
+                .product-details {
+                    display: grid;
+                    grid-gap: 4rem;
+                }
+
                 .product-details__images__carousel {
                     & .image, 
                     & .image__figure, 
@@ -123,28 +182,36 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
 
                 .product-details__info__main__header {
                     display: grid;
-                    grid-gap: 1rem;
-                    grid-template-columns: 1fr;
-                    grid-template-areas: "breadcrumbs" "title" "price";
+                    grid-gap: 1.6rem;
+                    grid-auto-rows: max-content;
                 }
 
-                .product-details__info__main__breadcrumbs {
-                    grid-area: breadcrumbs;
+                .product-details__info__main__header__breadcrumbs {
                     font-size: 1.4rem;
-                    opacity: 0.75;
+                    color: ${colors.onSurface.fade(0.4)};
                 }
 
-                .product-details__info__main__header__title {
-                    grid-area: title;
+                .produce-details__info__main__header__sku {
+                    font-size: 0.85em;
+                    color: ${colors.onSurface.fade(0.4)};
                 }
 
-                .product-details__info__main__header__price {
-                    grid-area: price;
+                .product-details__info__swatches {
+                    display: grid;
+                    grid-gap: 1rem;
+                }
+
+                .product-details__info__swatches__title {
+                    font-size: 1.6rem;
                 }
 
                 .product-details__info__buttons {
                     display: grid;
                     grid-gap: 1rem;
+                }
+
+                .product-details__assembler {
+                    z-index: 1;
                 }
 
                 @media(--small-screen-only) {
@@ -153,18 +220,16 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         scroll-snap-align: start;
                         scroll-snap-stop: always;
                     }
-                    
-                    .product-details {
+    
+                    .product-details__wrapper {
                         display: grid;
-                        grid-template-rows: max-content max-content;
+                        grid-auto-rows: max-content;
+                        grid-template-columns: 1fr;                    
                     }
 
                     .product-details__images {
                         position: sticky;
                         top: 0;
-                        bottom: 0;
-                        z-index: -1;
-                        margin-bottom: -2rem;
                     }
 
                     .product-details__images__carousel {
@@ -177,7 +242,8 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     .product-details__info {
                         background-color: ${colors.surface};
                         color: ${colors.onSurface};
-                        padding-top: 3rem;
+                        margin-top: -2rem;
+                        padding-top: 6rem;
                         z-index: 1;
 
                         /**
@@ -195,7 +261,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         padding-left: ${margin};
                         padding-right: ${margin};
                         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
-                        border-radius: 1.5rem 1.5rem 0 0;
+                        border-radius: 1rem 1rem 0 0;
                     }
 
                     .product-details__info__main__header {
@@ -208,7 +274,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                             margin: auto;
                             opacity: 0.2;
                             position: absolute;
-                            top: 15px;
+                            top: 2rem;
                             transform: translateX(-50%);
                             width: 4rem;
                         }
@@ -216,13 +282,12 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 }
 
                 @media(--medium-screen){
-                    .product-details {
-                        padding-top: 2rem;
+                    .product-details__wrapper {
                         display: grid;
-                        grid-template-areas: "images info";
-                        grid-template-columns: 1fr 1fr;
-                        grid-template-rows: max-content max-content;
+                        grid-auto-rows: max-content;
                         grid-gap: 2rem;
+                        grid-template-columns: 1fr 1fr;
+                        padding-top: 2rem;
                     }
 
                     .product-details__images__carousel {
@@ -232,22 +297,19 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         overflow: unset;
                     }
 
-                    .product-details__info {
+                    .product-details__info__main {
+                        background-color: ${colors.surface};
+                        border-radius: 2rem;
+                        bottom: 0;
+                        color: ${colors.onSurface};
+                        padding: 2rem;
                         position: sticky;
                         top: 2rem;
-                        height: var(--vHeight);
-                    }
-
-                    .product-details__info__main {
-                        padding: 2rem;
-                        background-color: ${colors.surface};
-                        color: ${colors.onSurface};
-                        border-radius: 2rem;
                     }
                 }
 
                 @media(--large-screen) {
-                    .product-details {
+                    .product-details__wrapper {
                         grid-template-columns: 1.5fr 1fr;
                     }
                     

@@ -32,44 +32,109 @@ const ProductDetailsMockData: ProductDetailsProps = {
         priceSpecial: '$39.99',
         priceLabel: 'Starting at',
     },
+    sku: {
+        label: 'SKU. VSK12-LA',        
+    },
     images: new Array(5).fill({
         alt: '',
         src: require('../../../public/images/product-item-sample.jpg'),
     }),
+    swatches: [
+        {
+            title: {
+                label: 'Blue',
+                as: 'h3',
+            },
+            type: 'thumb',
+            props: {
+                items: [
+                    {
+                        active: true,
+                        image: {
+                            alt: '',
+                            src: require('../../../public/images/product-item-sample.jpg'),
+                            width: 4,
+                            height: 5,
+                        },
+                    },
+                    {
+                        disabled: true,
+                        image: {
+                            alt: '',
+                            src: require('../../../public/images/product-item-sample.jpg'),
+                            width: 4,
+                            height: 5,
+                        },
+                    },
+                    {
+                        image: {
+                            alt: '',
+                            src: require('../../../public/images/product-item-sample.jpg'),
+                            width: 4,
+                            height: 5,
+                        },
+                    },
+                    {
+                        image: {
+                            alt: '',
+                            src: require('../../../public/images/product-item-sample.jpg'),
+                            width: 4,
+                            height: 5,
+                        },
+                    },
+                ],
+            },
+        },
+        {
+            title: {
+                label: 'Size',
+                as: 'h3',
+            },
+            type: 'text',
+            props: {
+                items: [
+                    { label: 'XS', disabled: true },
+                    { label: 'S' },
+                    { label: 'M', active: true },
+                    { label: 'L' },
+                    { label: 'XL' },
+                ],
+            },
+        },
+    ],
     assembler: {
         components: [
             {
-                name: "Accordion",
+                name: 'ProductsCarousel',
                 props: {
-                    items: [
-                        {
-                            label: 'Hola',
-                            children: 'Hi',
-                        },
-                        {
-                            label: 'Hola',
-                            children: 'Hi',
-                        },
-                    ],
-                },
-            },
-            {
-                name: 'Banner',
-                props: {
-                    image: {
-                        alt: '',
-                        src: require('../../../public/images/banner-2.jpg'),
-                        height: 650,
-                        width: '100%',
+                    title: {
+                        as: 'h3',
+                        label: 'You may also like',
                     },
-                    titles: [
-                        { label: 'Twice around, twice as nice', large: true },
-                        { label: 'Find conscientious, comfy clothing in our eco-friendly collection' },
-                    ],
-                    position: 'bottom',
-                    buttons: [
-                        { label: 'Shop Performance', fill: true, link: { href: '#' } },
-                    ],
+                    items: new Array(6).fill({
+                        link: { href: '#' },
+                        image: {
+                            alt: '',
+                            src: require('../../../public/images/product-item-sample.jpg'),
+                            width: 4,
+                            height: 5,
+                        },
+                        price: {
+                            price: '$49.99',
+                            priceSpecial: '$39.99',
+                            priceLabel: 'Starting at',
+                        },
+                        title: {
+                            label: 'Circle Hooded Ice Flee',
+                        },
+                        colors: [
+                            { value: 'brown' },
+                            { value: 'gray' },
+                            { value: 'black' },
+                            { value: 'blue' },
+
+                        ],
+                    }),
                 },
             },
         ],

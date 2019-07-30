@@ -51,10 +51,6 @@ export const Button: Component<ButtonProps> = ({
                     &.--fill {
                         background-color: currentColor;
 
-                        &:hover {
-                            opacity: 0.83;
-                        }
-
                         & .button__wrapper {
                             filter: invert(1);
                         }

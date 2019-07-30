@@ -22,13 +22,14 @@ export default ({ colors }: any) => {
                 position: absolute; 
             }
             
-            button {
+            a, button {
+
                 &:not([disabled]) {
                     cursor: pointer;
                 }
-
+                
                 &[disabled] {
-                    opacity: 0.25;
+                    color: inherit;
                 }
             }
   

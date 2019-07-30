@@ -24,7 +24,7 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
             >
                 {items.map((item, index) => (
                     <Carousel.Item className="products-carousel__carousel__item" 
-                        key={`products-carousel__carousel__item--${index}`}
+                        key={index}
                     >
                         <ProductItem className="products-carousel__carousel__item__product" 
                             {...item} 
