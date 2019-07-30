@@ -19,6 +19,7 @@ export type ProductDetailsProps = Props<{
     assembler?: AssemblerProps
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
+    description?: Props<{ html?: string, assembler?: AssemblerProps }>
     images: ImageProps[]
     swatches?: Array<{
         title?: Props<{ label: string }>
@@ -34,6 +35,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
     assembler,
     breadcrumbs,
     buttons,
+    description,
     images, 
     swatches,
     price,
@@ -64,36 +66,36 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     </Carousel>
                 </div>
 
-                <div className="product-details__info"
+                <div className="product-details__info__wrapper"
                     ref={infoElemRef}
                 >
-                    <div className="product-details__info__main">
-                        <header className="product-details__info__main__header">
+                    <div className="product-details__info">
+                        <header className="product-details__info__header">
                             {breadcrumbs && (
                                 <Breadcrumbs
                                     prefix="#" 
                                     {...breadcrumbs} 
-                                    className={classes('product-details__info__main__header__breadcrumbs', breadcrumbs.className)}
+                                    className={classes('product-details__info__header__breadcrumbs', breadcrumbs.className)}
                                 />
                             )}
 
                             <Element as="h2" 
                                 {...title} 
-                                className={classes('product-details__info__main__header__title', title.className)}
+                                className={classes('product-details__info__header__title', title.className)}
                             >
                                 {title.label}
                             </Element>
 
                             <Price 
                                 {...price} 
-                                className={classes('product-details__info__main__header__price', price.className)} 
+                                className={classes('product-details__info__header__price', price.className)} 
                             /> 
 
                             {sku && (
                                 <Element 
                                     as="span" 
                                     {...sku} 
-                                    className={classes('produce-details__info__main__header__sku', sku.className)}
+                                    className={classes('product-details__info__header__sku', sku.className)}
                                 >
                                     {sku.label}
                                 </Element>
@@ -134,6 +136,16 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                                 />
                             ))}
                         </div> 
+
+                        {description && description.html && (
+                            <div className="product-details__info__description" dangerouslySetInnerHTML={{ __html: description.html }} />
+                        )}
+
+                        {description && description.assembler && (
+                            <Assembler className="product-details__description" 
+                                {...description.assembler} 
+                            />
+                        )}
                     </div>
                 </div>
                 
@@ -168,30 +180,30 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     }
                 }
 
-                .product-details__info {
+                .product-details__info__wrapper {
                     display: grid;
                     grid-auto-columns: 1fr;
                     grid-auto-rows: minmax(max-content, max-content);
                     grid-gap: 1rem;
                 }
 
-                .product-details__info__main {
+                .product-details__info {
                     display: grid;
                     grid-gap: 3rem;
                 }
 
-                .product-details__info__main__header {
+                .product-details__info__header {
                     display: grid;
                     grid-gap: 1.6rem;
                     grid-auto-rows: max-content;
                 }
 
-                .product-details__info__main__header__breadcrumbs {
+                .product-details__info__header__breadcrumbs {
                     font-size: 1.4rem;
                     color: ${colors.onSurface.fade(0.4)};
                 }
 
-                .produce-details__info__main__header__sku {
+                .product-details__info__header__sku {
                     font-size: 0.85em;
                     color: ${colors.onSurface.fade(0.4)};
                 }
@@ -216,7 +228,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
 
                 @media(--small-screen-only) {
                     .app-bar,
-                    .product-details__info {
+                    .product-details__info__wrapper {
                         scroll-snap-align: start;
                         scroll-snap-stop: always;
                     }
@@ -239,7 +251,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         left: 50%;
                     }
 
-                    .product-details__info {
+                    .product-details__info__wrapper {
                         background-color: ${colors.surface};
                         color: ${colors.onSurface};
                         margin-top: -2rem;
@@ -264,7 +276,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         border-radius: 1rem 1rem 0 0;
                     }
 
-                    .product-details__info__main__header {
+                    .product-details__info__header {
                         &::before {
                             background-color: currentColor;
                             border-radius: 0.5rem;
@@ -297,7 +309,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         overflow: unset;
                     }
 
-                    .product-details__info__main {
+                    .product-details__info {
                         background-color: ${colors.surface};
                         border-radius: 2rem;
                         bottom: 0;
