@@ -21,6 +21,18 @@ export default ({ colors }: any) => {
                 overflow: hidden; 
                 position: absolute; 
             }
+            
+            a[href], button[onClick] {
+
+                &:not([disabled]) {
+                    cursor: pointer;
+                }
+                
+                &[disabled] {
+                    color: inherit;
+                }
+            }
+  
 /*
             *:focus {
                 outline: none;
@@ -31,6 +43,7 @@ export default ({ colors }: any) => {
                 background: red;
             }            
 */
+
         `}</style>
     )
 }

@@ -1,13 +1,13 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Container, Component, Element, Props, classes } from '../../lib'
+
+import { useResize } from '../../hooks/useResize'
 
 import AppBar from '../../components/AppBar'
 import Header from '../../components/Header'
-import Icon from '../../components/Icon'
+import Icon, { IconProps } from '../../components/Icon'
 import TabBar from '../../components/TabBar'
 import Logo from '../../../public/images/luma.svg'
-import Link, { LinkRoute } from '../../components/Link'
-import Image from '../../components/Image'
 import Footer from '../../components/Footer'
 
 import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
@@ -18,140 +18,126 @@ import IconTwitter from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
 import IconFacebook from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
 import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
 import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
-import { useResize } from '../../hooks/useResize'
 
-export type AppProps = {
-    home: {
-        label?: string
-        link: LinkRoute
-    }
-    
-    logo: {
-        title: string
-        src?: string
-        link: LinkRoute
-    }
+export type AppProps = Props<{
+    home: Props
 
-    menu?: Array<{
-        label: string
-        link: LinkRoute
+    logo: Props
+
+    menu: Props[]
+
+    help: Props<{ 
+        icon?: IconProps 
+        text: string
     }>
 
-    help?: {
-        label?: string
-        link: LinkRoute
-    }
-
-    myAccount: {
-        label?: string
-        link: LinkRoute
+    myAccount: Props<{
         count?: number
-    }
+        icon?: IconProps 
+        text: string
+    }>
 
-    search: {
-        label?: string
-        link: LinkRoute
-    }
+    search: Props<{ 
+        text: string
+        icon?: IconProps 
+    }>
 
-    cart: {
+    cart: Props<{
         count?: number
-        label?: string
-        link: LinkRoute
-    }
+        icon?: IconProps
+        text: string
+    }>
 
     footer: {
         copyright: string
-        menu?: Array<{ link: LinkRoute, label: string }>
+        menu?: Props[]
         social?: {
-            facebook?: LinkRoute
-            instragram?: LinkRoute
-            pinterest?: LinkRoute
-            twitter?: LinkRoute
+            facebook?: Props
+            instragram?: Props
+            pinterest?: Props
+            twitter?: Props
         }
     }
-}
+}>
 
 export const App: Component<AppProps> = ({
-    as: App = 'div',
-    cart,
-    children,
-    footer,
-    help,
     home,
     logo,
     menu,
+    help,
     myAccount,
     search,
+    cart,
+    children,
+    footer,
     ...props
 }) => {
     const { vHeight } = useResize()
 
     return (
-        <App {...props} className={classes('app', props.className)}>
+        <Element {...props} className={classes('app', props.className)}
+            style={{
+                ['--vHeight' as any]: `calc(${vHeight}px - 0rem)`,
+            }}
+        >
             <AppBar className="app__app-bar" 
                 as="header" 
-                hideOnOffset={100}
             >
-                <Header className="app__app-bar__header">
-                    <Header.Logo className="app__app-bar__header__logo" as="h1">
-                        <Link {...logo.link}>
-                            {logo.src ? (
-                                <Image className="app__app-bar__header__logo__image" src={logo.src} alt={logo.title} />
-                            ) : (
-                                <Logo className="app__app-bar__header__logo__image" height="40" aria-label={logo.title} />
-                            )}
-                        </Link>
-                    </Header.Logo>
-
-                    {menu && menu.length > 0 && (
-                        <Header.Menu as="nav" className="app__app-bar__header__menu">
-                            {menu.map((item, key) => (
-                                <Link key={key} {...item.link}>{item.label}</Link>
-                            ))}
-                        </Header.Menu>
-                    )}
-
-                    <Header.Utilities className="app__app-bar__header__utilities">
-                        {help && <Link {...help.link}>
-                            {help.label || 'Help'}
-                        </Link>}
-                       
-                        <Link className="app__app-bar__header__utilities__account" {...myAccount.link}>
-                            {myAccount.label || 'My Account'}
-                        </Link>
-
-                        <Icon className="app__app-bar__header__utilities__search"
-                            as={Link} {...search.link}
-                            aria-label={search.label || 'Search'}
-                        >
-                            <IconSearch />
-                        </Icon>
-
-                        <Icon className="app__app-bar__header__utilities__cart"
-                            as={Link} {...cart.link}
-                            aria-label={cart.label || 'My Bag'}
-                            count={cart.count}
-                        >
-                            <IconBag />
-                        </Icon>
-                    </Header.Utilities>
-                </Header>
+                <Header className="app__app-bar__header"  
+                    logo={{
+                        className: 'app__app-bar__header__logo',
+                        svg: Logo,
+                        ...logo,
+                    }}
+                    menu={{ 
+                        className: 'app__app-bar__header__menu', 
+                        items: menu, 
+                    }}
+                    utilities={{
+                        className: 'app__app-bar__header__utilities',
+                        items: [
+                            { 
+                                ...help ,
+                                className: 'app__app-bar__header__utilities__help', 
+                            },
+                            { 
+                                ...myAccount,
+                                className: 'app__app-bar__header__utilities__account',
+                            },
+                            { 
+                                ...search, 
+                                className: 'app__app-bar__header__utilities__search',
+                                icon: {
+                                    svg: IconSearch,
+                                },
+                            },
+                            {
+                                ...cart,
+                                className: 'app__app-bar__header__utilities__cart',
+                                icon: {
+                                    svg: IconBag,
+                                    count: 3,
+                                },
+                            },
+                        ],
+                    }}
+                />
             </AppBar>
             
-            <main className="app__main">
+            <Container as="main" className="app__main">
                 {children}
-            </main>
+            </Container>
 
             <Footer as="footer" className="app__footer">
                 {footer.menu && (
                     <div className="app__footer__menu">
-                        {footer.menu.map(({ label, link }, key) => (
-                            <Link className="app__footer__menu__link" 
-                                key={`app__footer__meny__link--${key}`}
-                                {...link}
+                        {footer.menu.map(({ label, ...item }, index) => (
+                            <Element className="app__footer__menu__link" 
+                                key={index}
+                                {...item}
                             >
                                 {label}
-                            </Link>
+                            </Element>
                         ))}
                     </div>
                 )}
@@ -159,25 +145,25 @@ export const App: Component<AppProps> = ({
                 {footer.social && (
                     <div className="app__footer__social">
                         {footer.social.pinterest && (
-                            <Icon as={Link} {...footer.social.pinterest}>
+                            <Icon {...footer.social.pinterest}>
                                 <IconPinterest />
                             </Icon>
                         )}
 
                         {footer.social.instragram && (
-                            <Icon as={Link} {...footer.social.instragram}>
+                            <Icon {...footer.social.instragram}>
                                 <IconInstagram />
                             </Icon>
                         )}
 
                         {footer.social.facebook && (
-                            <Icon as={Link} {...footer.social.facebook}>
+                            <Icon {...footer.social.facebook}>
                                 <IconFacebook />
                             </Icon>
                         )}
 
                         {footer.social.twitter && (
-                            <Icon as={Link} {...footer.social.twitter}>
+                            <Icon {...footer.social.twitter}>
                                 <IconTwitter />
                             </Icon>
                         )}
@@ -191,44 +177,37 @@ export const App: Component<AppProps> = ({
             </Footer>
 
             <TabBar as="nav" className="app__tab-bar">
-                <TabBar.Item isActive={true}>
-                    <Icon as={Link} {...home.link}>
+                <TabBar.Item>
+                    <Icon aria-label={home.text} {...home} text={undefined}>
                         <IconHome />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon count={myAccount.count} as={Link} {...myAccount.link}>
+                    <Icon aria-label={myAccount.text} {...myAccount} text={undefined}>
                         <IconAccount />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon as={Link} {...search.link}>
+                    <Icon aria-label={search.text} {...search} text={undefined}>
                         <IconSearch />
                     </Icon>
                 </TabBar.Item>
 
                 <TabBar.Item>
-                    <Icon count={cart.count} as={Link} {...cart.link}>
+                    <Icon aria-label={cart.text} {...cart} text={undefined}>
                         <IconBag />
                     </Icon>
                 </TabBar.Item>
             </TabBar>
 
-            <style jsx>{`
-                .app {
-                    min-height: calc(${vHeight}px - 0rem);
-                }      
-            `}</style>
-
             <style jsx global>{`
                 .app {
                     display: grid;
-                    grid-gap: 2rem;
                     grid-auto-columns: minmax(0, 1fr);
                     grid-template-rows: auto 1fr auto auto;
-                    
+                    min-height: var(--vHeight);
                 }
                 
                 .app__app-bar__header__logo {
@@ -237,12 +216,17 @@ export const App: Component<AppProps> = ({
                     line-height: 0;
                 }
 
-                .app__app-bar__header__logo__image {
-                    max-height: 2.8rem;
+                .app__app-bar__header__logo svg {
+                    height: 2.8rem;
 
                     @media(--large-screen) {
-                        max-height: 3.5rem;
+                        height: 3.5rem;
                     }
+                }
+
+                /** Main */
+                .app__main {
+                    box-sizing: border-box;
                 }
 
                 /** Footer */
@@ -264,7 +248,7 @@ export const App: Component<AppProps> = ({
                     text-transform: uppercase;
 
                     & .app__footer__menu__link {
-                        margin: 1rem 0.75rem;
+                        margin: 1rem;
                     }
                 }
 
@@ -302,6 +286,6 @@ export const App: Component<AppProps> = ({
                     }
                 }
             `}</style>
-        </App>
+        </Element>
     )
 }

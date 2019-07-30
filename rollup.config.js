@@ -18,6 +18,7 @@ const plugins = [
             '@babel/react',
         ],
         plugins: [
+            ['@babel/plugin-syntax-dynamic-import'],
             ['styled-jsx/babel', { 
                 plugins: ['styled-jsx-plugin-postcss'] 
             }]
@@ -92,6 +93,7 @@ function tsDeclarations({ outDir, rootDir = './' }) {
                 --esModuleInterop \
                 --jsx react \
                 --moduleResolution node \
+                --module esnext \
                 --outDir ${outDir} \
                 --rootDir ${rootDir} \
                 --target esnext \

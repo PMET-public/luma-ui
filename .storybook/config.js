@@ -32,6 +32,9 @@ addParameters({
             bodyFamily: 'source-sans-pro, sans-serif',
             headingFamily: 'rucksack, sans-serif',
         }
+    },
+    knobs: {
+        escapeHTML: false
     }
 })
 

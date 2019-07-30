@@ -1,22 +1,21 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 import { useThrottle } from '../../hooks/useThrottle'
 import Icon from '../Icon'
 import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
 import IconReset from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
 
-export type SearchBarProps = {
+export type SearchBarProps = Props<{
     clearButton?: boolean
     count?: number
     label?: string
     value?: string
     onUpdate?: (query: string) => any
     onSearch?: (query: string) => any
-}
+}>
 
 export const SearchBar: Component<SearchBarProps> = ({
-    as: SearchBar = 'div',
     clearButton = true,
     count,
     label = 'Search',
@@ -51,7 +50,7 @@ export const SearchBar: Component<SearchBarProps> = ({
     }
 
     return (
-        <SearchBar {...props} className={classes('search-bar', props.className)}>
+        <Element {...props} className={classes('search-bar', props.className)}>
             <form onSubmit={handleSubmit}>
                 <label className="search-bar__wrapper">
                     <Icon className="search-bar__icon"
@@ -145,6 +144,6 @@ export const SearchBar: Component<SearchBarProps> = ({
                 }
 
             `}</style>
-        </SearchBar>
+        </Element>
     )
 }

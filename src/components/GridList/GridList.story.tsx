@@ -3,7 +3,7 @@ import GridList from './'
 import { storiesOf } from '@storybook/react'
 import { number } from '@storybook/addon-knobs'
 import ProductItem from '../ProductItem'
-import Container from '../Container'
+import { Container } from '../../lib'
 
 storiesOf('📦 Components/GridList', module)
     .add('Default', () => (
@@ -48,10 +48,20 @@ storiesOf('📦 Components/GridList', module)
                                 alt: '',
                                 src: require('../../../public/images/product-item-sample.jpg'),
                             }}
-                            price="$49.99"
-                            priceSpecial="$39.99"
-                            title="Circle Hooded Ice Flee"
-                            colors={['brown', 'gray', 'black', 'blue']}
+                            price={{
+                                price: '$49.99',
+                                priceSpecial: '$39.99',
+                                priceLabel: 'Starting at',
+                            }}
+                            title={{
+                                label: 'Circle Hooded Ice Flee',
+                            }}
+                            colors={[
+                                { value: 'brown' }, 
+                                { value: 'gray' }, 
+                                { value: 'black' }, 
+                                { value: 'blue' },
+                            ]}
                         />
                     </GridList.Item>
                 ))}

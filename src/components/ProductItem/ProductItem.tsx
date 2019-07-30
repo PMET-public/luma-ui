@@ -1,153 +1,141 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
+import Price, { PriceProps } from '../Price'
+
 import { useTheme } from '../../theme'
 
-export type ProductItemProps = {
-    badge?: string
+export type ProductItemProps = Props<{
+    badge?: Props
     image: ImageProps
-    price?: string
-    priceSpecial?: string
-    priceLabel?: string
-    title: string
-    colors?: string[]
-}
+    price: PriceProps
+    title: Props
+    colors?: Array<{ value: string }>
+}>
 
-export const ProductItem: Component<ProductItemProps> = ({ 
-    as: ProductItem = 'div', 
+export const ProductItem: Component<ProductItemProps> = ({
     badge,
     colors,
     image,
     price,
-    priceLabel,
-    priceSpecial,
     title,
     ...props
 }) => {
     const theme = useTheme()
-    
+
     return (
-        <ProductItem {...props} className={classes('product-item', props.className)}>
-            <Image className="product-item__image"
+        <Element {...props} className={classes('product-item', props.className)}>
+            {badge && (
+                <Element 
+                    as="span"
+                    {...badge}
+                    className={classes('product-item__badge', badge.className)}
+                />
+            )}
+
+            <Image 
                 height="1580"
                 width="1274"
+                vignette={10}
                 {...image}
+                className={classes('product-item__image', image.className)}
             >
-                 {!!colors && (
-                    <ul className="product-item__details__colors">
-                        {colors.map((color, index) => (
-                            <li className="product-item__details__colors__item"
-                                key={`color--${index}`} 
-                                style={{ backgroundColor: color }}
-                            ></li>
-                        ))}
-                    </ul> 
-                 )}
-                 
                 <span className="product-item__details">
-                    <strong className="product-item__details__title">{title}</strong>
-                    
-                    { !!badge && <span className="product-item__details__badge">{badge}</span> }
+                    <Element
+                        as="span"
+                        {...title}
+                        className={classes('product-item__details__title', title.className)}
+                    />
 
-                    { price && (
-                        <span className="product-item__details__price">
-                            {!!priceLabel && <em className="product-item__details__price__label">{priceLabel}</em>}
-                            
-                            <span className={classes('product-item__details__price__original', ['--special', !!priceSpecial])}>
-                                {price}
-                            </span> 
-
-                            { !!priceSpecial && <span className="product-item__details_price__special">{priceSpecial}</span> }
-                        </span>
-                    )}
+                    <span>
+                        {price && (
+                            <Price 
+                                as="span" 
+                                {...price} 
+                                className={classes('product-item__details__price', price.className)}
+                            />
+                        )}
+                    </span>
                 </span>
 
+                {!!colors && (
+                    <ul className="product-item__colors">
+                        {colors.map(({ value }, index) => (
+                            <li className="product-item__colors__item"
+                                key={index}
+                                style={{ backgroundColor: value }}
+                            ></li>
+                        ))}
+                    </ul>
+                )}
             </Image>
 
             <style jsx global>{`
+                .product-item {
+                    display: block;
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                .product-item__badge {
+                    background-color: ${theme.colors.accent.fade(0.2)};
+                    color: ${theme.colors.onAccent};
+                    font-size: 1.4rem;
+                    left: 2rem;
+                    letter-spacing: 0.05rem;
+                    padding: 0.5rem 0.75rem;
+                    position: absolute;
+                    text-transform: uppercase;
+                    top: 2rem;
+                    z-index: 1;
+                }
+
                 .product-item__image {
                     position: relative;
-                    line-height: 0;
-
-                    & .image__wrapper {
-                        position: relative;
-
-                        &::before {
-                            bottom: 0;
-                            box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.15);
-                            content: "";
-                            left: 0;
-                            pointer-events: none;
-                            position: absolute;
-                            right: 0;
-                            top: 0;
-                            z-index: 2;
-                        }
-                    }
+                    
                     & .image__img {
                         height: 100%;
                         width: 100%;
                         min-height: 100%;
                         max-height: 90vh;
-
+                    }
+                    
+                    & .image__caption {
+                        background-color: ${theme.colors.surface.fade(0.05)};
+                        bottom: 0;
+                        color: ${theme.colors.onSurface};
+                        position: absolute;
+                        width: 100%;
                     }
                 }
 
                 .product-item__details {
                     display: grid;
-                    line-height: 1.5;
-                    padding-left: 1rem;
-                }
-
-                .product-item__details__badge {
-                    background-color: ${theme.colors.onPrimary.fade(0.45)};
-                    color: ${theme.colors.primary.fade(0.4)};
-                    font-size: 1.1rem;
-                    left: 0;
-                    letter-spacing: 0.1rem;
-                    padding: 0.5rem 2rem;
-                    position: absolute;
-                    text-align: center;
-                    text-transform: uppercase;
-                    top: 0;
-                    transform-origin: bottom left;
-                    transform: rotate(90deg);
-                }
-
-                .product-item__details__colors {
-                    display: grid;
-                    grid-auto-flow: column;
-                    margin: -0.5rem 0 0.5rem;
-                }
-
-                .product-item__details__colors__item {
-                    display: inline-block;
-                    height: 0.65rem;
-                    width: 100%;
+                    grid-gap: 0.75rem;
+                    padding: 1rem 2rem;
                 }
 
                 .product-item__details__title {
+                    font-family: ${theme.typography.headingFamily};
+                    font-size: 1.7rem;
                     font-weight: 600;
                 }
 
                 .product-item__details__price {
-                    font-size: 0.95em;
+                    font-size: 1.6rem;
+                }
+
+                .product-item__colors {
                     display: grid;
-                    grid-gap: 0.75rem;
                     grid-auto-flow: column;
-                    grid-auto-columns: max-content;
                 }
 
-                .product-item__details__price__label {
-                    font-style: italic;
-                }
-
-                .product-item__details__price__original {
-                    &.--special {
-                        text-decoration: line-through;
-                    }
+                .product-item__colors__item {
+                    display: inline-block;
+                    height: 0.65rem;
+                    width: 100%;
                 }
             `}</style>
-        </ProductItem>
+        </Element>
     )
 }

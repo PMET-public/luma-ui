@@ -1,13 +1,16 @@
 import React from 'react'
-import Container from './'
+import Price from './'
 import { storiesOf } from '@storybook/react'
+import { text } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/Container', module)
+storiesOf('📦 Components/Price', module)
     .add('Default', () => (
         <div className="story">
-            <Container className="story__item">
-                Content goes here
-            </Container>
+            <Price 
+                price={text('price', '$9.99')} 
+                priceSpecial={text('priceSpecial', '$4.99')} 
+                priceLabel={text('priceLable', 'Starting at')}
+            />
 
             <style jsx global>{`
                 .story {
@@ -16,11 +19,6 @@ storiesOf('📦 Components/Container', module)
                     height: 100vh;
                     justify-content: center;
                     width: 100%;
-                    background: rgba(0, 0, 0, 0.25);
-                }
-
-                .story__item {
-                    background: white;
                 }
             `}</style>
         </div>

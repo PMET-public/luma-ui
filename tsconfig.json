@@ -9,6 +9,7 @@
         "jsx": "react",
         "lib": [ "dom", "es2017" ],
         "moduleResolution": "node",
+        "module": "esnext",
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,

@@ -1,27 +1,25 @@
-import React, { ReactNode } from 'react'
-import { Component, classes } from '../../lib'
+import React from 'react'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
-export type ButtonProps = {
+export type ButtonProps = Props<{
     fill?: boolean
-    color?: 'primary' | 'secondary',
-    label?: ReactNode | string
-}
+    color?: 'primary' | 'secondary'
+}>
 
 export const Button: Component<ButtonProps> = ({ 
-    as: Button = 'button', 
-    children,
+    text,
+    children = text,
     color,
     fill = false,
-    label = null,
     ...props
 }) => {
     const { colors } = useTheme()
     
     return (
-        <Button {...props} className={classes('button', props.className, `--${color}`, ['--fill', fill])}>
+        <Element {...props} className={classes('button', props.className, `--${color}`, ['--fill', fill])}>
             <span className="button__wrapper">
-                {label || children}
+                {children}
             </span>
 
             <style jsx global>{`
@@ -30,16 +28,15 @@ export const Button: Component<ButtonProps> = ({
 
                     align-items: center;
                     background-color: var(--background, transparent);
-                    border-radius: 2rem;
+                    border-radius: 2.4rem;
                     border: 0.1rem solid;
                     color: var(--color);
-                    cursor: pointer;
                     display: inline-flex;
                     font-size: 1.6rem;
                     font-weight: 600;
                     justify-content: center;
                     line-height: 1;
-                    padding: 1.2rem 2.8rem;
+                    padding: 1.6rem 2.8rem;
                     transition-duration: 305ms;
                     transition-property: opacity, color, background-color;
                     transition-timing-function: ease;
@@ -51,10 +48,6 @@ export const Button: Component<ButtonProps> = ({
 
                     &.--fill {
                         background-color: currentColor;
-
-                        &:hover {
-                            opacity: 0.83;
-                        }
 
                         & .button__wrapper {
                             filter: invert(1);
@@ -70,6 +63,6 @@ export const Button: Component<ButtonProps> = ({
                     }
                 }
             `}</style>
-        </Button>
+        </Element>
     )
 }

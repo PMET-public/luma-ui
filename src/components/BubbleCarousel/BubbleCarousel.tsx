@@ -1,30 +1,35 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 
-export type BubbleCarouselProps = {
-    label: string
-}
+export type BubbleCarouselProps = Props<{
+    items?: BubbleCarouselItemProps[]
+}>
 
-export type BubbleCarouselItemProps = {
-    label: string
+export type BubbleCarouselItemProps = Props<{
     image: ImageProps
-}
+}>
 
 type CompoundComponent = {
     Item: Component<BubbleCarouselItemProps>
 }
 
 export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent = ({
-    as: BubbleCarousel = 'div',
     children,
-    label,
+    items,
     ...props
 }) => {
+
     return (
-        <BubbleCarousel {...props} className={classes('bubble-carousel', props.className)} aria-label={label}>
+        <Element {...props} className={classes('bubble-carousel', props.className)} 
+            style={{
+                ['--size' as any]: '9rem',
+            }}
+        >
             <div className="bubble-carousel__wrapper">
-                {children}
+                {items ? items.map((item, index) => (
+                    <BubbleCarousel.Item key={index} {...item} />
+                )) : children}
             </div>
 
             <style jsx global>{`
@@ -34,14 +39,14 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
                         https://stackoverflow.com/questions/40733385/hiding-webkit-scrollbar-when-overflow-scrolling-touch-is-enabled 
                     */
                     overflow-y: hidden;
-                    height: 10rem;
-                    margin-top: -1rem;
+                    height: calc(var(--size) + 2rem);
                 }
 
                 .bubble-carousel__wrapper {
                     -webkit-overflow-scrolling: touch;
                     overflow-x: scroll;
-                    padding: 1rem 0;
+                    margin-top: -1rem;
+                    padding: 1rem 0 1rem;
                     display: flex;
 
                     &::-webkit-scrollbar {
@@ -49,33 +54,32 @@ export const BubbleCarousel: Component<BubbleCarouselProps> & CompoundComponent 
                     }
                 }
             `}</style>
-        </BubbleCarousel>
+        </Element>
     )
 }
 
 BubbleCarousel.Item = ({ 
-    as: BabelCarouselItem = 'div',
-    label, 
+    text,
     image,
     ...props
 }) => (
-    <BabelCarouselItem {...props} className={classes('bubble-carousel-item', props.className)}>
-        <Image alt={label} {...image} />
+    <Element {...props} className={classes('bubble-carousel-item', props.className)}>
+        <Image alt="null" {...image} />
         
-        <div className="bubble-carousel-item__label">
-            {label}
-        </div>
+        <Element className="bubble-carousel-item__label">
+            {text}
+        </Element>
 
         <style jsx global>{`
             .bubble-carousel-item {
                 text-decoration: none;   
-                padding: 0 0.6rem; 
+                padding: 0 0.75rem; 
 
                 &:last-of-type {
-                    padding-right: 1rem;
+                    padding-right: 0.75rem;
                 }
                 &:first-of-type {
-                    padding-left: 1rem;
+                    padding-left: 0.75rem;
                 }
             }
 
@@ -89,26 +93,26 @@ BubbleCarousel.Item = ({
             .bubble-carousel-item .image__img {
                 border-radius: 50%;
                 display: inline-block;
-                height: 7rem;
+                height: var(--size);
                 object-fit: cover;
                 object-position: center;
                 overflow: hidden;
-                width: 7rem;
+                width: var(--size);
             }
 
             .bubble-carousel-item__label {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-top: 0.2rem;
                 overflow: hidden;
                 padding: 0;
                 text-align: center;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                width: 7rem;
+                width: var(--size);
                 line-height: 1.5;
                 text-transform: uppercase;
             }
             
         `}</style>
-    </BabelCarouselItem>
+    </Element>
 )

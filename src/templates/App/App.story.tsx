@@ -5,64 +5,79 @@ import { AppProps } from './App'
 
 export const AppMockData: AppProps = {
     home: {
-        link: { href: '#' },
+        as: 'a',
+        href: '#',
+        text: 'Luma',
     },
     logo: {
+        as: 'a',
+        href: '#',
         title: 'Luma',
-        link: { href: '#' },
     },
     menu: [
         { 
-            label: 'Women',
-            link: { href: '#' },
+            as: 'a',
+            href: '#',
+            text: 'Women',
         },
         { 
-            label: 'Men',
-            link: { href: '#' },
+            as: 'a',
+            href: '#',
+            text: 'Men',
         },
         { 
-            label: 'Gear',
-            link: { href: '#' },
+            as: 'a',
+            href: '#',
+            text: 'Gear',
         },
         { 
-            label: 'Training',
-            link: { href: '#' },
+            as: 'a',
+            href: '#',
+            text: 'Training',
         },
         { 
-            label: 'Sale',
-            link: { href: '#' },
+            as: 'a',
+            href: '#',
+            text: 'Sale',
         },
     ],
     help: {
-        link: { href: '#'},
+        as: 'a',
+        href: '#',
+        text: 'Help',
     },
     myAccount: {
-        label: 'Login',
-        link: { href: '#' },
+        as: 'a',
+        href: '#' ,
+        text: 'My Account',
     },
     search: {
-        link: { href: '#' },
+        as: 'a',
+        href: '#' ,
+        text: 'Search',
     },
     cart: {
+        as: 'a',
         count: 2,
-        link: { href: '#' },
+        href: '#',
+        text: 'My Bag',
     },
     footer: {
         copyright: '© 2019 Magento, Inc. All Rights Reserved.',
         menu: [
-            { label: 'Blog', link: { href: '#' } },
-            { label: 'About', link: { href: '#' } },
-            { label: 'Orders & Returns', link: { href: '#' } },
-            { label: 'Customer Service', link: { href: '#' } },
-            { label: 'Contact', link: { href: '#' } },
-            { label: 'Privacy Policy', link: { href: '#' } },
-            { label: 'Terms of Use', link: { href: '#' } },
+            { text: 'Blog', as: 'a', href: '#' },
+            { text: 'About', as: 'a', href: '#' },
+            { text: 'Orders & Returns', as: 'a', href: '#' },
+            { text: 'Customer Service', as: 'a', href: '#' },
+            { text: 'Contact', as: 'a', href: '#' },
+            { text: 'Privacy Policy', as: 'a', href: '#' },
+            { text: 'Terms of Use', as: 'a', href: '#' },
         ],
         social: {
-            facebook: { title: 'Facebook', href: 'https://facebook.com', target: 'blank' },
-            twitter: { title: 'Twitter', href: 'https://twitter.com', target: 'blank' },
-            pinterest: { title: 'Pinterest', href: 'https://pinterest.com', target: 'blank' },
-            instragram: { title: 'Instagram', href: 'https://instagram.com', target: 'blank' },
+            facebook: { title: 'Facebook', as: 'a', href: 'https://facebook.com', target: 'blank' },
+            twitter: { title: 'Twitter', as: 'a', href: 'https://twitter.com', target: 'blank' },
+            pinterest: { title: 'Pinterest', as: 'a', href: 'https://pinterest.com', target: 'blank' },
+            instragram: { title: 'Instagram', as: 'a', href: 'https://instagram.com', target: 'blank' },
         },
     },
 }
@@ -71,12 +86,5 @@ storiesOf('📑 Templates/App', module)
     .add('Default', () => (
         <App {...AppMockData}>
             <div className="story__content"></div>
-
-            <style jsx global>{`
-                .story__content {
-                    height: 300vh;
-                    background: #ddd;
-                }    
-            `}</style>
         </App>
     ))

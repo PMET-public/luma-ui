@@ -2,9 +2,9 @@ import React from 'react'
 import HotSpots from './'
 import { storiesOf } from '@storybook/react'
 
-const PriceTagMock = ({ label, price }: any) => (
+const PriceTagMock = ({ text, price }: any) => (
     <div style={{ fontWeight: 600 }}>
-        <a href="" onClick={e => e.preventDefault()} style={{ marginRight: '1rem' }}>{label}</a>
+        <a href="" onClick={e => e.preventDefault()} style={{ marginRight: '1rem' }}>{text}</a>
         <em style={{ borderRadius: '0.5rem', paddingLeft: '1rem', backgroundColor: 'var(--color-secondary', color: 'var(--color-on-secondary' }}>{price}</em>
     </div>
 )
@@ -24,23 +24,23 @@ storiesOf('📦 Components/HotSpots', module)
                 <HotSpots.Item
                     coords={{ x: 15, y: 42 }}
                     id="0"
-                    label="Sweater"
+                    text="Sweater"
                 >
-                    <PriceTagMock label="Knit Sweater" price="$29.99" />
+                    <PriceTagMock text="Knit Sweater" price="$29.99" />
                 </HotSpots.Item>
                 <HotSpots.Item
                     coords={{ x: 78, y: 30 }}
                     id="1"
-                    label="Bag"
+                    text="Bag"
                 >
-                    <PriceTagMock label="Handbag" price="$19.99" />
+                    <PriceTagMock text="Handbag" price="$19.99" />
                 </HotSpots.Item>
                 <HotSpots.Item
                     coords={{ x: 63, y: 75 }}
                     id="2"
-                    label="Pants"
+                    text="Pants"
                 >
-                    <PriceTagMock label="Cotton Chinos" price="$29.99" />
+                    <PriceTagMock text="Cotton Chinos" price="$29.99" />
                 </HotSpots.Item>
             </HotSpots>
         </div>
@@ -60,7 +60,7 @@ storiesOf('📦 Components/HotSpots', module)
                     <HotSpots.Item
                         coords={{ x: 15, y: 42 }}
                         id="0"
-                        label="Sweater"
+                        text="Sweater"
                     />
                 </a>
             </HotSpots>

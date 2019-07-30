@@ -23,6 +23,7 @@ module.exports = ({ config }) => {
                             '@babel/react',
                         ],
                         plugins: [
+                            ['@babel/plugin-syntax-dynamic-import'],
                             ['styled-jsx/babel', { 
                                 plugins: ['styled-jsx-plugin-postcss'] 
                             }]

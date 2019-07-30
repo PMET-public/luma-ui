@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
@@ -40,7 +41,6 @@
     "@storybook/addon-backgrounds": "^5.1.8",
     "@storybook/addon-centered": "^5.1.8",
     "@storybook/addon-knobs": "^5.1.8",
-    "@storybook/addon-viewport": "^5.1.8",
     "@storybook/addons": "^5.1.8",
     "@storybook/react": "^5.1.8",
     "@storybook/storybook-deployer": "^2.8.1",

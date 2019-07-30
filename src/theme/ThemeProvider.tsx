@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState, createContext, useContext } from 'r
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
-import { ReactComponentLike } from 'prop-types'
 import { ColorProperty, FontFamilyProperty, FontStyleProperty, FontWeightProperty } from 'csstype'
 import ColorObject from 'color'
 
@@ -46,10 +45,10 @@ type Typography = {
 
 type Theme = {
     colors: Colors
-    typography: Typography
     isDark: boolean
-    routerLink: ReactComponentLike
+    margin: string
     setDark: (v: boolean) => any
+    typography: Typography
 }
 
 type ThemeProviderProps = {
@@ -89,7 +88,7 @@ type ThemeProviderProps = {
         headingWeight?: FontWeightProperty
     }
 
-    routerLink?: ReactComponentLike
+    margin?: string
 }
 
 const defaultColors = {
@@ -210,8 +209,9 @@ const initialTheme: Theme = {
     isDark: false,
 
     setDark: (v: boolean) => { },
+
+    margin: '1rem',
     
-    routerLink: ({ ...props }) => <a {...props} />,
 }
 
 const ThemeContext = createContext(initialTheme)
@@ -221,7 +221,6 @@ export const useTheme = () => useContext(ThemeContext)
 export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     children,
     colors: newColors,
-    routerLink = (props: any) => <a {...props} />,
     typography: newTypography,
     
 }) => {
@@ -249,13 +248,15 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
         ...newTypography,
     }
 
+    const margin = '1rem'
+
     return (
         <ThemeContext.Provider value={{ 
             colors,
             isDark, 
-            routerLink,
             setDark, 
             typography, 
+            margin,
         }}>
             <div className="theme">
                 {children}

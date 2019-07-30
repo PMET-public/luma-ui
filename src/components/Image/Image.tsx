@@ -1,35 +1,40 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
-export type ImageProps = {
+export type ImageProps = Props<{
     alt?: string
     height?: string | number
     src: string
     width?: string | number
-}
+    vignette?: number
+}>
 
 export const ImageComponent: Component<ImageProps> = ({
-    as: ImageComponent = 'div',
     alt,
     children,
     height,
     src,
     width,
+    vignette = 0,
     ...props
 }) => {
     const { colors } = useTheme()
 
     return (
-        <ImageComponent {...props} className={classes('image', props.className)}>
+        <Element {...props} className={classes('image', props.className)}>
             <figure className="image__figure">
-                <div className="image__wrapper">
+                <div className={classes('image__wrapper', ['--vignette', !!vignette])}
+                    style={{
+                        ['--vignette' as any]: `${vignette}rem`,
+                    }}
+                >
                     <img className="image__img image__tag"
                         src={src}
                         {...{alt, width, height}}
                     />
                     <img className="image__img image__placeholder"
-                        arial-hidden="true"
+                        aria-hidden="true"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                         {...{width, height}}
                     />
@@ -53,19 +58,36 @@ export const ImageComponent: Component<ImageProps> = ({
 
                 .image__wrapper {
                     position: relative;
-                    z-index: -1;
                     display: inherit;
+                    line-height: 0;
+                    
+                    &.--vignette {
+                        position: relative;
+
+                        &::after {
+                            bottom: 0;
+                            box-shadow: inset 0 0 var(--vignette) rgba(0, 0, 0, 0.1);
+                            content: "";
+                            left: 0;
+                            pointer-events: none;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            
+                        }
+                    }
                 }
 
                 .image__tag {
                     position: absolute;
+                    min-height: 100%;
                 }
 
                 .image__img {
                     background-color: ${colors.onSurface.fade(0.95)};
                     object-fit: cover;
-                    object-position: center;
-                    z-index: 1;
+                    object-position: center;                    
+                    
                 }
 
                 .image__placeholder {
@@ -86,6 +108,6 @@ export const ImageComponent: Component<ImageProps> = ({
                     }
                 }
             `}</style>
-        </ImageComponent>
+        </Element>
     )
 }

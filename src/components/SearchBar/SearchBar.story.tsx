@@ -1,9 +1,9 @@
 import React from 'react'
 import SearchBar from './'
 import { storiesOf } from '@storybook/react'
-import Container from '../Container'
 import { action } from '@storybook/addon-actions'
 import { text, number, boolean } from '@storybook/addon-knobs'
+import { Container } from '../../lib'
 
 storiesOf('📦 Components/SearchBar', module)
     .add('Default', () => {

@@ -1,19 +1,21 @@
 import React from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
-import Link, { LinkRoute } from '../Link'
-import { useTheme } from '../../theme'
 import Button, { ButtonProps } from '../Button'
 
-export type BannerProps = {
+import { useTheme } from '../../theme'
+
+export type BannerProps = Props<{
     image: ImageProps
-    titles?: Array<{ title: string, large?: boolean }>
+    titles?: Array<Props<{ 
+        text: string, 
+        large?: boolean 
+    }>>
     position?: 'top' | 'bottom'
-    buttons?: Array<{  link: LinkRoute } & ButtonProps>
-}
+    buttons?: ButtonProps[]
+}>
 
 export const Banner: Component<BannerProps> = ({ 
-    as: Banner = 'div', 
     buttons,
     image,
     position = 'top',
@@ -23,30 +25,26 @@ export const Banner: Component<BannerProps> = ({
     const { typography } = useTheme()
     
     return (
-        <Banner {...props} className={classes('banner', props.className)}>
+        <Element {...props} className={classes('banner', props.className)}>
             <Image {...image} className="banner__image">
                 <div className={classes('banner__content', `--${position}`)}>
 
                     {titles && (
                          <div className="banner__content__titles">
-                             {titles.map(({ title, large = false }, index) => (
-                                <p className={classes('banner__content__titles__item', ['--large', large])}
-                                    key={`'banner__content__titles__item--${index}`}
-                                >
-                                    {title}
-                                </p>
+                             {titles.map(({ large = false, ...title }, index) => (
+                                <Element {...title} className={classes('banner__content__titles__item', ['--large', large])}
+                                    key={index}
+                                />
                              ))}
                          </div>
                     )}
 
                     {buttons && (
                         <div className="banner__content__buttons">
-                            {buttons.map(({ link, ...button }, index) => (
+                            {buttons.map((button, index) => (
                                 <Button className={classes('banner__content__buttons__item')} 
-                                    as={Link}
-                                    key={`'banner__content__buttons__item--${index}`}
+                                    key={index}
                                     {...button}
-                                    {...link}
                                 />
                             ))}
                         </div>
@@ -61,7 +59,7 @@ export const Banner: Component<BannerProps> = ({
                     
                 }
 
-                .banner__image {
+                .banner__image {   
                     & .image__img {
                         min-width: 100%;
                         min-height: 100%;
@@ -100,6 +98,12 @@ export const Banner: Component<BannerProps> = ({
                         text-transform: uppercase;
                         line-height: 0.9;
                     }
+
+                    & > * {
+                        font-size: inherit;
+                        font-family: inherit;
+                        font-weight: inherit;
+                    }
                 }
 
                 .banner__content__buttons {
@@ -133,6 +137,6 @@ export const Banner: Component<BannerProps> = ({
                     }
                 }
             `}</style>
-        </Banner>
+        </Element>
     )
 }

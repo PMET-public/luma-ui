@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react'
-import { Component, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 
-export type GridListProps = {
+export type GridListProps = Props<{
     children: ReactElement<GridListItemProps> | Array<ReactElement<GridListItemProps>>
-}
+}>
 
-export type GridListItemProps = {
+export type GridListItemProps = Props<{
     children: ReactElement | ReactElement[]
-}
+}>
 
 type CompoundComponent = {
     Item: Component<GridListItemProps>
@@ -35,12 +35,11 @@ export const GridList: Component<GridListProps> & CompoundComponent = ({
 }
 
 GridList.Item = ({ 
-    as: GridListItem = 'div',
     children,
     ...props
 }) => {
     return (
-        <GridListItem {...props} className={classes('grid-list-item', props.className)}>
+        <Element {...props} className={classes('grid-list-item', props.className)}>
             {children}
 
             <style jsx global>{`
@@ -71,7 +70,7 @@ GridList.Item = ({
                     }                    
                 }
             `}</style>
-        </GridListItem>
+        </Element>
 
     )
 }

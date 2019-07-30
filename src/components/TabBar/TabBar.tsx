@@ -1,28 +1,31 @@
-import React, { ReactElement } from 'react'
-import { Component, classes } from '../../lib'
+import React from 'react'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
-export type TabBarProps = {
-    children: ReactElement<TabBarItemProps> | Array<ReactElement<TabBarItemProps>>
-}
+export type TabBarProps = Props<{
+    items?: TabBarItemProps[]
+}>
 
-export type TabBarItemProps = {
+export type TabBarItemProps = Props<{
     isActive?: boolean
-}
+}>
 
 type CompoundComponent = {
     Item: Component<TabBarItemProps>
 }
 
 export const TabBar: Component<TabBarProps> & CompoundComponent = ({
-    as: TabBar = 'nav',
+    as: Wrapper = 'nav',
     children,
+    items,
     ...props
 }) => {
     const { colors } = useTheme()
     return (
-        <TabBar {...props} className={classes('tab-bar', props.className)}>
-            {children}
+        <Element {...props} className={classes('tab-bar', props.className)}>
+            {items ? items.map((item, index) => (
+                <TabBar.Item key={index} {...item} />
+            )) : children}
 
             <style jsx global>{`
                 .tab-bar {
@@ -37,6 +40,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
                     padding: 1.3rem;
                     position: sticky;
                     right: 0;
+                    z-index: 1;
                 }
 
                 @supports(padding: max(0px)) {
@@ -47,19 +51,18 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
                     }
                 }
             `}</style>
-        </TabBar>
+        </Element>
     )
 }
 
 TabBar.Item = ({ 
-    as: TabBarItem = 'span',
     isActive = false, 
     children,
     ...props
 }) => {
     const { colors } = useTheme()
     return (
-        <TabBarItem {...props} className={classes('tab-bar-item', props.className, ['--active', isActive])}>
+        <Element  as="span" {...props} className={classes('tab-bar-item', props.className, ['--active', isActive])}>
             {children}
             
             <style jsx global>{`
@@ -85,6 +88,6 @@ TabBar.Item = ({
                     text-decoration: none;
                 }
             `}</style>
-        </TabBarItem>
+        </Element>
     )
 }

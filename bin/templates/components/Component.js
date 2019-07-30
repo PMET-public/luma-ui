@@ -4,19 +4,16 @@ const path = require ('path')
 module.exports = (Name, filename) => source`
 
     import React from 'react'
-    import { Component, classes } from '../../lib'
+    import { Component, Props, Element, classes } from '../../lib'
     
-    export type ${Name}Props = {
-
-    }
+    export type ${Name}Props = Props<{ }>
 
     export const ${Name}: Component<${Name}Props> = ({ 
-        as: ${Name} = 'div', 
         ...props
     }) => {
         
         return (
-            <${Name} {...props} className={classes('${filename}', props.className)}>
+            <Element {...props} className={classes('${filename}', props.className)}>
                 👋 Hi, I'm ${Name}
 
                 <style jsx global>{\`
@@ -24,7 +21,7 @@ module.exports = (Name, filename) => source`
                         
                     }
                 \`}</style>
-            </${Name}>
+            </Element>
         )
     }
 

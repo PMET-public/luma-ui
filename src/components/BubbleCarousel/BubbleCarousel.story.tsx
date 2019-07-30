@@ -6,34 +6,44 @@ storiesOf('📦 Components/BubbleCarousel', module)
     .add('Default', () => (
         <BubbleCarousel label='Shop the Look'>
             <BubbleCarousel.Item 
+                as="a"
+                href="#"
                 image={{
                     src: require('../../../public/images/fashion-thumb1.jpg'),
                 }}
-                label="Minimalist"
+                text="Minimalist"
             />
             <BubbleCarousel.Item 
+                as="a"
+                href="#"
                 image={{
                     src: require('../../../public/images/fashion-thumb2.jpg'),
                 }}
-                label="Dressy"
+                text="Dressy"
             />
             <BubbleCarousel.Item 
+                as="a"
+                href="#"
                 image={{
                     src: require('../../../public/images/fashion-thumb3.jpg'),
                 }}
-                label="Beachy"
+                text="Beachy"
             />
             <BubbleCarousel.Item 
+                as="a"
+                href="#"
                 image={{
                     src: require('../../../public/images/fashion-thumb4.jpg'),
                 }}
-                label="Biz Cas’"
+                text="Biz Cas’"
             />
             <BubbleCarousel.Item 
+                as="a"
+                href="#"
                 image={{
                     src: require('../../../public/images/fashion-thumb5.jpg'),
                 }}
-                label="All Time"
+                text="All Time"
             />
         </BubbleCarousel>
     ))

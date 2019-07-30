@@ -1,12 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { AppBar } from '.'
-import { number } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/AppBar', module)
     .add('Default', () => (
         <div className="story">
-            <AppBar hideOnOffset={number('hideOnScroll', 100)}>
+            <AppBar>
                 <h1>AppBar</h1>
             </AppBar>
 
