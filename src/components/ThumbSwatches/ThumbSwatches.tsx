@@ -52,7 +52,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                     transition: all 305ms ease;
 
                     &.--disabled {    
-                        filter: opacity(25%);
+                        filter: opacity(30%);
                     }
 
                     &.--active {
