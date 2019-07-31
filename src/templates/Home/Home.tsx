@@ -17,7 +17,7 @@ export const Home: Component<HomeProps> = ({
 
             <style jsx global>{`
                 .home {
-                    padding-top: 2rem;
+                    padding-top: 3rem;
                 }
             `}</style>
         </Element>

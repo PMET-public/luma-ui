@@ -70,15 +70,15 @@ HotSpots.Item = ({
 }) => {
     const { colors } = useTheme()
     const context = useContext(HotSpotsContext)
-    const isActive = id === context.active
-    const transitions = useTransition(isActive, null, {
+    const active = id === context.active
+    const transitions = useTransition(active, null, {
         from: { opacity: 0, transform: 'scale(0.9)' },
         enter: { opacity: 1, transform: 'scale(1)' },
         leave: { opacity: 0, transform: 'scale(0.9)' },
     })
 
     const handleToggle = () => {
-        context.set(isActive ? null : id)
+        context.set(active ? null : id)
     }
 
     return (
@@ -90,7 +90,7 @@ HotSpots.Item = ({
                 ['--top', coords.y < 50]
             )}
         >
-            <button className={classes('hot-spot__button', ['--active', isActive])}
+            <button className={classes('hot-spot__button', ['--active', active])}
                 aria-label={text}
                 onClick={handleToggle}
                 tabIndex={0}
