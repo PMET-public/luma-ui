@@ -12,7 +12,6 @@ type UseScroll = {
 
 export const useScroll = (
     ref: MutableRefObject<any> = useRef(document), 
-    fn?: (props?: any) => any
 ): UseScroll => {
     const elem = ref.current ? (ref.current.scrollingElement || ref.current.documentElement) || ref.current : { }
     
@@ -34,8 +33,6 @@ export const useScroll = (
             scrollX: elem.scrollLeft,
             scrollY:  elem.scrollTop,
         })
-
-        if (fn) fn()
     }, 150, true)
 
     useEffect(() => {
