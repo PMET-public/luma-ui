@@ -30,7 +30,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                         {image && (
                             <Image
                                 {...image}
-                                vignette={1.5}
+                                vignette={2}
                                 className={classes('thumb-swatches__item__image', image.className)}
                             />
                         )}
@@ -52,7 +52,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                     transition: all 305ms ease;
 
                     &.--disabled {    
-                        filter: grayscale(100%) opacity(25%);
+                        filter: opacity(25%);
                     }
 
                     &.--active {

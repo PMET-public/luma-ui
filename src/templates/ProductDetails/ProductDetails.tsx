@@ -142,12 +142,12 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 <Assembler className="product-details__assembler" 
                     {...assembler} 
                 />
-            )}           
-    
+            )}          
+
             <style jsx global>{`
                 .product-details {
                     display: grid;
-                    grid-gap: 4rem;
+                    grid-gap: 8rem;
                 }
 
                 .product-details__images__carousel {
@@ -179,12 +179,12 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
 
                 .product-details__info__header__breadcrumbs {
                     font-size: 1.4rem;
-                    color: ${colors.onSurface.fade(0.4)};
+                    color: ${colors.onSurface.fade(0.5)};
                 }
 
                 .product-details__info__header__sku {
                     font-size: 0.85em;
-                    color: ${colors.onSurface.fade(0.4)};
+                    color: ${colors.onSurface.fade(0.5)};
                 }
 
                 .product-details__info__swatches {
@@ -215,6 +215,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     .product-details__images {
                         position: sticky;
                         top: 0;
+                        z-index: 0;
                     }
 
                     .product-details__images__carousel {
@@ -228,7 +229,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         background-color: ${colors.surface};
                         color: ${colors.onSurface};
                         margin-top: -2rem;
-                        padding-top: 6rem;
+                        padding-top: 3rem;
                         z-index: 1;
 
                         /**
@@ -247,22 +248,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         padding-right: ${margin};
                         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
                         border-radius: 1rem 1rem 0 0;
-                    }
-
-                    .product-details__info__header {
-                        &::before {
-                            background-color: currentColor;
-                            border-radius: 0.5rem;
-                            content: "";
-                            height: 0.4rem;
-                            left: 50%;
-                            margin: auto;
-                            opacity: 0.2;
-                            position: absolute;
-                            top: 2rem;
-                            transform: translateX(-50%);
-                            width: 4rem;
-                        }
                     }
                 }
 
