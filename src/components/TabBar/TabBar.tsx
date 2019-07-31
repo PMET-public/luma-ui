@@ -37,7 +37,7 @@ export const TabBar: Component<TabBarProps> = ({
                     display: grid;
                     grid-auto-flow: column;
                     grid-gap: 2rem;
-                    height: 5rem;
+                    padding: 1.3rem 0;
                     width: 100%;
                 }
 
@@ -57,8 +57,8 @@ export const TabBar: Component<TabBarProps> = ({
 
                 @supports(padding: max(0px)) {
                     .tab-bar {
-                        padding-left: max(1.3rem, env(safe-area-inset-left));
-                        padding-right: max(1.3rem, env(safe-area-inset-right));
+                        padding-left: max(0, env(safe-area-inset-left));
+                        padding-right: max(0, env(safe-area-inset-right));
                         padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
                     }
                 }
