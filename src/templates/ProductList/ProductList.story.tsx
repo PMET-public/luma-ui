@@ -9,7 +9,6 @@ export const ProductListMockData: ProductListProps = {
     search: {
         value: 'Sweater',
         count: 10,
-        clearButton: false,
     },
     filters: {
         label: 'Filters',
