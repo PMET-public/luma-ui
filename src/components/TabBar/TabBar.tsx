@@ -31,17 +31,13 @@ export const TabBar: Component<TabBarProps> = ({
             <style jsx global>{`
                 .tab-bar {
                     background-color: ${colors.surface};
-                    bottom: 0;
                     box-shadow: inset 0 0.1rem 0 rgba(0, 0, 0, 0.07), inset 0 0.2rem 0 rgba(255, 255, 255, 0.07);
                     color: ${colors.onSurface};
                     color: ${colors.onSurface};
                     display: grid;
                     grid-auto-flow: column;
-                    left: 0;
                     padding: 1.3rem;
-                    position: sticky;
-                    right: 0;
-                    z-index: 1;
+                    width: 100%;
                 }
 
                 .tab-bar__item {

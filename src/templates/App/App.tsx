@@ -84,7 +84,7 @@ export const App: Component<AppProps> = ({
     return (
         <Element {...props} className={classes('app', props.className)}
             style={{
-                ['--vHeight' as any]: `calc(${vHeight}px - 0rem)`,
+                ['--viewportHeight' as any]: `calc(${vHeight}px - 0rem)`,
             }}
         >
             <AppBar className="app__app-bar" 
@@ -223,7 +223,12 @@ export const App: Component<AppProps> = ({
                     display: grid;
                     grid-auto-columns: minmax(0, 1fr);
                     grid-template-rows: auto 1fr auto auto;
-                    min-height: var(--vHeight);
+                    min-height: var(--viewportHeight);
+                }
+
+                /** App Bar */
+                .app__app-bar {
+                    z-index: 2;
                 }
                 
                 .app__app-bar__header__logo {
@@ -246,7 +251,6 @@ export const App: Component<AppProps> = ({
                 }
 
                 /** Footer */
-
                 .app__footer {
                     & .footer__container {
                         display: grid;
@@ -283,6 +287,12 @@ export const App: Component<AppProps> = ({
                     width: 100%;
                 }
                 
+                /** TabBar */
+                .app__tab-bar {
+                    position: sticky;
+                    bottom: 0;
+                    z-index: 2;
+                }
 
                 @media(--small-screen-only) {
                     .app__app-bar__header__menu,
