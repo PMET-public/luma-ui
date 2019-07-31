@@ -1,19 +1,19 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 
 export type HtmlProps = Props<{ 
-    __html: string
+    source: string
 }>
 
 export const Html: Component<HtmlProps> = ({ 
-    __html,
+    source,
     ...props
 }) => {
     
     return (
         <Element {...props} className={classes('html', props.className)}>
-            {__html && (
-                <div dangerouslySetInnerHTML={{ __html }} />
+            {source && (
+                <div dangerouslySetInnerHTML={{ __html: source }} />
             )}
 
             <style jsx global>{`
