@@ -224,7 +224,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     typography: newTypography,
     
 }) => {
-    const [isDark, setDark] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches || false)
+    const [isDark, setDark] = useState(false) // window.matchMedia("(prefers-color-scheme: dark)").matches || false
 
     const mergedColors = {
         ...defaultColors,
