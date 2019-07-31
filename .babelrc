@@ -1,0 +1,26 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "modules": false
+            }
+        ],
+        "@babel/typescript",
+        "@babel/react",
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-syntax-dynamic-import"
+        ],
+        [
+            "styled-jsx/babel",
+            {
+                "plugins": [
+                    "styled-jsx-plugin-postcss"
+                ]
+            }
+        ]
+    ],
+    "exclude": "node_modules/**",
+}

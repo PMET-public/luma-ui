@@ -12,19 +12,12 @@ const plugins = [
     multiInput(),
 
     babel({
-        presets: [
-            ['@babel/preset-env', { modules: false }],
-            '@babel/typescript',
-            '@babel/react',
+        extensions: [
+            '.ts',
+            '.tsx',
+            '.js',
+            '.jsx'
         ],
-        plugins: [
-            ['@babel/plugin-syntax-dynamic-import'],
-            ['styled-jsx/babel', { 
-                plugins: ['styled-jsx-plugin-postcss'] 
-            }]
-        ],
-        extensions: ['.ts', '.tsx', '.js', '.jsx'],
-        exclude: 'node_modules/**',
     }),
 
     reactSvg(),

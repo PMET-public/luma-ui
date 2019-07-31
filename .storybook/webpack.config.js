@@ -14,22 +14,7 @@ module.exports = ({ config }) => {
         {
             test: /\.tsx?$/,
             use: [
-                {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/env',
-                            '@babel/typescript',
-                            '@babel/react',
-                        ],
-                        plugins: [
-                            ['@babel/plugin-syntax-dynamic-import'],
-                            ['styled-jsx/babel', { 
-                                plugins: ['styled-jsx-plugin-postcss'] 
-                            }]
-                        ],
-                    },
-                },
+                'babel-loader',
                 'tslint-loader',
             ],
             exclude: /node_modules/,
