@@ -102,9 +102,16 @@ const ProductDetailsMockData: ProductDetailsProps = {
             },
         },
     ],
-    // description: {
-    //     html: `<p>The Isadora Skirt has just the right amount of flounce to make it playful and yet still chic. Lovely wrap detail and draped layering in the front add a bit of sophistication to the lush print. </p><p>Features:</p><ul><li>Side zip</li><li>Length: 17\"</li><li>Hits mid thigh</li><li>Set on waist</li><li>Dry clean recommended</li></ul>`,
-    // },
+    description: {
+        components: [
+            {
+                name: 'Html',
+                props: {
+                    __html: `<p>The Isadora Skirt has just the right amount of flounce to make it playful and yet still chic. Lovely wrap detail and draped layering in the front add a bit of sophistication to the lush print. </p><p>Features:</p><ul><li>Side zip</li><li>Length: 17\"</li><li>Hits mid thigh</li><li>Set on waist</li><li>Dry clean recommended</li></ul> `,
+                },
+            },
+        ],
+    },
     assembler: {
         components: [
             {

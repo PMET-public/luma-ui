@@ -17,7 +17,7 @@ export type ProductDetailsProps = Props<{
     assembler?: AssemblerProps
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
-    description?: Props<{ html?: string, assembler?: AssemblerProps }>
+    description?: AssemblerProps
     images: ImageProps[]
     swatches?: Array<{
         title?: Props
@@ -124,13 +124,9 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                             ))}
                         </div> 
 
-                        {description && description.html && (
-                            <div className="product-details__info__description" dangerouslySetInnerHTML={{ __html: description.html }} />
-                        )}
-
-                        {description && description.assembler && (
+                        {description && (
                             <Assembler className="product-details__description" 
-                                {...description.assembler} 
+                                {...description} 
                             />
                         )}
                     </div>
@@ -179,12 +175,12 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
 
                 .product-details__info__header__breadcrumbs {
                     font-size: 1.4rem;
-                    color: ${colors.onSurface.fade(0.5)};
+                    color: ${colors.onSurface.fade(0.4)};
                 }
 
                 .product-details__info__header__sku {
                     font-size: 0.85em;
-                    color: ${colors.onSurface.fade(0.5)};
+                    color: ${colors.onSurface.fade(0.4)};
                 }
 
                 .product-details__info__swatches {
@@ -270,7 +266,6 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     .product-details__info {
                         background-color: ${colors.surface};
                         border-radius: 2rem;
-                        bottom: 0;
                         color: ${colors.onSurface};
                         padding: 2rem;
                         position: sticky;
