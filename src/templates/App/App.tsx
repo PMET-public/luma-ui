@@ -20,31 +20,38 @@ import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.s
 import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
 
 export type AppProps = Props<{
-    home: Props
+    home: Props<{
+        active?: boolean
+        icon?: IconProps 
+        text: string
+    }>
 
     logo: Props
 
     menu: Props[]
 
     help: Props<{ 
+        active?: boolean
         icon?: IconProps 
         text: string
     }>
 
     myAccount: Props<{
-        count?: number
+        active?: boolean
         icon?: IconProps 
         text: string
     }>
 
     search: Props<{ 
-        text: string
+        active?: boolean
         icon?: IconProps 
+        text: string
     }>
 
     cart: Props<{
+        active?: boolean
         count?: number
-        icon?: IconProps
+        icon?: IconProps 
         text: string
     }>
 
@@ -175,32 +182,41 @@ export const App: Component<AppProps> = ({
                     {footer.copyright}
                 </div>
             </Footer>
-
-            <TabBar as="nav" className="app__tab-bar">
-                <TabBar.Item>
-                    <Icon aria-label={home.text} {...home} text={undefined}>
-                        <IconHome />
-                    </Icon>
-                </TabBar.Item>
-
-                <TabBar.Item>
-                    <Icon aria-label={myAccount.text} {...myAccount} text={undefined}>
-                        <IconAccount />
-                    </Icon>
-                </TabBar.Item>
-
-                <TabBar.Item>
-                    <Icon aria-label={search.text} {...search} text={undefined}>
-                        <IconSearch />
-                    </Icon>
-                </TabBar.Item>
-
-                <TabBar.Item>
-                    <Icon aria-label={cart.text} {...cart} text={undefined}>
-                        <IconBag />
-                    </Icon>
-                </TabBar.Item>
-            </TabBar>
+            
+            <TabBar  
+                as="nav" 
+                className="app__tab-bar"
+                items={[
+                    {
+                        ...home,
+                        icon: {
+                            ['aria-label']: home.text,
+                            svg: IconHome,
+                        },
+                    },
+                    {
+                        ...myAccount,
+                        icon: {
+                            ['aria-label']: myAccount.text,
+                            svg: IconAccount,
+                        },
+                    },
+                    {
+                        ...search,
+                        icon: {
+                            ['aria-label']: search.text,
+                            svg: IconSearch,
+                        },
+                    },
+                    {
+                        ...cart,
+                        icon: {
+                            ['aria-label']: cart.text,
+                            svg: IconBag,
+                        },
+                    },
+                ]}
+            />
 
             <style jsx global>{`
                 .app {

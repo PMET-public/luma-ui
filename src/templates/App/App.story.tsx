@@ -4,15 +4,16 @@ import { storiesOf } from '@storybook/react'
 import { AppProps } from './App'
 
 export const AppMockData: AppProps = {
-    home: {
-        as: 'a',
-        href: '#',
-        text: 'Luma',
-    },
     logo: {
         as: 'a',
         href: '#',
         title: 'Luma',
+    },
+    home: {
+        as: 'a',
+        href: '#',
+        text: 'Store',
+        active: true,
     },
     menu: [
         { 

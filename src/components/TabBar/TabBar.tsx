@@ -1,31 +1,32 @@
 import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
+import Icon, { IconProps } from '../Icon'
 
 export type TabBarProps = Props<{
-    items?: TabBarItemProps[]
+    items: Array<Props<{
+        active?: boolean
+        icon: IconProps
+    }>>
 }>
 
-export type TabBarItemProps = Props<{
-    isActive?: boolean
-}>
-
-type CompoundComponent = {
-    Item: Component<TabBarItemProps>
-}
-
-export const TabBar: Component<TabBarProps> & CompoundComponent = ({
+export const TabBar: Component<TabBarProps> = ({
     as: Wrapper = 'nav',
-    children,
-    items,
+    items = [],
     ...props
 }) => {
     const { colors } = useTheme()
     return (
         <Element {...props} className={classes('tab-bar', props.className)}>
-            {items ? items.map((item, index) => (
-                <TabBar.Item key={index} {...item} />
-            )) : children}
+            {items.map(({ icon, active = false, ...item }, index) => (
+                <Element 
+                    key={index} 
+                    {...item} 
+                    className={classes('tab-bar__item', ['--active', active])}
+                >
+                    <Icon {...icon} />
+                </Element>
+            ))}
 
             <style jsx global>{`
                 .tab-bar {
@@ -43,30 +44,7 @@ export const TabBar: Component<TabBarProps> & CompoundComponent = ({
                     z-index: 1;
                 }
 
-                @supports(padding: max(0px)) {
-                    .tab-bar {
-                        padding-left: max(1.3rem, env(safe-area-inset-left));
-                        padding-right: max(1.3rem, env(safe-area-inset-right));
-                        padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
-                    }
-                }
-            `}</style>
-        </Element>
-    )
-}
-
-TabBar.Item = ({ 
-    isActive = false, 
-    children,
-    ...props
-}) => {
-    const { colors } = useTheme()
-    return (
-        <Element  as="span" {...props} className={classes('tab-bar-item', props.className, ['--active', isActive])}>
-            {children}
-            
-            <style jsx global>{`
-                .tab-bar-item {
+                .tab-bar__item {
                     align-items: center;
                     color: ${colors.primary};
                     display: flex;
@@ -75,17 +53,17 @@ TabBar.Item = ({
                     justify-content: center;
                     opacity: 0.5;
 
-                    & a {
-                        color: inherit;
-                    }
-
                     &.--active {
                         opacity: 1;
                     }
                 }
 
-                a {
-                    text-decoration: none;
+                @supports(padding: max(0px)) {
+                    .tab-bar {
+                        padding-left: max(1.3rem, env(safe-area-inset-left));
+                        padding-right: max(1.3rem, env(safe-area-inset-right));
+                        padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
+                    }
                 }
             `}</style>
         </Element>
