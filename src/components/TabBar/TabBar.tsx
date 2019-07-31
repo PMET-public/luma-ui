@@ -36,7 +36,8 @@ export const TabBar: Component<TabBarProps> = ({
                     color: ${colors.onSurface};
                     display: grid;
                     grid-auto-flow: column;
-                    padding: 1.3rem;
+                    grid-gap: 2rem;
+                    height: 5rem;
                     width: 100%;
                 }
 
