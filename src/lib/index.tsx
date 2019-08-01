@@ -43,7 +43,7 @@ export const Container: Component<ContainerProps> = React.forwardRef(
 
                 <style jsx global>{`
                     .container {
-                        margin: auto;
+                        margin: 0 auto;
                         max-width: 1800px;
                         width: 100%;
                         padding-left: ${margin};

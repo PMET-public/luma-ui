@@ -10,11 +10,7 @@ type UseScroll = {
     scrollY: number
 }
 
-export const useScroll = (
-    ref: MutableRefObject<any> = useRef(document), 
-): UseScroll => {
-    const elem = ref.current ? (ref.current.scrollingElement || ref.current.documentElement) || ref.current : { }
-    
+export const useScroll = (ref?: MutableRefObject<any> = useRef(document)): UseScroll => {
     const [scroll, setWheelEvent] = useState({
         scrollDeltaX: 0,
         scrollDeltaY: 0,
@@ -24,7 +20,8 @@ export const useScroll = (
         scrollY: 0,
     })
 
-    const throttled = useThrottle((e: any) => {
+    const throttled = useThrottle(() => {
+        const elem = ref.current.scrollingElement || ref.current.documentElement
         setWheelEvent({
             scrollDeltaX: elem.scrollLeft - scroll.scrollX,
             scrollDeltaY: elem.scrollTop - scroll.scrollY,
