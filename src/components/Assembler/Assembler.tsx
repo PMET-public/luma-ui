@@ -27,7 +27,7 @@ export const Assembler: Component<AssemblerProps> = ({
         setChildren(
             <Suspense fallback={<Loading />}>
                 {components.map(({ name, hideOnBreakpoint, props }, index) => {
-                    const DynamicComponent = React.lazy(() => import(`../${name}`))
+                    const DynamicComponent = React.lazy(() => import(`../${name}/index`))
                     return (
                         <div className={classes('assembler__row', [`--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])} key={index}>
                             <ErrorBoundary>
