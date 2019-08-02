@@ -1,11 +1,11 @@
 import React from 'react'
-import Home from './'
+import Page from '.'
 import { storiesOf } from '@storybook/react'
-import { HomeProps } from './Home'
+import { PageProps } from './Page'
 import App from '../App'
 import { AppMockData } from '../App/App.story'
 
-export const HomeMockData: HomeProps = {
+export const PageMockData: PageProps = {
     assembler: {
         components: [
             {
@@ -163,9 +163,9 @@ export const HomeMockData: HomeProps = {
     },
 }
 
-storiesOf('📑 Templates/Home', module)
+storiesOf('📑 Templates/Page', module)
     .add('Default', () => (
         <App {...AppMockData}>
-            <Home {...HomeMockData} />
+            <Page {...PageMockData} />
         </App>
     ))

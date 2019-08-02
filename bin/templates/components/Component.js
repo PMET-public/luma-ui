@@ -1,5 +1,4 @@
 const source = require('common-tags').source
-const path = require ('path')
 
 module.exports = (Name, filename) => source`
 
