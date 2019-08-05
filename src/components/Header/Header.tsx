@@ -67,7 +67,7 @@ export const Header: Component<HeaderProps> = ({
                     text-decoration: none;
                     transition: border 700ms ease;
 
-                    &:hover {
+                    &:hover, &.--active {
                         border-color: ${colors.primary};
                     }
                 }
