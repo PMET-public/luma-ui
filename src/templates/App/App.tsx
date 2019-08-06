@@ -92,9 +92,9 @@ export const App: Component<AppProps> = ({
             >
                 <Header className="app__app-bar__header"  
                     logo={{
-                        className: 'app__app-bar__header__logo',
-                        svg: Logo,
                         ...logo,
+                        svg: Logo,
+                        className: classes(logo.className, 'app__app-bar__header__logo'),
                     }}
                     menu={{ 
                         className: 'app__app-bar__header__menu', 
@@ -105,25 +105,26 @@ export const App: Component<AppProps> = ({
                         items: [
                             { 
                                 ...help ,
-                                className: 'app__app-bar__header__utilities__help', 
+                                className: classes(help.className, 'app__app-bar__header__utilities__help'), 
                             },
                             { 
                                 ...myAccount,
-                                className: 'app__app-bar__header__utilities__account',
+                                className: classes(myAccount.className, 'app__app-bar__header__utilities__account'),
                             },
                             { 
                                 ...search, 
-                                className: 'app__app-bar__header__utilities__search',
+                                className: classes(search.className, 'app__app-bar__header__utilities__search'),
                                 icon: {
                                     svg: IconSearch,
+                                    ...search.icon,
                                 },
                             },
                             {
                                 ...cart,
-                                className: 'app__app-bar__header__utilities__cart',
+                                className: classes(cart.className, 'app__app-bar__header__utilities__cart'),
                                 icon: {
                                     svg: IconBag,
-                                    count: 3,
+                                    ...cart.icon,
                                 },
                             },
                         ],
@@ -192,6 +193,7 @@ export const App: Component<AppProps> = ({
                         icon: {
                             ['aria-label']: home.text,
                             svg: IconHome,
+                            ...home.icon,
                         },
                     },
                     {
@@ -199,6 +201,7 @@ export const App: Component<AppProps> = ({
                         icon: {
                             ['aria-label']: myAccount.text,
                             svg: IconAccount,
+                            ...myAccount.icon,
                         },
                     },
                     {
@@ -206,6 +209,7 @@ export const App: Component<AppProps> = ({
                         icon: {
                             ['aria-label']: search.text,
                             svg: IconSearch,
+                            ...search.icon,
                         },
                     },
                     {
@@ -213,6 +217,7 @@ export const App: Component<AppProps> = ({
                         icon: {
                             ['aria-label']: cart.text,
                             svg: IconBag,
+                            ...cart.icon,
                         },
                     },
                 ]}
