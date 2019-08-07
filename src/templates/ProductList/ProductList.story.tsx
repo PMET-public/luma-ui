@@ -6,9 +6,9 @@ import App from '../App'
 import { AppMockData } from '../App/App.story'
 
 export const ProductListMockData: ProductListProps = {
-    search: {
-        value: 'Sweater',
-        count: 10,
+    title: {
+        as: 'h2',
+        text: 'Women',
     },
     filters: {
         label: 'Filters',
@@ -341,12 +341,35 @@ export const ProductListMockData: ProductListProps = {
             text: 'Circle Hooded Ice Flee',
         },
         colors: [
-            { value: 'brown' }, 
-            { value: 'gray' }, 
-            { value: 'black' }, 
+            { value: 'brown' },
+            { value: 'gray' },
+            { value: 'black' },
             { value: 'blue' },
         ],
     })),
+    assembler: {
+        components: [
+            {
+                name: 'Banner',
+                props: {
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/banner-2.jpg'),
+                        height: 650,
+                        width: '100%',
+                    },
+                    titles: [
+                        { text: 'Twice around, twice as nice', large: true },
+                        { text: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                    ],
+                    position: 'bottom',
+                    // buttons: [
+                    //     { text: 'Shop Performance', fill: true, as: 'a', href: '#' },
+                    // ],
+                },
+            },
+        ],
+    },
 }
 
 storiesOf('📑 Templates/ProductList', module)

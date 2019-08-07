@@ -5,28 +5,29 @@ import { useTheme } from '../../theme'
 import { useResize } from '../../hooks/useResize'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
+import Assembler, { AssemblerProps } from '../../components/Assembler'
 import GridList from '../../components/GridList'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
-import SearchBar, { SearchBarProps } from '../../components/SearchBar'
 import Filters, { FiltersProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
-import Icon from '../../components/Icon'
 
-import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/ellipsis-h.svg'
+// import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/sliders-h.svg'
 
 export type ProductListProps = Props<{
-    search: SearchBarProps
+    title: Props,
+    assembler?: AssemblerProps
     filters: {
         label: string
         open?: boolean
         buttons?: ButtonProps[],
         props: FiltersProps
     }
-    products: ProductItemProps[]
+    products?: ProductItemProps[]
 }>
 
 export const ProductList: Component<ProductListProps> = ({
-    search,
+    assembler,
+    title,
     filters,
     products,
     ...props
@@ -41,8 +42,23 @@ export const ProductList: Component<ProductListProps> = ({
     return (
         <Element {...props} className={classes('product-list', props.className)}>
             <div className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
+                {/* <div className="product-list__top-bar">
+                    <Element 
+                        {...title} 
+                        className={classes('product-list__tob-bar__title', title.className)} 
+                    />
+
+                    <button className="product-list__tob-bar__button"
+                        onClick={() => setShowFilter(!showFilter)}
+                    >  
+                        <span>
+                            <FiltersIcon className="product-list__tob-bar__button__icon" /> 
+                            {filters.label}
+                        </span>
+                    </button>
+                </div> */}
                 <div className="product-list__filters"
-                    ref={filtersRef}
+                    ref={filtersRef}                 
                 >
                     <Filters {...filters.props} />
                     
@@ -58,29 +74,25 @@ export const ProductList: Component<ProductListProps> = ({
                     )}
                 </div>
 
-                <div className="product-list__grid">
-                    <div className="product-list__grid__search-bar">
-                        <SearchBar {...search} />
-
-                        <Icon className="product-list__grid__search-bar__filters-btn"
-                            as="button"
-                            arial-label={filters.label}
-                            onClick={() => setShowFilter(!showFilter)}
-                        >
-                            <FiltersIcon />
-                        </Icon>
-
-                    </div>
-
-                    <GridList className="product-list__grid__results">
-                        {products && products.map((product, index) => (
-                            <GridList.Item key={index}>
-                                <ProductItem className="product-list__results__grid__item" 
-                                    {...product}
-                                />
-                            </GridList.Item>
-                        ))}
-                    </GridList>
+                <div className="product-list__content"> 
+                    {assembler && (
+                        <Assembler 
+                            {...assembler} 
+                            className={classes('product-list__content__assembler', assembler.className)} 
+                        />
+                    )}
+                    
+                    {products && (
+                        <GridList className="product-list__content__results">
+                            {products && products.map((product, index) => (
+                                <GridList.Item key={index}>
+                                    <ProductItem className="product-list__results__grid__item" 
+                                        {...product}
+                                    />
+                                </GridList.Item>
+                            ))}
+                        </GridList>
+                    )}
                 </div>
             </div>
 
@@ -94,48 +106,41 @@ export const ProductList: Component<ProductListProps> = ({
             `}</style>
             
             <style jsx global>{`
-                .product-list__grid {
+                .product-list__content {
                     display: grid;
                     grid-auto-columns: minmax(0, 1fr);
-                    grid-gap: 2rem;
-                }
+                    grid-gap: 3rem;
+                }    
 
-                .product-list__grid__search-bar {
+                .product-list__top-bar {
+                    align-items: center;
+                    background-color: ${colors.surface.fade(0.05)};
+                    color: ${colors.onSurface};
                     display: grid;
-                    grid-auto-flow: column;
-                    grid-gap: 1rem;
                     grid-template-columns: 1fr auto;
-                    justify-self: center;
-                    width: 100%;
-
-                    & .search-bar {
-                        background-color: transparent;
-                        border-bottom: 0.1rem solid;
-                        border-radius: 0;
-                        justify-self: center;
-                        width: 100%;
-                    
-                        
-                        @media(--medium-screen) {
-                            font-size: 2rem;
-                        }
-                    }
-
-                    @media(--medium-screen) {
-                        margin: 2rem 0;
-                    }
+                    position: sticky;
+                    top: 0;
+                    z-index: 1;
+                    min-height: 6rem;
                 }
 
-                .product-list__grid__search-bar__filters-btn {
-                    display: inline-flex;
-                    font-size: 2.4rem;
-                    justify-content: center;
-                    width: 2.4rem;
-                    
-                    @media(--medium-screen) {
-                        display: none;
-                    }
-                }        
+                .product-list__tob-bar__title {
+                    font-size: 2rem;
+                }
+
+                .product-list__tob-bar__button > span {
+                    display: grid;
+                    fill: currentColor;
+                    grid-auto-columns: max-content;
+                    grid-auto-flow: column;
+                    grid-gap: 0.75rem;
+                    align-items: center;
+                    font-size: 1.4rem;
+                }
+
+                .product-list__tob-bar__button__icon {
+                    width: 1em;
+                }
 
                 .product-list__wrapper {
                     display: grid;
@@ -190,7 +195,7 @@ export const ProductList: Component<ProductListProps> = ({
 
                     @media(--medium-screen) {
                         & .product-list__filters {
-                            padding: 16rem 4rem 4rem; 
+                            padding: 6rem 2rem 0; 
                         }
 
                         & .product-list__filters__buttons {
