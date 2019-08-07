@@ -129,7 +129,7 @@ Filters.Group = ({
                 .filters-group__wrapper {
                     height: auto;
                     max-height: var(--height, auto);
-                    overflow: hidden;
+                    overflow-y: hidden;
                     transition: max-height var(--transition-duration) ease;
                 }
 

@@ -10,16 +10,18 @@ import GridList from '../../components/GridList'
 import ProductItem, { ProductItemProps } from '../../components/ProductItem'
 import Filters, { FiltersProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
+import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 
-// import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/sliders-h.svg'
+import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/sliders-h.svg'
 
 export type ProductListProps = Props<{
     title: Props,
+    breadcrumbs?: BreadcrumbsProps
     assembler?: AssemblerProps
     filters: {
         label: string
         open?: boolean
-        buttons?: ButtonProps[],
+        closeButton: ButtonProps,
         props: FiltersProps
     }
     products?: ProductItemProps[]
@@ -27,13 +29,14 @@ export type ProductListProps = Props<{
 
 export const ProductList: Component<ProductListProps> = ({
     assembler,
+    breadcrumbs,
     title,
     filters,
     products,
     ...props
 }) => {
     const [showFilter, setShowFilter] = useState(!!filters.open)
-    const { colors } = useTheme()
+    const { colors, margin } = useTheme()
     const { vHeight } = useResize()
     const filtersRef = useRef(null)
 
@@ -41,35 +44,47 @@ export const ProductList: Component<ProductListProps> = ({
 
     return (
         <Element {...props} className={classes('product-list', props.className)}>
-            <div className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
-                {/* <div className="product-list__top-bar">
+            <div className="product-list__top-bar">
+                <div className="product-list__top-bar__heading">
                     <Element 
                         {...title} 
-                        className={classes('product-list__tob-bar__title', title.className)} 
+                        className={classes('product-list__top-bar__heading__title', title.className)} 
                     />
 
-                    <button className="product-list__tob-bar__button"
-                        onClick={() => setShowFilter(!showFilter)}
-                    >  
-                        <span>
-                            <FiltersIcon className="product-list__tob-bar__button__icon" /> 
-                            {filters.label}
-                        </span>
-                    </button>
-                </div> */}
+                    {breadcrumbs && (
+                        <Breadcrumbs 
+                            prefix="#"
+                            {...breadcrumbs} 
+                            className={classes('product-list__top-bar__heading__breadcrumbs', breadcrumbs.className)}
+                        />
+                    )}
+
+                </div>
+                
+                <button className="product-list__top-bar__filter-button"
+                    type="button"
+                    onClick={() => setShowFilter(!showFilter)}
+                >  
+                    <span>
+                        <FiltersIcon className="product-list__top-bar__filter-button__icon" /> 
+                        {filters.label}
+                    </span>
+                </button>
+            </div>
+
+            <div className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
                 <div className="product-list__filters"
                     ref={filtersRef}                 
                 >
                     <Filters {...filters.props} />
                     
-                    {filters.buttons && (
+                    {filters.closeButton && (
                         <div className="product-list__filters__buttons">  
-                            {filters.buttons.map((button, index) => (
-                                <Button 
-                                    key={index}
-                                    {...button} 
-                                />
-                            ))} 
+                            <Button 
+                                fill 
+                                onClick={() => setShowFilter(false)}
+                                {...filters.closeButton} 
+                            />
                         </div>
                     )}
                 </div>
@@ -99,8 +114,8 @@ export const ProductList: Component<ProductListProps> = ({
             <style jsx global>{`
                 @media(--small-screen-only) {
                     .product-list__filters  { 
-                        width: calc(100vw - 6rem);
-                        height: calc(${vHeight} - 0rem);
+                        width: calc(100vw - 3rem);
+                        height: ${vHeight};
                     }
                 }
             `}</style>
@@ -117,18 +132,37 @@ export const ProductList: Component<ProductListProps> = ({
                     background-color: ${colors.surface.fade(0.05)};
                     color: ${colors.onSurface};
                     display: grid;
+                    grid-gap: 2rem;
                     grid-template-columns: 1fr auto;
+                    min-height: 6rem;
+                    padding-left: ${margin};
+                    padding-right: ${margin};
                     position: sticky;
                     top: 0;
                     z-index: 1;
-                    min-height: 6rem;
                 }
 
-                .product-list__tob-bar__title {
-                    font-size: 2rem;
+                .product-list__top-bar__heading {
+                    align-items: center;
+                    display: grid;
+                    grid-auto-rows: max-content;
+                    grid-auto-flow: row;
+                    grid-gap: 0.5rem;
                 }
 
-                .product-list__tob-bar__button > span {
+                .product-list__top-bar__heading__title {
+                    font-family: inherit;
+                    font-size: 1.6rem;
+                    line-height: inherit;
+                }
+
+                .product-list__top-bar__heading__breadcrumbs {
+                    color: ${colors.onSurface.fade(0.4)};
+                    font-size: 1.3rem;
+                    line-height: inherit;
+                }
+
+                .product-list__top-bar__filter-button > span {
                     display: grid;
                     fill: currentColor;
                     grid-auto-columns: max-content;
@@ -138,7 +172,7 @@ export const ProductList: Component<ProductListProps> = ({
                     font-size: 1.4rem;
                 }
 
-                .product-list__tob-bar__button__icon {
+                .product-list__top-bar__filter-button__icon {
                     width: 1em;
                 }
 
@@ -191,18 +225,25 @@ export const ProductList: Component<ProductListProps> = ({
                                 box-shadow: 3rem 0 6rem rgba(0, 0, 0, 0.75);
                             }
                         }
+                    }    
+                }
+
+                @media(--medium-screen) {
+                    & .product-list__wrapper {
+                        grid-gap: 4rem;
                     }
 
-                    @media(--medium-screen) {
-                        & .product-list__filters {
-                            padding: 6rem 2rem 0; 
-                        }
-
-                        & .product-list__filters__buttons {
-                            display: none;
-                        }
+                    & .product-list__top-bar__filter-button {
+                        display: none;
                     }
-                    
+
+                    & .product-list__filters {
+                        padding: 4rem ${margin} 0;
+                    }
+
+                    & .product-list__filters__buttons {
+                        display: none;
+                    }
                 }
 
             `}</style>

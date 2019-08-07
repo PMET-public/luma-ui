@@ -26,8 +26,12 @@ export const GridList: Component<GridListProps> & CompoundComponent = ({
             <style jsx global>{`
                 .grid-list {
                     display: grid;
-                    grid-gap: 3rem 0.65rem;
+                    grid-gap: 3rem 0.2rem;
                     grid-template-columns: repeat(12, 1fr);
+
+                    @media(--large-screen) {
+                        grid-gap: 3rem 0.5rem;
+                    }
                 }
             `}</style>
         </GridList>

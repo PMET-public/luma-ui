@@ -32,17 +32,19 @@ export default ({ colors }: any) => {
                     color: inherit;
                 }
             }
-  
-/*
+
             *:focus {
                 outline: none;
             }
-
-            *:focus-visible {
-                outline: currentColor solid 0.2rem;
-                background: red;
-            }            
-*/
+    
+            /*
+            *:focus {
+                outline-style: solid;
+                outline-color: currentColor;
+                outline-width: 0.1rem;
+                outline-offset: 0.1rem;
+            }
+            */    
 
         `}</style>
     )

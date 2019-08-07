@@ -40,6 +40,17 @@ export const ProductItem: Component<ProductItemProps> = ({
                 {...image}
                 className={classes('product-item__image', image.className)}
             >
+                {!!colors && (
+                    <ul className="product-item__colors">
+                        {colors.map(({ value }, index) => (
+                            <li className="product-item__colors__item"
+                                key={index}
+                                style={{ backgroundColor: value }}
+                            ></li>
+                        ))}
+                    </ul>
+                )}
+
                 <span className="product-item__details">
                     <Element
                         as="span"
@@ -57,17 +68,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                         )}
                     </span>
                 </span>
-
-                {!!colors && (
-                    <ul className="product-item__colors">
-                        {colors.map(({ value }, index) => (
-                            <li className="product-item__colors__item"
-                                key={index}
-                                style={{ backgroundColor: value }}
-                            ></li>
-                        ))}
-                    </ul>
-                )}
             </Image>
 
             <style jsx global>{`
@@ -101,10 +101,8 @@ export const ProductItem: Component<ProductItemProps> = ({
                     }
                     
                     & .image__caption {
-                        background-color: ${theme.colors.surface.fade(0.05)};
-                        bottom: 0;
+                        background-color: ${theme.colors.surface};
                         color: ${theme.colors.onSurface};
-                        position: absolute;
                         width: 100%;
                     }
                 }
@@ -112,17 +110,21 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__details {
                     display: grid;
                     grid-gap: 0.75rem;
-                    padding: 1rem 2rem;
+                    padding: 1rem 0;
+                    font-size: 1.4rem;
+
+                    @media(--medium-screen) {
+                        font-size: 1.5rem;
+                    }
                 }
 
                 .product-item__details__title {
-                    font-family: ${theme.typography.headingFamily};
-                    font-size: 1.7rem;
+                    font-size: 1em;
                     font-weight: 600;
                 }
 
                 .product-item__details__price {
-                    font-size: 1.6rem;
+                    font-size: 0.9em;
                 }
 
                 .product-item__colors {

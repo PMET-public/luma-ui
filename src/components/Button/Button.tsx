@@ -17,7 +17,11 @@ export const Button: Component<ButtonProps> = ({
     const { colors } = useTheme()
     
     return (
-        <Element {...props} className={classes('button', props.className, `--${color}`, ['--fill', fill])}>
+        <Element 
+            as="button"
+            {...props} 
+            className={classes('button', props.className, `--${color}`, ['--fill', fill])}
+        >
             <span className="button__wrapper">
                 {children}
             </span>

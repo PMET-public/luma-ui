@@ -8,14 +8,20 @@ import { AppMockData } from '../App/App.story'
 export const ProductListMockData: ProductListProps = {
     title: {
         as: 'h2',
-        text: 'Women',
+        text: 'Hoodies & Sweatshirts',
+    },
+    breadcrumbs: {
+        items: [
+            { as: 'a', href: '#', text: 'Women' },
+            { as: 'a', href: '#', text: 'Tops' },
+        ],
     },
     filters: {
         label: 'Filters',
         open: false,
-        buttons: [
-            { text: 'Done', fill: true },
-        ],
+        closeButton: {
+            text: 'Done',
+        },
         props: {
             groups: [
                 {
