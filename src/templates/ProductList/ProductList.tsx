@@ -33,7 +33,7 @@ export const ProductList: Component<ProductListProps> = ({
 }) => {
     const [showFilter, setShowFilter] = useState(!!filters.open)
     const { colors } = useTheme()
-    const { vHeight, vWidth } = useResize()
+    const { vHeight } = useResize()
     const filtersRef = useRef(null)
 
     useOnClickOutside(filtersRef, () => setShowFilter(false))
@@ -87,8 +87,8 @@ export const ProductList: Component<ProductListProps> = ({
             <style jsx global>{`
                 @media(--small-screen-only) {
                     .product-list__filters  { 
-                        width: calc(${vWidth}px - 6rem);
-                        height: calc(${vHeight}px - 0rem);
+                        width: calc(100vw - 6rem);
+                        height: calc(${vHeight} - 0rem);
                     }
                 }
             `}</style>

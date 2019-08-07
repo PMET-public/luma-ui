@@ -84,7 +84,7 @@ export const App: Component<AppProps> = ({
     return (
         <Element {...props} className={classes('app', props.className)}
             style={{
-                ['--viewportHeight' as any]: `calc(${vHeight}px - 0rem)`,
+                height: vHeight,
             }}
         >
             <AppBar className="app__app-bar" 
@@ -228,7 +228,6 @@ export const App: Component<AppProps> = ({
                     display: grid;
                     grid-auto-columns: minmax(0, 1fr);
                     grid-template-rows: auto 1fr auto auto;
-                    min-height: var(--viewportHeight);
                 }
 
                 /** App Bar */

@@ -2,21 +2,21 @@ import { useState, useEffect } from 'react'
 import { useThrottle } from './useThrottle'
 
 type UseResize = {
-    vHeight: number
-    vWidth: number
+    vHeight: string
+    vWidth: string
 }
 
 export const useResize = (fn?: (props?: any) => any): UseResize => {
     const [resize, setResize] = useState({
-        vHeight: 0,
-        vWidth: 0,
+        vHeight: '100vh',
+        vWidth: '100vw',
     })
 
     const triggerResize = () => {
         if (fn) fn()
         setResize({
-            vHeight: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
-            vWidth: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+            vHeight: `calc(${Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.01}px * 100)`,
+            vWidth: `calc(${Math.max(document.documentElement.clientWidth, window.innerWidth || 0) * 0.01}px * 100)`,
         })
     }
 
