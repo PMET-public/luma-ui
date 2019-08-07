@@ -31,6 +31,7 @@ export const Breadcrumbs: Component<BreadcrumbsProps> = ({
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-gap: 1.4rem;
+                    padding: 1.4rem 0;
                 }
             `}</style>
         </Element>

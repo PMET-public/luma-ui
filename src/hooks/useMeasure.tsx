@@ -28,13 +28,22 @@ const getValues = (node: HTMLElement): UseMeasure => {
 }
 
 export const useMeasure = (ref: RefObject<HTMLElement | null>): UseMeasure => {
-    const [values, setValues] = useState<UseMeasure>(getValues(document.createElement('div')))
+    const [values, setValues] = useState<UseMeasure>({
+        bottom: 0,
+        height: 0,
+        left: 0,
+        right: 0,
+        top: 0,
+        width: 0,
+        x: 0,
+        y: 0,
+    })
 
     const triggerMeasure = () => {
         if (!ref.current) return
         setValues(getValues(ref.current))
     }
- 
+
     useResize(triggerMeasure)
 
     useEffect(triggerMeasure, [ref])

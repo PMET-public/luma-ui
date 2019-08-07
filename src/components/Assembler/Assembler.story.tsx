@@ -20,12 +20,12 @@ storiesOf('📦 Components/Assembler', module)
                             width: '100%',
                         },
                         titles: [
-                            { label: 'Twice around, twice as nice', large: true },
-                            { label: 'Find conscientious, comfy clothing in our eco-friendly collection' },
+                            { text: 'Twice around, twice as nice', large: true },
+                            { text: 'Find conscientious, comfy clothing in our eco-friendly collection' },
                         ],
                         position: 'bottom',
                         buttons: [
-                            { label: 'Shop Performance', fill: true, as: 'a', href: '#' },
+                            { text: 'Shop Performance', fill: true, as: 'a', href: '#' },
                         ],
                     } as BannerProps,
                 },
@@ -34,7 +34,7 @@ storiesOf('📦 Components/Assembler', module)
                     name: 'ProductsCarousel',
                     props: {
                         title: object('title', {
-                            label: 'Title',
+                            text: 'Title',
                         }),
                         items: new Array(10).fill({
                             image: {
@@ -49,7 +49,7 @@ storiesOf('📦 Components/Assembler', module)
                                 priceLabel: 'Starting at',
                             },
                             title: {
-                                label: 'Circle Hooded Ice Flee',
+                                text: 'Circle Hooded Ice Flee',
                             },
                             colors: [
                                 { value: 'brown' },
