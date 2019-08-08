@@ -170,6 +170,7 @@ Filters.Group = ({
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-gap: 1rem;
+                    font-size: 1.5rem;
 
                     &:hover .filters-group__item__check {
                         opacity: 0.25;

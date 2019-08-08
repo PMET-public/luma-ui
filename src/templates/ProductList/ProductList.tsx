@@ -46,11 +46,6 @@ export const ProductList: Component<ProductListProps> = ({
         <Element {...props} className={classes('product-list', props.className)}>
             <div className="product-list__top-bar">
                 <div className="product-list__top-bar__heading">
-                    <Element 
-                        {...title} 
-                        className={classes('product-list__top-bar__heading__title', title.className)} 
-                    />
-
                     {breadcrumbs && (
                         <Breadcrumbs 
                             prefix="#"
@@ -59,6 +54,10 @@ export const ProductList: Component<ProductListProps> = ({
                         />
                     )}
 
+                    <Element 
+                        {...title} 
+                        className={classes('product-list__top-bar__heading__title', title.className)} 
+                    />
                 </div>
                 
                 <button className="product-list__top-bar__filter-button"
@@ -72,61 +71,50 @@ export const ProductList: Component<ProductListProps> = ({
                 </button>
             </div>
 
-            <div className={classes('product-list__wrapper', ['--show-filters', showFilter])}>
-                <div className="product-list__filters"
-                    ref={filtersRef}                 
-                >
-                    <Filters {...filters.props} />
-                    
-                    {filters.closeButton && (
-                        <div className="product-list__filters__buttons">  
-                            <Button 
-                                fill 
-                                onClick={() => setShowFilter(false)}
-                                {...filters.closeButton} 
-                            />
-                        </div>
-                    )}
-                </div>
-
-                <div className="product-list__content"> 
-                    {assembler && (
-                        <Assembler 
-                            {...assembler} 
-                            className={classes('product-list__content__assembler', assembler.className)} 
+            <div className={classes('product-list__filters', ['--active', showFilter])}
+                ref={filtersRef}                 
+            >
+                <Filters {...filters.props} />
+                
+                {filters.closeButton && (
+                    <div className="product-list__filters__buttons">  
+                        <Button 
+                            fill 
+                            onClick={() => setShowFilter(false)}
+                            {...filters.closeButton} 
                         />
-                    )}
-                    
-                    {products && (
-                        <GridList className="product-list__content__results">
-                            {products && products.map((product, index) => (
-                                <GridList.Item key={index}>
-                                    <ProductItem className="product-list__results__grid__item" 
-                                        {...product}
-                                    />
-                                </GridList.Item>
-                            ))}
-                        </GridList>
-                    )}
-                </div>
+                    </div>
+                )}
+            </div>
+
+            <div className="product-list__content"> 
+                {assembler && (
+                    <Assembler 
+                        {...assembler} 
+                        className={classes('product-list__content__assembler', assembler.className)} 
+                    />
+                )}
+                
+                {products && (
+                    <GridList className="product-list__content__results">
+                        {products && products.map((product, index) => (
+                            <GridList.Item key={index}>
+                                <ProductItem className="product-list__results__grid__item" 
+                                    {...product}
+                                />
+                            </GridList.Item>
+                        ))}
+                    </GridList>
+                )}
             </div>
 
             <style jsx global>{`
-                @media(--small-screen-only) {
-                    .product-list__filters  { 
-                        width: calc(100vw - 3rem);
-                        height: ${vHeight};
-                    }
+                .product-list__filters  { 
+                    height: ${vHeight};
                 }
             `}</style>
             
             <style jsx global>{`
-                .product-list__content {
-                    display: grid;
-                    grid-auto-columns: minmax(0, 1fr);
-                    grid-gap: 3rem;
-                }    
-
                 .product-list__top-bar {
                     align-items: center;
                     background-color: ${colors.surface.fade(0.05)};
@@ -135,8 +123,6 @@ export const ProductList: Component<ProductListProps> = ({
                     grid-gap: 2rem;
                     grid-template-columns: 1fr auto;
                     min-height: 6rem;
-                    padding-left: ${margin};
-                    padding-right: ${margin};
                     position: sticky;
                     top: 0;
                     z-index: 1;
@@ -145,9 +131,15 @@ export const ProductList: Component<ProductListProps> = ({
                 .product-list__top-bar__heading {
                     align-items: center;
                     display: grid;
-                    grid-auto-rows: max-content;
                     grid-auto-flow: row;
+                    grid-auto-rows: max-content;
                     grid-gap: 0.5rem;
+                    
+                    @media(--medium-screen) {
+                        grid-auto-columns: max-content;
+                        grid-auto-flow: column;
+                        grid-gap: 2rem;
+                    }
                 }
 
                 .product-list__top-bar__heading__title {
@@ -163,89 +155,68 @@ export const ProductList: Component<ProductListProps> = ({
                 }
 
                 .product-list__top-bar__filter-button > span {
+                    align-items: center;
                     display: grid;
                     fill: currentColor;
+                    font-size: 1.4rem;
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;
                     grid-gap: 0.75rem;
-                    align-items: center;
-                    font-size: 1.4rem;
                 }
 
                 .product-list__top-bar__filter-button__icon {
-                    width: 1em;
+                    width: 1.2em;
                 }
 
-                .product-list__wrapper {
+                .product-list__content {
                     display: grid;
-                    grid-template-columns: max-content 1fr;
+                    grid-auto-rows: minmax(max-content, max-content);
+                    grid-gap: 3rem;
+                }    
 
-                    @media(--small-screen-only) {
-                        grid-template-columns: 1fr;
-
-                        & .product-list__filters {
-                            -webkit-overflow-scrolling: touch;   
-                            background-color: ${colors.surface};
-                            color: ${colors.onSurface};
-                            display: flex;
-                            flex-direction: column;
-                            left: 0;
-                            overflow: scroll;
-                            position: fixed;
-                            top: 0;
-                            transform: translateX(-100%);
-                            transition: transform 305ms ease-out;
-                            z-index: 4;
-                            
-                            & .filters {
-                                padding: 4rem;
-                                flex-grow: 1;
-                            }
-                        }
-
-                        & .product-list__filters__buttons {
-                            background-color: ${colors.surface};
-                            bottom: 0;
-                            border-top: 0.1rem solid rgba(0, 0, 0, 0.15);
-                            color: ${colors.onSurface};
-                            display: grid;
-                            grid-auto-flow: column;
-                            grid-gap: 2rem;
-                            padding: 2rem;
-                            position: sticky;
-
-                            @supports(padding: max(0px)) {
-                                padding-bottom: max(2rem, env(safe-area-inset-bottom));
-                            }
-                        }
-
-                        &.--show-filters {
-                            & .product-list__filters {
-                                transform: translateX(0);
-                                box-shadow: 3rem 0 6rem rgba(0, 0, 0, 0.75);
-                            }
-                        }
-                    }    
-                }
-
-                @media(--medium-screen) {
-                    & .product-list__wrapper {
-                        grid-gap: 4rem;
+                .product-list__filters {
+                    -webkit-overflow-scrolling: touch;   
+                    background-color: ${colors.surface};
+                    color: ${colors.onSurface};
+                    display: flex;
+                    flex-direction: column;
+                    right: 0;
+                    max-width: calc(100vw - 3rem);
+                    min-width: 30rem;
+                    overflow: scroll;
+                    position: fixed;
+                    top: 0;
+                    transform: translateX(100%);
+                    transition: transform 305ms ease-out;
+                    width: auto;
+                    z-index: 4;
+                    
+                    & .filters {
+                        padding: 4rem;
+                        flex-grow: 1;
                     }
 
-                    & .product-list__top-bar__filter-button {
-                        display: none;
-                    }
-
-                    & .product-list__filters {
-                        padding: 4rem ${margin} 0;
-                    }
-
-                    & .product-list__filters__buttons {
-                        display: none;
+                    &.--active {
+                        box-shadow: 3rem 0 6rem rgba(0, 0, 0, 0.75);
+                        transform: translateX(0);
                     }
                 }
 
+                .product-list__filters__buttons {
+                    background-color: ${colors.surface};
+                    border-top: 0.1rem solid rgba(0, 0, 0, 0.15);
+                    bottom: 0;
+                    color: ${colors.onSurface};
+                    display: grid;
+                    grid-auto-flow: column;
+                    grid-gap: 2rem;
+                    padding: 2rem;
+                    position: sticky;
+
+                    @supports(padding: max(0px)) {
+                        padding-bottom: max(2rem, env(safe-area-inset-bottom));
+                    }
+                }
             `}</style>
         </Element>
     )
