@@ -11,12 +11,14 @@ import ProductItem, { ProductItemProps } from '../../components/ProductItem'
 import Filters, { FiltersProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
+import Pills, { PillsProps } from '../../components/Pills'
 
 import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/sliders-h.svg'
 
 export type ProductListProps = Props<{
     title: Props,
     breadcrumbs?: BreadcrumbsProps
+    categories?: PillsProps
     assembler?: AssemblerProps
     filters: {
         label: string
@@ -30,13 +32,14 @@ export type ProductListProps = Props<{
 export const ProductList: Component<ProductListProps> = ({
     assembler,
     breadcrumbs,
+    categories,
     title,
     filters,
     products,
     ...props
 }) => {
     const [showFilter, setShowFilter] = useState(!!filters.open)
-    const { colors, margin } = useTheme()
+    const { colors } = useTheme()
     const { vHeight } = useResize()
     const filtersRef = useRef(null)
 
@@ -70,22 +73,10 @@ export const ProductList: Component<ProductListProps> = ({
                     </span>
                 </button>
             </div>
-
-            <div className={classes('product-list__filters', ['--active', showFilter])}
-                ref={filtersRef}                 
-            >
-                <Filters {...filters.props} />
-                
-                {filters.closeButton && (
-                    <div className="product-list__filters__buttons">  
-                        <Button 
-                            fill 
-                            onClick={() => setShowFilter(false)}
-                            {...filters.closeButton} 
-                        />
-                    </div>
-                )}
-            </div>
+            
+            {categories && (
+                <Pills {...categories} className={classes('product-list__categories', categories.className)} />
+            )}
 
             <div className="product-list__content"> 
                 {assembler && (
@@ -108,6 +99,22 @@ export const ProductList: Component<ProductListProps> = ({
                 )}
             </div>
 
+            <div className={classes('product-list__filters', ['--active', showFilter])}
+                ref={filtersRef}                 
+            >
+                <Filters {...filters.props} />
+                
+                {filters.closeButton && (
+                    <div className="product-list__filters__buttons">  
+                        <Button 
+                            fill 
+                            onClick={() => setShowFilter(false)}
+                            {...filters.closeButton} 
+                        />
+                    </div>
+                )}
+            </div>
+
             <style jsx global>{`
                 .product-list__filters  { 
                     height: ${vHeight};
@@ -115,6 +122,11 @@ export const ProductList: Component<ProductListProps> = ({
             `}</style>
             
             <style jsx global>{`
+                .product-list {
+                    display: grid;
+                    grid-gap: 2rem;
+                }
+
                 .product-list__top-bar {
                     align-items: center;
                     background-color: ${colors.surface.fade(0.2)};
@@ -170,6 +182,10 @@ export const ProductList: Component<ProductListProps> = ({
                     width: 1.2em;
                 }
 
+                .product-list__categories {
+                    margin-top: -1rem;
+                }
+
                 .product-list__content {
                     display: grid;
                     grid-auto-rows: minmax(max-content, max-content);
@@ -206,7 +222,7 @@ export const ProductList: Component<ProductListProps> = ({
                 }
 
                 .product-list__filters__buttons {
-                    backdrop-filter: blur(50px);
+                    background-color: ${colors.surface.fade(0.1)};
                     bottom: 0;
                     color: ${colors.onSurface};
                     display: grid;

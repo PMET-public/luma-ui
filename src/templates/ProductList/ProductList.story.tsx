@@ -16,6 +16,32 @@ export const ProductListMockData: ProductListProps = {
             { as: 'a', href: '#', text: 'Tops' },
         ],
     },
+    categories: {
+        items: [
+            {
+                _id: 0,
+                as: 'a',
+                href: '#',
+                text: 'Tops',
+                count: 2,
+            },
+            {
+                _id: 1,
+                as: 'a',
+                href: '#',
+                text: 'Bottoms',
+                count: 13,
+            },
+            {
+                _id: 2,
+                as: 'a',
+                href: '#',
+                text: 'Hoodies & Sweaters',
+                count: 100,
+            },
+          
+        ],
+    },
     filters: {
         label: 'Filters',
         open: false,
