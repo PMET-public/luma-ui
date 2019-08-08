@@ -117,7 +117,9 @@ export const ProductList: Component<ProductListProps> = ({
             <style jsx global>{`
                 .product-list__top-bar {
                     align-items: center;
-                    background-color: ${colors.surface.fade(0.05)};
+                    background-color: ${colors.surface.fade(0.2)};
+                    backdrop-filter: blur(50px);
+                    padding: 0 1rem;
                     color: ${colors.onSurface};
                     display: grid;
                     grid-gap: 2rem;
@@ -176,7 +178,8 @@ export const ProductList: Component<ProductListProps> = ({
 
                 .product-list__filters {
                     -webkit-overflow-scrolling: touch;   
-                    background-color: ${colors.surface};
+                    background-color: ${colors.surface.fade(0.2)};
+                    backdrop-filter: blur(50px);
                     color: ${colors.onSurface};
                     display: flex;
                     flex-direction: column;
@@ -203,8 +206,7 @@ export const ProductList: Component<ProductListProps> = ({
                 }
 
                 .product-list__filters__buttons {
-                    background-color: ${colors.surface};
-                    border-top: 0.1rem solid rgba(0, 0, 0, 0.15);
+                    backdrop-filter: blur(50px);
                     bottom: 0;
                     color: ${colors.onSurface};
                     display: grid;

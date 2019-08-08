@@ -254,7 +254,6 @@ export const App: Component<AppProps> = ({
                 /** Main */
                 .app__main {
                     box-sizing: border-box;
-                    padding-top: ${margin};
                     position: relative;
                 }
 
