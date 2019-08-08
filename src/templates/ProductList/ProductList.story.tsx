@@ -19,21 +19,18 @@ export const ProductListMockData: ProductListProps = {
     categories: {
         items: [
             {
-                _id: 0,
                 as: 'a',
                 href: '#',
                 text: 'Tops',
                 count: 2,
             },
             {
-                _id: 1,
                 as: 'a',
                 href: '#',
                 text: 'Bottoms',
                 count: 13,
             },
             {
-                _id: 2,
                 as: 'a',
                 href: '#',
                 text: 'Hoodies & Sweaters',

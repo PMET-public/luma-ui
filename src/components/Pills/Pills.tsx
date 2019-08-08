@@ -10,7 +10,7 @@ export type PillItemProps = Props<{
 
 export type PillsProps = Props<{
     items: Array<{
-        _id: string | number
+        _id?: string | number
     } & PillItemProps>
 }>
 
@@ -27,7 +27,7 @@ export const Pills: Component<PillsProps> & CompoundComponent = ({
         <Element {...props} className={classes('pills', props.className)}>
             <div className="pills__wrapper">
                 {items.map(({ _id, ...item }, index) => (
-                    <Pills.Item key={_id || index } {...item} />
+                    <Pills.Item key={_id || index} {...item} />
                 ))}
             </div>
 
@@ -66,7 +66,7 @@ Pills.Item = ({
         <Element {...props} className={classes('pill-item', props.className)}>
             <span className="pill-item__wrapper">
                 { text }
-                {count && (
+                {!!count && (
                     <span className="pill-item__count">
                         {count}
                     </span>

@@ -4,7 +4,9 @@ import { Component, Props, Element, classes } from '../../lib'
 export type BreadcrumbsProps = Props<{ 
     dividor?: string
     prefix?: string
-    items: Props[]
+    items: Array<Props<{
+        _id?: string | number
+    }>>
 }>
 
 export const Breadcrumbs: Component<BreadcrumbsProps> = ({ 
@@ -16,8 +18,8 @@ export const Breadcrumbs: Component<BreadcrumbsProps> = ({
     
     return (
         <Element {...props} className={classes('breadcrumbs', props.className)}>
-            {items.map(({ text, ...item }, index) => (
-                <React.Fragment key={index}>
+            {items.map(({ text, _id, ...item }, index) => (
+                <React.Fragment key={_id || index}>
                     <Element {...item} className={classes('breadcrumbs__item', item.className)}>
                         {prefix}{text}
                     </Element>

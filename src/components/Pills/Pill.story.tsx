@@ -8,17 +8,14 @@ storiesOf('📦 Components/Pills', module)
         <div className="story">
             <Pills items={object('items', [
                 {
-                    _id: 0,
                     text: 'Tops',
                     count: 2,
                 },
                 {
-                    _id: 1,
                     text: 'Bottoms',
                     count: 13,
                 },
                 {
-                    _id: 2,
                     text: 'Sweaters',
                     count: 100,
                 },

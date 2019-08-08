@@ -20,13 +20,15 @@ export type ProductListProps = Props<{
     breadcrumbs?: BreadcrumbsProps
     categories?: PillsProps
     assembler?: AssemblerProps
-    filters: {
+    filters?: {
         label: string
         open?: boolean
         closeButton: ButtonProps,
         props: FiltersProps
     }
-    products?: ProductItemProps[]
+    products?: Array<{
+        _id?: string | number
+    } & ProductItemProps>
 }>
 
 export const ProductList: Component<ProductListProps> = ({
@@ -38,7 +40,7 @@ export const ProductList: Component<ProductListProps> = ({
     products,
     ...props
 }) => {
-    const [showFilter, setShowFilter] = useState(!!filters.open)
+    const [showFilter, setShowFilter] = useState(!!(filters && filters.open))
     const { colors } = useTheme()
     const { vHeight } = useResize()
     const filtersRef = useRef(null)
@@ -50,47 +52,52 @@ export const ProductList: Component<ProductListProps> = ({
             <div className="product-list__top-bar">
                 <div className="product-list__top-bar__heading">
                     {breadcrumbs && (
-                        <Breadcrumbs 
+                        <Breadcrumbs
                             prefix="#"
-                            {...breadcrumbs} 
+                            {...breadcrumbs}
                             className={classes('product-list__top-bar__heading__breadcrumbs', breadcrumbs.className)}
                         />
                     )}
 
-                    <Element 
-                        {...title} 
-                        className={classes('product-list__top-bar__heading__title', title.className)} 
+                    <Element
+                        {...title}
+                        className={classes('product-list__top-bar__heading__title', title.className)}
                     />
                 </div>
-                
-                <button className="product-list__top-bar__filter-button"
-                    type="button"
-                    onClick={() => setShowFilter(!showFilter)}
-                >  
-                    <span>
-                        <FiltersIcon className="product-list__top-bar__filter-button__icon" /> 
-                        {filters.label}
-                    </span>
-                </button>
+
+                {filters && (
+                    <button className="product-list__top-bar__filter-button"
+                        type="button"
+                        onClick={() => setShowFilter(!showFilter)}
+                    >
+                        <span>
+                            <FiltersIcon className="product-list__top-bar__filter-button__icon" />
+                            {filters.label}
+                        </span>
+                    </button>
+                )}
             </div>
-            
+
             {categories && (
-                <Pills {...categories} className={classes('product-list__categories', categories.className)} />
+                <Pills 
+                    {...categories} 
+                    className={classes('product-list__categories', categories.className)} 
+                />
             )}
 
-            <div className="product-list__content"> 
+            <div className="product-list__content">
                 {assembler && (
-                    <Assembler 
-                        {...assembler} 
-                        className={classes('product-list__content__assembler', assembler.className)} 
+                    <Assembler
+                        {...assembler}
+                        className={classes('product-list__content__assembler', assembler.className)}
                     />
                 )}
-                
+
                 {products && (
                     <GridList className="product-list__content__results">
-                        {products && products.map((product, index) => (
-                            <GridList.Item key={index}>
-                                <ProductItem className="product-list__results__grid__item" 
+                        {products && products.map((product, _id, index: any) => (
+                            <GridList.Item key={_id || index}>
+                                <ProductItem className="product-list__results__grid__item"
                                     {...product}
                                 />
                             </GridList.Item>
@@ -98,29 +105,31 @@ export const ProductList: Component<ProductListProps> = ({
                     </GridList>
                 )}
             </div>
+            
+            {filters && (
+                <div className={classes('product-list__filters', ['--active', showFilter])}
+                    ref={filtersRef}
+                >
+                    <Filters {...filters.props} />
 
-            <div className={classes('product-list__filters', ['--active', showFilter])}
-                ref={filtersRef}                 
-            >
-                <Filters {...filters.props} />
-                
-                {filters.closeButton && (
-                    <div className="product-list__filters__buttons">  
-                        <Button 
-                            fill 
-                            onClick={() => setShowFilter(false)}
-                            {...filters.closeButton} 
-                        />
-                    </div>
-                )}
-            </div>
+                    {filters.closeButton && (
+                        <div className="product-list__filters__buttons">
+                            <Button
+                                fill
+                                onClick={() => setShowFilter(false)}
+                                {...filters.closeButton}
+                            />
+                        </div>
+                    )}
+                </div> 
+            )}
 
             <style jsx global>{`
                 .product-list__filters  { 
                     height: ${vHeight};
                 }
             `}</style>
-            
+
             <style jsx global>{`
                 .product-list {
                     display: grid;
@@ -194,16 +203,16 @@ export const ProductList: Component<ProductListProps> = ({
 
                 .product-list__filters {
                     -webkit-overflow-scrolling: touch;   
-                    background-color: ${colors.surface.fade(0.2)};
                     backdrop-filter: blur(50px);
+                    background-color: ${colors.surface.fade(0.2)};
                     color: ${colors.onSurface};
                     display: flex;
                     flex-direction: column;
-                    right: 0;
                     max-width: calc(100vw - 3rem);
-                    min-width: 30rem;
+                    min-width: 20rem;
                     overflow: scroll;
                     position: fixed;
+                    right: 0;
                     top: 0;
                     transform: translateX(100%);
                     transition: transform 305ms ease-out;
