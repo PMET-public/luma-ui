@@ -2,7 +2,6 @@ import React from 'react'
 import { Container, Component, Element, Props, classes } from '../../lib'
 
 import { useResize } from '../../hooks/useResize'
-import { useTheme } from '../../theme'
 
 import AppBar from '../../components/AppBar'
 import Header from '../../components/Header'
@@ -81,7 +80,6 @@ export const App: Component<AppProps> = ({
     ...props
 }) => {
     const { vHeight } = useResize()
-    const { margin } = useTheme()
 
     return (
         <Element {...props} className={classes('app', props.className)}
