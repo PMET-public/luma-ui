@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from './'
 import { storiesOf } from '@storybook/react'
-import { text, number } from '@storybook/addon-knobs'
+import { text, number, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Image', module)
     .add('Default', () => (
@@ -11,6 +11,7 @@ storiesOf('📦 Components/Image', module)
             height={number('height',  400)}
             width={number('width', 600)}
             vignette={number('vignette', 0)}
+            transition={boolean('transition', true)}
         >
             {text('caption', '')}
         </Image>
