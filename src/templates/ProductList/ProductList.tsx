@@ -98,7 +98,7 @@ export const ProductList: Component<ProductListProps> = ({
                 {products && (
                     <div className="product-list__content__results">
                         <GridList>
-                            {products && products.items.map((product, _id, index: any) => (
+                            {products && products.items.map(({_id, ...product}, index) => (
                                 <GridList.Item key={_id || index}>
                                     <ProductItem className="product-list__results__grid__item"
                                         {...product}
