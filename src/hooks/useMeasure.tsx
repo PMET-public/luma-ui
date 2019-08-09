@@ -1,5 +1,4 @@
 import { RefObject, useEffect, useState } from 'react'
-import { useResize } from './useResize'
 
 type UseMeasure = {
     bottom: number
@@ -10,6 +9,8 @@ type UseMeasure = {
     width: number
     x: number
     y: number
+    offsetX: number
+    offsetY: number
 }
 
 const getValues = (node: HTMLElement): UseMeasure => {
@@ -24,6 +25,8 @@ const getValues = (node: HTMLElement): UseMeasure => {
         y: "y" in rect ? rect.y : rect.top,
         right: rect.right,
         bottom: rect.bottom,
+        offsetX: rect.left + window.scrollX,
+        offsetY: rect.top + window.scrollY,
     }
 }
 
@@ -37,6 +40,8 @@ export const useMeasure = (ref: RefObject<HTMLElement | null>): UseMeasure => {
         width: 0,
         x: 0,
         y: 0,
+        offsetX: 0,
+        offsetY: 0,
     })
 
     const triggerMeasure = () => {
@@ -44,9 +49,7 @@ export const useMeasure = (ref: RefObject<HTMLElement | null>): UseMeasure => {
         setValues(getValues(ref.current))
     }
 
-    useResize(triggerMeasure)
-
-    useEffect(triggerMeasure, [ref])
+    useEffect(triggerMeasure, [ref.current])
 
     return values
 }
