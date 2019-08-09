@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
@@ -26,6 +26,15 @@ export const ImageComponent: Component<ImageProps> = ({
     const { colors } = useTheme()
     const [loaded, setLoaded] = useState(false)
     const [error, setError] = useState(false)
+    const imageRef = useRef(null)
+
+    /**
+     * Mark Image as loaded if loaded from cache
+     * http://mikefowler.me/journal/2014/04/22/cached-images-load-event
+     */
+    useEffect(() => {
+        if (imageRef.current && imageRef.current.complete) setLoaded(true)        
+    }, [src])
 
     function handleImageLoaded() {
         setLoaded(true)
@@ -41,6 +50,7 @@ export const ImageComponent: Component<ImageProps> = ({
                 <div className={classes('image__wrapper', ['--vignette', vignette > 0], ['--error', error])}>
                     <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
                         src={src}
+                        ref={imageRef}
                         onLoad={handleImageLoaded}
                         onError={handleImageError}
                         {...{alt, width, height}}
