@@ -64,14 +64,25 @@ GridList.Item = ({
                         }
                     }
 
-                    @media(--large-screen) {
+                    @media(--large-screen-only) {
                         grid-column-end: span 4;
 
                         &:nth-child(5n+1),
                         &:nth-child(5n+2) {
                             grid-column-end: span 6;
                         }
-                    }                    
+                    }        
+
+                    @media(--xlarge-screen) {
+                        grid-column-end: span 3;
+
+                        &:nth-child(7n+1),
+                        &:nth-child(7n+2),
+                        &:nth-child(7n+3) {
+                            grid-column-end: span 4;
+                        }
+                       
+                    }                 
                 }
             `}</style>
         </Element>
