@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
@@ -23,13 +23,6 @@ export const ImageComponent: Component<ImageProps> = ({
 }) => {
     const { colors } = useTheme()
     const [loaded, setLoaded] = useState(false)
-
-    /**
-     * Reset on src Change
-     */
-    useEffect(() => {
-        setLoaded(false)
-    }, [src])
 
     function handleImageLoaded() {
         setLoaded(true)
