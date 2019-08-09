@@ -22,7 +22,7 @@ export const Loader: Component<LoaderProps> = ({
             <style jsx global>{`
                 .loader {
                     --duration: 600ms;
-                    display: inline-grid;
+                    display: grid;
                     font-size: 1rem;
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;
