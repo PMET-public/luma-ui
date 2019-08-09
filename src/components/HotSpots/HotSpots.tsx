@@ -40,7 +40,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
             <Element {...props} className={classes('hot-spots', props.className)}>
-                <Image width="100%" {...image} />
+                <Image width="100%" {...image} transition />
                 {items ? items.map((item, index) => (
                     <HotSpots.Item key={index} {...item} />
                 )) : children}

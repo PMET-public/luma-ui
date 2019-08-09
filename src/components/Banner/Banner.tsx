@@ -26,7 +26,7 @@ export const Banner: Component<BannerProps> = ({
     
     return (
         <Element {...props} className={classes('banner', props.className)}>
-            <Image {...image} className="banner__image">
+            <Image {...image} className="banner__image" transition>
                 <div className={classes('banner__content', `--${position}`)}>
 
                     {titles && (

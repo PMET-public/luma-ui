@@ -55,7 +55,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                             <Carousel.Item className="product-details__images__carousel__item" 
                                 key={index}
                             >
-                                <Image vignette={10} {...image} />
+                                <Image vignette={1} {...image} transition />
                             </Carousel.Item>
                         ))}
                     </Carousel>

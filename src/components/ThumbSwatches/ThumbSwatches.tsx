@@ -30,7 +30,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                         {image && (
                             <Image
                                 {...image}
-                                vignette={2}
+                                transition
                                 className={classes('thumb-swatches__item__image', image.className)}
                             />
                         )}
@@ -47,12 +47,12 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
 
                 .thumb-swatches__item {
                     border-radius: 0.5rem;
-                    border: 0.1rem solid transparent;
+                    border: 0.1rem solid ${colors.primary.fade(0.9)};
                     padding: 0.3rem;
                     transition: all 305ms ease;
 
                     &.--disabled {    
-                        filter: opacity(30%);
+                        filter: opacity(30%) contrast(80%);
                     }
 
                     &.--active {

@@ -35,8 +35,9 @@ export const ProductItem: Component<ProductItemProps> = ({
 
             <Image 
                 height="1580"
+                transition
+                vignette={1}
                 width="1274"
-                vignette={10}
                 {...image}
                 className={classes('product-item__image', image.className)}
             >
