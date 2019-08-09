@@ -356,26 +356,28 @@ export const ProductListMockData: ProductListProps = {
             ],
         },
     },
-    products: new Array(10).fill(true).map(() => ({
-        image: {
-            alt: '',
-            src: require('../../../public/images/product-item-sample.jpg'),
-        },
-        price: {
-            price: '$49.99',
-            priceSpecial: '$39.99',
-            priceLabel: 'Starting at',
-        },
-        title: {
-            text: 'Circle Hooded Ice Flee',
-        },
-        colors: [
-            { value: 'brown' },
-            { value: 'gray' },
-            { value: 'black' },
-            { value: 'blue' },
-        ],
-    })),
+    products: {
+        items: new Array(10).fill(true).map(() => ({
+            image: {
+                alt: '',
+                src: require('../../../public/images/product-item-sample.jpg'),
+            },
+            price: {
+                price: '$49.99',
+                priceSpecial: '$39.99',
+                priceLabel: 'Starting at',
+            },
+            title: {
+                text: 'Circle Hooded Ice Flee',
+            },
+            colors: [
+                { value: 'brown' },
+                { value: 'gray' },
+                { value: 'black' },
+                { value: 'blue' },
+            ],
+        })),
+    },
     assembler: {
         components: [
             {

@@ -26,9 +26,11 @@ export type ProductListProps = Props<{
         closeButton: ButtonProps,
         props: FiltersProps
     }
-    products?: Array<{
-        _id?: string | number
-    } & ProductItemProps>
+    products?: {
+        items: Array<{
+            _id?: string | number
+        } & ProductItemProps>
+    }
 }>
 
 export const ProductList: Component<ProductListProps> = ({
@@ -94,15 +96,17 @@ export const ProductList: Component<ProductListProps> = ({
                 )}
 
                 {products && (
-                    <GridList className="product-list__content__results">
-                        {products && products.map((product, _id, index: any) => (
-                            <GridList.Item key={_id || index}>
-                                <ProductItem className="product-list__results__grid__item"
-                                    {...product}
-                                />
-                            </GridList.Item>
-                        ))}
-                    </GridList>
+                    <div className="product-list__content__results">
+                        <GridList>
+                            {products && products.items.map((product, _id, index: any) => (
+                                <GridList.Item key={_id || index}>
+                                    <ProductItem className="product-list__results__grid__item"
+                                        {...product}
+                                    />
+                                </GridList.Item>
+                            ))}
+                        </GridList>
+                    </div>
                 )}
             </div>
             
@@ -243,6 +247,12 @@ export const ProductList: Component<ProductListProps> = ({
                     @supports(padding: max(0px)) {
                         padding-bottom: max(2rem, env(safe-area-inset-bottom));
                     }
+                }
+
+                .product-list__content__results {
+                    display: grid;
+                    grid-gap: 1rem;
+                    grid-auto-columns: 1fr;
                 }
             `}</style>
         </Element>
