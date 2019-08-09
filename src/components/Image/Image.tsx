@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
+import ErrorIcon from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
+
 export type ImageProps = Props<{
     alt?: string
     height?: string | number
@@ -23,18 +25,24 @@ export const ImageComponent: Component<ImageProps> = ({
 }) => {
     const { colors } = useTheme()
     const [loaded, setLoaded] = useState(false)
+    const [error, setError] = useState(false)
 
     function handleImageLoaded() {
         setLoaded(true)
     }
 
+    function handleImageError() {
+        setError(true)
+    }
+
     return (
         <Element {...props} className={classes('image', props.className)}>
             <figure className="image__figure">
-                <div className={classes('image__wrapper', ['--vignette', vignette > 0])}>
+                <div className={classes('image__wrapper', ['--vignette', vignette > 0], ['--error', error])}>
                     <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
                         src={src}
                         onLoad={handleImageLoaded}
+                        onError={handleImageError}
                         {...{alt, width, height}}
                     />
                     <img className="image__img image__placeholder"
@@ -42,6 +50,9 @@ export const ImageComponent: Component<ImageProps> = ({
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                         {...{width, height}}
                     />
+                    {error && (
+                        <ErrorIcon className="image__error-icon" />
+                    )}
                 </div>
 
                 {children && (
@@ -64,6 +75,10 @@ export const ImageComponent: Component<ImageProps> = ({
                     position: relative;
                     display: inherit;
                     line-height: 0;
+
+                    &.--error {
+                        opacity: 0.5;
+                    }
                     
                     &.--vignette::after {
                         content: "";
@@ -97,6 +112,18 @@ export const ImageComponent: Component<ImageProps> = ({
                 .image__img {
                     object-fit: cover;
                     object-position: center;                    
+                }
+
+                .image__error-icon {
+                    color: ${colors.primary.fade(0.5)};
+                    fill: currentColor;
+                    position: absolute;
+                    width: 1em;
+                    height: 1em;
+                    top: 50%;
+                    left: 50%;
+                    font-size: 3rem;
+                    transform: translate(-50%, -50%);
                 }
             `}</style>
         </Element>

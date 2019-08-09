@@ -33,10 +33,10 @@ export const useScroll = (): UseScroll => {
     }, 150, true)
 
     useEffect(() => {
-        document.addEventListener('scroll', throttled)
+        window.addEventListener('scroll', throttled)
 
         return () => {
-            document.removeEventListener('scroll', throttled)
+            window.removeEventListener('scroll', throttled)
         }
     }, [])
 
