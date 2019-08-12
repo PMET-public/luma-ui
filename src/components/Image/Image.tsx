@@ -7,7 +7,7 @@ import ErrorIcon from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
 export type ImageProps = Props<{
     alt?: string
     height?: string | number
-    src: string
+    src?: string
     width?: string | number
     vignette?: number
     transition?: boolean
@@ -26,7 +26,7 @@ export const ImageComponent: Component<ImageProps> = ({
     const { colors } = useTheme()
     const [loaded, setLoaded] = useState(false)
     const [error, setError] = useState(false)
-    const imageRef = useRef(null)
+    const imageRef = useRef<HTMLImageElement>(null)
 
     /**
      * Mark Image as loaded if loaded from cache
@@ -48,13 +48,15 @@ export const ImageComponent: Component<ImageProps> = ({
         <Element {...props} className={classes('image', props.className)}>
             <figure className="image__figure">
                 <div className={classes('image__wrapper', ['--vignette', vignette > 0], ['--error', error])}>
-                    <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
-                        src={src}
-                        ref={imageRef}
-                        onLoad={handleImageLoaded}
-                        onError={handleImageError}
-                        {...{alt, width, height}}
-                    />
+                    {src && (
+                        <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
+                            src={src}
+                            ref={imageRef}
+                            onLoad={handleImageLoaded}
+                            onError={handleImageError}
+                            {...{alt, width, height}}
+                        />
+                    )}
                     <img className="image__img image__placeholder"
                         aria-hidden="true"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
@@ -116,7 +118,8 @@ export const ImageComponent: Component<ImageProps> = ({
                 }
 
                 .image__placeholder {
-                    background-color: ${colors.onSurface.fade(0.9)};
+                    background: linear-gradient(-45deg, ${colors.onSurface.fade(0.95)}, ${colors.onSurface.fade(0.85)});
+                    background-size: 300%;
                 }
 
                 .image__img {
@@ -139,25 +142,3 @@ export const ImageComponent: Component<ImageProps> = ({
         </Element>
     )
 }
-
-// .image__placeholder {
-//     background-color: ${colors.onSurface};
-//     animation-duration: 2s;
-//     animation-iteration-count: infinite;
-//     animation-name: pulsate;
-//     animation-timing-function: linear;
-// }
-
-// @keyframes pulsate {
-//     0% {
-//         opacity: 0.15;
-//     }
- 
-//     50% {
-//         opacity: 0.05;
-//     }
-
-//     100% {
-//         opacity: 0.15;
-//     }
-// }

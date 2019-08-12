@@ -1,30 +1,40 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
+import ProductItem, { ProductItemProps } from '../ProductItem'
 
-export type GridListProps = Props<{
-    children: ReactElement<GridListItemProps> | Array<ReactElement<GridListItemProps>>
+export type ProductListProps = Props<{
+    loading?: number
+    items?: Array<{
+        _id?: string | number
+    } & ProductItemProps>
 }>
 
-export type GridListItemProps = Props<{
-    children: ReactElement | ReactElement[]
-}>
-
-type CompoundComponent = {
-    Item: Component<GridListItemProps>
-}
-
-export const GridList: Component<GridListProps> & CompoundComponent = ({ 
-    as: GridList = 'div', 
-    children,
+export const ProductList: Component<ProductListProps> = ({ 
+    items = [],
+    loading,
     ...props
 }) => {
     
     return (
-        <GridList {...props} className={classes('grid-list', props.className)}>
-            {children}
+        <Element {...props} className={classes('product-list', props.className)}>
+            {items.map(({ _id, ...item}, index) => (
+                <ProductItem 
+                    key={_id || index} 
+                    {...item} 
+                    className={classes('product-list__item', item.className)}
+                />
+            ))}
+
+            {!!loading && new Array(loading).fill({ loading: true }).map((placeholder, index) => (
+                <ProductItem 
+                    key={index} 
+                    {...placeholder} 
+                    className="product-list__item --loading"
+                />
+            ))}
 
             <style jsx global>{`
-                .grid-list {
+                .product-list {
                     display: grid;
                     grid-gap: 3rem 0.2rem;
                     grid-template-columns: repeat(12, 1fr);
@@ -33,21 +43,8 @@ export const GridList: Component<GridListProps> & CompoundComponent = ({
                         grid-gap: 3rem 0.5rem;
                     }
                 }
-            `}</style>
-        </GridList>
-    )
-}
 
-GridList.Item = ({ 
-    children,
-    ...props
-}) => {
-    return (
-        <Element {...props} className={classes('grid-list-item', props.className)}>
-            {children}
-
-            <style jsx global>{`
-                .grid-list-item {
+                .product-list__item {
                     @media(--small-screen-only) {
                         grid-column-end: span 6;
                         
@@ -86,6 +83,5 @@ GridList.Item = ({
                 }
             `}</style>
         </Element>
-
     )
 }

@@ -2,27 +2,33 @@ import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 
 export type PriceProps = Props<{
-    price: string
-    priceSpecial?: string
-    priceLabel?: string
+    currency?: string
+    label?: string
+    regular: number
+    special?: number
 }>
 
 export const Price: Component<PriceProps> = ({
-    price,
-    priceLabel,
-    priceSpecial,
+    currency = 'USD',
+    label,
+    regular,
+    special,
     ...props
 }) => {
 
     return (
         <Element {...props} className={classes('price', props.className)}>
-            {!!priceLabel && <em className="price__label">{priceLabel}</em>}
+            {label && <em className="price__label">{label}</em>}
 
-            <span className={classes('price__original', ['--special', !!priceSpecial])}>
-                {price}
+            <span className={classes('price__regular', ['--special', !!special])}>
+                {regular.toLocaleString('en-US', { style: 'currency', currency })}
             </span>
 
-            {!!priceSpecial && <span className="price__special">{priceSpecial}</span>}
+            {special && (
+                <span className="price__special">
+                    {special.toLocaleString('en-US', { style: 'currency', currency })}
+                </span>
+            )}
 
             <style jsx global>{`
                 .price {
@@ -32,7 +38,7 @@ export const Price: Component<PriceProps> = ({
                     grid-auto-columns: max-content;
                 }
 
-                .price__original {
+                .price__regular {
                     &.--special {
                         text-decoration: line-through;
                     }

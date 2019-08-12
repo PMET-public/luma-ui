@@ -1,15 +1,15 @@
 import React from 'react'
 import Price from './'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
+import { text, number} from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Price', module)
     .add('Default', () => (
         <div className="story">
             <Price 
-                price={text('price', '$9.99')} 
-                priceSpecial={text('priceSpecial', '$4.99')} 
-                priceLabel={text('priceLable', 'Starting at')}
+                regular={number('regular', 9.99)} 
+                special={number('special', 4.99)} 
+                label={text('label', 'Starting at')}
             />
 
             <style jsx global>{`

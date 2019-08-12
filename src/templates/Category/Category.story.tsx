@@ -1,11 +1,10 @@
 import React from 'react'
-import ProductList from './'
+import Category, { CategoryProps } from '.'
 import { storiesOf } from '@storybook/react'
-import { ProductListProps } from './ProductList'
 import App from '../App'
 import { AppMockData } from '../App/App.story'
 
-export const ProductListMockData: ProductListProps = {
+export const ProductListMockData: CategoryProps = {
     title: {
         as: 'h2',
         text: 'Hoodies & Sweatshirts',
@@ -363,9 +362,9 @@ export const ProductListMockData: ProductListProps = {
                 src: require('../../../public/images/product-item-sample.jpg'),
             },
             price: {
-                price: '$49.99',
-                priceSpecial: '$39.99',
-                priceLabel: 'Starting at',
+                regular: 49.99,
+                special: 39.99,
+                label: 'Starting at',
             },
             title: {
                 text: 'Circle Hooded Ice Flee',
@@ -403,9 +402,9 @@ export const ProductListMockData: ProductListProps = {
     },
 }
 
-storiesOf('📑 Templates/ProductList', module)
+storiesOf('📑 Templates/Category', module)
     .add('Default', () => (
         <App {...AppMockData}>
-            <ProductList {...ProductListMockData} />
+            <Category {...ProductListMockData} />
         </App>
     ))

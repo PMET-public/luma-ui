@@ -108,9 +108,9 @@ export const PageMockData: PageProps = {
                             height: 5,
                         },
                         price: {
-                            price: '$49.99',
-                            priceSpecial: '$39.99',
-                            priceLabel: 'Starting at',
+                            regular: 49.99,
+                            special: 39.99,
+                            label: 'Starting at',
                         },
                         title: {
                             text: 'Circle Hooded Ice Flee',
@@ -142,9 +142,9 @@ export const PageMockData: PageProps = {
                             height: 5,
                         },
                         price: {
-                            price: '$49.99',
-                            priceSpecial: '$39.99',
-                            priceLabel: 'Starting at',
+                            regular: 49.99,
+                            special: 39.99,
+                            label: 'Starting at',
                         },
                         title: {
                             text: 'Circle Hooded Ice Flee',

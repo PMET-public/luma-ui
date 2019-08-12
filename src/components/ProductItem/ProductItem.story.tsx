@@ -1,12 +1,13 @@
 import React from 'react'
 import ProductItem from './'
 import { storiesOf } from '@storybook/react'
-import { text, array } from '@storybook/addon-knobs'
+import { text, object, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ProductItem', module)
     .add('Default', () => (
         <div className="story">
             <ProductItem className="story__product-item"
+                loading={boolean('loading', false)}
                 badge={{
                     text: text('badge', 'New Arrival'),
                 }}
@@ -15,14 +16,14 @@ storiesOf('📦 Components/ProductItem', module)
                     src: text('image', require('../../../public/images/product-item-sample.jpg')),
                 }}
                 price={{
-                    price: text('price', '$149.99'),
-                    priceSpecial: text('priceSpecial', '$49.00'),
-                    priceLabel: text('priceLabel', 'Starting at'),
+                    regular: 49.99,
+                    special: 39.99,
+                    label: 'Starting at',
                 }}
                 title={{
                     text: text('title', 'Circle Hooded Ice Flee'),
                 }}
-                colors={array('colors', [
+                colors={object('colors', [
                     { value: 'green' }, 
                     { value: 'blue' }, 
                     { value: 'gray' },

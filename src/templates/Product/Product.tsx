@@ -13,7 +13,7 @@ import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
 const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
 
-export type ProductDetailsProps = Props<{
+export type ProductProps = Props<{
     assembler?: AssemblerProps
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
@@ -29,7 +29,7 @@ export type ProductDetailsProps = Props<{
     title: Props
 }>
 
-export const ProductDetails: Component<ProductDetailsProps> = ({ 
+export const Product: Component<ProductProps> = ({ 
     assembler,
     breadcrumbs,
     buttons,
@@ -44,15 +44,15 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
     const { colors, margin } = useTheme()
 
     return (
-        <Element {...props} className={classes('product-details', props.className)}>
-            <div className="product-details__wrapper">
-                <div className="product-details__images">
-                    <Carousel className="product-details__images__carousel"
+        <Element {...props} className={classes('product', props.className)}>
+            <div className="product__wrapper">
+                <div className="product__images">
+                    <Carousel className="product__images__carousel"
                         gap={1}
                         padding={3}
                     >
                         {images.map((image, index) => (
-                            <Carousel.Item className="product-details__images__carousel__item" 
+                            <Carousel.Item className="product__images__carousel__item" 
                                 key={index}
                             >
                                 <Image vignette={1} {...image} transition />
@@ -61,44 +61,44 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     </Carousel>
                 </div>
 
-                <div className="product-details__info__wrapper">
-                    <div className="product-details__info">
-                        <header className="product-details__info__header">
+                <div className="product__info__wrapper">
+                    <div className="product__info">
+                        <header className="product__info__header">
                             {breadcrumbs && (
                                 <Breadcrumbs
                                     prefix="#" 
                                     {...breadcrumbs} 
-                                    className={classes('product-details__info__header__breadcrumbs', breadcrumbs.className)}
+                                    className={classes('product__info__header__breadcrumbs', breadcrumbs.className)}
                                 />
                             )}
 
                             <Element as="h2" 
                                 {...title} 
-                                className={classes('product-details__info__header__title', title.className)}
+                                className={classes('product__info__header__title', title.className)}
                             />
 
                             <Price 
                                 {...price} 
-                                className={classes('product-details__info__header__price', price.className)} 
+                                className={classes('product__info__header__price', price.className)} 
                             /> 
 
                             {sku && (
                                 <Element 
                                     as="span" 
                                     {...sku} 
-                                    className={classes('product-details__info__header__sku', sku.className)}
+                                    className={classes('product__info__header__sku', sku.className)}
                                 />
                             )}
                         </header>
 
                         {swatches && swatches.map(({type, title, props}, index) => (
                             <Suspense fallback="Loading...." key={index}>
-                                <div className="product-details__info__swatches">
+                                <div className="product__info__swatches">
                                     {title && (
                                         <Element 
                                             as="h3" 
                                             {...title}
-                                            className={classes('product-details__info__swatches__title', title.className)}
+                                            className={classes('product__info__swatches__title', title.className)}
                                         />
                                     )}
                                     
@@ -114,18 +114,18 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                             </Suspense>
                         ))}
                     
-                        <div className="product-details__info__buttons">
+                        <div className="product__info__buttons">
                             {buttons.map((button, index) => (
                                 <Button 
                                     {...button}
-                                    className={classes('product-details__info__buttons__item', button.className)}
+                                    className={classes('product__info__buttons__item', button.className)}
                                     key={index} 
                                 />
                             ))}
                         </div> 
 
                         {description && (
-                            <Assembler className="product-details__description" 
+                            <Assembler className="product__description" 
                                 {...description} 
                             />
                         )}
@@ -135,18 +135,18 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
             </div>
 
             {assembler && (
-                <Assembler className="product-details__assembler" 
+                <Assembler className="product__assembler" 
                     {...assembler} 
                 />
             )}          
 
             <style jsx global>{`
-                .product-details {
+                .product {
                     display: grid;
                     grid-gap: 8rem;
                 }
 
-                .product-details__images__carousel {
+                .product__images__carousel {
                     & .image, 
                     & .image__figure, 
                     & .image__wrapper,
@@ -155,73 +155,73 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                     }
                 }
 
-                .product-details__info__wrapper {
+                .product__info__wrapper {
                     display: grid;
                     grid-auto-columns: 1fr;
                     grid-auto-rows: minmax(max-content, max-content);
                     grid-gap: 1rem;
                 }
 
-                .product-details__info {
+                .product__info {
                     display: grid;
                     grid-gap: 3rem;
                 }
 
-                .product-details__info__header {
+                .product__info__header {
                     display: grid;
                     grid-gap: 1.6rem;
                     grid-auto-rows: max-content;
                 }
 
-                .product-details__info__header__breadcrumbs {
+                .product__info__header__breadcrumbs {
                     font-size: 1.4rem;
                     color: ${colors.onSurface.fade(0.4)};
                 }
 
-                .product-details__info__header__sku {
+                .product__info__header__sku {
                     font-size: 0.85em;
                     color: ${colors.onSurface.fade(0.4)};
                 }
 
-                .product-details__info__swatches {
+                .product__info__swatches {
                     display: grid;
                     grid-gap: 1rem;
                 }
 
-                .product-details__info__swatches__title {
+                .product__info__swatches__title {
                     font-size: 1.6rem;
                 }
 
-                .product-details__info__buttons {
+                .product__info__buttons {
                     display: grid;
                     grid-gap: 1rem;
                 }
 
-                .product-details__assembler {
+                .product__assembler {
                     z-index: 1;
                 }
 
                 @media(--small-screen-only) {
-                    .product-details__wrapper {
+                    .product__wrapper {
                         display: grid;
                         grid-auto-rows: max-content;
                         grid-template-columns: 1fr;                    
                     }
 
-                    .product-details__images {
+                    .product__images {
                         position: sticky;
                         top: 0;
                         z-index: 0;
                     }
 
-                    .product-details__images__carousel {
+                    .product__images__carousel {
                         width: 100vw;
                         position: relative;
                         margin-left: -50vw;
                         left: 50%;
                     }
 
-                    .product-details__info__wrapper {
+                    .product__info__wrapper {
                         background-color: ${colors.surface};
                         color: ${colors.onSurface};
                         margin-top: -2rem;
@@ -248,7 +248,7 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 }
 
                 @media(--medium-screen){
-                    .product-details__wrapper {
+                    .product__wrapper {
                         display: grid;
                         grid-auto-rows: max-content;
                         grid-gap: 2rem;
@@ -256,14 +256,14 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                         padding-top: 2rem;
                     }
 
-                    .product-details__images__carousel {
+                    .product__images__carousel {
                         grid-gap:0.5rem;
                         grid-auto-flow: row;
                         grid-template-columns: repeat(1, 1.5fr);
                         overflow: unset;
                     }
 
-                    .product-details__info {
+                    .product__info {
                         background-color: ${colors.surface};
                         border-radius: 2rem;
                         color: ${colors.onSurface};
@@ -274,11 +274,11 @@ export const ProductDetails: Component<ProductDetailsProps> = ({
                 }
 
                 @media(--large-screen) {
-                    .product-details__wrapper {
+                    .product__wrapper {
                         grid-template-columns: 1.5fr 1fr;
                     }
                     
-                    .product-details__images__carousel {
+                    .product__images__carousel {
                         grid-auto-flow: row;
                         grid-template-columns: repeat(2, 1fr);
                     }

@@ -1,11 +1,11 @@
 import React from 'react'
-import ProductDetails from './'
+import Product from '.'
 import { storiesOf } from '@storybook/react'
 import App from '../App'
 import { AppMockData } from '../App/App.story'
-import { ProductDetailsProps } from './ProductDetails'
+import { ProductProps } from './Product'
 
-const ProductDetailsMockData: ProductDetailsProps = {
+const ProductMockData: ProductProps = {
     buttons: [
         { text: 'Add to Cart', fill: true },
         { text: 'Add to Favorite' },
@@ -28,9 +28,9 @@ const ProductDetailsMockData: ProductDetailsProps = {
         text: 'Circle Hooded Ice Flee',
     },
     price: {
-        price: '$49.99',
-        priceSpecial: '$39.99',
-        priceLabel: 'Starting at',
+        regular: 49.99,
+        special: 39.99,
+        label: 'Starting at',
     },
     sku: {
         text: 'SKU. VSK12-LA',        
@@ -130,9 +130,9 @@ const ProductDetailsMockData: ProductDetailsProps = {
                             height: 5,
                         },
                         price: {
-                            price: '$49.99',
-                            priceSpecial: '$39.99',
-                            priceLabel: 'Starting at',
+                            regular: 49.99,
+                            special: 39.99,
+                            label: 'Starting at',
                         },
                         title: {
                             text: 'Circle Hooded Ice Flee',
@@ -151,9 +151,9 @@ const ProductDetailsMockData: ProductDetailsProps = {
     },
 }
 
-storiesOf('📑 Templates/ProductDetails', module)
+storiesOf('📑 Templates/Product', module)
     .add('Default', () => (
         <App {...AppMockData}>
-            <ProductDetails {...ProductDetailsMockData} />
+            <Product {...ProductMockData} />
         </App>
     ))
