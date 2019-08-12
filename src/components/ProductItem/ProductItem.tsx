@@ -26,7 +26,7 @@ export const ProductItem: Component<ProductItemProps> = ({
     const theme = useTheme()
 
     return (
-        <Element {...props} className={classes('product-item', props.className)}>
+        <Element {...props} className={classes('product-item', props.className, ['--loading', loading])}>
             {!loading && badge && (
                 <Element 
                     as="span"
@@ -75,6 +75,13 @@ export const ProductItem: Component<ProductItemProps> = ({
                     display: block;
                     overflow: hidden;
                     position: relative;
+
+                    &.--loading {
+                        animation-duration: 500ms;
+                        animation-iteration-count: infinite;
+                        animation-name: product-item__loading-animation;
+                        animation-timing-function: linear;
+                    }
                 }
 
                 .product-item__badge {
@@ -121,8 +128,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__details__title,
                 .product-item__details__price {
                     &.--loading::after {
-                        animation: product-item__loading-animation 1s ease infinite;
-                        background-size: 300%;
                         background: linear-gradient(-45deg, ${theme.colors.onSurface.fade(0.95)}, ${theme.colors.onSurface.fade(0.85)});
                         content: "";
                         display: inline-block;
@@ -159,13 +164,13 @@ export const ProductItem: Component<ProductItemProps> = ({
 
                 @keyframes product-item__loading-animation {
                     0% {
-                        background-position: 0% 50%;
+                        opacity: 1;
                     }
                     50% {
-                        background-position: 100% 50%;
+                        opacity: 0.75;
                     }
                     100% {
-                        background-position: 0% 50%;
+                        opacity: 1;
                     }
                 }
             `}</style>
