@@ -33,9 +33,9 @@ storiesOf('📦 Components/Assembler', module)
                 {
                     name: 'ProductsCarousel',
                     props: {
-                        title: object('title', {
+                        title: {
                             text: 'Title',
-                        }),
+                        },
                         items: new Array(10).fill({
                             image: {
                                 alt: '',
