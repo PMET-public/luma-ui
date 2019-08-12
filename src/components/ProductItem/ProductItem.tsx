@@ -97,7 +97,8 @@ export const ProductItem: Component<ProductItemProps> = ({
                     z-index: 1;
                 }
 
-                .product-item__image {
+                .product-item__image.image {
+                    display: block;
                     position: relative;
                     
                     & .image__img {

@@ -26,7 +26,11 @@ export const Banner: Component<BannerProps> = ({
     
     return (
         <Element {...props} className={classes('banner', props.className)}>
-            <Image {...image} className="banner__image" transition>
+            <Image 
+                transition
+                {...image} 
+                className={classes('banner__image', image.className)} 
+            >
                 <div className={classes('banner__content', `--${position}`)}>
 
                     {titles && (
@@ -59,7 +63,9 @@ export const Banner: Component<BannerProps> = ({
                     
                 }
 
-                .banner__image {   
+                .banner__image.image {   
+                    display: block;
+
                     & .image__img {
                         min-width: 100%;
                         min-height: 100%;

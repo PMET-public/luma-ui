@@ -76,8 +76,9 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
 
                 .thumb-swatches__item__image {
                     background-color: white;
-                    overflow: hidden;
                     border-radius: 0.5rem;
+                    display: block;
+                    overflow: hidden;
                     overflow: hidden;
 
                     & .image__img {

@@ -11,7 +11,6 @@ export type TabBarProps = Props<{
 }>
 
 export const TabBar: Component<TabBarProps> = ({
-    as: Wrapper = 'nav',
     items = [],
     ...props
 }) => {

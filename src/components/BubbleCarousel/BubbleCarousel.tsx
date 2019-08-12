@@ -64,7 +64,12 @@ BubbleCarousel.Item = ({
     ...props
 }) => (
     <Element {...props} className={classes('bubble-carousel-item', props.className)}>
-        <Image alt="null" {...image} transition />
+        <Image 
+            alt="null" 
+            transition 
+            {...image} 
+            className={classes('bubble-carousel-item__image', image.className)}
+        />
         
         <Element className="bubble-carousel-item__label">
             {text}
@@ -83,14 +88,14 @@ BubbleCarousel.Item = ({
                 }
             }
 
-            .bubble-carousel-item .image {
+            .bubble-carousel-item__image {
                 align-items: center;
                 display: inline-flex;
                 flex-direction: column;
                 flex: 0 0 auto;
             }
 
-            .bubble-carousel-item .image__img {
+            .bubble-carousel-item__image .image__img {
                 border-radius: 50%;
                 display: inline-block;
                 height: var(--size);

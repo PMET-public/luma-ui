@@ -76,7 +76,7 @@ export const ImageComponent: Component<ImageProps> = ({
 
             <style jsx global>{`
                 .image {
-                    display: inherit;
+                    display: inline-flex;
                 }
 
                 .image__figure {
