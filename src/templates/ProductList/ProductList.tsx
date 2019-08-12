@@ -142,7 +142,7 @@ export const ProductList: Component<ProductListProps> = ({
 
                 .product-list__top-bar {
                     align-items: center;
-                    background-color: ${colors.surface.fade(0.2)};
+                    background-color: ${colors.surface.fade(0.15)};
                     backdrop-filter: blur(50px);
                     padding: 0 1rem;
                     color: ${colors.onSurface};
@@ -208,7 +208,7 @@ export const ProductList: Component<ProductListProps> = ({
                 .product-list__filters {
                     -webkit-overflow-scrolling: touch;   
                     backdrop-filter: blur(50px);
-                    background-color: ${colors.surface.fade(0.2)};
+                    background-color: ${colors.surface.fade(0.15)};
                     color: ${colors.onSurface};
                     display: flex;
                     flex-direction: column;
