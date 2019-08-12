@@ -21,7 +21,7 @@ export const useScroll = (): UseScroll => {
     })
 
     const throttled = useThrottle(() => {
-        const elem = document.documentElement
+        const elem: any = document.scrollingElement
         setWheelEvent({
             scrollDeltaX: elem.scrollLeft - scroll.scrollX,
             scrollDeltaY: elem.scrollTop - scroll.scrollY,
