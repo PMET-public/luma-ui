@@ -9,11 +9,17 @@ export type HeaderLogoProps = Props<{
 }>
 
 export type HeaderMenuProps = Props<{ 
-    items: Props[]
+    items: Array<Props<{
+        active?: boolean
+    }>>
 }>
 
 export type HeaderUtilitiesProps = Props<{ 
-    items: Array<Props<{ text: string, icon?: IconProps }>>
+    items: Array<Props<{ 
+        active?: boolean 
+        text: string
+        icon?: IconProps 
+    }>>
 }>
 
 export type HeaderProps = Props<{
@@ -117,8 +123,12 @@ const HeaderMenu: Component<HeaderMenuProps> = ({
     return (
         <Element {...props} className={classes('header-menu', className)}>
             <div className="header-menu__content">
-                {items.map((item, index) => (
-                    <Element key={index} {...item} />
+                {items.map(({active = false, ...item}, index) => (
+                    <Element 
+                        key={index} 
+                        {...item} 
+                        className={classes(['--active', active], item.className)}
+                    />
                 ))}
             </div>
 
@@ -156,10 +166,11 @@ const HeaderUtilities: Component<HeaderUtilitiesProps> = ({
 }) => {    
     return (
         <Element {...props} className={classes('header-utilities', className)}>
-            {items.map(({text, icon, ...item}, index) => (
-                <Element className={classes('header-utilities__item', ['--icon', !!icon])}
-                    key={index} 
+            {items.map(({active = false, text, icon, ...item}, index) => (
+                <Element 
                     {...item}
+                    className={classes('header-utilities__item', item.className, ['--icon', !!icon], ['--active', active])}
+                    key={index} 
                 >
                    {icon ? (
                         <Icon className="header-utilities__item__icon" 

@@ -103,8 +103,8 @@ export const App: Component<AppProps> = ({
                     utilities={{
                         className: 'app__app-bar__header__utilities',
                         items: [
-                            { 
-                                ...help ,
+                            {
+                                ...help,
                                 className: classes(help.className, 'app__app-bar__header__utilities__help'), 
                             },
                             { 
