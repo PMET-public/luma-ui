@@ -1,24 +1,14 @@
-import React, { FunctionComponent, useState, createContext, useContext } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import ResetStyles from './ResetStyles'
 import GlobalStyles from './GlobalStyles'
 import TypographyStyles from './TypographyStyles'
-import { theme } from './theme'
-
-const ThemeContext = createContext({
-    colors: theme.colors,
-    typography: theme.typography,
-    isDark: false,
-    setDark: (v: boolean) => { },    
-})
-
-export const useTheme = () => useContext(ThemeContext)
+import { ThemeContext, useTheme } from './useTheme'
 
 export const ThemeProvider: FunctionComponent = ({
     children,
 }) => {
     const [isDark, setDark] = useState(false) // window.matchMedia("(prefers-color-scheme: dark)").matches || false
-    
-    const { colors: _colors, typography } = theme
+    const { colors: _colors, typography } = useTheme()
 
     const colors: any = Object.keys(_colors)
         .reduce((acc, key) => {

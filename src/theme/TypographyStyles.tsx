@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { useTheme } from './ThemeProvider'
+import { useTheme } from './useTheme'
 
 export default () => {
     const { typography } = useTheme()
