@@ -19,10 +19,10 @@ export const Footer: Component<FooterProps> = ({
             <style jsx global>{`
                 .footer {     
                     background: ${colors.background};  
-                    color: ${colors.onBackground.fade(0.25)};  
+                    color: ${colors.onBackground};  
 
                     & a:hover {
-                        filter: opacity(0.5);
+                        opacity: 0.5;
                     }
                 }
 

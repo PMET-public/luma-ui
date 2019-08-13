@@ -41,7 +41,7 @@ export const Product: Component<ProductProps> = ({
     title,
     ...props
 }) => {    
-    const { colors, margin } = useTheme()
+    const { colors } = useTheme()
 
     return (
         <Element {...props} className={classes('product', props.className)}>
@@ -179,12 +179,12 @@ export const Product: Component<ProductProps> = ({
 
                 .product__info__header__breadcrumbs {
                     font-size: 1.4rem;
-                    color: ${colors.onSurface.fade(0.4)};
+                    color: ${colors.onSurface};
                 }
 
                 .product__info__header__sku {
                     font-size: 0.85em;
-                    color: ${colors.onSurface.fade(0.4)};
+                    color: ${colors.onSurface};
                 }
 
                 .product__info__swatches {
@@ -244,8 +244,8 @@ export const Product: Component<ProductProps> = ({
                         margin-left: -50vw;
                         left: 50%;
 
-                        padding-left: ${margin};
-                        padding-right: ${margin};
+                        padding-left: 1rem;
+                        padding-right: 1rem;
                         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
                         border-radius: 1rem 1rem 0 0;
                     }

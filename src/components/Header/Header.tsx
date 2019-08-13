@@ -145,7 +145,7 @@ const HeaderMenu: Component<HeaderMenuProps> = ({
 
                 .header-menu__content {
                     display: inline-grid;
-                    font-family: ${typography.headingFamily};
+                    font-family: ${typography.heading.family};
                     font-weight: 600;
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;

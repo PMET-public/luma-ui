@@ -41,6 +41,7 @@ export const Price: Component<PriceProps> = ({
                 .price__regular {
                     &.--special {
                         text-decoration: line-through;
+                        opacity: 0.75;
                     }
                 }
             `}</style>

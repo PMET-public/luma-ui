@@ -8,7 +8,7 @@ import { Container } from '../../lib'
 storiesOf('📦 Components/SearchBar', module)
     .add('Default', () => {
         const value = text('value', 'Shoes')
-        const count = value ? number('count', 0) : undefined
+        const count = value.length > 0 ? number('count', 10) : undefined
 
         return (
             <div className="story">
@@ -18,7 +18,7 @@ storiesOf('📦 Components/SearchBar', module)
                         onSearch={(query: string) => action(`onSubmit(${query})`)()}
                         count={count}
                         value={value}
-                        clearButton={boolean('clearButton', false)}
+                        clearButton={boolean('clearButton', true)}
                         
                     />
 

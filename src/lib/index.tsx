@@ -34,7 +34,6 @@ export const Element: Component<Props> = React.forwardRef(
 export type ContainerProps = Props<{ }>
 export const Container: Component<ContainerProps> = React.forwardRef(
     ({ children, ...props }, ref) => {
-        const { margin } = useTheme()
         return (
             <Element {...props} className={classes('container', props.className)}
                 ref={ref}
@@ -46,8 +45,8 @@ export const Container: Component<ContainerProps> = React.forwardRef(
                         margin: 0 auto;
                         max-width: 1800px;
                         width: 100%;
-                        padding-left: ${margin};
-                        padding-right: ${margin};
+                        padding-left: 1rem;
+                        padding-right: 1rem;
                     }
                 `}</style>
             </Element>

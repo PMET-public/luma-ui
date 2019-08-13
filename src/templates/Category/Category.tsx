@@ -127,7 +127,7 @@ export const Category: Component<CategoryProps> = ({
 
                 .category__top-bar {
                     align-items: center;
-                    background-color: ${colors.surface.fade(0.15)};
+                    background-color: ${colors.surface};
                     backdrop-filter: blur(50px);
                     padding: 0 1rem;
                     color: ${colors.onSurface};
@@ -161,7 +161,7 @@ export const Category: Component<CategoryProps> = ({
                 }
 
                 .category__top-bar__heading__breadcrumbs {
-                    color: ${colors.onSurface.fade(0.4)};
+                    color: ${colors.onSurface};
                     font-size: 1.3rem;
                     line-height: inherit;
                 }
@@ -193,7 +193,7 @@ export const Category: Component<CategoryProps> = ({
                 .category__filters {
                     -webkit-overflow-scrolling: touch;   
                     backdrop-filter: blur(50px);
-                    background-color: ${colors.surface.fade(0.15)};
+                    background-color: ${colors.surface};
                     color: ${colors.onSurface};
                     display: flex;
                     flex-direction: column;
@@ -220,7 +220,7 @@ export const Category: Component<CategoryProps> = ({
                 }
 
                 .category__filters__buttons {
-                    background-color: ${colors.surface.fade(0.1)};
+                    background-color: ${colors.surface};
                     bottom: 0;
                     color: ${colors.onSurface};
                     display: grid;

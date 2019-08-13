@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTheme } from './ThemeProvider'
 
-export default ({ colors }: any) => {
+export default () => {
+    const { colors } = useTheme()
 
     return (
         <style jsx global>{`

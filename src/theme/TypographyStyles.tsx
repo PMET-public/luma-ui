@@ -1,15 +1,18 @@
 
 import React from 'react'
+import { useTheme } from './ThemeProvider'
 
-export default ({ typography }: any) => {
+export default () => {
+    const { typography } = useTheme()
+
     return (
         <style jsx global>{`
             html {
                 -webkit-font-smoothing: antialiased;
-                font-family: ${typography.bodyFamily};
+                font-family: ${typography.body.family};
                 font-size: 62.5%; /* ~10px = 1rem! */
-                font-style: ${typography.bodyStyle};
-                font-weight: ${typography.bodyWeight};
+                font-style: ${typography.body.style};
+                font-weight: ${typography.body.weight};
             }
             
             body {
@@ -41,9 +44,9 @@ export default ({ typography }: any) => {
             
             h1, h2, h3, h4, h5, h6 {
                 /* Change heading typefaces here */
-                font-family: ${typography.headingFamily};
-                font-style: ${typography.headingStyle};
-                font-weight: ${typography.headingWeight};
+                font-family: ${typography.heading.family};
+                font-style: ${typography.heading.style};
+                font-weight: ${typography.heading.weight};
                 line-height: 1.1;
             }
             

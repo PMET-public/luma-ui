@@ -39,7 +39,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
 
                 .text-swatches__item {
                     border-radius: 0.5rem;
-                    border: 0.1rem solid ${colors.primary};
+                    border: 0.1rem solid ${colors.primary25};
                     color: ${colors.primary};
                     background-color: ${colors.onPrimary};
                     padding: 1rem;
@@ -57,8 +57,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
                     }
 
                     &:hover:not(.--active):not(.--disabled) {
-                        border-color: inherit;
-                        color: ${colors.primary.fade(0.5)};
+                        border-color: ${colors.primary75};
                     }
                 }
             `}</style>

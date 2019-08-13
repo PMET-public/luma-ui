@@ -98,9 +98,9 @@ export const Banner: Component<BannerProps> = ({
                     font-size: 1.6rem;
 
                     &.--large {
-                        font-family: ${typography.headingFamily};
+                        font-family: ${typography.heading.family};
                         font-size: 4rem;
-                        font-weight: ${typography.headingWeight};
+                        font-weight: ${typography.heading.weight};
                         text-transform: uppercase;
                         line-height: 0.9;
                     }

@@ -103,7 +103,7 @@ Accordion.Item = ({
             <style jsx global>{`
                 .accordion-item {
                     border-bottom-width: 0.1rem;
-                    border-color: ${colors.onSurface.fade(0.87)};
+                    border-color: ${colors.onSurface15};
                     border-style: solid;
                     display: grid;
                     grid-auto-columns: 1fr;
