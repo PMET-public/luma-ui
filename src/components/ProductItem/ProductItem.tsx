@@ -165,13 +165,13 @@ export const ProductItem: Component<ProductItemProps> = ({
 
                 @keyframes product-item__loading-animation {
                     0% {
-                        opacity: 1;
-                    }
-                    50% {
                         opacity: 0.75;
                     }
+                    50% {
+                        opacity: 0.5;
+                    }
                     100% {
-                        opacity: 1;
+                        opacity: 0.75;
                     }
                 }
             `}</style>
