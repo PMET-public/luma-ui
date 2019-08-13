@@ -151,7 +151,7 @@ const ProductMockData: ProductProps = {
     },
 }
 
-storiesOf('📑 Templates/Product', module)
+storiesOf('📑 Pages/Product', module)
     .add('Default', () => (
         <App {...AppMockData}>
             <Product {...ProductMockData} />

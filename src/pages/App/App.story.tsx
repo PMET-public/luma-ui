@@ -1,5 +1,5 @@
 import React from 'react'
-import App from './'
+import App from '.'
 import { storiesOf } from '@storybook/react'
 import { AppProps } from './App'
 
@@ -83,7 +83,7 @@ export const AppMockData: AppProps = {
     },
 }
 
-storiesOf('📑 Templates/App', module)
+storiesOf('📑 Pages/App', module)
     .add('Default', () => (
         <App {...AppMockData}>
             <div className="story__content"></div>

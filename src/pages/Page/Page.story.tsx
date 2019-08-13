@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from '.'
+import Page from '../Page'
 import { storiesOf } from '@storybook/react'
 import { PageProps } from './Page'
 import App from '../App'
@@ -163,7 +163,7 @@ export const PageMockData: PageProps = {
     },
 }
 
-storiesOf('📑 Templates/Page', module)
+storiesOf('📑 Pages/Page', module)
     .add('Default', () => (
         <App {...AppMockData}>
             <Page {...PageMockData} />

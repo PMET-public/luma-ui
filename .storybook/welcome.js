@@ -30,7 +30,6 @@ storiesOf('👋 Welcome', module)
       
                 <pre className="source">
                     <code>{source`
-                        $ ./bin/generate.js component FooBar
                         👌 src/components/FooBar/FooBar.tsx created
                         👌 src/components/FooBar/FooBar.story.tsx created
                         👌 src/components/FooBar/index.ts created
@@ -40,17 +39,16 @@ storiesOf('👋 Welcome', module)
             </div>
 
             <div className="story__item">
-                <h3> ... or a Template</h3>
+                <h3> ... or a Page</h3>
                 <CodeBlock lang="bash">{`
-                    yarn generate template FooBar
+                    yarn generate page FooBar
                 `}</CodeBlock>
 
                 <pre className="source">
                     <code>{source`
-                        $ ./bin/generate.js templateFooBar
-                        👌 src/template/FooBar/FooBar.tsx created
-                        👌 src/template/FooBar/FooBar.story.tsx created
-                        👌 src/template/FooBar/index.ts created
+                        👌 src/pages/FooBar/FooBar.tsx created
+                        👌 src/pages/FooBar/FooBar.story.tsx created
+                        👌 src/pages/FooBar/index.ts created
                         ✨  Done in 0.18s.
                     `}</code>
                 </pre>
