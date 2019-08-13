@@ -147,6 +147,10 @@ export const Product: Component<ProductProps> = ({
                 }
 
                 .product__images__carousel {
+                    & .image {
+                        display: block;
+                    }
+                    
                     & .image, 
                     & .image__figure, 
                     & .image__wrapper,
