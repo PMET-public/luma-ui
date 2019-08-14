@@ -3,7 +3,6 @@ import { Component, Element, Props, classes } from '../../lib'
 
 import { useResize } from '../../hooks/useResize'
 
-import AppBar from '../../components/AppBar'
 import Header from '../../components/Header'
 import Icon, { IconProps } from '../../components/Icon'
 import TabBar from '../../components/TabBar'
@@ -87,50 +86,46 @@ export const App: Component<AppProps> = ({
                 height: vHeight,
             }}
         >
-            <AppBar className="app__app-bar" 
-                as="header" 
-            >
-                <Header className="app__app-bar__header"  
-                    logo={{
-                        ...logo,
-                        svg: Logo,
-                        className: classes(logo.className, 'app__app-bar__header__logo'),
-                    }}
-                    menu={{ 
-                        className: 'app__app-bar__header__menu', 
-                        items: menu, 
-                    }}
-                    utilities={{
-                        className: 'app__app-bar__header__utilities',
-                        items: [
-                            {
-                                ...help,
-                                className: classes(help.className, 'app__app-bar__header__utilities__help'), 
+            <Header as="header" className="app__header"  
+                logo={{
+                    ...logo,
+                    svg: Logo,
+                    className: classes(logo.className, 'app__header__logo'),
+                }}
+                menu={{ 
+                    className: 'app__header__menu', 
+                    items: menu, 
+                }}
+                utilities={{
+                    className: 'app__header__utilities',
+                    items: [
+                        {
+                            ...help,
+                            className: classes(help.className, 'app__header__utilities__help'), 
+                        },
+                        { 
+                            ...myAccount,
+                            className: classes(myAccount.className, 'app__header__utilities__account'),
+                        },
+                        { 
+                            ...search, 
+                            className: classes(search.className, 'app__header__utilities__search'),
+                            icon: {
+                                svg: IconSearch,
+                                ...search.icon,
                             },
-                            { 
-                                ...myAccount,
-                                className: classes(myAccount.className, 'app__app-bar__header__utilities__account'),
+                        },
+                        {
+                            ...cart,
+                            className: classes(cart.className, 'app__header__utilities__cart'),
+                            icon: {
+                                svg: IconBag,
+                                ...cart.icon,
                             },
-                            { 
-                                ...search, 
-                                className: classes(search.className, 'app__app-bar__header__utilities__search'),
-                                icon: {
-                                    svg: IconSearch,
-                                    ...search.icon,
-                                },
-                            },
-                            {
-                                ...cart,
-                                className: classes(cart.className, 'app__app-bar__header__utilities__cart'),
-                                icon: {
-                                    svg: IconBag,
-                                    ...cart.icon,
-                                },
-                            },
-                        ],
-                    }}
-                />
-            </AppBar>
+                        },
+                    ],
+                }}
+            />
             
             <main className="app__main">
                 {children}
@@ -231,17 +226,14 @@ export const App: Component<AppProps> = ({
                 }
 
                 /** App Bar */
-                .app__app-bar {
-                    z-index: 2;
-                }
-                
-                .app__app-bar__header__logo {
+                .app__header__logo {
                     margin: 0;
                     padding: 0;
                     line-height: 0;
+                    z-index: 2;
                 }
 
-                .app__app-bar__header__logo svg {
+                .app__header__logo svg {
                     height: 2.8rem;
 
                     @media(--large-screen) {
@@ -298,13 +290,13 @@ export const App: Component<AppProps> = ({
                 }
 
                 @media(--small-screen-only) {
-                    .app__app-bar__header__menu,
-                    .app__app-bar__header__utilities__search,
-                    .app__app-bar__header__utilities__cart {
+                    .app__header__menu,
+                    .app__header__utilities__search,
+                    .app__header__utilities__cart {
                         display: none;
                     }
 
-                    .app__app-bar__header {
+                    .app__header {
                         grid-template-areas: "logo utilities";
                     }
                 }
