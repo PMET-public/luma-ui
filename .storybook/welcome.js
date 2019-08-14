@@ -30,10 +30,9 @@ storiesOf('👋 Welcome', module)
       
                 <pre className="source">
                     <code>{source`
-                        👌 src/components/FooBar/FooBar.tsx created
-                        👌 src/components/FooBar/FooBar.story.tsx created
-                        👌 src/components/FooBar/index.ts created
-                        ✨  Done in 0.18s.
+                        ✨ src/components/FooBar/FooBar.tsx created
+                        ✨ src/components/FooBar/FooBar.story.tsx created
+                        ✨ src/components/FooBar/index.ts created
                         `}</code>
                 </pre>
             </div>
@@ -46,10 +45,9 @@ storiesOf('👋 Welcome', module)
 
                 <pre className="source">
                     <code>{source`
-                        👌 src/pages/FooBar/FooBar.tsx created
-                        👌 src/pages/FooBar/FooBar.story.tsx created
-                        👌 src/pages/FooBar/index.ts created
-                        ✨  Done in 0.18s.
+                        ✨ src/pages/FooBar/FooBar.tsx created
+                        ✨ src/pages/FooBar/FooBar.story.tsx created
+                        ✨ src/pages/FooBar/index.ts created
                     `}</code>
                 </pre>
             </div>
