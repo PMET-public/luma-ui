@@ -34,44 +34,43 @@ export const ProductItem: Component<ProductItemProps> = ({
                 />
             )}
 
-            <Image 
-                height="1580"
-                transition
-                vignette={1}
-                width="1274"
-                {...image}
-                src={image ? image.src : undefined}
-                className={classes('product-item__image', image && image.className)}
-            >
-                {colors && (
-                    <ul className="product-item__colors">
-                        {colors.map(({ value }, index) => (
-                            <li className="product-item__colors__item"
-                                key={index}
-                                style={{ backgroundColor: value }}
-                            ></li>
-                        ))}
-                    </ul>
+            <Skeleton image={{ height: 1580, width: 1274 }}>
+                {image && (
+                    <Image 
+                        height="1580"
+                        transition
+                        vignette={1}
+                        width="1274"
+                        {...image}
+                        className={classes('product-item__image', image && image.className)}
+                    />
                 )}
+            </Skeleton>
+                
+            {colors && (
+                <ul className="product-item__colors">
+                    {colors.map(({ value }, index) => (
+                        <li className="product-item__colors__item"
+                            key={index}
+                            style={{ backgroundColor: value }}
+                        ></li>
+                    ))}
+                </ul>
+            )}
 
-                <span className="product-item__details">
-                    <span className={classes('product-item__details__title')}>
-                        {title ? (
-                            <Element as="span" {...title} />
-                        ) : (
-                            <Skeleton width="60%" />
-                        )}
-                    </span>
-
-                    <span className={classes('product-item__details__price')}>
-                        {price ? (
-                            <Price as="span" {...price} />
-                        ) : (
-                            <Skeleton width="30%" />
-                        )}
-                    </span>
+            <span className="product-item__details">
+                <span className={classes('product-item__details__title')}>
+                    <Skeleton width="60%">
+                        {title && <Element as="span" {...title} />}
+                    </Skeleton>
                 </span>
-            </Image>
+
+                <span className={classes('product-item__details__price')}>
+                    <Skeleton width="30%">
+                        {price && <Price as="span" {...price} />}
+                    </Skeleton>
+                </span>
+            </span>
 
             <style jsx global>{`
                 .product-item {

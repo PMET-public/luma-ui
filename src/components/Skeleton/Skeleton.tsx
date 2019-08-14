@@ -8,6 +8,10 @@ export type SkeletonProps = Props<{
     lines?: number
     width?: string
     height?: string
+    image?: {
+        width: number
+        height: number
+    }
 }>
 
 export const Skeleton: Component<SkeletonProps> = ({ 
@@ -15,19 +19,35 @@ export const Skeleton: Component<SkeletonProps> = ({
     lines = 1,
     shape = 'rectangle',
     width = '100%',
+    image,
+    children,
     ...props
 }) => {
     const { colors } = useTheme()
 
-    return (
+    return children ? (
+        <React.Fragment>
+            {children}
+        </React.Fragment>
+    ) : (
         <Element as="span" {...props} className={classes('skeleton', props.className)}>
             {new Array(lines).fill(null).map((_, index) => (
                 <span className={classes('skeleton__line', `--${shape}`)}
                     aria-disabled
                     key={index}
-                    style={{ width, height }}
+                    style={{ width, minHeight: height }}
                 >
-                    &zwnj;
+                    {image ? (
+                        <img className="skeleton__line__image"
+                            aria-hidden
+                            {...image}
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
+                        />
+                    ) : (
+                        <React.Fragment>
+                            &zwnj;
+                        </React.Fragment>
+                    )}
                 </span>
             ))}
 
@@ -49,6 +69,11 @@ export const Skeleton: Component<SkeletonProps> = ({
                     &.--circle {
                         border-radius: 50%;
                     }
+                }
+
+                .skeleton__line__image {
+                    height: auto;
+                    max-width: 100%;
                 }
 
                 @keyframes shimmer {

@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
-import Skeleton from '../Skeleton'
 
 import ErrorIcon from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
 
 export type ImageProps = Props<{
     alt?: string
     height?: string | number
-    src?: string
+    src: string
     width?: string | number
     vignette?: number
     transition?: boolean
@@ -16,7 +15,6 @@ export type ImageProps = Props<{
 
 export const ImageComponent: Component<ImageProps> = ({
     alt,
-    children,
     height,
     src,
     transition = false,
@@ -47,42 +45,29 @@ export const ImageComponent: Component<ImageProps> = ({
 
     return (
         <Element {...props} className={classes('image', props.className)}>
-            <figure className="image__figure">
-                <div className={classes('image__wrapper', ['--vignette', loaded && vignette > 0], ['--error', error])}>
-                    {src && (
-                        <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
-                            src={src}
-                            ref={imageRef}
-                            onLoad={handleImageLoaded}
-                            onError={handleImageError}
-                            {...{alt, width, height}}
-                        />
-                    )}
-                    <img className="image__img image__placeholder"
-                        aria-hidden="true"
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
-                        {...{width, height}}
-                    />
+            <div className={classes('image__wrapper', ['--vignette', loaded && vignette > 0], ['--error', error])}>
+                <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
+                    src={src}
+                    ref={imageRef}
+                    onLoad={handleImageLoaded}
+                    onError={handleImageError}
+                    {...{alt, width, height}}
+                />
 
-                    {error && (
-                        <ErrorIcon className="image__error-icon" />
-                    )}
-                </div>
+                <img className="image__img image__placeholder"
+                    aria-hidden="true"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
+                    {...{width, height}}
+                />
 
-                {children && (
-                    <figcaption className="image__caption">
-                        {children}
-                    </figcaption>
+                {error && (
+                    <ErrorIcon className="image__error-icon" />
                 )}
-            </figure>
+            </div>
 
             <style jsx global>{`
                 .image {
                     display: inline-flex;
-                }
-
-                .image__figure {
-                    display: inherit;
                 }
 
                 .image__wrapper {

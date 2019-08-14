@@ -12,9 +12,7 @@ storiesOf('📦 Components/Image', module)
             width={number('width', 600)}
             vignette={number('vignette', 0)}
             transition={boolean('transition', true)}
-        >
-            {text('caption', '')}
-        </Image>
+        />
     ))
     .add('Broken URL', () => (
         <Image 
@@ -24,7 +22,5 @@ storiesOf('📦 Components/Image', module)
             width={number('width', 600)}
             vignette={number('vignette', 0)}
             transition={boolean('transition', true)}
-        >
-            {text('caption', '')}
-        </Image>
+        />
     ))

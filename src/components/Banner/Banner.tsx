@@ -30,31 +30,31 @@ export const Banner: Component<BannerProps> = ({
                 transition
                 {...image} 
                 className={classes('banner__image', image.className)} 
-            >
-                <div className={classes('banner__content', `--${position}`)}>
+            />
+            
+            <div className={classes('banner__content', `--${position}`)}>
 
-                    {titles && (
-                         <div className="banner__content__titles">
-                             {titles.map(({ large = false, ...title }, index) => (
-                                <Element {...title} className={classes('banner__content__titles__item', ['--large', large])}
-                                    key={index}
-                                />
-                             ))}
-                         </div>
-                    )}
-
-                    {buttons && (
-                        <div className="banner__content__buttons">
-                            {buttons.map((button, index) => (
-                                <Button className={classes('banner__content__buttons__item')} 
-                                    key={index}
-                                    {...button}
-                                />
+                {titles && (
+                        <div className="banner__content__titles">
+                            {titles.map(({ large = false, ...title }, index) => (
+                            <Element {...title} className={classes('banner__content__titles__item', ['--large', large])}
+                                key={index}
+                            />
                             ))}
                         </div>
-                    )}
-                </div>
-            </Image>
+                )}
+
+                {buttons && (
+                    <div className="banner__content__buttons">
+                        {buttons.map((button, index) => (
+                            <Button className={classes('banner__content__buttons__item')} 
+                                key={index}
+                                {...button}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
 
             <style jsx global>{`
                 .banner {

@@ -18,29 +18,32 @@ storiesOf('📦 Components/Skeleton', module)
         
         return (
             <div className="story">
-                <h1 className="story__title">
-                    {title || <Skeleton width="30rem" />}
-                </h1>
+                <div className="story__content">
+                    <h1 className="story__title">
+                        {title || <Skeleton width="30rem" />}
+                    </h1>
 
-                {body ? <Html source={body} /> : <Skeleton lines={4} />}
-      
+                    {body ? <Html source={body} /> : <Skeleton lines={4} />}
+                </div>
+
                 <style jsx global>{`
 
-                body {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100vh;
-                }
-                
-                .story {
-                    margin: auto;
-                    width: 40rem;
-                    display: grid;
-                    grid-gap: 1rem;
-                }
+                    .story {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        width: 100vw;
+                    }
+                    
+                    .story__content {
+                        width: 40rem;
+                        display: grid;
+                        grid-gap: 1rem;
+                        grid-auto-rows: max-content;
+                    }
 
-            `}</style>
+                `}</style>
             </div>
         )
     })
