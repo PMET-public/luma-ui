@@ -2,19 +2,23 @@ import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 import Price, { PriceProps } from '../Price'
-import Skeleton from '../Skeleton'
+import ContentLoader, { IContentLoaderProps } from 'react-content-loader'
 
 import { useTheme } from '../../theme'
 
 export type ProductItemProps = Props<{
     badge?: Props
     colors?: Array<{ value: string }>
-    image?: ImageProps
-    price?: PriceProps
-    title?: Props
+    image: ImageProps
+    price: PriceProps
+    title: Props
 }>
 
-export const ProductItem: Component<ProductItemProps> = ({
+type CompoundComponent = {
+    Skeleton: Component<Props<IContentLoaderProps>>
+}
+
+export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
     badge,
     colors,
     image,
@@ -27,26 +31,22 @@ export const ProductItem: Component<ProductItemProps> = ({
     return (
         <Element {...props} className={classes('product-item', props.className)}>
             {badge && (
-                <Element 
+                <Element
                     as="span"
                     {...badge}
                     className={classes('product-item__badge', badge.className)}
                 />
             )}
 
-            <Skeleton image={{ height: 1580, width: 1274 }}>
-                {image && (
-                    <Image 
-                        height="1580"
-                        transition
-                        vignette={1}
-                        width="1274"
-                        {...image}
-                        className={classes('product-item__image', image && image.className)}
-                    />
-                )}
-            </Skeleton>
-                
+            <Image
+                height="1580"
+                transition
+                vignette={1}
+                width="1274"
+                {...image}
+                className={classes('product-item__image', image && image.className)}
+            />
+
             {colors && (
                 <ul className="product-item__colors">
                     {colors.map(({ value }, index) => (
@@ -60,15 +60,11 @@ export const ProductItem: Component<ProductItemProps> = ({
 
             <span className="product-item__details">
                 <span className={classes('product-item__details__title')}>
-                    <Skeleton width="60%">
-                        {title && <Element as="span" {...title} />}
-                    </Skeleton>
+                    <Element as="span" {...title} />
                 </span>
 
                 <span className={classes('product-item__details__price')}>
-                    <Skeleton width="30%">
-                        {price && <Price as="span" {...price} />}
-                    </Skeleton>
+                    <Price as="span" {...price} />
                 </span>
             </span>
 
@@ -142,5 +138,21 @@ export const ProductItem: Component<ProductItemProps> = ({
                 }
             `}</style>
         </Element>
+    )
+}
+
+ProductItem.Skeleton = (props) => {
+    return (
+        <ContentLoader
+            height={810}
+            width={600}
+            primaryColor="#f3f3f3"
+            secondaryColor="#e6e6e6"
+            {...props}
+        >
+            <rect x="16" y="762" rx="4" ry="4" width="60%" height="16" />
+            <rect x="16" y="787" rx="4" ry="4" width="30%" height="15" />
+            <rect x="0" y="0" rx="5" ry="5" width="600" height="750" />
+        </ContentLoader>
     )
 }

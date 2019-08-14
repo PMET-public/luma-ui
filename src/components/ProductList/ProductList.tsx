@@ -26,10 +26,7 @@ export const ProductList: Component<ProductListProps> = ({
             ))}
 
             {!!loading && new Array(loading).fill(null).map((_, index) => (
-                <ProductItem 
-                    key={index} 
-                    className="product-list__item"
-                />
+                <ProductItem.Skeleton key={index} className={classes('product-list__item')} />
             ))}
 
             <style jsx global>{`

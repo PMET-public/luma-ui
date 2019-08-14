@@ -46,7 +46,7 @@ storiesOf('📦 Components/ProductItem', module)
     ))
     .add('Skeleton', () => (
         <div className="story">
-            <ProductItem className="story__product-item" />
+            <ProductItem.Skeleton className="story__product-item" />
 
             <style jsx global>{`
                 .story {
