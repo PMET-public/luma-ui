@@ -127,14 +127,14 @@ export const Category: Component<CategoryProps> = ({
 
                 .category__top-bar {
                     align-items: center;
-                    background-color: ${colors.surface.fade(0.15)};
+                    background-color: ${colors.surface75};
                     backdrop-filter: blur(50px);
-                    padding: 0 1rem;
+                    padding: 0 2rem;
                     color: ${colors.onSurface};
                     display: grid;
                     grid-gap: 2rem;
                     grid-template-columns: 1fr auto;
-                    min-height: 6rem;
+                    min-height: 5rem;
                     position: sticky;
                     top: 0;
                     z-index: 1;
@@ -161,7 +161,7 @@ export const Category: Component<CategoryProps> = ({
                 }
 
                 .category__top-bar__heading__breadcrumbs {
-                    color: ${colors.onSurface.fade(0.4)};
+                    color: ${colors.onSurface};
                     font-size: 1.3rem;
                     line-height: inherit;
                 }
@@ -182,6 +182,7 @@ export const Category: Component<CategoryProps> = ({
 
                 .category__categories {
                     margin-top: -1rem;
+                    padding: 0 2rem;
                 }
 
                 .category__content {
@@ -193,7 +194,7 @@ export const Category: Component<CategoryProps> = ({
                 .category__filters {
                     -webkit-overflow-scrolling: touch;   
                     backdrop-filter: blur(50px);
-                    background-color: ${colors.surface.fade(0.15)};
+                    background-color: ${colors.surface75};
                     color: ${colors.onSurface};
                     display: flex;
                     flex-direction: column;
@@ -220,7 +221,7 @@ export const Category: Component<CategoryProps> = ({
                 }
 
                 .category__filters__buttons {
-                    background-color: ${colors.surface.fade(0.1)};
+                    background-color: ${colors.surface};
                     bottom: 0;
                     color: ${colors.onSurface};
                     display: grid;

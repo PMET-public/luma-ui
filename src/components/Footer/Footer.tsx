@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
 export type FooterProps = Props<{ }>
@@ -12,23 +12,18 @@ export const Footer: Component<FooterProps> = ({
 
     return (
         <Element {...props} className={classes('footer', props.className)}>
-            <Container className="footer__container">
-                {children}
-            </Container>
+            {children}
 
             <style jsx global>{`
                 .footer {     
                     background: ${colors.background};  
-                    color: ${colors.onBackground.fade(0.25)};  
-
-                    & a:hover {
-                        filter: opacity(0.5);
-                    }
-                }
-
-                .footer__container {
+                    color: ${colors.onBackground};  
                     font-size: 1.3rem;
                     padding: 3rem;
+
+                    & a:hover {
+                        opacity: 0.5;
+                    }
                 }
             `}</style>
         </Element>

@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useState, ReactElement, useRef } from 'react'
 import { stripIndent } from 'common-tags'
 import prism from 'prismjs'
-import Card from '../Card'
 
 import 'prismjs/components/prism-less'
 import 'prismjs/components/prism-jsx'
@@ -87,7 +86,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
             {/* {render && lang === 'less' && renderLESS(children)} */}
 
-            <Card onDoubleClick={triggerCopy}>
+            <div onDoubleClick={triggerCopy}>
                 <span className="code-block__label">{lang}</span>
                 <pre className="code-block__pre">
                     <code
@@ -97,21 +96,26 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                         spellCheck={false}
                     ></code>
                 </pre>
-            </Card>
+            </div>
+
+            <style jsx>{`
+                .code-block::after {
+                    content: "${copyStatus === -1 ? '💩' : copyStatus === 1 ? '👍' : '2x🖱'}";
+                    opacity: ${copyStatus === 0 ? 0 : 1};
+                }
+            `}</style>
 
             <style jsx global>{`
                 .code-block {
-                    position: relative;
-                }
-
-                .code-block :global(.card) {
                     background-color: #333;
+                    border-radius: 1rem;
                     color: white;
                     display: inline-flex;
                     flex-direction: column;
                     font-size: 14px;
-                    width: 100%;
                     padding: 1.5rem;
+                    position: relative;
+                    width: 100%;
                 }
 
                 .code-block__pre {
@@ -123,8 +127,6 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                 }
 
                 .code-block::after {
-                    content: "${copyStatus === -1 ? '💩' : copyStatus === 1 ? '👍' : '2x🖱'}";
-                    opacity: ${copyStatus === 0 ? 0 : 1};
                     position: absolute;
                     right: 10px;
                     text-shadow: 1px 1px 0 #000;

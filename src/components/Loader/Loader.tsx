@@ -33,10 +33,8 @@ export const Loader: Component<LoaderProps> = ({
                 .loader__dot {
                     width: 1em;
                     height: 1em;
-                
                     border-radius: 50%;
-                    background-color: ${colors.primary.fade(0.6)};
-                
+                    background-color: ${colors.primary25};
                     transform-origin: 50%;
                     animation-duration: var(--duration);
                     animation-name: loader__animation;

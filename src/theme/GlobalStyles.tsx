@@ -1,12 +1,16 @@
 import React from 'react'
+import { useTheme } from './useTheme'
 
-export default ({ colors }: any) => {
+export default () => {
+    const { colors } = useTheme()
 
     return (
         <style jsx global>{`
             body {
                 background: ${colors.background};
                 color: ${colors.onBackground};
+                margin: 0 auto;
+                max-width: 180rem;
             }    
 
             a {

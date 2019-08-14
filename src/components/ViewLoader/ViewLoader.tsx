@@ -32,7 +32,7 @@ export const ViewLoader: Component<ViewLoaderProps> = ({
                     justify-content: center;
                     position: absolute;
                     width: 100%;
-                    background-color: ${colors.surface.fade(0.1)};
+                    background-color: ${colors.surface};
                 }
 
                 .view-loader__image {

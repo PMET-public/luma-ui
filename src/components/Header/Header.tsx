@@ -44,14 +44,18 @@ export const Header: Component<HeaderProps> = ({
 
             <style jsx global>{`
                 .header {
-                    display: grid;
-                    grid-gap: 1rem 2rem;
                     align-items: center;
+                    background-color: ${colors.surface};
+                    box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.09), inset 0 -0.2rem 0 rgba(255, 255, 255, 0.09);   
+                    color: ${colors.onSurface};
+                    display: grid;
                     font-size: 1.4rem;
-                    grid-template-areas: "logo utilities"
-                                        "navigation navigation";
+                    grid-gap: 1rem 2rem;
+                    grid-template-areas: "logo utilities" "navigation navigation";
                     grid-template-columns: auto;
                     grid-template-rows: auto;
+                    padding: 1.6rem 2rem;
+                    width: 100%;
 
                     @media (--medium-screen) {
                         grid-template-areas: "logo navigation utilities";
@@ -145,7 +149,7 @@ const HeaderMenu: Component<HeaderMenuProps> = ({
 
                 .header-menu__content {
                     display: inline-grid;
-                    font-family: ${typography.headingFamily};
+                    font-family: ${typography.heading.family};
                     font-weight: 600;
                     grid-auto-columns: max-content;
                     grid-auto-flow: column;

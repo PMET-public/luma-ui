@@ -93,8 +93,7 @@ export const SearchBar: Component<SearchBarProps> = ({
             <style jsx global>{`
                 .search-bar {
                     --opacity: 0.64;
-                    background-color: ${colors.onSurface.fade(0.95)};
-                    border-radius: 1rem;
+                    border-bottom: 0.1rem solid ${colors.onSurface50};
                     color: ${colors.onSurface};
 
                     &:hover,

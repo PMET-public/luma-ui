@@ -47,7 +47,7 @@ export const ImageComponent: Component<ImageProps> = ({
     return (
         <Element {...props} className={classes('image', props.className)}>
             <figure className="image__figure">
-                <div className={classes('image__wrapper', ['--vignette', vignette > 0], ['--error', error])}>
+                <div className={classes('image__wrapper', ['--vignette', loaded && vignette > 0], ['--error', error])}>
                     {src && (
                         <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
                             src={src}
@@ -118,7 +118,7 @@ export const ImageComponent: Component<ImageProps> = ({
                 }
 
                 .image__placeholder {
-                    background: linear-gradient(-45deg, ${colors.onSurface.fade(0.95)}, ${colors.onSurface.fade(0.85)});
+                    background: linear-gradient(-45deg, ${colors.onSurface50}, ${colors.onSurface15});
                     background-size: 300%;
                 }
 
@@ -128,15 +128,15 @@ export const ImageComponent: Component<ImageProps> = ({
                 }
 
                 .image__error-icon {
-                    color: ${colors.primary.fade(0.5)};
+                    color: ${colors.primary50};
                     fill: currentColor;
-                    position: absolute;
-                    width: 1em;
-                    height: 1em;
-                    top: 50%;
-                    left: 50%;
                     font-size: 3rem;
+                    height: 1em;
+                    left: 50%;
+                    position: absolute;
+                    top: 50%;
                     transform: translate(-50%, -50%);
+                    width: 1em;
                 }
             `}</style>
         </Element>

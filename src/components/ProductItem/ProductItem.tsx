@@ -85,7 +85,7 @@ export const ProductItem: Component<ProductItemProps> = ({
                 }
 
                 .product-item__badge {
-                    background-color: ${theme.colors.accent.fade(0.2)};
+                    background-color: ${theme.colors.accent};
                     color: ${theme.colors.onAccent};
                     font-size: 1.4rem;
                     left: 2rem;
@@ -118,18 +118,18 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__details {
                     display: grid;
                     grid-gap: 0.75rem;
-                    padding: 1rem 0;
+                    padding: 1rem;
                     font-size: 1.4rem;
 
                     @media(--medium-screen) {
-                        font-size: 1.5rem;
+                        font-size: 1.6rem;
                     }
                 }
 
                 .product-item__details__title,
                 .product-item__details__price {
                     &.--loading::after {
-                        background: linear-gradient(-45deg, ${theme.colors.onSurface.fade(0.95)}, ${theme.colors.onSurface.fade(0.85)});
+                        background: linear-gradient(-45deg, ${theme.colors.onSurface50}, ${theme.colors.onSurface15});
                         content: "";
                         display: inline-block;
                         height: 1em;

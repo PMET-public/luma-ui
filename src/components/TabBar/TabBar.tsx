@@ -48,7 +48,7 @@ export const TabBar: Component<TabBarProps> = ({
                     font-size: 2.3rem;
                     justify-content: center;
                     opacity: 0.5;
-
+                    
                     &.--active {
                         opacity: 1;
                     }

@@ -4,7 +4,7 @@ module.exports = (Name, folder = 'components') => {
 
     labels = {
         components: '📦 Components',
-        templates: '📑 Templates',
+        pages: '📑 Pages',
     }
     
     return source`

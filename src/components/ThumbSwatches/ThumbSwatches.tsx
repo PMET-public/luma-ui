@@ -47,7 +47,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
 
                 .thumb-swatches__item {
                     border-radius: 0.5rem;
-                    border: 0.1rem solid ${colors.primary.fade(0.9)};
+                    border: 0.1rem solid ${colors.primary25};
                     padding: 0.3rem;
                     transition: all 305ms ease;
 
@@ -60,7 +60,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                     }
 
                     &:hover:not(.--disabled) {
-                        border-color: ${colors.primary.fade(0.6)};
+                        border-color: ${colors.primary75};
                     }
                 }
 

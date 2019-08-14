@@ -17,7 +17,7 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
     return items ? (
         <Element {...props} className={classes('products-carousel', props.className)}>
             { title && (
-                <Element as="h3" {...title} />
+                <Element as="h3" {...title} className={classes('products-carousel__title', title.className)} />
             )}
 
              <Carousel className="products-carousel__carousel"
@@ -41,6 +41,10 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
                     grid-gap: 2rem;
                     grid-auto-columns: minmax(0, 1fr);
                     width: 100%;
+                }
+
+                .products-carousel__title {
+                    padding: 0 2rem;
                 }
 
                 .products-carousel__carousel {

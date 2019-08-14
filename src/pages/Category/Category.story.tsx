@@ -402,7 +402,7 @@ export const ProductListMockData: CategoryProps = {
     },
 }
 
-storiesOf('📑 Templates/Category', module)
+storiesOf('📑 Pages/Category', module)
     .add('Default', () => (
         <App {...AppMockData}>
             <Category {...ProductListMockData} />

@@ -77,7 +77,7 @@ Pills.Item = ({
                 .pill-item {
                     background-color: ${colors.surface};
                     border-radius: 1rem;
-                    border: 0.1rem solid ${colors.onSurface.fade(0.9)};
+                    border: 0.1rem solid ${colors.onSurface15};
                     color: ${colors.onSurface};
                     font-weight: 600;
                     padding: 1rem 1.4rem;
@@ -96,7 +96,7 @@ Pills.Item = ({
                 }
 
                 .pill-item__count {
-                    color: ${colors.onSurface.fade(0.5)};
+                    color: ${colors.onSurface75};
                     font-size: 0.9em;
                     font-weight: 400;
                 }
