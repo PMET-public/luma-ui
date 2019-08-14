@@ -25,11 +25,10 @@ export const ProductList: Component<ProductListProps> = ({
                 />
             ))}
 
-            {!!loading && new Array(loading).fill({ loading: true }).map((placeholder, index) => (
+            {!!loading && new Array(loading).fill(null).map((_, index) => (
                 <ProductItem 
                     key={index} 
-                    {...placeholder} 
-                    className="product-list__item --loading"
+                    className="product-list__item"
                 />
             ))}
 

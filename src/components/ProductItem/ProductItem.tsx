@@ -2,6 +2,7 @@ import React from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import Image, { ImageProps } from '../Image'
 import Price, { PriceProps } from '../Price'
+import Skeleton from '../Skeleton'
 
 import { useTheme } from '../../theme'
 
@@ -9,7 +10,6 @@ export type ProductItemProps = Props<{
     badge?: Props
     colors?: Array<{ value: string }>
     image?: ImageProps
-    loading?: boolean
     price?: PriceProps
     title?: Props
 }>
@@ -18,7 +18,6 @@ export const ProductItem: Component<ProductItemProps> = ({
     badge,
     colors,
     image,
-    loading = false,
     price,
     title,
     ...props
@@ -26,8 +25,8 @@ export const ProductItem: Component<ProductItemProps> = ({
     const theme = useTheme()
 
     return (
-        <Element {...props} className={classes('product-item', props.className, ['--loading', loading])}>
-            {!loading && badge && (
+        <Element {...props} className={classes('product-item', props.className)}>
+            {badge && (
                 <Element 
                     as="span"
                     {...badge}
@@ -41,10 +40,10 @@ export const ProductItem: Component<ProductItemProps> = ({
                 vignette={1}
                 width="1274"
                 {...image}
-                src={!loading && image ? image.src : undefined}
+                src={image ? image.src : undefined}
                 className={classes('product-item__image', image && image.className)}
             >
-                {!loading && colors && (
+                {colors && (
                     <ul className="product-item__colors">
                         {colors.map(({ value }, index) => (
                             <li className="product-item__colors__item"
@@ -56,15 +55,19 @@ export const ProductItem: Component<ProductItemProps> = ({
                 )}
 
                 <span className="product-item__details">
-                    <span className={classes('product-item__details__title', ['--loading', loading])}>
-                        {!loading && title && (
+                    <span className={classes('product-item__details__title')}>
+                        {title ? (
                             <Element as="span" {...title} />
+                        ) : (
+                            <Skeleton width="60%" />
                         )}
                     </span>
 
-                    <span className={classes('product-item__details__price', ['--loading', loading])}>
-                        {!loading && price && (
+                    <span className={classes('product-item__details__price')}>
+                        {price ? (
                             <Price as="span" {...price} />
+                        ) : (
+                            <Skeleton width="30%" />
                         )}
                     </span>
                 </span>
@@ -75,13 +78,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                     display: block;
                     overflow: hidden;
                     position: relative;
-
-                    &.--loading {
-                        animation-duration: 500ms;
-                        animation-iteration-count: infinite;
-                        animation-name: product-item__loading-animation;
-                        animation-timing-function: linear;
-                    }
                 }
 
                 .product-item__badge {
@@ -126,30 +122,13 @@ export const ProductItem: Component<ProductItemProps> = ({
                     }
                 }
 
-                .product-item__details__title,
-                .product-item__details__price {
-                    &.--loading::after {
-                        background: linear-gradient(-45deg, ${theme.colors.onSurface50}, ${theme.colors.onSurface15});
-                        content: "";
-                        display: inline-block;
-                        height: 1em;
-                    }
-                }
-
                 .product-item__details__title {
                     font-size: 1em;
                     font-weight: 600;
-
-                    &.--loading::after {
-                        width: 60%;
-                    }
                 }
 
                 .product-item__details__price {
                     font-size: 0.9em;
-                    &.--loading::after {
-                        width: 30%;
-                    }
                 }
 
                 .product-item__colors {
@@ -161,18 +140,6 @@ export const ProductItem: Component<ProductItemProps> = ({
                     display: inline-block;
                     height: 0.65rem;
                     width: 100%;
-                }
-
-                @keyframes product-item__loading-animation {
-                    0% {
-                        opacity: 0.75;
-                    }
-                    50% {
-                        opacity: 0.5;
-                    }
-                    100% {
-                        opacity: 0.75;
-                    }
                 }
             `}</style>
         </Element>

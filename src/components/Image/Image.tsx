@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
+import Skeleton from '../Skeleton'
 
 import ErrorIcon from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
 
@@ -62,6 +63,7 @@ export const ImageComponent: Component<ImageProps> = ({
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                         {...{width, height}}
                     />
+
                     {error && (
                         <ErrorIcon className="image__error-icon" />
                     )}
@@ -118,7 +120,7 @@ export const ImageComponent: Component<ImageProps> = ({
                 }
 
                 .image__placeholder {
-                    background: linear-gradient(-45deg, ${colors.onSurface50}, ${colors.onSurface15});
+                    background: linear-gradient(-45deg, ${colors.onSurface25}, ${colors.onSurface15});
                     background-size: 300%;
                 }
 
