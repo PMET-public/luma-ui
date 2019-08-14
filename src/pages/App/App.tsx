@@ -257,11 +257,9 @@ export const App: Component<AppProps> = ({
 
                 /** Footer */
                 .app__footer {
-                    & .footer__container {
                         display: grid;
                         filter: opacity(0.65);
                         grid-gap: 3rem;
-                    }
                 }
 
                 .app__footer__menu {
