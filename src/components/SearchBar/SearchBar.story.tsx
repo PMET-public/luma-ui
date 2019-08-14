@@ -3,7 +3,6 @@ import SearchBar from './'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, number, boolean } from '@storybook/addon-knobs'
-import { Container } from '../../lib'
 
 storiesOf('📦 Components/SearchBar', module)
     .add('Default', () => {
@@ -12,7 +11,7 @@ storiesOf('📦 Components/SearchBar', module)
 
         return (
             <div className="story">
-                <Container>
+                <div>
                     <SearchBar 
                         onUpdate={(query: string) => action(`onUpdate(${query})`)()}
                         onSearch={(query: string) => action(`onSubmit(${query})`)()}
@@ -31,7 +30,7 @@ storiesOf('📦 Components/SearchBar', module)
                             width: 100%;
                         }
                     `}</style>
-                </Container>
+                </div>
             </div>
         )
     })

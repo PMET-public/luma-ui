@@ -13,12 +13,6 @@ export const Page: Component<PageProps> = ({
     return (
         <Element {...props} className={classes('page', props.className)}>
             <Assembler {...assembler} />
-            
-            <style jsx global>{`
-                .page {
-                    padding-top: 1rem;
-                }
-            `}</style>
         </Element>
     )
 }

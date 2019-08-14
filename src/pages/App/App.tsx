@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Component, Element, Props, classes } from '../../lib'
+import { Component, Element, Props, classes } from '../../lib'
 
 import { useResize } from '../../hooks/useResize'
 
@@ -132,9 +132,9 @@ export const App: Component<AppProps> = ({
                 />
             </AppBar>
             
-            <Container as="main" className="app__main">
+            <main className="app__main">
                 {children}
-            </Container>
+            </main>
 
             <Footer as="footer" className="app__footer">
                 {footer.menu && (

@@ -179,12 +179,12 @@ export const Product: Component<ProductProps> = ({
 
                 .product__info__header__breadcrumbs {
                     font-size: 1.4rem;
-                    color: ${colors.onSurface};
+                    color: ${colors.onSurface75};
                 }
 
                 .product__info__header__sku {
                     font-size: 0.85em;
-                    color: ${colors.onSurface};
+                    color: ${colors.onSurface75};
                 }
 
                 .product__info__swatches {

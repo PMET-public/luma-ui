@@ -2,11 +2,10 @@ import React from 'react'
 import ProductList from '.'
 import { storiesOf } from '@storybook/react'
 import { number } from '@storybook/addon-knobs'
-import { Container } from '../../lib'
 
 storiesOf('📦 Components/ProductList', module)
     .add('Default', () => (
-        <Container className="story">
+        <div className="story">
             <ProductList
                 loading={number('loading #', 0)}
                 items={
@@ -21,7 +20,7 @@ storiesOf('📦 Components/ProductList', module)
                             label: 'Starting at',
                         },
                         title: {
-                            label: 'Circle Hooded Ice Flee',
+                            text: 'Circle Hooded Ice Flee',
                         },
                         colors: [
                             { value: 'brown' }, 
@@ -32,5 +31,5 @@ storiesOf('📦 Components/ProductList', module)
                     }))
                 }
             />
-        </Container>
+        </div>
     ))

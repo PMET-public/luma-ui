@@ -9,6 +9,8 @@ export default () => {
             body {
                 background: ${colors.background};
                 color: ${colors.onBackground};
+                margin: 0 auto;
+                max-width: 180rem;
             }    
 
             a {

@@ -52,6 +52,8 @@ export const Header: Component<HeaderProps> = ({
                                         "navigation navigation";
                     grid-template-columns: auto;
                     grid-template-rows: auto;
+                    width: 100%;
+                    padding: 0 2rem;
 
                     @media (--medium-screen) {
                         grid-template-areas: "logo navigation utilities";

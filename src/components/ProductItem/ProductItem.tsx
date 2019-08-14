@@ -118,11 +118,11 @@ export const ProductItem: Component<ProductItemProps> = ({
                 .product-item__details {
                     display: grid;
                     grid-gap: 0.75rem;
-                    padding: 1rem 0;
+                    padding: 1rem;
                     font-size: 1.4rem;
 
                     @media(--medium-screen) {
-                        font-size: 1.5rem;
+                        font-size: 1.6rem;
                     }
                 }
 

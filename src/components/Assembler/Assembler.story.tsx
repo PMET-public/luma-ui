@@ -4,11 +4,10 @@ import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 import { BannerProps } from '../Banner'
 import { ProductsCarouselProps } from '../ProductsCarousel'
-import { Container } from '../../lib'
 
 storiesOf('📦 Components/Assembler', module)
     .add('Default', () => (
-        <Container className="story">
+        <div className="story">
             <Assembler components={object('components', [
                 {
                     name: 'Banner',
@@ -61,5 +60,5 @@ storiesOf('📦 Components/Assembler', module)
                     } as ProductsCarouselProps,
                 },
             ])} />
-        </Container>
+        </div>
     ))

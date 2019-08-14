@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element, classes } from '../../lib'
 import { useTheme } from '../../theme'
 
 /**
@@ -17,14 +17,10 @@ export const AppBar: Component<AppBarProps> = ({
 
     return (
         <Element {...props} className={classes('app-bar', props.className)}>
-            <div className="app-bar__content">
-                <Container>
-                    {children}
-                </Container>
-            </div>
+            {children}
 
             <style jsx global>{`
-                .app-bar__content {
+                .app-bar {
                     align-items: center;
                     background-color: ${colors.surface};
                     box-sizing: border-box;

@@ -46,7 +46,7 @@ storiesOf('📦 Components/ProductsCarousel', module)
                     }
 
                     .story__product-carousel {
-                        width: 90vw;
+                        width: 100vw;
                     }
                 `}</style>
             </div>

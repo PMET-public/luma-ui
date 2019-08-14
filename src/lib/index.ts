@@ -1,7 +1,6 @@
 import React, { AllHTMLAttributes, Ref } from 'react'
 import { FunctionComponent } from 'react'
 import { ReactComponentLike } from 'prop-types'
-import { useTheme } from '../theme'
 
 type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
 
@@ -19,39 +18,12 @@ export type Component<P = {}> = FunctionComponent<P>
 /**
  * Element Component
  */
-export const Element: Component<Props> = React.forwardRef(
-    ({  as: Element = 'div', text, children = text, ...props }, ref) => {
-    return (
-        <Element {...props} className={classes(props.className)}
-            ref={ref}
-        >
-            {children}
-        </Element>
-    )
-}) 
-
-/** Container Component */
-export type ContainerProps = Props<{ }>
-export const Container: Component<ContainerProps> = React.forwardRef(
-    ({ children, ...props }, ref) => {
-        return (
-            <Element {...props} className={classes('container', props.className)}
-                ref={ref}
-            >
-            {children}
-
-                <style jsx global>{`
-                    .container {
-                        margin: 0 auto;
-                        max-width: 1800px;
-                        width: 100%;
-                        padding-left: 1rem;
-                        padding-right: 1rem;
-                    }
-                `}</style>
-            </Element>
-        )
-    })
+export const Element: Component<Props> = ({  
+    as = 'div', 
+    text, 
+    children = text, 
+    ...props 
+}) => React.createElement(as, props , children)
 
 /**
  * Classes
