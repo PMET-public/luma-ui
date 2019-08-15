@@ -7,20 +7,15 @@
             }
         ],
         "@babel/typescript",
-        "@babel/react",
+        "@babel/preset-react",
     ],
     "plugins": [
         [
-            "@babel/plugin-syntax-dynamic-import"
-        ],
-        [
-            "styled-jsx/babel",
+            "@babel/plugin-syntax-dynamic-import",
             {
-                "plugins": [
-                    "styled-jsx-plugin-postcss"
-                ]
-            }
-        ]
+
+            },
+        ],
     ],
     "exclude": "node_modules/**",
 }

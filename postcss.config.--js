@@ -7,5 +7,6 @@ module.exports = {
             },
             importFrom: './src/theme/postcss-variables.css',
         }),
+        require('postcss-modules'),
     ],
 }

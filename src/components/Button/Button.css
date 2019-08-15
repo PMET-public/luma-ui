@@ -1,0 +1,39 @@
+.button {
+    --color: red;
+
+    align-items: center;
+    background-color: var(--background, transparent);
+    border-radius: 2.4rem;
+    border: 0.1rem solid;
+    color: var(--color);
+    display: inline-flex;
+    font-size: 1.6rem;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1;
+    padding: 1.6rem 2.8rem;
+    transition-duration: 305ms;
+    transition-property: opacity, color, background-color;
+    transition-timing-function: ease;
+}
+
+a[href] {
+    text-decoration: none !important;
+    color: var(--color);
+}
+
+.fill {
+    background-color: currentColor;
+}
+
+.fill .wrapper {
+    filter: invert(1);
+}
+/* 
+.primary {
+    --color: ${colors.primary};
+}
+
+.secondary {
+    --color: ${colors.secondary};
+} */
