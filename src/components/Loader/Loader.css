@@ -1,0 +1,44 @@
+.root {
+    --duration: 600ms;
+    display: grid;
+    font-size: 1rem;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    grid-gap: 0.5em;
+    justify-content: center;
+}
+
+.dot {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: var(--color-primary25);
+    transform-origin: 50%;
+    animation-duration: var(--duration);
+    animation-name: loader__animation;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    & + .dot {
+        animation-delay: calc(var(--duration) * 0.25);
+
+        & + .dot {
+            animation-delay: calc(var(--duration) * 0.5);
+        }
+    }
+}
+
+@keyframes loader__animation {
+    0%{
+        transform: translateY(0%) scale(1);
+    }
+    30%{
+        transform: translateY(-25%) scale(1);
+    }
+    50%{
+        transform: translateY(0%) scale(1);
+    }
+    70%{
+        transform: translateY(25%) scale(1, 0.9);
+    }
+}

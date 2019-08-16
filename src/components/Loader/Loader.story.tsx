@@ -5,9 +5,9 @@ import { storiesOf } from '@storybook/react'
 storiesOf('📦 Components/Loader', module)
     .add('Default', () => (
         <div className="story">
-            <Loader />
+            <Loader label="Loading" />
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;

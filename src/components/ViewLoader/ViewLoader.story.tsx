@@ -7,7 +7,7 @@ storiesOf('📦 Components/ViewLoader', module)
         <div className="story">
             <ViewLoader />
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;

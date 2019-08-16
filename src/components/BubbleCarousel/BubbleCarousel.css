@@ -1,0 +1,61 @@
+.root {
+    /* 
+        This is... this is just unfortunate.
+        https://stackoverflow.com/questions/40733385/hiding-webkit-scrollbar-when-overflow-scrolling-touch-is-enabled 
+    */
+    --size: 9rem;
+    height: calc(var(--size) + 3rem);
+    overflow-y: hidden;
+}
+
+.wrapper {
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    margin-top: -1rem;
+    overflow-x: scroll;
+    padding: 1rem 0 1rem;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.item {
+    text-decoration: none;
+    padding: 0 0.75rem;
+
+    &:last-of-type {
+        padding-right: 0.75rem;
+    }
+    &:first-of-type {
+        padding-left: 0.75rem;
+    }
+}
+
+.image {
+    composes: root from "../Image/Image.css";
+}
+
+.imageTag {
+    composes: image from "../Image/Image.css";
+
+    border-radius: 50%;
+    display: inline-block;
+    height: var(--size);
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    width: var(--size);
+}
+
+.label {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: var(--size);
+}

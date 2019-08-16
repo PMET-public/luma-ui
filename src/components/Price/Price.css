@@ -1,0 +1,21 @@
+.root {
+    display: grid;
+    grid-gap: 0.75rem;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+}
+
+.label {
+
+}
+
+.regularPrice {
+    &.hasSpecialPrice {
+        text-decoration: line-through;
+        opacity: 0.75;
+    }
+}
+
+.specialPrice {
+
+}

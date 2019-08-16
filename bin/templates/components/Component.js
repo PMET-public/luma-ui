@@ -15,7 +15,7 @@ module.exports = (Name, filename) => source`
             <Element {...props} className={classes('${filename}', props.className)}>
                 👋 Hi, I'm ${Name}
 
-                <style jsx global>{\`
+                <style>{\`
                     .${filename} {
                         
                     }

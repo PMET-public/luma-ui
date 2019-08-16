@@ -24,21 +24,21 @@ storiesOf('📦 Components/HotSpots', module)
                 <HotSpots.Item
                     coords={{ x: 15, y: 42 }}
                     id="0"
-                    text="Sweater"
+                    label="Sweater"
                 >
                     <PriceTagMock text="Knit Sweater" price="$29.99" />
                 </HotSpots.Item>
                 <HotSpots.Item
                     coords={{ x: 78, y: 30 }}
                     id="1"
-                    text="Bag"
+                    label="Bag"
                 >
                     <PriceTagMock text="Handbag" price="$19.99" />
                 </HotSpots.Item>
                 <HotSpots.Item
                     coords={{ x: 63, y: 75 }}
                     id="2"
-                    text="Pants"
+                    label="Pants"
                 >
                     <PriceTagMock text="Cotton Chinos" price="$29.99" />
                 </HotSpots.Item>
@@ -60,7 +60,7 @@ storiesOf('📦 Components/HotSpots', module)
                     <HotSpots.Item
                         coords={{ x: 15, y: 42 }}
                         id="0"
-                        text="Sweater"
+                        label="Sweater"
                     />
                 </a>
             </HotSpots>

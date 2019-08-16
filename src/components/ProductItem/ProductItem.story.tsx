@@ -6,7 +6,7 @@ import { text, object } from '@storybook/addon-knobs'
 storiesOf('📦 Components/ProductItem', module)
     .add('Default', () => (
         <div className="story">
-            <ProductItem className="story__product-item"
+            <ProductItem
                 badge={{
                     text: text('badge', 'New Arrival'),
                 }}
@@ -27,38 +27,36 @@ storiesOf('📦 Components/ProductItem', module)
                     { value: 'blue' },
                     { value: 'gray' },
                 ])}
+                
+                style={{
+                    width: '60rem',
+                }}
             />
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;
                     height: 100vh;
                     justify-content: center;
                     width: 100vw;
-                }
-
-                .story__product-item {
-                    width: 60rem;
                 }
             `}</style>
         </div>
     ))
     .add('Skeleton', () => (
         <div className="story">
-            <ProductItem.Skeleton className="story__product-item" />
+            <ProductItem.Skeleton style={{
+                width: '60rem',
+            }} />
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;
                     height: 100vh;
                     justify-content: center;
                     width: 100vw;
-                }
-
-                .story__product-item {
-                    width: 60rem;
                 }
             `}</style>
         </div>

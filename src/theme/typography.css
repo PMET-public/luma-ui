@@ -1,0 +1,12 @@
+@import url('https://use.typekit.net/ssh7gal.css');
+
+.theme {
+    --typography-body-family: source-sans-pro, sans-serif;
+    --typography-body-style: normal;
+    --typography-body-weight: 400;
+
+    --typography-heading-family: rucksack, sans-serif;
+    --typography-heading-style: normal;
+    --typography-heading-weight: 600;
+}
+

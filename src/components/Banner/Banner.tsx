@@ -1,148 +1,74 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element, classNames } from '../../lib'
+import defaultClasses from './Banner.css'
+
 import Image, { ImageProps } from '../Image'
 import Button, { ButtonProps } from '../Button'
 
-import { useTheme } from '../../theme'
-
 export type BannerProps = Props<{
+    classes: typeof defaultClasses
     image: ImageProps
-    titles?: Array<Props<{ 
-        text: string, 
-        large?: boolean 
+    titles?: Array<Props<{
+        text: string,
+        large?: boolean
     }>>
     position?: 'top' | 'bottom'
     buttons?: ButtonProps[]
 }>
 
-export const Banner: Component<BannerProps> = ({ 
+export const Banner: Component<BannerProps> = ({
     buttons,
+    classes,
     image,
     position = 'top',
     titles,
     ...props
 }) => {
-    const { typography } = useTheme()
-    
+    const styles = { ...defaultClasses, ...classes }
+
     return (
-        <Element {...props} className={classes('banner', props.className)}>
-            <Image 
+        <Element {...props} className={styles.root}>
+
+            <Image
+                {...image}
                 transition
-                {...image} 
-                className={classes('banner__image', image.className)} 
+                classes={{
+                    root: styles.image,
+                    image: styles.imageTag,
+                }}
             />
-            
-            <div className={classes('banner__content', `--${position}`)}>
+
+            <div className={classNames(styles.content, styles[position])}>
 
                 {titles && (
-                        <div className="banner__content__titles">
-                            {titles.map(({ large = false, ...title }, index) => (
-                            <Element {...title} className={classes('banner__content__titles__item', ['--large', large])}
+                    <div className={styles.titles}>
+                        {titles.map(({ large = false, ...title }, index) => (
+                            <Element 
+                                {...title} 
+                                className={classNames(
+                                    styles.title, 
+                                    [styles.large, large]
+                                )}
                                 key={index}
                             />
-                            ))}
-                        </div>
+                        ))}
+                    </div>
                 )}
 
                 {buttons && (
-                    <div className="banner__content__buttons">
+                    <div className={styles.buttons}>
                         {buttons.map((button, index) => (
-                            <Button className={classes('banner__content__buttons__item')} 
-                                key={index}
+                            <Button 
                                 {...button}
+                                classes={{
+                                    root: styles.button,
+                                }}
+                                key={index}
                             />
                         ))}
                     </div>
                 )}
             </div>
-
-            <style jsx global>{`
-                .banner {
-                    position: relative;
-                    width: 100%;
-                    
-                }
-
-                .banner__image.image {   
-                    display: block;
-
-                    & .image__img {
-                        min-width: 100%;
-                        min-height: 100%;
-                        max-width: 100%;
-                        max-height: 100%;
-                    }
-                }
-
-                .banner__content {
-                    color: #ffffff;
-                    position: absolute;
-                    padding: 2rem;
-
-                    &.--top {
-                        top: 0;
-                    }
-
-                    &.--bottom {
-                        bottom: 0;
-                    }
-                }
-
-                .banner__content__titles {
-                    display: grid;
-                    grid-gap: 0.7rem;
-                }
-
-                .banner__content__titles__item {
-                    margin: 0;
-                    font-size: 1.6rem;
-
-                    &.--large {
-                        font-family: ${typography.heading.family};
-                        font-size: 4rem;
-                        font-weight: ${typography.heading.weight};
-                        text-transform: uppercase;
-                        line-height: 0.9;
-                    }
-
-                    & > * {
-                        font-size: inherit;
-                        font-family: inherit;
-                        font-weight: inherit;
-                    }
-                }
-
-                .banner__content__buttons {
-                    display: flex;
-                    flex-wrap: wrap;
-                    margin: -0.75rem;
-                    padding-top: 3rem;
-                }
-
-                .banner__content__buttons__item {
-                    margin: 0.75rem;
-                }
-
-                @media(--medium-screen) {
-                    .banner__content {
-                        padding: 5rem;
-                    }
-
-                    .banner__content__titles__item {
-                        &.--large {
-                            font-size: 5rem;
-                        }
-                    }
-                }
-
-                @media(--large-screen) {                    
-                    .banner__content__titles__item {
-                        &.--large {
-                            font-size: 6rem;
-                        }
-                    }
-                }
-            `}</style>
         </Element>
     )
 }

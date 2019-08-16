@@ -10,8 +10,7 @@ import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
 storiesOf('📦 Components/TabBar', module)
     .add('Default', () => (
         <div className="story">
-            <TabBar className="story__tab-bar"
-                items={[
+            <TabBar items={[
                     { 
                         icon: {
                             text: 'Shop',
@@ -42,10 +41,11 @@ storiesOf('📦 Components/TabBar', module)
                 ]}
             />
 
-            <style jsx global>{`
-                .story__tab-bar {
+            <style>{`
+                .story {
                     position: fixed;
                     bottom: 0;
+                    width: 100%;
                 }
             `}</style>
         </div>

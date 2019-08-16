@@ -1,26 +1,29 @@
 import React, { Suspense, useEffect, useState, ReactNode } from 'react'
-import { Component, Props, Element, classes, ErrorBoundary } from '../../lib'
+import { Component, Props, Element, classNames, ErrorBoundary } from '../../lib'
+import defaultClasses from './Assembler.css'
 
 export type AssemblerProps = Props<{
+    classes?: typeof defaultClasses
     components: Array<{
         name: string
         props: Props<any>
-        hideOnBreakpoint?: 'small-screen-only' | 'medium-screen' | 'medium-screen-only' | 'large-screen' | 'large-screen-only' | 'x-large-screen'
+        hideOnBreakpoint?: 'smallScreenOnly' | 'mediumScreen' | 'mediumScreenOnly' | 'largeScreen' | 'largeScreenOnly' | 'xLargeScreen'
     }>
 }>
 
 const Loading = () => {
     return (
-        <div className="loading">
-            Loading
-        </div>
+        <div>Loading</div>
     )
 }
 
 export const Assembler: Component<AssemblerProps> = ({
+    classes,
     components = [],
     ...props
 }) => {
+    const styles = { ...defaultClasses, ...classes }
+
     const [children, setChildren] = useState<ReactNode>(null)
     
     useEffect(() => {
@@ -29,7 +32,13 @@ export const Assembler: Component<AssemblerProps> = ({
                 {components.map(({ name, hideOnBreakpoint, props }, index) => {
                     const DynamicComponent = React.lazy(() => import(`../${name}/index`))
                     return (
-                        <div className={classes('assembler__row', [`--hide-${hideOnBreakpoint}`, !!hideOnBreakpoint])} key={index}>
+                        <div 
+                            className={classNames(
+                                styles.row, 
+                                [`hideOn${hideOnBreakpoint}`, !!hideOnBreakpoint]
+                            )} 
+                            key={index}
+                        >
                             <ErrorBoundary>
                                 <DynamicComponent {...props} />
                             </ErrorBoundary>
@@ -41,61 +50,8 @@ export const Assembler: Component<AssemblerProps> = ({
     }, [components])
     
     return (
-        <Element {...props} className={classes('assembler', props.className)}>
+        <Element {...props} className={styles.root}>
             {children}
-
-            <style jsx global>{`
-                .assembler {
-                    --gap: 3rem;
-                    display: grid;
-                    grid-gap: var(--gap);
-                    grid-auto-columns: minmax(0, 1fr);
-                    grid-auto-rows: minmax(max-content, max-content);
-
-                    @media(--medium-screen) {
-                        --gap: 4rem;
-                    }
-                }
-                .assembler__row {
-
-                    &.--hide-small-screen-only {
-                        @media(--small-screen-only) {
-                            display: none;
-                        }
-                    }  
-                    
-                    &.--hide-medium-screen {
-                        @media(--medium-screen) {
-                            display: none;
-                        }
-                    }
-
-                    &.--hide-medium-screen-only {
-                        @media(--medium-screen-only) {
-                            display: none;
-                        }
-                    }
-
-                    &.--hide-large-screen {
-                        @media(--large-screen) {
-                            display: none;
-                        }
-                    }
-
-                    &.--hide-large-screen-only {
-                        @media(--large-screen-only) {
-                            display: none;
-                        }
-                    }
-
-                    &.--hide-xlarge-screen {
-                        @media(--xlarge-screen) {
-                            display: none;
-                        }
-                    }
-
-                }
-            `}</style>
         </Element>
     )
 }

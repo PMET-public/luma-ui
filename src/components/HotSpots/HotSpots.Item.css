@@ -1,0 +1,84 @@
+.root {
+    &.left {
+        --left: var(--coords-x);
+        --right: unset;
+    }
+
+    &.right {
+        --left: unset;
+        --right: calc((100% - var(--coords-x)) - 1.3em);
+    }
+
+    &.top {
+        --top: calc(var(--coords-y) + 1.8em);
+        --bottom: unset;
+    }
+
+    &.bottom {
+        --bottom: calc((100% - var(--coords-y)) + 0.5em);
+        --top: unset;
+    }
+}
+
+.button {                 
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    height: 1em;
+    opacity: 0.85;
+    padding: 0;
+    position: absolute;
+    width: 1em;
+    z-index: 2; 
+    left: var(--coords-x);
+    top: var(--coords-y);
+
+    &.active {
+        background-color: var(--color-primary);
+    }  
+}
+
+.button::after {
+    animation: pulse 2s infinite;
+    border-radius: 50%;
+    box-shadow: inset 0 0 1px 1px var(--color-accent, --color-primary);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: block;
+}  
+
+.content {     
+    align-items: center;
+    background-color: var(--color-surface);
+    bottom: var(--bottom);
+    padding: 1rem 1.3rem;
+    border-radius: 1rem;
+    color: var(--color-onSurface);
+    left: var(--left);
+    position: absolute;
+    right: var(--right);
+    top: var(--top);
+    z-index: 3;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    
+    50% {
+        opacity: 0.5;
+    }
+    
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}  

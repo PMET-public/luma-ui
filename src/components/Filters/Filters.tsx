@@ -1,62 +1,59 @@
 import React, { useState, useRef } from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element, classNames } from '../../lib'
+import defaultClasses from './Filters.css'
+
 import { useMeasure } from '../../hooks/useMeasure'
 
 import ToggleIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
 import CheckedIcon from '@fortawesome/fontawesome-free/svgs/solid/check-circle.svg'
 import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
 
-export type FiltersItemProps = Props<{
-    active?: boolean
-    count?: number
-    text: string
-}>
-
-export type FiltersGroupProps = Props<{
-    title: Props
-    offset?: number
-    items: FiltersItemProps[]
-}>
-
 export type FiltersProps = Props<{
-    groups?: FiltersGroupProps[]
+    classes?: typeof defaultClasses
+    groups: FiltersGroupProps[]
 }>
 
-type CompoundComponent = {
-    Group: Component<FiltersGroupProps>
-}
-
-export const Filters: Component<FiltersProps> & CompoundComponent = ({
-    groups,
-    children,
+export const Filters: Component<FiltersProps> = ({
+    classes,
+    groups = [],
     ...props
 }) => {
-    return (
-        <Element {...props} className={classes('filters', props.className)}>
-            {groups ? groups.map((group, index) => (
-                <Filters.Group key={index} 
-                    {...group} 
-                />
-            )) : children}
+    const styles = { ...defaultClasses, ...classes }
 
-            <style jsx global>{`
-                .filters {
-                    display: grid;
-                    grid-gap: 4rem;
-                    grid-auto-rows: max-content;
-                    grid-auto-flow: row;
-                }
-            `}</style>
+    return (
+        <Element {...props} className={styles.root}>
+            {groups.map((group, index) => (
+                <FiltersGroup
+                    {...group}
+                    classes={classes}
+                    key={index}
+                />
+            ))}
         </Element>
     )
 }
 
-Filters.Group = ({
-    title,
-    offset = 5,
+type FiltersGroupProps = Props<{
+    classes?: any
+    title: Props
+    offset?: number
+    items: Array<Props<{
+        _id?: string | number
+        active?: boolean
+        count?: number
+        text: string
+    }>>
+}>
+
+const FiltersGroup: Component<FiltersGroupProps> = ({
+    classes,
     items = [],
+    offset = 5,
+    title,
     ...props
 }) => {
+    const styles = { ...defaultClasses, ...classes }
+
     const [open, setOpen] = useState(false)
 
     const elRef = useRef<any>(null)
@@ -66,39 +63,39 @@ Filters.Group = ({
     const triggerToggle = () => setOpen(!open)
 
     return (
-        <Element {...props} className={classes('filters-group', props.className)}
+        <Element {...props} className={styles.group}
             style={{
                 ['--transition-duration' as any]: (items.length * 20) + 'ms',
                 ['--height' as any]: open ? `${height / 10}rem` : `calc(2.3em * ${offset})`,
             }}
         >
-            <span className={classes('filters-group__wrapper', ['--open', open])}>
-                <dl className="filters-group__list"
+            <span className={styles.groupWrapper}>
+                <dl className={styles.groupList}
                     ref={elRef}
                 >
                     <dt>
-                        <Element {...title} className={classes('filters-group__label', title.className)} />
+                        <Element {...title} className={styles.groupLabel} />
                     </dt>
 
-                    {items.map(({text, count, active = false, ...item}, index) => (
-                        <dd key={index}>
-                            <Element 
-                                as="span" 
-                                {...item} 
-                                className={classes('filters-group__item', item.className)}
+                    {items.map(({ text, count, active = false, _id, ...item }, index) => (
+                        <dd key={_id || index}>
+                            <Element
+                                as="span"
+                                {...item}
+                                className={styles.groupItem}
                             >
                                 {active ? (
-                                    <CheckedIcon className="filters-group__item__check --active" />
+                                    <CheckedIcon className={classNames(styles.groupItemCheck, styles.groupItemCheckActive)} />
                                 ) : (
-                                    <CheckIcon className="filters-group__item__check" />
+                                    <CheckIcon className={classNames(styles.groupItemCheck)} />
                                 )}
 
-                                <span className="filters-group__item__label">
+                                <span className={styles.groupItemLabel}>
                                     {text}
                                 </span>
 
                                 {count && (
-                                    <span className="filters-group__item__count">
+                                    <span className={styles.groupItemCount}>
                                         {count}
                                     </span>
                                 )}
@@ -110,89 +107,17 @@ Filters.Group = ({
 
             {items.length > offset && (
                 <span>
-                    <button className="filters-group__toggle"
+                    <button className={styles.groupToggle}
                         type="button"
                         onClick={triggerToggle}
                     >
-                        <ToggleIcon className={classes('filters-group__toggle__icon', ['--open', open])} />
+                        <ToggleIcon
+                            className={classNames(styles.groupToggleIcon, [styles.groupToggleIconOpen, open])}
+                        />
                         {open ? 'Less' : 'More'}
                     </button>
                 </span>
             )}
-
-            <style jsx global>{`
-                .filters-group {
-                   display: grid;
-                   grid-gap: 1.6rem;
-                }
-
-                .filters-group__wrapper {
-                    height: auto;
-                    max-height: var(--height, auto);
-                    overflow-y: hidden;
-                    transition: max-height var(--transition-duration) ease;
-                }
-
-                .filters-group__list {
-                    display: grid;
-                    grid-gap: 1.4rem;
-                }
-
-                .filters-group__label {
-                    font-size: 1.8rem;
-                    font-weight: 600;
-                }
-
-                .filters-group__toggle {
-                    align-items: center;
-                    color: inherit;
-                    cursor: pointer;
-                    display: inline-flex;
-                    filter: opacity(0.75);
-                    font-size: 1em;
-                }
-
-                .filters-group__toggle__icon {
-                    fill: currentColor;
-                    height: 0.8em;
-                    margin-right: 0.5rem;
-                    transition: transform var(--transition-duration) ease;
-                    width: 0.8em;
-
-                    &.--open {
-                        transform: rotate(180deg);
-                    }
-                }
-
-                .filters-group__item {
-                    align-items: center;
-                    display: inline-grid;
-                    grid-auto-columns: max-content;
-                    grid-auto-flow: column;
-                    grid-gap: 1rem;
-                    font-size: 1.5rem;
-
-                    &:hover .filters-group__item__check {
-                        opacity: 0.25;
-                    }
-                }
-                
-                .filters-group__item__check {
-                    fill: currentColor;
-                    opacity: 0.1;
-                    transition: opacity 305ms ease;
-                    width: 1em;
-
-                    &.--active {
-                        opacity: 1;
-                    }
-                }
-
-                .filters-group__item__count {
-                    filter: opacity(0.45);
-                    font-size: 0.9em;
-                }
-            `}</style>
         </Element>
     )
 }

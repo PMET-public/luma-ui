@@ -1,0 +1,33 @@
+.root {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.item {
+    background-color: var(--color-on-primary);
+    border-radius: 0.5rem;
+    border: 0.1rem solid var(--color-primary25);
+    color: var(--color-primary);
+    padding: 1rem;
+    text-align: center;
+    transition: all 305ms ease;
+
+    &.active {
+        background-color: var(--color-primary);
+        color: var(--color-on-primary);
+        font-weight: 600;
+    }
+
+    &.disabled {
+        filter: opacity(30%);
+    }
+
+    &:hover:not(.active):not(.disabled) {
+        border-color: var(--color-primary75);
+    }
+}
+
+.label {
+
+}

@@ -1,4 +1,3 @@
-import './storybook.css'
 import { addDecorator, addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'
@@ -35,7 +34,7 @@ addParameters({
 const req = require.context('../src', true, /\.(story|stories)\.tsx$/)
 
 function loadStories() {
-    require('./welcome.js')
+    require('./welcome.tsx')
     req.keys().forEach(req)
 }
 

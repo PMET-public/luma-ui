@@ -18,7 +18,7 @@ storiesOf('🖼 Theme', module)
                 </ThemeProvider>
             `}</CodeBlock>
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     padding: 2rem;
                 }

@@ -18,7 +18,7 @@ module.exports = (Name, folder = 'components') => {
                 <div className="story">
                     <${Name} />
 
-                    <style jsx global>{\`
+                    <style>{\`
                         .story {
                             align-items: center;
                             display: flex;

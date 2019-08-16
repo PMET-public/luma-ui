@@ -1,0 +1,50 @@
+.root {     
+    background: var(--color-background);  
+    color: var(--color-on-background);  
+    display: grid;
+    filter: opacity(0.65);
+    font-size: 1.3rem;
+    grid-gap: 3rem;
+    padding: 3rem;
+
+    & a {
+        transition: opacity 205ms ease;
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.menuLink {
+    margin: 1rem;
+}
+
+.social {
+    display: grid;
+    font-size: 2.4rem;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    grid-auto-rows: max-content;
+    grid-gap: 2rem;
+    justify-content: center;
+}
+
+.socialIcon {
+    fill: currentColor;
+    height: 1em;
+    width: 1em;
+}
+
+.copyright {
+    text-align: center;
+    width: 100%;
+}

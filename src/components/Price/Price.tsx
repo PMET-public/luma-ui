@@ -1,7 +1,9 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element, classNames } from '../../lib'
+import defaultClasses from './Price.css'
 
 export type PriceProps = Props<{
+    classes?: typeof defaultClasses
     currency?: string
     label?: string
     regular: number
@@ -9,42 +11,41 @@ export type PriceProps = Props<{
 }>
 
 export const Price: Component<PriceProps> = ({
+    classes,
     currency = 'USD',
     label,
     regular,
     special,
     ...props
 }) => {
+    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={classes('price', props.className)}>
-            {label && <em className="price__label">{label}</em>}
+        <Element 
+            {...props} 
+            className={styles.root}
+        >
+            {label && (
+                <em className={styles.label}>
+                    {label}
+                </em>
+            )}
 
-            <span className={classes('price__regular', ['--special', !!special])}>
+            <span 
+                className={classNames(
+                    styles.regularPrice, 
+                    [styles.hasSpecialPrice, !!special]
+                )}
+            
+            >
                 {regular.toLocaleString('en-US', { style: 'currency', currency })}
             </span>
 
             {special && (
-                <span className="price__special">
+                <span className={styles.specialPrice}>
                     {special.toLocaleString('en-US', { style: 'currency', currency })}
                 </span>
             )}
-
-            <style jsx global>{`
-                .price {
-                    display: grid;
-                    grid-gap: 0.75rem;
-                    grid-auto-flow: column;
-                    grid-auto-columns: max-content;
-                }
-
-                .price__regular {
-                    &.--special {
-                        text-decoration: line-through;
-                        opacity: 0.75;
-                    }
-                }
-            `}</style>
         </Element>
     )
 }

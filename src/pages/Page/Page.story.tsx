@@ -2,15 +2,15 @@ import React from 'react'
 import Page from '../Page'
 import { storiesOf } from '@storybook/react'
 import { PageProps } from './Page'
-import App from '../App'
-import { AppMockData } from '../App/App.story'
+import App from '../../components/App'
+import { AppMockData } from '../../components/App/App.story'
 
 export const PageMockData: PageProps = {
     assembler: {
         components: [
             {
                 name: 'BubbleCarousel',
-                hideOnBreakpoint: 'medium-screen',
+                hideOnBreakpoint: 'mediumScreen',
                 props: {
                     text: 'Categories',
                     items: [

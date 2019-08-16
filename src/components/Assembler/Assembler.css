@@ -1,0 +1,50 @@
+.root {
+    --gap: 2rem;
+    display: grid;
+    grid-gap: var(--gap);
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-rows: minmax(max-content, max-content);
+
+    @media(--medium-screen) {
+        --gap: 4rem;
+    }
+}
+
+.row {
+
+    &.hideOnSmallScreen {
+        @media(--small-screen) {
+            display: none;
+        }
+    }  
+    
+    &.hideOnMediumScreen {
+        @media(--medium-screen) {
+            display: none;
+        }
+    }
+
+    &.hideOnMediumScreenOnly {
+        @media(--medium-screen-only) {
+            display: none;
+        }
+    }
+
+    &.hideOnLargeScreen {
+        @media(--large-screen) {
+            display: none;
+        }
+    }
+
+    &.hideOnLargeScreenOnly {
+        @media(--large-screen-only) {
+            display: none;
+        }
+    }
+
+    &.hideOnXLargeScreen {
+        @media(--xlarge-screen) {
+            display: none;
+        }
+    }
+}

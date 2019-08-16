@@ -40,7 +40,7 @@ storiesOf('📦 Components/ThumbSwatches', module)
                 />
             </div>
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;

@@ -1,0 +1,64 @@
+.root {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+.badge {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    font-size: 1.4rem;
+    left: 2rem;
+    letter-spacing: 0.05rem;
+    padding: 0.5rem 0.75rem;
+    position: absolute;
+    text-transform: uppercase;
+    top: 2rem;
+    z-index: 1;
+}
+
+.image {
+    composes: root from '../Image/Image.css';
+    display: block;
+    position: relative;
+}
+
+.imageTag {
+    composes: image from '../Image/Image.css';
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    max-height: 90vh;
+}
+
+.details {
+    display: grid;
+    font-size: 1.4rem;
+    grid-gap: 0.5rem;
+    padding: 1rem;
+
+    @media (--medium-screen) {
+        font-size: 1.6rem;
+    }
+}
+
+.title {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.price {
+    /* composes: root from '../Price/Price.css'; */
+    font-size: 0.9em;
+}
+
+.colors {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.color {
+    display: inline-block;
+    height: 0.65rem;
+    width: 100%;
+}

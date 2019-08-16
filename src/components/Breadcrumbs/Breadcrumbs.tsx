@@ -1,7 +1,9 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element } from '../../lib'
+import defaultClasses from './Breadcrumbs.css'
 
 export type BreadcrumbsProps = Props<{ 
+    classes?: typeof defaultClasses
     dividor?: string
     prefix?: string
     items: Array<Props<{
@@ -10,31 +12,24 @@ export type BreadcrumbsProps = Props<{
 }>
 
 export const Breadcrumbs: Component<BreadcrumbsProps> = ({ 
+    classes,
     dividor = '',
     items = [],
     prefix = '',
     ...props
 }) => {
-    
+    const styles = { ...defaultClasses, ...classes }
+
     return (
-        <Element {...props} className={classes('breadcrumbs', props.className)}>
+        <Element {...props} className={styles.root}>
             {items.map(({ text, _id, ...item }, index) => (
                 <React.Fragment key={_id || index}>
-                    <Element {...item} className={classes('breadcrumbs__item', item.className)}>
+                    <Element {...item} className={styles.item}>
                         {prefix}{text}
                     </Element>
                     {index < items.length - 1 && dividor}
                 </React.Fragment>
             ))}
-
-            <style jsx global>{`
-                .breadcrumbs {
-                    display: grid;
-                    grid-auto-columns: max-content;
-                    grid-auto-flow: column;
-                    grid-gap: 0.7em;
-                }
-            `}</style>
         </Element>
     )
 }

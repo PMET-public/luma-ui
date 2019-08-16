@@ -1,0 +1,50 @@
+.root {
+    --opacity: 0.64;
+    border-bottom: 0.1rem solid var(--color-on-surface50);
+    color: var(--color-on-surface);
+    width: 100%;
+
+    &:hover,
+    &:focus-within {
+        --opacity: 1;
+    }
+}
+
+.wrapper {
+    align-items: center;
+    display: flex;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+
+    & > * {
+        padding: 1rem;
+        padding: 0.75rem;
+    }
+}
+
+.icon {
+    font-size: 1.1em;
+}
+
+.field {
+    appearance: none;
+    background-color: inherit;
+    border: 0 none;
+    color: inherit;
+    flex-grow: 1;
+    font-size: inherit;
+    font-weight: 600;
+}
+
+.count {
+    font-size: 0.8em;
+    opacity: var(--opacity);
+    transition: opacity 305ms ease;
+    white-space: nowrap;
+}
+
+.reset {
+    font-size: 1.6rem;
+    opacity: var(--opacity);
+    transition: opacity 305ms ease;
+}

@@ -1,6 +1,4 @@
-.button {
-    --color: red;
-
+.root {
     align-items: center;
     background-color: var(--background, transparent);
     border-radius: 2.4rem;
@@ -15,11 +13,11 @@
     transition-duration: 305ms;
     transition-property: opacity, color, background-color;
     transition-timing-function: ease;
-}
 
-a[href] {
-    text-decoration: none !important;
-    color: var(--color);
+    & a[href] {
+        text-decoration: none !important;
+        color: var(--color);
+    }
 }
 
 .fill {
@@ -29,11 +27,12 @@ a[href] {
 .fill .wrapper {
     filter: invert(1);
 }
-/* 
-.primary {
-    --color: ${colors.primary};
+
+.primaryColor {
+    --color: var(--color-primary);
 }
 
-.secondary {
-    --color: ${colors.secondary};
-} */
+.secondaryColor {
+    --color: var(--color-secondary);
+}
+

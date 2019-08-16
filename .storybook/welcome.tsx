@@ -58,7 +58,7 @@ storiesOf('👋 Welcome', module)
             </div>
 
             <style>{`
-                .theme {
+                body {
                     min-height: 100vh;
                     display: flex;
                     align-items: center;

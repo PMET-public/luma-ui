@@ -1,8 +1,9 @@
 import React, { createContext, useState, useContext, useRef, ReactElement } from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element, classNames } from '../../lib'
+import defaultClasses from './Accordion.css'
+
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
-import { useTheme } from '../../theme'
 
 import ArrowIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-down.svg'
 
@@ -11,10 +12,12 @@ const Context = createContext({ active: -1, setActive: (id: number) => {} })
 export type AccordionItemProps = Props<{
     _id?: number
     active?: boolean
+    classes?: typeof defaultClasses
     label: Props
 }>
 
 export type AccordionProps = Props<{
+    classes?: typeof defaultClasses
     items?: AccordionItemProps[]
     selected?: number
 }>
@@ -25,46 +28,44 @@ type CompoundComponent = {
 
 export const Accordion: Component<AccordionProps> & CompoundComponent = ({ 
     children,
+    classes,
     items,
     selected = 0,
     ...props
 }) => {
+    const styles = { ...defaultClasses, ...classes }
+
     const [active, setActive] = useState(selected)
 
     return (
-        <Element {...props} className={classes('accordion', props.className)}>
+        <Element {...props} className={styles.root}>
             <Context.Provider value={{ active, setActive }}>
                 {items ? items.map((item, index) => (
                     <Accordion.Item 
-                        key={index} 
-                        active={active === index} 
-                        _id={index} 
                         {...item} 
+                        _id={index} 
+                        active={active === index} 
+                        key={index} 
                     />
                 )) : React.Children.map(children, (child, index) => {
                     return React.cloneElement(child as ReactElement<AccordionItemProps>, { active: active === index, _id: index })
                 })}
             </Context.Provider>
-
-            <style jsx global>{`
-                .accordion {
-                    display: grid;
-                }
-            `}</style>
         </Element>
     )
 }
 
 Accordion.Item = ({ 
+    _id = -1,
     active = false,
     children,
-    _id = -1,
+    classes,
     label,
     ...props
 }) => {    
-    const wrapperElemRef = useRef(null)
+    const styles = { ...defaultClasses, classes }
 
-    const { colors } = useTheme()
+    const wrapperElemRef = useRef(null)
 
     const { height } = useMeasure(wrapperElemRef)
 
@@ -83,68 +84,24 @@ Accordion.Item = ({
     }
 
     return (
-        <Element {...props} className={classes('accordion-item', props.className)}>
-            <button className={classes('accordion-item__button', ['--active', active])}
+        <Element {...props} className={styles.item}>
+            <button 
+                className={classNames(styles.button, [styles.active, active])}
                 type="button"
                 onClick={triggerActivate}
             >
-                <Element {...label} className={classes('accordion-item__button__label', label.className)} />
+                <Element {...label} className={styles.buttonLabel} />
                 <ArrowIcon className="accordion-item__button__icon" />
             </button>
 
             <animated.div style={{ overflow: 'hidden', ...transition }}>
-                <div className="accordion-item__content"
+                <div 
+                    className={styles.content}
                     ref={wrapperElemRef}
                 >
                     {children}
                 </div>
             </animated.div>
-
-            <style jsx global>{`
-                .accordion-item {
-                    border-bottom-width: 0.1rem;
-                    border-color: ${colors.onSurface15};
-                    border-style: solid;
-                    display: grid;
-                    grid-auto-columns: 1fr;
-                    grid-auto-rows: minmax(max-content, max-content);
-
-                    &:first-of-type {
-                        border-top-width: 0.1rem;
-                    }
-                }
-
-                .accordion-item__button {
-                    align-items: center;
-                    color: inherit;
-                    cursor: pointer;
-                    display: flex;
-                    font-size: 1em;
-                    padding: 2rem;
-                    text-align: left;
-                    width: 100%;
-
-                    &.--active {
-                        & .accordion-item__button__icon {
-                            transform: rotateX(180deg);
-                        }
-                    }
-                }
-
-                .accordion-item__button__label {
-                    flex-grow: 1;
-                }
-
-                .accordion-item__button__icon {
-                    fill: currentColor;
-                    transition: transform 305ms ease-out;
-                    width: 1.6rem;
-                }
-
-                .accordion-item__content {
-                    padding: 1rem 2rem 4rem;
-                }
-            `}</style>
         </Element>
     )
 }

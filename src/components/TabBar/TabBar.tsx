@@ -1,9 +1,11 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
-import { useTheme } from '../../theme'
+import { Component, Props, Element, classNames } from '../../lib'
+import defaultClasses from './TabBar.css'
+
 import Icon, { IconProps } from '../Icon'
 
 export type TabBarProps = Props<{
+    classes?: typeof defaultClasses
     items: Array<Props<{
         active?: boolean
         icon: IconProps
@@ -11,57 +13,23 @@ export type TabBarProps = Props<{
 }>
 
 export const TabBar: Component<TabBarProps> = ({
+    classes,
     items = [],
     ...props
 }) => {
-    const { colors } = useTheme()
+    const styles = { ...defaultClasses, ...classes }
+
     return (
-        <Element {...props} className={classes('tab-bar', props.className)}>
+        <Element {...props} className={styles.root}>
             {items.map(({ icon, active = false, ...item }, index) => (
                 <Element 
                     key={index} 
                     {...item} 
-                    className={classes('tab-bar__item', ['--active', active])}
+                    className={classNames(styles.item, [styles.active, active])}
                 >
                     <Icon {...icon} />
                 </Element>
             ))}
-
-            <style jsx global>{`
-                .tab-bar {
-                    background-color: ${colors.surface};
-                    box-shadow: inset 0 0.1rem 0 rgba(0, 0, 0, 0.07), inset 0 0.2rem 0 rgba(255, 255, 255, 0.07);
-                    color: ${colors.onSurface};
-                    color: ${colors.onSurface};
-                    display: grid;
-                    grid-auto-flow: column;
-                    grid-gap: 2rem;
-                    padding: 1.3rem 0;
-                    width: 100%;
-                }
-
-                .tab-bar__item {
-                    align-items: center;
-                    color: ${colors.primary};
-                    display: flex;
-                    flex-direction: column;
-                    font-size: 2.3rem;
-                    justify-content: center;
-                    opacity: 0.5;
-                    
-                    &.--active {
-                        opacity: 1;
-                    }
-                }
-
-                @supports(padding: max(0px)) {
-                    .tab-bar {
-                        padding-left: max(0, env(safe-area-inset-left));
-                        padding-right: max(0, env(safe-area-inset-right));
-                        padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
-                    }
-                }
-            `}</style>
         </Element>
     )
 }

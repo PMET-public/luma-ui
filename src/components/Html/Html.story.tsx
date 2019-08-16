@@ -20,7 +20,7 @@ storiesOf('📦 Components/Html', module)
                 ></ul>
             `)} />
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;

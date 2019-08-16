@@ -1,6 +1,9 @@
 const path = require('path')
 
 module.exports = ({ config }) => {
+    
+    // Add Welcome Story
+    config.entry.push(path.resolve('./.storybook/welcome.tsx'))
 
     // https://github.com/storybookjs/storybook/issues/5708
     config.module.rules.forEach(function(data, key) {
@@ -21,15 +24,18 @@ module.exports = ({ config }) => {
                         loader: 'css-loader',
                         options: {
                             importLoaders: 1,
-                            localIdentName: '[name]-[local]___[hash:base64:5]',
-                            modules: true,
+                            // modules: true,
+                            modules: {
+                                localIdentName: '[name]-[local]___[hash:base64:5]',
+                            },
                         }
                     },
-                    // {
-                    //     loader: 'postcss-loader'
-                    // }
-                ]
+                    {
+                        loader: 'postcss-loader'
+                    },
+                ],
             }
+            
             return false
         }
     })

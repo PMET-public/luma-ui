@@ -13,7 +13,7 @@ storiesOf('📦 Components/Price', module)
                 label={text('label', 'Starting at')}
             />
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;

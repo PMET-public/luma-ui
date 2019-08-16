@@ -1,62 +1,47 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element } from '../../lib'
+import defaultClasses from './ProductCarousel.css'
+
 import Carousel from '../Carousel'
 import ProductItem, { ProductItemProps } from '../ProductItem'
 
 export type ProductsCarouselProps = Props<{
+    classes?: typeof defaultClasses
     title?: Props
     items: ProductItemProps[]
 }>
 
 export const ProductsCarousel: Component<ProductsCarouselProps> = ({ 
-    title,
+    classes,
     items,
+    title,
     ...props
 }) => {
+    const styles = { ...defaultClasses, ...classes }
     
     return items ? (
-        <Element {...props} className={classes('products-carousel', props.className)}>
+        <Element {...props} className={styles.root}>
             { title && (
-                <Element as="h3" {...title} className={classes('products-carousel__title', title.className)} />
+                <Element 
+                    as="h3" 
+                    {...title} 
+                    className={styles.title} 
+                />
             )}
 
-             <Carousel className="products-carousel__carousel"
+             <Carousel 
+                classes={{
+                    root: styles.carousel,
+                }}
                 gap={1}
                 padding={4}
             >
                 {items.map((item, index) => (
-                    <Carousel.Item className="products-carousel__carousel__item" 
-                        key={index}
-                    >
-                        <ProductItem className="products-carousel__carousel__item__product" 
-                            {...item} 
-                        />
+                    <Carousel.Item key={index}>
+                        <ProductItem {...item} />
                     </Carousel.Item>
                 ))}
             </Carousel>
-
-            <style jsx global>{`
-                .products-carousel {
-                    display: grid;
-                    grid-gap: 2rem;
-                    grid-auto-columns: minmax(0, 1fr);
-                    width: 100%;
-                }
-
-                .products-carousel__title {
-                    padding: 0 2rem;
-                }
-
-                .products-carousel__carousel {
-                    @media(--medium-screen) { 
-                        --show: 2 !important;
-                    }
-
-                    @media(--large-screen) {
-                        --show: 3 !important;
-                    }
-                }
-            `}</style>
         </Element>
     ) : null
 }

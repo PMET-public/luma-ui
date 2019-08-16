@@ -1,0 +1,47 @@
+.root {
+    display: grid;
+}
+
+.item {
+    border-bottom-width: 0.1rem;
+    border-color: var(--color-on-surface15);
+    border-style: solid;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: minmax(max-content, max-content);
+
+    &:first-of-type {
+        border-top-width: 0.1rem;
+    }
+}
+
+.button {
+    align-items: center;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    font-size: 1em;
+    padding: 2rem;
+    text-align: left;
+    width: 100%;
+
+    &.active {
+        & .buttonIcon {
+            transform: rotateX(180deg);
+        }
+    }
+}
+
+.buttonLabel {
+    flex-grow: 1;
+}
+
+.buttonIcon{
+    fill: currentColor;
+    transition: transform 305ms ease-out;
+    width: 1.6rem;
+}
+
+.content {
+    padding: 1rem 2rem 4rem;
+}

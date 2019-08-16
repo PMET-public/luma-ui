@@ -1,8 +1,8 @@
 import React from 'react'
 import Category, { CategoryProps } from '.'
 import { storiesOf } from '@storybook/react'
-import App from '../App'
-import { AppMockData } from '../App/App.story'
+import App from '../../components/App'
+import { AppMockData } from '../../components/App/App.story'
 
 export const ProductListMockData: CategoryProps = {
     title: {

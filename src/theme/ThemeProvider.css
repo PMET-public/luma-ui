@@ -1,0 +1,147 @@
+:global {
+
+    & html {
+        font-size: 62.5%; /* ~10px = 1rem! */
+    }
+
+    & body {
+        font-size: 16px; /* px fallback */
+        font-size: 1.6rem; /* default font-size for document */
+    }
+}
+
+.theme {
+    composes: theme from './colors.css';
+    composes: theme from './typography.css';
+}
+
+.dark {
+    composes: dark from './colors.css';
+}
+
+.theme {
+    -webkit-font-smoothing: antialiased;
+    background: var(--color-background);
+    color: var(--color-on-background);
+    font-family: var(--typography-body-family);
+    font-style: var(--typography-body-style);
+    font-weight: var(--typography-body-weight);
+    margin: 0 auto;
+    max-width: 180rem;
+
+    & a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    & .visuallyhidden {
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+        overflow: hidden;
+        position: absolute;
+    }
+
+    & a[href],
+    & button {
+        &:not([disabled]) {
+            cursor: pointer;
+        }
+
+        &[disabled] {
+            color: inherit;
+        }
+    }
+
+    & *:focus {
+        outline: none;
+    }
+
+    /*
+    & *:focus {
+        outline-style: solid;
+        outline-color: currentColor;
+        outline-width: 0.1rem;
+        outline-offset: 0.1rem;
+    }
+    */
+
+    /* Copy & Lists */
+
+    & ul {
+        list-style-type: circle;
+    }
+
+    & ul li,
+    & ol li {
+        line-height: 1.5;
+    }
+
+    & blockquote {
+        font-size: 2.4rem;
+        font-style: italic;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        padding-left: 2.4rem;
+        position: relative;
+    }
+
+    /* Headings */
+
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+        /* Change heading typefaces here */
+        font-family: var(--typography-heading-family);
+        font-style: var(--typography-heading-style);
+        font-weight: var(--typography-heading-weight);
+        line-height: 1.1;
+    }
+
+    & h1 {
+        font-size: 3.2rem;
+    }
+
+    & h2 {
+        font-size: 2.6rem;
+    }
+
+    & h3 {
+        font-size: 2.2rem;
+    }
+
+    & h4,
+    & h5,
+    & h6 {
+        font-size: 2rem;
+    }
+
+    /* Tables */
+
+    & table {
+        margin-top: 1rem;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+
+    & table td,
+    & table th {
+        padding: 0;
+        line-height: 3.3rem;
+    }
+
+    /* Code blocks */
+
+    & code {
+        font-family: 'Fira Code', 'Courier New', Courier, monospace;
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
+}

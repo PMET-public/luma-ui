@@ -35,18 +35,18 @@ storiesOf('📦 Components/ProductsCarousel', module)
         
         return (
             <div className="story">
-                <ProductsCarousel {...props} className="story__product-carousel" />
+                <ProductsCarousel {...props} 
+                    style={{
+                        width: '100vw',
+                    }} 
+                />
 
-                <style jsx global>{`
+                <style>{`
                     .story {
                         align-items: center;
                         display: flex;
                         height: 100vh;
                         justify-content: center;
-                    }
-
-                    .story__product-carousel {
-                        width: 100vw;
                     }
                 `}</style>
             </div>

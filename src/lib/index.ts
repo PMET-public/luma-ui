@@ -29,7 +29,7 @@ export const Element: Component<Props> = ({
  * Classes
  * @param args 
  */
-export const classes = (...args: Array<string|[string, boolean]|undefined>) => {
+export const classNames = (...args: Array<string|[string, boolean]|undefined>) => {
     return args
         .map(x => {
             if (typeof x === 'string') return x

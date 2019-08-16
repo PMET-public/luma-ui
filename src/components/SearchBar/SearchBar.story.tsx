@@ -21,7 +21,7 @@ storiesOf('📦 Components/SearchBar', module)
                         
                     />
 
-                    <style jsx global>{`
+                    <style>{`
                         .story {
                             align-items: center;
                             display: flex;

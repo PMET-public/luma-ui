@@ -83,7 +83,7 @@ export const AppMockData: AppProps = {
     },
 }
 
-storiesOf('📑 Pages/App', module)
+storiesOf('📦 Components/App', module)
     .add('Default', () => (
         <App {...AppMockData}>
             <div className="story__content"></div>

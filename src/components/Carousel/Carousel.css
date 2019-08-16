@@ -1,0 +1,34 @@
+.root {
+    -webkit-overflow-scrolling: touch;   
+    display: grid;                   
+    grid-gap: var(--gap);
+    scroll-padding: var(--padding);
+    width: 100%;
+    grid-auto-columns: var(--itemWidth);
+    grid-auto-flow: column;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+
+    &::-webkit-scrollbar {
+        height: 0.2rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        margin: 0 10%;
+        border-radius: 3rem;
+        background: var(--color-primary15);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 3rem;
+        background: var(--color-primary25);
+    }
+
+}
+
+.item {
+    scroll-snap-align: center;
+    display: inline-block;
+}

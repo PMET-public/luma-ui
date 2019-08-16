@@ -1,12 +1,13 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element } from '../../lib'
+import defaultClasses from './ProductItem.css'
+
 import Image, { ImageProps } from '../Image'
 import Price, { PriceProps } from '../Price'
 import ContentLoader, { IContentLoaderProps } from 'react-content-loader'
 
-import { useTheme } from '../../theme'
-
 export type ProductItemProps = Props<{
+    classes?: typeof defaultClasses
     badge?: Props
     colors?: Array<{ value: string }>
     image: ImageProps
@@ -20,21 +21,22 @@ type CompoundComponent = {
 
 export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
     badge,
+    classes,
     colors,
     image,
     price,
     title,
     ...props
 }) => {
-    const theme = useTheme()
+    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={classes('product-item', props.className)}>
+        <Element {...props} className={styles.root}>
             {badge && (
                 <Element
                     as="span"
                     {...badge}
-                    className={classes('product-item__badge', badge.className)}
+                    className={styles.badge}
                 />
             )}
 
@@ -44,13 +46,17 @@ export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
                 vignette={1}
                 width="1274"
                 {...image}
-                className={classes('product-item__image', image && image.className)}
+                classes={{
+                    root: styles.image,
+                    image: styles.imageTag,
+                }}
             />
 
             {colors && (
-                <ul className="product-item__colors">
+                <ul className={styles.colors}>
                     {colors.map(({ value }, index) => (
-                        <li className="product-item__colors__item"
+                        <li 
+                            className={styles.color}
                             key={index}
                             style={{ backgroundColor: value }}
                         ></li>
@@ -58,85 +64,19 @@ export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
                 </ul>
             )}
 
-            <span className="product-item__details">
-                <span className={classes('product-item__details__title')}>
-                    <Element as="span" {...title} />
-                </span>
+            <span className={styles.details}>
+                <Element 
+                    as="span" 
+                    {...title} 
+                    className={styles.title}
+                />
 
-                <span className={classes('product-item__details__price')}>
-                    <Price as="span" {...price} />
-                </span>
+                <Price 
+                    as="span" 
+                    {...price} 
+                    className={styles.price}
+                />
             </span>
-
-            <style jsx global>{`
-                .product-item {
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                }
-
-                .product-item__badge {
-                    background-color: ${theme.colors.accent};
-                    color: ${theme.colors.onAccent};
-                    font-size: 1.4rem;
-                    left: 2rem;
-                    letter-spacing: 0.05rem;
-                    padding: 0.5rem 0.75rem;
-                    position: absolute;
-                    text-transform: uppercase;
-                    top: 2rem;
-                    z-index: 1;
-                }
-
-                .product-item__image.image {
-                    display: block;
-                    position: relative;
-                    
-                    & .image__img {
-                        height: 100%;
-                        width: 100%;
-                        min-height: 100%;
-                        max-height: 90vh;
-                    }
-                    
-                    & .image__caption {
-                        background-color: ${theme.colors.surface};
-                        color: ${theme.colors.onSurface};
-                        width: 100%;
-                    }
-                }
-
-                .product-item__details {
-                    display: grid;
-                    grid-gap: 0.75rem;
-                    padding: 1rem;
-                    font-size: 1.4rem;
-
-                    @media(--medium-screen) {
-                        font-size: 1.6rem;
-                    }
-                }
-
-                .product-item__details__title {
-                    font-size: 1em;
-                    font-weight: 600;
-                }
-
-                .product-item__details__price {
-                    font-size: 0.9em;
-                }
-
-                .product-item__colors {
-                    display: grid;
-                    grid-auto-flow: column;
-                }
-
-                .product-item__colors__item {
-                    display: inline-block;
-                    height: 0.65rem;
-                    width: 100%;
-                }
-            `}</style>
         </Element>
     )
 }

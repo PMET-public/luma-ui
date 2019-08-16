@@ -1,8 +1,8 @@
 import React from 'react'
 import Product from '.'
 import { storiesOf } from '@storybook/react'
-import App from '../App'
-import { AppMockData } from '../App/App.story'
+import App from '../../components/App'
+import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
 
 const ProductMockData: ProductProps = {

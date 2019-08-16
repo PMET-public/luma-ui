@@ -1,60 +1,22 @@
 import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import { Component, Props, Element } from '../../lib'
+import defaultClasses from './Html.css'
 
-export type HtmlProps = Props<{ 
+export type HtmlProps = Props<{
+    classes?: typeof defaultClasses
     source: string
 }>
 
-export const Html: Component<HtmlProps> = ({ 
+export const Html: Component<HtmlProps> = ({
+    classes,
     source,
     ...props
 }) => {
-    
-    return (
-        <Element {...props} className={classes('html', props.className)}>
-            {source && (
-                <div dangerouslySetInnerHTML={{ __html: source }} />
-            )}
+    const styles = { ...defaultClasses, ...classes }
 
-            <style jsx global>{`
-                .html {
-                    line-height: 1.5;
-
-                    & h1,
-                    & h2,
-                    & h3,
-                    & h4,
-                    & h5,
-                    & h6 {
-                        margin-bottom: 1.4rem;
-                    }
-
-                    & p {
-                        margin-bottom: 1rem;
-                    }
-
-                    & ol, & ul {
-                        list-style-position: inside;
-                        margin-left: 1rem;
-                    }
-
-                    & ul {
-                        list-style-position: inside;
-                    }
-
-                    & ol {
-                        list-style-type: decimal;
-                    }
-
-                    & strong {
-                        font-weight: 600;
-                    }
-
-                    & em {
-                        font-style: italic;
-                    }
-                }
-            `}</style>
+    return source ? (
+        <Element {...props} className={styles.root}>
+            <div dangerouslySetInnerHTML={{ __html: source }} />
         </Element>
-    )
+    ) : null
 }

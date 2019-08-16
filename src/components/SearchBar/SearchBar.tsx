@@ -1,12 +1,16 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { Component, Props, Element, classes } from '../../lib'
-import { useTheme } from '../../theme'
+import { Component, Props, Element } from '../../lib'
+import defaultClasses from './SearchBar.css'
+
 import { useThrottle } from '../../hooks/useThrottle'
+
 import Icon from '../Icon'
+
 import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
 import IconReset from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
 
 export type SearchBarProps = Props<{
+    classes?: typeof defaultClasses
     clearButton?: boolean
     count?: number
     label?: string
@@ -16,6 +20,7 @@ export type SearchBarProps = Props<{
 }>
 
 export const SearchBar: Component<SearchBarProps> = ({
+    classes,
     clearButton = true,
     count,
     label = 'Search',
@@ -24,7 +29,8 @@ export const SearchBar: Component<SearchBarProps> = ({
     onUpdate,
     ...props
 }) => {
-    const { colors } = useTheme()
+    const styles = { ...defaultClasses, ...classes }
+
     const [value, setValue] = useState(defaultValue)
 
     const throttledUpdate = useThrottle(() => {
@@ -50,17 +56,20 @@ export const SearchBar: Component<SearchBarProps> = ({
     }
 
     return (
-        <Element {...props} className={classes('search-bar', props.className)}>
+        <Element {...props} className={styles.root}>
             <form onSubmit={handleSubmit}>
-                <label className="search-bar__wrapper">
-                    <Icon className="search-bar__icon"
+                <label className={styles.wrapper}>
+                    <Icon   
                         as="span"
                         aria-hidden
+                        classes={{
+                            root: styles.icon,
+                        }}
                     >
                         <IconSearch />
                     </Icon>
 
-                    <input className="search-bar__field"
+                    <input className={styles.field}
                         aria-label={label}
                         onChange={handleChange}
                         placeholder={label}
@@ -69,15 +78,13 @@ export const SearchBar: Component<SearchBarProps> = ({
                     />
 
                     {typeof count === 'number' && (
-                        <span className="search-bar__count">
-                            <React.Fragment>
-                                {count > 999 ? '+999' : count} {count === 0 || count > 1 ? 'results' : 'result'}
-                            </React.Fragment>
+                        <span className={styles.count}>
+                            {count > 999 ? '+999' : count} {count === 0 || count > 1 ? 'results' : 'result'}
                         </span>
                     )}
 
                     {clearButton && value.length > 0 && (
-                        <span className="search-bar__reset">
+                        <span className={styles.reset}>
                             <Icon
                                 aria-label="reset"
                                 as={props => <button type="reset" {...props} />}
@@ -89,60 +96,6 @@ export const SearchBar: Component<SearchBarProps> = ({
                     )}
                 </label>
             </form>
-
-            <style jsx global>{`
-                .search-bar {
-                    --opacity: 0.64;
-                    border-bottom: 0.1rem solid ${colors.onSurface50};
-                    color: ${colors.onSurface};
-
-                    &:hover,
-                    &:focus-within {
-                        --opacity: 1;
-                    }
-                }
-
-                .search-bar__wrapper {
-                    align-items: center;
-                    
-                    padding: 0.5rem 0.75rem;
-                    width: 100%;
-                    display: flex;
-
-                    & > * {
-                    padding: 1rem;
-                        padding: 0.75rem;
-                    }
-                }
-
-                .search-bar__icon {           
-                    font-size: 1.1em;
-                }
-
-                .search-bar__field {   
-                    appearance: none;
-                    background-color: inherit;
-                    border: 0 none;
-                    color: inherit;
-                    flex-grow: 1;
-                    font-size: inherit;
-                    font-weight: 600;
-                }
-
-                .search-bar__count {
-                    font-size: 0.8em;
-                    opacity: var(--opacity);
-                    transition: opacity 305ms ease;
-                    white-space: nowrap;
-                }
-
-                .search-bar__reset {
-                    font-size: 1.6rem;    
-                    opacity: var(--opacity);
-                    transition: opacity 305ms ease;
-                }
-
-            `}</style>
         </Element>
     )
 }

@@ -4,18 +4,15 @@
             "@babel/preset-env",
             {
                 "modules": false
-            }
+            },
         ],
         "@babel/typescript",
         "@babel/preset-react",
     ],
     "plugins": [
-        [
-            "@babel/plugin-syntax-dynamic-import",
-            {
+        ["@babel/plugin-syntax-dynamic-import",{
 
-            },
-        ],
+        },],
     ],
     "exclude": "node_modules/**",
 }

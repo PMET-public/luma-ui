@@ -21,7 +21,7 @@ storiesOf('📦 Components/Pills', module)
                 },
             ])} />
 
-            <style jsx global>{`
+            <style>{`
                 .story {
                     align-items: center;
                     display: flex;
