@@ -1,12 +1,11 @@
 import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './Icon.css'
+import styles from './Icon.css'
 
 import { useTransition, animated } from 'react-spring'
 import { ReactComponentLike } from 'prop-types'
 
 export type IconProps = Props<{
-    classes?: typeof defaultClasses
     count?: number
     svg?: ReactComponentLike
     text?: string | null
@@ -14,13 +13,11 @@ export type IconProps = Props<{
 
 export const Icon: Component<IconProps> = ({
     children,
-    classes,
     count,
     svg: Svg,
     text,
     ...props
 }) => {    
-    const styles = { ...defaultClasses, ...classes }
 
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
@@ -31,12 +28,12 @@ export const Icon: Component<IconProps> = ({
     const hasCount = typeof count === 'number'
     
     return (
-        <Element as="span" 
-            {...props} 
+        <Element 
+            as="span" 
             className={styles.root}
+            {...props} 
         >
             <span className={classNames(styles.wrapper, [styles.hasCount, hasCount])}>
-
                 <span className={styles.svg}>
                    { Svg ? <Svg /> : children }
                 </span>
@@ -44,8 +41,8 @@ export const Icon: Component<IconProps> = ({
                 {countTransitions.map(({ item, props, key }) => item ? (
                     <animated.span 
                         className={styles.count} 
-                        style={props} 
                         key={key}
+                        style={props} 
                     >
                         {item > 99 ? '+99' : count}
                     </animated.span>

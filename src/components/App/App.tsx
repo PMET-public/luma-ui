@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, Element, Props } from '../../lib'
-import defaultClasses from './App.css'
+import styles from './App.css'
 
 import { useResize } from '../../hooks/useResize'
 
@@ -16,11 +16,9 @@ import IconHome from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
 import IconAccount from '@fortawesome/fontawesome-free/svgs/solid/user.svg'
 
 export type AppProps = Props<{
-    classes?: typeof defaultClasses
-
     home: Props<{
         active?: boolean
-        icon?: IconProps 
+        icon?: IconProps
         text: string
     }>
 
@@ -28,19 +26,19 @@ export type AppProps = Props<{
 
     menu: Props[]
 
-    help: Props<{ 
+    help: Props<{
         active?: boolean
-        icon?: IconProps 
+        icon?: IconProps
         text: string
     }>
 
     myAccount: Props<{
         active?: boolean
-        icon?: IconProps 
+        icon?: IconProps
         text: string
     }>
 
-    search: Props<{ 
+    search: Props<{
         active?: boolean
         icon?: IconProps
         text: string
@@ -49,7 +47,7 @@ export type AppProps = Props<{
     cart: Props<{
         active?: boolean
         count?: number
-        icon?: IconProps 
+        icon?: IconProps
         text: string
     }>
 
@@ -59,7 +57,6 @@ export type AppProps = Props<{
 export const App: Component<AppProps> = ({
     cart,
     children,
-    classes,
     footer,
     help,
     home,
@@ -69,42 +66,90 @@ export const App: Component<AppProps> = ({
     search,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     const { vHeight } = useResize()
 
     return (
-        <Element {...props} className={styles.root}
-            style={{
-                height: vHeight,
-            }}
-        >
-            <Header 
-                as="header" 
-                classes={{
-                    root: styles.header,
-                    logo: styles.headerLogo,
-                    menu: styles.headerMenu,
-                    utilities: styles.headerUtilities,
+        <Element className={styles.root} {...props}>
+            <div
+                className={styles.wrapper}
+                style={{
+                    height: vHeight,
                 }}
-                logo={{
-                    ...logo,
-                    svg: Logo,
-                }}
-                menu={{ 
-                    items: menu, 
-                }}
-                utilities={{
-                    items: [
+            >
+                <Header
+                    as="header"
+                    className={styles.header}
+                    logo={{
+                        svg: Logo,
+                        ...logo,
+                        className: styles.headerLogo,
+                    }}
+                    menu={{
+                        items: menu,
+                        className: styles.headerMenu,
+                    }}
+                    utilities={{
+                        className: styles.headerUtilities,
+                        items: [
+                            {
+                                ...help,
+                            },
+                            {
+                                ...myAccount,
+                            },
+                            {
+                                ...search,
+                                icon: {
+                                    svg: IconSearch,
+                                    ...search.icon,
+                                },
+                            },
+                            {
+                                ...cart,
+                                icon: {
+                                    svg: IconBag,
+                                    ...cart.icon,
+                                },
+                            },
+                        ],
+                    }}
+                />
+
+                <main className={styles.main}>
+                    {children}
+                </main>
+
+                <Footer
+                    as="footer"
+                    className={styles.footer}
+                    {...footer}
+                />
+
+                <TabBar
+                    as="nav"
+                    className={styles.tabBar}
+                    items={[
                         {
-                            ...help,
-                        },
-                        { 
-                            ...myAccount,
-                        },
-                        { 
-                            ...search, 
+                            ...home,
                             icon: {
+                                ['aria-label']: home.text,
+                                svg: IconHome,
+                                ...home.icon,
+                            },
+                        },
+                        {
+                            ...myAccount,
+                            icon: {
+                                ['aria-label']: myAccount.text,
+                                svg: IconAccount,
+                                ...myAccount.icon,
+                            },
+                        },
+                        {
+                            ...search,
+                            icon: {
+                                ['aria-label']: search.text,
                                 svg: IconSearch,
                                 ...search.icon,
                             },
@@ -112,63 +157,14 @@ export const App: Component<AppProps> = ({
                         {
                             ...cart,
                             icon: {
+                                ['aria-label']: cart.text,
                                 svg: IconBag,
                                 ...cart.icon,
                             },
                         },
-                    ],
-                }}
-            />
-            
-            <main className={styles.main}>
-                {children}
-            </main>
-
-            <Footer 
-                as="footer"
-                {...footer} 
-            />
-                            
-            <TabBar  
-                as="nav" 
-                classes={{
-                    root: styles.tabBar,
-                }}
-                items={[
-                    {
-                        ...home,
-                        icon: {
-                            ['aria-label']: home.text,
-                            svg: IconHome,
-                            ...home.icon,
-                        },
-                    },
-                    {
-                        ...myAccount,
-                        icon: {
-                            ['aria-label']: myAccount.text,
-                            svg: IconAccount,
-                            ...myAccount.icon,
-                        },
-                    },
-                    {
-                        ...search,
-                        icon: {
-                            ['aria-label']: search.text,
-                            svg: IconSearch,
-                            ...search.icon,
-                        },
-                    },
-                    {
-                        ...cart,
-                        icon: {
-                            ['aria-label']: cart.text,
-                            svg: IconBag,
-                            ...cart.icon,
-                        },
-                    },
-                ]}
-            />
+                    ]}
+                />
+            </div>
         </Element>
     )
 }

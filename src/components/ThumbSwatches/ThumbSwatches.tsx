@@ -1,11 +1,10 @@
 import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './ThumbSwatches.css'
+import styles from './ThumbSwatches.css'
 
 import Image, { ImageProps } from '../Image'
 
 export type ThumbSwatchesProps = Props<{
-    classes?: typeof defaultClasses
     items: Array<Props<{
         active?: boolean
         disabled?: boolean
@@ -14,33 +13,28 @@ export type ThumbSwatchesProps = Props<{
 }>
 
 export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
-    classes,
     items = [],
     title,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {items.map(({ image, active = false, disabled = false, ...item }, index) => (
-                <Element 
-                    as="button" 
-                    {...item} 
+                <Element
+                    as="button"
                     className={classNames(
-                        styles.item, 
-                        [styles.active, active], 
+                        styles.item,
+                        [styles.active, active],
                         [styles.disabled, disabled]
                     )}
                     key={index}
+                    {...item}
                 >
                     <Image
-                        {...image}
+                        className={styles.image}
                         transition
-                        classes={{
-                            root: styles.image,
-                            image: styles.imageTag,
-                        }}
+                        {...image}
                     />
                 </Element>
             ))}

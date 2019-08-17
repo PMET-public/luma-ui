@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Component, Element, Props } from '../../lib'
-import defaultClasses from './Product.css'
+import styles from './Product.css'
 
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
@@ -16,7 +16,6 @@ export type ProductProps = Props<{
     assembler?: AssemblerProps
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
-    classes?: typeof defaultClasses
     description?: AssemblerProps
     images: ImageProps[]
     swatches?: Array<{
@@ -33,7 +32,6 @@ export const Product: Component<ProductProps> = ({
     assembler,
     breadcrumbs,
     buttons,
-    classes,
     description,
     images, 
     price,
@@ -42,34 +40,26 @@ export const Product: Component<ProductProps> = ({
     title,
     ...props
 }) => {    
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             <div className={styles.wrapper}>
                 <div className={styles.images}>
                     <Carousel 
-                        classes={{
-                            root: styles.carousel,
-                        }}
+                        className={styles.carousel}
                         gap={1}
                         padding={3}
                     >
                         {images.map((image, index) => (
                             <Carousel.Item 
+                                className={styles.carouselItem}
                                 key={index}
-                                classes={{
-                                    root: styles.carouselItem,
-                                }}
                             >
                                 <Image 
-                                    vignette={1} 
+                                    className={styles.image}
                                     transition 
+                                    vignette={1} 
                                     {...image} 
-                                    classes={{
-                                        root: styles.image,
-                                        image: styles.imageTag,
-                                    }}
                                 />
                             </Carousel.Item>
                         ))}
@@ -81,31 +71,28 @@ export const Product: Component<ProductProps> = ({
                         <header className={styles.header}>
                             {breadcrumbs && (
                                 <Breadcrumbs
+                                    className={styles.breadcrumbs}
                                     prefix="#" 
                                     {...breadcrumbs} 
-                                    classes={{
-                                        root: styles.breadcrumbs,
-                                    }}
                                 />
                             )}
 
-                            <Element as="h2" 
-                                {...title} 
+                            <Element 
+                                as="h2" 
                                 className={styles.title}
+                                {...title} 
                             />
 
-                            <Price 
+                            <Price  
+                                className={styles.price}
                                 {...price} 
-                                classes={{
-                                    root: styles.price,
-                                }} 
                             /> 
 
                             {sku && (
                                 <Element 
                                     as="span" 
-                                    {...sku} 
                                     className={styles.sku}
+                                    {...sku}
                                 />
                             )}
                         </header>
@@ -116,8 +103,8 @@ export const Product: Component<ProductProps> = ({
                                     {title && (
                                         <Element 
                                             as="h3" 
-                                            {...title}
                                             className={styles.swatchesTitle}
+                                            {...title}
                                         />
                                     )}
                                     
@@ -136,18 +123,15 @@ export const Product: Component<ProductProps> = ({
                         <div className={styles.buttons}>
                             {buttons.map((button, index) => (
                                 <Button 
-                                    {...button}
-                                    className={'product__info__buttons__item'}
                                     key={index} 
+                                    {...button}
                                 />
                             ))}
                         </div> 
 
                         {description && (
                             <Assembler 
-                                classes={{
-                                    root: styles.asssembler,
-                                }} 
+                                className={styles.assembler}
                                 {...description} 
                             />
                         )}
@@ -158,9 +142,7 @@ export const Product: Component<ProductProps> = ({
 
             {assembler && (
                 <Assembler 
-                    classes={{
-                        root: styles.asssembler,
-                    }} 
+                    className={styles.assembler}
                     {...assembler} 
                 />
             )}          

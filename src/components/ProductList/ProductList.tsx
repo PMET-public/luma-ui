@@ -1,11 +1,10 @@
 import React from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './ProductList.css'
+import styles from './ProductList.css'
 
 import ProductItem, { ProductItemProps } from '../ProductItem'
 
 export type ProductListProps = Props<{
-    classes?: typeof defaultClasses
     loading?: number
     items?: Array<{
         _id?: string | number
@@ -13,22 +12,18 @@ export type ProductListProps = Props<{
 }>
 
 export const ProductList: Component<ProductListProps> = ({ 
-    classes,
     items = [],
     loading,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
     
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {items.map(({ _id, ...item}, index) => (
                 <ProductItem 
+                    className={styles.item}
                     key={_id || index} 
                     {...item} 
-                    classes={{
-                        root: styles.item,
-                    }}
                 />
             ))}
 

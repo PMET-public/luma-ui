@@ -1,13 +1,12 @@
 import React from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './ProductItem.css'
+import styles from './ProductItem.css'
 
 import Image, { ImageProps } from '../Image'
 import Price, { PriceProps } from '../Price'
 import ContentLoader, { IContentLoaderProps } from 'react-content-loader'
 
 export type ProductItemProps = Props<{
-    classes?: typeof defaultClasses
     badge?: Props
     colors?: Array<{ value: string }>
     image: ImageProps
@@ -21,35 +20,30 @@ type CompoundComponent = {
 
 export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
     badge,
-    classes,
     colors,
     image,
     price,
     title,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {badge && (
                 <Element
                     as="span"
-                    {...badge}
                     className={styles.badge}
+                    {...badge}
                 />
             )}
 
             <Image
+                className={styles.image}
                 height="1580"
                 transition
                 vignette={1}
                 width="1274"
                 {...image}
-                classes={{
-                    root: styles.image,
-                    image: styles.imageTag,
-                }}
             />
 
             {colors && (
@@ -67,14 +61,14 @@ export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
             <span className={styles.details}>
                 <Element 
                     as="span" 
-                    {...title} 
                     className={styles.title}
+                    {...title} 
                 />
 
                 <Price 
                     as="span" 
-                    {...price} 
                     className={styles.price}
+                    {...price} 
                 />
             </span>
         </Element>

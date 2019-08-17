@@ -1,11 +1,10 @@
 import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './TabBar.css'
+import styles from './TabBar.css'
 
 import Icon, { IconProps } from '../Icon'
 
 export type TabBarProps = Props<{
-    classes?: typeof defaultClasses
     items: Array<Props<{
         active?: boolean
         icon: IconProps
@@ -13,19 +12,17 @@ export type TabBarProps = Props<{
 }>
 
 export const TabBar: Component<TabBarProps> = ({
-    classes,
     items = [],
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {items.map(({ icon, active = false, ...item }, index) => (
                 <Element 
+                    className={classNames(styles.item, [styles.active, active])}
                     key={index} 
                     {...item} 
-                    className={classNames(styles.item, [styles.active, active])}
                 >
                     <Icon {...icon} />
                 </Element>

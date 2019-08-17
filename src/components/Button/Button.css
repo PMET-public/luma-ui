@@ -22,10 +22,10 @@
 
 .fill {
     background-color: currentColor;
-}
 
-.fill .wrapper {
-    filter: invert(1);
+    & > .wrapper {
+        filter: invert(1);
+    }
 }
 
 .primaryColor {

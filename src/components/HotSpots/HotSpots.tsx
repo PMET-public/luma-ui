@@ -1,13 +1,12 @@
 import React, { createContext, ReactNode, useState } from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './HotSpots.css'
+import styles from './HotSpots.css'
 
 import Image, { ImageProps } from '../Image'
 import { HotSpotsItem, HotSpotItemProps } from './HotSpots.Item'
 
 export type HotSpotsProps = Props<{
     children: ReactNode
-    classes?: typeof defaultClasses
     description: string
     image: ImageProps
     items?: HotSpotItemProps[]
@@ -21,13 +20,11 @@ export const HotSpotsContext = createContext({ active: null, set: (id: string|nu
 
 export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     children,
-    classes,
     description,
     image,
     items,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     const [active, setActive] = useState()
 
@@ -37,20 +34,17 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
 
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
-            <Element {...props} className={styles.root}>
-
+            <Element className={styles.root} {...props}>
                 <Image 
-                    {...image} 
-                    classes={{
-                        root: styles.image,
-                    }}
+                    className={styles.image}
                     transition 
+                    {...image} 
                 />
 
                 {items ? items.map((item, index) => (
                     <HotSpots.Item 
-                        {...item}
                         key={index} 
+                        {...item}
                     />
                 )) : children}
             </Element>

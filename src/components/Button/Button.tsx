@@ -1,9 +1,8 @@
 import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './Button.css'
+import styles from './Button.css'
 
 export type ButtonProps = Props<{
-    classes?: typeof defaultClasses
     color?: 'primary' | 'secondary'
     fill?: boolean
 }>
@@ -11,22 +10,20 @@ export type ButtonProps = Props<{
 export const Button: Component<ButtonProps> = ({ 
     text,
     children = text,
-    classes,
     color = 'primary',
     fill = false,
     ...props
 }) => {    
-    const styles = { ...defaultClasses, ...classes }
 
     return  (
         <Element 
             as="button"
-            {...props} 
             className={classNames(
                 styles.root, 
                 styles[`${color}Color`], 
                 [styles.fill, fill]
             )}
+            {...props} 
         >
             <span className={styles.wrapper}>
                 {children}

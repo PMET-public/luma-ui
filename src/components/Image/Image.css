@@ -1,9 +1,5 @@
 .root {
-    display: inline-flex;
-    line-height: 0;
-}
-
-.wrapper {
+    display: inline-block;
     position: relative;
     display: inherit;
     line-height: 0;

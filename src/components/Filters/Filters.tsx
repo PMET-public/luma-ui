@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './Filters.css'
+import styles from './Filters.css'
 
 import { useMeasure } from '../../hooks/useMeasure'
 
@@ -9,24 +9,20 @@ import CheckedIcon from '@fortawesome/fontawesome-free/svgs/solid/check-circle.s
 import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
 
 export type FiltersProps = Props<{
-    classes?: typeof defaultClasses
     groups: FiltersGroupProps[]
 }>
 
 export const Filters: Component<FiltersProps> = ({
-    classes,
     groups = [],
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {groups.map((group, index) => (
                 <FiltersGroup
-                    {...group}
-                    classes={classes}
                     key={index}
+                    {...group}
                 />
             ))}
         </Element>
@@ -34,7 +30,6 @@ export const Filters: Component<FiltersProps> = ({
 }
 
 type FiltersGroupProps = Props<{
-    classes?: any
     title: Props
     offset?: number
     items: Array<Props<{
@@ -46,13 +41,11 @@ type FiltersGroupProps = Props<{
 }>
 
 const FiltersGroup: Component<FiltersGroupProps> = ({
-    classes,
     items = [],
     offset = 5,
     title,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     const [open, setOpen] = useState(false)
 
@@ -63,26 +56,25 @@ const FiltersGroup: Component<FiltersGroupProps> = ({
     const triggerToggle = () => setOpen(!open)
 
     return (
-        <Element {...props} className={styles.group}
-            style={{
-                ['--transition-duration' as any]: (items.length * 20) + 'ms',
-                ['--height' as any]: open ? `${height / 10}rem` : `calc(2.3em * ${offset})`,
-            }}
-        >
-            <span className={styles.groupWrapper}>
-                <dl className={styles.groupList}
-                    ref={elRef}
-                >
+        <Element className={styles.group} {...props}>
+            <div 
+                className={styles.groupWrapper}
+                style={{
+                    ['--transition-duration' as any]: (items.length * 20) + 'ms',
+                    ['--height' as any]: open ? `${height / 10}rem` : `calc(2.2em * ${offset})`,
+                }}
+            >
+                <dl className={styles.groupList} ref={elRef}>
                     <dt>
-                        <Element {...title} className={styles.groupLabel} />
+                        <Element className={styles.groupLabel} {...title} />
                     </dt>
 
                     {items.map(({ text, count, active = false, _id, ...item }, index) => (
                         <dd key={_id || index}>
                             <Element
                                 as="span"
-                                {...item}
                                 className={styles.groupItem}
+                                {...item}
                             >
                                 {active ? (
                                     <CheckedIcon className={classNames(styles.groupItemCheck, styles.groupItemCheckActive)} />
@@ -103,20 +95,19 @@ const FiltersGroup: Component<FiltersGroupProps> = ({
                         </dd>
                     ))}
                 </dl>
-            </span>
+            </div>
 
             {items.length > offset && (
-                <span>
-                    <button className={styles.groupToggle}
+                <div>
+                    <button 
+                        className={styles.groupToggle}
                         type="button"
                         onClick={triggerToggle}
                     >
-                        <ToggleIcon
-                            className={classNames(styles.groupToggleIcon, [styles.groupToggleIconOpen, open])}
-                        />
+                        <ToggleIcon className={classNames(styles.groupToggleIcon, [styles.groupToggleIconOpen, open])} />
                         {open ? 'Less' : 'More'}
                     </button>
-                </span>
+                </div>
             )}
         </Element>
     )

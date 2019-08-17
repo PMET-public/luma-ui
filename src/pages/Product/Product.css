@@ -16,18 +16,10 @@
 
     display: block;
     width: 100%;
-}
 
-.imageWrapper {
-    composes: wrapper from "../../components/Image/Image.css";
-
-    width: 100%;
-}
-
-.imageTag {
-    composes: image from "../../components/Image/Image.css";
-
-    width: 100%;
+    & > img {
+        width: 100%;
+    }
 }
 
 .wrapper {
@@ -73,7 +65,7 @@
     font-size: 1.6rem;
 }
 
-.buttons {
+.buttons {    
     display: grid;
     grid-gap: 1rem;
 }

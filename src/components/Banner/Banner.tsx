@@ -1,12 +1,11 @@
 import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './Banner.css'
+import styles from './Banner.css'
 
 import Image, { ImageProps } from '../Image'
 import Button, { ButtonProps } from '../Button'
 
 export type BannerProps = Props<{
-    classes: typeof defaultClasses
     image: ImageProps
     titles?: Array<Props<{
         text: string,
@@ -18,24 +17,19 @@ export type BannerProps = Props<{
 
 export const Banner: Component<BannerProps> = ({
     buttons,
-    classes,
     image,
     position = 'top',
     titles,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
 
             <Image
-                {...image}
                 transition
-                classes={{
-                    root: styles.image,
-                    image: styles.imageTag,
-                }}
+                className={styles.image}
+                {...image}
             />
 
             <div className={classNames(styles.content, styles[position])}>
@@ -43,13 +37,13 @@ export const Banner: Component<BannerProps> = ({
                 {titles && (
                     <div className={styles.titles}>
                         {titles.map(({ large = false, ...title }, index) => (
-                            <Element 
-                                {...title} 
+                            <Element
                                 className={classNames(
-                                    styles.title, 
+                                    styles.title,
                                     [styles.large, large]
                                 )}
                                 key={index}
+                                {...title}
                             />
                         ))}
                     </div>
@@ -58,12 +52,10 @@ export const Banner: Component<BannerProps> = ({
                 {buttons && (
                     <div className={styles.buttons}>
                         {buttons.map((button, index) => (
-                            <Button 
-                                {...button}
-                                classes={{
-                                    root: styles.button,
-                                }}
+                            <Button
+                                className={styles.button}
                                 key={index}
+                                {...button}
                             />
                         ))}
                     </div>

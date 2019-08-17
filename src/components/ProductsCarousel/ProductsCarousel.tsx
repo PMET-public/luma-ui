@@ -1,38 +1,33 @@
 import React from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './ProductCarousel.css'
+import styles from './ProductCarousel.css'
 
 import Carousel from '../Carousel'
 import ProductItem, { ProductItemProps } from '../ProductItem'
 
 export type ProductsCarouselProps = Props<{
-    classes?: typeof defaultClasses
     title?: Props
     items: ProductItemProps[]
 }>
 
 export const ProductsCarousel: Component<ProductsCarouselProps> = ({ 
-    classes,
     items,
     title,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
     
     return items ? (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             { title && (
                 <Element 
                     as="h3" 
-                    {...title} 
                     className={styles.title} 
+                    {...title} 
                 />
             )}
 
              <Carousel 
-                classes={{
-                    root: styles.carousel,
-                }}
+                className={styles.carousel}
                 gap={1}
                 padding={4}
             >

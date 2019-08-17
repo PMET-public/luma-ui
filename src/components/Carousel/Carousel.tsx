@@ -1,17 +1,14 @@
 import React from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './Carousel.css'
+import styles from './Carousel.css'
 
 export type CarouselProps = Props<{
-    classes?: {
-        root?: string
-    }
     gap?: number
     padding?: number
     show?: number
 }>
 
-export type CarouselItemProps = Props<{ 
+export type CarouselItemProps = Props<{
     classes?: {
         item?: string
     }
@@ -23,17 +20,16 @@ type CompoundComponent = {
 
 export const Carousel: Component<CarouselProps> & CompoundComponent = ({
     children,
-    classes,
     gap = 0,
     padding = 0,
     show = 1,
     ...props
 }) => {
-    const { root } = defaultClasses
-    const styles = { root, ...classes }
 
     return (
-        <Element {...props} className={styles.root}
+        <Element
+            className={styles.root}
+            {...props}
             style={{
                 ['--padding' as any]: `${padding}rem`,
                 ['--show' as any]: show,
@@ -48,14 +44,11 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
 
 Carousel.Item = ({
     children,
-    classes,
     ...props
 }) => {
-    const { item } = defaultClasses
-    const styles = { item, ...classes }
 
     return (
-        <Element {...props} className={styles.item}>
+        <Element className={styles.item} {...props}>
             {children}
         </Element>
     )

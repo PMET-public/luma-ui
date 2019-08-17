@@ -63,7 +63,7 @@
 .categories {
     composes: root from '../../components/Pills/Pills.css';
     margin-top: -1rem;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .assembler {

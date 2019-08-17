@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Component, Element, Props, classNames } from '../../lib'
-import defaultClasses from './Category.css'
+import styles from './Category.css'
 
 import { useResize } from '../../hooks/useResize'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -18,7 +18,6 @@ export type CategoryProps = Props<{
     assembler?: AssemblerProps
     breadcrumbs?: BreadcrumbsProps
     categories?: PillsProps
-    classes?: typeof defaultClasses
     filters?: {
         label: string
         open?: boolean
@@ -33,46 +32,40 @@ export const Category: Component<CategoryProps> = ({
     assembler,
     breadcrumbs,
     categories,
-    classes,
     filters,
     products,
     title,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     const [showFilter, setShowFilter] = useState(!!(filters && filters.open))
-    
+
     const { vHeight } = useResize()
-    
+
     const filtersRef = useRef(null)
 
     useOnClickOutside(filtersRef, () => setShowFilter(false))
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             <div className={styles.topBar}>
                 <div className={styles.heading}>
                     {breadcrumbs && (
                         <Breadcrumbs
+                            className={styles.breadcrumbs}
                             prefix="#"
                             {...breadcrumbs}
-                            classes={{
-                                root: styles.breadcrumbs,
-                            }}
                         />
                     )}
 
-                    <Element
-                        {...title}
-                        className={styles.title}
-                    />
+                    <Element className={styles.title} {...title} />
                 </div>
 
                 {filters && (
-                    <button className={styles.topBarFilterButton}
-                        type="button"
+                    <button
+                        className={styles.topBarFilterButton}
                         onClick={() => setShowFilter(!showFilter)}
+                        type="button"
                     >
                         <span>
                             <FiltersIcon />
@@ -83,43 +76,28 @@ export const Category: Component<CategoryProps> = ({
             </div>
 
             {categories && (
-                <Pills 
-                    {...categories} 
-                    classes={{
-                        root: styles.categories,
-                    }} 
-                />
+                <Pills className={styles.categories} {...categories} />
             )}
 
             <div className={styles.content}>
                 {assembler && (
-                    <Assembler
-                        {...assembler}
-                        classes={{
-                            root: styles.assembler,
-                        }}
-                    />
+                    <Assembler className={styles.assembler} {...assembler} />
                 )}
 
                 {products && (
                     <ProductList {...products} />
                 )}
             </div>
-            
+
             {filters && (
-                <div 
+                <div
                     className={classNames(styles.filtersWrapper, [styles.filtersIsActive, showFilter])}
                     ref={filtersRef}
-                    style={{ 
+                    style={{
                         height: vHeight,
                     }}
                 >
-                    <Filters 
-                        {...filters.props} 
-                        classes={{
-                            root: styles.filters,
-                        }}
-                    />
+                    <Filters className={styles.filters} {...filters.props} />
 
                     {filters.closeButton && (
                         <div className={styles.filtersButton}>
@@ -130,7 +108,7 @@ export const Category: Component<CategoryProps> = ({
                             />
                         </div>
                     )}
-                </div> 
+                </div>
             )}
         </Element>
     )

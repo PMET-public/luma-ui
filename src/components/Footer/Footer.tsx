@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './Footer.css'
+import styles from './Footer.css'
 
 import IconTwitter from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
 import IconFacebook from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
@@ -8,7 +8,6 @@ import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.s
 import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
 
 export type FooterProps = Props<{
-    classes?: typeof defaultClasses
     copyright: string
     menu?: Props[]
     social?: {
@@ -20,22 +19,21 @@ export type FooterProps = Props<{
 }>
 
 export const Footer: Component<FooterProps> = ({
-    classes,
     copyright,
     menu,
     social,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {menu && (
                 <div className={styles.menu}>
                     {menu.map(({ label, ...menuLink }, index) => (
-                        <Element className={styles.menuLink}
-                            {...menuLink}
+                        <Element 
+                            className={styles.menuLink}
                             key={index}
+                            {...menuLink}
                         >
                             {label}
                         </Element>
@@ -47,8 +45,8 @@ export const Footer: Component<FooterProps> = ({
                 <div className={styles.social}>
                     {social.pinterest && (
                         <Element 
-                            {...social.pinterest} 
                             className={styles.socialIcon}
+                            {...social.pinterest} 
                         >
                             <IconPinterest />
                         </Element>
@@ -56,8 +54,8 @@ export const Footer: Component<FooterProps> = ({
 
                     {social.instragram && (
                         <Element 
-                            {...social.instragram} 
                             className={styles.socialIcon}
+                            {...social.instragram} 
                         >
                             <IconInstagram />
                         </Element>
@@ -65,8 +63,8 @@ export const Footer: Component<FooterProps> = ({
 
                     {social.facebook && (
                         <Element 
-                            {...social.facebook} 
                             className={styles.socialIcon}
+                            {...social.facebook} 
                         >
                             <IconFacebook />
                         </Element>
@@ -74,8 +72,8 @@ export const Footer: Component<FooterProps> = ({
 
                     {social.twitter && (
                         <Element 
-                            {...social.twitter} 
                             className={styles.socialIcon}
+                            {...social.twitter} 
                         >
                             <IconTwitter />
                         </Element>

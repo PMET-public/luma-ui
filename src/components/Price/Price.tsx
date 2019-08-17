@@ -1,9 +1,8 @@
 import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './Price.css'
+import styles from './Price.css'
 
 export type PriceProps = Props<{
-    classes?: typeof defaultClasses
     currency?: string
     label?: string
     regular: number
@@ -11,19 +10,17 @@ export type PriceProps = Props<{
 }>
 
 export const Price: Component<PriceProps> = ({
-    classes,
     currency = 'USD',
     label,
     regular,
     special,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
         <Element 
-            {...props} 
             className={styles.root}
+            {...props} 
         >
             {label && (
                 <em className={styles.label}>

@@ -35,14 +35,12 @@
     display: block;
     overflow: hidden;
     overflow: hidden;
-}
 
-.imageTag {
-    composes: root from '../Image/Image.css';
-
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    overflow: hidden;
-    width: 100%;               
-}           
+    & > img {
+        height: auto;
+        object-fit: cover;
+        object-position: center;
+        overflow: hidden;
+        width: 100%; 
+    }
+}      

@@ -1,11 +1,10 @@
 import React from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './BubbleCarousel.css'
+import styles from './BubbleCarousel.css'
 
 import Image, { ImageProps } from '../Image'
 
 export type BubbleCarouselProps = Props<{
-    classes?: typeof defaultClasses
     items: Array<Props<{
         text: string
         image: ImageProps
@@ -14,29 +13,24 @@ export type BubbleCarouselProps = Props<{
 
 export const BubbleCarousel: Component<BubbleCarouselProps> = ({
     children,
-    classes,
     items,
     ...props
 }) => {
-    const styles = { ...defaultClasses, classes }
 
     return (
-        <Element {...props} className={styles.root} >
+        <Element className={styles.root} {...props}>
             <div className={styles.wrapper}>
                 {items.map(({ text, image, ...item }, index) => (
                     <Element 
-                        {...item} 
                         className={styles.item}
                         key={index}
+                        {...item} 
                     >
                         <Image 
                             alt="null" 
+                            className={styles.image}
                             transition 
                             {...image} 
-                            classes={{
-                                root: styles.image,
-                                image: styles.imageTag,
-                            }}
                         />
                      
                         <Element className={styles.label}>

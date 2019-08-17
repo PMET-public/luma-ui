@@ -19,17 +19,18 @@
 
 .image {
     composes: root from '../Image/Image.css';
+    
     display: block;
     position: relative;
+
+    & > img {
+        height: 100%;
+        width: 100%;
+        min-height: 100%;
+        max-height: 90vh;
+    }
 }
 
-.imageTag {
-    composes: image from '../Image/Image.css';
-    height: 100%;
-    width: 100%;
-    min-height: 100%;
-    max-height: 90vh;
-}
 
 .details {
     display: grid;

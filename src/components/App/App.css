@@ -1,4 +1,8 @@
 .root {
+
+}
+
+.wrapper {
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     grid-template-rows: auto 1fr auto auto;
@@ -54,6 +58,9 @@
 }
 
 /** Footer */
+.footer {
+   composes: root from '../Footer/Footer.css';
+}
 
 /** TabBar */
 .tabBar {

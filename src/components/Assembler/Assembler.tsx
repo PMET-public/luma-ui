@@ -1,9 +1,8 @@
 import React, { Suspense, useEffect, useState, ReactNode } from 'react'
 import { Component, Props, Element, classNames, ErrorBoundary } from '../../lib'
-import defaultClasses from './Assembler.css'
+import styles from './Assembler.css'
 
 export type AssemblerProps = Props<{
-    classes?: typeof defaultClasses
     components: Array<{
         name: string
         props: Props<any>
@@ -18,11 +17,9 @@ const Loading = () => {
 }
 
 export const Assembler: Component<AssemblerProps> = ({
-    classes,
     components = [],
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     const [children, setChildren] = useState<ReactNode>(null)
     
@@ -50,7 +47,7 @@ export const Assembler: Component<AssemblerProps> = ({
     }, [components])
     
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {children}
         </Element>
     )

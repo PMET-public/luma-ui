@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { Component, Props, Element } from '../../lib'
-import defaultClasses from './SearchBar.css'
+import styles from './SearchBar.css'
 
 import { useThrottle } from '../../hooks/useThrottle'
 
@@ -10,7 +10,6 @@ import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
 import IconReset from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
 
 export type SearchBarProps = Props<{
-    classes?: typeof defaultClasses
     clearButton?: boolean
     count?: number
     label?: string
@@ -29,7 +28,6 @@ export const SearchBar: Component<SearchBarProps> = ({
     onUpdate,
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     const [value, setValue] = useState(defaultValue)
 
@@ -56,21 +54,20 @@ export const SearchBar: Component<SearchBarProps> = ({
     }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             <form onSubmit={handleSubmit}>
                 <label className={styles.wrapper}>
                     <Icon   
                         as="span"
                         aria-hidden
-                        classes={{
-                            root: styles.icon,
-                        }}
+                        className={styles.icon}
                     >
                         <IconSearch />
                     </Icon>
 
-                    <input className={styles.field}
+                    <input 
                         aria-label={label}
+                        className={styles.field}
                         onChange={handleChange}
                         placeholder={label}
                         type="text"

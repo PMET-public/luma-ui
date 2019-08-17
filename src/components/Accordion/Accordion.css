@@ -36,7 +36,7 @@
     flex-grow: 1;
 }
 
-.buttonIcon{
+.buttonIcon {
     fill: currentColor;
     transition: transform 305ms ease-out;
     width: 1.6rem;

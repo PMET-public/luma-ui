@@ -1,9 +1,8 @@
 import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
-import defaultClasses from './TextSwatches.css'
+import styles from './TextSwatches.css'
 
 export type TextSwatchesProps = Props<{
-    classes?: typeof defaultClasses
     items: Array<Props<{
         active?: boolean
         disabled?: boolean
@@ -12,23 +11,21 @@ export type TextSwatchesProps = Props<{
 }>
 
 export const TextSwatches: Component<TextSwatchesProps> = ({
-    classes,
     items = [],
     ...props
 }) => {
-    const styles = { ...defaultClasses, ...classes }
 
     return (
-        <Element {...props} className={styles.root}>
+        <Element className={styles.root} {...props}>
             {items.map(({ active = false, disabled = false, text, ...item }, index) => (
                 <Element 
                     as="button" 
-                    {...item}
                     className={classNames(
                         styles.item, 
                         [styles.active, active], 
                         [styles.disabled, disabled]
                     )}
+                    {...item}
                     key={index}
                 >
                     <span className={styles.label}>

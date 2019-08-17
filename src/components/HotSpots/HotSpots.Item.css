@@ -1,4 +1,4 @@
-.root {
+.wrapper {
     &.left {
         --left: var(--coords-x);
         --right: unset;

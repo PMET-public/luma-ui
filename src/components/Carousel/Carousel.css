@@ -1,15 +1,15 @@
 .root {
     -webkit-overflow-scrolling: touch;   
     display: grid;                   
-    grid-gap: var(--gap);
-    scroll-padding: var(--padding);
-    width: 100%;
     grid-auto-columns: var(--itemWidth);
     grid-auto-flow: column;
+    grid-gap: var(--gap);
     overflow-x: scroll;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
     padding-bottom: 1rem;
+    scroll-padding: var(--padding);
+    scroll-snap-type: x mandatory;
+    width: 100%;
 
     &::-webkit-scrollbar {
         height: 0.2rem;
