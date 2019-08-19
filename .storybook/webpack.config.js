@@ -18,7 +18,7 @@ module.exports = ({ config }) => {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'style-loader',
+                        loader: 'isomorphic-style-loader',
                     },
                     {
                         loader: 'css-loader',
@@ -28,7 +28,7 @@ module.exports = ({ config }) => {
                             modules: {
                                 localIdentName: '[name]-[local]___[hash:base64:5]',
                             },
-                        }
+                        },
                     },
                     {
                         loader: 'postcss-loader'

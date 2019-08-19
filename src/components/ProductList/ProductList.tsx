@@ -2,6 +2,8 @@ import React from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './ProductList.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import ProductItem, { ProductItemProps } from '../ProductItem'
 
 export type ProductListProps = Props<{
@@ -16,6 +18,7 @@ export const ProductList: Component<ProductListProps> = ({
     loading,
     ...props
 }) => {
+    useStyles(styles)
     
     return (
         <Element className={styles.root} {...props}>

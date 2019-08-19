@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useRef, ReactElement } from
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './Accordion.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
 
@@ -30,7 +31,8 @@ export const Accordion: Component<AccordionProps> & CompoundComponent = ({
     selected = 0,
     ...props
 }) => {
-
+    useStyles(styles)
+    
     const [active, setActive] = useState(selected)
 
     return (

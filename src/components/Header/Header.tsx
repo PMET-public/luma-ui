@@ -3,6 +3,8 @@ import { Component, Props, Element, classNames } from '../../lib'
 import styles from './Header.css'
 import { ReactComponentLike } from 'prop-types'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import Icon, { IconProps } from '../Icon'
 
 export type HeaderProps = Props<{
@@ -38,6 +40,7 @@ export const Header: Component<HeaderProps> = ({
     },
     ...props
 }) => {
+    useStyles(styles)
 
     return (
         <Element className={styles.root} {...props}>

@@ -2,6 +2,8 @@ import React from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './Footer.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import IconTwitter from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
 import IconFacebook from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
 import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
@@ -24,6 +26,7 @@ export const Footer: Component<FooterProps> = ({
     social,
     ...props
 }) => {
+    useStyles(styles)
 
     return (
         <Element className={styles.root} {...props}>

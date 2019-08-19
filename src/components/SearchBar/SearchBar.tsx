@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './SearchBar.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
 import { useThrottle } from '../../hooks/useThrottle'
 
 import Icon from '../Icon'
@@ -19,7 +20,6 @@ export type SearchBarProps = Props<{
 }>
 
 export const SearchBar: Component<SearchBarProps> = ({
-    classes,
     clearButton = true,
     count,
     label = 'Search',
@@ -28,6 +28,7 @@ export const SearchBar: Component<SearchBarProps> = ({
     onUpdate,
     ...props
 }) => {
+    useStyles(styles)
 
     const [value, setValue] = useState(defaultValue)
 

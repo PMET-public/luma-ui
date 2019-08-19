@@ -2,6 +2,7 @@ import React, { ReactNode, useContext } from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './HotSpots.Item.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
 import { useTransition, animated } from 'react-spring'
 
 import { HotSpotsContext } from './HotSpots'
@@ -20,6 +21,8 @@ export const HotSpotsItem: Component<HotSpotItemProps> = ({
     label,
     ...props
 }) => {
+
+    useStyles(styles)
 
     const context = useContext(HotSpotsContext)
 

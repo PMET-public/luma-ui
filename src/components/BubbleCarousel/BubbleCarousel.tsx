@@ -2,6 +2,8 @@ import React from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './BubbleCarousel.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import Image, { ImageProps } from '../Image'
 
 export type BubbleCarouselProps = Props<{
@@ -16,6 +18,8 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({
     items,
     ...props
 }) => {
+
+    useStyles(styles)
 
     return (
         <Element className={styles.root} {...props}>

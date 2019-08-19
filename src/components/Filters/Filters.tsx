@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './Filters.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
 import { useMeasure } from '../../hooks/useMeasure'
 
 import ToggleIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
@@ -16,6 +17,7 @@ export const Filters: Component<FiltersProps> = ({
     groups = [],
     ...props
 }) => {
+    useStyles(styles)
 
     return (
         <Element className={styles.root} {...props}>
@@ -46,6 +48,8 @@ const FiltersGroup: Component<FiltersGroupProps> = ({
     title,
     ...props
 }) => {
+
+    useStyles(styles)
 
     const [open, setOpen] = useState(false)
 

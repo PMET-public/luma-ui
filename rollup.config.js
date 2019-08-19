@@ -1,6 +1,7 @@
 import babel from 'rollup-plugin-babel'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
+import postcss from 'rollup-plugin-postcss'
 import builtins from 'rollup-plugin-node-builtins'
 import multiInput from 'rollup-plugin-multi-input'
 import reactSvg from 'rollup-plugin-react-svg'
@@ -11,6 +12,17 @@ import { spawn } from 'child_process'
 const plugins = [
     multiInput(),
 
+    postcss({
+        inject: false,
+        // modules: true,
+        // getExportNamed: false,
+        // getExport (id) {
+        //     return cssExportMap[id];
+        // },
+    }),
+
+    // injectStyleFunctions(),
+
     babel({
         extensions: [
             '.ts',
@@ -19,6 +31,7 @@ const plugins = [
             '.jsx'
         ],
     }),
+
 
     reactSvg(),
 
@@ -100,3 +113,30 @@ function tsDeclarations({ outDir, rootDir = './' }) {
         }
     }
 }
+
+
+/**
+ * Simple rollup plugin to inject `_getCss` and `_getId` functions to default export of css files.
+ */
+// function injectStyleFunctions() {
+//     const injectFunctions = (code, id) => code.replace(
+//         'export default {',
+//         'export default {'.concat([
+//             '_getCss: function() { return css },',
+//             `_getId: function() { return '${id}' },`,
+//         ].join(' ')
+//     ))
+
+//     return {
+//         name: 'injectStyleFunctions',
+//         async transform(code, id) {
+//             if (id.includes('.css')) {
+//                 return {
+//                     id,
+//                     code: injectFunctions(code, id)
+//                 }
+//             }
+//             return null
+//         },
+//     }
+// }

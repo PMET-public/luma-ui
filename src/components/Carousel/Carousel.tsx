@@ -2,6 +2,8 @@ import React from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './Carousel.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 export type CarouselProps = Props<{
     gap?: number
     padding?: number
@@ -25,6 +27,8 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
     show = 1,
     ...props
 }) => {
+
+    useStyles(styles)
 
     return (
         <Element

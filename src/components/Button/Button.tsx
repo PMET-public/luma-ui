@@ -2,6 +2,8 @@ import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './Button.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 export type ButtonProps = Props<{
     color?: 'primary' | 'secondary'
     fill?: boolean
@@ -14,6 +16,8 @@ export const Button: Component<ButtonProps> = ({
     fill = false,
     ...props
 }) => {    
+
+    useStyles(styles)
 
     return  (
         <Element 

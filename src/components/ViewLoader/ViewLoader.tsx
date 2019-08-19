@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './ViewLoader.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import LoaderImage from '../../../public/images/loader.svg'
 
 export type ViewLoaderProps = Props<{ 
@@ -12,6 +14,7 @@ export const ViewLoader: Component<ViewLoaderProps> = ({
     text = 'loading',
     ...props
 }) => {
+    useStyles(styles)
 
     const [show, setShow] = useState(false)
 

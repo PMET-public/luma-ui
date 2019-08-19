@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './Image.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import ErrorIcon from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
 
 export type ImageProps = Props<{
@@ -22,6 +24,7 @@ export const ImageComponent: Component<ImageProps> = ({
     width,
     ...props
 }) => {
+    useStyles(styles)
     const [loaded, setLoaded] = useState(false)
     const [error, setError] = useState(false)
     const imageRef = useRef<HTMLImageElement>(null)

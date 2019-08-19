@@ -2,6 +2,8 @@ import React, { Suspense } from 'react'
 import { Component, Element, Props } from '../../lib'
 import styles from './Product.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
@@ -40,6 +42,7 @@ export const Product: Component<ProductProps> = ({
     title,
     ...props
 }) => {    
+    useStyles(styles)
 
     return (
         <Element className={styles.root} {...props}>

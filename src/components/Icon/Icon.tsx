@@ -2,6 +2,7 @@ import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './Icon.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
 import { useTransition, animated } from 'react-spring'
 import { ReactComponentLike } from 'prop-types'
 
@@ -18,6 +19,7 @@ export const Icon: Component<IconProps> = ({
     text,
     ...props
 }) => {    
+    useStyles(styles)
 
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },

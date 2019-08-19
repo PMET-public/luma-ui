@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Component, Element, Props, classNames } from '../../lib'
 import styles from './Category.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
 import { useResize } from '../../hooks/useResize'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
@@ -37,6 +38,7 @@ export const Category: Component<CategoryProps> = ({
     title,
     ...props
 }) => {
+    useStyles(styles)
 
     const [showFilter, setShowFilter] = useState(!!(filters && filters.open))
 

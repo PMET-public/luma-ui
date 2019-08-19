@@ -2,6 +2,8 @@ import React from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './Breadcrumbs.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 export type BreadcrumbsProps = Props<{ 
     dividor?: string
     prefix?: string
@@ -16,6 +18,8 @@ export const Breadcrumbs: Component<BreadcrumbsProps> = ({
     prefix = '',
     ...props
 }) => {
+
+    useStyles(styles)
 
     return (
         <Element className={styles.root} {...props}>

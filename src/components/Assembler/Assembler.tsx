@@ -2,6 +2,8 @@ import React, { Suspense, useEffect, useState, ReactNode } from 'react'
 import { Component, Props, Element, classNames, ErrorBoundary } from '../../lib'
 import styles from './Assembler.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 export type AssemblerProps = Props<{
     components: Array<{
         name: string
@@ -20,7 +22,8 @@ export const Assembler: Component<AssemblerProps> = ({
     components = [],
     ...props
 }) => {
-
+    useStyles(styles)
+    
     const [children, setChildren] = useState<ReactNode>(null)
     
     useEffect(() => {

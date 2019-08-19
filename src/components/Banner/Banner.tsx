@@ -2,6 +2,8 @@ import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './Banner.css'
 
+import useStyles from 'isomorphic-style-loader/useStyles'
+
 import Image, { ImageProps } from '../Image'
 import Button, { ButtonProps } from '../Button'
 
@@ -22,6 +24,8 @@ export const Banner: Component<BannerProps> = ({
     titles,
     ...props
 }) => {
+
+    useStyles(styles)
 
     return (
         <Element className={styles.root} {...props}>
