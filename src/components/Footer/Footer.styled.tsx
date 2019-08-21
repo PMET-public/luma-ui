@@ -5,7 +5,7 @@ import IconFacebookSvg from '@fortawesome/fontawesome-free/svgs/brands/facebook.
 import IconInstagramSvg from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
 import IconPinterestSvg from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
 
-export const Root = styled.div`
+export const Root = styled.footer`
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.onBackground};
     display: grid;

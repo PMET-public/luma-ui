@@ -1,7 +1,12 @@
 import React from 'react'
-import App from '.'
+import App, { AppProps } from '.'
 import { storiesOf } from '@storybook/react'
-import { AppProps } from './App'
+import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
+
+const StoryContainer = styled(Story)`
+    /* Story Styles */
+`
 
 export const AppMockData: AppProps = {
     logo: {
@@ -16,27 +21,27 @@ export const AppMockData: AppProps = {
         active: true,
     },
     menu: [
-        { 
+        {
             as: 'a',
             href: '#',
             text: 'Women',
         },
-        { 
+        {
             as: 'a',
             href: '#',
             text: 'Men',
         },
-        { 
+        {
             as: 'a',
             href: '#',
             text: 'Gear',
         },
-        { 
+        {
             as: 'a',
             href: '#',
             text: 'Training',
         },
-        { 
+        {
             as: 'a',
             href: '#',
             text: 'Sale',
@@ -49,12 +54,12 @@ export const AppMockData: AppProps = {
     },
     myAccount: {
         as: 'a',
-        href: '#' ,
+        href: '#',
         text: 'My Account',
     },
     search: {
         as: 'a',
-        href: '#' ,
+        href: '#',
         text: 'Search',
     },
     cart: {
@@ -83,9 +88,12 @@ export const AppMockData: AppProps = {
     },
 }
 
-storiesOf('📦 Components/App', module)
-    .add('Default', () => (
+storiesOf('📦 Components/App', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles />
+
         <App {...AppMockData}>
             <div className="story__content"></div>
         </App>
-    ))
+    </StoryContainer>
+))

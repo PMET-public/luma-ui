@@ -1,7 +1,7 @@
 import IconComponent from '../Icon'
 import styled from 'styled-components'
 
-export const Root = styled.div`
+export const Root = styled.header`
     align-items: center;
     background-color: ${props => props.theme.colors.surface};
     box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.09), inset 0 -0.2rem 0 rgba(255, 255, 255, 0.09);
@@ -15,25 +15,11 @@ export const Root = styled.div`
     padding: 1.6rem 2rem;
     width: 100%;
 
-    @media (${props => props.theme.breakpoints.medium}) {
+    @media ${props => props.theme.breakpoints.medium} {
         grid-template-areas: 'logo navigation utilities';
         grid-template-columns: auto 1fr auto;
     }
 `
-
-// .menuWrapper > a,
-// .utilities > a {
-//     border-bottom: 0.1rem solid transparent;
-//     color: var(--color-primary);
-//     padding-top: 0.4rem;
-//     padding-bottom: 0.3rem;
-//     text-decoration: none;
-//     transition: border 700ms ease;
-
-//     &:hover, &.active {
-//         border-color: var(--color-primary);
-//     }
-// }
 
 export const Icon = styled(IconComponent)`
     font-size: 2.4rem;
@@ -64,7 +50,7 @@ export const Menu = styled.div`
         display: none;
     }
 
-    @media (${props => props.theme.breakpoints.medium}) {
+    @media ${props => props.theme.breakpoints.medium} {
         text-align: center;
     }
 `
@@ -81,9 +67,22 @@ export const MenuWrapper = styled.div`
     white-space: nowrap;
 `
 
-export const MenuItem = styled.span``
+export const Link = styled.span<{ active?: true }>`
+    border-bottom: 0.1rem solid ${props => (props.active ? props.theme.colors.primary : 'transparent')};
+    color: var(--color-primary);
+    padding-top: 0.4rem;
+    padding-bottom: 0.3rem;
+    text-decoration: none;
+    transition: border 700ms ease;
 
-export const Utilities = styled.span`
+    &:hover {
+        border-color: ${props => props.theme.colors.primary};
+    }
+`
+
+export const MenuItem = styled(Link)``
+
+export const Utilities = styled(Link)`
     align-items: center;
     display: grid;
     font-size: 1.3rem;

@@ -12,6 +12,7 @@ export type HeaderProps = {
     menu: {
         items: Array<{
             active?: boolean
+            text: string
         }>
     }
     utilities: {
@@ -38,8 +39,8 @@ export const Header: Component<HeaderProps> = ({
             {/* Menu */}
             <Menu {...menu}>
                 <MenuWrapper>
-                    {menuItems.map(({ active = false, ...menuItem }, index) => (
-                        <MenuItem {...menuItem} />
+                    {menuItems.map(({ active = false, text, ...menuItem }, index) => (
+                        <MenuItem {...menuItem}>{text}</MenuItem>
                     ))}
                 </MenuWrapper>
             </Menu>

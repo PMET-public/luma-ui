@@ -1,4 +1,6 @@
-.root {
+import styled from 'styled-components'
+
+export const Root = styled.div`
     line-height: 1.5;
 
     & h1,
@@ -35,4 +37,4 @@
     & em {
         font-style: italic;
     }
-}
+`

@@ -1,57 +1,56 @@
 import React from 'react'
-import { Component, Element, Props } from '../../lib'
+import { Component } from '../../lib'
+import { Root, Header, Main, Footer, TabBar } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
 
-import Header from '../Header'
-import TabBar from '../TabBar'
-import Logo from '../../../public/images/luma.svg'
-import Footer, { FooterProps } from '../Footer'
+import { FooterProps } from '../Footer'
 import { IconProps } from '../Icon'
 
-import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
-import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
-import IconHome from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
-import IconAccount from '@fortawesome/fontawesome-free/svgs/solid/user.svg'
+import LogoImage from '../../../public/images/luma.svg'
+import IconSearchSvg from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
+import IconBagSvg from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
+import IconHomeSvg from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
+import IconAccountSvg from '@fortawesome/fontawesome-free/svgs/solid/user.svg'
 
-export type AppProps = Props<{
-    home: Props<{
+export type AppProps = {
+    home: {
         active?: boolean
         icon?: IconProps
         text: string
-    }>
+    }
 
-    logo: Props
+    logo: any
 
-    menu: Props[]
+    menu: any[]
 
-    help: Props<{
+    help: {
         active?: boolean
         icon?: IconProps
         text: string
-    }>
+    }
 
-    myAccount: Props<{
+    myAccount: {
         active?: boolean
         icon?: IconProps
         text: string
-    }>
+    }
 
-    search: Props<{
+    search: {
         active?: boolean
         icon?: IconProps
         text: string
-    }>
+    }
 
-    cart: Props<{
+    cart: {
         active?: boolean
         count?: number
         icon?: IconProps
         text: string
-    }>
+    }
 
     footer: FooterProps
-}>
+}
 
 export const App: Component<AppProps> = ({
     cart,
@@ -65,105 +64,89 @@ export const App: Component<AppProps> = ({
     search,
     ...props
 }) => {
-   
     const { vHeight } = useResize()
 
     return (
-        <Element className={styles.root} {...props}>
-            <div
-                className={styles.wrapper}
-                style={{
-                    height: vHeight,
+        <Root
+            style={{
+                height: vHeight,
+            }}
+            {...props}
+        >
+            <Header
+                logo={{
+                    svg: LogoImage,
+                    ...logo,
                 }}
-            >
-                <Header
-                    as="header"
-                    className={styles.header}
-                    logo={{
-                        svg: Logo,
-                        ...logo,
-                        className: styles.headerLogo,
-                    }}
-                    menu={{
-                        items: menu,
-                        className: styles.headerMenu,
-                    }}
-                    utilities={{
-                        className: styles.headerUtilities,
-                        items: [
-                            {
-                                ...help,
-                            },
-                            {
-                                ...myAccount,
-                            },
-                            {
-                                ...search,
-                                icon: {
-                                    svg: IconSearch,
-                                    ...search.icon,
-                                },
-                            },
-                            {
-                                ...cart,
-                                icon: {
-                                    svg: IconBag,
-                                    ...cart.icon,
-                                },
-                            },
-                        ],
-                    }}
-                />
-
-                <main className={styles.main}>
-                    {children}
-                </main>
-
-                <Footer
-                    as="footer"
-                    className={styles.footer}
-                    {...footer}
-                />
-
-                <TabBar
-                    as="nav"
-                    className={styles.tabBar}
-                    items={[
+                menu={{
+                    items: menu,
+                }}
+                utilities={{
+                    items: [
                         {
-                            ...home,
-                            icon: {
-                                ['aria-label']: home.text,
-                                svg: IconHome,
-                                ...home.icon,
-                            },
+                            ...help,
                         },
                         {
                             ...myAccount,
-                            icon: {
-                                ['aria-label']: myAccount.text,
-                                svg: IconAccount,
-                                ...myAccount.icon,
-                            },
                         },
                         {
                             ...search,
                             icon: {
-                                ['aria-label']: search.text,
-                                svg: IconSearch,
+                                svg: IconSearchSvg,
                                 ...search.icon,
                             },
                         },
                         {
                             ...cart,
                             icon: {
-                                ['aria-label']: cart.text,
-                                svg: IconBag,
+                                svg: IconBagSvg,
                                 ...cart.icon,
                             },
                         },
-                    ]}
-                />
-            </div>
-        </Element>
+                    ],
+                }}
+            />
+
+            <Main>{children}</Main>
+
+            <Footer {...footer} />
+
+            <TabBar
+                items={[
+                    {
+                        ...home,
+                        icon: {
+                            ['aria-label']: home.text,
+                            svg: IconHomeSvg,
+                            ...home.icon,
+                        },
+                    },
+                    {
+                        ...myAccount,
+                        icon: {
+                            ['aria-label']: myAccount.text,
+                            svg: IconAccountSvg,
+                            ...myAccount.icon,
+                        },
+                    },
+                    {
+                        ...search,
+                        icon: {
+                            ['aria-label']: search.text,
+                            svg: IconSearchSvg,
+                            ...search.icon,
+                        },
+                    },
+                    {
+                        ...cart,
+                        icon: {
+                            ['aria-label']: cart.text,
+                            svg: IconBagSvg,
+                            ...cart.icon,
+                        },
+                    },
+                ]}
+            />
+        </Root>
     )
 }

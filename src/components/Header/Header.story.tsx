@@ -10,12 +10,11 @@ import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
 
 const StoryContainer = styled(Story)`
     /* Story Styles */
-    padding: 2rem;
 `
 
 storiesOf('📦 Components/Header', module).add('Default', () => (
     <StoryContainer>
-        <StoryGlobalStyles centered />
+        <StoryGlobalStyles />
 
         <Header
             logo={{

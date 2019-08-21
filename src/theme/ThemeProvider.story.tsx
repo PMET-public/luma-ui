@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import CodeBlock from '../../.storybook/components/CodeBlock'
+import CodeBlock from '../../.storybook/lib/CodeBlock'
 
 storiesOf('🖼 Theme', module).add('⚛️ ThemeProvider', () => (
     <div

@@ -28,7 +28,7 @@ export const Content = styled.div<{ position: 'top' | 'bottom' }>`
     ${props => props.position === 'top' && 'top: 0;'}
     ${props => props.position === 'bottom' && 'bottom: 0;'}
 
-    @media(${props => props.theme.breakpoints.medium}) {
+    @media ${props => props.theme.breakpoints.medium} {
         padding: 5rem;
     }
 `
