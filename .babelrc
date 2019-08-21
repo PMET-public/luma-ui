@@ -10,9 +10,9 @@
         "@babel/preset-react",
     ],
     "plugins": [
-        ["@babel/plugin-syntax-dynamic-import",{
-
-        },],
+        "@babel/plugin-syntax-dynamic-import",
+        "inline-react-svg",
+        "babel-plugin-styled-components",
     ],
     "exclude": "node_modules/**",
 }

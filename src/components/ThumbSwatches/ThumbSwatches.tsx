@@ -2,7 +2,7 @@ import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './ThumbSwatches.css'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+
 
 import Image, { ImageProps } from '../Image'
 
@@ -19,7 +19,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
     title,
     ...props
 }) => {
-    useStyles(styles)
+   
 
     return (
         <Element className={styles.root} {...props}>

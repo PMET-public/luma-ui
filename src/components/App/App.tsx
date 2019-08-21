@@ -1,8 +1,6 @@
 import React from 'react'
 import { Component, Element, Props } from '../../lib'
-import styles from './App.css'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
 import { useResize } from '../../hooks/useResize'
 
 import Header from '../Header'
@@ -67,7 +65,7 @@ export const App: Component<AppProps> = ({
     search,
     ...props
 }) => {
-    useStyles(styles)
+   
     const { vHeight } = useResize()
 
     return (

@@ -1,14 +1,13 @@
 import React from 'react'
-import Filters from './'
+import Filters, { FiltersProps } from './'
 import { storiesOf } from '@storybook/react'
-import { FiltersProps } from './Filters'
+import { StoryGlobalStyles, Story } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
 
 const FiltersMockData: FiltersProps = {
     groups: [
         {
-            title: {
-                text: 'Fashion',
-            },
+            title: 'Fashion',
             items: [
                 {
                     as: 'a',
@@ -104,9 +103,7 @@ const FiltersMockData: FiltersProps = {
             ],
         },
         {
-            title: {
-                text: 'Style',
-            },
+            title: 'Style',
             items: [
                 {
                     as: 'a',
@@ -226,9 +223,7 @@ const FiltersMockData: FiltersProps = {
             ],
         },
         {
-            title: {
-                text: 'Color',
-            },
+            title: 'Color',
             items: [
                 {
                     as: 'a',
@@ -293,9 +288,7 @@ const FiltersMockData: FiltersProps = {
             ],
         },
         {
-            title: {
-                text: 'Has Video',
-            },
+            title: 'Has Video',
             items: [
                 {
                     as: 'a',
@@ -314,16 +307,15 @@ const FiltersMockData: FiltersProps = {
     ],
 }
 
-storiesOf('📦 Components/Filters', module)
-    .add('Default', () => (
-        <div className='story'>
-            <Filters {...FiltersMockData} />
-      
-            <style>{`
+storiesOf('📦 Components/Filters', module).add('Default', () => (
+    <div className="story">
+        <Filters {...FiltersMockData} />
+
+        <style>{`
                 .story {
                     padding: 3rem;
                     display: inline-flex;
                 }
             `}</style>
-        </div>
-    ))
+    </div>
+))

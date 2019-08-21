@@ -1,10 +1,18 @@
 import React from 'react'
 import Banner from './'
 import { storiesOf } from '@storybook/react'
+import { StoryGlobalStyles, Story } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
 import { object, select } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/Banner', module)
-    .add('Default', () => (
+const StoryContainer = styled(Story)`
+    /*  */
+    width: 100vw;
+`
+
+storiesOf('📦 Components/Banner', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles centered />
         <Banner
             image={object('image', {
                 alt: '',
@@ -23,4 +31,5 @@ storiesOf('📦 Components/Banner', module)
                 { text: 'Button 3', as: 'a', href: '#' },
             ])}
         />
-    ))
+    </StoryContainer>
+))

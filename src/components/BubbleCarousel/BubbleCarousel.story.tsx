@@ -1,9 +1,17 @@
 import React from 'react'
 import BubbleCarousel from '.'
 import { storiesOf } from '@storybook/react'
+import { StoryGlobalStyles, Story } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
 
-storiesOf('📦 Components/BubbleCarousel', module)
-    .add('Default', () => (
+const StoryContainer = styled(Story)`
+    padding: 1rem;
+`
+
+storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles centered />
+
         <BubbleCarousel
             label="Shop the Look"
             items={[
@@ -57,4 +65,5 @@ storiesOf('📦 Components/BubbleCarousel', module)
                 },
             ]}
         />
-    ))
+    </StoryContainer>
+))

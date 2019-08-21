@@ -1,57 +1,38 @@
 import React, { Suspense, useEffect, useState, ReactNode } from 'react'
-import { Component, Props, Element, classNames, ErrorBoundary } from '../../lib'
-import styles from './Assembler.css'
+import { Root, Row } from './Assembler.styled'
+import { Component, ErrorBoundary } from '../../lib'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
-
-export type AssemblerProps = Props<{
+export type AssemblerProps = {
     components: Array<{
         name: string
-        props: Props<any>
-        hideOnBreakpoint?: 'smallScreenOnly' | 'mediumScreen' | 'mediumScreenOnly' | 'largeScreen' | 'largeScreenOnly' | 'xLargeScreen'
+        props: any
+        hideOnBreakpoint?: 'smallOnly' | 'medium' | 'mediumOnly' | 'large' | 'largeOnly' | 'xLarge'
     }>
-}>
-
-const Loading = () => {
-    return (
-        <div>Loading</div>
-    )
 }
 
-export const Assembler: Component<AssemblerProps> = ({
-    components = [],
-    ...props
-}) => {
-    useStyles(styles)
-    
+const Loading = () => {
+    return <div>Loading</div>
+}
+
+export const Assembler: Component<AssemblerProps> = ({ components = [], ...props }) => {
     const [children, setChildren] = useState<ReactNode>(null)
-    
+
     useEffect(() => {
         setChildren(
             <Suspense fallback={<Loading />}>
                 {components.map(({ name, hideOnBreakpoint, props }, index) => {
                     const DynamicComponent = React.lazy(() => import(`../${name}/index`))
                     return (
-                        <div 
-                            className={classNames(
-                                styles.row, 
-                                [`hideOn${hideOnBreakpoint}`, !!hideOnBreakpoint]
-                            )} 
-                            key={index}
-                        >
+                        <Row hideOnBreakpoint={hideOnBreakpoint} key={index}>
                             <ErrorBoundary>
                                 <DynamicComponent {...props} />
                             </ErrorBoundary>
-                        </div>
+                        </Row>
                     )
                 })}
             </Suspense>
         )
     }, [components])
-    
-    return (
-        <Element className={styles.root} {...props}>
-            {children}
-        </Element>
-    )
+
+    return <Root {...props}>{children}</Root>
 }

@@ -2,27 +2,23 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import CodeBlock from '../../.storybook/components/CodeBlock'
 
-storiesOf('🖼 Theme', module)
-    .add('⚛️ ThemeProvider', () => (
-        <div className="story">
+storiesOf('🖼 Theme', module).add('⚛️ ThemeProvider', () => (
+    <div
+        className="story"
+        style={{
+            padding: '2rem',
+        }}
+    >
+        <h1>⚛️ ThemeProvider</h1>
 
-            <h1>⚛️ ThemeProvider</h1>
+        <hr />
 
-            <hr />
+        <CodeBlock lang="jsx">{`
+            import ThemeProvider from 'luma-storybook/dist/theme'
 
-            <CodeBlock lang="jsx">{`
-                import ThemeProvider from 'luma-storybook/dist/theme'
-
-                <ThemeProvider>
-                    {/* <App /> */}
-                </ThemeProvider>
-            `}</CodeBlock>
-
-            <style>{`
-                .story {
-                    padding: 2rem;
-                }
-            `}</style>
-
-        </div>
-    ))
+            <ThemeProvider>
+                {/* <App /> */}
+            </ThemeProvider>
+        `}</CodeBlock>
+    </div>
+))

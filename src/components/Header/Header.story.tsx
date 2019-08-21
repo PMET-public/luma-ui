@@ -1,14 +1,23 @@
 import React from 'react'
 import Header from './'
 import { storiesOf } from '@storybook/react'
+import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
 
 import Logo from '../../../public/images/luma.svg'
 import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
 import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
 
-storiesOf('📦 Components/Header', module)
-    .add('Default', () => (
-        <Header 
+const StoryContainer = styled(Story)`
+    /* Story Styles */
+    padding: 2rem;
+`
+
+storiesOf('📦 Components/Header', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles centered />
+
+        <Header
             logo={{
                 as: 'a',
                 href: '#',
@@ -46,7 +55,7 @@ storiesOf('📦 Components/Header', module)
                         as: 'a',
                         href: '#',
                         text: 'Gift Cards',
-                    },  
+                    },
                 ],
             }}
             utilities={{
@@ -81,4 +90,5 @@ storiesOf('📦 Components/Header', module)
                 ],
             }}
         />
+    </StoryContainer>
 ))

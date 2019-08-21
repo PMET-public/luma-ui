@@ -1,93 +1,69 @@
 import React from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './Footer.css'
+import { Component } from '../../lib'
+import {
+    Root,
+    Menu,
+    MenuLink,
+    Copyright,
+    Social,
+    SocialIcon,
+    SocialIconPinterest,
+    SocialIconInstagram,
+    SocialIconTwitter,
+    SocialIconFacebook,
+} from './Footer.styled'
+import { StyledComponent } from 'styled-components'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
-
-import IconTwitter from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
-import IconFacebook from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
-import IconInstagram from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
-import IconPinterest from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
-
-export type FooterProps = Props<{
+export type FooterProps = {
     copyright: string
-    menu?: Props[]
+    menu?: StyledComponent<'a', { text: string }>[]
     social?: {
-        facebook?: Props
-        instragram?: Props
-        pinterest?: Props
-        twitter?: Props
+        facebook?: any
+        instragram?: any
+        pinterest?: any
+        twitter?: any
     }
-}>
+}
 
-export const Footer: Component<FooterProps> = ({
-    copyright,
-    menu,
-    social,
-    ...props
-}) => {
-    useStyles(styles)
-
+export const Footer: Component<FooterProps> = ({ copyright, menu, social, ...props }) => {
     return (
-        <Element className={styles.root} {...props}>
+        <Root {...props}>
             {menu && (
-                <div className={styles.menu}>
-                    {menu.map(({ label, ...menuLink }, index) => (
-                        <Element 
-                            className={styles.menuLink}
-                            key={index}
-                            {...menuLink}
-                        >
-                            {label}
-                        </Element>
+                <Menu>
+                    {menu.map(({ text, ...menuLink }, index) => (
+                        <MenuLink key={index} {...menuLink}>
+                            {text}
+                        </MenuLink>
                     ))}
-                </div>
+                </Menu>
             )}
 
             {social && (
-                <div className={styles.social}>
+                <Social>
                     {social.pinterest && (
-                        <Element 
-                            className={styles.socialIcon}
-                            {...social.pinterest} 
-                        >
-                            <IconPinterest />
-                        </Element>
+                        <SocialIcon {...social.pinterest}>
+                            <SocialIconPinterest />
+                        </SocialIcon>
                     )}
-
                     {social.instragram && (
-                        <Element 
-                            className={styles.socialIcon}
-                            {...social.instragram} 
-                        >
-                            <IconInstagram />
-                        </Element>
+                        <SocialIcon {...social.instragram}>
+                            <SocialIconInstagram />
+                        </SocialIcon>
                     )}
-
                     {social.facebook && (
-                        <Element 
-                            className={styles.socialIcon}
-                            {...social.facebook} 
-                        >
-                            <IconFacebook />
-                        </Element>
+                        <SocialIcon {...social.facebook}>
+                            <SocialIconFacebook />
+                        </SocialIcon>
                     )}
-
                     {social.twitter && (
-                        <Element 
-                            className={styles.socialIcon}
-                            {...social.twitter} 
-                        >
-                            <IconTwitter />
-                        </Element>
+                        <SocialIcon {...social.twitter}>
+                            <SocialIconTwitter />
+                        </SocialIcon>
                     )}
-
-                </div>
+                </Social>
             )}
 
-            <div className={styles.copyright}>
-                {copyright}
-            </div>
-        </Element>
+            <Copyright>{copyright}</Copyright>
+        </Root>
     )
 }

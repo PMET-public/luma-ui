@@ -1,56 +1,47 @@
 import React, { useState, useRef } from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Filters.css'
+import { Component } from '../../lib'
+import {
+    Root,
+    Group,
+    Wrapper,
+    List,
+    GroupLabel,
+    Item,
+    CheckIcon,
+    CheckedIcon,
+    Count,
+    ToggleIcon,
+    ToggleButton,
+} from './Filters.styled'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
 import { useMeasure } from '../../hooks/useMeasure'
 
-import ToggleIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
-import CheckedIcon from '@fortawesome/fontawesome-free/svgs/solid/check-circle.svg'
-import CheckIcon from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
-
-export type FiltersProps = Props<{
+export type FiltersProps = {
     groups: FiltersGroupProps[]
-}>
+}
 
-export const Filters: Component<FiltersProps> = ({
-    groups = [],
-    ...props
-}) => {
-    useStyles(styles)
-
+export const Filters: Component<FiltersProps> = ({ groups = [], ...props }) => {
     return (
-        <Element className={styles.root} {...props}>
+        <Root {...props}>
             {groups.map((group, index) => (
-                <FiltersGroup
-                    key={index}
-                    {...group}
-                />
+                <FiltersGroup key={index} {...group} />
             ))}
-        </Element>
+        </Root>
     )
 }
 
-type FiltersGroupProps = Props<{
-    title: Props
+type FiltersGroupProps = {
+    title: string
     offset?: number
-    items: Array<Props<{
+    items: Array<{
         _id?: string | number
         active?: boolean
         count?: number
         text: string
-    }>>
-}>
+    }>
+}
 
-const FiltersGroup: Component<FiltersGroupProps> = ({
-    items = [],
-    offset = 5,
-    title,
-    ...props
-}) => {
-
-    useStyles(styles)
-
+const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
     const [open, setOpen] = useState(false)
 
     const elRef = useRef<any>(null)
@@ -60,59 +51,36 @@ const FiltersGroup: Component<FiltersGroupProps> = ({
     const triggerToggle = () => setOpen(!open)
 
     return (
-        <Element className={styles.group} {...props}>
-            <div 
-                className={styles.groupWrapper}
-                style={{
-                    ['--transition-duration' as any]: (items.length * 20) + 'ms',
-                    ['--height' as any]: open ? `${height / 10}rem` : `calc(2.2em * ${offset})`,
-                }}
+        <Group {...props}>
+            <Wrapper
+                duration={items.length * 20 + 'ms'}
+                height={open ? `${height / 10}rem` : `calc(2.2em * ${offset})`}
             >
-                <dl className={styles.groupList} ref={elRef}>
-                    <dt>
-                        <Element className={styles.groupLabel} {...title} />
-                    </dt>
+                <List ref={elRef}>
+                    <GroupLabel>{title}</GroupLabel>
 
                     {items.map(({ text, count, active = false, _id, ...item }, index) => (
                         <dd key={_id || index}>
-                            <Element
-                                as="span"
-                                className={styles.groupItem}
-                                {...item}
-                            >
-                                {active ? (
-                                    <CheckedIcon className={classNames(styles.groupItemCheck, styles.groupItemCheckActive)} />
-                                ) : (
-                                    <CheckIcon className={classNames(styles.groupItemCheck)} />
-                                )}
+                            <Item {...item}>
+                                {active ? <CheckedIcon active={active} /> : <CheckIcon />}
 
-                                <span className={styles.groupItemLabel}>
-                                    {text}
-                                </span>
+                                {text}
 
-                                {count && (
-                                    <span className={styles.groupItemCount}>
-                                        {count}
-                                    </span>
-                                )}
-                            </Element>
+                                {count && <Count>{count}</Count>}
+                            </Item>
                         </dd>
                     ))}
-                </dl>
-            </div>
+                </List>
+            </Wrapper>
 
             {items.length > offset && (
                 <div>
-                    <button 
-                        className={styles.groupToggle}
-                        type="button"
-                        onClick={triggerToggle}
-                    >
-                        <ToggleIcon className={classNames(styles.groupToggleIcon, [styles.groupToggleIconOpen, open])} />
+                    <ToggleButton onClick={triggerToggle}>
+                        <ToggleIcon active={open} />
                         {open ? 'Less' : 'More'}
-                    </button>
+                    </ToggleButton>
                 </div>
             )}
-        </Element>
+        </Group>
     )
 }

@@ -1,19 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Image.css'
+import { Component } from '../../lib'
+import { Root, LoadedImage, Placeholder, ErrorIcon } from './Image.styled'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
-
-import ErrorIcon from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
-
-export type ImageProps = Props<{
+export type ImageProps = {
     alt?: string
     height?: string | number
     src: string
     width?: string | number
     vignette?: number
     transition?: boolean
-}>
+}
 
 export const ImageComponent: Component<ImageProps> = ({
     alt,
@@ -24,7 +20,6 @@ export const ImageComponent: Component<ImageProps> = ({
     width,
     ...props
 }) => {
-    useStyles(styles)
     const [loaded, setLoaded] = useState(false)
     const [error, setError] = useState(false)
     const imageRef = useRef<HTMLImageElement>(null)
@@ -46,39 +41,25 @@ export const ImageComponent: Component<ImageProps> = ({
     }
 
     return (
-        <Element
-            className={classNames(
-                styles.root,
-                [styles.vignette, loaded && vignette > 0],
-                [styles.error, error]
-            )}
-            style={{ ['--vignette' as any]: `${vignette}rem` }}
-            {...props}
-        >
-            <img
-                className={classNames(
-                    styles.image,
-                    styles.tag,
-                    [styles.transition, transition],
-                    [styles.loaded, loaded]
-                )}
-                src={src}
+        <Root vignette={vignette} {...props}>
+            <LoadedImage
+                error={error}
+                loaded={loaded}
                 ref={imageRef}
-                onLoad={handleImageLoaded}
+                src={src}
+                transition={transition}
                 onError={handleImageError}
+                onLoad={handleImageLoaded}
                 {...{ alt, width, height }}
             />
 
-            <img
-                className={classNames(styles.image, styles.placeholder)}
+            <Placeholder
                 aria-hidden="true"
                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
                 {...{ width, height }}
             />
 
-            {error && (
-                <ErrorIcon className={styles.errorIcon} />
-            )}
-        </Element>
+            {error && <ErrorIcon />}
+        </Root>
     )
 }

@@ -1,20 +1,18 @@
 import React from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './Carousel.css'
+import { Component } from '../../lib'
+import { Root, Item } from './Carousel.styled'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
-
-export type CarouselProps = Props<{
+export type CarouselProps = {
     gap?: number
     padding?: number
     show?: number
-}>
+}
 
-export type CarouselItemProps = Props<{
+export type CarouselItemProps = {
     classes?: {
         item?: string
     }
-}>
+}
 
 type CompoundComponent = {
     Item: Component<CarouselItemProps>
@@ -27,33 +25,13 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
     show = 1,
     ...props
 }) => {
-
-    useStyles(styles)
-
     return (
-        <Element
-            className={styles.root}
-            {...props}
-            style={{
-                ['--padding' as any]: `${padding}rem`,
-                ['--show' as any]: show,
-                ['--gap' as any]: `${gap}rem`,
-                ['--itemWidth' as any]: `calc(100% / var(--show) - var(--padding))`,
-            }}
-        >
+        <Root padding={padding} show={show} gap={gap} {...props}>
             {children}
-        </Element>
+        </Root>
     )
 }
 
-Carousel.Item = ({
-    children,
-    ...props
-}) => {
-
-    return (
-        <Element className={styles.item} {...props}>
-            {children}
-        </Element>
-    )
+Carousel.Item = ({ children, ...props }) => {
+    return <Item {...props}>{children}</Item>
 }

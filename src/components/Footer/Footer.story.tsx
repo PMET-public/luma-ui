@@ -1,7 +1,14 @@
 import React from 'react'
 import Footer from './'
 import { storiesOf } from '@storybook/react'
+import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
 import { FooterProps } from './Footer'
+
+const StoryContainer = styled(Story)`
+    /* Story Styles */
+    padding: 2rem;
+`
 
 const FooterMockData: FooterProps = {
     copyright: '© 2019 Magento, Inc. All Rights Reserved.',
@@ -21,19 +28,10 @@ const FooterMockData: FooterProps = {
         instragram: { title: 'Instagram', as: 'a', href: 'https://instagram.com', target: 'blank' },
     },
 }
-storiesOf('📦 Components/Footer', module)
-    .add('Default', () => (
-        <div className="story">
-            <Footer {...FooterMockData} />
+storiesOf('📦 Components/Footer', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles />
 
-            <style>{`
-                .story {
-                    align-items: flex-end;
-                    display: flex;
-                    height: 100vh;
-                    justify-content: center;
-                    width: 100%;
-                }
-            `}</style>
-        </div>
-    ))
+        <Footer {...FooterMockData} />
+    </StoryContainer>
+))

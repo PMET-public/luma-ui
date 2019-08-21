@@ -2,7 +2,7 @@ import React from 'react'
 import { Component, Props, Element, classNames } from '../../lib'
 import styles from './TabBar.css'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+
 
 import Icon, { IconProps } from '../Icon'
 
@@ -17,7 +17,7 @@ export const TabBar: Component<TabBarProps> = ({
     items = [],
     ...props
 }) => {
-    useStyles(styles)
+   
     
     return (
         <Element className={styles.root} {...props}>

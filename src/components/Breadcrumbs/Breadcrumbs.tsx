@@ -1,36 +1,28 @@
 import React from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './Breadcrumbs.css'
+import { Component } from '../../lib'
+import { Root, Item } from './Breadcrumbs.styled'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
-
-export type BreadcrumbsProps = Props<{ 
+export type BreadcrumbsProps = {
     dividor?: string
     prefix?: string
-    items: Array<Props<{
+    items: Array<{
         _id?: string | number
-    }>>
-}>
+        text: string
+    }>
+}
 
-export const Breadcrumbs: Component<BreadcrumbsProps> = ({ 
-    dividor = '',
-    items = [],
-    prefix = '',
-    ...props
-}) => {
-
-    useStyles(styles)
-
+export const Breadcrumbs: Component<BreadcrumbsProps> = ({ dividor = '', items = [], prefix = '', ...props }) => {
     return (
-        <Element className={styles.root} {...props}>
+        <Root {...props}>
             {items.map(({ text, _id, ...item }, index) => (
                 <React.Fragment key={_id || index}>
-                    <Element className={styles.item} {...item}>
-                        {prefix}{text}
-                    </Element>
+                    <Item {...item}>
+                        {prefix}
+                        {text}
+                    </Item>
                     {index < items.length - 1 && dividor}
                 </React.Fragment>
             ))}
-        </Element>
+        </Root>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './ProductCarousel.css'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+
 
 import Carousel from '../Carousel'
 import ProductItem, { ProductItemProps } from '../ProductItem'
@@ -17,7 +17,7 @@ export const ProductsCarousel: Component<ProductsCarouselProps> = ({
     title,
     ...props
 }) => {
-    useStyles(styles)
+   
     
     return items ? (
         <Element className={styles.root} {...props}>

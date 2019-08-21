@@ -1,26 +1,17 @@
 import React from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Icon.css'
-
-import useStyles from 'isomorphic-style-loader/useStyles'
-import { useTransition, animated } from 'react-spring'
+import { Component } from '../../lib'
+import { Root, Wrapper, Svg, Label, Count } from './Icon.styled'
 import { ReactComponentLike } from 'prop-types'
 
-export type IconProps = Props<{
+import { useTransition, animated } from 'react-spring'
+
+export type IconProps = {
     count?: number
     svg?: ReactComponentLike
     text?: string | null
-}>
+}
 
-export const Icon: Component<IconProps> = ({
-    children,
-    count,
-    svg: Svg,
-    text,
-    ...props
-}) => {    
-    useStyles(styles)
-
+export const Icon: Component<IconProps> = ({ children, count, svg: SvgComponent, text, ...props }) => {
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
         enter: { opacity: 1, transform: 'scale(1) translateY(0)' },
@@ -28,34 +19,24 @@ export const Icon: Component<IconProps> = ({
     })
 
     const hasCount = typeof count === 'number'
-    
+
     return (
-        <Element 
-            as="span" 
-            className={styles.root}
-            {...props} 
-        >
-            <span className={classNames(styles.wrapper, [styles.hasCount, hasCount])}>
-                <span className={styles.svg}>
-                   { Svg ? <Svg /> : children }
-                </span>
+        <Root {...props}>
+            <Wrapper hasCount={!!count}>
+                <Svg>{SvgComponent ? <SvgComponent /> : children}</Svg>
 
-                {countTransitions.map(({ item, props, key }) => item ? (
-                    <animated.span 
-                        className={styles.count} 
-                        key={key}
-                        style={props} 
-                    >
-                        {item > 99 ? '+99' : count}
-                    </animated.span>
-                ) : null)}
-            </span>
+                {countTransitions.map(({ item, props, key }) =>
+                    item ? (
+                        <Count>
+                            <animated.span key={key} style={props}>
+                                {item > 99 ? '+99' : count}
+                            </animated.span>
+                        </Count>
+                    ) : null
+                )}
+            </Wrapper>
 
-            {text ? (
-                <span className={classNames(styles.label, [styles.hasCount, hasCount])}>
-                    {text}
-                </span>
-            ) : null}
-        </Element>
+            {text ? <Label hasCount={!!count}>{text}</Label> : null}
+        </Root>
     )
 }

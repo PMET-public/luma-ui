@@ -2,7 +2,7 @@ import React from 'react'
 import { Component, Props, Element } from '../../lib'
 import styles from './ProductItem.css'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+
 
 import Image, { ImageProps } from '../Image'
 import Price, { PriceProps } from '../Price'
@@ -28,7 +28,7 @@ export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
     title,
     ...props
 }) => {
-    useStyles(styles)
+   
 
     return (
         <Element className={styles.root} {...props}>

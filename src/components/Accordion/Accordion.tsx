@@ -1,103 +1,86 @@
 import React, { createContext, useState, useContext, useRef, ReactElement } from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Accordion.css'
+import { Component } from '../../lib'
+import { Root, Item, Button, ButtonLabel, ButtonIcon, Content } from './Accordion.styled'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
 
-import ArrowIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-down.svg'
-
-const Context = createContext({ active: -1, setActive: (id: number) => {} })
-
-export type AccordionItemProps = Props<{
-    _id?: number
-    active?: boolean
-    label: Props
-}>
-
-export type AccordionProps = Props<{
+export type AccordionProps = {
     items?: AccordionItemProps[]
     selected?: number
-}>
+}
+
+export type AccordionItemProps = {
+    _id?: number
+    active?: boolean
+    label: string
+}
+
+const Context = createContext({ active: -1, setActive: (id: number) => {} })
 
 type CompoundComponent = {
     Item: Component<AccordionItemProps>
 }
 
-export const Accordion: Component<AccordionProps> & CompoundComponent = ({ 
+export const Accordion: Component<AccordionProps> & CompoundComponent = ({
     children,
     items,
     selected = 0,
     ...props
 }) => {
-    useStyles(styles)
-    
     const [active, setActive] = useState(selected)
 
     return (
-        <Element className={styles.root} {...props}>
+        <Root {...props}>
             <Context.Provider value={{ active, setActive }}>
-                {items ? items.map((item, index) => (
-                    <Accordion.Item 
-                        _id={index} 
-                        active={active === index} 
-                        key={index} 
-                        {...item} 
-                    />
-                )) : React.Children.map(children, (child, index) => {
-                    return React.cloneElement(child as ReactElement<AccordionItemProps>, { active: active === index, _id: index })
-                })}
+                {items
+                    ? items.map((item, index) => (
+                          <Accordion.Item _id={index} active={active === index} key={index} {...item} />
+                      ))
+                    : React.Children.map(children, (child, index) => {
+                          return React.cloneElement(child as ReactElement<AccordionItemProps>, {
+                              active: active === index,
+                              _id: index,
+                          })
+                      })}
             </Context.Provider>
-        </Element>
+        </Root>
     )
 }
 
-Accordion.Item = ({ 
-    _id = -1,
-    active = false,
-    children,
-    label,
-    ...props
-}) => {    
-
+Accordion.Item = ({ _id = -1, active = false, children, label, ...props }) => {
     const wrapperElemRef = useRef(null)
 
     const { height } = useMeasure(wrapperElemRef)
 
-    const transition = useSpring(active ? { 
-        height,
-        opacity: 1, 
-    } : {
-        height: 0,
-        opacity: 0,
-    })
-
     const { setActive } = useContext(Context)
+
+    const transition = useSpring(
+        active
+            ? {
+                  height,
+                  opacity: 1,
+              }
+            : {
+                  height: 0,
+                  opacity: 0,
+              }
+    )
 
     const triggerActivate = () => {
         setActive(active ? -1 : _id)
     }
 
     return (
-        <Element className={styles.item} {...props}>
-            <button 
-                className={classNames(styles.button, [styles.active, active])}
-                type="button"
-                onClick={triggerActivate}
-            >
-                <Element className={styles.buttonLabel} {...label} />
-                <ArrowIcon className={styles.buttonIcon} />
-            </button>
+        <Item {...props}>
+            <Button type="button" onClick={triggerActivate}>
+                <ButtonLabel>{label}</ButtonLabel>
+                <ButtonIcon active={active} />
+            </Button>
 
-            <animated.div style={{ overflow: 'hidden', ...transition }}>
-                <div 
-                    className={styles.content}
-                    ref={wrapperElemRef}
-                >
-                    {children}
-                </div>
+            <animated.div style={{ overflow: 'hidden', position: 'relative', ...transition }}>
+                <Content ref={wrapperElemRef}>{children}</Content>
             </animated.div>
-        </Element>
+        </Item>
     )
 }

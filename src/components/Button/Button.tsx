@@ -1,37 +1,23 @@
 import React from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Button.css'
+import { Root } from './Button.styled'
+import { Component } from '../../lib'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
-
-export type ButtonProps = Props<{
+export type ButtonProps = {
     color?: 'primary' | 'secondary'
     fill?: boolean
-}>
+    text?: string
+}
 
-export const Button: Component<ButtonProps> = ({ 
+export const Button: Component<ButtonProps> = ({
     text,
     children = text,
     color = 'primary',
     fill = false,
     ...props
-}) => {    
-
-    useStyles(styles)
-
-    return  (
-        <Element 
-            as="button"
-            className={classNames(
-                styles.root, 
-                styles[`${color}Color`], 
-                [styles.fill, fill]
-            )}
-            {...props} 
-        >
-            <span className={styles.wrapper}>
-                {children}
-            </span>
-        </Element>
+}) => {
+    return (
+        <Root fill={fill} color={color} {...props}>
+            <span>{children}</span>
+        </Root>
     )
 }

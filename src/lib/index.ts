@@ -7,38 +7,45 @@ type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
 /**
  * Component Types
  */
-export type Props<P = {}> = Override<AllHTMLAttributes<HTMLElement>, {
-    as?: ReactComponentLike | string
-    ref?: Ref<any>
-    text?: string
-} & P>
+// export type Props<P = {}> = Override<
+//     AllHTMLAttributes<HTMLElement>,
+//     {
+//         as?: ReactComponentLike | string
+//         ref?: Ref<any>
+//         text?: string
+//     } & P
+// >
 
 export type Component<P = {}> = FunctionComponent<P>
 
 /**
  * Element Component
  */
-export const Element: Component<Props> = ({  
-    as = 'div', 
-    text, 
-    children = text, 
-    ...props 
-}) => React.createElement(as, props , children)
+// export const Element: Component<Props> = ({
+//     as = 'div',
+//     text,
+//     children = text,
+//     ...props
+// }) => {
+//     return React.createElement(as, props, children)
+// }
 
 /**
  * Classes
- * @param args 
+ * @param args
  */
-export const classNames = (...args: Array<string|[string, boolean]|undefined>) => {
-    return args
-        .map(x => {
-            if (typeof x === 'string') return x
-            else if (Array.isArray(x) && !!x[1]) return x[0]
-            else return null
-        })
-        .filter(x => x !== null)
-        .join(' ')
-}
+// export const classNames = (
+//     ...args: Array<string | [string, boolean] | undefined>
+// ) => {
+//     return args
+//         .map(x => {
+//             if (typeof x === 'string') return x
+//             else if (Array.isArray(x) && !!x[1]) return x[0]
+//             else return null
+//         })
+//         .filter(x => x !== null)
+//         .join(' ')
+// }
 
 /**
  * Error Boundary

@@ -5,7 +5,7 @@ import styles from './HotSpots.css'
 import Image, { ImageProps } from '../Image'
 import { HotSpotsItem, HotSpotItemProps } from './HotSpots.Item'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+
 
 export type HotSpotsProps = Props<{
     children: ReactNode
@@ -27,7 +27,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     items,
     ...props
 }) => {
-    useStyles(styles)
+   
 
     const [active, setActive] = useState()
 

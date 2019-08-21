@@ -26,7 +26,8 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -51,14 +52,13 @@
     "@types/storybook__addon-actions": "^3.4.3",
     "@types/storybook__addon-knobs": "^5.0.1",
     "@types/storybook__react": "^4.0.2",
+    "@types/styled-components": "^4.1.18",
     "babel-loader": "^8.0.5",
+    "babel-plugin-inline-react-svg": "^1.1.0",
+    "babel-plugin-styled-components": "^1.10.6",
     "common-tags": "^1.8.0",
     "concurrently": "^4.1.0",
-    "css-loader": "^3.2.0",
-    "csstype": "^2.6.5",
-    "isomorphic-style-loader": "^5.1.0",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.6.0",
+    "prettier": "1.18.2",
     "prismjs": "^1.16.0",
     "prop-types": "^15.0.0-0",
     "react": "^16.8.6",
@@ -66,7 +66,6 @@
     "react-dom": "^16.8.6",
     "react-github-btn": "^1.0.5",
     "react-spring": "^8.0.25",
-    "react-svg-loader": "^3.0.3",
     "rimraf": "^2.6.3",
     "rollup": "^1.15.4",
     "rollup-plugin-babel": "^4.3.2",
@@ -74,13 +73,12 @@
     "rollup-plugin-multi-input": "1.0.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.0.2",
-    "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-react-svg": "^3.0.3",
-    "style-loader": "^1.0.0",
+    "styled-components": "^4.3.2",
     "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-loader": "^3.5.4",
+    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.4.5",
-    "typescript-plugin-css-modules": "^1.2.1",
     "webpack": "^4.34.0"
   },
   "dependencies": {}

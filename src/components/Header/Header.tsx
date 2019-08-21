@@ -1,93 +1,57 @@
 import React from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Header.css'
+import { Component } from '../../lib'
+import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, Icon } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+import { IconProps } from '../Icon'
 
-import Icon, { IconProps } from '../Icon'
-
-export type HeaderProps = Props<{
-    logo: Props<{
+export type HeaderProps = {
+    logo: {
         svg: ReactComponentLike
-    }>
-    menu: Props<{
-        items: Array<Props<{
+    }
+    menu: {
+        items: Array<{
             active?: boolean
-        }>>
-    }>
-    utilities: Props<{
-        items: Array<Props<{
+        }>
+    }
+    utilities: {
+        items: Array<{
             active?: boolean
             text: string
             icon?: IconProps
-        }>>
-    }>
-}>
-
+        }>
+    }
+}
 export const Header: Component<HeaderProps> = ({
-    logo: {
-        svg: LogoSvg,
-        ...logo
-    },
-    menu: {
-        items: menuItems,
-        ...menu
-    },
-    utilities: {
-        items: utilitiesItems,
-        ...utilities
-    },
+    logo: { svg: LogoSvg, ...logo },
+    menu: { items: menuItems, ...menu },
+    utilities: { items: utilitiesItems, ...utilities },
     ...props
 }) => {
-    useStyles(styles)
-
     return (
-        <Element className={styles.root} {...props}>
-
+        <Root {...props}>
             {/* Logo */}
-            <Element
-                className={styles.logo}
-                {...logo}
-            >
+            <Logo {...logo}>
                 <LogoSvg />
-            </Element>
+            </Logo>
 
             {/* Menu */}
-            <div className={styles.menu} {...menu}>
-                <div className={styles.menuWrapper}>
+            <Menu {...menu}>
+                <MenuWrapper>
                     {menuItems.map(({ active = false, ...menuItem }, index) => (
-                        <Element
-                            key={index}
-                            className={classNames([styles.active, active])}
-                            {...menuItem}
-                        />
+                        <MenuItem {...menuItem} />
                     ))}
-                </div>
-            </div>
+                </MenuWrapper>
+            </Menu>
 
             {/* Utilities */}
-            <div className={styles.utilities} {...utilities}>
+            <Utilities {...utilities}>
                 {utilitiesItems.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
-                    <Element
-                        className={classNames(
-                            styles.utilitiesItem,
-                            [styles.icon, !!icon],
-                            [styles.active, active]
-                        )}
-                        key={index}
-                        {...utilitiesItem}
-                    >
-                        {icon ? (
-                            <Icon
-                                aria-label={text}
-                                className={styles.icon}
-                                {...icon}
-                            />
-                        ) : text}
-                    </Element>
+                    <UtilitiesItem key={index} {...utilitiesItem}>
+                        {icon ? <Icon aria-label={text} {...icon} /> : text}
+                    </UtilitiesItem>
                 ))}
-            </div>
-        </Element>
+            </Utilities>
+        </Root>
     )
 }

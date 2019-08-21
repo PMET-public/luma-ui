@@ -1,14 +1,19 @@
-.root {
+import styled from 'styled-components'
+
+import ImageComponent, { ImageTag } from '../Image'
+
+const size = '9rem'
+
+export const Root = styled.div`
     /* 
         This is... this is just unfortunate.
         https://stackoverflow.com/questions/40733385/hiding-webkit-scrollbar-when-overflow-scrolling-touch-is-enabled 
     */
-    --size: 9rem;
-    height: calc(var(--size) + 2rem);
+    height: calc(${size} + 2rem);
     overflow-y: hidden;
-}
+`
 
-.wrapper {
+export const Wrapper = styled.div`
     -webkit-overflow-scrolling: touch;
     display: flex;
     margin-top: -1rem;
@@ -18,9 +23,9 @@
     &::-webkit-scrollbar {
         display: none;
     }
-}
+`
 
-.item {
+export const Item = styled.div`
     text-decoration: none;
     padding: 0 0.75rem;
     display: grid;
@@ -33,30 +38,28 @@
     &:first-of-type {
         padding-left: 0.75rem;
     }
-}
+`
 
-.image {
-    composes: root from "../Image/Image.css";
-
-    & > img {
+export const Image = styled(ImageComponent)`
+    ${ImageTag} {
         border-radius: 50%;
         display: inline-block;
-        height: var(--size);
+        height: ${size};
         object-fit: cover;
         object-position: center;
         overflow: hidden;
-        width: var(--size);
+        width: ${size};
     }
-}
+`
 
-.label {
-    font-size: 1.3rem;
-    margin-top: 0.2rem;
+export const Label = styled.div`
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
     overflow: hidden;
     padding: 0;
     text-align: center;
     text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
-    width: var(--size);
-}
+    width: ${size};
+`

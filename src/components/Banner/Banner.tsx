@@ -1,70 +1,44 @@
 import React from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Banner.css'
+import { Component } from '../../lib'
+import { Root, Image, Content, Titles, Title, Buttons, Button } from './Banner.styled'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+import { ImageProps } from '../Image'
+import { ButtonProps } from '../Button'
 
-import Image, { ImageProps } from '../Image'
-import Button, { ButtonProps } from '../Button'
-
-export type BannerProps = Props<{
+export type BannerProps = {
     image: ImageProps
-    titles?: Array<Props<{
-        text: string,
+    titles?: Array<{
+        text: string
         large?: boolean
-    }>>
+    }>
     position?: 'top' | 'bottom'
     buttons?: ButtonProps[]
-}>
+}
 
-export const Banner: Component<BannerProps> = ({
-    buttons,
-    image,
-    position = 'top',
-    titles,
-    ...props
-}) => {
-
-    useStyles(styles)
-
+export const Banner: Component<BannerProps> = ({ buttons, image, position = 'top', titles, ...props }) => {
     return (
-        <Element className={styles.root} {...props}>
+        <Root {...props}>
+            <Image transition {...image} />
 
-            <Image
-                transition
-                className={styles.image}
-                {...image}
-            />
-
-            <div className={classNames(styles.content, styles[position])}>
-
+            <Content position={position}>
                 {titles && (
-                    <div className={styles.titles}>
-                        {titles.map(({ large = false, ...title }, index) => (
-                            <Element
-                                className={classNames(
-                                    styles.title,
-                                    [styles.large, large]
-                                )}
-                                key={index}
-                                {...title}
-                            />
+                    <Titles>
+                        {titles.map(({ large = false, text, ...title }, index) => (
+                            <Title large={large} key={index} {...title}>
+                                {text}
+                            </Title>
                         ))}
-                    </div>
+                    </Titles>
                 )}
 
                 {buttons && (
-                    <div className={styles.buttons}>
+                    <Buttons>
                         {buttons.map((button, index) => (
-                            <Button
-                                className={styles.button}
-                                key={index}
-                                {...button}
-                            />
+                            <Button key={index} {...button} />
                         ))}
-                    </div>
+                    </Buttons>
                 )}
-            </div>
-        </Element>
+            </Content>
+        </Root>
     )
 }
