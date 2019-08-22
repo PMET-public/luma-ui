@@ -71,7 +71,7 @@ export const App: Component<AppProps> = ({
     return (
         <Root
             style={{
-                height: vHeight,
+                minHeight: vHeight,
             }}
             {...props}
         >
