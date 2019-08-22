@@ -1,20 +1,17 @@
 import React from 'react'
 import ViewLoader from '.'
 import { storiesOf } from '@storybook/react'
+import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
 
-storiesOf('📦 Components/ViewLoader', module)
-    .add('Default', () => (
-        <div className="story">
-            <ViewLoader />
+const StoryContainer = styled(Story)`
+    /* Story Styles */
+`
 
-            <style>{`
-                .story {
-                    align-items: center;
-                    display: flex;
-                    height: 100vh;
-                    justify-content: center;
-                    width: 100%;
-                }
-            `}</style>
-        </div>
-    ))
+storiesOf('📦 Components/ViewLoader', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles />
+
+        <ViewLoader />
+    </StoryContainer>
+))

@@ -1,41 +1,23 @@
 import React from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './TextSwatches.css'
+import { Component } from '../../lib'
+import { Root, Item, Label } from './TextSwatches.styled'
 
-
-
-export type TextSwatchesProps = Props<{
-    items: Array<Props<{
+export type TextSwatchesProps = {
+    items: Array<{
         active?: boolean
         disabled?: boolean
         text: string
-    }>>
-}>
+    }>
+}
 
-export const TextSwatches: Component<TextSwatchesProps> = ({
-    items = [],
-    ...props
-}) => {
-   
-
+export const TextSwatches: Component<TextSwatchesProps> = ({ items = [], ...props }) => {
     return (
-        <Element className={styles.root} {...props}>
+        <Root {...props}>
             {items.map(({ active = false, disabled = false, text, ...item }, index) => (
-                <Element 
-                    as="button" 
-                    className={classNames(
-                        styles.item, 
-                        [styles.active, active], 
-                        [styles.disabled, disabled]
-                    )}
-                    {...item}
-                    key={index}
-                >
-                    <span className={styles.label}>
-                        {text}
-                    </span>
-                </Element>
+                <Item as="button" active={active} disabled={disabled} key={index} {...item}>
+                    <Label>{text}</Label>
+                </Item>
             ))}
-        </Element>
+        </Root>
     )
 }

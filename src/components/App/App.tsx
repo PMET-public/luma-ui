@@ -1,10 +1,12 @@
 import React from 'react'
 import { Component } from '../../lib'
-import { Root, Header, Main, Footer, TabBar } from './App.styled'
+import { Root, HeaderWrapper, Main, FooterWrapper, TabBarWrapper } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
 
-import { FooterProps } from '../Footer'
+import Header from '../Header'
+import TabBar from '../TabBar'
+import Footer, { FooterProps } from '../Footer'
 import { IconProps } from '../Icon'
 
 import LogoImage from '../../../public/images/luma.svg'
@@ -73,25 +75,71 @@ export const App: Component<AppProps> = ({
             }}
             {...props}
         >
-            <Header
-                logo={{
-                    svg: LogoImage,
-                    ...logo,
-                }}
-                menu={{
-                    items: menu,
-                }}
-                utilities={{
-                    items: [
+            <HeaderWrapper>
+                <Header
+                    logo={{
+                        svg: LogoImage,
+                        ...logo,
+                    }}
+                    menu={{
+                        items: menu,
+                    }}
+                    utilities={{
+                        items: [
+                            {
+                                ...help,
+                            },
+                            {
+                                ...myAccount,
+                            },
+                            {
+                                ...search,
+                                icon: {
+                                    svg: IconSearchSvg,
+                                    ...search.icon,
+                                },
+                            },
+                            {
+                                ...cart,
+                                icon: {
+                                    svg: IconBagSvg,
+                                    ...cart.icon,
+                                },
+                            },
+                        ],
+                    }}
+                />
+            </HeaderWrapper>
+
+            <Main>{children}</Main>
+
+            <FooterWrapper>
+                <Footer {...footer} />
+            </FooterWrapper>
+
+            <TabBarWrapper>
+                <TabBar
+                    items={[
                         {
-                            ...help,
+                            ...home,
+                            icon: {
+                                ['aria-label']: home.text,
+                                svg: IconHomeSvg,
+                                ...home.icon,
+                            },
                         },
                         {
                             ...myAccount,
+                            icon: {
+                                ['aria-label']: myAccount.text,
+                                svg: IconAccountSvg,
+                                ...myAccount.icon,
+                            },
                         },
                         {
                             ...search,
                             icon: {
+                                ['aria-label']: search.text,
                                 svg: IconSearchSvg,
                                 ...search.icon,
                             },
@@ -99,54 +147,14 @@ export const App: Component<AppProps> = ({
                         {
                             ...cart,
                             icon: {
+                                ['aria-label']: cart.text,
                                 svg: IconBagSvg,
                                 ...cart.icon,
                             },
                         },
-                    ],
-                }}
-            />
-
-            <Main>{children}</Main>
-
-            <Footer {...footer} />
-
-            <TabBar
-                items={[
-                    {
-                        ...home,
-                        icon: {
-                            ['aria-label']: home.text,
-                            svg: IconHomeSvg,
-                            ...home.icon,
-                        },
-                    },
-                    {
-                        ...myAccount,
-                        icon: {
-                            ['aria-label']: myAccount.text,
-                            svg: IconAccountSvg,
-                            ...myAccount.icon,
-                        },
-                    },
-                    {
-                        ...search,
-                        icon: {
-                            ['aria-label']: search.text,
-                            svg: IconSearchSvg,
-                            ...search.icon,
-                        },
-                    },
-                    {
-                        ...cart,
-                        icon: {
-                            ['aria-label']: cart.text,
-                            svg: IconBagSvg,
-                            ...cart.icon,
-                        },
-                    },
-                ]}
-            />
+                    ]}
+                />
+            </TabBarWrapper>
         </Root>
     )
 }

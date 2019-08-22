@@ -1,10 +1,10 @@
 import React, { createContext, useState, useContext } from 'react'
 import { Component } from '../../lib'
-import { Root, Image, Item, Button, Content } from './HotSpots.styled'
+import { Root, ImageWrapper, Item, Button, Content } from './HotSpots.styled'
 
 import { useTransition, animated } from 'react-spring'
 
-import { ImageProps } from '../Image'
+import Image, { ImageProps } from '../Image'
 
 export type HotSpotsProps = {
     description: string
@@ -40,7 +40,9 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
             <Root {...props}>
-                <Image transition {...image} />
+                <ImageWrapper>
+                    <Image transition {...image} />
+                </ImageWrapper>
 
                 {items ? items.map((item, index) => <HotSpots.Item key={index} {...item} />) : children}
             </Root>

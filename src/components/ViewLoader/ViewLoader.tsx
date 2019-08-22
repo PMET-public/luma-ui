@@ -1,34 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './ViewLoader.css'
+import { Component } from '../../lib'
+import { Root, LoaderImage } from './ViewLoader.styled'
 
-
-
-import LoaderImage from '../../../public/images/loader.svg'
-
-export type ViewLoaderProps = Props<{ 
+export type ViewLoaderProps = {
     text?: string
-}>
+}
 
-export const ViewLoader: Component<ViewLoaderProps> = ({
-    text = 'loading',
-    ...props
-}) => {
-   
-
+export const ViewLoader: Component<ViewLoaderProps> = ({ text = 'loading', ...props }) => {
     const [show, setShow] = useState(false)
 
     useEffect(() => {
         const timer = setTimeout(() => setShow(true), 250)
         return () => clearTimeout(timer)
     }, [])
-    
+
     return show ? (
-        <Element className={styles.root} {...props}>
-            <LoaderImage 
-                arial-label={text} 
-                className={styles.image}
-            />
-        </Element>
+        <Root {...props}>
+            <LoaderImage arial-label={text} />
+        </Root>
     ) : null
 }

@@ -1,23 +1,18 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './SearchBar.css'
-
+import { Component } from '../../lib'
+import { Root, Wrapper, SearchIcon, Field, Count, ResetButton } from './SearchBar.styled'
 
 import { useThrottle } from '../../hooks/useThrottle'
+import IconResetSvg from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
 
-import Icon from '../Icon'
-
-import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
-import IconReset from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
-
-export type SearchBarProps = Props<{
+export type SearchBarProps = {
     clearButton?: boolean
     count?: number
     label?: string
     value?: string
     onUpdate?: (query: string) => any
     onSearch?: (query: string) => any
-}>
+}
 
 export const SearchBar: Component<SearchBarProps> = ({
     clearButton = true,
@@ -28,8 +23,6 @@ export const SearchBar: Component<SearchBarProps> = ({
     onUpdate,
     ...props
 }) => {
-   
-
     const [value, setValue] = useState(defaultValue)
 
     const throttledUpdate = useThrottle(() => {
@@ -55,45 +48,26 @@ export const SearchBar: Component<SearchBarProps> = ({
     }
 
     return (
-        <Element className={styles.root} {...props}>
+        <Root {...props}>
             <form onSubmit={handleSubmit}>
-                <label className={styles.wrapper}>
-                    <Icon   
-                        as="span"
-                        aria-hidden
-                        className={styles.icon}
-                    >
-                        <IconSearch />
-                    </Icon>
+                <Wrapper as="label">
+                    <SearchIcon />
 
-                    <input 
-                        aria-label={label}
-                        className={styles.field}
-                        onChange={handleChange}
-                        placeholder={label}
-                        type="text"
-                        value={value}
-                    />
+                    <Field aria-label={label} onChange={handleChange} placeholder={label} type="text" value={value} />
 
                     {typeof count === 'number' && (
-                        <span className={styles.count}>
+                        <Count>
                             {count > 999 ? '+999' : count} {count === 0 || count > 1 ? 'results' : 'result'}
-                        </span>
+                        </Count>
                     )}
 
                     {clearButton && value.length > 0 && (
-                        <span className={styles.reset}>
-                            <Icon
-                                aria-label="reset"
-                                as={props => <button type="reset" {...props} />}
-                                onClick={handleReset}
-                            >
-                                <IconReset />
-                            </Icon>
-                        </span>
+                        <ResetButton aria-label="reset" onClick={handleReset}>
+                            <IconResetSvg />
+                        </ResetButton>
                     )}
-                </label>
+                </Wrapper>
             </form>
-        </Element>
+        </Root>
     )
 }

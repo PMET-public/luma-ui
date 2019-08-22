@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-import HeaderComponent, { Logo as HeaderLogo, Menu as HeaderMenu, Utilities as HeaderUtilities } from '../Header'
-import FooterComponent from '../Footer'
-import TabBarComponent from '../TabBar'
+import { Logo as HeaderLogo, Menu as HeaderMenu, Utilities as HeaderUtilities } from '../Header'
 
 export const Root = styled.div`
     display: grid;
@@ -10,7 +8,7 @@ export const Root = styled.div`
     grid-template-rows: auto 1fr auto auto;
 `
 
-export const Header = styled(HeaderComponent)`
+export const HeaderWrapper = styled.header`
     ${HeaderLogo} {
         line-height: 0;
         margin: 0;
@@ -48,9 +46,9 @@ export const Main = styled.main`
     position: relative;
 `
 
-export const Footer = styled(FooterComponent)``
+export const FooterWrapper = styled.footer``
 
-export const TabBar = styled(TabBarComponent)`
+export const TabBarWrapper = styled.nav`
     position: sticky;
     bottom: 0;
     z-index: 2;

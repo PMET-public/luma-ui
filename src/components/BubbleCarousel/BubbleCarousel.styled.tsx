@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import ImageComponent, { ImageTag } from '../Image'
+import { ImageTag } from '../Image'
 
 const size = '9rem'
 
@@ -40,7 +40,7 @@ export const Item = styled.div`
     }
 `
 
-export const Image = styled(ImageComponent)`
+export const ImageWrapper = styled.div`
     ${ImageTag} {
         border-radius: 50%;
         display: inline-block;

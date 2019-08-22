@@ -1,16 +1,20 @@
-.root {
+import styled from 'styled-components'
+
+import IconSearchSvg from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
+
+export const Root = styled.div`
     --opacity: 0.64;
-    border-bottom: 0.1rem solid var(--color-on-surface50);
-    color: var(--color-on-surface);
+    border-bottom: 0.1rem solid ${props => props.theme.colors.onSurface50};
+    color: ${props => props.theme.colors.onSurface};
     width: 100%;
 
     &:hover,
     &:focus-within {
         --opacity: 1;
     }
-}
+`
 
-.wrapper {
+export const Wrapper = styled.label`
     align-items: center;
     display: flex;
     padding: 0.5rem 0.75rem;
@@ -20,13 +24,14 @@
         padding: 1rem;
         padding: 0.75rem;
     }
-}
+`
 
-.icon {
-    font-size: 1.1em;
-}
+export const SearchIcon = styled(IconSearchSvg)`
+    fill: currentColor;
+    width: 1.1em;
+`
 
-.field {
+export const Field = styled.input`
     appearance: none;
     background-color: inherit;
     border: 0 none;
@@ -34,17 +39,22 @@
     flex-grow: 1;
     font-size: inherit;
     font-weight: 600;
-}
+`
 
-.count {
+export const Count = styled.span`
     font-size: 0.8em;
     opacity: var(--opacity);
     transition: opacity 305ms ease;
     white-space: nowrap;
-}
+`
 
-.reset {
+export const ResetButton = styled.button`
     font-size: 1.6rem;
     opacity: var(--opacity);
     transition: opacity 305ms ease;
-}
+
+    > svg {
+        fill: currentColor;
+        width: 1em;
+    }
+`

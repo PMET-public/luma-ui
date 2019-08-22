@@ -1,4 +1,4 @@
-import IconComponent from '../Icon'
+import { Root as IconRoot } from '../Icon'
 import styled from 'styled-components'
 
 export const Root = styled.header`
@@ -21,8 +21,10 @@ export const Root = styled.header`
     }
 `
 
-export const Icon = styled(IconComponent)`
-    font-size: 2.4rem;
+export const IconWrapper = styled.div`
+    ${IconRoot} {
+        font-size: 2.4rem;
+    }
 `
 
 export const Logo = styled.div`
@@ -94,7 +96,7 @@ export const Utilities = styled(Link)`
 `
 
 export const UtilitiesItem = styled.div`
-    ${Icon} {
+    ${IconRoot} {
         border-color: transparent !important;
     }
 `

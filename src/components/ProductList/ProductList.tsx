@@ -1,38 +1,33 @@
 import React from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './ProductList.css'
-
-
+import { Component } from '../../lib'
+import { Root, ItemWrapper } from './ProductList.styled'
 
 import ProductItem, { ProductItemProps } from '../ProductItem'
 
-export type ProductListProps = Props<{
+export type ProductListProps = {
     loading?: number
-    items?: Array<{
-        _id?: string | number
-    } & ProductItemProps>
-}>
+    items?: Array<
+        {
+            _id?: string | number
+        } & ProductItemProps
+    >
+}
 
-export const ProductList: Component<ProductListProps> = ({ 
-    items = [],
-    loading,
-    ...props
-}) => {
-   
-    
+export const ProductList: Component<ProductListProps> = ({ items = [], loading, ...props }) => {
     return (
-        <Element className={styles.root} {...props}>
-            {items.map(({ _id, ...item}, index) => (
-                <ProductItem 
-                    className={styles.item}
-                    key={_id || index} 
-                    {...item} 
-                />
+        <Root {...props}>
+            {items.map(({ _id, ...item }, index) => (
+                <ItemWrapper>
+                    <ProductItem key={_id || index} {...item} />
+                </ItemWrapper>
             ))}
 
-            {!!loading && new Array(loading).fill(null).map((_, index) => (
-                <ProductItem.Skeleton key={index} className={styles.item} />
-            ))}
-        </Element>
+            {!!loading &&
+                new Array(loading).fill(null).map((_, index) => (
+                    <ItemWrapper>
+                        <ProductItem.Skeleton key={index} />
+                    </ItemWrapper>
+                ))}
+        </Root>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Component } from '../../lib'
-import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, Icon } from './Header.styled'
+import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, IconWrapper } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
 
-import { IconProps } from '../Icon'
+import Icon, { IconProps } from '../Icon'
 
 export type HeaderProps = {
     logo: {
@@ -49,7 +49,14 @@ export const Header: Component<HeaderProps> = ({
             <Utilities {...utilities}>
                 {utilitiesItems.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
                     <UtilitiesItem key={index} {...utilitiesItem}>
-                        {icon ? <Icon aria-label={text} {...icon} /> : text}
+                        {icon ? (
+                            <IconWrapper>
+                                {' '}
+                                <Icon aria-label={text} {...icon} />
+                            </IconWrapper>
+                        ) : (
+                            text
+                        )}
                     </UtilitiesItem>
                 ))}
             </Utilities>

@@ -92,7 +92,7 @@ export const PageMockData: PageProps = {
                 },
             },
             {
-                name: 'ProductsCarousel',
+                name: 'ProductCarousel',
                 props: {
                     title: {
                         as: 'h3',
@@ -126,7 +126,7 @@ export const PageMockData: PageProps = {
                 },
             },
             {
-                name: 'ProductsCarousel',
+                name: 'ProductCarousel',
                 props: {
                     title: {
                         as: 'h3',

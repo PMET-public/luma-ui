@@ -9,6 +9,7 @@ export const typography = {
         family: 'rucksack, sans-serif',
         style: 'normal',
         weight: 600,
+        size: '2.8rem',
     },
 }
 

@@ -115,7 +115,7 @@ const ProductMockData: ProductProps = {
     assembler: {
         components: [
             {
-                name: 'ProductsCarousel',
+                name: 'ProductCarousel',
                 props: {
                     title: {
                         as: 'h3',

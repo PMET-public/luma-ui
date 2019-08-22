@@ -1,57 +1,42 @@
 import React from 'react'
 import ThumbSwatches from './'
 import { storiesOf } from '@storybook/react'
+import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
 import { object } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/ThumbSwatches', module)
-    .add('Default', () => (
-        <div className="story">
-            <div className="story__wrapper">
-                <ThumbSwatches 
-                    items={object('items', [
-                        {
-                            active: true,
-                            image: {
-                                alt: '',
-                                src: require('../../../public/images/product-item-sample.jpg'),
-                                width: 4,
-                                height: 5,
-                            },
-                        },
-                        {
-                            disabled: true,
-                            image: {
-                                alt: '',
-                                src: require('../../../public/images/product-item-sample.jpg'),
-                                width: 4,
-                                height: 5,
-                            },
-                        },
-                        {
-                            image: {
-                                alt: '',
-                                src: require('../../../public/images/product-item-sample.jpg'),
-                                width: 4,
-                                height: 5,
-                            },
-                        },
-                        
-                    ])}
-                />
-            </div>
+const StoryContainer = styled(Story)`
+    /* Story Styles */
+    padding: 2rem;
+    width: 90vw;
+`
 
-            <style>{`
-                .story {
-                    align-items: center;
-                    display: flex;
-                    height: 100vh;
-                    justify-content: center;
-                    width: 100%;
-                }
-
-                .story__wrapper {
-                    width: 30rem;
-                }
-            `}</style>
-        </div>
-    ))
+storiesOf('📦 Components/ThumbSwatches', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles centered />
+        <ThumbSwatches
+            items={object('items', [
+                {
+                    active: true,
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
+                },
+                {
+                    disabled: true,
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
+                },
+                {
+                    image: {
+                        alt: '',
+                        src: require('../../../public/images/product-item-sample.jpg'),
+                    },
+                },
+            ])}
+        />
+    </StoryContainer>
+))

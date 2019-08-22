@@ -1,9 +1,9 @@
 import React from 'react'
 import { Component } from '../../lib'
-import { Root, Image, Content, Titles, Title, Buttons, Button } from './Banner.styled'
+import { Root, ImageWrapper, Content, Titles, Title, Buttons } from './Banner.styled'
 
-import { ImageProps } from '../Image'
-import { ButtonProps } from '../Button'
+import Image, { ImageProps } from '../Image'
+import Button, { ButtonProps } from '../Button'
 
 export type BannerProps = {
     image: ImageProps
@@ -18,7 +18,9 @@ export type BannerProps = {
 export const Banner: Component<BannerProps> = ({ buttons, image, position = 'top', titles, ...props }) => {
     return (
         <Root {...props}>
-            <Image transition {...image} />
+            <ImageWrapper>
+                <Image transition {...image} />
+            </ImageWrapper>
 
             <Content position={position}>
                 {titles && (

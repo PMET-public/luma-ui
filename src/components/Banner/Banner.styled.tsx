@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 
-import ImageComponent from '../Image'
-import { ImageTag } from '../Image/Image.styled'
-import ButtonComponent from '../Button'
+import { Root as ImageRoot, ImageTag } from '../Image/Image.styled'
 
 export const Root = styled.div`
     position: relative;
     width: 100%;
 `
 
-export const Image = styled(ImageComponent)`
-    display: block;
+export const ImageWrapper = styled.div`
+    ${ImageRoot} {
+        display: block;
+    }
 
     ${ImageTag} {
         min-width: 100%;
@@ -74,5 +74,3 @@ export const Buttons = styled.div`
     grid-gap: 1rem;
     margin-top: 3rem;
 `
-
-export const Button = ButtonComponent

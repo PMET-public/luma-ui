@@ -59,7 +59,7 @@ export const Details = styled.span`
 `
 
 export const Title = styled.div`
-    font-size: 1em;
+    font-size: 1.6rem;
     font-weight: 600;
 `
 

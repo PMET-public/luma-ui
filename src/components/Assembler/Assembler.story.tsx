@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { StoryGlobalStyles, Story } from '../../../.storybook/lib/Story.styled'
 import { object } from '@storybook/addon-knobs'
 import { BannerProps } from '../Banner'
-import { ProductsCarouselProps } from '../ProductsCarousel'
+import { ProductCarouselProps } from '../ProductCarousel'
 import styled from 'styled-components'
 
 const StoryContainer = styled(Story)`
@@ -36,7 +36,7 @@ storiesOf('📦 Components/Assembler', module).add('Default', () => (
                 },
 
                 {
-                    name: 'ProductsCarousel',
+                    name: 'ProductCarousel',
                     props: {
                         title: {
                             text: 'Title',
@@ -58,7 +58,7 @@ storiesOf('📦 Components/Assembler', module).add('Default', () => (
                             },
                             colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
                         }),
-                    } as ProductsCarouselProps,
+                    } as ProductCarouselProps,
                 },
             ])}
         />

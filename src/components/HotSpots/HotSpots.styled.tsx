@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-import ImageComponent from '../Image'
+import { Root as ImageRoot } from '../Image'
 
 const pulseAnimation = keyframes`
     0% {
@@ -23,8 +23,10 @@ export const Root = styled.div`
     display: inline-block;
 `
 
-export const Image = styled(ImageComponent)`
-    z-index: 0;
+export const ImageWrapper = styled.div`
+    ${ImageRoot} {
+        z-index: 0;
+    }
 `
 
 export const Item = styled.div``
