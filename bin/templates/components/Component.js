@@ -3,20 +3,13 @@ const source = require('common-tags').source
 module.exports = (Name) => source`
 
     import React from 'react'
-    import { Component, Props, Element } from '../../lib'
-    import styles from './${Name}.css'
-    
-    export type ${Name}Props = Props<{ }>
+    import { Component } from '../../lib'
+    import { Root } from './FooBar.styled'
 
-    export const ${Name}: Component<${Name}Props> = ({ 
-        ...props
-    }) => {
-        
-        return (
-            <Element className={styles.root} {...props}>
-                👋 Hi, I'm ${Name}
-            </Element>
-        )
+    export type FooBarProps = {}
+
+    export const FooBar: Component<FooBarProps> = ({ ...props }) => {
+        return <Root {...props}>👋 Hi, I'm FooBar</Root>
     }
 
 ` + '\n'

@@ -2,7 +2,7 @@ const fs = require('fs')
 const writeFile = require('./writeFile')
 
 const templateComponent = require('../templates/components/Component')
-const templateStyles = require('../templates/components/Component.css')
+const templateStyles = require('../templates/components/Component.styled')
 const templateStory = require('../templates/components/Component.story')
 const templateIndex = require('../templates/components/index')
 
@@ -20,7 +20,7 @@ module.exports = (name, folder = 'components') => {
 
     // Write files
     writeFile(`${dir}/${name}.tsx`, templateComponent(name))
-    writeFile(`${dir}/${name}.css`, templateStyles(name))
+    writeFile(`${dir}/${name}.styled.tsx`, templateStyles(name))
     writeFile(`${dir}/${name}.story.tsx`, templateStory(name, folder))
     writeFile(`${dir}/index.ts`, templateIndex(name))
 }

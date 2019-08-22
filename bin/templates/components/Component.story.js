@@ -10,25 +10,23 @@ module.exports = (Name, folder = 'components') => {
     return source`
 
         import React from 'react'
-        import ${Name} from './'
+        import FooBar from './'
         import { storiesOf } from '@storybook/react'
-
-        storiesOf('${labels[folder]}/${Name}', module)
-            .add('Default', () => (
-                <div className="story">
-                    <${Name} />
-
-                    <style>{\`
-                        .story {
-                            align-items: center;
-                            display: flex;
-                            height: 100vh;
-                            justify-content: center;
-                            width: 100%;
-                        }
-                    \`}</style>
-                </div>
-            ))
+        import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
+        import styled from 'styled-components'
+        
+        const StoryContainer = styled(Story)\`
+            /* Story Styles */
+        \`
+        
+        storiesOf('📦 Components/FooBar', module).add('Default', () => (
+            <StoryContainer>
+                <StoryGlobalStyles centered />
+        
+                <FooBar />
+            </StoryContainer>
+        ))
+        
 
     ` + '\n'
 }
