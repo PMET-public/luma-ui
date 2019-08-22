@@ -1,7 +1,17 @@
 import React, { useState, useRef } from 'react'
-import { Component, Element, Props, classNames } from '../../lib'
-import styles from './Category.css'
-
+import { Component } from '../../lib'
+import {
+    Root,
+    TopBar,
+    Heading,
+    Title,
+    TopBarFilterButton,
+    FiltersIcon,
+    CategoriesWrapper,
+    Content,
+    FiltersWrapper,
+    FiltersButtons,
+} from './Category.styled'
 
 import { useResize } from '../../hooks/useResize'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -13,9 +23,7 @@ import Button, { ButtonProps } from '../../components/Button'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import Pills, { PillsProps } from '../../components/Pills'
 
-import FiltersIcon from '@fortawesome/fontawesome-free/svgs/solid/sliders-h.svg'
-
-export type CategoryProps = Props<{
+export type CategoryProps = {
     assembler?: AssemblerProps
     breadcrumbs?: BreadcrumbsProps
     categories?: PillsProps
@@ -26,8 +34,10 @@ export type CategoryProps = Props<{
         props: FiltersProps
     }
     products?: ProductListProps
-    title: Props
-}>
+    title: {
+        text: string
+    }
+}
 
 export const Category: Component<CategoryProps> = ({
     assembler,
@@ -38,8 +48,6 @@ export const Category: Component<CategoryProps> = ({
     title,
     ...props
 }) => {
-   
-
     const [showFilter, setShowFilter] = useState(!!(filters && filters.open))
 
     const { vHeight } = useResize()
@@ -49,69 +57,52 @@ export const Category: Component<CategoryProps> = ({
     useOnClickOutside(filtersRef, () => setShowFilter(false))
 
     return (
-        <Element className={styles.root} {...props}>
-            <div className={styles.topBar}>
-                <div className={styles.heading}>
-                    {breadcrumbs && (
-                        <Breadcrumbs
-                            className={styles.breadcrumbs}
-                            prefix="#"
-                            {...breadcrumbs}
-                        />
-                    )}
+        <Root {...props}>
+            <TopBar>
+                <Heading>
+                    {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
 
-                    <Element className={styles.title} {...title} />
-                </div>
+                    <Title {...title}>{title.text}</Title>
+                </Heading>
 
                 {filters && (
-                    <button
-                        className={styles.topBarFilterButton}
-                        onClick={() => setShowFilter(!showFilter)}
-                        type="button"
-                    >
+                    <TopBarFilterButton as="button" type="button" onClick={() => setShowFilter(!showFilter)}>
                         <span>
                             <FiltersIcon />
                             {filters.label}
                         </span>
-                    </button>
+                    </TopBarFilterButton>
                 )}
-            </div>
+            </TopBar>
 
             {categories && (
-                <Pills className={styles.categories} {...categories} />
+                <CategoriesWrapper>
+                    <Pills {...categories} />
+                </CategoriesWrapper>
             )}
 
-            <div className={styles.content}>
-                {assembler && (
-                    <Assembler className={styles.assembler} {...assembler} />
-                )}
-
-                {products && (
-                    <ProductList {...products} />
-                )}
-            </div>
+            <Content>
+                {assembler && <Assembler {...assembler} />}
+                {products && <ProductList {...products} />}Î
+            </Content>
 
             {filters && (
-                <div
-                    className={classNames(styles.filtersWrapper, [styles.filtersIsActive, showFilter])}
-                    ref={filtersRef}
-                    style={{
-                        height: vHeight,
-                    }}
-                >
-                    <Filters className={styles.filters} {...filters.props} />
+                <FiltersWrapper active={showFilter} ref={filtersRef} style={{ height: vHeight }}>
+                    <Filters {...filters.props} />
 
                     {filters.closeButton && (
-                        <div className={styles.filtersButton}>
+                        <FiltersButtons>
                             <Button
+                                as="button"
+                                type="button"
                                 fill
                                 onClick={() => setShowFilter(false)}
                                 {...filters.closeButton}
                             />
-                        </div>
+                        </FiltersButtons>
                     )}
-                </div>
+                </FiltersWrapper>
             )}
-        </Element>
+        </Root>
     )
 }
