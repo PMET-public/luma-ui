@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, ImageWrapper, Content, Titles, Title, Buttons } from './Banner.styled'
 
 import Image, { ImageProps } from '../Image'
@@ -15,7 +14,7 @@ export type BannerProps = {
     buttons?: ButtonProps[]
 }
 
-export const Banner: Component<BannerProps> = ({ buttons, image, position = 'top', titles, ...props }) => {
+export const Banner: FunctionComponent<BannerProps> = ({ buttons, image, position = 'top', titles, ...props }) => {
     return (
         <Root {...props}>
             <ImageWrapper>

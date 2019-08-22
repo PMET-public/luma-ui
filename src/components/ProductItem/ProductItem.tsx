@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Badge, ImageWrapper, Colors, Color, Details, Title, PriceWrapper } from './ProductItem.styled'
 
 import Image, { ImageProps } from '../Image'
@@ -19,10 +18,10 @@ export type ProductItemProps = {
 }
 
 type CompoundComponent = {
-    Skeleton: Component<IContentLoaderProps>
+    Skeleton: FunctionComponent<IContentLoaderProps>
 }
 
-export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
+export const ProductItem: FunctionComponent<ProductItemProps> & CompoundComponent = ({
     badge,
     colors,
     image,

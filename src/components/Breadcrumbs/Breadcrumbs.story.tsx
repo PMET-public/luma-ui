@@ -14,7 +14,7 @@ storiesOf('📦 Components/Breadcrumbs', module).add('Default', () => (
         <StoryGlobalStyles centered />
         <Breadcrumbs
             dividor={text('dividor', '')}
-            prefix={text('prefix', '')}
+            prefix={text('prefix', '#')}
             items={[
                 { as: 'a', href: '#', text: 'One' },
                 { as: 'a', href: '#', text: 'Two' },

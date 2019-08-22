@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Title, CarouselWrapper } from './ProductCarousel.styled'
 
 import Carousel from '../Carousel'
@@ -12,7 +11,7 @@ export type ProductCarouselProps = {
     items: ProductItemProps[]
 }
 
-export const ProductCarousel: Component<ProductCarouselProps> = ({ items, title, ...props }) => {
+export const ProductCarousel: FunctionComponent<ProductCarouselProps> = ({ items, title, ...props }) => {
     return items ? (
         <Root {...props}>
             {title && <Title {...title}>{title.text}</Title>}

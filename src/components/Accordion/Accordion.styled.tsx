@@ -29,6 +29,8 @@ export const Button = styled.button`
 `
 
 export const ButtonLabel = styled.span`
+    font-family: ${props => props.theme.typography.heading.family};
+    font-weight: ${props => props.theme.typography.heading.weight};
     flex-grow: 1;
 `
 

@@ -8,7 +8,7 @@ export const Root = styled.div`
     grid-template-rows: auto 1fr auto auto;
 `
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.div`
     ${HeaderLogo} {
         line-height: 0;
         margin: 0;

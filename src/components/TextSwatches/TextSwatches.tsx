@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Item, Label } from './TextSwatches.styled'
 
 export type TextSwatchesProps = {
@@ -10,7 +9,7 @@ export type TextSwatchesProps = {
     }>
 }
 
-export const TextSwatches: Component<TextSwatchesProps> = ({ items = [], ...props }) => {
+export const TextSwatches: FunctionComponent<TextSwatchesProps> = ({ items = [], ...props }) => {
     return (
         <Root {...props}>
             {items.map(({ active = false, disabled = false, text, ...item }, index) => (

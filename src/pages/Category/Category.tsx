@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent, useState, useRef } from 'react'
 import {
     Root,
     TopBar,
@@ -39,7 +38,7 @@ export type CategoryProps = {
     }
 }
 
-export const Category: Component<CategoryProps> = ({
+export const Category: FunctionComponent<CategoryProps> = ({
     assembler,
     breadcrumbs,
     categories,

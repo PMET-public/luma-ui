@@ -12,6 +12,10 @@ export const Root = styled.div`
 `
 
 export const Row = styled.div<{ hideOnBreakpoint?: string }>`
+    &:first-of-type {
+        margin-top: 2rem;
+    }
+
     ${props =>
         props.hideOnBreakpoint &&
         `

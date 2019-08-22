@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent, useState, useRef, useEffect } from 'react'
 import { Root, LoadedImage, Placeholder, ErrorIcon } from './Image.styled'
 
 export type ImageProps = {
@@ -11,7 +10,7 @@ export type ImageProps = {
     transition?: boolean
 }
 
-export const ImageComponent: Component<ImageProps> = ({
+export const ImageComponent: FunctionComponent<ImageProps> = ({
     alt,
     height,
     src,

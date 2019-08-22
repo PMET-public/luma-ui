@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, HeaderWrapper, Main, FooterWrapper, TabBarWrapper } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
@@ -54,7 +53,7 @@ export type AppProps = {
     footer: FooterProps
 }
 
-export const App: Component<AppProps> = ({
+export const App: FunctionComponent<AppProps> = ({
     cart,
     children,
     footer,

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Wrapper, Label, Count } from './Icon.styled'
 import { ReactComponentLike } from 'prop-types'
 
@@ -11,7 +10,7 @@ export type IconProps = {
     text?: string | null
 }
 
-export const Icon: Component<IconProps> = ({ children, count, svg: Svg, text, ...props }) => {
+export const Icon: FunctionComponent<IconProps> = ({ children, count, svg: Svg, text, ...props }) => {
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
         enter: { opacity: 1, transform: 'scale(1) translateY(0)' },

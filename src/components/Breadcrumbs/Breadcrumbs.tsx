@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Item } from './Breadcrumbs.styled'
 
 export type BreadcrumbsProps = {
@@ -11,7 +10,12 @@ export type BreadcrumbsProps = {
     }>
 }
 
-export const Breadcrumbs: Component<BreadcrumbsProps> = ({ dividor = '', items = [], prefix = '', ...props }) => {
+export const Breadcrumbs: FunctionComponent<BreadcrumbsProps> = ({
+    dividor = '',
+    items = [],
+    prefix = '',
+    ...props
+}) => {
     return (
         <Root {...props}>
             {items.map(({ text, _id, ...item }, index) => (

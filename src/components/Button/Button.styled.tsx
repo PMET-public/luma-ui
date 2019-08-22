@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-export const Root = styled.button<{ fill?: boolean; color: 'primary' | 'secondary' }>`
+export const Root = styled.button<{ $fill?: boolean; $color: 'primary' | 'secondary' }>`
     align-items: center;
-    background-color: ${props => (props.fill ? 'currentColor' : 'transparent')};
+    background-color: ${props => (props.$fill ? 'currentColor' : 'transparent')};
     border-radius: 2.4rem;
     border: 0.1rem solid;
-    color: ${props => (props.color === 'primary' ? props.theme.colors.primary : props.theme.colors.secondary)};
+    color: ${props => (props.$color === 'primary' ? props.theme.colors.primary : props.theme.colors.secondary)};
     display: inline-flex;
     font-size: 1.6rem;
     font-weight: 600;
@@ -22,7 +22,7 @@ export const Root = styled.button<{ fill?: boolean; color: 'primary' | 'secondar
     }
 
     ${props =>
-        props.fill &&
+        props.$fill &&
         `
             & > span {
                 filter: invert(1);

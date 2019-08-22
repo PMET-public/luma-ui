@@ -1,6 +1,6 @@
-import React, { Suspense, useEffect, useState, ReactNode } from 'react'
+import React, { FunctionComponent, Suspense, useEffect, useState, ReactNode } from 'react'
 import { Root, Row } from './Assembler.styled'
-import { Component, ErrorBoundary } from '../../lib'
+import { ErrorBoundary } from '../../lib'
 
 export type AssemblerProps = {
     components: Array<{
@@ -14,7 +14,7 @@ const Loading = () => {
     return <div>Loading</div>
 }
 
-export const Assembler: Component<AssemblerProps> = ({ components = [], ...props }) => {
+export const Assembler: FunctionComponent<AssemblerProps> = ({ components = [], ...props }) => {
     const [children, setChildren] = useState<ReactNode>(null)
 
     useEffect(() => {

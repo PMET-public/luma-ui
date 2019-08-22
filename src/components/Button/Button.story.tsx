@@ -9,6 +9,7 @@ import { action } from '@storybook/addon-actions'
 const StoryContainer = styled(Story)`
     /* Story Styles */
     padding: 2rem;
+    background-color: #ddd;
 `
 
 storiesOf('📦 Components/Button', module).add('Default', () => (

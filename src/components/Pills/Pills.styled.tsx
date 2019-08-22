@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Root = styled.div`
-    overflow-y: hidden;
+    overflow: hidden;
+    max-width: 100vw;
 `
 
 export const Wrapper = styled.div`

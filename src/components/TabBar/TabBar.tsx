@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Item, Icon } from './TabBar.styled'
 
 import { IconProps } from '../Icon'
@@ -11,7 +10,7 @@ export type TabBarProps = {
     }>
 }
 
-export const TabBar: Component<TabBarProps> = ({ items = [], ...props }) => {
+export const TabBar: FunctionComponent<TabBarProps> = ({ items = [], ...props }) => {
     return (
         <Root {...props}>
             {items.map(({ icon, active = false, ...item }, index) => (

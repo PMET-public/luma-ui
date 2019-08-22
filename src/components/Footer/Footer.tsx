@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import {
     Root,
     Menu,
@@ -25,7 +24,7 @@ export type FooterProps = {
     }
 }
 
-export const Footer: Component<FooterProps> = ({ copyright, menu, social, ...props }) => {
+export const Footer: FunctionComponent<FooterProps> = ({ copyright, menu, social, ...props }) => {
     return (
         <Root {...props}>
             {menu && (

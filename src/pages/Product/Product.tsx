@@ -1,5 +1,4 @@
-import React, { Suspense } from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent, Suspense } from 'react'
 import {
     Root,
     Wrapper,
@@ -46,7 +45,7 @@ export type ProductProps = {
     }
 }
 
-export const Product: Component<ProductProps> = ({
+export const Product: FunctionComponent<ProductProps> = ({
     assembler,
     breadcrumbs,
     buttons,

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, IconWrapper } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
 
@@ -23,7 +22,7 @@ export type HeaderProps = {
         }>
     }
 }
-export const Header: Component<HeaderProps> = ({
+export const Header: FunctionComponent<HeaderProps> = ({
     logo: { svg: LogoSvg, ...logo },
     menu: { items: menuItems, ...menu },
     utilities: { items: utilitiesItems, ...utilities },

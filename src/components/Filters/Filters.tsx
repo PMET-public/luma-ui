@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent, useState, useRef } from 'react'
 import {
     Root,
     Group,
@@ -20,7 +19,7 @@ export type FiltersProps = {
     groups: FiltersGroupProps[]
 }
 
-export const Filters: Component<FiltersProps> = ({ groups = [], ...props }) => {
+export const Filters: FunctionComponent<FiltersProps> = ({ groups = [], ...props }) => {
     return (
         <Root {...props}>
             {groups.map((group, index) => (
@@ -41,7 +40,7 @@ type FiltersGroupProps = {
     }>
 }
 
-const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
+const FiltersGroup: FunctionComponent<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
     const [open, setOpen] = useState(false)
 
     const elRef = useRef<any>(null)

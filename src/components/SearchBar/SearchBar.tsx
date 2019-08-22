@@ -1,5 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent, useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { Root, Wrapper, SearchIcon, Field, Count, ResetButton } from './SearchBar.styled'
 
 import { useThrottle } from '../../hooks/useThrottle'
@@ -14,7 +13,7 @@ export type SearchBarProps = {
     onSearch?: (query: string) => any
 }
 
-export const SearchBar: Component<SearchBarProps> = ({
+export const SearchBar: FunctionComponent<SearchBarProps> = ({
     clearButton = true,
     count,
     label = 'Search',

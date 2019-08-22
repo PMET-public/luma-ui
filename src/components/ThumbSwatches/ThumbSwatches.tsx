@@ -1,5 +1,4 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { FunctionComponent } from 'react'
 import { Root, Item, ImageWrapper } from './ThumbSwatches.styled'
 
 import Image, { ImageProps } from '../Image'
@@ -12,7 +11,7 @@ export type ThumbSwatchesProps = {
     }>
 }
 
-export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ items = [], ...props }) => {
+export const ThumbSwatches: FunctionComponent<ThumbSwatchesProps> = ({ items = [], ...props }) => {
     return (
         <Root {...props}>
             {items.map(({ image, active = false, disabled = false, ...item }, index) => (
