@@ -1,24 +1,28 @@
-import React, { createContext, ReactNode, useState } from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './HotSpots.css'
+import React, { createContext, useState, useContext } from 'react'
+import { Component } from '../../lib'
+import { Root, Image, Item, Button, Content } from './HotSpots.styled'
 
-import Image, { ImageProps } from '../Image'
-import { HotSpotsItem, HotSpotItemProps } from './HotSpots.Item'
+import { useTransition, animated } from 'react-spring'
 
+import { ImageProps } from '../Image'
 
-
-export type HotSpotsProps = Props<{
-    children: ReactNode
+export type HotSpotsProps = {
     description: string
     image: ImageProps
     items?: HotSpotItemProps[]
-}>
+}
+
+export type HotSpotItemProps = {
+    coords: { x: number; y: number }
+    id: string
+    label: string
+}
 
 type CompoundComponent = {
     Item: Component<HotSpotItemProps>
 }
 
-export const HotSpotsContext = createContext({ active: null, set: (id: string|number|null) => {}})
+export const HotSpotsContext = createContext({ active: null, set: (id: string | number | null) => {} })
 
 export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     children,
@@ -27,32 +31,58 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     items,
     ...props
 }) => {
-   
-
     const [active, setActive] = useState()
 
-    const set = (id?: string|number|null) => {
+    const set = (id?: string | number | null) => {
         setActive(id)
     }
 
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
-            <Element className={styles.root} {...props}>
-                <Image 
-                    className={styles.image}
-                    transition 
-                    {...image} 
-                />
+            <Root {...props}>
+                <Image transition {...image} />
 
-                {items ? items.map((item, index) => (
-                    <HotSpots.Item 
-                        key={index} 
-                        {...item}
-                    />
-                )) : children}
-            </Element>
+                {items ? items.map((item, index) => <HotSpots.Item key={index} {...item} />) : children}
+            </Root>
         </HotSpotsContext.Provider>
     )
 }
 
-HotSpots.Item = HotSpotsItem
+HotSpots.Item = ({ children, coords, id, label, ...props }) => {
+    const context = useContext(HotSpotsContext)
+
+    const active = id === context.active
+
+    const transitions = useTransition(active, null, {
+        from: { opacity: 0, transform: 'scale(0.9)' },
+        enter: { opacity: 1, transform: 'scale(1)' },
+        leave: { opacity: 0, transform: 'scale(0.9)' },
+    })
+
+    const handleToggle = () => {
+        if (children) context.set(active ? null : id)
+    }
+
+    return (
+        <Item {...props}>
+            <Button
+                aria-label={label}
+                coords={coords}
+                active={active}
+                onClick={handleToggle}
+                tabIndex={0}
+                as="button"
+            />
+
+            {children &&
+                transitions.map(
+                    ({ item, key, props }) =>
+                        item && (
+                            <Content as={animated.div} coords={coords} key={key} style={props}>
+                                {children}
+                            </Content>
+                        )
+                )}
+        </Item>
+    )
+}

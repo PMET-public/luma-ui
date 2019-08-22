@@ -188,4 +188,9 @@ export const ResetStyles = createGlobalStyle`
     [type="submit"] {
         -webkit-appearance: none;
     }
+
+    a {
+        color: unset;
+        text-decoration: none;
+    }
 `

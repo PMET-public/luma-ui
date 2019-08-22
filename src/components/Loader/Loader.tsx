@@ -1,28 +1,17 @@
 import React from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './Loader.css'
+import { Component } from '../../lib'
+import { Root } from './Loader.styled'
 
-
-
-export type LoaderProps = Props<{ 
+export type LoaderProps = {
     label: string
-}>
+}
 
-export const Loader: Component<LoaderProps> = ({ 
-    label,
-    ...props
-}) => {
-   
-    
+export const Loader: Component<LoaderProps> = ({ label, ...props }) => {
     return (
-        <Element 
-            className={styles.root}
-            aria-label={label}
-            {...props}
-        >
-            <span className={styles.dot}></span>
-            <span className={styles.dot}></span>
-            <span className={styles.dot}></span>
-        </Element>
+        <Root aria-label={label} {...props}>
+            <span></span>
+            <span></span>
+            <span></span>
+        </Root>
     )
 }

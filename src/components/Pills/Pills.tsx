@@ -1,43 +1,28 @@
 import React from 'react'
-import { Component, Props, Element } from '../../lib'
-import styles from './Pills.css'
+import { Component } from '../../lib'
+import { Root, Wrapper, Item, ItemWrapper, Count } from './Pills.styled'
 
-
-
-export type PillsProps = Props<{
-    items: Array<Props<{
+export type PillsProps = {
+    items: Array<{
         _id?: string | number
         count?: string | number
         text: string
-    }>>
-}>
+    }>
+}
 
-export const Pills: Component<PillsProps> = ({ 
-    items,
-    ...props
-}) => {
-   
-    
+export const Pills: Component<PillsProps> = ({ items, ...props }) => {
     return (
-        <Element className={styles.root} {...props}>
-            <div className={styles.wrapper}>
+        <Root {...props}>
+            <Wrapper>
                 {items.map(({ _id, text, count, ...item }, index) => (
-                    <Element 
-                        className={styles.item}
-                        key={_id || index}
-                        {...item} 
-                    >
-                        <span className={styles.itemWrapper}>
-                            { text }
-                            {!!count && (
-                                <span className={styles.itemCount}>
-                                    {count}
-                                </span>
-                            )}
-                        </span>
-                    </Element>
+                    <Item key={_id || index} {...item}>
+                        <ItemWrapper>
+                            {text}
+                            {!!count && <Count>{count}</Count>}
+                        </ItemWrapper>
+                    </Item>
                 ))}
-            </div>
-        </Element>
+            </Wrapper>
+        </Root>
     )
 }

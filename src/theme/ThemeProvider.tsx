@@ -26,11 +26,6 @@ export const Root = styled.div`
     margin: 0 auto;
     max-width: 180rem;
 
-    & a {
-        color: inherit;
-        text-decoration: none;
-    }
-
     & .visuallyhidden {
         clip: rect(0 0 0 0);
         height: 1px;

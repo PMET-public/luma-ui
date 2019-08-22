@@ -1,17 +1,40 @@
 import React from 'react'
 import HotSpots from './'
 import { storiesOf } from '@storybook/react'
+import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
+import styled from 'styled-components'
+
+const StoryContainer = styled(Story)`
+    /* Story Styles */
+`
+
+const PriceTag = styled.div`
+    font-weight: 600;
+    & > a {
+        margin-right: 1rem;
+    }
+
+    & > em {
+        border-radius: 0.5rem;
+        padding-left: 1rem;
+        background-color: ${props => props.theme.colors.secondary};
+        color: ${props => props.theme.colors.onSecondary};
+    }
+`
 
 const PriceTagMock = ({ text, price }: any) => (
-    <div style={{ fontWeight: 600 }}>
-        <a href="" onClick={e => e.preventDefault()} style={{ marginRight: '1rem' }}>{text}</a>
-        <em style={{ borderRadius: '0.5rem', paddingLeft: '1rem', backgroundColor: 'var(--color-secondary', color: 'var(--color-on-secondary' }}>{price}</em>
-    </div>
+    <PriceTag>
+        <a href="" onClick={e => e.preventDefault()}>
+            {text}
+        </a>
+        <em>{price}</em>
+    </PriceTag>
 )
 
 storiesOf('📦 Components/HotSpots', module)
     .add('Default', () => (
-        <div>
+        <StoryContainer>
+            <StoryGlobalStyles centered />
             <HotSpots
                 image={{
                     alt: 'Shop the Look',
@@ -21,32 +44,21 @@ storiesOf('📦 Components/HotSpots', module)
                 }}
                 description="A lot of stuffs"
             >
-                <HotSpots.Item
-                    coords={{ x: 15, y: 42 }}
-                    id="0"
-                    label="Sweater"
-                >
+                <HotSpots.Item coords={{ x: 15, y: 42 }} id="0" label="Sweater">
                     <PriceTagMock text="Knit Sweater" price="$29.99" />
                 </HotSpots.Item>
-                <HotSpots.Item
-                    coords={{ x: 78, y: 30 }}
-                    id="1"
-                    label="Bag"
-                >
+                <HotSpots.Item coords={{ x: 78, y: 30 }} id="1" label="Bag">
                     <PriceTagMock text="Handbag" price="$19.99" />
                 </HotSpots.Item>
-                <HotSpots.Item
-                    coords={{ x: 63, y: 75 }}
-                    id="2"
-                    label="Pants"
-                >
+                <HotSpots.Item coords={{ x: 63, y: 75 }} id="2" label="Pants">
                     <PriceTagMock text="Cotton Chinos" price="$29.99" />
                 </HotSpots.Item>
             </HotSpots>
-        </div>
+        </StoryContainer>
     ))
     .add('w/ Link', () => (
-        <div>
+        <StoryContainer>
+            <StoryGlobalStyles centered />
             <HotSpots
                 image={{
                     alt: 'Shop the look',
@@ -57,13 +69,8 @@ storiesOf('📦 Components/HotSpots', module)
                 description="A lot of stuffs"
             >
                 <a href="https://magento.com" target="blank">
-                    <HotSpots.Item
-                        coords={{ x: 15, y: 42 }}
-                        id="0"
-                        label="Sweater"
-                    />
+                    <HotSpots.Item coords={{ x: 15, y: 42 }} id="0" label="Sweater" />
                 </a>
             </HotSpots>
-        </div>
-        
+        </StoryContainer>
     ))

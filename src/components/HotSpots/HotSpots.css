@@ -1,9 +1,0 @@
-.root {
-    position: relative;
-    display: inline-block;
-}
-
-.image {
-    composes: root from '../Image/Image.css';
-    z-index: 0;
-}

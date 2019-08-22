@@ -1,51 +1,26 @@
 import React from 'react'
-import { Component, Props, Element, classNames } from '../../lib'
-import styles from './Price.css'
+import { Component } from '../../lib'
+import { Root, Label, RegularPrice, SpecialPrice } from './Price.styled'
 
-
-
-export type PriceProps = Props<{
+export type PriceProps = {
     currency?: string
     label?: string
     regular: number
     special?: number
-}>
+}
 
-export const Price: Component<PriceProps> = ({
-    currency = 'USD',
-    label,
-    regular,
-    special,
-    ...props
-}) => {
-   
-
+export const Price: Component<PriceProps> = ({ currency = 'USD', label, regular, special, ...props }) => {
     return (
-        <Element 
-            className={styles.root}
-            {...props} 
-        >
-            {label && (
-                <em className={styles.label}>
-                    {label}
-                </em>
-            )}
+        <Root {...props}>
+            {label && <Label>{label}</Label>}
 
-            <span 
-                className={classNames(
-                    styles.regularPrice, 
-                    [styles.hasSpecialPrice, !!special]
-                )}
-            
-            >
+            <RegularPrice hasSpecial={!!special}>
                 {regular.toLocaleString('en-US', { style: 'currency', currency })}
-            </span>
+            </RegularPrice>
 
-            {special && (
-                <span className={styles.specialPrice}>
-                    {special.toLocaleString('en-US', { style: 'currency', currency })}
-                </span>
+            {!!special && (
+                <SpecialPrice>{special.toLocaleString('en-US', { style: 'currency', currency })}</SpecialPrice>
             )}
-        </Element>
+        </Root>
     )
 }
