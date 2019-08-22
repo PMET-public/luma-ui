@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { storiesOf } from '@storybook/react'
 import CodeBlock from './lib/CodeBlock'
-import GitHubButton from 'react-github-btn'
 import { source } from 'common-tags'
 
 storiesOf('👋 Welcome', module).add('Getting Started', () => (
@@ -50,25 +49,6 @@ storiesOf('👋 Welcome', module).add('Getting Started', () => (
             </pre>
         </div>
 
-        <div className="github-buttons">
-            <GitHubButton
-                href="https://github.com/PMET-public/luma-storybook/fork"
-                data-icon="octicon-repo-forked"
-                data-size="large"
-                aria-label="Fork PMET-public/luma-storybook on GitHub"
-            >
-                Fork
-            </GitHubButton>
-            <GitHubButton
-                href="https://github.com/PMET-public/luma-storybook/issues"
-                data-icon="octicon-issue-opened"
-                data-size="large"
-                aria-label="Issue PMET-public/luma-storybook on GitHub"
-            >
-                Issue
-            </GitHubButton>
-        </div>
-
         <style>{`
                 body {
                     min-height: 100vh;
@@ -93,14 +73,6 @@ storiesOf('👋 Welcome', module).add('Getting Started', () => (
                 .source {
                     padding-left: 1.25rem; 
                     overflow: auto;
-                }
-
-                .github-buttons {
-                    display: grid;
-                    grid-auto-flow: column;
-                    grid-gap: 1.4rem;
-                    grid-template-columns: max-content;
-                    justify-self: center;
                 }
             `}</style>
     </div>

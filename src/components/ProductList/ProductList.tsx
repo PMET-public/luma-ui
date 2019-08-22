@@ -17,15 +17,15 @@ export const ProductList: Component<ProductListProps> = ({ items = [], loading, 
     return (
         <Root {...props}>
             {items.map(({ _id, ...item }, index) => (
-                <ItemWrapper>
-                    <ProductItem key={_id || index} {...item} />
+                <ItemWrapper key={_id || index}>
+                    <ProductItem {...item} />
                 </ItemWrapper>
             ))}
 
             {!!loading &&
                 new Array(loading).fill(null).map((_, index) => (
-                    <ItemWrapper>
-                        <ProductItem.Skeleton key={index} />
+                    <ItemWrapper key={index}>
+                        <ProductItem.Skeleton />
                     </ItemWrapper>
                 ))}
         </Root>

@@ -51,11 +51,11 @@ export const Title = styled.div<{ large?: boolean }>`
             text-transform: uppercase;
             line-height: 0.9;
 
-            @media(${props.theme.breakpoints.medium}) {
+            @media ${props.theme.breakpoints.medium} {
                 font-size: 5rem;
             }
 
-            @media(${props.theme.breakpoints.large}) {
+            @media ${props.theme.breakpoints.large}  {
                 font-size: 6rem;
             }
         `}

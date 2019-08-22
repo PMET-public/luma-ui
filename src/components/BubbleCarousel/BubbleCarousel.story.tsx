@@ -5,12 +5,12 @@ import { StoryGlobalStyles, Story } from '../../../.storybook/lib/Story.styled'
 import styled from 'styled-components'
 
 const StoryContainer = styled(Story)`
-    padding: 1rem;
+    padding: 2rem 0;
 `
 
 storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
     <StoryContainer>
-        <StoryGlobalStyles centered />
+        <StoryGlobalStyles />
 
         <BubbleCarousel
             label="Shop the Look"

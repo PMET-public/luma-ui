@@ -7,6 +7,7 @@ import { object } from '@storybook/addon-knobs'
 
 const StoryContainer = styled(Story)`
     /* Story Styles */
+    padding: 2rem 0;
     width: 100vw;
 `
 

@@ -12,13 +12,14 @@ export const Root = styled.span`
 export const Wrapper = styled.span<{ hasCount?: boolean }>`
     position: relative;
     ${props => props.hasCount && 'margin-right: 0.4em;'}
+
+    & svg {
+        fill: currentColor;
+        height: 1em;
+        width: auto;
+    }
 `
 
-export const Svg = styled.span`
-    fill: currentColor;
-    height: 1em;
-    width: auto;
-`
 export const Label = styled.span<{ hasCount?: boolean }>`
     color: inherit;
     font-size: 0.5em;

@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import ArrowIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-down.svg'
-
 export const Root = styled.div`
     display: grid;
 `
@@ -34,13 +32,14 @@ export const ButtonLabel = styled.span`
     flex-grow: 1;
 `
 
-export const ButtonIcon = styled(ArrowIcon)`
+export const ButtonIcon = styled.div<{ active?: boolean }>`
     font-size: 1.6rem;
     width: 1em;
     height: 1em;
     fill: currentColor;
     transition: transform 305ms ease-out;
     width: 1.6rem;
+
     ${props =>
         props.active &&
         `

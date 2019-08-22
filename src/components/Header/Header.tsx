@@ -50,10 +50,9 @@ export const Header: Component<HeaderProps> = ({
             {/* Utilities */}
             <Utilities {...utilities}>
                 {utilitiesItems.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
-                    <UtilitiesItem key={index} {...utilitiesItem}>
+                    <UtilitiesItem key={index} {...utilitiesItem} hasIcon={!!icon}>
                         {icon ? (
                             <IconWrapper>
-                                {' '}
                                 <Icon aria-label={text} {...icon} />
                             </IconWrapper>
                         ) : (

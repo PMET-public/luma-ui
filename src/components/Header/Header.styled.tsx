@@ -84,7 +84,7 @@ export const Link = styled.span<{ active?: true }>`
 
 export const MenuItem = styled(Link)``
 
-export const Utilities = styled(Link)`
+export const Utilities = styled.div`
     align-items: center;
     display: grid;
     font-size: 1.3rem;
@@ -95,8 +95,6 @@ export const Utilities = styled(Link)`
     justify-content: flex-end;
 `
 
-export const UtilitiesItem = styled.div`
-    ${IconRoot} {
-        border-color: transparent !important;
-    }
+export const UtilitiesItem = styled(Link)<{ hasIcon?: boolean }>`
+    ${props => props.hasIcon && 'border-color: transparent !important;'}
 `

@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon from './'
 import { storiesOf } from '@storybook/react'
-import { number, text, select } from '@storybook/addon-knobs'
+import { number, text, color } from '@storybook/addon-knobs'
 import centered from '@storybook/addon-centered/dist/react'
 
 import IconHome from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
@@ -15,11 +15,7 @@ storiesOf('📦 Components/Icon', module)
             style={{
                 display: 'grid',
                 gridGap: '10rem',
-                color: select(
-                    'color',
-                    ['var(--color-secondary)', 'var(--color-primary)', 'var(--color-accent)'],
-                    'var(--color-secondary)'
-                ),
+                color: color('color', '#ffffff'),
                 fontSize: number('size', 4.5) + 'rem',
             }}
         >
