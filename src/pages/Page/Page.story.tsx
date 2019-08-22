@@ -10,7 +10,7 @@ export const PageMockData: PageProps = {
         components: [
             {
                 name: 'BubbleCarousel',
-                hideOnBreakpoint: 'mediumScreen',
+                hideOnBreakpoint: 'medium',
                 props: {
                     text: 'Categories',
                     items: [
@@ -72,20 +72,20 @@ export const PageMockData: PageProps = {
                         width: '100%',
                     },
                     titles: [
-                        { 
-                            text: 'Twice around, twice as nice', 
+                        {
+                            text: 'Twice around, twice as nice',
                             large: true,
                         },
-                        { 
+                        {
                             text: 'Find conscientious, comfy clothing in our eco-friendly collection',
                         },
                     ],
                     position: 'bottom',
                     buttons: [
-                        { 
+                        {
                             as: 'a',
-                            text: 'Shop Performance', 
-                            fill: true, 
+                            text: 'Shop Performance',
+                            fill: true,
                             href: '#',
                         },
                     ],
@@ -115,13 +115,7 @@ export const PageMockData: PageProps = {
                         title: {
                             text: 'Circle Hooded Ice Flee',
                         },
-                        colors: [
-                            { value: 'brown' },
-                            { value: 'gray' },
-                            { value: 'black' },
-                            { value: 'blue' },
-
-                        ],
+                        colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
                     }),
                 },
             },
@@ -149,13 +143,7 @@ export const PageMockData: PageProps = {
                         title: {
                             text: 'Circle Hooded Ice Flee',
                         },
-                        colors: [
-                            { value: 'brown' },
-                            { value: 'gray' },
-                            { value: 'black' },
-                            { value: 'blue' },
-
-                        ],
+                        colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
                     }),
                 },
             },
@@ -163,9 +151,8 @@ export const PageMockData: PageProps = {
     },
 }
 
-storiesOf('📑 Pages/Page', module)
-    .add('Default', () => (
-        <App {...AppMockData}>
-            <Page {...PageMockData} />
-        </App>
-    ))
+storiesOf('📑 Pages/Page', module).add('Default', () => (
+    <App {...AppMockData}>
+        <Page {...PageMockData} />
+    </App>
+))
