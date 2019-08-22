@@ -6,7 +6,7 @@ export const Root = styled.div`
     grid-template-columns: repeat(3, 1fr);
 `
 
-export const Item = styled.div<{ active?: boolean; disabled: boolean }>`
+export const Item = styled.div<{ $active?: boolean; disabled: boolean }>`
     background-color: ${props => props.theme.colors.onPrimary};
     border-radius: 0.5rem;
     border: 0.1rem solid ${props => props.theme.colors.primary25};
@@ -16,7 +16,7 @@ export const Item = styled.div<{ active?: boolean; disabled: boolean }>`
     transition: all 305ms ease;
 
     ${props =>
-        props.active &&
+        props.$active &&
         `
             background-color: ${props.theme.colors.primary};
             color: ${props.theme.colors.onPrimary};

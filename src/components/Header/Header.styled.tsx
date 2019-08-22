@@ -69,13 +69,13 @@ export const MenuWrapper = styled.div`
     white-space: nowrap;
 `
 
-export const Link = styled.span<{ active?: boolean }>`
+export const Link = styled.span<{ $active?: boolean }>`
     color: ${props => props.theme.colors.primary};
     padding-top: 0.4rem;
     padding-bottom: 0.3rem;
     text-decoration: none;
     transition: border 700ms ease;
-    border-bottom: 0.1rem solid ${props => (props.active ? props.theme.colors.primary : 'transparent')};
+    border-bottom: 0.1rem solid ${props => (props.$active ? props.theme.colors.primary : 'transparent')};
 
     &:hover {
         border-color: ${props => props.theme.colors.primary};
@@ -95,6 +95,6 @@ export const Utilities = styled.div`
     justify-content: flex-end;
 `
 
-export const UtilitiesItem = styled(Link)<{ ['data-icon']?: boolean }>`
-    ${props => props['data-icon'] && 'border-color: transparent !important;'}
+export const UtilitiesItem = styled(Link)<{ $icon?: boolean }>`
+    ${props => props.$icon && 'border-color: transparent !important;'}
 `

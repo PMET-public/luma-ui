@@ -2,14 +2,14 @@ import styled from 'styled-components'
 
 import ErrorIconSvg from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
 
-export const Root = styled.div<{ vignette?: number }>`
+export const Root = styled.div<{ $vignette?: number }>`
     display: inline-block;
     position: relative;
     display: inherit;
     line-height: 0;
 
     ${props =>
-        props.vignette &&
+        !!props.$vignette &&
         `
             &::after {
                 content: "";
@@ -18,7 +18,7 @@ export const Root = styled.div<{ vignette?: number }>`
                 left: 0;
                 width: 100%;
                 height: 100%;
-                box-shadow: inset 0 0 10rem ${props.vignette}rem rgba(0, 0, 0, 0.15);
+                box-shadow: inset 0 0 10rem ${props.$vignette}rem rgba(0, 0, 0, 0.15);
             }
         `}
 `
@@ -27,23 +27,23 @@ export const ImageTag = styled.img`
     max-width: 100%;
 `
 
-export const LoadedImage = styled(ImageTag)<{ transition?: boolean; loaded?: boolean; error?: boolean }>`
+export const LoadedImage = styled(ImageTag)<{ $transition?: boolean; $loaded?: boolean; $error?: boolean }>`
     min-height: 100%;
     object-fit: cover;
     object-position: center;
     position: absolute;
 
-    ${props => props.error && 'opacity: 0;'}
+    ${props => props.$error && 'opacity: 0;'}
 
     ${props =>
-        props.transition &&
+        props.$transition &&
         `
             filter: blur(30px) opacity(0%);
             transition: filter 305ms ease-out;
         `}
 
     ${props =>
-        props.loaded &&
+        props.$loaded &&
         `
             filter: blur(0) opacity(100%);
         `}

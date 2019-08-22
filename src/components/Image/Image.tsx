@@ -40,13 +40,13 @@ export const ImageComponent: FunctionComponent<ImageProps> = ({
     }
 
     return (
-        <Root vignette={vignette} {...props}>
+        <Root $vignette={vignette} {...props}>
             <LoadedImage
-                error={error}
-                loaded={loaded}
+                $error={error}
+                $loaded={loaded}
+                $transition={transition}
                 ref={imageRef}
                 src={src}
-                transition={transition}
                 onError={handleImageError}
                 onLoad={handleImageLoaded}
                 {...{ alt, width, height }}

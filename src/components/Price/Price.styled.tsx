@@ -10,9 +10,9 @@ export const Root = styled.div`
 
 export const Label = styled.em``
 
-export const RegularPrice = styled.span<{ hasSpecial?: boolean }>`
+export const RegularPrice = styled.span<{ $hasSpecial?: boolean }>`
     ${props =>
-        props.hasSpecial &&
+        props.$hasSpecial &&
         `
             text-decoration: line-through;
             opacity: 0.7;

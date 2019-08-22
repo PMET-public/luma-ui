@@ -9,9 +9,9 @@ export const Root = styled.span`
     line-height: 0;
 `
 
-export const Wrapper = styled.span<{ hasCount?: boolean }>`
+export const Wrapper = styled.span<{ $hasCount?: boolean }>`
     position: relative;
-    ${props => props.hasCount && 'margin-right: 0.4em;'}
+    ${props => props.$hasCount && 'margin-right: 0.4em;'}
 
     & svg {
         fill: currentColor;
@@ -20,14 +20,14 @@ export const Wrapper = styled.span<{ hasCount?: boolean }>`
     }
 `
 
-export const Label = styled.span<{ hasCount?: boolean }>`
+export const Label = styled.span<{ $hasCount?: boolean }>`
     color: inherit;
     font-size: 0.5em;
     font-weight: 600;
     text-overflow: ellipsis;
     line-height: 1.1;
     margin-top: 0.6rem;
-    ${props => props.hasCount && 'padding-right: 0.9em;'}
+    ${props => props.$hasCount && 'padding-right: 0.9em;'}
 `
 
 export const Count = styled.span`

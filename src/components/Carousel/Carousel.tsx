@@ -25,7 +25,7 @@ export const Carousel: FunctionComponent<CarouselProps> & CompoundComponent = ({
     ...props
 }) => {
     return (
-        <Root padding={padding} show={show} gap={gap} {...props}>
+        <Root $padding={padding} $show={show} $gap={gap} {...props}>
             {children}
         </Root>
     )

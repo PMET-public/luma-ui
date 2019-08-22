@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ gap: number; padding: number; show: number }>`
-    --gap: ${props => props.gap}rem;
-    --padding: ${props => props.padding}rem;
-    --show: ${props => props.show};
+export const Root = styled.div<{ $gap: number; $padding: number; $show: number }>`
+    --gap: ${props => props.$gap}rem;
+    --padding: ${props => props.$padding}rem;
+    --show: ${props => props.$show};
 
     -webkit-overflow-scrolling: touch;
     display: grid;

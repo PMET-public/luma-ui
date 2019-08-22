@@ -15,7 +15,7 @@ export const ThumbSwatches: FunctionComponent<ThumbSwatchesProps> = ({ items = [
     return (
         <Root {...props}>
             {items.map(({ image, active = false, disabled = false, ...item }, index) => (
-                <Item as="button" active={active} disabled={disabled} key={index} {...item}>
+                <Item $active={active} as="button" disabled={disabled} key={index} {...item}>
                     <ImageWrapper>
                         <Image transition width={4} height={5} {...image} />
                     </ImageWrapper>

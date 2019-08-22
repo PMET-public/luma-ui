@@ -76,7 +76,7 @@ Accordion.Item = ({ _id = -1, active = false, children, label, ...props }) => {
         <Item {...props}>
             <Button type="button" onClick={triggerActivate}>
                 <ButtonLabel>{label}</ButtonLabel>
-                <ButtonIcon active={active}>
+                <ButtonIcon $active={active}>
                     <ArrowIcon />
                 </ButtonIcon>
             </Button>

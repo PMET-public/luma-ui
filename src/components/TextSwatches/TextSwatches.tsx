@@ -13,7 +13,7 @@ export const TextSwatches: FunctionComponent<TextSwatchesProps> = ({ items = [],
     return (
         <Root {...props}>
             {items.map(({ active = false, disabled = false, text, ...item }, index) => (
-                <Item as="button" active={active} disabled={disabled} key={index} {...item}>
+                <Item $active={active} as="button" disabled={disabled} key={index} {...item}>
                     <Label>{text}</Label>
                 </Item>
             ))}

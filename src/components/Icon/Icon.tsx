@@ -21,7 +21,7 @@ export const Icon: FunctionComponent<IconProps> = ({ children, count, svg: Svg, 
 
     return (
         <Root {...props}>
-            <Wrapper hasCount={hasCount}>
+            <Wrapper $hasCount={hasCount}>
                 {Svg ? <Svg /> : children}
 
                 {countTransitions.map(({ item, props, key }) =>
@@ -33,7 +33,7 @@ export const Icon: FunctionComponent<IconProps> = ({ children, count, svg: Svg, 
                 )}
             </Wrapper>
 
-            {text ? <Label hasCount={hasCount}>{text}</Label> : null}
+            {text ? <Label $hasCount={hasCount}>{text}</Label> : null}
         </Root>
     )
 }

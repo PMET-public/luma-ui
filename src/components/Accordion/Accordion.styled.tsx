@@ -34,7 +34,7 @@ export const ButtonLabel = styled.span`
     flex-grow: 1;
 `
 
-export const ButtonIcon = styled.div<{ active?: boolean }>`
+export const ButtonIcon = styled.div<{ $active?: boolean }>`
     font-size: 1.6rem;
     width: 1em;
     height: 1em;
@@ -43,7 +43,7 @@ export const ButtonIcon = styled.div<{ active?: boolean }>`
     width: 1.6rem;
 
     ${props =>
-        props.active &&
+        props.$active &&
         `
             transform: rotateX(180deg);
         `}

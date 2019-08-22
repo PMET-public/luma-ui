@@ -8,7 +8,7 @@ export const Root = styled.div`
     grid-template-columns: repeat(4, 1fr);
 `
 
-export const Item = styled.button<{ active?: boolean; disabled: boolean }>`
+export const Item = styled.button<{ $active?: boolean; disabled: boolean }>`
     border-radius: 0.5rem;
     border: 0.1rem solid ${props => props.theme.colors.primary25};
     padding: 0.3rem;
@@ -21,7 +21,7 @@ export const Item = styled.button<{ active?: boolean; disabled: boolean }>`
         `}
 
     ${props =>
-        props.active &&
+        props.$active &&
         `
             border-color: ${props.theme.colors.primary};
         `}

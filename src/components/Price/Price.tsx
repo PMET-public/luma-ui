@@ -13,7 +13,7 @@ export const Price: FunctionComponent<PriceProps> = ({ currency = 'USD', label, 
         <Root {...props}>
             {label && <Label>{label}</Label>}
 
-            <RegularPrice hasSpecial={!!special}>
+            <RegularPrice $hasSpecial={!!special}>
                 {regular.toLocaleString('en-US', { style: 'currency', currency })}
             </RegularPrice>
 

@@ -1,3 +1,7 @@
+/**
+ * ☢️ Experimental
+ */
+
 import React, { FunctionComponent, Suspense, useEffect, useState, ReactNode } from 'react'
 import { Root, Row } from './Assembler.styled'
 import { ErrorBoundary } from '../../lib'
@@ -23,7 +27,7 @@ export const Assembler: FunctionComponent<AssemblerProps> = ({ components = [], 
                 {components.map(({ name, hideOnBreakpoint, props }, index) => {
                     const DynamicComponent = React.lazy(() => import(`../${name}/index`))
                     return (
-                        <Row hideOnBreakpoint={hideOnBreakpoint} key={index}>
+                        <Row $hideOnBreakpoint={hideOnBreakpoint} key={index}>
                             <ErrorBoundary>
                                 <DynamicComponent {...props} />
                             </ErrorBoundary>

@@ -20,13 +20,13 @@ export const ImageWrapper = styled.div`
     }
 `
 
-export const Content = styled.div<{ position: 'top' | 'bottom' }>`
+export const Content = styled.div<{ $position: 'top' | 'bottom' }>`
     color: #ffffff;
     position: absolute;
     padding: 2rem;
 
-    ${props => props.position === 'top' && 'top: 0;'}
-    ${props => props.position === 'bottom' && 'bottom: 0;'}
+    ${props => props.$position === 'top' && 'top: 0;'}
+    ${props => props.$position === 'bottom' && 'bottom: 0;'}
 
     @media ${props => props.theme.breakpoints.medium} {
         padding: 5rem;
@@ -38,12 +38,12 @@ export const Titles = styled.div`
     grid-gap: 0.7rem;
 `
 
-export const Title = styled.div<{ large?: boolean }>`
+export const Title = styled.div<{ $large?: boolean }>`
     margin: 0;
     font-size: 1.6rem;
 
     ${props =>
-        props.large &&
+        props.$large &&
         `
             font-family: ${props.theme.typography.heading.family};
             font-size: 4rem;

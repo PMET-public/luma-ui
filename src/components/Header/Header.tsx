@@ -39,7 +39,7 @@ export const Header: FunctionComponent<HeaderProps> = ({
             <Menu {...menu}>
                 <MenuWrapper>
                     {menuItems.map(({ active = false, text, ...menuItem }, index) => (
-                        <MenuItem key={index} active={active} {...menuItem}>
+                        <MenuItem $active={active} key={index} {...menuItem}>
                             {text}
                         </MenuItem>
                     ))}
@@ -49,7 +49,7 @@ export const Header: FunctionComponent<HeaderProps> = ({
             {/* Utilities */}
             <Utilities {...utilities}>
                 {utilitiesItems.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
-                    <UtilitiesItem key={index} {...utilitiesItem} data-icon={!!icon}>
+                    <UtilitiesItem $active={active} $icon={!!icon} key={index} {...utilitiesItem}>
                         {icon ? (
                             <IconWrapper>
                                 <Icon aria-label={text} {...icon} />

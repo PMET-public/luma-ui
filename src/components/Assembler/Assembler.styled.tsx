@@ -11,15 +11,15 @@ export const Root = styled.div`
     }
 `
 
-export const Row = styled.div<{ hideOnBreakpoint?: string }>`
+export const Row = styled.div<{ $hideOnBreakpoint?: string }>`
     &:first-of-type {
         margin-top: 2rem;
     }
 
     ${props =>
-        props.hideOnBreakpoint &&
+        props.$hideOnBreakpoint &&
         `
-        @media ${props.theme.breakpoints[props.hideOnBreakpoint]} {
+        @media ${props.theme.breakpoints[props.$hideOnBreakpoint]} {
             display: none;
         }
     `}

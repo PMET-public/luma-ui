@@ -67,23 +67,27 @@ HotSpots.Item = ({ children, coords, id, label, ...props }) => {
     return (
         <Item {...props}>
             <Button
+                $active={active}
+                $xPos={coords.x}
+                $yPos={coords.y}
                 aria-label={label}
-                coords={coords}
-                active={active}
+                as="button"
                 onClick={handleToggle}
                 tabIndex={0}
-                as="button"
             />
 
-            {children &&
-                transitions.map(
-                    ({ item, key, props }) =>
-                        item && (
-                            <Content as={animated.div} coords={coords} key={key} style={props}>
-                                {children}
-                            </Content>
-                        )
-                )}
+            {children && (
+                <Content $xPos={coords.x} $yPos={coords.y}>
+                    {transitions.map(
+                        ({ item, key, props }) =>
+                            item && (
+                                <animated.div key={key} style={props}>
+                                    {children}
+                                </animated.div>
+                            )
+                    )}
+                </Content>
+            )}
         </Item>
     )
 }

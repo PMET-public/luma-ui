@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 import ToggleIconSvg from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
-import CheckedIconSvg from '@fortawesome/fontawesome-free/svgs/solid/check-circle.svg'
-import CheckIconSvg from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
 
 export const Root = styled.div`
     display: grid;
@@ -16,11 +14,11 @@ export const Group = styled.div`
     grid-gap: 1.6rem;
 `
 
-export const Wrapper = styled.div<{ height: string; duration: string }>`
+export const Wrapper = styled.div<{ $height: string; $duration: string }>`
     height: auto;
-    max-height: ${props => props.height};
+    max-height: ${props => props.$height};
     overflow-y: hidden;
-    transition: max-height ${props => props.duration} ease;
+    transition: max-height ${props => props.$duration} ease;
 `
 
 export const List = styled.dl`
@@ -33,7 +31,13 @@ export const GroupLabel = styled.dt`
     font-weight: 600;
 `
 
-export const Item = styled.span`
+export const Icon = styled.svg`
+    fill: currentColor;
+    transition: opacity 305ms ease;
+    width: 1em;
+`
+
+export const Item = styled.span<{ $active?: boolean }>`
     align-items: center;
     display: inline-grid;
     grid-auto-columns: max-content;
@@ -44,41 +48,33 @@ export const Item = styled.span`
     &:hover {
         opacity: 0.75;
     }
+
+    ${Icon} {
+        opacity: ${props => (props.$active ? '1' : '0.1')};
+    }
 `
 
 export const Count = styled.span`
     filter: opacity(0.45);
     font-size: 0.9em;
 `
-
-export const CheckIcon = styled(CheckIconSvg)<{ active?: boolean }>`
-    fill: currentColor;
-    opacity: ${props => (props.active ? '1' : '0.1')};
-    transition: opacity 305ms ease;
-    width: 1em;
-`
-
-export const CheckedIcon = styled(CheckedIconSvg)<{ active?: boolean }>`
-    fill: currentColor;
-    opacity: ${props => (props.active ? '1' : '0.1')};
-    transition: opacity 305ms ease;
-    width: 1em;
-`
-
-export const ToggleIcon = styled(ToggleIconSvg)<{ active?: boolean }>`
+export const ToggleIcon = styled(ToggleIconSvg)`
     fill: currentColor;
     height: 0.8em;
     margin-right: 0.5rem;
     transition: transform var(--transition-duration) ease;
     width: 0.8em;
-    ${props => props.active && 'transform: rotate(180deg)'}
 `
 
-export const ToggleButton = styled.button`
+export const ToggleButton = styled.button<{ $active?: boolean }>`
     align-items: center;
     color: inherit;
     cursor: pointer;
     display: inline-flex;
     filter: opacity(0.75);
     font-size: 1em;
+
+    ${ToggleIcon} {
+        ${props => props.$active && 'transform: rotate(180deg);'}
+    }
 `

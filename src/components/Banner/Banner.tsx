@@ -21,11 +21,11 @@ export const Banner: FunctionComponent<BannerProps> = ({ buttons, image, positio
                 <Image transition {...image} />
             </ImageWrapper>
 
-            <Content position={position}>
+            <Content $position={position}>
                 {titles && (
                     <Titles>
                         {titles.map(({ large = false, text, ...title }, index) => (
-                            <Title large={large} key={index} {...title}>
+                            <Title $large={large} key={index} {...title}>
                                 {text}
                             </Title>
                         ))}

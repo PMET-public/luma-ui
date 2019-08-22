@@ -1,19 +1,10 @@
 import React, { FunctionComponent, useState, useRef } from 'react'
-import {
-    Root,
-    Group,
-    Wrapper,
-    List,
-    GroupLabel,
-    Item,
-    CheckIcon,
-    CheckedIcon,
-    Count,
-    ToggleIcon,
-    ToggleButton,
-} from './Filters.styled'
+import { Root, Group, Wrapper, List, GroupLabel, Item, Icon, Count, ToggleIcon, ToggleButton } from './Filters.styled'
 
 import { useMeasure } from '../../hooks/useMeasure'
+
+import CheckedIconSvg from '@fortawesome/fontawesome-free/svgs/solid/check-circle.svg'
+import CheckIconSvg from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
 
 export type FiltersProps = {
     groups: FiltersGroupProps[]
@@ -52,16 +43,16 @@ const FiltersGroup: FunctionComponent<FiltersGroupProps> = ({ items = [], offset
     return (
         <Group {...props}>
             <Wrapper
-                duration={items.length * 20 + 'ms'}
-                height={open ? `${height / 10}rem` : `calc(2.2em * ${offset})`}
+                $duration={items.length * 20 + 'ms'}
+                $height={open ? `${height / 10}rem` : `calc(2.2em * ${offset})`}
             >
                 <List ref={elRef}>
                     <GroupLabel>{title}</GroupLabel>
 
                     {items.map(({ text, count, active = false, _id, ...item }, index) => (
                         <dd key={_id || index}>
-                            <Item {...item}>
-                                {active ? <CheckedIcon active={active} /> : <CheckIcon />}
+                            <Item $active={active} {...item}>
+                                <Icon as={active ? CheckedIconSvg : CheckIconSvg} />
 
                                 {text}
 
@@ -74,8 +65,8 @@ const FiltersGroup: FunctionComponent<FiltersGroupProps> = ({ items = [], offset
 
             {items.length > offset && (
                 <div>
-                    <ToggleButton onClick={triggerToggle}>
-                        <ToggleIcon active={open} />
+                    <ToggleButton $active={open} onClick={triggerToggle}>
+                        <ToggleIcon />
                         {open ? 'Less' : 'More'}
                     </ToggleButton>
                 </div>

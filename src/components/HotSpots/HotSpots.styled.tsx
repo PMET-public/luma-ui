@@ -31,18 +31,18 @@ export const ImageWrapper = styled.div`
 
 export const Item = styled.div``
 
-export const Button = styled.div<{ active?: boolean; coords: { x: number; y: number } }>`
-    background-color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.accent)};
+export const Button = styled.div<{ $active?: boolean; $xPos: number; $yPos: number }>`
+    background-color: ${props => (props.$active ? props.theme.colors.primary : props.theme.colors.accent)};
     border-radius: 50%;
     border: none;
     cursor: pointer;
     font-size: 2rem;
     height: 1em;
-    left: ${props => props.coords.x}%;
+    left: ${props => props.$xPos}%;
     opacity: 0.85;
     padding: 0;
     position: absolute;
-    top: ${props => props.coords.y}%;
+    top: ${props => props.$yPos}%;
     width: 1em;
     z-index: 2;
 
@@ -56,49 +56,52 @@ export const Button = styled.div<{ active?: boolean; coords: { x: number; y: num
         left: 0;
         position: absolute;
         top: 0;
-        visibility: ${props => (props.active ? 'hidden' : 'visible')};
+        visibility: ${props => (props.$active ? 'hidden' : 'visible')};
         width: 100%;
     }
 `
 
-export const Content = styled.div<{ coords: { x: number; y: number } }>`
-    align-items: center;
-    background-color: ${props => props.theme.colors.surface};
-    border-radius: 1rem;
-    color: ${props => props.theme.colors.onSurface};
-    padding: 1rem 1.3rem;
+export const Content = styled.div<{ $xPos: number; $yPos: number }>`
     position: absolute;
     z-index: 3;
 
+    & > div {
+        align-items: center;
+        background-color: ${props => props.theme.colors.surface};
+        border-radius: 1rem;
+        color: ${props => props.theme.colors.onSurface};
+        padding: 1rem 1.3rem;
+    }
+
     ${props =>
-        props.coords.x > 50 &&
+        props.$xPos > 50 &&
         `
             /* Align to the Right */
             left: unset;
-            right: calc((100% - ${props.coords.x}%) - 1.3em);
+            right: calc((100% - ${props.$xPos}%) - 1.3em);
         `}
 
     ${props =>
-        props.coords.x < 50 &&
+        props.$xPos < 50 &&
         `
             /* Align to the Left */
-            left: ${props.coords.x}%;
+            left: ${props.$xPos}%;
             right: unset;
         `}
 
     ${props =>
-        props.coords.y < 50 &&
+        props.$yPos < 50 &&
         `
             /* Align to the Top */
-            top: calc(${props.coords.y}% + 1.8em);
+            top: calc(${props.$yPos}% + 1.8em);
             bottom: unset;
         `}
 
     ${props =>
-        props.coords.y > 50 &&
+        props.$yPos > 50 &&
         `
             /* Align to the Bottom */
-            bottom: calc((100% - ${props.coords.y}%) + 0.5em);
+            bottom: calc((100% - ${props.$yPos}%) + 0.5em);
             top: unset;
     `}
 `
