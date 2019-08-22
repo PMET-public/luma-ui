@@ -11,16 +11,18 @@ import IconCart from '@fortawesome/fontawesome-free/svgs/solid/shopping-basket.s
 storiesOf('📦 Components/Icon', module)
     .addDecorator(centered)
     .add('Default', () => (
-        <div style={{ 
-            display: 'grid', 
-            gridGap: '10rem', 
-            color: select('color', [
-                'var(--color-secondary)',
-                'var(--color-primary)',
-                'var(--color-accent)',
-            ], 'var(--color-secondary)'), 
-            fontSize: number('size', 4.5) + 'rem',
-        }}>
+        <div
+            style={{
+                display: 'grid',
+                gridGap: '10rem',
+                color: select(
+                    'color',
+                    ['var(--color-secondary)', 'var(--color-primary)', 'var(--color-accent)'],
+                    'var(--color-secondary)'
+                ),
+                fontSize: number('size', 4.5) + 'rem',
+            }}
+        >
             <Icon count={number('count', 0)} text={text('text', '')}>
                 <IconHome />
             </Icon>

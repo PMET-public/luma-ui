@@ -15,11 +15,7 @@ export type ProductCarouselProps = {
 export const ProductCarousel: Component<ProductCarouselProps> = ({ items, title, ...props }) => {
     return items ? (
         <Root {...props}>
-            {title && (
-                <Title {...title}>
-                    {title.text}
-                </Title>
-            )}
+            {title && <Title {...title}>{title.text}</Title>}
 
             <CarouselWrapper>
                 <Carousel gap={1} padding={4}>

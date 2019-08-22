@@ -19,7 +19,7 @@ export const useResize = (fn?: (props?: any) => any): UseResize => {
     const triggerResize = () => {
         if (fn) fn()
         const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) 
+        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
         setResize({
             height,
             width,
@@ -32,7 +32,7 @@ export const useResize = (fn?: (props?: any) => any): UseResize => {
 
     useEffect(() => {
         triggerResize()
-        
+
         if (fn) fn()
 
         window.addEventListener('resize', throttled)

@@ -40,7 +40,9 @@ export const Header: Component<HeaderProps> = ({
             <Menu {...menu}>
                 <MenuWrapper>
                     {menuItems.map(({ active = false, text, ...menuItem }, index) => (
-                        <MenuItem {...menuItem}>{text}</MenuItem>
+                        <MenuItem key={index} {...menuItem}>
+                            {text}
+                        </MenuItem>
                     ))}
                 </MenuWrapper>
             </Menu>

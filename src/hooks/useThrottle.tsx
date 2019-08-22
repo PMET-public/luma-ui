@@ -1,13 +1,13 @@
 import { useRef, useCallback } from 'react'
 
 export const useThrottle = (fn: any, delay = 100, trail?: boolean) => {
-    const offset: any = useRef((trail === false) ? 0 : delay)
+    const offset: any = useRef(trail === false ? 0 : delay)
     const last = useRef(0)
     const timeout = useRef<any>(null)
 
     return useCallback(() => {
         const now = +new Date()
-        const elapsed = (now - last.current - offset)
+        const elapsed = now - last.current - offset
 
         function exec() {
             if (timeout.current) timeout.current = clearTimeout(timeout.current)

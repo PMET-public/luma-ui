@@ -1,8 +1,18 @@
 import React, { Suspense } from 'react'
-import { Component, Element, Props } from '../../lib'
-import styles from './Product.css'
-
-
+import { Component } from '../../lib'
+import {
+    Root,
+    Wrapper,
+    Images,
+    InfoWrapper,
+    Info,
+    Header,
+    Title,
+    Sku,
+    Swatches,
+    SwatchesTitle,
+    Buttons,
+} from './Product.styled'
 
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
@@ -14,141 +24,88 @@ import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
 const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
 
-export type ProductProps = Props<{
+export type ProductProps = {
     assembler?: AssemblerProps
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
     description?: AssemblerProps
     images: ImageProps[]
     swatches?: Array<{
-        title?: Props
+        title?: {
+            text: string
+        }
         type: 'text' | 'thumb'
-        props: Props<any>
+        props: any
     }>
     price: PriceProps
-    sku?: Props
-    title: Props
-}>
+    sku?: {
+        text: string
+    }
+    title: {
+        text: string
+    }
+}
 
-export const Product: Component<ProductProps> = ({ 
+export const Product: Component<ProductProps> = ({
     assembler,
     breadcrumbs,
     buttons,
     description,
-    images, 
+    images,
     price,
     sku,
     swatches,
     title,
     ...props
-}) => {    
-   
-
+}) => {
     return (
-        <Element className={styles.root} {...props}>
-            <div className={styles.wrapper}>
-                <div className={styles.images}>
-                    <Carousel 
-                        className={styles.carousel}
-                        gap={1}
-                        padding={3}
-                    >
+        <Root {...props}>
+            <Wrapper>
+                <Images>
+                    <Carousel gap={1} padding={3}>
                         {images.map((image, index) => (
-                            <Carousel.Item 
-                                className={styles.carouselItem}
-                                key={index}
-                            >
-                                <Image 
-                                    className={styles.image}
-                                    transition 
-                                    vignette={1} 
-                                    {...image} 
-                                />
+                            <Carousel.Item key={index}>
+                                <Image transition vignette={1} {...image} />
                             </Carousel.Item>
                         ))}
                     </Carousel>
-                </div>
+                </Images>
 
-                <div className={styles.infoWrapper}>
-                    <div className={styles.info}>
-                        <header className={styles.header}>
-                            {breadcrumbs && (
-                                <Breadcrumbs
-                                    className={styles.breadcrumbs}
-                                    prefix="#" 
-                                    {...breadcrumbs} 
-                                />
-                            )}
+                <InfoWrapper>
+                    <Info>
+                        <Header>
+                            {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
 
-                            <Element 
-                                as="h2" 
-                                className={styles.title}
-                                {...title} 
-                            />
+                            <Title {...title}>{title.text}</Title>
 
-                            <Price  
-                                className={styles.price}
-                                {...price} 
-                            /> 
+                            <Price {...price} />
 
-                            {sku && (
-                                <Element 
-                                    as="span" 
-                                    className={styles.sku}
-                                    {...sku}
-                                />
-                            )}
-                        </header>
+                            {sku && <Sku {...sku}>{sku.text}</Sku>}
+                        </Header>
 
-                        {swatches && swatches.map(({type, title, props}, index) => (
-                            <Suspense fallback="Loading...." key={index}>
-                                <div className={styles.swatches}>
-                                    {title && (
-                                        <Element 
-                                            as="h3" 
-                                            className={styles.swatchesTitle}
-                                            {...title}
-                                        />
-                                    )}
-                                    
-                                    {type === 'text' && (
-                                        <TextSwatches {...props} />
-                                    )}
-
-                                    {type === 'thumb' && (
-                                        <ThumbSwatches {...props} />
-                                    )}
-                                
-                                </div> 
-                            </Suspense>
-                        ))}
-                    
-                        <div className={styles.buttons}>
-                            {buttons.map((button, index) => (
-                                <Button 
-                                    key={index} 
-                                    {...button}
-                                />
+                        {swatches &&
+                            swatches.map(({ type, title, props }, index) => (
+                                <Suspense fallback="Loading...." key={index}>
+                                    <Swatches>
+                                        {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
+                                        {type === 'text' && <TextSwatches {...props} />}
+                                        {type === 'thumb' && <ThumbSwatches {...props} />}
+                                    </Swatches>
+                                </Suspense>
                             ))}
-                        </div> 
 
-                        {description && (
-                            <Assembler 
-                                className={styles.assembler}
-                                {...description} 
-                            />
-                        )}
-                    </div>
-                </div>
-                
-            </div>
+                        <Buttons>
+                            {buttons.map((button, index) => (
+                                <Button key={index} {...button} />
+                            ))}
+                        </Buttons>
 
-            {assembler && (
-                <Assembler 
-                    className={styles.assembler}
-                    {...assembler} 
-                />
-            )}          
-        </Element>
+                        {description && <Assembler {...description} />}
+                    </Info>
+                </InfoWrapper>
+            </Wrapper>
+
+            {assembler && <Assembler {...assembler} />}
+        </Root>
     )
 }
