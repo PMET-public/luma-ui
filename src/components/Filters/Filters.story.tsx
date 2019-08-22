@@ -307,15 +307,14 @@ const FiltersMockData: FiltersProps = {
     ],
 }
 
-storiesOf('📦 Components/Filters', module).add('Default', () => (
-    <div className="story">
-        <Filters {...FiltersMockData} />
+const StoryContainer = styled(Story)`
+    /* Story Styles */
+    padding: 2rem;
+`
 
-        <style>{`
-                .story {
-                    padding: 3rem;
-                    display: inline-flex;
-                }
-            `}</style>
-    </div>
+storiesOf('📦 Components/Filters', module).add('Default', () => (
+    <StoryContainer>
+        <StoryGlobalStyles centered />
+        <Filters {...FiltersMockData} />
+    </StoryContainer>
 ))
