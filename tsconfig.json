@@ -21,15 +21,7 @@
         "sourceMap": true,
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true,
-        "target": "esnext",
-        "plugins": [
-            {
-                "name": "typescript-plugin-css-modules",
-                "options": {
-                    "customMatcher": "\\.css$",
-                },
-            },
-        ],
+        "target": "esnext"
     },
     "exclude": [
         "node_modules",

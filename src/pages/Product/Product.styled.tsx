@@ -74,10 +74,10 @@ export const Images = styled.div`
 
 export const InfoWrapper = styled.div`
     @media ${props => props.theme.breakpoints.smallOnly} {
-        background-color: var(--color-surface);
+        background-color: ${props => props.theme.colors.surface};
         border-radius: 1rem 1rem 0 0;
         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
-        color: var(--color-on-surface);
+        color: ${props => props.theme.colors.onSurface};
         left: 50%;
         margin-left: -50vw;
         margin-top: -2rem;
@@ -101,9 +101,9 @@ export const Info = styled.div`
     grid-gap: 3rem;
 
     @media ${props => props.theme.breakpoints.medium} {
-        background-color: var(--color-surface);
+        background-color: ${props => props.theme.colors.surface};
         border-radius: 2rem;
-        color: var(--color-on-surface);
+        color: ${props => props.theme.colors.onSurface};
         padding: 2rem;
         position: sticky;
         top: 2rem;
@@ -117,7 +117,7 @@ export const Header = styled.header`
 
     ${BreadcrumbsRoot} {
         font-size: 1.4rem;
-        color: var(--color-on-surface75);
+        color: ${props => props.theme.colors.onSurface75};
     }
 `
 

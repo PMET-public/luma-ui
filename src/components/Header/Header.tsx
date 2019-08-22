@@ -40,7 +40,7 @@ export const Header: Component<HeaderProps> = ({
             <Menu {...menu}>
                 <MenuWrapper>
                     {menuItems.map(({ active = false, text, ...menuItem }, index) => (
-                        <MenuItem key={index} {...menuItem}>
+                        <MenuItem key={index} active={active} {...menuItem}>
                             {text}
                         </MenuItem>
                     ))}
@@ -50,7 +50,7 @@ export const Header: Component<HeaderProps> = ({
             {/* Utilities */}
             <Utilities {...utilities}>
                 {utilitiesItems.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
-                    <UtilitiesItem key={index} {...utilitiesItem} hasIcon={!!icon}>
+                    <UtilitiesItem key={index} {...utilitiesItem} data-icon={!!icon}>
                         {icon ? (
                             <IconWrapper>
                                 <Icon aria-label={text} {...icon} />

@@ -59,7 +59,7 @@ export const Menu = styled.div`
 
 export const MenuWrapper = styled.div`
     display: inline-grid;
-    font-family: var(--typography-heading-family);
+    font-family: ${props => props.theme.typography.heading.family};
     font-weight: 600;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
@@ -69,13 +69,13 @@ export const MenuWrapper = styled.div`
     white-space: nowrap;
 `
 
-export const Link = styled.span<{ active?: true }>`
-    border-bottom: 0.1rem solid ${props => (props.active ? props.theme.colors.primary : 'transparent')};
-    color: var(--color-primary);
+export const Link = styled.span<{ active?: boolean }>`
+    color: ${props => props.theme.colors.primary};
     padding-top: 0.4rem;
     padding-bottom: 0.3rem;
     text-decoration: none;
     transition: border 700ms ease;
+    border-bottom: 0.1rem solid ${props => (props.active ? props.theme.colors.primary : 'transparent')};
 
     &:hover {
         border-color: ${props => props.theme.colors.primary};
@@ -95,6 +95,6 @@ export const Utilities = styled.div`
     justify-content: flex-end;
 `
 
-export const UtilitiesItem = styled(Link)<{ hasIcon?: boolean }>`
-    ${props => props.hasIcon && 'border-color: transparent !important;'}
+export const UtilitiesItem = styled(Link)<{ ['data-icon']?: boolean }>`
+    ${props => props['data-icon'] && 'border-color: transparent !important;'}
 `

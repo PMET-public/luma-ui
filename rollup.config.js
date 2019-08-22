@@ -50,7 +50,6 @@ const external = [
     'styled-components',
 ]
 
-
 export default [
     {
         input: [
