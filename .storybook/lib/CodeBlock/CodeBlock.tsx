@@ -17,7 +17,7 @@ export type CodeBlockProps = {
     children: string
 }
 
-const Root = styled.div<{ status: number }>`
+const Root = styled.div<{ $status: number }>`
     background-color: #333;
     border-radius: 1rem;
     color: white;
@@ -33,14 +33,14 @@ const Root = styled.div<{ status: number }>`
     &::after {
         color: #fff;
         font-size: 2rem;
-        opacity: ${({ status }) => (status === 0 ? '0' : '1')};
+        opacity: ${props => (props.$status === 0 ? '0' : '1')};
         position: absolute;
         right: 10px;
         text-shadow: 1px 1px 0 #000;
         top: 10px;
 
-        content: "${({ status }) => {
-            switch (status) {
+        content: "${props => {
+            switch (props.$status) {
                 case -1:
                     return '💩'
                 case 1:
@@ -115,7 +115,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({ children, lang, r
     }
 
     return (
-        <Root status={status}>
+        <Root $status={status}>
             <div onDoubleClick={triggerCopy}>
                 <Label>{lang}</Label>
                 <Pre>

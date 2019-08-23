@@ -6,7 +6,6 @@ export const Root = styled.div`
     --opacity: 0.64;
     border-bottom: 0.1rem solid ${props => props.theme.colors.onSurface50};
     color: ${props => props.theme.colors.onSurface};
-    width: 100%;
 
     &:hover,
     &:focus-within {

@@ -6,6 +6,7 @@ export const Root = styled.div`
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     grid-template-rows: auto 1fr auto auto;
+    width: 100%;
 `
 
 export const HeaderWrapper = styled.div`

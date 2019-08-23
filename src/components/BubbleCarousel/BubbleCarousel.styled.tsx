@@ -9,14 +9,14 @@ export const Root = styled.div`
         This is... this is just unfortunate.
         https://stackoverflow.com/questions/40733385/hiding-webkit-scrollbar-when-overflow-scrolling-touch-is-enabled 
     */
-    height: calc(${size} + 2rem);
+    height: calc(${size} + 3rem);
     overflow-y: hidden;
 `
 
 export const Wrapper = styled.div`
     -webkit-overflow-scrolling: touch;
     display: flex;
-    margin-top: -1rem;
+    margin-top: -0.5rem;
     overflow-x: scroll;
     padding: 1rem 0 1rem;
 

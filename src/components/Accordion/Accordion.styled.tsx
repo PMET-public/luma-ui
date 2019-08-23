@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Root = styled.div`
     display: grid;
+    width: 100%;
 `
 
 export const Item = styled.div`

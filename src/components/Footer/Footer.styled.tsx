@@ -13,6 +13,7 @@ export const Root = styled.footer`
     font-size: 1.3rem;
     grid-gap: 3rem;
     padding: 3rem;
+    width: 100%;
 
     & a {
         transition: opacity 205ms ease;

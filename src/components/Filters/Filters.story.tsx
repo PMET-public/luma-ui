@@ -1,8 +1,6 @@
 import React from 'react'
 import Filters, { FiltersProps } from './'
 import { storiesOf } from '@storybook/react'
-import { StoryGlobalStyles, Story } from '../../../.storybook/lib/Story.styled'
-import styled from 'styled-components'
 
 const FiltersMockData: FiltersProps = {
     groups: [
@@ -307,14 +305,4 @@ const FiltersMockData: FiltersProps = {
     ],
 }
 
-const StoryContainer = styled(Story)`
-    /* Story Styles */
-    padding: 2rem;
-`
-
-storiesOf('📦 Components/Filters', module).add('Default', () => (
-    <StoryContainer>
-        <StoryGlobalStyles centered />
-        <Filters {...FiltersMockData} />
-    </StoryContainer>
-))
+storiesOf('📦 Components/Filters', module).add('Default', () => <Filters {...FiltersMockData} />)

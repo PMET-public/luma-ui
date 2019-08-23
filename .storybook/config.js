@@ -2,7 +2,7 @@ import { addDecorator, addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'
 import { withA11y } from '@storybook/addon-a11y'
-import { withTheme } from './decorators/withTheme'
+import { withTheme } from './addons/theme/withTheme'
 
 import Logo from './static/logo.png'
 
@@ -27,8 +27,11 @@ addParameters({
         }),
     },
     knobs: {
-        escapeHTML: false
-    }
+        escapeHTML: false,
+    },
+    theme: {
+        centered: true,
+    },
 })
 
 const req = require.context('../src', true, /\.(story|stories)\.tsx$/)
@@ -39,4 +42,3 @@ function loadStories() {
 }
 
 configure(loadStories, module)
-

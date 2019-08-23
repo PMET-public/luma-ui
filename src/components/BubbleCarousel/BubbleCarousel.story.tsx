@@ -1,69 +1,59 @@
 import React from 'react'
 import BubbleCarousel from '.'
 import { storiesOf } from '@storybook/react'
-import { StoryGlobalStyles, Story } from '../../../.storybook/lib/Story.styled'
-import styled from 'styled-components'
-
-const StoryContainer = styled(Story)`
-    padding: 2rem 0;
-`
 
 storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
-    <StoryContainer>
-        <StoryGlobalStyles />
-
-        <BubbleCarousel
-            label="Shop the Look"
-            items={[
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb1.jpg'),
-                    },
-                    text: 'Minimalist',
+    <BubbleCarousel
+        label="Shop the Look"
+        items={[
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb1.jpg'),
-                    },
-                    text: 'Minimalist',
+                text: 'Minimalist',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb2.jpg'),
-                    },
-                    text: 'Dressy',
+                text: 'Minimalist',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb2.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb3.jpg'),
-                    },
-                    text: 'Beachy',
+                text: 'Dressy',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb3.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb4.jpg'),
-                    },
-                    text: 'Biz Cas’',
+                text: 'Beachy',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb4.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb5.jpg'),
-                    },
-                    text: 'All Time',
+                text: 'Biz Cas’',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb5.jpg'),
                 },
-            ]}
-        />
-    </StoryContainer>
+                text: 'All Time',
+            },
+        ]}
+    />
 ))

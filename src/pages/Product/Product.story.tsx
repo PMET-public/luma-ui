@@ -89,13 +89,7 @@ const ProductMockData: ProductProps = {
             },
             type: 'text',
             props: {
-                items: [
-                    { text: 'XS', disabled: true },
-                    { text: 'S' },
-                    { text: 'M', active: true },
-                    { text: 'L' },
-                    { text: 'XL' },
-                ],
+                items: [{ text: 'XS', disabled: true }, { text: 'S' }, { text: 'M', active: true }, { text: 'L' }, { text: 'XL' }],
             },
         },
     ],
@@ -142,8 +136,16 @@ const ProductMockData: ProductProps = {
     },
 }
 
-storiesOf('📑 Pages/Product', module).add('Default', () => (
-    <App {...AppMockData}>
-        <Product {...ProductMockData} />
-    </App>
-))
+storiesOf('📑 Pages/Product', module).add(
+    'Default',
+    () => (
+        <App {...AppMockData}>
+            <Product {...ProductMockData} />
+        </App>
+    ),
+    {
+        theme: {
+            layout: 'fullPage',
+        },
+    }
+)

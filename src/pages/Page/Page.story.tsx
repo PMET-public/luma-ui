@@ -151,8 +151,16 @@ export const PageMockData: PageProps = {
     },
 }
 
-storiesOf('📑 Pages/Page', module).add('Default', () => (
-    <App {...AppMockData}>
-        <Page {...PageMockData} />
-    </App>
-))
+storiesOf('📑 Pages/Page', module).add(
+    'Default',
+    () => (
+        <App {...AppMockData}>
+            <Page {...PageMockData} />
+        </App>
+    ),
+    {
+        theme: {
+            layout: 'fullPage',
+        },
+    }
+)

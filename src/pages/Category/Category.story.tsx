@@ -390,8 +390,16 @@ export const ProductListMockData: CategoryProps = {
     },
 }
 
-storiesOf('📑 Pages/Category', module).add('Default', () => (
-    <App {...AppMockData}>
-        <Category {...ProductListMockData} />
-    </App>
-))
+storiesOf('📑 Pages/Category', module).add(
+    'Default',
+    () => (
+        <App {...AppMockData}>
+            <Category {...ProductListMockData} />
+        </App>
+    ),
+    {
+        theme: {
+            layout: 'fullPage',
+        },
+    }
+)

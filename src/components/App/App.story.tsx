@@ -1,12 +1,6 @@
 import React from 'react'
 import App, { AppProps } from '.'
 import { storiesOf } from '@storybook/react'
-import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
-import styled from 'styled-components'
-
-const StoryContainer = styled(Story)`
-    /* Story Styles */
-`
 
 export const AppMockData: AppProps = {
     logo: {
@@ -88,12 +82,4 @@ export const AppMockData: AppProps = {
     },
 }
 
-storiesOf('📦 Components/App', module).add('Default', () => (
-    <StoryContainer>
-        <StoryGlobalStyles />
-
-        <App {...AppMockData}>
-            <div className="story__content"></div>
-        </App>
-    </StoryContainer>
-))
+storiesOf('📦 Components/App', module).add('Default', () => <App {...AppMockData} />)

@@ -1,12 +1,10 @@
 import React from 'react'
 import ProductItem from './'
 import { storiesOf } from '@storybook/react'
-import { Story, StoryGlobalStyles } from '../../../.storybook/lib/Story.styled'
 import styled from 'styled-components'
 import { text, object } from '@storybook/addon-knobs'
 
-const StoryContainer = styled(Story)`
-    /* Story Styles */
+const StoryContainer = styled.div`
     max-width: 100vw;
     width: 60rem;
 `
@@ -14,7 +12,6 @@ const StoryContainer = styled(Story)`
 storiesOf('📦 Components/ProductItem', module)
     .add('Default', () => (
         <StoryContainer>
-            <StoryGlobalStyles centered />
             <ProductItem
                 badge={{
                     text: text('badge', 'New Arrival'),
@@ -41,7 +38,6 @@ storiesOf('📦 Components/ProductItem', module)
     ))
     .add('Skeleton', () => (
         <StoryContainer>
-            <StoryGlobalStyles centered />
             <ProductItem.Skeleton />
         </StoryContainer>
     ))

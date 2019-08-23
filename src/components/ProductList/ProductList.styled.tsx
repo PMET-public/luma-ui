@@ -4,6 +4,7 @@ export const Root = styled.div`
     display: grid;
     grid-gap: 3rem 0.2rem;
     grid-template-columns: repeat(12, 1fr);
+    width: 100%;
 
     @media ${props => props.theme.breakpoints.large} {
         grid-gap: 3rem 0.5rem;
