@@ -7,6 +7,10 @@ storiesOf('📦 Components/Breadcrumbs', module).add('Default', () => (
     <Breadcrumbs
         dividor={text('dividor', '')}
         prefix={text('prefix', '#')}
-        items={[{ as: 'a', href: '#', text: 'One' }, { as: 'a', href: '#', text: 'Two' }, { as: 'a', href: '#', text: 'Three' }]}
+        items={[
+            { as: 'a', href: '#', text: 'One' },
+            { as: 'a', href: '#', text: 'Two' },
+            { as: 'a', href: '#', text: 'Three' },
+        ]}
     />
 ))

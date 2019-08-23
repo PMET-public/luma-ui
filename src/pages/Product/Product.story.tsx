@@ -89,7 +89,13 @@ const ProductMockData: ProductProps = {
             },
             type: 'text',
             props: {
-                items: [{ text: 'XS', disabled: true }, { text: 'S' }, { text: 'M', active: true }, { text: 'L' }, { text: 'XL' }],
+                items: [
+                    { text: 'XS', disabled: true },
+                    { text: 'S' },
+                    { text: 'M', active: true },
+                    { text: 'L' },
+                    { text: 'XL' },
+                ],
             },
         },
     ],
