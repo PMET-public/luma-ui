@@ -82,7 +82,7 @@ export const Content = styled.div`
     grid-gap: 3rem;
 `
 
-export const FiltersWrapper = styled.div<{ active?: boolean }>`
+export const FiltersWrapper = styled.div<{ $active?: boolean }>`
     -webkit-overflow-scrolling: touch;
     backdrop-filter: blur(50px);
     background-color: ${props => props.theme.colors.surface75};
@@ -101,7 +101,7 @@ export const FiltersWrapper = styled.div<{ active?: boolean }>`
     z-index: 4;
 
     ${props =>
-        props.active &&
+        props.$active &&
         `
             box-shadow: 3rem 0 6rem rgba(0, 0, 0, 0.75);
             transform: translateX(0);    

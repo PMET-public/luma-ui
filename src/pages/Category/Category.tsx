@@ -86,7 +86,7 @@ export const Category: FunctionComponent<CategoryProps> = ({
             </Content>
 
             {filters && (
-                <FiltersWrapper active={showFilter} ref={filtersRef} style={{ height: vHeight }}>
+                <FiltersWrapper $active={showFilter} ref={filtersRef} style={{ height: vHeight }}>
                     <Filters {...filters.props} />
 
                     {filters.closeButton && (
