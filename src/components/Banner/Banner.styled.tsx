@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Root as ImageRoot, ImageTag } from '../Image/Image.styled'
+import { Root as ButtonRoot } from '../Button/Button.styled'
 
 export const Root = styled.div`
     position: relative;
@@ -68,9 +69,12 @@ export const Title = styled.div<{ $large?: boolean }>`
 `
 
 export const Buttons = styled.div`
-    display: grid;
-    grid-auto-columns: max-content;
-    grid-auto-flow: column;
-    grid-gap: 1rem;
-    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 3rem;
+    margin: -0.5rem;
+
+    ${ButtonRoot} {
+        margin: 0.5rem;
+    }
 `
