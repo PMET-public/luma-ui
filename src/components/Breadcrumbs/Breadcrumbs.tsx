@@ -1,40 +1,32 @@
-import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import React, { FunctionComponent } from 'react'
+import { Root, Item } from './Breadcrumbs.styled'
 
-export type BreadcrumbsProps = Props<{ 
+export type BreadcrumbsProps = {
     dividor?: string
     prefix?: string
-    items: Array<Props<{
+    items: Array<{
         _id?: string | number
-    }>>
-}>
+        text: string
+    }>
+}
 
-export const Breadcrumbs: Component<BreadcrumbsProps> = ({ 
+export const Breadcrumbs: FunctionComponent<BreadcrumbsProps> = ({
     dividor = '',
     items = [],
     prefix = '',
     ...props
 }) => {
-    
     return (
-        <Element {...props} className={classes('breadcrumbs', props.className)}>
+        <Root {...props}>
             {items.map(({ text, _id, ...item }, index) => (
                 <React.Fragment key={_id || index}>
-                    <Element {...item} className={classes('breadcrumbs__item', item.className)}>
-                        {prefix}{text}
-                    </Element>
+                    <Item {...item}>
+                        {prefix}
+                        {text}
+                    </Item>
                     {index < items.length - 1 && dividor}
                 </React.Fragment>
             ))}
-
-            <style jsx global>{`
-                .breadcrumbs {
-                    display: grid;
-                    grid-auto-columns: max-content;
-                    grid-auto-flow: column;
-                    grid-gap: 0.7em;
-                }
-            `}</style>
-        </Element>
+        </Root>
     )
 }

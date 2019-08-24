@@ -1,8 +1,8 @@
 import React from 'react'
 import Category, { CategoryProps } from '.'
 import { storiesOf } from '@storybook/react'
-import App from '../App'
-import { AppMockData } from '../App/App.story'
+import App from '../../components/App'
+import { AppMockData } from '../../components/App/App.story'
 
 export const ProductListMockData: CategoryProps = {
     title: {
@@ -10,10 +10,7 @@ export const ProductListMockData: CategoryProps = {
         text: 'Hoodies & Sweatshirts',
     },
     breadcrumbs: {
-        items: [
-            { as: 'a', href: '#', text: 'Women' },
-            { as: 'a', href: '#', text: 'Tops' },
-        ],
+        items: [{ as: 'a', href: '#', text: 'Women' }, { as: 'a', href: '#', text: 'Tops' }],
     },
     categories: {
         items: [
@@ -35,7 +32,6 @@ export const ProductListMockData: CategoryProps = {
                 text: 'Hoodies & Sweaters',
                 count: 100,
             },
-          
         ],
     },
     filters: {
@@ -47,9 +43,7 @@ export const ProductListMockData: CategoryProps = {
         props: {
             groups: [
                 {
-                    title: {
-                        text: 'Fashion',
-                    },
+                    title: 'Fashion',
                     items: [
                         {
                             text: '14K Gold',
@@ -145,9 +139,7 @@ export const ProductListMockData: CategoryProps = {
                     ],
                 },
                 {
-                    title: {
-                        text: 'Style',
-                    },
+                    title: 'Style',
                     items: [
                         {
                             text: 'Above Knee',
@@ -267,9 +259,7 @@ export const ProductListMockData: CategoryProps = {
                     ],
                 },
                 {
-                    title: {
-                        text: 'Color',
-                    },
+                    title: 'Color',
                     items: [
                         {
                             text: 'Gold',
@@ -334,9 +324,7 @@ export const ProductListMockData: CategoryProps = {
                     ],
                 },
                 {
-                    title: {
-                        text: 'Has Video',
-                    },
+                    title: 'Has Video',
                     items: [
                         {
                             text: 'Yes',
@@ -370,10 +358,10 @@ export const ProductListMockData: CategoryProps = {
                 text: 'Circle Hooded Ice Flee',
             },
             colors: [
-                { value: 'brown' },
-                { value: 'gray' },
-                { value: 'black' },
-                { value: 'blue' },
+                { label: 'brown', value: 'brown' },
+                { label: 'gray', value: 'gray' },
+                { label: 'black', value: 'black' },
+                { label: 'blue', value: 'blue' },
             ],
         })),
     },
@@ -402,9 +390,16 @@ export const ProductListMockData: CategoryProps = {
     },
 }
 
-storiesOf('📑 Pages/Category', module)
-    .add('Default', () => (
+storiesOf('📑 Pages/Category', module).add(
+    'Default',
+    () => (
         <App {...AppMockData}>
             <Category {...ProductListMockData} />
         </App>
-    ))
+    ),
+    {
+        theme: {
+            layout: 'fullPage',
+        },
+    }
+)

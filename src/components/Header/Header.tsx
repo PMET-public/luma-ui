@@ -1,212 +1,65 @@
-import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
-import { useTheme } from '../../theme'
+import React, { FunctionComponent } from 'react'
+import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, IconWrapper } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
+
 import Icon, { IconProps } from '../Icon'
 
-export type HeaderLogoProps = Props<{ 
-    svg: ReactComponentLike
-}>
-
-export type HeaderMenuProps = Props<{ 
-    items: Array<Props<{
-        active?: boolean
-    }>>
-}>
-
-export type HeaderUtilitiesProps = Props<{ 
-    items: Array<Props<{ 
-        active?: boolean 
-        text: string
-        icon?: IconProps 
-    }>>
-}>
-
-export type HeaderProps = Props<{
-    logo: HeaderLogoProps
-    menu: HeaderMenuProps
-    utilities: HeaderUtilitiesProps
- }>
-
-export const Header: Component<HeaderProps> = ({
-    logo,
-    menu,
-    utilities,
-    ...props
-}) => {
-    const { colors } = useTheme()
-
-    return (
-        <Element {...props} className={classes('header', props.className)}>
-            <HeaderLogo {...logo} />
-            <HeaderMenu {...menu} />
-            <HeaderUtilities {...utilities} />
-
-            <style jsx global>{`
-                .header {
-                    align-items: center;
-                    background-color: ${colors.surface};
-                    box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.09), inset 0 -0.2rem 0 rgba(255, 255, 255, 0.09);   
-                    color: ${colors.onSurface};
-                    display: grid;
-                    font-size: 1.4rem;
-                    grid-gap: 1rem 2rem;
-                    grid-template-areas: "logo utilities" "navigation navigation";
-                    grid-template-columns: auto;
-                    grid-template-rows: auto;
-                    padding: 1.6rem 2rem;
-                    width: 100%;
-
-                    @media (--medium-screen) {
-                        grid-template-areas: "logo navigation utilities";
-                        
-                        & .header-menu {
-                            text-align: center;
-                        }
-                    }
-                }
-
-                .header-menu__content > a,
-                .header-utilities > a,
-                .header-utilities .dropdown-label > a {
-                    border-bottom: 0.1rem solid transparent;
-                    color: ${colors.primary};
-                    padding-top: 0.4rem;
-                    padding-bottom: 0.3rem;
-                    text-decoration: none;
-                    transition: border 700ms ease;
-
-                    &:hover, &.--active {
-                        border-color: ${colors.primary};
-                    }
-                }
-
-                .header .icon {
-                    font-size: 2.4rem;
-                }
-             
-            `}</style>
-        </Element>
-    )
+export type HeaderProps = {
+    logo: {
+        svg: ReactComponentLike
+    }
+    menu: {
+        items: Array<{
+            active?: boolean
+            text: string
+        }>
+    }
+    utilities: {
+        items: Array<{
+            active?: boolean
+            text: string
+            icon?: IconProps
+        }>
+    }
 }
-
-const HeaderLogo: Component<HeaderLogoProps> = ({
-    className,
-    svg: Svg,
-    ...props
-}) => (
-        <Element {...props} className={classes('header-logo', className)}>
-            <Svg />
-            <style jsx global>{`
-                .header-logo {
-                    align-items: center;
-                    display: flex;
-                    grid-area: logo;
-                }
-
-                .header-logo svg {
-                    height: 3rem;
-                }
-
-                .header-logo a {
-                    border: 0 none !important;
-                    text-decoration: none !important;
-                    color: inherit !important;
-                }
-            `}</style>
-        </Element>
-    )
-
-const HeaderMenu: Component<HeaderMenuProps> = ({
-    className,
-    items = [],
+export const Header: FunctionComponent<HeaderProps> = ({
+    logo: { svg: LogoSvg, ...logo },
+    menu: { items: menuItems, ...menu },
+    utilities: { items: utilitiesItems, ...utilities },
     ...props
 }) => {
-    const { typography } = useTheme()
-
     return (
-        <Element {...props} className={classes('header-menu', className)}>
-            <div className="header-menu__content">
-                {items.map(({active = false, ...item}, index) => (
-                    <Element 
-                        key={index} 
-                        {...item} 
-                        className={classes(['--active', active], item.className)}
-                    />
+        <Root {...props}>
+            {/* Logo */}
+            <Logo {...logo}>
+                <LogoSvg />
+            </Logo>
+
+            {/* Menu */}
+            <Menu {...menu}>
+                <MenuWrapper>
+                    {menuItems.map(({ active = false, text, ...menuItem }, index) => (
+                        <MenuItem $active={active} key={index} {...menuItem}>
+                            {text}
+                        </MenuItem>
+                    ))}
+                </MenuWrapper>
+            </Menu>
+
+            {/* Utilities */}
+            <Utilities {...utilities}>
+                {utilitiesItems.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
+                    <UtilitiesItem $active={active} $icon={!!icon} key={index} {...utilitiesItem}>
+                        {icon ? (
+                            <IconWrapper>
+                                <Icon aria-label={text} {...icon} />
+                            </IconWrapper>
+                        ) : (
+                            text
+                        )}
+                    </UtilitiesItem>
                 ))}
-            </div>
-
-            <style jsx global>{`
-                .header-menu {
-                    -webkit-overflow-scrolling: touch;
-                    grid-area: navigation;
-                    overflow-x: auto;
-                }
-
-                .header-menu::-webkit-scrollbar {
-                    display: none;
-                }
-
-                .header-menu__content {
-                    display: inline-grid;
-                    font-family: ${typography.heading.family};
-                    font-weight: 600;
-                    grid-auto-columns: max-content;
-                    grid-auto-flow: column;
-                    grid-gap: 2.5rem;
-                    text-align: initial;
-                    text-transform: uppercase;
-                    white-space: nowrap;
-                }
-            `}</style>
-        </Element>
-    )
-}
-
-const HeaderUtilities: Component<HeaderUtilitiesProps> = ({
-    className,
-    items = [],
-    ...props
-}) => {    
-    return (
-        <Element {...props} className={classes('header-utilities', className)}>
-            {items.map(({active = false, text, icon, ...item}, index) => (
-                <Element 
-                    {...item}
-                    className={classes('header-utilities__item', item.className, ['--icon', !!icon], ['--active', active])}
-                    key={index} 
-                >
-                   {icon ? (
-                        <Icon className="header-utilities__item__icon" 
-                            aria-label={text}
-                            {...icon}
-                        />
-                    ) : text}
-               </Element>
-            ))}
-
-            <style jsx global>{`
-                .header-utilities {
-                    align-items: center;
-                    display: grid;
-                    font-size: 1.3rem;
-                    grid-area: utilities;
-                    grid-auto-columns: max-content;
-                    grid-auto-flow: column;
-                    grid-gap: 2.5rem;
-                    justify-content: flex-end;
-                }
-
-                .header-utilities__item {
-                    &.--icon {
-                        border-color: transparent !important;
-                    }
-                }
-
-                .header-utilities__item__icon {
-                    font-size: 2.4rem;
-                }
-            `}</style>
-        </Element>
+            </Utilities>
+        </Root>
     )
 }

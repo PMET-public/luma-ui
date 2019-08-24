@@ -1,27 +1,14 @@
 const source = require('common-tags').source
 
-module.exports = (Name, filename) => source`
+module.exports = (Name) => source`
 
-    import React from 'react'
-    import { Component, Props, Element, classes } from '../../lib'
-    
-    export type ${Name}Props = Props<{ }>
+    import React, { FunctionComponent } from 'react'
+    import { Root } from './FooBar.styled'
 
-    export const ${Name}: Component<${Name}Props> = ({ 
-        ...props
-    }) => {
-        
-        return (
-            <Element {...props} className={classes('${filename}', props.className)}>
-                👋 Hi, I'm ${Name}
+    export type FooBarProps = {}
 
-                <style jsx global>{\`
-                    .${filename} {
-                        
-                    }
-                \`}</style>
-            </Element>
-        )
+    export const FooBar: FunctionComponent<FooBarProps> = ({ ...props }) => {
+        return <Root {...props}>👋 Hi, I'm FooBar</Root>
     }
 
 ` + '\n'

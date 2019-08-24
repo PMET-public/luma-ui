@@ -1,18 +1,16 @@
-import React from 'react'
-import { Component, Element, Props, classes } from '../../lib'
+import React, { FunctionComponent } from 'react'
+import { Root } from './Page.styled'
+
 import Assembler, { AssemblerProps } from '../../components/Assembler'
 
-export type PageProps = Props<{
+export type PageProps = {
     assembler: AssemblerProps
-}>
+}
 
-export const Page: Component<PageProps> = ({ 
-    assembler,
-    ...props
-}) => {    
+export const Page: FunctionComponent<PageProps> = ({ assembler, ...props }) => {
     return (
-        <Element {...props} className={classes('page', props.className)}>
+        <Root {...props}>
             <Assembler {...assembler} />
-        </Element>
+        </Root>
     )
 }

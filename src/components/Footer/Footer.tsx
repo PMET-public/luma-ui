@@ -1,31 +1,68 @@
-import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
-import { useTheme } from '../../theme'
+import React, { FunctionComponent } from 'react'
+import {
+    Root,
+    Menu,
+    MenuLink,
+    Copyright,
+    Social,
+    SocialIcon,
+    SocialIconPinterest,
+    SocialIconInstagram,
+    SocialIconTwitter,
+    SocialIconFacebook,
+} from './Footer.styled'
+import { StyledComponent } from 'styled-components'
 
-export type FooterProps = Props<{ }>
+export type FooterProps = {
+    copyright: string
+    menu?: StyledComponent<'a', { text: string }>[]
+    social?: {
+        facebook?: any
+        instragram?: any
+        pinterest?: any
+        twitter?: any
+    }
+}
 
-export const Footer: Component<FooterProps> = ({ 
-    children,
-    ...props
-}) => {
-    const { colors } = useTheme()
-
+export const Footer: FunctionComponent<FooterProps> = ({ copyright, menu, social, ...props }) => {
     return (
-        <Element {...props} className={classes('footer', props.className)}>
-            {children}
+        <Root {...props}>
+            {menu && (
+                <Menu>
+                    {menu.map(({ text, ...menuLink }, index) => (
+                        <MenuLink key={index} {...menuLink}>
+                            {text}
+                        </MenuLink>
+                    ))}
+                </Menu>
+            )}
 
-            <style jsx global>{`
-                .footer {     
-                    background: ${colors.background};  
-                    color: ${colors.onBackground};  
-                    font-size: 1.3rem;
-                    padding: 3rem;
+            {social && (
+                <Social>
+                    {social.pinterest && (
+                        <SocialIcon {...social.pinterest}>
+                            <SocialIconPinterest />
+                        </SocialIcon>
+                    )}
+                    {social.instragram && (
+                        <SocialIcon {...social.instragram}>
+                            <SocialIconInstagram />
+                        </SocialIcon>
+                    )}
+                    {social.facebook && (
+                        <SocialIcon {...social.facebook}>
+                            <SocialIconFacebook />
+                        </SocialIcon>
+                    )}
+                    {social.twitter && (
+                        <SocialIcon {...social.twitter}>
+                            <SocialIconTwitter />
+                        </SocialIcon>
+                    )}
+                </Social>
+            )}
 
-                    & a:hover {
-                        opacity: 0.5;
-                    }
-                }
-            `}</style>
-        </Element>
+            <Copyright>{copyright}</Copyright>
+        </Root>
     )
 }

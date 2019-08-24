@@ -1,11 +1,4 @@
-import { useContext, createContext } from 'react'
-import { theme } from './theme'
-
-export const ThemeContext = createContext({
-    colors: theme.colors,
-    typography: theme.typography,
-    isDark: false,
-    setDark: (v: boolean) => { },    
-})
+import { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 
 export const useTheme = () => useContext(ThemeContext)

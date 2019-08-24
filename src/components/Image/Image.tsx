@@ -1,19 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Component, Props, Element, classes } from '../../lib'
-import { useTheme } from '../../theme'
+import React, { FunctionComponent, useState, useRef, useEffect } from 'react'
+import { Root, LoadedImage, Placeholder, ErrorIcon } from './Image.styled'
 
-import ErrorIcon from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
-
-export type ImageProps = Props<{
+export type ImageProps = {
     alt?: string
     height?: string | number
     src: string
     width?: string | number
     vignette?: number
     transition?: boolean
-}>
+}
 
-export const ImageComponent: Component<ImageProps> = ({
+export const ImageComponent: FunctionComponent<ImageProps> = ({
     alt,
     height,
     src,
@@ -22,7 +19,6 @@ export const ImageComponent: Component<ImageProps> = ({
     width,
     ...props
 }) => {
-    const { colors } = useTheme()
     const [loaded, setLoaded] = useState(false)
     const [error, setError] = useState(false)
     const imageRef = useRef<HTMLImageElement>(null)
@@ -32,7 +28,7 @@ export const ImageComponent: Component<ImageProps> = ({
      * http://mikefowler.me/journal/2014/04/22/cached-images-load-event
      */
     useEffect(() => {
-        if (imageRef.current && imageRef.current.complete) setLoaded(true)        
+        if (imageRef.current && imageRef.current.complete) setLoaded(true)
     }, [src])
 
     function handleImageLoaded() {
@@ -44,88 +40,25 @@ export const ImageComponent: Component<ImageProps> = ({
     }
 
     return (
-        <Element {...props} className={classes('image', props.className)}>
-            <div className={classes('image__wrapper', ['--vignette', loaded && vignette > 0], ['--error', error])}>
-                <img className={classes('image__img image__tag', ['--transition', transition], ['--loaded', loaded])}
-                    src={src}
-                    ref={imageRef}
-                    onLoad={handleImageLoaded}
-                    onError={handleImageError}
-                    {...{alt, width, height}}
-                />
+        <Root $vignette={vignette} {...props}>
+            <LoadedImage
+                $error={error}
+                $loaded={loaded}
+                $transition={transition}
+                ref={imageRef}
+                src={src}
+                onError={handleImageError}
+                onLoad={handleImageLoaded}
+                {...{ alt, width, height }}
+            />
 
-                <img className="image__img image__placeholder"
-                    aria-hidden="true"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
-                    {...{width, height}}
-                />
+            <Placeholder
+                aria-hidden="true"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
+                {...{ width, height }}
+            />
 
-                {error && (
-                    <ErrorIcon className="image__error-icon" />
-                )}
-            </div>
-
-            <style jsx global>{`
-                .image {
-                    display: inline-flex;
-                }
-
-                .image__wrapper {
-                    position: relative;
-                    display: inherit;
-                    line-height: 0;
-
-                    &.--error {
-                        opacity: 0.5;
-                    }
-                    
-                    &.--vignette::after {
-                        content: "";
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        box-shadow: inset 0 0 10rem ${vignette}rem rgba(0, 0, 0, 0.15);
-                    }
-                }
-
-                .image__tag {
-                    min-height: 100%;
-                    position: absolute;
-
-                    &.--transition {
-                        filter: blur(30px) opacity(0%);
-                        transition: filter 305ms ease-out;
-
-                        &.--loaded {
-                            filter: blur(0) opacity(100%);
-                        }
-                    }
-                }
-
-                .image__placeholder {
-                    background: linear-gradient(-45deg, ${colors.onSurface25}, ${colors.onSurface15});
-                    background-size: 300%;
-                }
-
-                .image__img {
-                    object-fit: cover;
-                    object-position: center;                    
-                }
-
-                .image__error-icon {
-                    color: ${colors.primary50};
-                    fill: currentColor;
-                    font-size: 3rem;
-                    height: 1em;
-                    left: 50%;
-                    position: absolute;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    width: 1em;
-                }
-            `}</style>
-        </Element>
+            {error && <ErrorIcon />}
+        </Root>
     )
 }

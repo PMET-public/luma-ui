@@ -2,15 +2,15 @@ import React from 'react'
 import Page from '../Page'
 import { storiesOf } from '@storybook/react'
 import { PageProps } from './Page'
-import App from '../App'
-import { AppMockData } from '../App/App.story'
+import App from '../../components/App'
+import { AppMockData } from '../../components/App/App.story'
 
 export const PageMockData: PageProps = {
     assembler: {
         components: [
             {
                 name: 'BubbleCarousel',
-                hideOnBreakpoint: 'medium-screen',
+                hideOnBreakpoint: 'medium',
                 props: {
                     text: 'Categories',
                     items: [
@@ -72,27 +72,27 @@ export const PageMockData: PageProps = {
                         width: '100%',
                     },
                     titles: [
-                        { 
-                            text: 'Twice around, twice as nice', 
+                        {
+                            text: 'Twice around, twice as nice',
                             large: true,
                         },
-                        { 
+                        {
                             text: 'Find conscientious, comfy clothing in our eco-friendly collection',
                         },
                     ],
                     position: 'bottom',
                     buttons: [
-                        { 
+                        {
                             as: 'a',
-                            text: 'Shop Performance', 
-                            fill: true, 
+                            text: 'Shop Performance',
+                            fill: true,
                             href: '#',
                         },
                     ],
                 },
             },
             {
-                name: 'ProductsCarousel',
+                name: 'ProductCarousel',
                 props: {
                     title: {
                         as: 'h3',
@@ -115,18 +115,12 @@ export const PageMockData: PageProps = {
                         title: {
                             text: 'Circle Hooded Ice Flee',
                         },
-                        colors: [
-                            { value: 'brown' },
-                            { value: 'gray' },
-                            { value: 'black' },
-                            { value: 'blue' },
-
-                        ],
+                        colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
                     }),
                 },
             },
             {
-                name: 'ProductsCarousel',
+                name: 'ProductCarousel',
                 props: {
                     title: {
                         as: 'h3',
@@ -149,13 +143,7 @@ export const PageMockData: PageProps = {
                         title: {
                             text: 'Circle Hooded Ice Flee',
                         },
-                        colors: [
-                            { value: 'brown' },
-                            { value: 'gray' },
-                            { value: 'black' },
-                            { value: 'blue' },
-
-                        ],
+                        colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
                     }),
                 },
             },
@@ -163,9 +151,16 @@ export const PageMockData: PageProps = {
     },
 }
 
-storiesOf('📑 Pages/Page', module)
-    .add('Default', () => (
+storiesOf('📑 Pages/Page', module).add(
+    'Default',
+    () => (
         <App {...AppMockData}>
             <Page {...PageMockData} />
         </App>
-    ))
+    ),
+    {
+        theme: {
+            layout: 'fullPage',
+        },
+    }
+)

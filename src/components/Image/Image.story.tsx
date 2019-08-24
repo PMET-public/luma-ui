@@ -5,20 +5,20 @@ import { text, number, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Image', module)
     .add('Default', () => (
-        <Image 
+        <Image
             alt={text('alt', 'Lorem')}
-            src={text('src', require('../../../public/images/selfie.jpeg'))} 
-            height={number('height',  400)}
+            src={text('src', require('../../../public/images/selfie.jpeg'))}
+            height={number('height', 400)}
             width={number('width', 600)}
             vignette={number('vignette', 0)}
             transition={boolean('transition', true)}
         />
     ))
     .add('Broken URL', () => (
-        <Image 
+        <Image
             alt={text('alt', 'Lorem')}
-            src={text('src', 'notfound.jpeg')} 
-            height={number('height',  400)}
+            src={text('src', 'notfound.jpeg')}
+            height={number('height', 400)}
             width={number('width', 600)}
             vignette={number('vignette', 0)}
             transition={boolean('transition', true)}

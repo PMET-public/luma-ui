@@ -1,15 +1,26 @@
 import React from 'react'
 import ProductItem from './'
 import { storiesOf } from '@storybook/react'
+import styled from 'styled-components'
 import { text, object } from '@storybook/addon-knobs'
+
+const StoryContainer = styled.div`
+    max-width: 100vw;
+    width: 60rem;
+`
 
 storiesOf('📦 Components/ProductItem', module)
     .add('Default', () => (
-        <div className="story">
-            <ProductItem className="story__product-item"
+        <StoryContainer>
+            <ProductItem
                 badge={{
                     text: text('badge', 'New Arrival'),
                 }}
+                colors={object('colors', [
+                    { label: 'green', value: 'green' },
+                    { label: 'blue', value: 'blue' },
+                    { label: 'gray', value: 'gray' },
+                ])}
                 image={{
                     alt: '',
                     src: text('image', require('../../../public/images/product-item-sample.jpg')),
@@ -22,44 +33,11 @@ storiesOf('📦 Components/ProductItem', module)
                 title={{
                     text: text('title', 'Circle Hooded Ice Flee'),
                 }}
-                colors={object('colors', [
-                    { value: 'green' },
-                    { value: 'blue' },
-                    { value: 'gray' },
-                ])}
             />
-
-            <style jsx global>{`
-                .story {
-                    align-items: center;
-                    display: flex;
-                    height: 100vh;
-                    justify-content: center;
-                    width: 100vw;
-                }
-
-                .story__product-item {
-                    width: 60rem;
-                }
-            `}</style>
-        </div>
+        </StoryContainer>
     ))
     .add('Skeleton', () => (
-        <div className="story">
-            <ProductItem.Skeleton className="story__product-item" />
-
-            <style jsx global>{`
-                .story {
-                    align-items: center;
-                    display: flex;
-                    height: 100vh;
-                    justify-content: center;
-                    width: 100vw;
-                }
-
-                .story__product-item {
-                    width: 60rem;
-                }
-            `}</style>
-        </div>
+        <StoryContainer>
+            <ProductItem.Skeleton />
+        </StoryContainer>
     ))

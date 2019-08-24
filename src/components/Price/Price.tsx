@@ -1,50 +1,25 @@
-import React from 'react'
-import { Component, Props, Element, classes } from '../../lib'
+import React, { FunctionComponent } from 'react'
+import { Root, Label, RegularPrice, SpecialPrice } from './Price.styled'
 
-export type PriceProps = Props<{
+export type PriceProps = {
     currency?: string
     label?: string
     regular: number
     special?: number
-}>
+}
 
-export const Price: Component<PriceProps> = ({
-    currency = 'USD',
-    label,
-    regular,
-    special,
-    ...props
-}) => {
-
+export const Price: FunctionComponent<PriceProps> = ({ currency = 'USD', label, regular, special, ...props }) => {
     return (
-        <Element {...props} className={classes('price', props.className)}>
-            {label && <em className="price__label">{label}</em>}
+        <Root {...props}>
+            {label && <Label>{label}</Label>}
 
-            <span className={classes('price__regular', ['--special', !!special])}>
+            <RegularPrice $hasSpecial={!!special}>
                 {regular.toLocaleString('en-US', { style: 'currency', currency })}
-            </span>
+            </RegularPrice>
 
-            {special && (
-                <span className="price__special">
-                    {special.toLocaleString('en-US', { style: 'currency', currency })}
-                </span>
+            {!!special && (
+                <SpecialPrice>{special.toLocaleString('en-US', { style: 'currency', currency })}</SpecialPrice>
             )}
-
-            <style jsx global>{`
-                .price {
-                    display: grid;
-                    grid-gap: 0.75rem;
-                    grid-auto-flow: column;
-                    grid-auto-columns: max-content;
-                }
-
-                .price__regular {
-                    &.--special {
-                        text-decoration: line-through;
-                        opacity: 0.75;
-                    }
-                }
-            `}</style>
-        </Element>
+        </Root>
     )
 }

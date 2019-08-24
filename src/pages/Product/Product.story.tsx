@@ -1,15 +1,12 @@
 import React from 'react'
 import Product from '.'
 import { storiesOf } from '@storybook/react'
-import App from '../App'
-import { AppMockData } from '../App/App.story'
+import App from '../../components/App'
+import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
 
 const ProductMockData: ProductProps = {
-    buttons: [
-        { text: 'Add to Cart', fill: true },
-        { text: 'Add to Favorite' },
-    ],
+    buttons: [{ text: 'Add to Cart', fill: true }, { text: 'Add to Favorite' }],
     breadcrumbs: {
         items: [
             {
@@ -33,7 +30,7 @@ const ProductMockData: ProductProps = {
         label: 'Starting at',
     },
     sku: {
-        text: 'SKU. VSK12-LA',        
+        text: 'SKU. VSK12-LA',
     },
     images: new Array(5).fill({
         alt: '',
@@ -115,7 +112,7 @@ const ProductMockData: ProductProps = {
     assembler: {
         components: [
             {
-                name: 'ProductsCarousel',
+                name: 'ProductCarousel',
                 props: {
                     title: {
                         as: 'h3',
@@ -137,13 +134,7 @@ const ProductMockData: ProductProps = {
                         title: {
                             text: 'Circle Hooded Ice Flee',
                         },
-                        colors: [
-                            { value: 'brown' },
-                            { value: 'gray' },
-                            { value: 'black' },
-                            { value: 'blue' },
-
-                        ],
+                        colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
                     }),
                 },
             },
@@ -151,9 +142,16 @@ const ProductMockData: ProductProps = {
     },
 }
 
-storiesOf('📑 Pages/Product', module)
-    .add('Default', () => (
+storiesOf('📑 Pages/Product', module).add(
+    'Default',
+    () => (
         <App {...AppMockData}>
             <Product {...ProductMockData} />
         </App>
-    ))
+    ),
+    {
+        theme: {
+            layout: 'fullPage',
+        },
+    }
+)
