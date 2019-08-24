@@ -4,7 +4,7 @@ import { Root, Item, Button, ButtonLabel, ButtonIcon, Content } from './Accordio
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
 
-import ArrowIcon from '@fortawesome/fontawesome-free/svgs/solid/angle-down.svg'
+import ArrowIcon from 'remixicon/icons/System/arrow-down-s-line.svg'
 
 export type AccordionProps = {
     items?: AccordionItemProps[]

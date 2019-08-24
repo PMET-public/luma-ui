@@ -3,8 +3,8 @@ import { Root, Group, Wrapper, List, GroupLabel, Item, Icon, Count, ToggleIcon, 
 
 import { useMeasure } from '../../hooks/useMeasure'
 
-import CheckedIconSvg from '@fortawesome/fontawesome-free/svgs/solid/check-circle.svg'
-import CheckIconSvg from '@fortawesome/fontawesome-free/svgs/solid/circle.svg'
+import CheckIconSvg from 'remixicon/icons/System/checkbox-blank-circle-fill.svg'
+import CheckIconActiveSvg from 'remixicon/icons/System/checkbox-circle-fill.svg'
 
 export type FiltersProps = {
     groups: FiltersGroupProps[]
@@ -44,7 +44,7 @@ const FiltersGroup: FunctionComponent<FiltersGroupProps> = ({ items = [], offset
         <Group {...props}>
             <Wrapper
                 $duration={items.length * 20 + 'ms'}
-                $height={open ? `${height / 10}rem` : `calc(2.2em * ${offset})`}
+                $height={open ? `${height / 10}rem` : `calc(2em * ${offset})`}
             >
                 <List ref={elRef}>
                     <GroupLabel>{title}</GroupLabel>
@@ -52,7 +52,7 @@ const FiltersGroup: FunctionComponent<FiltersGroupProps> = ({ items = [], offset
                     {items.map(({ text, count, active = false, _id, ...item }, index) => (
                         <dd key={_id || index}>
                             <Item $active={active} {...item}>
-                                <Icon as={active ? CheckedIconSvg : CheckIconSvg} />
+                                <Icon as={active ? CheckIconActiveSvg : CheckIconSvg} />
 
                                 {text}
 

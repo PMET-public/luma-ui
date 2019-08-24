@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import IconSearchSvg from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
+import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
+import ResetIconSvg from 'remixicon/icons/System/close-line.svg'
 
 export const Root = styled.div`
     --opacity: 0.64;
@@ -51,9 +52,9 @@ export const ResetButton = styled.button`
     font-size: 1.6rem;
     opacity: var(--opacity);
     transition: opacity 305ms ease;
-
-    > svg {
-        fill: currentColor;
-        width: 1em;
-    }
+    line-height: 0;
+`
+export const ResetIcon = styled(ResetIconSvg)`
+    fill: currentColor;
+    width: 1.2em;
 `

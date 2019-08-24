@@ -3,9 +3,9 @@ import Icon from './'
 import { storiesOf } from '@storybook/react'
 import { number, text, color } from '@storybook/addon-knobs'
 
-import IconHome from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
-import IconHeart from '@fortawesome/fontawesome-free/svgs/solid/heart.svg'
-import IconCart from '@fortawesome/fontawesome-free/svgs/solid/shopping-basket.svg'
+import IconHomeSvg from 'remixicon/icons/Buildings/store-line.svg'
+import IconHeartSvg from 'remixicon/icons/System/heart-line.svg'
+import IconCartSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 
 storiesOf('📦 Components/Icon', module).add('Default', () => (
     <div
@@ -17,15 +17,15 @@ storiesOf('📦 Components/Icon', module).add('Default', () => (
         }}
     >
         <Icon count={number('count', 0)} text={text('text', '')}>
-            <IconHome />
+            <IconHomeSvg />
         </Icon>
 
         <Icon count={number('count', 0)} text={text('text', '')}>
-            <IconHeart />
+            <IconHeartSvg />
         </Icon>
 
         <Icon count={number('count', 0)} text={text('text', '')}>
-            <IconCart />
+            <IconCartSvg />
         </Icon>
     </div>
 ))

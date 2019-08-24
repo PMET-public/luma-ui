@@ -8,11 +8,16 @@ import TabBar from '../TabBar'
 import Footer, { FooterProps } from '../Footer'
 import { IconProps } from '../Icon'
 
-import LogoImage from '../../../public/images/luma.svg'
-import IconSearchSvg from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
-import IconBagSvg from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
-import IconHomeSvg from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
-import IconAccountSvg from '@fortawesome/fontawesome-free/svgs/solid/user.svg'
+import LogoImageSvg from '../../../public/images/luma.svg'
+
+import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
+import IconSearchActiveSvg from 'remixicon/icons/System/search-fill.svg'
+import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
+import IconBagActiveSvg from 'remixicon/icons/Finance/shopping-bag-fill.svg'
+import IconHomeSvg from 'remixicon/icons/Buildings/store-2-line.svg'
+import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
+import IconAccountSvg from 'remixicon/icons/System/heart-line.svg'
+import IconAccountActiveSvg from 'remixicon/icons/System/heart-fill.svg'
 
 export type AppProps = {
     home: {
@@ -77,7 +82,7 @@ export const App: FunctionComponent<AppProps> = ({
             <HeaderWrapper>
                 <Header
                     logo={{
-                        svg: LogoImage,
+                        svg: LogoImageSvg,
                         ...logo,
                     }}
                     menu={{
@@ -94,14 +99,14 @@ export const App: FunctionComponent<AppProps> = ({
                             {
                                 ...search,
                                 icon: {
-                                    svg: IconSearchSvg,
+                                    svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                     ...search.icon,
                                 },
                             },
                             {
                                 ...cart,
                                 icon: {
-                                    svg: IconBagSvg,
+                                    svg: cart.active ? IconBagActiveSvg : IconBagSvg,
                                     ...cart.icon,
                                 },
                             },
@@ -123,7 +128,7 @@ export const App: FunctionComponent<AppProps> = ({
                             ...home,
                             icon: {
                                 ['aria-label']: home.text,
-                                svg: IconHomeSvg,
+                                svg: home.active ? IconHomeActiveSvg : IconHomeSvg,
                                 ...home.icon,
                             },
                         },
@@ -131,7 +136,7 @@ export const App: FunctionComponent<AppProps> = ({
                             ...myAccount,
                             icon: {
                                 ['aria-label']: myAccount.text,
-                                svg: IconAccountSvg,
+                                svg: myAccount.active ? IconAccountActiveSvg : IconAccountSvg,
                                 ...myAccount.icon,
                             },
                         },
@@ -139,7 +144,7 @@ export const App: FunctionComponent<AppProps> = ({
                             ...search,
                             icon: {
                                 ['aria-label']: search.text,
-                                svg: IconSearchSvg,
+                                svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                 ...search.icon,
                             },
                         },
@@ -147,7 +152,7 @@ export const App: FunctionComponent<AppProps> = ({
                             ...cart,
                             icon: {
                                 ['aria-label']: cart.text,
-                                svg: IconBagSvg,
+                                svg: cart.active ? IconBagActiveSvg : IconBagSvg,
                                 ...cart.icon,
                             },
                         },

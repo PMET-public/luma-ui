@@ -1,8 +1,7 @@
 import React, { FunctionComponent, useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { Root, Wrapper, SearchIcon, Field, Count, ResetButton } from './SearchBar.styled'
+import { Root, Wrapper, SearchIcon, Field, Count, ResetButton, ResetIcon } from './SearchBar.styled'
 
 import { useThrottle } from '../../hooks/useThrottle'
-import IconResetSvg from '@fortawesome/fontawesome-free/svgs/solid/times-circle.svg'
 
 export type SearchBarProps = {
     clearButton?: boolean
@@ -62,7 +61,7 @@ export const SearchBar: FunctionComponent<SearchBarProps> = ({
 
                     {clearButton && value.length > 0 && (
                         <ResetButton aria-label="reset" onClick={handleReset}>
-                            <IconResetSvg />
+                            <ResetIcon />
                         </ResetButton>
                     )}
                 </Wrapper>

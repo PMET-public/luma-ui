@@ -3,8 +3,9 @@ import Header from './'
 import { storiesOf } from '@storybook/react'
 
 import Logo from '../../../public/images/luma.svg'
-import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
-import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
+
+import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
+import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 
 storiesOf('📦 Components/Header', module).add('Default', () => (
     <Header
@@ -64,7 +65,7 @@ storiesOf('📦 Components/Header', module).add('Default', () => (
                     as: 'a',
                     href: '#',
                     icon: {
-                        svg: IconSearch,
+                        svg: IconSearchSvg,
                     },
                     text: 'Search',
                 },
@@ -72,7 +73,7 @@ storiesOf('📦 Components/Header', module).add('Default', () => (
                     as: 'a',
                     href: '#',
                     icon: {
-                        svg: IconBag,
+                        svg: IconBagSvg,
                         count: 3,
                     },
                     text: 'My Basket',

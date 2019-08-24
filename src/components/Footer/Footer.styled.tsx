@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import IconTwitterSvg from '@fortawesome/fontawesome-free/svgs/brands/twitter.svg'
-import IconFacebookSvg from '@fortawesome/fontawesome-free/svgs/brands/facebook.svg'
-import IconInstagramSvg from '@fortawesome/fontawesome-free/svgs/brands/instagram.svg'
-import IconPinterestSvg from '@fortawesome/fontawesome-free/svgs/brands/pinterest.svg'
+import IconTwitterSvg from 'remixicon/icons/Logos/twitter-fill.svg'
+import IconFacebookSvg from 'remixicon/icons/Logos/facebook-fill.svg'
+import IconInstagramSvg from 'remixicon/icons/Logos/instagram-fill.svg'
+import IconPinterestSvg from 'remixicon/icons/Logos/pinterest-fill.svg'
 
 export const Root = styled.footer`
     background: ${props => props.theme.colors.background};
@@ -18,7 +18,7 @@ export const Root = styled.footer`
     & a {
         transition: opacity 205ms ease;
         &:hover {
-            opacity: 0.5;
+            opacity: 0.65;
         }
     }
 `

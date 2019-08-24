@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import ToggleIconSvg from '@fortawesome/fontawesome-free/svgs/solid/angle-double-down.svg'
+import ToggleIconSvg from 'remixicon/icons/System/arrow-down-s-line.svg'
 
 export const Root = styled.div`
     display: grid;
@@ -34,7 +34,7 @@ export const GroupLabel = styled.dt`
 export const Icon = styled.svg`
     fill: currentColor;
     transition: opacity 305ms ease;
-    width: 1em;
+    width: 1.3em;
 `
 
 export const Item = styled.span<{ $active?: boolean }>`
@@ -60,10 +60,10 @@ export const Count = styled.span`
 `
 export const ToggleIcon = styled(ToggleIconSvg)`
     fill: currentColor;
-    height: 0.8em;
+    height: 1.3em;
     margin-right: 0.5rem;
     transition: transform var(--transition-duration) ease;
-    width: 0.8em;
+    width: 1em;
 `
 
 export const ToggleButton = styled.button<{ $active?: boolean }>`
@@ -71,7 +71,7 @@ export const ToggleButton = styled.button<{ $active?: boolean }>`
     color: inherit;
     cursor: pointer;
     display: inline-flex;
-    filter: opacity(0.75);
+    opacity: 0.5;
     font-size: 1em;
 
     ${ToggleIcon} {

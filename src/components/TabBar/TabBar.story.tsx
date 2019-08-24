@@ -2,10 +2,10 @@ import React from 'react'
 import TabBar from './'
 import { storiesOf } from '@storybook/react'
 
-import IconHome from '@fortawesome/fontawesome-free/svgs/solid/store.svg'
-import IconHeart from '@fortawesome/fontawesome-free/svgs/solid/heart.svg'
-import IconSearch from '@fortawesome/fontawesome-free/svgs/solid/search.svg'
-import IconBag from '@fortawesome/fontawesome-free/svgs/solid/shopping-bag.svg'
+import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
+import IconHeartSvg from 'remixicon/icons/System/heart-line.svg'
+import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
+import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 
 storiesOf('📦 Components/TabBar', module).add('Default', () => (
     <TabBar
@@ -13,27 +13,27 @@ storiesOf('📦 Components/TabBar', module).add('Default', () => (
             {
                 icon: {
                     text: 'Shop',
-                    svg: IconHome,
+                    svg: IconHomeActiveSvg,
                 },
                 active: true,
             },
             {
                 icon: {
                     text: 'Favorites',
-                    svg: IconHeart,
+                    svg: IconHeartSvg,
                     count: 200,
                 },
             },
             {
                 icon: {
                     text: 'Search',
-                    svg: IconSearch,
+                    svg: IconSearchSvg,
                 },
             },
             {
                 icon: {
                     text: 'Bag',
-                    svg: IconBag,
+                    svg: IconBagSvg,
                     count: 1,
                 },
             },

@@ -4,7 +4,7 @@ import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Root as PillsRoot } from '../../components/Pills'
 import { Root as FiltersRoot } from '../../components/Filters'
 
-import FiltersIcoSvg from '@fortawesome/fontawesome-free/svgs/solid/sliders-h.svg'
+import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
 export const Root = styled.div`
     display: grid;

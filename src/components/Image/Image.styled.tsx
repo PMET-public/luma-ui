@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import ErrorIconSvg from '@fortawesome/fontawesome-free/svgs/solid/unlink.svg'
+import ErrorIconSvg from 'remixicon/icons/Media/image-line.svg'
 
 export const Root = styled.div<{ $vignette?: number }>`
     display: inline-block;
