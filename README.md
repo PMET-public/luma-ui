@@ -25,3 +25,9 @@ yarn dev
 
 -   [Babel](https://babeljs.io/)
 -   [Rollup](https://rollupjs.org/guide/en/)
+-   [Prettier](https://prettier.io/)
+
+## Recommended VSCode Extensions
+
+-   [VSCode Styled Components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+-   [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
