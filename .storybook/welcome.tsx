@@ -45,6 +45,7 @@ storiesOf('👋 Welcome', module).add('Getting Started', () => (
             <Source>
                 <code>{source`
                     ✨ src/components/FooBar/FooBar.tsx created
+                    ✨ src/components/FooBar/FooBar.styled.tsx created
                     ✨ src/components/FooBar/FooBar.story.tsx created
                     ✨ src/components/FooBar/index.ts created
                 `}</code>
@@ -60,6 +61,7 @@ storiesOf('👋 Welcome', module).add('Getting Started', () => (
             <Source>
                 <code>{source`
                     ✨ src/pages/FooBar/FooBar.tsx created
+                    ✨ src/pages/FooBar/FooBar.styled.tsx created
                     ✨ src/pages/FooBar/FooBar.story.tsx created
                     ✨ src/pages/FooBar/index.ts created
                 `}</code>
