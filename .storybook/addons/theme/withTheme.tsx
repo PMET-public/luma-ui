@@ -3,7 +3,7 @@ import { makeDecorator } from '@storybook/addons'
 import ThemeProvider from '../../../src/theme'
 import styled from 'styled-components'
 
-const Story = styled.div<{ $layout: 'centered' | 'fullPage' }>`
+const Story = styled.div<{ $layout?: 'centered' | 'fullPage' }>`
     ${props =>
         props.$layout === 'centered' &&
         `
@@ -18,9 +18,8 @@ const Story = styled.div<{ $layout: 'centered' | 'fullPage' }>`
 export const withTheme = makeDecorator({
     name: 'withTheme',
     parameterName: 'theme',
-    skipIfNoParametersOrOptions: true,
 
-    wrapper: (getStory, context, { parameters: { layout = 'centered' } }) => {
+    wrapper: (getStory, context, { parameters: { layout = 'centered' } = {} }) => {
         return (
             <ThemeProvider>
                 <Story $layout={layout}>{getStory(context)}</Story>

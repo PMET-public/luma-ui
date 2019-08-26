@@ -29,9 +29,6 @@ addParameters({
     knobs: {
         escapeHTML: false,
     },
-    theme: {
-        centered: true,
-    },
 })
 
 const req = require.context('../src', true, /\.(story|stories)\.tsx$/)
