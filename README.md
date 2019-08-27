@@ -25,6 +25,9 @@ yarn dev
 
 -   [Babel](https://babeljs.io/)
 -   [Rollup](https://rollupjs.org/guide/en/)
+
+## Linted with
+
 -   [Prettier](https://prettier.io/)
 
 ## Recommended VSCode Extensions
