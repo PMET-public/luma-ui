@@ -23,20 +23,6 @@ const Source = styled.pre`
 storiesOf('👋 Welcome', module).add('Getting Started', () => (
     <Story>
         <Section>
-            <h2>☝️ Install Dependencies</h2>
-            <CodeBlock lang="bash">{`
-                    yarn install
-                `}</CodeBlock>
-        </Section>
-
-        <Section>
-            <h2>✌️ Run Storybook Locally</h2>
-            <CodeBlock lang="bash">{`
-                    yarn dev
-                `}</CodeBlock>
-        </Section>
-
-        <Section>
             <h2>🤙 Generate New Component</h2>
             <CodeBlock lang="bash">{`
                     yarn generate component FooBar
