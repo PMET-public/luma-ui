@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import ArrowIconSvg from 'remixicon/icons/System/arrow-down-s-line.svg'
-
 export const Root = styled.div`
     display: grid;
     width: 100%;
@@ -37,16 +35,11 @@ export const ButtonLabel = styled.span`
     flex-grow: 1;
 `
 
-export const ButtonIcon = styled(ArrowIconSvg)<{ $active?: boolean }>`
+export const ButtonIcon = styled.span<{ $active?: boolean }>`
     width: 2.4rem;
-    fill: currentColor;
     transition: transform 305ms ease-out;
 
-    ${props =>
-        props.$active &&
-        `
-            transform: rotateX(180deg);
-        `}
+    ${props => props.$active && 'transform: rotateX(180deg);'}
 `
 
 export const Content = styled.div`
