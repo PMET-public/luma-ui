@@ -7,8 +7,7 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         colors: ThemeColors
         typography: ThemeTypography
-        breakpoints:  Breakpoints
-        isDark: boolean
-        setDark: any
+        breakpoints: Breakpoints
+        dark: boolean
     }
 }
