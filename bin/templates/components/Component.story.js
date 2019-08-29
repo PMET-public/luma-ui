@@ -8,14 +8,11 @@ module.exports = (Name, folder = 'components') => {
 
     return (
         source`
-
         import React from 'react'
         import FooBar from './'
         import { storiesOf } from '@storybook/react'
-       
-        storiesOf('📦 Components/FooBar', module).add('Default', () => <FooBar />)
         
-
+        storiesOf('📦 Components/FooBar', module).add('Default', () => <FooBar />)
     ` + '\n'
     )
 }
