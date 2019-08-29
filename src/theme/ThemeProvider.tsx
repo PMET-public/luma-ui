@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled, { ThemeProvider as StyledThemeProvider, createGlobalStyle } from 'styled-components'
 import { ResetStyles } from './ResetStyles'
-import { light, dark } from './colors'
+import { light as lightColors, dark as darkColors } from './colors'
 import { typography } from './typography'
 import { breakpoints } from './breakpoints'
 
@@ -138,11 +138,11 @@ export type ThemeProviderProps = {
     dark?: boolean
 }
 
-export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark: isDark, children }) => {
-    const colors = isDark ? dark : light
+export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark = false, children }) => {
+    const colors = dark ? darkColors : lightColors
 
     return (
-        <StyledThemeProvider theme={{ colors, typography, breakpoints, isDark }}>
+        <StyledThemeProvider theme={{ colors, typography, breakpoints, dark }}>
             <Root>
                 <ResetStyles />
                 <GlobalStyles />

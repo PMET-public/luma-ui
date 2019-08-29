@@ -4,13 +4,13 @@ import addons, { types } from '@storybook/addons'
 import { useAddonState } from '@storybook/api'
 
 import styled from 'styled-components'
-import { Icons, IconButton, WithTooltip, TooltipLinkList } from '@storybook/components'
+import { Icons, IconButton, Separator } from '@storybook/components'
 
 export const ADDON_ID = 'luma/theme'
 export const TOOL_ID = `${ADDON_ID}/tool`
 export const events = {
     ON_UPDATE: `${ADDON_ID}/onUpdate`,
-    GET_VALUES: `${ADDON_ID}/getValues`
+    GET_VALUES: `${ADDON_ID}/getValues`,
 }
 
 const Icon = styled(Icons)`
@@ -36,7 +36,6 @@ const ThemeTool = () => {
         }
     }, [params])
 
-
     function handleOnUpdate() {
         channel.emit(events.ON_UPDATE, params)
     }
@@ -45,34 +44,21 @@ const ThemeTool = () => {
         channel.emit(events.ON_UPDATE, params)
     }
 
-    const links = [
-        {
-            id: 'darkmode',
-            title: 'Dark Mode',
-            onClick: () => setParams({
-                dark: !params.dark,
-            }),
-            active: params.dark,
-            right: params.dark ? <Icon icon="check" /> : '',
-        },
-    ]
-
     return (
         <React.Fragment>
-            <WithTooltip
-                placement="top"
-                trigger="click"
-                // tooltipShown={params.active}
-                tooltip={<TooltipLinkList links={links} />}
-                // onVisibilityChange={state => {
-                //     setParams({ ...params, active: state })
-                // }}
-                closeOnClick
+            <Separator />
+            <IconButton
+                key="theme"
+                title="Light/Dark Mode"
+                onClick={() =>
+                    setParams({
+                        dark: !params.dark,
+                    })
+                }
             >
-                <IconButton key="theme" title="Theme Options">
-                    <Icon icon="dashboard" />
-                </IconButton>
-            </WithTooltip>
+                <Icon icon={params.dark ? 'circlehollow' : 'circle'} />
+            </IconButton>
+            {/* <Separator /> */}
         </React.Fragment>
     )
 }
