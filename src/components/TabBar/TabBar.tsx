@@ -1,16 +1,19 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import { Root, Item, Icon } from './TabBar.styled'
 
 import { IconProps } from '../Icon'
 
 export type TabBarProps = {
-    items: Array<{
-        active?: boolean
-        icon: IconProps
-    }>
+    items: Array<
+        Props<{
+            active?: boolean
+            icon: IconProps
+        }>
+    >
 }
 
-export const TabBar: FunctionComponent<TabBarProps> = ({ items = [], ...props }) => {
+export const TabBar: Component<TabBarProps> = ({ items = [], ...props }) => {
     return (
         <Root {...props}>
             {items.map(({ icon, active = false, ...item }, index) => (

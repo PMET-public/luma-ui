@@ -1,16 +1,19 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import { Root, Wrapper, ImageWrapper, Item, Label } from './BubbleCarousel.styled'
 
 import Image, { ImageProps } from '../Image'
 
 export type BubbleCarouselProps = {
-    items: Array<{
-        text: string
-        image: ImageProps
-    }>
+    items: Array<
+        Props<{
+            text: string
+            image: ImageProps
+        }>
+    >
 }
 
-export const BubbleCarousel: FunctionComponent<BubbleCarouselProps> = ({ children, items, ...props }) => {
+export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, items, ...props }) => {
     return (
         <Root {...props}>
             <Wrapper>

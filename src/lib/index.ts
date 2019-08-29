@@ -26,3 +26,18 @@ export class ErrorBoundary extends React.Component<any, { hasError: boolean }> {
         return this.props.children
     }
 }
+
+/**
+ * Components Types
+ */
+type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
+
+export type Props<P = {}> = Override<
+    React.AllHTMLAttributes<HTMLElement>,
+    {
+        as?: any
+        children?: React.ReactNode
+    } & P
+>
+
+export type Component<P = {}> = React.FunctionComponent<Props<P>>

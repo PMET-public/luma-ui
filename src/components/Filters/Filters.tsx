@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
+import { Component } from '../../lib'
 import { Root, Group, Wrapper, List, GroupLabel, Item, Icon, Count, ToggleIcon, ToggleButton } from './Filters.styled'
 
 import { useMeasure } from '../../hooks/useMeasure'
@@ -10,7 +11,7 @@ export type FiltersProps = {
     groups: FiltersGroupProps[]
 }
 
-export const Filters: FunctionComponent<FiltersProps> = ({ groups = [], ...props }) => {
+export const Filters: Component<FiltersProps> = ({ groups = [], ...props }) => {
     return (
         <Root {...props}>
             {groups.map((group, index) => (
@@ -31,7 +32,7 @@ type FiltersGroupProps = {
     }>
 }
 
-const FiltersGroup: FunctionComponent<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
+const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
     const [open, setOpen] = useState(false)
 
     const elRef = useRef<any>(null)

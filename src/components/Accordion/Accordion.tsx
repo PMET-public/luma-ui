@@ -1,4 +1,5 @@
-import React, { FunctionComponent, createContext, useState, useContext, useRef, ReactElement } from 'react'
+import React, { createContext, useState, useContext, useRef, ReactElement } from 'react'
+import { Component } from '../../lib'
 import { Root, Item, Button, ButtonLabel, ButtonIcon, Content } from './Accordion.styled'
 
 import { useMeasure } from '../../hooks/useMeasure'
@@ -20,10 +21,10 @@ export type AccordionItemProps = {
 const Context = createContext({ active: -1, setActive: (id: number) => {} })
 
 type CompoundComponent = {
-    Item: FunctionComponent<AccordionItemProps>
+    Item: Component<AccordionItemProps>
 }
 
-export const Accordion: FunctionComponent<AccordionProps> & CompoundComponent = ({
+export const Accordion: Component<AccordionProps> & CompoundComponent = ({
     children,
     items,
     selected = 0,

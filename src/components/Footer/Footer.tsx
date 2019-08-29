@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import {
     Root,
     Menu,
@@ -11,11 +12,10 @@ import {
     SocialIconTwitter,
     SocialIconFacebook,
 } from './Footer.styled'
-import { StyledComponent } from 'styled-components'
 
 export type FooterProps = {
     copyright: string
-    menu?: StyledComponent<'a', { text: string }>[]
+    menu?: Props<{ text: string }>[]
     social?: {
         facebook?: any
         instragram?: any
@@ -24,7 +24,7 @@ export type FooterProps = {
     }
 }
 
-export const Footer: FunctionComponent<FooterProps> = ({ copyright, menu, social, ...props }) => {
+export const Footer: Component<FooterProps> = ({ copyright, menu, social, ...props }) => {
     return (
         <Root {...props}>
             {menu && (

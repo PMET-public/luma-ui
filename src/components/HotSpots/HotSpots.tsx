@@ -1,4 +1,5 @@
-import React, { FunctionComponent, createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext } from 'react'
+import { Component } from '../../lib'
 import { Root, ImageWrapper, Item, Button, Content } from './HotSpots.styled'
 
 import { useTransition, animated } from 'react-spring'
@@ -18,12 +19,12 @@ export type HotSpotItemProps = {
 }
 
 type CompoundComponent = {
-    Item: FunctionComponent<HotSpotItemProps>
+    Item: Component<HotSpotItemProps>
 }
 
 export const HotSpotsContext = createContext({ active: null, set: (id: string | number | null) => {} })
 
-export const HotSpots: FunctionComponent<HotSpotsProps> & CompoundComponent = ({
+export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     children,
     description,
     image,

@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import { Root, HeaderWrapper, Main, FooterWrapper, TabBarWrapper } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
@@ -20,45 +21,49 @@ import IconAccountSvg from 'remixicon/icons/System/heart-line.svg'
 import IconAccountActiveSvg from 'remixicon/icons/System/heart-fill.svg'
 
 export type AppProps = {
-    home: {
-        active?: boolean
-        icon?: IconProps
-        text: string
-    }
-
     logo: any
 
-    menu: any[]
-
-    help: {
+    home: Props<{
         active?: boolean
         icon?: IconProps
         text: string
-    }
+    }>
 
-    myAccount: {
+    menu: Array<
+        Props<{
+            text: string
+        }>
+    >
+
+    help: Props<{
         active?: boolean
         icon?: IconProps
         text: string
-    }
+    }>
 
-    search: {
+    myAccount: Props<{
         active?: boolean
         icon?: IconProps
         text: string
-    }
+    }>
 
-    cart: {
+    search: Props<{
+        active?: boolean
+        icon?: IconProps
+        text: string
+    }>
+
+    cart: Props<{
         active?: boolean
         count?: number
         icon?: IconProps
         text: string
-    }
+    }>
 
     footer: FooterProps
 }
 
-export const App: FunctionComponent<AppProps> = ({
+export const App: Component<AppProps> = ({
     cart,
     children,
     footer,

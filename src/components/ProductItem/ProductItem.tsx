@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import { Root, Badge, ImageWrapper, Colors, Color, Details, Title, PriceWrapper } from './ProductItem.styled'
 
 import Image, { ImageProps } from '../Image'
@@ -6,22 +7,22 @@ import Price, { PriceProps } from '../Price'
 import ContentLoader, { IContentLoaderProps } from 'react-content-loader'
 
 export type ProductItemProps = {
-    badge?: {
+    badge?: Props<{
         text: string
-    }
-    colors?: Array<{ label: string; value: string }>
+    }>
+    colors?: Array<Props<{ label: string; value: string }>>
     image: ImageProps
     price: PriceProps
-    title: {
+    title: Props<{
         text: string
-    }
+    }>
 }
 
 type CompoundComponent = {
-    Skeleton: FunctionComponent<IContentLoaderProps>
+    Skeleton: Component<IContentLoaderProps>
 }
 
-export const ProductItem: FunctionComponent<ProductItemProps> & CompoundComponent = ({
+export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
     badge,
     colors,
     image,

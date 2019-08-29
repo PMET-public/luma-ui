@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Root = styled.button<{ $fill?: boolean; $color: 'primary' | 'secondary' }>`
+export const Root = styled.div<{ $fill?: boolean; $color: 'primary' | 'secondary' }>`
     align-items: center;
     background-color: ${props => (props.$fill ? 'currentColor' : 'transparent')};
     border-radius: 2.4rem;

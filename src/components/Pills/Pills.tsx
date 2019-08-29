@@ -1,15 +1,18 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import { Root, Wrapper, Item, ItemWrapper, Count } from './Pills.styled'
 
 export type PillsProps = {
-    items: Array<{
-        _id?: string | number
-        count?: string | number
-        text: string
-    }>
+    items: Array<
+        Props<{
+            _id?: string | number
+            count?: string | number
+            text: string
+        }>
+    >
 }
 
-export const Pills: FunctionComponent<PillsProps> = ({ items, ...props }) => {
+export const Pills: Component<PillsProps> = ({ items, ...props }) => {
     return (
         <Root {...props}>
             <Wrapper>

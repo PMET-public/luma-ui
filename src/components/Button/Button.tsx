@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component } from '../../lib'
 import { Root } from './Button.styled'
 
 export type ButtonProps = {
@@ -7,7 +8,7 @@ export type ButtonProps = {
     text?: string
 }
 
-export const Button: FunctionComponent<ButtonProps> = ({
+export const Button: Component<ButtonProps> = ({
     text,
     children = text,
     color = 'primary',
@@ -15,7 +16,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
     ...props
 }) => {
     return (
-        <Root $fill={fill} $color={color} {...props}>
+        <Root $fill={fill} $color={color} as="button" {...props}>
             <span>{children}</span>
         </Root>
     )

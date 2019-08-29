@@ -10,5 +10,6 @@ storiesOf('📦 Components/Button', module).add('Default', () => (
         fill={boolean('fill', false)}
         text={text('text', 'Button')}
         onClick={action('onClick')}
+        as="button"
     />
 ))

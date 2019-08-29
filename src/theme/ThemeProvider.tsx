@@ -142,7 +142,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark: isD
     const colors = isDark ? dark : light
 
     return (
-        <StyledThemeProvider theme={{ colors, typography, breakpoints }}>
+        <StyledThemeProvider theme={{ colors, typography, breakpoints, isDark }}>
             <Root>
                 <ResetStyles />
                 <GlobalStyles />

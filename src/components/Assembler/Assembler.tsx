@@ -2,7 +2,8 @@
  * ☢️ Experimental
  */
 
-import React, { FunctionComponent, Suspense, useEffect, useState, ReactNode } from 'react'
+import React, { Suspense, useEffect, useState, ReactNode } from 'react'
+import { Component } from '../../lib'
 import { Root, Row } from './Assembler.styled'
 import { ErrorBoundary } from '../../lib'
 
@@ -18,7 +19,7 @@ const Loading = () => {
     return <div>Loading</div>
 }
 
-export const Assembler: FunctionComponent<AssemblerProps> = ({ components = [], ...props }) => {
+export const Assembler: Component<AssemblerProps> = ({ components = [], ...props }) => {
     const [children, setChildren] = useState<ReactNode>(null)
 
     useEffect(() => {

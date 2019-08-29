@@ -1,11 +1,12 @@
-import React, { FunctionComponent, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Component } from '../../lib'
 import { Root, LoaderImage } from './ViewLoader.styled'
 
 export type ViewLoaderProps = {
     text?: string
 }
 
-export const ViewLoader: FunctionComponent<ViewLoaderProps> = ({ text = 'loading', ...props }) => {
+export const ViewLoader: Component<ViewLoaderProps> = ({ text = 'loading', ...props }) => {
     const [show, setShow] = useState(false)
 
     useEffect(() => {

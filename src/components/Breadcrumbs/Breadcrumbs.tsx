@@ -1,21 +1,19 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import { Root, Item } from './Breadcrumbs.styled'
 
 export type BreadcrumbsProps = {
     dividor?: string
     prefix?: string
-    items: Array<{
-        _id?: string | number
-        text: string
-    }>
+    items: Array<
+        Props<{
+            _id?: string | number
+            text: string
+        }>
+    >
 }
 
-export const Breadcrumbs: FunctionComponent<BreadcrumbsProps> = ({
-    dividor = '',
-    items = [],
-    prefix = '',
-    ...props
-}) => {
+export const Breadcrumbs: Component<BreadcrumbsProps> = ({ dividor = '', items = [], prefix = '', ...props }) => {
     return (
         <Root {...props}>
             {items.map(({ text, _id, ...item }, index) => (

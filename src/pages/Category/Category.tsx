@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
+import { Component, Props } from '../../lib'
 import {
     Root,
     TopBar,
@@ -23,22 +24,22 @@ import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import Pills, { PillsProps } from '../../components/Pills'
 
 export type CategoryProps = {
-    assembler?: AssemblerProps
-    breadcrumbs?: BreadcrumbsProps
+    title: Props<{
+        text: string
+    }>
     categories?: PillsProps
+    breadcrumbs?: BreadcrumbsProps
+    assembler?: AssemblerProps
     filters?: {
         label: string
         open?: boolean
         closeButton: ButtonProps
-        props: FiltersProps
-    }
+    } & FiltersProps
+
     products?: ProductListProps
-    title: {
-        text: string
-    }
 }
 
-export const Category: FunctionComponent<CategoryProps> = ({
+export const Category: Component<CategoryProps> = ({
     assembler,
     breadcrumbs,
     categories,
@@ -87,7 +88,7 @@ export const Category: FunctionComponent<CategoryProps> = ({
 
             {filters && (
                 <FiltersWrapper $active={showFilter} ref={filtersRef} style={{ height: vHeight }}>
-                    <Filters {...filters.props} />
+                    <Filters {...filters} />
 
                     {filters.closeButton && (
                         <FiltersButtons>

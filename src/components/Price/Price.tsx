@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component } from '../../lib'
 import { Root, Label, RegularPrice, SpecialPrice } from './Price.styled'
 
 export type PriceProps = {
@@ -8,7 +9,7 @@ export type PriceProps = {
     special?: number
 }
 
-export const Price: FunctionComponent<PriceProps> = ({ currency = 'USD', label, regular, special, ...props }) => {
+export const Price: Component<PriceProps> = ({ currency = 'USD', label, regular, special, ...props }) => {
     return (
         <Root {...props}>
             {label && <Label>{label}</Label>}

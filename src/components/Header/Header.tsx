@@ -1,28 +1,29 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component, Props } from '../../lib'
 import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, IconWrapper } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
 
 import Icon, { IconProps } from '../Icon'
 
 export type HeaderProps = {
-    logo: {
+    logo: Props<{
         svg: ReactComponentLike
-    }
+    }>
     menu: {
-        items: Array<{
+        items: Props<{
             active?: boolean
             text: string
-        }>
+        }>[]
     }
     utilities: {
-        items: Array<{
+        items: Props<{
             active?: boolean
             text: string
             icon?: IconProps
-        }>
+        }>[]
     }
 }
-export const Header: FunctionComponent<HeaderProps> = ({
+export const Header: Component<HeaderProps> = ({
     logo: { svg: LogoSvg, ...logo },
     menu: { items: menuItems, ...menu },
     utilities: { items: utilitiesItems, ...utilities },

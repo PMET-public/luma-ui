@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component } from '../../lib'
 import { Root, Item } from './Carousel.styled'
 
 export type CarouselProps = {
@@ -14,10 +15,10 @@ export type CarouselItemProps = {
 }
 
 type CompoundComponent = {
-    Item: FunctionComponent<CarouselItemProps>
+    Item: Component<CarouselItemProps>
 }
 
-export const Carousel: FunctionComponent<CarouselProps> & CompoundComponent = ({
+export const Carousel: Component<CarouselProps> & CompoundComponent = ({
     children,
     gap = 0,
     padding = 0,
