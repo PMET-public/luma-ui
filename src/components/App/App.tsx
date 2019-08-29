@@ -31,6 +31,7 @@ export type AppProps = {
 
     menu: Array<
         Props<{
+            active?: boolean
             text: string
         }>
     >
@@ -130,36 +131,36 @@ export const App: Component<AppProps> = ({
                 <TabBar
                     items={[
                         {
-                            ...home,
+                            'aria-label': home.text,
                             icon: {
-                                ['aria-label']: home.text,
                                 svg: home.active ? IconHomeActiveSvg : IconHomeSvg,
                                 ...home.icon,
                             },
+                            ...home,
                         },
                         {
-                            ...myAccount,
+                            'aria-label': myAccount.text,
                             icon: {
-                                ['aria-label']: myAccount.text,
                                 svg: myAccount.active ? IconAccountActiveSvg : IconAccountSvg,
                                 ...myAccount.icon,
                             },
+                            ...myAccount,
                         },
                         {
-                            ...search,
+                            'aria-label': search.text,
                             icon: {
-                                ['aria-label']: search.text,
                                 svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                 ...search.icon,
                             },
+                            ...search,
                         },
                         {
-                            ...cart,
+                            'aria-label': cart.text,
                             icon: {
-                                ['aria-label']: cart.text,
                                 svg: cart.active ? IconBagActiveSvg : IconBagSvg,
                                 ...cart.icon,
                             },
+                            ...cart,
                         },
                     ]}
                 />

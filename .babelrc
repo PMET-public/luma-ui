@@ -12,7 +12,12 @@
     "plugins": [
         "@babel/plugin-syntax-dynamic-import",
         "inline-react-svg",
-        "babel-plugin-styled-components",
+        [
+            "babel-plugin-styled-components",
+            {
+                "ssr": true,
+            }
+        ],
     ],
     "exclude": "node_modules/**",
 }
