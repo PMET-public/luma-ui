@@ -1,6 +1,6 @@
-# Luma Storybook
+# Luma UI
 
-[👉 Open Storybook](https://pmet-public.github.io/luma-storybook/?path=/story/%F0%9F%91%8B-welcome--getting-started)
+[👉 Open Storybook](https://pmet-public.github.io/luma-ui/?path=/story/%F0%9F%91%8B-welcome--getting-started)
 
 ## Getting Started
 

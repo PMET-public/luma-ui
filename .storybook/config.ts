@@ -17,7 +17,7 @@ addParameters({
         theme: create({
             base: 'dark',
             brandTitle: 'Luma Storybook',
-            brandUrl: 'https://pmet-public.github.io/luma-storybook',
+            brandUrl: 'https://pmet-public.github.io/luma-ui',
             brandImage: Logo,
             barBg: 'rgba(0, 0, 0, 0.3)',
             colorSecondary: 'rgba(255, 255, 225, 0.2)',

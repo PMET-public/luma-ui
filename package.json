@@ -1,8 +1,8 @@
 {
-  "name": "luma-storybook",
+  "name": "luma-ui",
   "version": "1.0.0",
-  "description": "Front-end Components Storybook",
-  "repository": "git@github.com:PMET-public/luma-storybook.git",
+  "description": "Luma React UI LIbrary",
+  "repository": "git@github.com:PMET-public/luma-ui.git",
   "author": "Carlos A. Cabrera <cacabrer@adobe.com>",
   "license": "MIT",
   "engines": {
