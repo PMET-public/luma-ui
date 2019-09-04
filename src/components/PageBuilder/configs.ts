@@ -4,6 +4,8 @@ import Text from './DataTypes/Text/config'
 import Heading from './DataTypes/Heading/config'
 import Html from './DataTypes/Html/config'
 import Divider from './DataTypes/Divider/config'
+import Buttons from './DataTypes/Buttons/config'
+import ButtonItem from './DataTypes/ButtonItem/config'
 
 export default {
     Row,
@@ -12,4 +14,6 @@ export default {
     Heading,
     Html,
     Divider,
+    Buttons,
+    ButtonItem,
 }
