@@ -7,7 +7,6 @@ export type DividerProps = {
 }
 
 export const Divider: Component<DividerProps> = ({ children, line, ...props }) => {
-    console.log({ line })
     return (
         <Root {...props}>
             <Line {...line} />
