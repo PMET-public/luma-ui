@@ -1,11 +1,10 @@
 import React from 'react'
 import { Component } from '../../../../lib'
+import Html, { HtmlProps } from '../../../Html'
 import { Root } from './Text.styled'
 
-export type TextProps = {
-    __html: string
-}
+export type TextProps = HtmlProps
 
-export const Text: Component<TextProps> = ({ children, __html, ...props }) => {
-    return <Root {...props} dangerouslySetInnerHTML={{ __html }} />
+export const Text: Component<TextProps> = ({ children, ...props }) => {
+    return <Root as={Html} {...props} />
 }
