@@ -2,16 +2,16 @@ import React from 'react'
 import { Component } from '../../lib'
 import { Root } from './Page.styled'
 
-import Assembler, { AssemblerProps } from '../../components/Assembler'
+import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 
 export type PageProps = {
-    assembler: AssemblerProps
+    pageBuilder: PageBuilderProps
 }
 
-export const Page: Component<PageProps> = ({ assembler, ...props }) => {
+export const Page: Component<PageProps> = ({ pageBuilder, ...props }) => {
     return (
         <Root {...props}>
-            <Assembler {...assembler} />
+            <PageBuilder {...pageBuilder} />
         </Root>
     )
 }

@@ -6,7 +6,7 @@ import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 
 export const PageMockData: PageProps = {
-    assembler: {
+    pageBuilder: {
         components: [
             {
                 name: 'BubbleCarousel',

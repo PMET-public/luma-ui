@@ -16,7 +16,7 @@ import {
 import { useResize } from '../../hooks/useResize'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
-import Assembler, { AssemblerProps } from '../../components/Assembler'
+import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import ProductList, { ProductListProps } from '../../components/ProductList'
 import Filters, { FiltersProps } from '../../components/Filters'
 import Button, { ButtonProps } from '../../components/Button'
@@ -29,7 +29,7 @@ export type CategoryProps = {
     }>
     categories?: PillsProps
     breadcrumbs?: BreadcrumbsProps
-    assembler?: AssemblerProps
+    pageBuilder?: PageBuilderProps
     filters?: {
         label: string
         open?: boolean
@@ -40,7 +40,7 @@ export type CategoryProps = {
 }
 
 export const Category: Component<CategoryProps> = ({
-    assembler,
+    pageBuilder,
     breadcrumbs,
     categories,
     filters,
@@ -82,7 +82,7 @@ export const Category: Component<CategoryProps> = ({
             )}
 
             <Content>
-                {assembler && <Assembler {...assembler} />}
+                {pageBuilder && <PageBuilder {...pageBuilder} />}
                 {products && <ProductList {...products} />}Î
             </Content>
 

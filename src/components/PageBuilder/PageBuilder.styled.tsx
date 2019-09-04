@@ -11,17 +11,3 @@ export const Root = styled.div`
         grid-gap: 4rem;
     }
 `
-
-export const Row = styled.div<{ $hideOnBreakpoint?: string }>`
-    &:first-of-type {
-        margin-top: 2rem;
-    }
-
-    ${props =>
-        props.$hideOnBreakpoint &&
-        `
-        @media ${props.theme.breakpoints[props.$hideOnBreakpoint]} {
-            display: none;
-        }
-    `}
-`

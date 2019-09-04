@@ -10,7 +10,7 @@ type UseScroll = {
     scrollY: number
 }
 
-export const useScroll = (): UseScroll => {
+export const useScroll = (delay = 150): UseScroll => {
     const [scroll, setWheelEvent] = useState({
         scrollDeltaX: 0,
         scrollDeltaY: 0,
@@ -20,17 +20,21 @@ export const useScroll = (): UseScroll => {
         scrollY: 0,
     })
 
-    const throttled = useThrottle(() => {
-        const elem: any = document.scrollingElement
-        setWheelEvent({
-            scrollDeltaX: elem.scrollLeft - scroll.scrollX,
-            scrollDeltaY: elem.scrollTop - scroll.scrollY,
-            scrollHeight: elem.scrollHeight,
-            scrollWidth: elem.scrollWidth,
-            scrollX: elem.scrollLeft,
-            scrollY: elem.scrollTop,
-        })
-    }, 150, true)
+    const throttled = useThrottle(
+        () => {
+            const elem: any = document.scrollingElement
+            setWheelEvent({
+                scrollDeltaX: elem.scrollLeft - scroll.scrollX,
+                scrollDeltaY: elem.scrollTop - scroll.scrollY,
+                scrollHeight: elem.scrollHeight,
+                scrollWidth: elem.scrollWidth,
+                scrollX: elem.scrollLeft,
+                scrollY: elem.scrollTop,
+            })
+        },
+        delay,
+        true
+    )
 
     useEffect(() => {
         window.addEventListener('scroll', throttled)

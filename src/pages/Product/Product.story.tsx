@@ -109,7 +109,7 @@ const ProductMockData: ProductProps = {
             },
         ],
     },
-    assembler: {
+    pageBuilder: {
         components: [
             {
                 name: 'ProductCarousel',

@@ -365,7 +365,7 @@ export const ProductListMockData: CategoryProps = {
             ],
         })),
     },
-    assembler: {
+    pageBuilder: {
         components: [
             {
                 name: 'Banner',

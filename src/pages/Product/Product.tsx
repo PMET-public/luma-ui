@@ -18,17 +18,17 @@ import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
-import Assembler, { AssemblerProps } from '../../components/Assembler'
+import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 
 const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
 const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
 
 export type ProductProps = {
-    assembler?: AssemblerProps
+    pageBuilder?: PageBuilderProps
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
-    description?: AssemblerProps
+    description?: PageBuilderProps
     images: ImageProps[]
     swatches?: Array<{
         title?: Props<{
@@ -47,7 +47,7 @@ export type ProductProps = {
 }
 
 export const Product: Component<ProductProps> = ({
-    assembler,
+    pageBuilder,
     breadcrumbs,
     buttons,
     description,
@@ -100,12 +100,12 @@ export const Product: Component<ProductProps> = ({
                             ))}
                         </Buttons>
 
-                        {description && <Assembler {...description} />}
+                        {description && <PageBuilder {...description} />}
                     </Info>
                 </InfoWrapper>
             </Wrapper>
 
-            {assembler && <Assembler {...assembler} />}
+            {pageBuilder && <PageBuilder {...pageBuilder} />}
         </Root>
     )
 }

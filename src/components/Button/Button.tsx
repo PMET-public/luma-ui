@@ -8,16 +8,10 @@ export type ButtonProps = {
     text?: string
 }
 
-export const Button: Component<ButtonProps> = ({
-    text,
-    children = text,
-    color = 'primary',
-    fill = false,
-    ...props
-}) => {
+export const Button: Component<ButtonProps> = ({ text, children, color = 'primary', fill = false, ...props }) => {
     return (
         <Root $fill={fill} $color={color} as="button" {...props}>
-            <span>{children}</span>
+            <span>{text || children}</span>
         </Root>
     )
 }
