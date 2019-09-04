@@ -72,16 +72,6 @@ export const Root = styled.div`
         line-height: 1.5;
     }
 
-    & blockquote {
-        font-size: 2.4rem;
-        font-style: italic;
-        line-height: 1.5;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-        padding-left: 2.4rem;
-        position: relative;
-    }
-
     /* Headings */
 
     & h1,
