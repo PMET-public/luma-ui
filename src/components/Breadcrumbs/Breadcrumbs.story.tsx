@@ -5,7 +5,7 @@ import { text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Breadcrumbs', module).add('Default', () => (
     <Breadcrumbs
-        dividor={text('dividor', '')}
+        divider={text('divider', '')}
         prefix={text('prefix', '#')}
         items={[
             { as: 'a', href: '#', text: 'One' },

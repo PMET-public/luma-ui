@@ -3,7 +3,7 @@ import { Component, Props } from '../../lib'
 import { Root, Item } from './Breadcrumbs.styled'
 
 export type BreadcrumbsProps = {
-    dividor?: string
+    divider?: string
     prefix?: string
     items: Array<
         Props<{
@@ -13,7 +13,7 @@ export type BreadcrumbsProps = {
     >
 }
 
-export const Breadcrumbs: Component<BreadcrumbsProps> = ({ dividor = '', items = [], prefix = '', ...props }) => {
+export const Breadcrumbs: Component<BreadcrumbsProps> = ({ divider = '', items = [], prefix = '', ...props }) => {
     return (
         <Root {...props}>
             {items.map(({ text, _id, ...item }, index) => (
@@ -22,7 +22,7 @@ export const Breadcrumbs: Component<BreadcrumbsProps> = ({ dividor = '', items =
                         {prefix}
                         {text}
                     </Item>
-                    {index < items.length - 1 && dividor}
+                    {index < items.length - 1 && divider}
                 </React.Fragment>
             ))}
         </Root>
