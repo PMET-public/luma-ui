@@ -4,12 +4,12 @@ module.exports = (Name) => source`
 
     import React from 'react'
     import { Component } from '../../lib'
-    import { Root } from './FooBar.styled'
+    import { Root } from './${Name}.styled'
 
-    export type FooBarProps = {}
+    export type ${Name}Props = {}
 
-    export const FooBar: Component<FooBarProps> = ({ ...props }) => {
-        return <Root {...props}>👋 Hi, I'm FooBar</Root>
+    export const ${Name}: Component<${Name}Props> = ({ ...props }) => {
+        return <Root {...props}>👋 Hi, I'm ${Name}</Root>
     }
 
 ` + '\n'
