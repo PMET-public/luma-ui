@@ -1,4 +1,4 @@
-export default function config(elem: HTMLElement) {
+export default (elem: HTMLElement) => {
     return {
         __html: elem.innerHTML,
     }

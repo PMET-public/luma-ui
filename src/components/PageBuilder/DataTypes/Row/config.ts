@@ -1,6 +1,6 @@
 import { getBackgroundImages } from '../../utils'
 
-export default function config(elem: HTMLElement) {
+export default (elem: HTMLElement) => {
     const { backgroundImages: _backgroundImages } = elem.dataset
 
     if (_backgroundImages) {

@@ -3,7 +3,7 @@ import { getStyleAsObject } from '../../utils'
 import { LinkProps } from '../../../Link'
 import { ImageProps } from '../../../Image'
 
-export default function config(elem: HTMLElement) {
+export default (elem: HTMLElement) => {
     const imageElement =
         elem.children[0].nodeName === 'A'
             ? (elem.children[0].children as HTMLCollectionOf<HTMLElement>)
