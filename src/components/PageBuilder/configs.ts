@@ -6,6 +6,7 @@ import Html from './DataTypes/Html/config'
 import Divider from './DataTypes/Divider/config'
 import Buttons from './DataTypes/Buttons/config'
 import ButtonItem from './DataTypes/ButtonItem/config'
+import Block from './DataTypes/Block/config'
 
 export default {
     Row,
@@ -16,4 +17,5 @@ export default {
     Divider,
     Buttons,
     ButtonItem,
+    Block,
 }
