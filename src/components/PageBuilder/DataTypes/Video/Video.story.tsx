@@ -1,0 +1,6 @@
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { PageBuilder } from '../../PageBuilder'
+
+const html = `<div data-content-type=\"row\" data-appearance=\"full-width\" data-enable-parallax=\"0\" data-parallax-speed=\"0.5\" data-background-images=\"{}\" data-element=\"main\" style=\"justify-content: center; display: flex; flex-direction: column; background-position: left top; background-size: cover; background-repeat: no-repeat; background-attachment: scroll; border-style: none; border-width: 1px; border-radius: 0px; min-height: 200px; margin: 0px; padding: 10px;\"><div class=\"row-full-width-inner\" data-element=\"inner\"><div data-content-type=\"video\" data-appearance=\"default\" data-element=\"main\" style=\"margin: 0px;\"><div class=\"pagebuilder-video-inner\" data-element=\"inner\"><div class=\"pagebuilder-video-wrapper\" data-element=\"wrapper\" style=\"border-style: none; border-width: 1px; border-radius: 0px; padding: 0px;\"><div class=\"pagebuilder-video-container\"><iframe frameborder=\"0\" allowfullscreen=\"\" src=\"https://www.youtube.com/embed/aqz-KE-bpKQ\" data-element=\"video\"></iframe></div></div></div></div></div></div>`
+storiesOf('📦 Components/PageBuilder/Video', module).add('Default', () => <PageBuilder html={html} />)

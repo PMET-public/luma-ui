@@ -7,6 +7,7 @@ import Divider from './DataTypes/Divider/config'
 import Buttons from './DataTypes/Buttons/config'
 import ButtonItem from './DataTypes/ButtonItem/config'
 import Block from './DataTypes/Block/config'
+import Video from './DataTypes/Video/config'
 
 export default {
     Row,
@@ -18,4 +19,5 @@ export default {
     Buttons,
     ButtonItem,
     Block,
+    Video,
 }
