@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $appearance?: 'contained' | 'full-width' }>`
-    position: relative;
-`
-
 export const Wrapper = styled.div``
 
 export const BgImage = styled.div<{ $src: string; $loaded?: boolean; $error?: boolean }>`
@@ -25,4 +21,18 @@ export const BgImage = styled.div<{ $src: string; $loaded?: boolean; $error?: bo
 export const Content = styled.div`
     position: relative;
     z-index: 1;
+`
+
+export const Root = styled.div<{ $appearance?: 'contained' | 'full-width' | 'full-bleed' }>`
+    margin: 0 auto;
+    max-width: ${props => (props.$appearance === 'contained' ? props.theme.layout.containedWidth : '100%')};
+    position: relative;
+    width: 100%;
+
+    ${Content} {
+        padding: 0 ${props => props.theme.layout.margin};
+        margin: 0 auto;
+        width: 100%;
+        max-width: ${props => (props.$appearance === 'full-width' ? props.theme.layout.containedWidth : '100%')};
+    }
 `

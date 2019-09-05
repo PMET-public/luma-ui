@@ -3,7 +3,7 @@ import styled, { ThemeProvider as StyledThemeProvider, createGlobalStyle } from 
 import { ResetStyles } from './ResetStyles'
 import { light as lightColors, dark as darkColors } from './colors'
 import { typography } from './typography'
-import { breakpoints } from './breakpoints'
+import { breakpoints, layout } from './layout'
 
 const GlobalStyles = createGlobalStyle`
     html {
@@ -23,8 +23,6 @@ export const Root = styled.div`
     font-family: ${props => props.theme.typography.body.family};
     font-style: ${props => props.theme.typography.body.style};
     font-weight: ${props => props.theme.typography.body.weight};
-    margin: 0 auto;
-    max-width: 180rem;
 
     & .visuallyhidden {
         clip: rect(0 0 0 0);
@@ -132,7 +130,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark = fa
     const colors = dark ? darkColors : lightColors
 
     return (
-        <StyledThemeProvider theme={{ colors, typography, breakpoints, dark }}>
+        <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, dark }}>
             <Root>
                 <ResetStyles />
                 <GlobalStyles />

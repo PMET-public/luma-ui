@@ -5,12 +5,20 @@ import { Root } from './Button.styled'
 export type ButtonProps = {
     color?: 'primary' | 'secondary'
     fill?: boolean
+    border?: boolean
     text?: string
 }
 
-export const Button: Component<ButtonProps> = ({ text, children, color = 'primary', fill = false, ...props }) => {
+export const Button: Component<ButtonProps> = ({
+    text,
+    children,
+    color = 'primary',
+    border = true,
+    fill = false,
+    ...props
+}) => {
     return (
-        <Root $fill={fill} $color={color} as="button" {...props}>
+        <Root $fill={fill} $border={border} $color={color} as="button" {...props}>
             <span>{text || children}</span>
         </Root>
     )
