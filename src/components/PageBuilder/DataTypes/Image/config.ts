@@ -25,10 +25,10 @@ export default (elem: HTMLElement) => {
     const link: LinkProps | undefined =
         elem.childNodes[0].nodeName === 'A'
             ? {
-                target: elem.children[0].getAttribute('target') || undefined,
-                type: elem.children[0].getAttribute('data-link-type') || undefined,
-                href: elem.children[0].getAttribute('href') || undefined,
-            }
+                  target: elem.children[0].getAttribute('target') || undefined,
+                  type: elem.children[0].getAttribute('data-link-type') || undefined,
+                  href: elem.children[0].getAttribute('href') || undefined,
+              }
             : undefined
 
     const captionElement = elem.querySelector('figcaption')

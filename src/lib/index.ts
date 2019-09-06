@@ -47,7 +47,7 @@ export type Component<P = {}> = React.FunctionComponent<Props<P>>
  */
 
 export const toCamelCase = (string: string) =>
-    string.replace(/-([a-z])/g, function (g) {
+    string.replace(/-([a-z])/g, function(g) {
         return g[1].toUpperCase()
     })
 
