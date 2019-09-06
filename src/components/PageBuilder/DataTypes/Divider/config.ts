@@ -1,4 +1,4 @@
-import { getStyleAsObject } from '../../utils'
+import { getStyleAsObject } from '../../../../lib'
 
 export default (elem: HTMLElement) => {
     const hrElement = elem.children[0] as HTMLElement

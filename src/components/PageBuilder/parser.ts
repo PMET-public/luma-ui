@@ -1,6 +1,5 @@
 import configs from './configs'
-import { toPascalCase } from '../../lib'
-import { getStyleAsObject } from './utils'
+import { toPascalCase, getStyleAsObject } from '../../lib'
 
 const getComponentData = (type: string, node?: HTMLElement) => {
     const name = toPascalCase(type)

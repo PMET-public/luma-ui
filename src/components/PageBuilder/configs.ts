@@ -8,6 +8,8 @@ import Buttons from './DataTypes/Buttons/config'
 import ButtonItem from './DataTypes/ButtonItem/config'
 import Block from './DataTypes/Block/config'
 import Video from './DataTypes/Video/config'
+import ColumnGroup from './DataTypes/ColumnGroup/config'
+import Column from './DataTypes/Column/config'
 
 export default {
     Row,
@@ -20,4 +22,6 @@ export default {
     ButtonItem,
     Block,
     Video,
+    ColumnGroup,
+    Column,
 }

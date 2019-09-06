@@ -30,6 +30,7 @@ export const Root = styled.div<{ $appearance?: 'contained' | 'full-width' | 'ful
     max-width: ${props => (props.$appearance === 'contained' ? props.theme.layout.containedWidth : '100%')};
     position: relative;
     width: 100%;
+    display: flex;
 
     ${Content} {
         padding: 0 ${props => props.theme.layout.margin};
