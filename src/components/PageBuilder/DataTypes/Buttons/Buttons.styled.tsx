@@ -5,7 +5,14 @@ import { Root as RootButtonComponent } from '../../../Button'
 
 export const Root = styled.div<{ $appearance: 'inline' | 'stacked'; $sameWidth: boolean }>`
     display: inline-flex;
-    flex-direction: ${props => (props.$appearance === 'inline' ? 'row' : 'column')};
+    align-items: center;
+
+    ${props =>
+        props.$appearance === 'stacked' &&
+        `
+            flex-direction: column;
+            align-items: unset;
+        `}
 
     ${RootButton} {
         margin: 0.5rem;

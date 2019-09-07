@@ -3,13 +3,12 @@ import { LinkProps } from '../../../Link'
 
 export default (elem: HTMLElement) => {
     const buttonElem = elem.childNodes[0] as HTMLElement
-    const isLink = buttonElem.classList.contains('pagebuilder-button-link')
-    const isFill = buttonElem.classList.contains('pagebuilder-button-secondary')
+    const type = buttonElem.classList.contains('pagebuilder-button-link') ? 'link' : 'button'
+    const secondary = buttonElem.classList.contains('pagebuilder-button-secondary') ? true : false
 
     const button: ButtonProps = {
         text: elem.textContent || '',
-        fill: isFill || isLink ? false : true,
-        border: !isLink,
+        secondary,
     }
 
     const link: LinkProps | undefined =
@@ -24,5 +23,6 @@ export default (elem: HTMLElement) => {
     return {
         button,
         link,
+        type,
     }
 }

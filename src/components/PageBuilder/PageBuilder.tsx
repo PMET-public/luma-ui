@@ -46,7 +46,6 @@ export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => 
         const data = htmlToProps(html)
         const firstComponentProps = data.items[0]
         setComponent(firstComponentProps)
-        console.log(firstComponentProps)
     }, [html])
 
     return (
