@@ -1,33 +1,20 @@
 import React from 'react'
 import { Component } from '../../../../lib'
-import { Root, Wrapper, BgImage, Content } from './Column.styled'
+import { Root } from './Column.styled'
 
-import { Image, useImage } from '../../../../hooks/useImage'
+import { Image } from '../../../../hooks/useImage'
+
+import ContentWithBackground from '../../lib/ContentWithBackground'
 
 export type ColumnProps = {
-    appearance?: 'contained' | 'full-width' | 'full-bleed'
+    appearance?: string
     backgroundImages?: Image
-    innerHTML: string
-    // enableParallax?: boolean
-    // parallaxSpeed?: number
 }
 
-export const Column: Component<ColumnProps> = ({
-    appearance = 'contained',
-    backgroundImages,
-    children,
-    innerHTML,
-    // enableParallax,
-    // parallaxSpeed = 1,
-    ...props
-}) => {
-    const bgImage = useImage(backgroundImages)
+export const Column: Component<ColumnProps> = ({ appearance, backgroundImages, children, style, ...props }) => {
     return (
-        <Root $appearance={appearance} {...props}>
-            <Wrapper>
-                {backgroundImages && <BgImage $src={bgImage.src} $loaded={bgImage.loaded} $error={bgImage.error} />}
-                <Content>{children}</Content>
-            </Wrapper>
+        <Root as={ContentWithBackground} backgroundImages={backgroundImages} style={style} {...props}>
+            {children}
         </Root>
     )
 }

@@ -6,7 +6,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { Component } from '../../lib'
 import { Root } from './PageBuilder.styled'
 import { ErrorBoundary } from '../../lib'
-import { htmlToProps } from './parser'
+import { htmlToProps } from './lib/parser'
 
 export type PageBuilderProps = {
     html: string

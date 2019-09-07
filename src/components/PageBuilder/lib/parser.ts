@@ -1,5 +1,6 @@
-import configs from './configs'
-import { toPascalCase, getStyleAsObject } from '../../lib'
+import { getBackgroundImages } from './utils'
+import configs from '../configs'
+import { toPascalCase, getStyleAsObject } from '../../../lib'
 
 const getComponentData = (type: string, node?: HTMLElement) => {
     const name = toPascalCase(type)
@@ -16,9 +17,11 @@ const getComponentData = (type: string, node?: HTMLElement) => {
     /** Dataset comes in first child element if the Component Appearance is "contained" */
     const currentNode = appearance === 'contained' ? (node.childNodes[0] as HTMLElement) : node
 
-    const { contentType, element, ...props }: any = currentNode.dataset
+    const { contentType, element, backgroundImages: _backgroundImages, ...props }: any = currentNode.dataset
 
     const style = getStyleAsObject(currentNode.style)
+
+    const backgroundImages = _backgroundImages ? getBackgroundImages(_backgroundImages) : undefined
 
     const componentProps = configs[name] ? configs[name](currentNode) : {}
 
@@ -29,6 +32,7 @@ const getComponentData = (type: string, node?: HTMLElement) => {
         props: {
             ...props,
             ...componentProps,
+            backgroundImages,
             style,
         },
     }

@@ -3,7 +3,7 @@ import Accordion from './'
 import { storiesOf } from '@storybook/react'
 
 storiesOf('📦 Components/Accordion', module).add('Default', () => (
-    <Accordion>
+    <Accordion defaultSelected={0}>
         <Accordion.Item label="Uno">
             <span style={{ fontSize: '4rem' }}>👋</span>
         </Accordion.Item>

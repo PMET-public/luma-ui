@@ -10,6 +10,8 @@ import Block from './DataTypes/Block/config'
 import Video from './DataTypes/Video/config'
 import ColumnGroup from './DataTypes/ColumnGroup/config'
 import Column from './DataTypes/Column/config'
+import Tabs from './DataTypes/Tabs/config'
+import TabItem from './DataTypes/TabItem/config'
 
 export default {
     Row,
@@ -24,4 +26,6 @@ export default {
     Video,
     ColumnGroup,
     Column,
+    Tabs,
+    TabItem,
 }
