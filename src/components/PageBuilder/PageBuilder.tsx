@@ -31,7 +31,7 @@ const renderComponent = (Component: React.ComponentType<any>, props: any, items:
 }
 
 const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ name, items, props }) => {
-    const Component = React.lazy(() => import(`./DataTypes/${name}/index`))
+    const Component = React.lazy(() => import(`./ContentTypes/${name}/index`))
     return (
         <Suspense fallback={''}>
             <ErrorBoundary>{renderComponent(Component, props, items)}</ErrorBoundary>

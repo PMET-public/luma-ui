@@ -19,7 +19,7 @@ export const PageBuilderVideoYouTubeMock = `<div data-content-type=\"row\" data-
 
 storiesOf('📦 Components/PageBuilder', module).add('Default', () => {
     const html = select(
-        'Data Type',
+        'Content Type',
         {
             Block: PageBuilderBlockMock,
             Buttons: PageBuilderButtonsMock,
