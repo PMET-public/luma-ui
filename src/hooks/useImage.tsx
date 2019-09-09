@@ -40,7 +40,7 @@ export const useImage = (image: Image) => {
      * Load
      */
     useEffect(() => {
-        if (!image) return
+        if (!src) return
 
         const img = new Image()
 
