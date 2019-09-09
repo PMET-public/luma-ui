@@ -3,7 +3,7 @@ const source = require('common-tags').source
 module.exports = (Name, folder = 'components') => {
     labels = {
         components: '📦 Components',
-        pages: '📑 Pages',
+        templates: '📑 Templates',
     }
 
     return (

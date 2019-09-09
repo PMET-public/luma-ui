@@ -1,5 +1,5 @@
 import React from 'react'
-import Product from '.'
+import Product from '../Product'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
@@ -142,7 +142,7 @@ const ProductMockData: ProductProps = {
     },
 }
 
-storiesOf('📑 Pages/Product', module).add(
+storiesOf('📑 Templates/Product', module).add(
     'Default',
     () => (
         <App {...AppMockData}>

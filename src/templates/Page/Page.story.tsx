@@ -151,7 +151,7 @@ export const PageMockData: PageProps = {
     },
 }
 
-storiesOf('📑 Pages/Page', module).add(
+storiesOf('📑 Templates/Page', module).add(
     'Default',
     () => (
         <App {...AppMockData}>
