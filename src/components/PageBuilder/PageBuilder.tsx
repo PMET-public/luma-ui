@@ -46,13 +46,13 @@ export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => 
     useEffect(() => {
         const data = htmlToProps(html)
         setContentTypes(data.items)
-        console.log('🏗 PageBuilder ContentTypes', contentTypes)
+        console.log('🏗 PageBuilder ContentTypes', data.items)
     }, [html])
 
     return (
         <Root {...props}>
-            {contentTypes.map(contentType => (
-                <PageBuilderFactory {...contentType} />
+            {contentTypes.map((contentType, index) => (
+                <PageBuilderFactory key={index} {...contentType} />
             ))}
         </Root>
     )

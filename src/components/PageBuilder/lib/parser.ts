@@ -1,4 +1,3 @@
-import { getBackgroundImages } from './utils'
 import configs from '../configs'
 import { toPascalCase, getStyleAsObject } from '../../../lib'
 
@@ -21,8 +20,6 @@ const getComponentData = (type: string, node?: HTMLElement) => {
 
     const style = getStyleAsObject(currentNode.style)
 
-    const backgroundImages = _backgroundImages ? getBackgroundImages(_backgroundImages) : undefined
-
     const componentProps = configs[name] ? configs[name](currentNode) : {}
 
     return {
@@ -32,7 +29,6 @@ const getComponentData = (type: string, node?: HTMLElement) => {
         props: {
             ...props,
             ...componentProps,
-            backgroundImages,
             style,
         },
     }

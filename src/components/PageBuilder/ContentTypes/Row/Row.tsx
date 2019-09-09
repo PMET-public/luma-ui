@@ -1,20 +1,18 @@
 import React from 'react'
 import { Component } from '../../../../lib'
 import { Root, Wrapper } from './Row.styled'
-import ContentWithBackground from '../../lib/ContentWithBackground'
-
-import { Image } from '../../../../hooks/useImage'
+import ContentWithBackground, { ContentWithBackgroundProps } from '../../lib/ContentWithBackground'
 
 export type RowProps = {
     appearance?: 'contained' | 'full-width' | 'full-bleed'
-    backgroundImages?: Image
+    background?: ContentWithBackgroundProps
     // enableParallax?: boolean
     // parallaxSpeed?: number
 }
 
 export const Row: Component<RowProps> = ({
     appearance = 'contained',
-    backgroundImages,
+    background,
     children,
     // enableParallax,
     // parallaxSpeed = 1,
@@ -23,7 +21,7 @@ export const Row: Component<RowProps> = ({
 }) => {
     return (
         <Root $appearance={appearance} {...props}>
-            <ContentWithBackground backgroundImages={backgroundImages} style={style}>
+            <ContentWithBackground {...background} style={style}>
                 <Wrapper>{children}</Wrapper>
             </ContentWithBackground>
         </Root>

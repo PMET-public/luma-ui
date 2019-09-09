@@ -2,18 +2,16 @@ import React from 'react'
 import { Component } from '../../../../lib'
 import { Root } from './Column.styled'
 
-import { Image } from '../../../../hooks/useImage'
-
-import ContentWithBackground from '../../lib/ContentWithBackground'
+import ContentWithBackground, { ContentWithBackgroundProps } from '../../lib/ContentWithBackground'
 
 export type ColumnProps = {
     appearance?: string
-    backgroundImages?: Image
+    background?: ContentWithBackgroundProps
 }
 
-export const Column: Component<ColumnProps> = ({ appearance, backgroundImages, children, style, ...props }) => {
+export const Column: Component<ColumnProps> = ({ appearance, background, children, style, ...props }) => {
     return (
-        <Root as={ContentWithBackground} backgroundImages={backgroundImages} style={style} {...props}>
+        <Root as={ContentWithBackground} {...background} style={style} {...props}>
             {children}
         </Root>
     )
