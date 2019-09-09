@@ -9,13 +9,13 @@ export default (elem: HTMLElement) => {
             ? (elem.children[0].children as HTMLCollectionOf<HTMLElement>)
             : (elem.children as HTMLCollectionOf<HTMLElement>)
 
-    const desktopSrc = imageElement[0].getAttribute('src')
-    const mobileSrc = imageElement[1].getAttribute('src')
+    const desktopSrc = imageElement[0].getAttribute('src') || undefined
+    const mobileSrc = imageElement[1].getAttribute('src') || undefined
 
     const image: ImageProps & { style: {} } = {
         src: {
             desktop: desktopSrc || '',
-            mobile: mobileSrc !== desktopSrc ? mobileSrc || undefined : undefined,
+            mobile: mobileSrc !== desktopSrc ? mobileSrc : undefined,
         },
         alt: imageElement[0].getAttribute('alt') || undefined,
         title: imageElement[0].getAttribute('title') || undefined,

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Content } from '../../lib/ContentWithBackground'
+export const Wrapper = styled.div``
 
 export const Root = styled.div<{ $appearance?: 'contained' | 'full-width' | 'full-bleed' }>`
     margin: 0 auto;
@@ -8,7 +8,7 @@ export const Root = styled.div<{ $appearance?: 'contained' | 'full-width' | 'ful
     position: relative;
     width: 100%;
 
-    ${Content} {
+    ${Wrapper} {
         padding: 0 ${props => props.theme.layout.margin};
         margin: 0 auto;
         width: 100%;

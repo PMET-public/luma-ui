@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component } from '../../../../lib'
-import { Root } from './Row.styled'
+import { Root, Wrapper } from './Row.styled'
 import ContentWithBackground from '../../lib/ContentWithBackground'
 
 import { Image } from '../../../../hooks/useImage'
@@ -24,7 +24,7 @@ export const Row: Component<RowProps> = ({
     return (
         <Root $appearance={appearance} {...props}>
             <ContentWithBackground backgroundImages={backgroundImages} style={style}>
-                {children}
+                <Wrapper>{children}</Wrapper>
             </ContentWithBackground>
         </Root>
     )

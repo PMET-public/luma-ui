@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Component } from '../../../../lib'
+import { Component, Props } from '../../../../lib'
 import { Root, BgImage, Content } from '../../lib/ContentWithBackground/ContentWithBackground.styled'
 
 import { Image, useImage } from '../../../../hooks/useImage'
 
-export type ContentWithBackgroundProps = {
+export type ContentWithBackgroundProps = Props<{
     backgroundImages?: Image
-}
+}>
 
 export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
     backgroundImages,

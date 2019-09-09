@@ -12,6 +12,7 @@ import ColumnGroup from './ContentTypes/ColumnGroup/config'
 import Column from './ContentTypes/Column/config'
 import Tabs from './ContentTypes/Tabs/config'
 import TabItem from './ContentTypes/TabItem/config'
+import Banner from './ContentTypes/Banner/config'
 
 export default {
     Row,
@@ -28,4 +29,5 @@ export default {
     Column,
     Tabs,
     TabItem,
+    Banner,
 }
