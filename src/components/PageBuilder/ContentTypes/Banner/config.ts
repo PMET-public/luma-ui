@@ -14,10 +14,6 @@ export default (elem: HTMLElement) => {
               }
             : undefined
 
-    /** Get Overlay */
-    // const overlayElem = elem.querySelector('[data-element="overlay"]') as HTMLElement
-    // const overlay = overlayElem.dataset
-
     /** Get Bakground Image */
     const wrapperElem = elem.querySelector('[data-element="wrapper"]') as HTMLElement
 
@@ -52,8 +48,6 @@ export default (elem: HTMLElement) => {
         ...overlayElem.dataset,
         style: getStyleAsObject(overlayElem.style),
     }
-
-    console.log(elem)
 
     return {
         link,

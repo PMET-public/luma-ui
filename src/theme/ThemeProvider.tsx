@@ -85,7 +85,7 @@ export const Root = styled.div`
         line-height: 1.1;
     }
 
-    & h1 {
+    /* & h1 {
         font-size: 2.4rem;
     }
 
@@ -101,7 +101,7 @@ export const Root = styled.div`
     & h5,
     & h6 {
         font-size: 1.8rem;
-    }
+    } */
 
     /* Tables */
 
