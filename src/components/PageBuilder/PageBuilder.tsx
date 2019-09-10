@@ -2,7 +2,7 @@
  * ☢️ Experimental
  */
 
-import React, { Suspense, useEffect, useState, FunctionComponent } from 'react'
+import React, { Suspense, useMemo } from 'react'
 import { Component } from '../../lib'
 import { Root } from './PageBuilder.styled'
 import { ErrorBoundary } from '../../lib'
@@ -30,28 +30,22 @@ const renderComponent = (Component: React.ComponentType<any>, props: any, items:
     )
 }
 
-const PageBuilderFactory: FunctionComponent<PageBuilderFactoryProps> = ({ name, items, props }) => {
-    const Component = React.lazy(() => import(`./ContentTypes/${name}/index`))
+const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ name, items, props }) => {
+    const component = useMemo(() => React.lazy(() => import(`./ContentTypes/${name}/index`)), [name])
 
-    return (
+    return component ? (
         <Suspense fallback={''}>
-            <ErrorBoundary>{renderComponent(Component, props, items)}</ErrorBoundary>
+            <ErrorBoundary>{renderComponent(component, props, items)}</ErrorBoundary>
         </Suspense>
-    )
+    ) : null
 }
 
 export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => {
-    const [contentTypes, setContentTypes] = useState([])
-
-    useEffect(() => {
-        const data = htmlToProps(html)
-        setContentTypes(data.items)
-        console.log('🏗 PageBuilder ContentTypes', data.items)
-    }, [html])
+    const data: PageBuilderFactoryProps = useMemo(() => htmlToProps(html), [html])
 
     return (
         <Root {...props}>
-            {contentTypes.map((contentType, index) => (
+            {data.items.map((contentType, index) => (
                 <PageBuilderFactory key={index} {...contentType} />
             ))}
         </Root>

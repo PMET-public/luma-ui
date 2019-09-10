@@ -64,11 +64,16 @@ const walk = (rootEl: Node, component: any) => {
 
         currentNode = tree.nextSibling()
     }
+
     return component
 }
 
 export const htmlToProps = (htmlStr: string) => {
     const container = new DOMParser().parseFromString(htmlStr, 'text/html')
     const stageContentType = getComponentData('root-container')
-    return walk(container.body, stageContentType)
+    const result = walk(container.body, stageContentType)
+
+    console.log('🏗 PageBuilder ContentTypes', result)
+
+    return result
 }
