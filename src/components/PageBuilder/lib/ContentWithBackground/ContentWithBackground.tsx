@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useMemo } from 'react'
 import { Component, Props } from '../../../../lib'
 import { Root, BgImage, Content } from '../../lib/ContentWithBackground/ContentWithBackground.styled'
 
@@ -11,33 +11,32 @@ export type ContentWithBackgroundProps = Props<{
 export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
     backgroundImages,
     children,
-    style: _style,
+    style,
     ...props
 }) => {
     const bgImage = useImage(backgroundImages)
-    const [bgStyle, setBgStyle] = useState({})
-    const [style, setStyle] = useState({})
 
-    useEffect(() => {
-        if (!_style) return
+    const styles: { [key: string]: any } = useMemo(() => {
+        if (!style) return {}
 
-        const styleObj = {}
-        const bgStyleObj = {}
+        const background = {}
+        const wrapper = {}
 
-        Object.keys(_style).forEach(s => {
-            if (s.match(/^background(.*)$/)) bgStyleObj[s] = _style[s]
-            else styleObj[s] = _style[s]
+        Object.keys(style).forEach(s => {
+            if (s.match(/^background(.*)$/)) background[s] = style[s]
+            else wrapper[s] = style[s]
         })
 
-        setStyle(styleObj)
-        setBgStyle(bgStyleObj)
-    }, [JSON.stringify(_style)])
+        return {
+            background,
+            wrapper,
+        }
+    }, [JSON.stringify(style)])
 
     return (
-        <Root style={style} {...props}>
-            {backgroundImages && (
-                <BgImage $src={bgImage.src} $loaded={bgImage.loaded} $error={bgImage.error} style={bgStyle} />
-            )}
+        <Root style={{ backgroundColor: styles.background.backgroundColor, ...styles.wrapper }} {...props}>
+            <BgImage $src={bgImage.src} $loaded={bgImage.loaded} $error={bgImage.error} style={styles.background} />
+
             <Content>{children}</Content>
         </Root>
     )

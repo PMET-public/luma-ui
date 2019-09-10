@@ -9,9 +9,9 @@ export const Root = styled.div<{ $appearance?: 'contained' | 'full-width' | 'ful
     width: 100%;
 
     ${Wrapper} {
-        padding: 0 ${props => props.theme.layout.margin};
         margin: 0 auto;
         width: 100%;
+        padding: 0 ${props => (props.$appearance === 'contained' ? props.theme.layout.margin : '0')};
         max-width: ${props => (props.$appearance === 'full-width' ? props.theme.layout.containedWidth : '100%')};
     }
 `

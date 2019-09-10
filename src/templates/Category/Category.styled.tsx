@@ -9,7 +9,6 @@ import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 export const Root = styled.div`
     display: grid;
     grid-gap: 2rem;
-    padding-top: 2rem;
 `
 
 export const TopBar = styled.div`

@@ -12,16 +12,26 @@ export const Overlay = styled.div`
 `
 
 export const Content = styled.div`
-    line-height: 1.5;
+    display: grid;
+    font-size: 1.7rem;
 
-    & p,
     & h1,
     & h2,
-    &h3,
+    & h3,
+    & h4,
+    & p {
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    & h1,
+    & h2,
+    & h3,
     & h4 {
-        margin-bottom: 1.2rem;
-        &:last-child {
-            margin-bottom: 0;
+        font-size: 200%;
+        @media ${props => props.theme.breakpoints.medium} {
+            font-size: 240%;
         }
     }
 `
@@ -36,10 +46,6 @@ export const Root = styled.div<{
     $showOverlay?: 'always' | 'never' | 'hover'
     $overlayColor?: string
 }>`
-    @media ${props => props.theme.breakpoints.smallOnly} {
-        padding: 1rem !important;
-    }
-
     ${props =>
         props.$showOverlay === 'hover' &&
         `

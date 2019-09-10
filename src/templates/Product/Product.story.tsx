@@ -4,9 +4,16 @@ import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
+import { text, number, files } from '@storybook/addon-knobs'
+import {
+    PageBuilderRowFullWidthMock,
+    PageBuilderTabsMock,
+    PageBuilderBannerMock,
+    PageBuilderRowFullBleedMock,
+} from '../../components/PageBuilder/PageBuilder.story'
 
-const ProductMockData: ProductProps = {
-    buttons: [{ text: 'Add to Cart', fill: true }, { text: 'Add to Favorite' }],
+const ProductMockData = (): ProductProps => ({
+    buttons: [{ text: 'Add to Cart' }, { text: 'Add to Favorite' }],
     breadcrumbs: {
         items: [
             {
@@ -33,8 +40,20 @@ const ProductMockData: ProductProps = {
         text: 'SKU. VSK12-LA',
     },
     images: new Array(5).fill({
-        alt: '',
-        src: require('../../../public/images/product-item-sample.jpg'),
+        src: {
+            desktop: files(
+                'Image',
+                '.jpg, .jpeg, .png',
+                [require('../../../public/images/product-item-sample.jpg')],
+                'Product Details'
+            )[0],
+            mobile: files(
+                'Image (Mobile)',
+                '.jpg, .jpeg, .png',
+                [require('../../../public/images/product-item-sample.jpg')],
+                'Product Details'
+            )[0],
+        },
     }),
     swatches: [
         {
@@ -100,53 +119,18 @@ const ProductMockData: ProductProps = {
         },
     ],
     description: {
-        components: [
-            {
-                name: 'Html',
-                props: {
-                    source: `<p>The Isadora Skirt has just the right amount of flounce to make it playful and yet still chic. Lovely wrap detail and draped layering in the front add a bit of sophistication to the lush print. </p><p>Features:</p><ul><li>Side zip</li><li>Length: 17\"</li><li>Hits mid thigh</li><li>Set on waist</li><li>Dry clean recommended</li></ul> `,
-                },
-            },
-        ],
+        html: PageBuilderRowFullBleedMock(PageBuilderTabsMock()),
     },
     pageBuilder: {
-        components: [
-            {
-                name: 'ProductCarousel',
-                props: {
-                    title: {
-                        as: 'h3',
-                        text: 'You may also like',
-                    },
-                    items: new Array(6).fill({
-                        link: { href: '#' },
-                        image: {
-                            alt: '',
-                            src: require('../../../public/images/product-item-sample.jpg'),
-                            width: 4,
-                            height: 5,
-                        },
-                        price: {
-                            regular: 49.99,
-                            special: 39.99,
-                            label: 'Starting at',
-                        },
-                        title: {
-                            text: 'Circle Hooded Ice Flee',
-                        },
-                        colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
-                    }),
-                },
-            },
-        ],
+        html: PageBuilderRowFullWidthMock(PageBuilderBannerMock()),
     },
-}
+})
 
 storiesOf('📑 Templates/Product', module).add(
     'Default',
     () => (
         <App {...AppMockData}>
-            <Product {...ProductMockData} />
+            <Product {...ProductMockData()} />
         </App>
     ),
     {

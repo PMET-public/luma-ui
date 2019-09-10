@@ -6,7 +6,6 @@ import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 
 export const Root = styled.div`
     display: grid;
-    grid-gap: 8rem;
 `
 
 export const Wrapper = styled.div`
@@ -26,7 +25,6 @@ export const Wrapper = styled.div`
         grid-auto-rows: max-content;
         grid-gap: 2rem;
         grid-template-columns: 1fr 1fr;
-        padding-top: 2rem;
     }
 
     @media ${props => props.theme.breakpoints.large} {
@@ -48,6 +46,7 @@ export const Images = styled.div`
 
     ${ImageTag} {
         width: 100%;
+        height: 100%;
     }
 
     ${CarouselRoot} {
@@ -81,9 +80,6 @@ export const InfoWrapper = styled.div`
         left: 50%;
         margin-left: -50vw;
         margin-top: -2rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-top: 3rem;
         position: relative;
         width: 100vw;
         z-index: 1;
@@ -104,7 +100,7 @@ export const Info = styled.div`
         background-color: ${props => props.theme.colors.surface};
         border-radius: 2rem;
         color: ${props => props.theme.colors.onSurface};
-        padding: 2rem;
+        padding-top: 2rem;
         position: sticky;
         top: 2rem;
     }
