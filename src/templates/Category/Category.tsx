@@ -83,7 +83,7 @@ export const Category: Component<CategoryProps> = ({
 
             <Content>
                 {pageBuilder && <PageBuilder {...pageBuilder} />}
-                {products && <ProductList {...products} />}Î
+                {products && <ProductList {...products} />}
             </Content>
 
             {filters && (
@@ -95,7 +95,6 @@ export const Category: Component<CategoryProps> = ({
                             <Button
                                 as="button"
                                 type="button"
-                                fill
                                 onClick={() => setShowFilter(false)}
                                 {...filters.closeButton}
                             />

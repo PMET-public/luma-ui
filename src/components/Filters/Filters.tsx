@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Component } from '../../lib'
+import { Component, Props } from '../../lib'
 import { Root, Group, Wrapper, List, GroupLabel, Item, Icon, Count, ToggleIcon, ToggleButton } from './Filters.styled'
 
 import { useMeasure } from '../../hooks/useMeasure'
@@ -24,12 +24,14 @@ export const Filters: Component<FiltersProps> = ({ groups = [], ...props }) => {
 type FiltersGroupProps = {
     title: string
     offset?: number
-    items: Array<{
-        _id?: string | number
-        active?: boolean
-        count?: number
-        text: string
-    }>
+    items: Array<
+        Props<{
+            _id?: string | number
+            active?: boolean
+            count?: number
+            text: string
+        }>
+    >
 }
 
 const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
