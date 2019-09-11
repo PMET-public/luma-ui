@@ -16,6 +16,7 @@ import {
 import { useResize } from '../../hooks/useResize'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
+import { Wrapper } from '../../components/Container'
 import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import ProductList, { ProductListProps } from '../../components/ProductList'
 import Filters, { FiltersProps } from '../../components/Filters'
@@ -59,31 +60,37 @@ export const Category: Component<CategoryProps> = ({
     return (
         <Root {...props}>
             <TopBar>
-                <Heading>
-                    {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
+                <Wrapper $contained $margin>
+                    <Heading>
+                        {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
 
-                    <Title {...title}>{title.text}</Title>
-                </Heading>
+                        <Title {...title}>{title.text}</Title>
+                    </Heading>
 
-                {filters && (
-                    <TopBarFilterButton as="button" type="button" onClick={() => setShowFilter(!showFilter)}>
-                        <span>
-                            <FiltersIcon />
-                            {filters.label}
-                        </span>
-                    </TopBarFilterButton>
-                )}
+                    {filters && (
+                        <TopBarFilterButton as="button" type="button" onClick={() => setShowFilter(!showFilter)}>
+                            <span>
+                                <FiltersIcon />
+                                {filters.label}
+                            </span>
+                        </TopBarFilterButton>
+                    )}
+                </Wrapper>
             </TopBar>
 
             {categories && (
-                <CategoriesWrapper>
+                <Wrapper $contained $margin>
                     <Pills {...categories} />
-                </CategoriesWrapper>
+                </Wrapper>
             )}
 
             <Content>
                 {pageBuilder && <PageBuilder {...pageBuilder} />}
-                {products && <ProductList {...products} />}
+                {products && (
+                    <Wrapper $contained $margin>
+                        <ProductList {...products} />
+                    </Wrapper>
+                )}
             </Content>
 
             {filters && (

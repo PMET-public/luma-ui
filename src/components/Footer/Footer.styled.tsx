@@ -5,15 +5,13 @@ import IconFacebookSvg from 'remixicon/icons/Logos/facebook-fill.svg'
 import IconInstagramSvg from 'remixicon/icons/Logos/instagram-fill.svg'
 import IconPinterestSvg from 'remixicon/icons/Logos/pinterest-fill.svg'
 
-export const Root = styled.footer`
-    background: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.onBackground};
+export const Root = styled.div`
     display: grid;
-    filter: opacity(0.65);
     font-size: 1.3rem;
     grid-gap: 3rem;
-    padding: 3rem;
+    padding: 4rem 0 6rem;
     width: 100%;
+    color: ${props => props.theme.colors.onSurface75};
 
     & a {
         transition: opacity 205ms ease;
@@ -29,7 +27,7 @@ export const Menu = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 `
 
 export const MenuLink = styled.span`

@@ -5,6 +5,7 @@ import {
     Wrapper,
     Images,
     InfoWrapper,
+    InfoOptions,
     Info,
     Header,
     Title,
@@ -60,7 +61,7 @@ export const Product: Component<ProductProps> = ({
 }) => {
     return (
         <Root {...props}>
-            <Wrapper>
+            <Wrapper $contained $margin>
                 <Images>
                     <Carousel gap={1} padding={3}>
                         {images.map((image, index) => (
@@ -73,33 +74,34 @@ export const Product: Component<ProductProps> = ({
 
                 <InfoWrapper>
                     <Info>
-                        <Header>
-                            {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
+                        <InfoOptions>
+                            <Header>
+                                {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
 
-                            <Title {...title}>{title.text}</Title>
+                                <Title {...title}>{title.text}</Title>
 
-                            <Price {...price} />
+                                <Price {...price} />
 
-                            {sku && <Sku {...sku}>{sku.text}</Sku>}
-                        </Header>
+                                {sku && <Sku {...sku}>{sku.text}</Sku>}
+                            </Header>
 
-                        {swatches &&
-                            swatches.map(({ type, title, props }, index) => (
-                                <Suspense fallback="Loading...." key={index}>
-                                    <Swatches>
-                                        {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
-                                        {type === 'text' && <TextSwatches {...props} />}
-                                        {type === 'thumb' && <ThumbSwatches {...props} />}
-                                    </Swatches>
-                                </Suspense>
-                            ))}
+                            {swatches &&
+                                swatches.map(({ type, title, props }, index) => (
+                                    <Suspense fallback="Loading...." key={index}>
+                                        <Swatches>
+                                            {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
+                                            {type === 'text' && <TextSwatches {...props} />}
+                                            {type === 'thumb' && <ThumbSwatches {...props} />}
+                                        </Swatches>
+                                    </Suspense>
+                                ))}
 
-                        <Buttons>
-                            {buttons.map((button, index) => (
-                                <Button key={index} {...button} />
-                            ))}
-                        </Buttons>
-
+                            <Buttons>
+                                {buttons.map((button, index) => (
+                                    <Button key={index} {...button} />
+                                ))}
+                            </Buttons>
+                        </InfoOptions>
                         {description && <PageBuilder {...description} />}
                     </Info>
                 </InfoWrapper>

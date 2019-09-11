@@ -20,9 +20,11 @@ export const Row: Component<RowProps> = ({
     ...props
 }) => {
     return (
-        <Root $appearance={appearance} {...props}>
+        <Root {...props}>
             <ContentWithBackground {...background} style={style}>
-                <Wrapper>{children}</Wrapper>
+                <Wrapper $contained={appearance !== 'full-bleed'} $margin={appearance !== 'full-bleed'}>
+                    {children}
+                </Wrapper>
             </ContentWithBackground>
         </Root>
     )

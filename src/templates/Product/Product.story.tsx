@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
-import { text, number, files } from '@storybook/addon-knobs'
+import { files } from '@storybook/addon-knobs'
 import {
     PageBuilderRowFullWidthMock,
     PageBuilderTabsMock,
@@ -122,7 +122,7 @@ const ProductMockData = (): ProductProps => ({
         html: PageBuilderRowFullBleedMock(PageBuilderTabsMock()),
     },
     pageBuilder: {
-        html: PageBuilderRowFullWidthMock(PageBuilderBannerMock()),
+        html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
     },
 })
 

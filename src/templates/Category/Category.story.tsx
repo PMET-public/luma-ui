@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { text, number, files } from '@storybook/addon-knobs'
-import { PageBuilderRowFullWidthMock, PageBuilderBannerMock } from '../../components/PageBuilder/PageBuilder.story'
+import { PageBuilderRowContainedMock, PageBuilderBannerMock } from '../../components/PageBuilder/PageBuilder.story'
 
 storiesOf('📑 Templates/Category', module).add(
     'Default',
@@ -382,7 +382,7 @@ storiesOf('📑 Templates/Category', module).add(
                 })),
             },
             pageBuilder: {
-                html: PageBuilderRowFullWidthMock(PageBuilderBannerMock()),
+                html: PageBuilderRowContainedMock(PageBuilderBannerMock()),
             },
         }
 

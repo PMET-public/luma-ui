@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, HeaderWrapper, Main, FooterWrapper, TabBarWrapper } from './App.styled'
+import { Root, HeaderContainer, Main, FooterContainer, TabBarContainer } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
 
@@ -79,13 +79,8 @@ export const App: Component<AppProps> = ({
     const { vHeight } = useResize()
 
     return (
-        <Root
-            style={{
-                minHeight: vHeight,
-            }}
-            {...props}
-        >
-            <HeaderWrapper>
+        <Root style={{ minHeight: vHeight }} {...props}>
+            <HeaderContainer as="header" $margin>
                 <Header
                     logo={{
                         svg: LogoImageSvg,
@@ -119,15 +114,15 @@ export const App: Component<AppProps> = ({
                         ],
                     }}
                 />
-            </HeaderWrapper>
+            </HeaderContainer>
 
             <Main>{children}</Main>
 
-            <FooterWrapper>
+            <FooterContainer as="footer">
                 <Footer {...footer} />
-            </FooterWrapper>
+            </FooterContainer>
 
-            <TabBarWrapper>
+            <TabBarContainer as="nav">
                 <TabBar
                     items={[
                         {
@@ -164,7 +159,7 @@ export const App: Component<AppProps> = ({
                         },
                     ]}
                 />
-            </TabBarWrapper>
+            </TabBarContainer>
         </Root>
     )
 }

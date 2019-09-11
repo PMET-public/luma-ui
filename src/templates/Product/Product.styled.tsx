@@ -3,12 +3,14 @@ import styled from 'styled-components'
 import { Root as ImageRoot, ImageTag } from '../../components/Image'
 import { Root as CarouselRoot } from '../../components/Carousel'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
+import { Wrapper as ContainerWrapper } from '../../components/Container'
 
 export const Root = styled.div`
     display: grid;
+    grid-gap: ${props => props.theme.layout.margin};
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(ContainerWrapper)`
     display: grid;
     grid-auto-columns: 1fr;
     grid-auto-rows: minmax(max-content, max-content);
@@ -33,15 +35,15 @@ export const Wrapper = styled.div`
 `
 
 export const Images = styled.div`
+    @media ${props => props.theme.breakpoints.smallOnly} {
+        position: sticky;
+        top: 0;
+        z-index: 0;
+    }
+
     ${ImageRoot} {
         display: block;
         width: 100%;
-
-        @media ${props => props.theme.breakpoints.smallOnly} {
-            position: sticky;
-            top: 0;
-            z-index: 0;
-        }
     }
 
     ${ImageTag} {
@@ -50,6 +52,8 @@ export const Images = styled.div`
     }
 
     ${CarouselRoot} {
+        padding: 0;
+
         @media ${props => props.theme.breakpoints.smallOnly} {
             width: 100vw;
             position: relative;
@@ -92,15 +96,22 @@ export const InfoWrapper = styled.div`
     }
 `
 
+export const InfoOptions = styled.div`
+    display: grid;
+    grid-gap: 3rem;
+    padding-top: 2rem;
+
+    @media ${props => props.theme.breakpoints.smallOnly} {
+        padding-left: ${props => props.theme.layout.margin};
+        padding-right: ${props => props.theme.layout.margin};
+    }
+`
+
 export const Info = styled.div`
     display: grid;
     grid-gap: 3rem;
 
     @media ${props => props.theme.breakpoints.medium} {
-        background-color: ${props => props.theme.colors.surface};
-        border-radius: 2rem;
-        color: ${props => props.theme.colors.onSurface};
-        padding-top: 2rem;
         position: sticky;
         top: 2rem;
     }

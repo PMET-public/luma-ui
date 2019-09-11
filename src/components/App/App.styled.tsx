@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import { Logo as HeaderLogo, Menu as HeaderMenu, Utilities as HeaderUtilities } from '../Header'
+import { Root as HeaderRoot, Logo as HeaderLogo, Menu as HeaderMenu, Utilities as HeaderUtilities } from '../Header'
+import { Wrapper as ContainerWrapper } from '../Container'
 
 export const Root = styled.div`
     display: grid;
@@ -9,11 +10,20 @@ export const Root = styled.div`
     width: 100%;
 `
 
-export const HeaderWrapper = styled.div`
+export const HeaderContainer = styled(ContainerWrapper)`
+    background-color: ${props => props.theme.colors.surface};
+    box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.09), inset 0 -0.2rem 0 rgba(255, 255, 255, 0.09);
+    color: ${props => props.theme.colors.onSurface};
+
+    ${HeaderRoot} {
+        @media ${props => props.theme.breakpoints.smallOnly} {
+            grid-template-areas: 'logo utilities';
+        }
+    }
+
     ${HeaderLogo} {
         line-height: 0;
         margin: 0;
-        padding: 0;
         z-index: 2;
 
         & svg {
@@ -36,10 +46,6 @@ export const HeaderWrapper = styled.div`
             }
         }
     }
-
-    @media ${props => props.theme.breakpoints.smallOnly} {
-        grid-template-areas: 'logo utilities';
-    }
 `
 
 export const Main = styled.main`
@@ -47,9 +53,11 @@ export const Main = styled.main`
     position: relative;
 `
 
-export const FooterWrapper = styled.footer``
+export const FooterContainer = styled(ContainerWrapper)`
+    margin-top: 4rem;
+`
 
-export const TabBarWrapper = styled.nav`
+export const TabBarContainer = styled(ContainerWrapper)`
     position: sticky;
     bottom: 0;
     z-index: 2;

@@ -10,7 +10,7 @@ export const breakpoints = {
 export type Breakpoints = typeof breakpoints
 
 export const layout = {
-    containedWidth: '180rem',
+    containedWidth: '190rem',
     margin: '2rem',
 }
 

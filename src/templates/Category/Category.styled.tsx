@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
+import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
-import { Root as PillsRoot } from '../../components/Pills'
 import { Root as FiltersRoot } from '../../components/Filters'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
@@ -12,17 +12,21 @@ export const Root = styled.div`
 `
 
 export const TopBar = styled.div`
-    align-items: center;
     background-color: ${props => props.theme.colors.surface75};
     backdrop-filter: blur(50px);
-    padding: 1rem;
-    color: ${props => props.theme.colors.onSurface};
-    display: grid;
-    grid-gap: 1rem 2rem;
-    grid-template-columns: 1fr auto;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 4;
+
+    ${ContainerWrapper} {
+        padding-top: 1.4rem;
+        padding-bottom: 1.4rem;
+        align-items: center;
+        color: ${props => props.theme.colors.onSurface};
+        display: grid;
+        grid-gap: 1rem 2rem;
+        grid-template-columns: 1fr auto;
+    }
 `
 
 export const Heading = styled.div`
@@ -66,13 +70,6 @@ export const TopBarFilterButton = styled.button`
 
 export const FiltersIcon = styled(FiltersIcoSvg)`
     width: 1.2em;
-`
-
-export const CategoriesWrapper = styled.div`
-    ${PillsRoot} {
-        margin-top: -1rem;
-        padding: 0 1rem;
-    }
 `
 
 export const Content = styled.div`
