@@ -9,6 +9,7 @@ declare module 'styled-components' {
         typography: ThemeTypography
         breakpoints: Breakpoints
         dark: boolean
+        setDark: (s: boolean) => any
         layout: Layout
     }
 }

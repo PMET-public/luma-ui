@@ -25,7 +25,7 @@ export const Item = styled.div<{ active?: boolean }>`
     color: ${props => props.theme.colors.primary};
     display: flex;
     flex-direction: column;
-    font-size: 2.3rem;
+    font-size: 2.6rem;
     justify-content: center;
     opacity: ${props => (props.active ? '1' : ' 0.5')};
 `

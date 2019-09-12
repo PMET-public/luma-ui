@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import styled, { ThemeProvider as StyledThemeProvider, createGlobalStyle } from 'styled-components'
 import { ResetStyles } from './ResetStyles'
 import { light as lightColors, dark as darkColors } from './colors'
@@ -126,11 +126,13 @@ export type ThemeProviderProps = {
     dark?: boolean
 }
 
-export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark = false, children }) => {
+export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark: _dark = false, children }) => {
+    const [dark, setDark] = useState(_dark)
+
     const colors = dark ? darkColors : lightColors
 
     return (
-        <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, dark }}>
+        <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, dark, setDark }}>
             <Root>
                 <ResetStyles />
                 <GlobalStyles />

@@ -3,6 +3,7 @@ import { Component, Props } from '../../lib'
 import { Root, HeaderContainer, Main, FooterContainer, TabBarContainer } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
+import { useTheme } from '../../theme/useTheme'
 
 import Header from '../Header'
 import TabBar from '../TabBar'
@@ -17,8 +18,10 @@ import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 import IconBagActiveSvg from 'remixicon/icons/Finance/shopping-bag-fill.svg'
 import IconHomeSvg from 'remixicon/icons/Buildings/store-2-line.svg'
 import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
-import IconAccountSvg from 'remixicon/icons/System/heart-line.svg'
-import IconAccountActiveSvg from 'remixicon/icons/System/heart-fill.svg'
+import IconFavoritesSvg from 'remixicon/icons/System/heart-line.svg'
+import IconFavoriteActiveSvg from 'remixicon/icons/System/heart-fill.svg'
+import IconDarkModeSvg from 'remixicon/icons/Design/contrast-2-line.svg'
+import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
 
 export type AppProps = {
     logo: any
@@ -36,13 +39,13 @@ export type AppProps = {
         }>
     >
 
-    help: Props<{
+    myAccount: Props<{
         active?: boolean
         icon?: IconProps
         text: string
     }>
 
-    myAccount: Props<{
+    favorites: Props<{
         active?: boolean
         icon?: IconProps
         text: string
@@ -68,15 +71,17 @@ export const App: Component<AppProps> = ({
     cart,
     children,
     footer,
-    help,
     home,
     logo,
     menu,
     myAccount,
+    favorites,
     search,
     ...props
 }) => {
     const { vHeight } = useResize()
+
+    const { dark, setDark } = useTheme()
 
     return (
         <Root style={{ minHeight: vHeight }} {...props}>
@@ -92,10 +97,18 @@ export const App: Component<AppProps> = ({
                     utilities={{
                         items: [
                             {
-                                ...help,
+                                ...myAccount,
+                                icon: {
+                                    svg: IconAccountSvg,
+                                },
                             },
                             {
-                                ...myAccount,
+                                as: 'button',
+                                text: 'Dark Mode',
+                                onClick: () => setDark(!dark),
+                                icon: {
+                                    svg: IconDarkModeSvg,
+                                },
                             },
                             {
                                 ...search,
@@ -134,12 +147,12 @@ export const App: Component<AppProps> = ({
                             ...home,
                         },
                         {
-                            'aria-label': myAccount.text,
+                            'aria-label': favorites.text,
                             icon: {
-                                svg: myAccount.active ? IconAccountActiveSvg : IconAccountSvg,
-                                ...myAccount.icon,
+                                svg: favorites.active ? IconFavoriteActiveSvg : IconFavoritesSvg,
+                                ...favorites.icon,
                             },
-                            ...myAccount,
+                            ...favorites,
                         },
                         {
                             'aria-label': search.text,

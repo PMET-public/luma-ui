@@ -41,15 +41,15 @@ export const AppMockData: AppProps = {
             text: 'Sale',
         },
     ],
-    help: {
-        as: 'a',
-        href: '#',
-        text: 'Help',
-    },
     myAccount: {
         as: 'a',
         href: '#',
         text: 'My Account',
+    },
+    favorites: {
+        as: 'a',
+        href: '#',
+        text: 'Liked',
     },
     search: {
         as: 'a',

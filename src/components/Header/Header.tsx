@@ -4,7 +4,6 @@ import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, Icon
 import { ReactComponentLike } from 'prop-types'
 
 import Icon, { IconProps } from '../Icon'
-import Container from '../Container'
 
 export type HeaderProps = {
     logo: Props<{

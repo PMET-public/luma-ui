@@ -89,7 +89,7 @@ export const Utilities = styled.div`
     grid-area: utilities;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
-    grid-gap: 2.5rem;
+    grid-gap: 2rem;
     justify-content: flex-end;
 `
 

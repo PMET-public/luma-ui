@@ -36,7 +36,6 @@ export type Props<P = {}> = Override<
     React.AllHTMLAttributes<HTMLElement>,
     {
         as?: any
-        // children?: React.ReactNode
     } & P
 >
 
