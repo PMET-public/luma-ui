@@ -3,12 +3,14 @@ import { Component, Props } from '../../lib'
 import {
     Root,
     TopBar,
+    TopBarWrapper,
     Heading,
     Title,
     TopBarFilterButton,
     FiltersIcon,
     CategoriesWrapper,
     Content,
+    ProductListWrapper,
     FiltersWrapper,
     FiltersButtons,
 } from './Category.styled'
@@ -16,7 +18,6 @@ import {
 import { useResize } from '../../hooks/useResize'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
-import { Wrapper } from '../../components/Container'
 import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import ProductList, { ProductListProps } from '../../components/ProductList'
 import Filters, { FiltersProps } from '../../components/Filters'
@@ -60,7 +61,7 @@ export const Category: Component<CategoryProps> = ({
     return (
         <Root {...props}>
             <TopBar>
-                <Wrapper $contained $margin>
+                <TopBarWrapper $contained $margin>
                     <Heading>
                         {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
 
@@ -75,40 +76,40 @@ export const Category: Component<CategoryProps> = ({
                             </span>
                         </TopBarFilterButton>
                     )}
-                </Wrapper>
+                </TopBarWrapper>
             </TopBar>
 
             {categories && (
-                <Wrapper $contained $margin>
+                <CategoriesWrapper $contained $margin>
                     <Pills {...categories} />
-                </Wrapper>
+                </CategoriesWrapper>
             )}
 
             <Content>
                 {pageBuilder && <PageBuilder {...pageBuilder} />}
                 {products && (
-                    <Wrapper $contained $margin>
+                    <ProductListWrapper $contained $margin>
                         <ProductList {...products} />
-                    </Wrapper>
+
+                        {filters && (
+                            <FiltersWrapper $active={showFilter} ref={filtersRef} style={{ height: vHeight }}>
+                                <Filters {...filters} />
+
+                                {filters.closeButton && (
+                                    <FiltersButtons>
+                                        <Button
+                                            as="button"
+                                            type="button"
+                                            onClick={() => setShowFilter(false)}
+                                            {...filters.closeButton}
+                                        />
+                                    </FiltersButtons>
+                                )}
+                            </FiltersWrapper>
+                        )}
+                    </ProductListWrapper>
                 )}
             </Content>
-
-            {filters && (
-                <FiltersWrapper $active={showFilter} ref={filtersRef} style={{ height: vHeight }}>
-                    <Filters {...filters} />
-
-                    {filters.closeButton && (
-                        <FiltersButtons>
-                            <Button
-                                as="button"
-                                type="button"
-                                onClick={() => setShowFilter(false)}
-                                {...filters.closeButton}
-                            />
-                        </FiltersButtons>
-                    )}
-                </FiltersWrapper>
-            )}
         </Root>
     )
 }

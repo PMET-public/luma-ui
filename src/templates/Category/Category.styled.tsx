@@ -17,17 +17,19 @@ export const TopBar = styled.div`
     position: sticky;
     top: 0;
     z-index: 4;
-
-    ${ContainerWrapper} {
-        padding-top: 1.4rem;
-        padding-bottom: 1.4rem;
-        align-items: center;
-        color: ${props => props.theme.colors.onSurface};
-        display: grid;
-        grid-gap: 1rem 2rem;
-        grid-template-columns: 1fr auto;
-    }
 `
+
+export const TopBarWrapper = styled(ContainerWrapper)`
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    align-items: center;
+    color: ${props => props.theme.colors.onSurface};
+    display: grid;
+    grid-gap: 1rem 2rem;
+    grid-template-columns: 1fr auto;
+`
+
+export const CategoriesWrapper = styled(ContainerWrapper)``
 
 export const Heading = styled.div`
     align-items: center;
@@ -78,34 +80,44 @@ export const Content = styled.div`
     grid-gap: 3rem;
 `
 
-export const FiltersWrapper = styled.div<{ $active?: boolean }>`
-    -webkit-overflow-scrolling: touch;
-    backdrop-filter: blur(50px);
-    background-color: ${props => props.theme.colors.surface75};
-    color: ${props => props.theme.colors.onSurface};
-    display: flex;
-    flex-direction: column;
-    max-width: calc(100vw - 3rem);
-    min-width: 20rem;
-    overflow: scroll;
-    position: fixed;
-    right: 0;
-    top: 0;
-    transform: translateX(100%);
-    transition: transform 305ms ease-out;
-    width: auto;
-    z-index: 4;
+export const ProductListWrapper = styled(ContainerWrapper)`
+    @media ${props => props.theme.breakpoints.medium} {
+        display: grid;
+        grid-template-columns: 1fr 30rem;
+        grid-gap: 2rem;
+    }
+`
 
-    ${props =>
-        props.$active &&
-        `
+export const FiltersWrapper = styled.div<{ $active?: boolean }>`
+    @media ${props => props.theme.breakpoints.smallOnly} {
+        -webkit-overflow-scrolling: touch;
+        backdrop-filter: blur(50px);
+        background-color: ${props => props.theme.colors.surface75};
+        color: ${props => props.theme.colors.onSurface};
+        display: flex;
+        flex-direction: column;
+        max-width: calc(100vw - 3rem);
+        min-width: 20rem;
+        overflow: scroll;
+        position: fixed;
+        right: 0;
+        top: 0;
+        transform: translateX(100%);
+        transition: transform 305ms ease-out;
+        width: auto;
+        z-index: 4;
+
+        ${props =>
+            props.$active &&
+            `
             box-shadow: 3rem 0 6rem rgba(0, 0, 0, 0.75);
             transform: translateX(0);    
         `}
 
-    ${FiltersRoot} {
-        padding: 4rem;
-        flex-grow: 1;
+        ${FiltersRoot} {
+            padding: 4rem;
+            flex-grow: 1;
+        }
     }
 `
 
