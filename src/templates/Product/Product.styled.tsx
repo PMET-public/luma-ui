@@ -7,7 +7,6 @@ import { Wrapper as ContainerWrapper } from '../../components/Container'
 
 export const Root = styled.div`
     display: grid;
-    grid-gap: ${props => props.theme.layout.margin};
 `
 
 export const Wrapper = styled(ContainerWrapper)`
@@ -29,8 +28,8 @@ export const Wrapper = styled(ContainerWrapper)`
         grid-template-columns: 1fr 1fr;
     }
 
-    @media ${props => props.theme.breakpoints.large} {
-        grid-template-columns: 1.5fr 1fr;
+    @media ${props => props.theme.breakpoints.xLarge} {
+        grid-template-columns: 1.25fr 1fr;
     }
 `
 
@@ -64,13 +63,16 @@ export const Images = styled.div`
         @media ${props => props.theme.breakpoints.medium} {
             grid-gap: 0.5rem;
             grid-auto-flow: row;
-            grid-template-columns: repeat(1, 1.5fr);
+            grid-template-columns: repeat(1, 1fr);
             overflow: unset;
         }
 
         @media ${props => props.theme.breakpoints.large} {
-            grid-auto-flow: row;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+        }
+
+        @media ${props => props.theme.breakpoints.xLarge} {
+            grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
         }
     }
 `
@@ -99,11 +101,11 @@ export const InfoWrapper = styled.div`
 export const InfoOptions = styled.div`
     display: grid;
     grid-gap: 3rem;
-    padding-top: 2rem;
+    padding: 2rem ${props => props.theme.layout.margin};
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
-        padding-left: ${props => props.theme.layout.margin};
-        padding-right: ${props => props.theme.layout.margin};
+    @media ${props => props.theme.breakpoints.large} {
+        max-width: 60rem;
+        padding: 4rem 6rem 4rem;
     }
 `
 

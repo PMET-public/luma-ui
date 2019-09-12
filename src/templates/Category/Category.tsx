@@ -12,7 +12,8 @@ import {
     Content,
     ProductListWrapper,
     FiltersWrapper,
-    // FiltersButtons,
+    FiltersButtons,
+    FiltersScreen,
 } from './Category.styled'
 
 import { useResize } from '../../hooks/useResize'
@@ -22,6 +23,7 @@ import ProductList, { ProductListProps } from '../../components/ProductList'
 import Filters, { FiltersProps } from '../../components/Filters'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import Pills, { PillsProps } from '../../components/Pills'
+import Button, { ButtonProps } from '../../components/Button'
 
 export type CategoryProps = {
     title: Props<{
@@ -33,6 +35,7 @@ export type CategoryProps = {
     filters?: {
         label: string
         open?: boolean
+        closeButton?: ButtonProps
     } & FiltersProps
 
     products?: ProductListProps
@@ -56,7 +59,7 @@ export const Category: Component<CategoryProps> = ({
     return (
         <Root {...props}>
             <TopBar>
-                <TopBarWrapper $contained $margin>
+                <TopBarWrapper $margin>
                     <Heading>
                         {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
 
@@ -75,7 +78,7 @@ export const Category: Component<CategoryProps> = ({
             </TopBar>
 
             {categories && (
-                <CategoriesWrapper $contained $margin>
+                <CategoriesWrapper $margin>
                     <Pills {...categories} />
                 </CategoriesWrapper>
             )}
@@ -83,7 +86,7 @@ export const Category: Component<CategoryProps> = ({
             <Content>
                 {pageBuilder && <PageBuilder {...pageBuilder} />}
                 {products && (
-                    <ProductListWrapper $contained $margin>
+                    <ProductListWrapper $margin>
                         <ProductList {...products} />
                     </ProductListWrapper>
                 )}
@@ -92,8 +95,20 @@ export const Category: Component<CategoryProps> = ({
             {filters && (
                 <FiltersWrapper $active={showFilter} $height={viewport.height} ref={filtersRef}>
                     <Filters {...filters} />
+                    {filters.closeButton && (
+                        <FiltersButtons>
+                            <Button
+                                as="button"
+                                type="button"
+                                onClick={() => setShowFilter(false)}
+                                {...filters.closeButton}
+                            />
+                        </FiltersButtons>
+                    )}
                 </FiltersWrapper>
             )}
+
+            {filters && showFilter && <FiltersScreen onClick={() => setShowFilter(false)} />}
         </Root>
     )
 }

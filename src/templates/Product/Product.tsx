@@ -26,7 +26,6 @@ const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
 const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
 
 export type ProductProps = {
-    pageBuilder?: PageBuilderProps
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
     description?: PageBuilderProps
@@ -61,7 +60,7 @@ export const Product: Component<ProductProps> = ({
 }) => {
     return (
         <Root {...props}>
-            <Wrapper $contained $margin>
+            <Wrapper>
                 <Images>
                     <Carousel gap={1} padding={3}>
                         {images.map((image, index) => (
@@ -102,12 +101,11 @@ export const Product: Component<ProductProps> = ({
                                 ))}
                             </Buttons>
                         </InfoOptions>
-                        {description && <PageBuilder {...description} />}
                     </Info>
                 </InfoWrapper>
             </Wrapper>
 
-            {pageBuilder && <PageBuilder {...pageBuilder} />}
+            {description && <PageBuilder {...description} />}
         </Root>
     )
 }

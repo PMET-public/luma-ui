@@ -24,5 +24,4 @@ export const BgImage = styled.div<{ $src: string; $loaded?: boolean; $error?: bo
 
 export const Content = styled.div`
     position: relative;
-    z-index: 1;
 `

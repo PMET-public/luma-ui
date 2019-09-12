@@ -16,7 +16,7 @@ export const TopBar = styled.div`
     backdrop-filter: blur(50px);
     position: sticky;
     top: 0;
-    z-index: 4;
+    z-index: 1;
 `
 
 export const TopBarWrapper = styled(ContainerWrapper)`
@@ -118,4 +118,29 @@ export const FiltersWrapper = styled.div<{ $active?: boolean; $height: number }>
     /* } */
 
    
+`
+
+export const FiltersButtons = styled.div`
+    background-color: ${props => props.theme.colors.surface};
+    bottom: 0;
+    color: ${props => props.theme.colors.onSurface};
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 2rem;
+    padding: 2rem;
+    position: sticky;
+
+    @supports (padding: max(0px)) {
+        padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    }
+`
+
+export const FiltersScreen = styled.div`
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background: ${props => props.theme.colors.surface50};
 `

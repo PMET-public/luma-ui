@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { text, number, files } from '@storybook/addon-knobs'
-import { PageBuilderRowContainedMock, PageBuilderBannerMock } from '../../components/PageBuilder/PageBuilder.story'
+import { PageBuilderRowFullBleedMock, PageBuilderBannerMock } from '../../components/PageBuilder/PageBuilder.story'
 
 storiesOf('📑 Templates/Category', module).add(
     'Default',
@@ -42,6 +42,9 @@ storiesOf('📑 Templates/Category', module).add(
             filters: {
                 label: 'Filters',
                 open: false,
+                closeButton: {
+                    text: 'Done',
+                },
                 groups: [
                     {
                         title: 'Fashion',
@@ -379,7 +382,7 @@ storiesOf('📑 Templates/Category', module).add(
                 })),
             },
             pageBuilder: {
-                html: PageBuilderRowContainedMock(PageBuilderBannerMock()),
+                html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
             },
         }
 

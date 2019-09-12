@@ -13,7 +13,7 @@ import {
 } from '../../components/PageBuilder/PageBuilder.story'
 
 const ProductMockData = (): ProductProps => ({
-    buttons: [{ text: 'Add to Cart' }, { text: 'Add to Favorite' }],
+    buttons: [{ text: 'Add to Cart' }, { text: 'Add to Favorite', secondary: true }],
     breadcrumbs: {
         items: [
             {
@@ -119,9 +119,6 @@ const ProductMockData = (): ProductProps => ({
         },
     ],
     description: {
-        html: PageBuilderRowFullBleedMock(PageBuilderTabsMock()),
-    },
-    pageBuilder: {
         html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
     },
 })
