@@ -51,6 +51,7 @@ export const useImage = (image: Image) => {
          * http://mikefowler.me/journal/2014/04/22/cached-images-load-event
          */
         if (img.complete) {
+            setSize({ width: img.width, height: img.height })
             setLoaded(true)
             return
         }
