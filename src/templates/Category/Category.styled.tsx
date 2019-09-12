@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
-import { Root as FiltersRoot, Wrapper as FiltersInnerWrapper } from '../../components/Filters'
+import { Root as FiltersRoot } from '../../components/Filters'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
@@ -80,14 +80,12 @@ export const Content = styled.div`
     grid-gap: 3rem;
 `
 
-export const ProductListWrapper = styled(ContainerWrapper)`
-    display: flex;
-`
+export const ProductListWrapper = styled(ContainerWrapper)``
 
 export const FiltersWrapper = styled.div<{ $active?: boolean; $height: number }>`
     min-height: calc(${props => props.$height * 0.01}px * 100);
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    /* @media ${props => props.theme.breakpoints.smallOnly} { */
         max-height: calc(${props => props.$height * 0.01}px * 100);
         -webkit-overflow-scrolling: touch;
         backdrop-filter: blur(50px);
@@ -96,7 +94,7 @@ export const FiltersWrapper = styled.div<{ $active?: boolean; $height: number }>
         display: flex;
         flex-direction: column;
         max-width: calc(100vw - 3rem);
-        min-width: 20rem;
+        min-width: 30rem;
         overflow: scroll;
         position: fixed;
         right: 0;
@@ -117,18 +115,7 @@ export const FiltersWrapper = styled.div<{ $active?: boolean; $height: number }>
             padding: 4rem;
             flex-grow: 1;
         }
-    }
+    /* } */
 
-    @media ${props => props.theme.breakpoints.medium} {
-        /* position: sticky;
-        top: 6rem; */
-        transition: max-width 305ms ease-in-out;
-        overflow: hidden;
-        max-width: ${props => (props.$active ? '35%' : '0')};
-        padding-top: 2rem;
-
-        ${FiltersInnerWrapper} {
-            padding: 0 4rem 0 1rem;
-        }
-    }
+   
 `

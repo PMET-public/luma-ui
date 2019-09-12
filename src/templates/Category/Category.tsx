@@ -84,16 +84,16 @@ export const Category: Component<CategoryProps> = ({
                 {pageBuilder && <PageBuilder {...pageBuilder} />}
                 {products && (
                     <ProductListWrapper $contained $margin>
-                        {filters && (
-                            <FiltersWrapper $active={showFilter} $height={viewport.height} ref={filtersRef}>
-                                <Filters {...filters} />
-                            </FiltersWrapper>
-                        )}
-
                         <ProductList {...products} />
                     </ProductListWrapper>
                 )}
             </Content>
+
+            {filters && (
+                <FiltersWrapper $active={showFilter} $height={viewport.height} ref={filtersRef}>
+                    <Filters {...filters} />
+                </FiltersWrapper>
+            )}
         </Root>
     )
 }
