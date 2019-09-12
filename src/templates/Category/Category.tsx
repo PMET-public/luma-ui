@@ -12,16 +12,14 @@ import {
     Content,
     ProductListWrapper,
     FiltersWrapper,
-    FiltersButtons,
+    // FiltersButtons,
 } from './Category.styled'
 
 import { useResize } from '../../hooks/useResize'
-import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
 import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import ProductList, { ProductListProps } from '../../components/ProductList'
 import Filters, { FiltersProps } from '../../components/Filters'
-import Button, { ButtonProps } from '../../components/Button'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import Pills, { PillsProps } from '../../components/Pills'
 
@@ -35,7 +33,6 @@ export type CategoryProps = {
     filters?: {
         label: string
         open?: boolean
-        closeButton: ButtonProps
     } & FiltersProps
 
     products?: ProductListProps
@@ -52,11 +49,9 @@ export const Category: Component<CategoryProps> = ({
 }) => {
     const [showFilter, setShowFilter] = useState(!!(filters && filters.open))
 
-    const { vHeight } = useResize()
+    const viewport = useResize()
 
     const filtersRef = useRef(null)
-
-    useOnClickOutside(filtersRef, () => setShowFilter(false))
 
     return (
         <Root {...props}>
@@ -89,24 +84,13 @@ export const Category: Component<CategoryProps> = ({
                 {pageBuilder && <PageBuilder {...pageBuilder} />}
                 {products && (
                     <ProductListWrapper $contained $margin>
-                        <ProductList {...products} />
-
                         {filters && (
-                            <FiltersWrapper $active={showFilter} ref={filtersRef} style={{ height: vHeight }}>
+                            <FiltersWrapper $active={showFilter} $height={viewport.height} ref={filtersRef}>
                                 <Filters {...filters} />
-
-                                {filters.closeButton && (
-                                    <FiltersButtons>
-                                        <Button
-                                            as="button"
-                                            type="button"
-                                            onClick={() => setShowFilter(false)}
-                                            {...filters.closeButton}
-                                        />
-                                    </FiltersButtons>
-                                )}
                             </FiltersWrapper>
                         )}
+
+                        <ProductList {...products} />
                     </ProductListWrapper>
                 )}
             </Content>

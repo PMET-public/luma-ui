@@ -42,9 +42,6 @@ storiesOf('📑 Templates/Category', module).add(
             filters: {
                 label: 'Filters',
                 open: false,
-                closeButton: {
-                    text: 'Done',
-                },
                 groups: [
                     {
                         title: 'Fashion',

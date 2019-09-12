@@ -72,7 +72,7 @@ export const ToggleButton = styled.button<{ $active?: boolean }>`
     cursor: pointer;
     display: inline-flex;
     opacity: 0.5;
-    font-size: 1em;
+    font-size: 0.9em;
 
     ${ToggleIcon} {
         ${props => props.$active && 'transform: rotate(180deg);'}

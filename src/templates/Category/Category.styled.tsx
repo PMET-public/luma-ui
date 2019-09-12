@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
-import { Root as FiltersRoot } from '../../components/Filters'
+import { Root as FiltersRoot, Wrapper as FiltersInnerWrapper } from '../../components/Filters'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
@@ -81,15 +81,14 @@ export const Content = styled.div`
 `
 
 export const ProductListWrapper = styled(ContainerWrapper)`
-    @media ${props => props.theme.breakpoints.medium} {
-        display: grid;
-        grid-template-columns: 1fr 30rem;
-        grid-gap: 2rem;
-    }
+    display: flex;
 `
 
-export const FiltersWrapper = styled.div<{ $active?: boolean }>`
+export const FiltersWrapper = styled.div<{ $active?: boolean; $height: number }>`
+    min-height: calc(${props => props.$height * 0.01}px * 100);
+
     @media ${props => props.theme.breakpoints.smallOnly} {
+        max-height: calc(${props => props.$height * 0.01}px * 100);
         -webkit-overflow-scrolling: touch;
         backdrop-filter: blur(50px);
         background-color: ${props => props.theme.colors.surface75};
@@ -119,19 +118,17 @@ export const FiltersWrapper = styled.div<{ $active?: boolean }>`
             flex-grow: 1;
         }
     }
-`
 
-export const FiltersButtons = styled.div`
-    background-color: ${props => props.theme.colors.surface};
-    bottom: 0;
-    color: ${props => props.theme.colors.onSurface};
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: 2rem;
-    padding: 2rem;
-    position: sticky;
+    @media ${props => props.theme.breakpoints.medium} {
+        /* position: sticky;
+        top: 6rem; */
+        transition: max-width 305ms ease-in-out;
+        overflow: hidden;
+        max-width: ${props => (props.$active ? '35%' : '0')};
+        padding-top: 2rem;
 
-    @supports (padding: max(0px)) {
-        padding-bottom: max(2rem, env(safe-area-inset-bottom));
+        ${FiltersInnerWrapper} {
+            padding: 0 4rem 0 1rem;
+        }
     }
 `
