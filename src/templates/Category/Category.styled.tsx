@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Root as FiltersRoot } from '../../components/Filters'
+import { Wrapper as PillsWrapper } from '../../components/Pills'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
 export const Root = styled.div`
     display: grid;
-    grid-gap: 2rem;
 `
 
 export const TopBar = styled.div`
@@ -29,7 +29,12 @@ export const TopBarWrapper = styled(ContainerWrapper)`
     grid-template-columns: 1fr auto;
 `
 
-export const CategoriesWrapper = styled(ContainerWrapper)``
+export const CategoriesWrapper = styled(ContainerWrapper)`
+    margin-bottom: ${props => props.theme.layout.margin};
+    ${PillsWrapper} {
+        padding-left: ${props => props.theme.layout.margin};
+    }
+`
 
 export const Heading = styled.div`
     align-items: center;

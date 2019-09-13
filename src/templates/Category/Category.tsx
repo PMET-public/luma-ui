@@ -78,7 +78,7 @@ export const Category: Component<CategoryProps> = ({
             </TopBar>
 
             {categories && (
-                <CategoriesWrapper $margin>
+                <CategoriesWrapper>
                     <Pills {...categories} />
                 </CategoriesWrapper>
             )}
