@@ -41,13 +41,15 @@ const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ name, items, p
 }
 
 export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => {
-    const data: PageBuilderFactoryProps = useMemo(() => htmlToProps(html), [html])
+    return useMemo(() => {
+        const { items } = htmlToProps(html) as PageBuilderFactoryProps
 
-    return (
-        <Root {...props}>
-            {data.items.map((contentType, index) => (
-                <PageBuilderFactory key={index} {...contentType} />
-            ))}
-        </Root>
-    )
+        return (
+            <Root {...props}>
+                {items.map((contentType, index) => (
+                    <PageBuilderFactory key={index} {...contentType} />
+                ))}
+            </Root>
+        )
+    }, [html])
 }
