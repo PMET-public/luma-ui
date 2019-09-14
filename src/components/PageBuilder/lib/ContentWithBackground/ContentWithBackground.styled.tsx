@@ -18,7 +18,7 @@ export const BgImage = styled.div<{ $src: string; $loaded?: boolean; $error?: bo
         background-size: cover;
 
         /** Transition */
-        transition: filter 305ms ease-out;
+        transition: filter 205ms ease-out;
         filter: ${props => (props.$loaded ? 'opacity(1) blur(0)' : 'opacity(0) blur(30px)')};
 `
 
