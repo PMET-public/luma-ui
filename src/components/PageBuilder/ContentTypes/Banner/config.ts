@@ -1,9 +1,12 @@
+import { lazy } from 'react'
 import { LinkProps } from '../../../Link'
 import { getBackgroundImages } from '../../lib/utils'
 import { getStyleAsObject } from '../../../../lib'
 import { ContentWithBackgroundProps } from '../../lib/ContentWithBackground'
 
-export default (elem: HTMLElement) => {
+const component = lazy(() => import('./'))
+
+const props = (elem: HTMLElement) => {
     /** Get Button */
     const link: LinkProps | undefined =
         elem.childNodes[0].nodeName === 'A'
@@ -57,3 +60,5 @@ export default (elem: HTMLElement) => {
         overlay,
     }
 }
+
+export default { component, props }

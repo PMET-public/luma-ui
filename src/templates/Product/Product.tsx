@@ -28,7 +28,7 @@ const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
 export type ProductProps = {
     breadcrumbs?: BreadcrumbsProps
     buttons: ButtonProps[]
-    description?: PageBuilderProps
+    pageBuilder?: PageBuilderProps
     images: ImageProps[]
     swatches?: Array<{
         title?: Props<{
@@ -50,7 +50,6 @@ export const Product: Component<ProductProps> = ({
     pageBuilder,
     breadcrumbs,
     buttons,
-    description,
     images,
     price,
     sku,
@@ -105,7 +104,7 @@ export const Product: Component<ProductProps> = ({
                 </InfoWrapper>
             </Wrapper>
 
-            {description && <PageBuilder {...description} />}
+            {pageBuilder && <PageBuilder {...pageBuilder} />}
         </Root>
     )
 }

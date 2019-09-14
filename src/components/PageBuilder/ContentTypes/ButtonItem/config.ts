@@ -1,7 +1,10 @@
+import { lazy } from 'react'
 import { ButtonProps } from '../../../Button'
 import { LinkProps } from '../../../Link'
 
-export default (elem: HTMLElement) => {
+const component = lazy(() => import('./'))
+
+const props = (elem: HTMLElement) => {
     const buttonElem = elem.childNodes[0] as HTMLElement
     const type = buttonElem.classList.contains('pagebuilder-button-link') ? 'link' : 'button'
     const secondary = buttonElem.classList.contains('pagebuilder-button-secondary') ? true : false
@@ -26,3 +29,5 @@ export default (elem: HTMLElement) => {
         type,
     }
 }
+
+export default { component, props }

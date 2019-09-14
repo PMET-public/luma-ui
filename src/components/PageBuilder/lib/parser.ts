@@ -20,15 +20,23 @@ const getComponentData = (type: string, node?: HTMLElement) => {
 
     const style = getStyleAsObject(currentNode.style)
 
-    const componentProps = configs[name] ? configs[name](currentNode) : {}
+    const config = configs[name]
+
+    const component = config
+        ? {
+              component: config.component,
+              props: config.props(currentNode),
+          }
+        : {}
 
     return {
         appearance,
+        component: component.component,
         name,
         items: [],
         props: {
             ...props,
-            ...componentProps,
+            ...component.props,
             style,
         },
     }

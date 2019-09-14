@@ -1,9 +1,12 @@
+import { lazy } from 'react'
 import { getStyleAsObject } from '../../../../lib'
 
 import { LinkProps } from '../../../Link'
 import { ImageProps } from '../../../Image'
 
-export default (elem: HTMLElement) => {
+const component = lazy(() => import('./'))
+
+const props = (elem: HTMLElement) => {
     const imageElement =
         elem.children[0].nodeName === 'A'
             ? (elem.children[0].children as HTMLCollectionOf<HTMLElement>)
@@ -40,3 +43,5 @@ export default (elem: HTMLElement) => {
         link,
     }
 }
+
+export default { component, props }

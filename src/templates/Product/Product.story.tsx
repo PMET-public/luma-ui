@@ -5,12 +5,7 @@ import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
 import { files } from '@storybook/addon-knobs'
-import {
-    PageBuilderRowFullWidthMock,
-    PageBuilderTabsMock,
-    PageBuilderBannerMock,
-    PageBuilderRowFullBleedMock,
-} from '../../components/PageBuilder/PageBuilder.story'
+import { PageBuilderBannerMock, PageBuilderRowFullBleedMock } from '../../components/PageBuilder/PageBuilder.story'
 
 const ProductMockData = (): ProductProps => ({
     buttons: [{ text: 'Add to Cart' }, { text: 'Add to Favorite', secondary: true }],
@@ -118,7 +113,7 @@ const ProductMockData = (): ProductProps => ({
             },
         },
     ],
-    description: {
+    pageBuilder: {
         html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
     },
 })

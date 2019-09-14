@@ -1,6 +1,9 @@
+import { lazy } from 'react'
 import { getStyleAsObject } from '../../../../lib'
 
-export default (elem: HTMLElement) => {
+const component = lazy(() => import('./'))
+
+const props = (elem: HTMLElement) => {
     const hrElement = elem.children[0] as HTMLElement
 
     return {
@@ -9,3 +12,5 @@ export default (elem: HTMLElement) => {
         },
     }
 }
+
+export default { component, props }

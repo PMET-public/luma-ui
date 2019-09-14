@@ -1,7 +1,10 @@
+import { lazy } from 'react'
 import { getBackgroundImages } from '../../lib/utils'
 import { ContentWithBackgroundProps } from '../../lib/ContentWithBackground'
 
-export default (elem: HTMLElement) => {
+const component = lazy(() => import('./'))
+
+const props = (elem: HTMLElement) => {
     const { backgroundImages } = elem.dataset
     const background: ContentWithBackgroundProps = {
         backgroundImages: backgroundImages ? getBackgroundImages(backgroundImages) : undefined,
@@ -9,3 +12,5 @@ export default (elem: HTMLElement) => {
 
     return { background }
 }
+
+export default { component, props }

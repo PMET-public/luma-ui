@@ -13,7 +13,7 @@ export type PageBuilderProps = {
 }
 
 type PageBuilderFactoryProps = {
-    name: string
+    component: Component
     items: Array<any>
     props: {
         [prop: string]: any
@@ -30,11 +30,9 @@ const renderComponent = (Component: React.ComponentType<any>, props: any, items:
     )
 }
 
-const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ name, items, props }) => {
-    const component = useMemo(() => React.lazy(() => import(`./ContentTypes/${name}/index`)), [name])
-
+const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ component, items, props }) => {
     return component ? (
-        <Suspense fallback={''}>
+        <Suspense fallback>
             <ErrorBoundary>{renderComponent(component, props, items)}</ErrorBoundary>
         </Suspense>
     ) : null
