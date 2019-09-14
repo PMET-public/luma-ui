@@ -26,21 +26,23 @@ const ThemeTool = () => {
         dark: false,
     })
 
-    useEffect(handleOnUpdate, [params])
+    useEffect(handleOnUpdate, [JSON.stringify(params)])
 
-    useEffect(() => {
-        channel.addListener(events.GET_VALUES, handleOnValue)
+    // useEffect(() => {
+    //     channel.addListener(events.GET_VALUES, handleOnValue)
 
-        return () => {
-            channel.removeListener(events.GET_VALUES, handleOnValue)
-        }
-    }, [params])
+    //     return () => {
+    //         channel.removeListener(events.GET_VALUES, handleOnValue)
+    //     }
+    // }, [JSON.stringify(params)])
 
     function handleOnUpdate() {
+        console.log('handleOnUpdate', events.ON_UPDATE, params)
         channel.emit(events.ON_UPDATE, params)
     }
 
     function handleOnValue() {
+        console.log('handleOnValue', events.ON_UPDATE, params)
         channel.emit(events.ON_UPDATE, params)
     }
 

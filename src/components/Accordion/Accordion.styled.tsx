@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Root = styled.div`
+    border-top: 0.1rem solid ${props => props.theme.colors.onSurface15};
     display: grid;
     width: 100%;
 `
@@ -12,10 +13,6 @@ export const Item = styled.div`
     display: grid;
     grid-auto-columns: 1fr;
     grid-auto-rows: minmax(max-content, max-content);
-
-    &:first-of-type {
-        border-top-width: 0.1rem;
-    }
 `
 
 export const Button = styled.button`

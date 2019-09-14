@@ -3,7 +3,7 @@ const source = require('common-tags').source
 module.exports = (Name, folder = 'components') => {
     labels = {
         components: '📦 Components',
-        pages: '📑 Pages',
+        templates: '📑 Templates',
     }
 
     return (
@@ -12,7 +12,7 @@ module.exports = (Name, folder = 'components') => {
         import ${Name} from './'
         import { storiesOf } from '@storybook/react'
         
-        storiesOf('📦 Components/${Name}', module).add('Default', () => <${Name} />)
+        storiesOf('${labels[folder]}/${Name}', module).add('Default', () => <${Name} />)
     ` + '\n'
     )
 }

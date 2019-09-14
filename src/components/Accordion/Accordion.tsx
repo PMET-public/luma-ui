@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useRef, ReactElement } from 'react'
+import React, { createContext, useState, useContext, useRef } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, Button, ButtonLabel, ButtonIcon, Content } from './Accordion.styled'
 
@@ -8,17 +8,14 @@ import { animated, useSpring } from 'react-spring'
 import ArrowIconSvg from 'remixicon/icons/System/arrow-down-s-line.svg'
 
 export type AccordionProps = {
-    items?: AccordionItemProps[]
-    selected?: number
+    defaultSelected?: number
 }
 
 export type AccordionItemProps = {
-    _id?: number
-    active?: boolean
     label: string
 }
 
-const Context = createContext({ active: -1, setActive: (id: number) => {} })
+const ItemContext = createContext({ index: 0, active: false, onSelect: () => {} })
 
 type CompoundComponent = {
     Item: Component<AccordionItemProps>
@@ -26,36 +23,33 @@ type CompoundComponent = {
 
 export const Accordion: Component<AccordionProps> & CompoundComponent = ({
     children,
-    items,
-    selected = 0,
+    defaultSelected = -1,
     ...props
 }) => {
-    const [active, setActive] = useState(selected)
+    const [selected, setSelected] = useState(defaultSelected)
 
     return (
         <Root {...props}>
-            <Context.Provider value={{ active, setActive }}>
-                {items
-                    ? items.map((item, index) => (
-                          <Accordion.Item _id={index} active={active === index} key={index} {...item} />
-                      ))
-                    : React.Children.map(children, (child, index) => {
-                          return React.cloneElement(child as ReactElement<AccordionItemProps>, {
-                              active: active === index,
-                              _id: index,
-                          })
-                      })}
-            </Context.Provider>
+            {React.Children.map(children, (child, index) => {
+                const active = selected === index
+                const onSelect = () => setSelected(index)
+
+                return (
+                    <ItemContext.Provider key={index} value={{ index, active, onSelect }}>
+                        {child}
+                    </ItemContext.Provider>
+                )
+            })}
         </Root>
     )
 }
 
-Accordion.Item = ({ _id = -1, active = false, children, label, ...props }) => {
+Accordion.Item = ({ children, label, ...props }) => {
     const wrapperElemRef = useRef(null)
 
     const { height } = useMeasure(wrapperElemRef)
 
-    const { setActive } = useContext(Context)
+    const { active, onSelect } = useContext(ItemContext)
 
     const transition = useSpring(
         active
@@ -69,13 +63,11 @@ Accordion.Item = ({ _id = -1, active = false, children, label, ...props }) => {
               }
     )
 
-    const triggerActivate = () => {
-        setActive(active ? -1 : _id)
-    }
+    const triggerSelect = () => onSelect()
 
     return (
         <Item {...props}>
-            <Button type="button" onClick={triggerActivate}>
+            <Button type="button" onClick={triggerSelect}>
                 <ButtonLabel>{label}</ButtonLabel>
                 <ButtonIcon $active={active}>
                     <ArrowIconSvg />

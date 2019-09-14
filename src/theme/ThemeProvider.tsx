@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import styled, { ThemeProvider as StyledThemeProvider, createGlobalStyle } from 'styled-components'
 import { ResetStyles } from './ResetStyles'
 import { light as lightColors, dark as darkColors } from './colors'
 import { typography } from './typography'
-import { breakpoints } from './breakpoints'
+import { breakpoints, layout } from './layout'
 
 const GlobalStyles = createGlobalStyle`
     html {
@@ -23,8 +23,6 @@ export const Root = styled.div`
     font-family: ${props => props.theme.typography.body.family};
     font-style: ${props => props.theme.typography.body.style};
     font-weight: ${props => props.theme.typography.body.weight};
-    margin: 0 auto;
-    max-width: 180rem;
 
     & .visuallyhidden {
         clip: rect(0 0 0 0);
@@ -72,16 +70,6 @@ export const Root = styled.div`
         line-height: 1.5;
     }
 
-    & blockquote {
-        font-size: 2.4rem;
-        font-style: italic;
-        line-height: 1.5;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-        padding-left: 2.4rem;
-        position: relative;
-    }
-
     /* Headings */
 
     & h1,
@@ -97,7 +85,7 @@ export const Root = styled.div`
         line-height: 1.1;
     }
 
-    & h1 {
+    /* & h1 {
         font-size: 2.4rem;
     }
 
@@ -113,7 +101,7 @@ export const Root = styled.div`
     & h5,
     & h6 {
         font-size: 1.8rem;
-    }
+    } */
 
     /* Tables */
 
@@ -138,11 +126,13 @@ export type ThemeProviderProps = {
     dark?: boolean
 }
 
-export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark = false, children }) => {
+export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark: _dark = false, children }) => {
+    const [dark, setDark] = useState(_dark)
+
     const colors = dark ? darkColors : lightColors
 
     return (
-        <StyledThemeProvider theme={{ colors, typography, breakpoints, dark }}>
+        <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, dark, setDark }}>
             <Root>
                 <ResetStyles />
                 <GlobalStyles />

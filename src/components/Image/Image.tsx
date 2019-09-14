@@ -1,56 +1,42 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import { Component } from '../../lib'
 import { Root, LoadedImage, Placeholder, ErrorIcon } from './Image.styled'
+
+import { useImage, Image } from '../../hooks/useImage'
 
 export type ImageProps = {
     alt?: string
     height?: string | number
-    src: string
+    src: Image
     width?: string | number
     vignette?: number
     transition?: boolean
+    title?: string
 }
 
 export const ImageComponent: Component<ImageProps> = ({
     alt,
     height,
     src,
+    title,
     transition = false,
     vignette = 0,
     width,
     ...props
 }) => {
-    const [loaded, setLoaded] = useState(false)
-    const [error, setError] = useState(false)
-    const imageRef = useRef<HTMLImageElement>(null)
-
-    /**
-     * Mark Image as loaded if loaded from cache
-     * http://mikefowler.me/journal/2014/04/22/cached-images-load-event
-     */
-    useEffect(() => {
-        if (imageRef.current && imageRef.current.complete) setLoaded(true)
-    }, [src])
-
-    function handleImageLoaded() {
-        setLoaded(true)
-    }
-
-    function handleImageError() {
-        setError(true)
-    }
+    const image = useImage(src)
 
     return (
         <Root $vignette={vignette} {...props}>
             <LoadedImage
-                $error={error}
-                $loaded={loaded}
+                $error={image.error}
+                $loaded={image.loaded}
                 $transition={transition}
-                ref={imageRef}
-                src={src}
-                onError={handleImageError}
-                onLoad={handleImageLoaded}
-                {...{ alt, width, height }}
+                alt={alt}
+                height={height || image.size.height}
+                src={image.src}
+                title={title}
+                width={width || image.size.width}
             />
 
             <Placeholder
@@ -59,7 +45,7 @@ export const ImageComponent: Component<ImageProps> = ({
                 {...{ width, height }}
             />
 
-            {error && <ErrorIcon />}
+            {image.error && <ErrorIcon />}
         </Root>
     )
 }

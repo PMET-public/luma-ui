@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-const [ _, _bin, command, name, ...attr ] = process.argv
+const [_, _bin, command, name, ...attr] = process.argv
 
 const usage = `
 🏗  \x1b[4mStorybook Generator\x1b[0m
@@ -10,15 +10,15 @@ const usage = `
     –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     component: Generates a new UI Component
         ↳ yarn generate component <ComponentName>
-        ↳ yarn generate page <TemplateName>
+        ↳ yarn generate template <TemplateName>
 `
 
 
-switch(command) {
+switch (command) {
     case 'component':
         return require('./lib/new-component')(name, 'components')
-    case 'page':
-        return require('./lib/new-component')(name, 'pages')
+    case 'template':
+        return require('./lib/new-component')(name, 'templates')
     default:
         return console.log(usage)
 }

@@ -37,4 +37,11 @@ export const Root = styled.div`
     & em {
         font-style: italic;
     }
+
+    code {
+        background: ${props => props.theme.colors.onSurface};
+        color: ${props => props.theme.colors.surface};
+        display: block;
+        padding: 2rem;
+    }
 `

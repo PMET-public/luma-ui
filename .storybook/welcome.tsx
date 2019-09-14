@@ -39,17 +39,17 @@ storiesOf('👋 Welcome', module).add('Getting Started', () => (
         </Section>
 
         <Section>
-            <h3> ... or a Page</h3>
+            <h3> ... or a Template</h3>
             <CodeBlock lang="bash">{`
-                    yarn generate page FooBar
+                    yarn generate template FooBar
                 `}</CodeBlock>
 
             <Source>
                 <code>{source`
-                    ✨ src/pages/FooBar/FooBar.tsx created
-                    ✨ src/pages/FooBar/FooBar.styled.tsx created
-                    ✨ src/pages/FooBar/FooBar.story.tsx created
-                    ✨ src/pages/FooBar/index.ts created
+                    ✨ src/templates/FooBar/FooBar.tsx created
+                    ✨ src/templates/FooBar/FooBar.styled.tsx created
+                    ✨ src/templates/FooBar/FooBar.story.tsx created
+                    ✨ src/templates/FooBar/index.ts created
                 `}</code>
             </Source>
         </Section>

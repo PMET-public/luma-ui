@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $fill?: boolean; $color: 'primary' | 'secondary' }>`
+export const Root = styled.div<{ $secondary?: boolean }>`
     align-items: center;
-    background-color: ${props => (props.$fill ? 'currentColor' : 'transparent')};
+    background-color: ${props => (props.$secondary ? 'transparent' : 'currentColor')};
     border-radius: 2.4rem;
     border: 0.1rem solid;
-    color: ${props => (props.$color === 'primary' ? props.theme.colors.primary : props.theme.colors.secondary)};
+    color: ${props => props.theme.colors.primary};
     display: inline-flex;
     font-size: 1.6rem;
     font-weight: 600;
@@ -22,7 +22,7 @@ export const Root = styled.div<{ $fill?: boolean; $color: 'primary' | 'secondary
     }
 
     ${props =>
-        props.$fill &&
+        !props.$secondary &&
         `
             & > span {
                 filter: invert(1);

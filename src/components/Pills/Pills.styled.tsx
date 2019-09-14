@@ -18,6 +18,14 @@ export const Wrapper = styled.div`
     &::-webkit-scrollbar {
         display: none;
     }
+
+    &::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 1px;
+        visibility: hidden;
+    }
 `
 
 export const Item = styled.div`

@@ -23,20 +23,20 @@ export const withTheme = makeDecorator({
     wrapper: (getStory, context, { parameters = {} }) => {
         const [params, setParams] = useState({})
 
-        const channel = addons.getChannel()
+        // useEffect(() => {
+        //     const channel = addons.getChannel()
 
-        useEffect(() => {
-            channel.addListener(events.ON_UPDATE, handleOnUpdate)
+        //     channel.addListener(events.ON_UPDATE, handleOnUpdate)
 
-            channel.emit(events.GET_VALUES)
+        //     channel.emit(events.GET_VALUES)
 
-            return () => {
-                channel.removeListener(events.ON_UPDATE, handleOnUpdate)
-            }
-        }, [])
+        //     return () => {
+        //         channel.removeListener(events.ON_UPDATE, handleOnUpdate)
+        //     }
+        // }, [])
 
         function handleOnUpdate({ active, ...newParams }) {
-            setParams(newParams)
+            setParams({ ...params, ...newParams })
         }
 
         return (
