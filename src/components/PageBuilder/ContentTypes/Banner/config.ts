@@ -56,6 +56,13 @@ const props = (elem: HTMLElement) => {
         style: getStyleAsObject(overlayElem.style),
     }
 
+    /** Alignments */
+    const verticalAlign = elem.classList.contains('align-middle')
+        ? 'middle'
+        : elem.classList.contains('align-bottom')
+        ? 'bottom'
+        : ''
+
     return {
         appearance,
         background,
@@ -66,6 +73,7 @@ const props = (elem: HTMLElement) => {
         showButton,
         showOverlay,
         style,
+        verticalAlign,
     }
 }
 

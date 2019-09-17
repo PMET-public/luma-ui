@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Wrapper = styled.div<{ $verticalAlign?: 'bottom' | 'middle' }>`
+    display: flex;
+    ${props => props.$verticalAlign === 'bottom' && 'align-items: flex-end;'}
+    ${props => props.$verticalAlign === 'middle' && 'align-items: center;'}
+`
 export const Overlay = styled.div`
     transition: background-color 305ms ease-out;
     padding: 1rem;

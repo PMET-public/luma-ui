@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, Props } from '../../../../lib'
-import { Root, Overlay, Content, Button } from './Banner.styled'
+import { Root, Wrapper, Overlay, Content, Button } from './Banner.styled'
 
 import Link, { LinkProps } from '../../../Link'
 import ButtonComponent, { ButtonProps as ButtonComponentProps } from '../../../Button'
@@ -8,6 +8,7 @@ import ContentWithBackground, { ContentWithBackgroundProps } from '../../lib/Con
 
 export type BannerProps = {
     appearance?: 'poster' | 'collage-left' | 'collage-center' | 'collage-right'
+    verticalAlign?: 'bottom' | 'middle'
     background?: ContentWithBackgroundProps
     button?: ButtonComponentProps
     link?: LinkProps
@@ -23,6 +24,7 @@ export type BannerProps = {
 
 export const Banner: Component<BannerProps> = ({
     appearance = 'poster',
+    verticalAlign,
     background,
     button,
     children,
@@ -41,12 +43,12 @@ export const Banner: Component<BannerProps> = ({
             $overlayColor={overlay && overlay.overlayColor}
             {...props}
         >
-            <ContentWithBackground {...background}>
+            <Wrapper {...background} $verticalAlign={verticalAlign} as={ContentWithBackground}>
                 <Overlay {...overlay}>
                     {content && <Content {...content} dangerouslySetInnerHTML={{ __html: content.html }} />}
                     {button && <Button as={ButtonComponent} {...button} />}
                 </Overlay>
-            </ContentWithBackground>
+            </Wrapper>
         </Root>
     )
 }
