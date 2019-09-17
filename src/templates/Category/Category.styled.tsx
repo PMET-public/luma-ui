@@ -4,7 +4,7 @@ import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Root as FiltersRoot } from '../../components/Filters'
 import { Wrapper as PillsWrapper } from '../../components/Pills'
-import { Root as SearchBarRoot } from '../../components/SearchBar'
+// import { Root as SearchBarRoot } from '../../components/SearchBar'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
@@ -22,21 +22,11 @@ export const TopBar = styled.div`
 
 export const TopBarWrapper = styled(ContainerWrapper)`
     align-items: center;
-    height: 7rem;
-    align-items: center;
     color: ${props => props.theme.colors.onSurface};
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 1fr auto;
-
-    /* @media ${props => props.theme.breakpoints.medium} {
-        ${SearchBarRoot} {
-            max-width: 64rem;
-            justify-self: center;
-            width: 100%;
-            max-width: ${props => props.theme.layout.containedWidth};
-        }
-    } */
+    height: 7rem;
 `
 
 export const CategoriesWrapper = styled(ContainerWrapper)`

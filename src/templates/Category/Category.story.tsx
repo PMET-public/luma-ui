@@ -405,6 +405,7 @@ storiesOf('📑 Templates/Category', module)
             const ProductListMockData: CategoryProps = {
                 search: {
                     label: 'Search',
+                    count: 199,
                 },
                 filters: {
                     label: 'Filters',

@@ -52,7 +52,14 @@ export const SearchBar: Component<SearchBarProps> = ({
                 <Wrapper as="label">
                     <SearchIcon />
 
-                    <Field aria-label={label} onChange={handleChange} placeholder={label} type="text" value={value} />
+                    <Field
+                        aria-label={label}
+                        onChange={handleChange}
+                        placeholder={label}
+                        as="input"
+                        type="text"
+                        value={value}
+                    />
 
                     {typeof count === 'number' && (
                         <Count>
@@ -61,7 +68,7 @@ export const SearchBar: Component<SearchBarProps> = ({
                     )}
 
                     {clearButton && value.length > 0 && (
-                        <ResetButton aria-label="reset" onClick={handleReset}>
+                        <ResetButton as="button" type="reset" aria-label="reset" onClick={handleReset}>
                             <ResetIcon />
                         </ResetButton>
                     )}

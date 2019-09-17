@@ -4,7 +4,7 @@
             "@babel/preset-env",
             {
                 "modules": false
-            },
+            }
         ],
         "@babel/typescript",
         "@babel/preset-react",
@@ -16,8 +16,9 @@
             "babel-plugin-styled-components",
             {
                 "ssr": true,
+                "displayName": true
             }
-        ],
+        ]
     ],
-    "exclude": "node_modules/**",
+    "exclude": "node_modules/**"
 }

@@ -64,10 +64,10 @@ export const Category: Component<CategoryProps> = ({
             <TopBar>
                 <TopBarWrapper $margin>
                     {search ? (
-                        <SearchBar />
+                        <SearchBar {...search} />
                     ) : (
                         <Heading>
-                            <Title {...title}>{title.text}</Title>
+                            {title && <Title {...title}>{title.text}</Title>}
                             {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
                         </Heading>
                     )}

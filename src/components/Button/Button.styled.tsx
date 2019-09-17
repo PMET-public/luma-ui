@@ -5,7 +5,6 @@ export const Root = styled.div<{ $secondary?: boolean }>`
     background-color: ${props => (props.$secondary ? 'transparent' : 'currentColor')};
     border-radius: 2.4rem;
     border: 0.1rem solid;
-    color: ${props => props.theme.colors.primary};
     display: inline-flex;
     font-size: 1.6rem;
     font-weight: 600;

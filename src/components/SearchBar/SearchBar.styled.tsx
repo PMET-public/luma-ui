@@ -42,6 +42,7 @@ export const Field = styled.input`
     flex-grow: 1;
     font-size: inherit;
     font-weight: 600;
+    width: 4rem;
 `
 
 export const Count = styled.span`

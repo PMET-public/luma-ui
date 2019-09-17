@@ -6,11 +6,11 @@ const component = lazy(() => import('./'))
 const props = (elem: HTMLElement) => {
     const style = getStyleAsObject(elem.style)
 
-    const source = elem.children[0].innerHTML
+    const html = elem.children[0].innerHTML
 
     return {
         style,
-        source,
+        html,
     }
 }
 
