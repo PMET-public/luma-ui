@@ -7,10 +7,4 @@ export const Wrapper = styled.div<{ $contained?: boolean; $margin?: boolean }>`
     margin: 0 auto;
     padding: 0 ${props => (props.$margin ? props.theme.layout.margin : '0')};
     max-width: ${props => (props.$contained ? props.theme.layout.containedWidth : '100%')};
-
-    & {
-        margin: unset;
-        max-width: unset;
-        padding: unset;
-    }
 `

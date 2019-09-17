@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Wrapper as ContainerWrapper } from '../Container'
+
 export const Root = styled.div`
     width: 100%;
     line-height: 1.2;
@@ -67,5 +69,13 @@ export const Root = styled.div`
         color: ${props => props.theme.colors.surface};
         display: block;
         padding: 2rem;
+    }
+
+    ${ContainerWrapper} {
+        & {
+            margin: unset;
+            max-width: unset;
+            padding: unset;
+        }
     }
 `
