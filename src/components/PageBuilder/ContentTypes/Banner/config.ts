@@ -7,6 +7,10 @@ import { ContentWithBackgroundProps } from '../../lib/ContentWithBackground'
 const component = lazy(() => import('./'))
 
 const props = (elem: HTMLElement) => {
+    const { appearance, showButton, showOverlay } = elem.dataset
+
+    const style = getStyleAsObject(elem.style)
+
     /** Get Button */
     const link: LinkProps | undefined =
         elem.childNodes[0].nodeName === 'A'
@@ -30,7 +34,7 @@ const props = (elem: HTMLElement) => {
 
     /** Get Button */
     const buttonElem = elem.querySelector('[data-element="button"]') as HTMLElement
-    const button = {
+    const button = buttonElem && {
         secondary: buttonElem.classList.contains('pagebuilder-button-secondary') ? true : false,
         text: buttonElem.textContent || '',
         style: getStyleAsObject(buttonElem.style),
@@ -39,7 +43,7 @@ const props = (elem: HTMLElement) => {
 
     /** Get Content */
     const contentElem = elem.querySelector('[data-element="content"]') as HTMLElement
-    const content = {
+    const content = contentElem && {
         ...contentElem.dataset,
         html: contentElem.innerHTML,
         style: getStyleAsObject(contentElem.style),
@@ -47,17 +51,21 @@ const props = (elem: HTMLElement) => {
 
     /** Get Overlay */
     const overlayElem = elem.querySelector('[data-element="overlay"]') as HTMLElement
-    const overlay = {
+    const overlay = overlayElem && {
         ...overlayElem.dataset,
         style: getStyleAsObject(overlayElem.style),
     }
 
     return {
-        link,
+        appearance,
         background,
         button,
         content,
+        link,
         overlay,
+        showButton,
+        showOverlay,
+        style,
     }
 }
 

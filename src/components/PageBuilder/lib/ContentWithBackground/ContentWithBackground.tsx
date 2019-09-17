@@ -34,7 +34,13 @@ export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
     }, [JSON.stringify(style)])
 
     return (
-        <Root style={{ backgroundColor: styles.background.backgroundColor, ...styles.wrapper }} {...props}>
+        <Root
+            style={{
+                backgroundColor: styles.background.backgroundColor,
+                ...styles.wrapper,
+            }}
+            {...props}
+        >
             <BgImage $src={bgImage.src} $loaded={bgImage.loaded} $error={bgImage.error} style={styles.background} />
 
             <Content>{children}</Content>

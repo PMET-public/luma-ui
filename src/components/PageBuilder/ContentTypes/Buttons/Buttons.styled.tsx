@@ -15,7 +15,10 @@ export const Root = styled.div<{ $appearance: 'inline' | 'stacked'; $sameWidth: 
         `}
 
     ${RootButton} {
-        margin: 0.5rem;
+        &:not(:first-child) {
+            ${props => (props.$appearance === 'inline' ? `margin-left: 1rem;` : `margin-top: 1rem;`)}
+        }
+
         flex-grow: ${props => (props.$sameWidth ? '1' : '0')};
     }
 

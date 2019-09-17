@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import { getStyleAsObject } from '../../../../lib'
 import { ButtonProps } from '../../../Button'
 import { LinkProps } from '../../../Link'
 
@@ -8,6 +9,8 @@ const props = (elem: HTMLElement) => {
     const buttonElem = elem.childNodes[0] as HTMLElement
     const type = buttonElem.classList.contains('pagebuilder-button-link') ? 'link' : 'button'
     const secondary = buttonElem.classList.contains('pagebuilder-button-secondary') ? true : false
+
+    const style = getStyleAsObject(elem.style)
 
     const button: ButtonProps = {
         text: elem.textContent || '',
@@ -26,6 +29,7 @@ const props = (elem: HTMLElement) => {
     return {
         button,
         link,
+        style,
         type,
     }
 }

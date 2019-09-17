@@ -29,9 +29,9 @@ export const Content = styled.div`
     & h2,
     & h3,
     & h4 {
-        font-size: 200%;
+        font-size: 3rem;
         @media ${props => props.theme.breakpoints.medium} {
-            font-size: 240%;
+            font-size: 4rem;
         }
     }
 `
@@ -42,9 +42,9 @@ export const Button = styled.div`
 `
 
 export const Root = styled.div<{
+    $overlayColor?: string
     $showButton?: 'always' | 'never' | 'hover'
     $showOverlay?: 'always' | 'never' | 'hover'
-    $overlayColor?: string
 }>`
     ${props =>
         props.$showOverlay === 'hover' &&

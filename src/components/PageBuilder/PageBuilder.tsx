@@ -2,7 +2,7 @@
  * ☢️ Experimental
  */
 
-import React, { Suspense, useMemo } from 'react'
+import React, { Suspense, useMemo, useEffect, useState } from 'react'
 import { Component } from '../../lib'
 import { Root } from './PageBuilder.styled'
 import { ErrorBoundary } from '../../lib'
@@ -39,8 +39,14 @@ const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ component, ite
 }
 
 export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => {
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        setItems(htmlToProps(html).items)
+    }, [])
+
     return useMemo(() => {
-        const { items } = htmlToProps(html) as PageBuilderFactoryProps
+        // const { items } = htmlToProps(html) as PageBuilderFactoryProps
 
         return (
             <Root {...props}>
@@ -49,5 +55,5 @@ export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => 
                 ))}
             </Root>
         )
-    }, [html])
+    }, [items])
 }

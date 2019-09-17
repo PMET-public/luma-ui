@@ -7,6 +7,8 @@ import { ImageProps } from '../../../Image'
 const component = lazy(() => import('./'))
 
 const props = (elem: HTMLElement) => {
+    const style = getStyleAsObject(elem.style)
+
     const imageElement =
         elem.children[0].nodeName === 'A'
             ? (elem.children[0].children as HTMLCollectionOf<HTMLElement>)
@@ -41,6 +43,7 @@ const props = (elem: HTMLElement) => {
         image,
         caption,
         link,
+        style,
     }
 }
 

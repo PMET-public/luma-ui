@@ -9,8 +9,8 @@ import ContentWithBackground, { ContentWithBackgroundProps } from '../../lib/Con
 export type BannerProps = {
     appearance?: 'poster' | 'collage-left' | 'collage-center' | 'collage-right'
     background?: ContentWithBackgroundProps
-    link?: LinkProps
     button?: ButtonComponentProps
+    link?: LinkProps
     showButton?: 'always' | 'never' | 'hover'
     showOverlay?: 'always' | 'never' | 'hover'
     content?: Props<{
