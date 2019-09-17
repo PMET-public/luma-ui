@@ -59,64 +59,6 @@ export const Root = styled.div`
         }
         */
 
-    /* Copy & Lists */
-
-    & ul {
-        list-style-type: circle;
-    }
-
-    & ul li,
-    & ol li {
-        line-height: 1.5;
-    }
-
-    /* Headings */
-
-    & h1,
-    & h2,
-    & h3,
-    & h4,
-    & h5,
-    & h6 {
-        /* Change heading typefaces here */
-        font-family: ${props => props.theme.typography.heading.family};
-        font-style: ${props => props.theme.typography.heading.style};
-        font-weight: ${props => props.theme.typography.heading.weight};
-        line-height: 1.1;
-    }
-
-    /* & h1 {
-        font-size: 2.4rem;
-    }
-
-    & h2 {
-        font-size: 2.2rem;
-    }
-
-    & h3 {
-        font-size: 2rem;
-    }
-
-    & h4,
-    & h5,
-    & h6 {
-        font-size: 1.8rem;
-    } */
-
-    /* Tables */
-
-    & table {
-        margin-top: 1rem;
-        border-spacing: 0;
-        border-collapse: collapse;
-    }
-
-    & table td,
-    & table th {
-        padding: 0;
-        line-height: 3.3rem;
-    }
-
     code {
         font-family: 'Fira Code', 'Courier New', Courier, monospace;
     }

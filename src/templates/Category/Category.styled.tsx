@@ -17,11 +17,12 @@ export const TopBar = styled.div`
     position: sticky;
     top: 0;
     z-index: 1;
+    margin-bottom: 1rem;
 `
 
 export const TopBarWrapper = styled(ContainerWrapper)`
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     align-items: center;
     color: ${props => props.theme.colors.onSurface};
     display: grid;
@@ -30,7 +31,7 @@ export const TopBarWrapper = styled(ContainerWrapper)`
 `
 
 export const CategoriesWrapper = styled(ContainerWrapper)`
-    margin-bottom: ${props => props.theme.layout.margin};
+    margin-bottom: 2rem;
     ${PillsWrapper} {
         padding-left: ${props => props.theme.layout.margin};
     }
@@ -41,11 +42,11 @@ export const Heading = styled.div`
     display: grid;
     grid-auto-flow: row;
     grid-auto-rows: max-content;
-    grid-gap: 0.5rem;
+    grid-gap: 0.3rem;
 
     ${BreadcrumbsRoot} {
-        color: ${props => props.theme.colors.onSurface};
-        font-size: 1.3rem;
+        color: ${props => props.theme.colors.onSurface75};
+        font-size: 1.2rem;
         line-height: inherit;
     }
 
@@ -59,8 +60,12 @@ export const Heading = styled.div`
 export const Title = styled.div`
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight};
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1.5;
+
+    @media ${props => props.theme.breakpoints.medium} {
+        font-size: 1.6rem;
+    }
 `
 
 export const TopBarFilterButton = styled.button`
@@ -89,40 +94,35 @@ export const ProductListWrapper = styled(ContainerWrapper)``
 
 export const FiltersWrapper = styled.div<{ $active?: boolean; $height: number }>`
     min-height: calc(${props => props.$height * 0.01}px * 100);
+    max-height: calc(${props => props.$height * 0.01}px * 100);
+    -webkit-overflow-scrolling: touch;
+    backdrop-filter: blur(50px);
+    background-color: ${props => props.theme.colors.surface75};
+    color: ${props => props.theme.colors.onSurface};
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100vw - 3rem);
+    min-width: 30rem;
+    overflow: scroll;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: transform 305ms ease-out;
+    width: auto;
+    z-index: 4;
 
-    /* @media ${props => props.theme.breakpoints.smallOnly} { */
-        max-height: calc(${props => props.$height * 0.01}px * 100);
-        -webkit-overflow-scrolling: touch;
-        backdrop-filter: blur(50px);
-        background-color: ${props => props.theme.colors.surface75};
-        color: ${props => props.theme.colors.onSurface};
-        display: flex;
-        flex-direction: column;
-        max-width: calc(100vw - 3rem);
-        min-width: 30rem;
-        overflow: scroll;
-        position: fixed;
-        right: 0;
-        top: 0;
-        transform: translateX(100%);
-        transition: transform 305ms ease-out;
-        width: auto;
-        z-index: 4;
-
-        ${props =>
-            props.$active &&
-            `
+    ${props =>
+        props.$active &&
+        `
             box-shadow: 3rem 0 6rem rgba(0, 0, 0, 0.75);
             transform: translateX(0);    
         `}
 
-        ${FiltersRoot} {
-            padding: 4rem;
-            flex-grow: 1;
-        }
-    /* } */
-
-   
+    ${FiltersRoot} {
+        padding: 4rem;
+        flex-grow: 1;
+    }
 `
 
 export const FiltersButtons = styled.div`

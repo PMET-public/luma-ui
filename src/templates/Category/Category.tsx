@@ -61,9 +61,8 @@ export const Category: Component<CategoryProps> = ({
             <TopBar>
                 <TopBarWrapper $margin>
                     <Heading>
-                        {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
-
                         <Title {...title}>{title.text}</Title>
+                        {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
                     </Heading>
 
                     {filters && (

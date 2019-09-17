@@ -49,14 +49,7 @@ export const LoadedImage = styled(ImageTag)<{ $transition?: boolean; $loaded?: b
         `}
 `
 
-export const Placeholder = styled(ImageTag)`
-    background: linear-gradient(
-        -45deg,
-        ${props => props.theme.colors.onSurface25},
-        ${props => props.theme.colors.onSurface15}
-    );
-    background-size: 300%;
-`
+export const Placeholder = styled(ImageTag)``
 
 export const ErrorIcon = styled(ErrorIconSvg)`
     color: ${props => props.theme.colors.onSurface25};
