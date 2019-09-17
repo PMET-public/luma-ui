@@ -89,6 +89,7 @@ export const Category: Component<CategoryProps> = ({
 
             <Content>
                 {pageBuilder && <PageBuilder {...pageBuilder} />}
+
                 {products && (
                     <ProductListWrapper $margin>
                         <ProductList {...products} />

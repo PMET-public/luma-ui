@@ -749,9 +749,6 @@ storiesOf('📑 Templates/Category', module)
                         ],
                     })),
                 },
-                pageBuilder: {
-                    html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
-                },
             }
 
             return (
