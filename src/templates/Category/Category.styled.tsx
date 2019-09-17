@@ -4,6 +4,7 @@ import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Root as FiltersRoot } from '../../components/Filters'
 import { Wrapper as PillsWrapper } from '../../components/Pills'
+import { Root as SearchBarRoot } from '../../components/SearchBar'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
@@ -17,17 +18,25 @@ export const TopBar = styled.div`
     position: sticky;
     top: 0;
     z-index: 1;
-    margin-bottom: 1rem;
 `
 
 export const TopBarWrapper = styled(ContainerWrapper)`
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    align-items: center;
+    height: 7rem;
     align-items: center;
     color: ${props => props.theme.colors.onSurface};
     display: grid;
-    grid-gap: 1rem 2rem;
+    grid-gap: 1rem;
     grid-template-columns: 1fr auto;
+
+    /* @media ${props => props.theme.breakpoints.medium} {
+        ${SearchBarRoot} {
+            max-width: 64rem;
+            justify-self: center;
+            width: 100%;
+            max-width: ${props => props.theme.layout.containedWidth};
+        }
+    } */
 `
 
 export const CategoriesWrapper = styled(ContainerWrapper)`
@@ -81,7 +90,7 @@ export const TopBarFilterButton = styled.button`
 `
 
 export const FiltersIcon = styled(FiltersIcoSvg)`
-    width: 1.2em;
+    width: 2rem;
 `
 
 export const Content = styled.div`

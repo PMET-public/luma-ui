@@ -4,8 +4,10 @@ import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
 import ResetIconSvg from 'remixicon/icons/System/close-line.svg'
 
 export const Root = styled.div`
-    --opacity: 0.64;
-    border-bottom: 0.1rem solid ${props => props.theme.colors.onSurface50};
+    --opacity: 0.5;
+    /* border-bottom: 0.1rem solid ${props => props.theme.colors.onSurface25}; */
+    background: ${props => props.theme.colors.onSurface10};
+    border-radius: 1rem;
     color: ${props => props.theme.colors.onSurface};
 
     &:hover,
@@ -29,6 +31,7 @@ export const Wrapper = styled.label`
 export const SearchIcon = styled(IconSearchSvg)`
     fill: currentColor;
     width: 1.1em;
+    opacity: var(--opacity);
 `
 
 export const Field = styled.input`
@@ -49,12 +52,11 @@ export const Count = styled.span`
 `
 
 export const ResetButton = styled.button`
-    font-size: 1.6rem;
     opacity: var(--opacity);
     transition: opacity 305ms ease;
     line-height: 0;
 `
 export const ResetIcon = styled(ResetIconSvg)`
     fill: currentColor;
-    width: 1.2em;
+    height: 1.1em;
 `

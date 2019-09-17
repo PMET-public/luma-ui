@@ -24,11 +24,13 @@ import Filters, { FiltersProps } from '../../components/Filters'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import Pills, { PillsProps } from '../../components/Pills'
 import Button, { ButtonProps } from '../../components/Button'
+import SearchBar, { SearchBarProps } from '../../components/SearchBar'
 
 export type CategoryProps = {
-    title: Props<{
+    title?: Props<{
         text: string
     }>
+    search?: SearchBarProps
     categories?: PillsProps
     breadcrumbs?: BreadcrumbsProps
     pageBuilder?: PageBuilderProps
@@ -42,11 +44,12 @@ export type CategoryProps = {
 }
 
 export const Category: Component<CategoryProps> = ({
-    pageBuilder,
     breadcrumbs,
     categories,
     filters,
+    pageBuilder,
     products,
+    search,
     title,
     ...props
 }) => {
@@ -60,16 +63,18 @@ export const Category: Component<CategoryProps> = ({
         <Root {...props}>
             <TopBar>
                 <TopBarWrapper $margin>
-                    <Heading>
-                        <Title {...title}>{title.text}</Title>
-                        {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
-                    </Heading>
-
+                    {search ? (
+                        <SearchBar />
+                    ) : (
+                        <Heading>
+                            <Title {...title}>{title.text}</Title>
+                            {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
+                        </Heading>
+                    )}
                     {filters && (
                         <TopBarFilterButton as="button" type="button" onClick={() => setShowFilter(!showFilter)}>
                             <span>
-                                <FiltersIcon />
-                                {filters.label}
+                                <FiltersIcon aria-label={filters.label} />
                             </span>
                         </TopBarFilterButton>
                     )}
