@@ -5,7 +5,6 @@ import { Root, ItemWrapper } from './ProductList.styled'
 import ProductItem, { ProductItemProps } from '../ProductItem'
 
 export type ProductListProps = {
-    loading?: number
     items?: Array<
         {
             _id?: string | number
@@ -13,7 +12,7 @@ export type ProductListProps = {
     >
 }
 
-export const ProductList: Component<ProductListProps> = ({ items = [], loading, ...props }) => {
+export const ProductList: Component<ProductListProps> = ({ items = [], ...props }) => {
     return (
         <Root {...props}>
             {items.map(({ _id, ...item }, index) => (
@@ -21,13 +20,6 @@ export const ProductList: Component<ProductListProps> = ({ items = [], loading, 
                     <ProductItem {...item} />
                 </ItemWrapper>
             ))}
-
-            {!!loading &&
-                new Array(loading).fill(null).map((_, index) => (
-                    <ItemWrapper key={index}>
-                        <ProductItem.Skeleton />
-                    </ItemWrapper>
-                ))}
         </Root>
     )
 }

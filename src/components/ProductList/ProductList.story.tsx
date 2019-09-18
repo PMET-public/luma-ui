@@ -5,7 +5,6 @@ import { number } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ProductList', module).add('Default', () => (
     <ProductList
-        loading={number('loading #', 0)}
         items={new Array(number('# items', 10)).fill(null).map(() => ({
             image: {
                 alt: '',

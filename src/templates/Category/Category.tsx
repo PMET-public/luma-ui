@@ -14,11 +14,12 @@ import {
     FiltersWrapper,
     FiltersButtons,
     FiltersScreen,
+    NoResult,
 } from './Category.styled'
 
 import { useResize } from '../../hooks/useResize'
 
-import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
+// import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import ProductList, { ProductListProps } from '../../components/ProductList'
 import Filters, { FiltersProps } from '../../components/Filters'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
@@ -30,10 +31,13 @@ export type CategoryProps = {
     title?: Props<{
         text: string
     }>
-    search?: SearchBarProps
+    search?: {
+        searchBar: SearchBarProps
+        noResult: string
+    }
     categories?: PillsProps
     breadcrumbs?: BreadcrumbsProps
-    pageBuilder?: PageBuilderProps
+    // cmsBlock?: PageBuilderProps
     filters?: {
         label: string
         open?: boolean
@@ -46,8 +50,9 @@ export type CategoryProps = {
 export const Category: Component<CategoryProps> = ({
     breadcrumbs,
     categories,
+    children,
     filters,
-    pageBuilder,
+    // cmsBlock,
     products,
     search,
     title,
@@ -64,7 +69,7 @@ export const Category: Component<CategoryProps> = ({
             <TopBar>
                 <TopBarWrapper $margin>
                     {search ? (
-                        <SearchBar {...search} />
+                        <SearchBar {...search.searchBar} />
                     ) : (
                         <Heading>
                             {title && <Title {...title}>{title.text}</Title>}
@@ -88,13 +93,15 @@ export const Category: Component<CategoryProps> = ({
             )}
 
             <Content>
-                {pageBuilder && <PageBuilder {...pageBuilder} />}
+                {/* {cmsBlock && <PageBuilder {...cmsBlock} />} */}
 
                 {products && (
                     <ProductListWrapper $margin>
                         <ProductList {...products} />
                     </ProductListWrapper>
                 )}
+
+                {search && search.noResult && <NoResult $margin>{search.noResult}</NoResult>}
             </Content>
 
             {filters && (

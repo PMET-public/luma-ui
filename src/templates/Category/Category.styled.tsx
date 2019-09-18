@@ -4,7 +4,6 @@ import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Root as FiltersRoot } from '../../components/Filters'
 import { Wrapper as PillsWrapper } from '../../components/Pills'
-// import { Root as SearchBarRoot } from '../../components/SearchBar'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
@@ -147,4 +146,13 @@ export const FiltersScreen = styled.div`
     width: 100%;
     z-index: 2;
     background: ${props => props.theme.colors.surface50};
+`
+
+export const NoResult = styled(ContainerWrapper)`
+    color: ${props => props.theme.colors.primary75};
+    font-size: 1.4rem;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `

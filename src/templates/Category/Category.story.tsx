@@ -10,6 +10,7 @@ storiesOf('📑 Templates/Category', module)
     .add(
         'Default',
         () => {
+            const count = number('count', 10, undefined, 'Products')
             const ProductListMockData: CategoryProps = {
                 title: {
                     as: 'h2',
@@ -348,7 +349,7 @@ storiesOf('📑 Templates/Category', module)
                     ],
                 },
                 products: {
-                    items: new Array(number('# of products', 10, undefined, 'Products')).fill(true).map(() => ({
+                    items: new Array(count).fill(true).map(() => ({
                         image: {
                             alt: '',
                             src: {
@@ -382,7 +383,7 @@ storiesOf('📑 Templates/Category', module)
                         ],
                     })),
                 },
-                pageBuilder: {
+                cmsBlock: {
                     html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
                 },
             }
@@ -402,10 +403,15 @@ storiesOf('📑 Templates/Category', module)
     .add(
         'Search',
         () => {
+            const count = number('count', 0, undefined, 'Products')
+
             const ProductListMockData: CategoryProps = {
                 search: {
-                    label: 'Search',
-                    count: 199,
+                    searchBar: {
+                        label: 'Search',
+                        count,
+                    },
+                    noResult: 'Oops! we couldn’t find any results for "kakaa". Please try again.',
                 },
                 filters: {
                     label: 'Filters',
@@ -715,7 +721,7 @@ storiesOf('📑 Templates/Category', module)
                     ],
                 },
                 products: {
-                    items: new Array(number('# of products', 10, undefined, 'Products')).fill(true).map(() => ({
+                    items: new Array(count).fill(true).map(() => ({
                         image: {
                             alt: '',
                             src: {
