@@ -33,7 +33,7 @@ export type CategoryProps = {
     }>
     search?: {
         searchBar: SearchBarProps
-        noResult: string
+        noResult?: string
     }
     categories?: PillsProps
     breadcrumbs?: BreadcrumbsProps

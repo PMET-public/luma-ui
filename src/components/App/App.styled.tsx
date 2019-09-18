@@ -11,8 +11,7 @@ export const Root = styled.div`
 `
 
 export const HeaderContainer = styled(ContainerWrapper)`
-    backdrop-filter: blur(50px);
-    background-color: ${props => props.theme.colors.surface75};
+    background-color: ${props => props.theme.colors.surface90};
     box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.09), inset 0 -0.2rem 0 rgba(255, 255, 255, 0.09);
     color: ${props => props.theme.colors.onSurface};
 
@@ -59,8 +58,7 @@ export const FooterContainer = styled(ContainerWrapper)`
 `
 
 export const TabBarContainer = styled(ContainerWrapper)`
-    background-color: ${props => props.theme.colors.surface75};
-    backdrop-filter: blur(50px);
+    background-color: ${props => props.theme.colors.surface90};
     position: sticky;
     bottom: 0;
     z-index: 2;

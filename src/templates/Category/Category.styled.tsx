@@ -12,8 +12,7 @@ export const Root = styled.div`
 `
 
 export const TopBar = styled.div`
-    background-color: ${props => props.theme.colors.surface75};
-    backdrop-filter: blur(50px);
+    background-color: ${props => props.theme.colors.surface90};
     position: sticky;
     top: 0;
     z-index: 1;
@@ -94,8 +93,7 @@ export const FiltersWrapper = styled.div<{ $active?: boolean; $height: number }>
     min-height: calc(${props => props.$height * 0.01}px * 100);
     max-height: calc(${props => props.$height * 0.01}px * 100);
     -webkit-overflow-scrolling: touch;
-    backdrop-filter: blur(50px);
-    background-color: ${props => props.theme.colors.surface75};
+    background-color: ${props => props.theme.colors.surface};
     color: ${props => props.theme.colors.onSurface};
     display: flex;
     flex-direction: column;
