@@ -22,6 +22,7 @@ import IconFavoritesSvg from 'remixicon/icons/System/heart-line.svg'
 import IconFavoriteActiveSvg from 'remixicon/icons/System/heart-fill.svg'
 import IconDarkModeSvg from 'remixicon/icons/Design/contrast-2-line.svg'
 import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
+import IconAccountActiveSvg from 'remixicon/icons/User/user-3-fill.svg'
 
 export type AppProps = {
     logo: any
@@ -97,10 +98,12 @@ export const App: Component<AppProps> = ({
                     utilities={{
                         items: [
                             {
-                                ...myAccount,
+                                'aria-label': myAccount.text,
                                 icon: {
-                                    svg: IconAccountSvg,
+                                    svg: cart.active ? IconAccountActiveSvg : IconAccountSvg,
+                                    ...myAccount.icon,
                                 },
+                                ...myAccount,
                             },
                             {
                                 as: 'button',
@@ -111,18 +114,20 @@ export const App: Component<AppProps> = ({
                                 },
                             },
                             {
-                                ...search,
+                                'aria-label': search.text,
                                 icon: {
                                     svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                     ...search.icon,
                                 },
+                                ...search,
                             },
                             {
-                                ...cart,
+                                'aria-label': cart.text,
                                 icon: {
                                     svg: cart.active ? IconBagActiveSvg : IconBagSvg,
                                     ...cart.icon,
                                 },
+                                ...cart,
                             },
                         ],
                     }}
