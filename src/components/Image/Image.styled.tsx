@@ -38,14 +38,14 @@ export const LoadedImage = styled(ImageTag)<{ $transition?: boolean; $loaded?: b
     ${props =>
         props.$transition &&
         `
-            filter: blur(30px) opacity(0%);
-            transition: filter 205ms ease-out;
+            opacity: 0;
+            transition: opacity 205ms ease-out;
         `}
 
     ${props =>
         props.$loaded &&
         `
-            filter: blur(0) opacity(100%);
+            opacity: 1;
         `}
 `
 

@@ -16,15 +16,18 @@ export type ImageProps = {
 
 export const ImageComponent: Component<ImageProps> = ({
     alt,
-    height,
     src,
     title,
     transition = false,
     vignette = 0,
-    width,
+    width: _width,
+    height: _height,
     ...props
 }) => {
     const image = useImage(src)
+
+    const width = _width || image.size.width
+    const height = _height || image.size.height
 
     return (
         <Root $vignette={vignette} {...props}>
@@ -33,10 +36,10 @@ export const ImageComponent: Component<ImageProps> = ({
                 $loaded={image.loaded}
                 $transition={transition}
                 alt={alt}
-                height={height || image.size.height}
                 src={image.src}
                 title={title}
-                width={width || image.size.width}
+                height={height}
+                width={width}
             />
 
             <Placeholder
