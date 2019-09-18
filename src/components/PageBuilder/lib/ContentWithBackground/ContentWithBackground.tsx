@@ -41,8 +41,9 @@ export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
             }}
             {...props}
         >
-            <BgImage $src={bgImage.src} $loaded={bgImage.loaded} $error={bgImage.error} style={styles.background} />
-
+            {bgImage.src && (
+                <BgImage $src={bgImage.src} $loaded={bgImage.loaded} $error={bgImage.error} style={styles.background} />
+            )}
             <Content>{children}</Content>
         </Root>
     )
