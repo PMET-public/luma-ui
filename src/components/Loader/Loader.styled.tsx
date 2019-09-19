@@ -2,17 +2,18 @@ import styled, { keyframes } from 'styled-components'
 
 const animation = keyframes`
     0%{
-        transform: translateY(0%) scale(1);
-    }
-    30%{
-        transform: translateY(-25%) scale(1);
+        transform: scale(1);
+        opacity: 1;
     }
     50%{
-        transform: translateY(0%) scale(1);
+        transform:  scale(1);
+        opacity: 0.25
     }
-    70%{
-        transform: translateY(25%) scale(1, 0.9);
+    100%{
+        transform: scale(1);
+        opacity: 1;
     }
+   
 `
 
 export const Root = styled.div`

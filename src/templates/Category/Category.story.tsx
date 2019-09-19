@@ -403,7 +403,7 @@ storiesOf('📑 Templates/Category', module)
     .add(
         'Search',
         () => {
-            const count = number('count', 0, undefined, 'Products')
+            const count = number('count', 10, undefined, 'Products')
 
             const ProductListMockData: CategoryProps = {
                 search: {
@@ -411,7 +411,7 @@ storiesOf('📑 Templates/Category', module)
                         label: 'Search',
                         count: `${count > 999 ? '+999' : count} ${count === 0 || count > 1 ? 'results' : 'result'}`,
                     },
-                    noResult: 'Oops! we couldn’t find any results for "kakaa". Please try again.',
+                    // noResult: 'Oops! we couldn’t find any results for "kakaa". Please try again.',
                 },
                 filters: {
                     label: 'Filters',

@@ -1,12 +1,15 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect, ReactElement } from 'react'
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Wrapper, SearchIcon, Field, Count, ResetButton, ResetIcon } from './SearchBar.styled'
 
 import { useThrottle } from '../../hooks/useThrottle'
 
+import Loader, { LoaderProps } from '../Loader'
+
 export type SearchBarProps = {
     clearButton?: boolean
-    count?: string | ReactElement
+    count?: string
+    loader?: LoaderProps
     label?: string
     value?: string
     onUpdate?: (query: string) => any
@@ -17,6 +20,7 @@ export const SearchBar: Component<SearchBarProps> = ({
     clearButton = true,
     count,
     label = 'Search',
+    loader,
     value: defaultValue = '',
     onSearch,
     onUpdate,
@@ -61,7 +65,7 @@ export const SearchBar: Component<SearchBarProps> = ({
                         value={value}
                     />
 
-                    {count && <Count>{count}</Count>}
+                    {count && <Count>{loader ? <Loader {...loader} /> : count}</Count>}
                     {clearButton && value.length > 0 && (
                         <ResetButton as="button" type="reset" aria-label="reset" onClick={handleReset}>
                             <ResetIcon />

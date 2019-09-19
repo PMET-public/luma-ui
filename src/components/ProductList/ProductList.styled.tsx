@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
 export const Root = styled.div`
+    width: 100%;
+    display: grid;
+    grid-gap: 2rem;
+`
+export const List = styled.div`
     display: grid;
     grid-gap: 3rem 0.2rem;
     grid-template-columns: repeat(12, 1fr);
