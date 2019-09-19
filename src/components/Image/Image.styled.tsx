@@ -29,6 +29,7 @@ export const ImageTag = styled.img`
 
 export const LoadedImage = styled(ImageTag)<{ $transition?: boolean; $loaded?: boolean; $error?: boolean }>`
     min-height: 100%;
+    min-width: 100%;
     object-fit: cover;
     object-position: center;
     position: absolute;
@@ -49,7 +50,9 @@ export const LoadedImage = styled(ImageTag)<{ $transition?: boolean; $loaded?: b
         `}
 `
 
-export const Placeholder = styled(ImageTag)``
+export const Placeholder = styled(ImageTag)`
+    background-color: ${props => props.theme.colors.onSurface5};
+`
 
 export const ErrorIcon = styled(ErrorIconSvg)`
     color: ${props => props.theme.colors.onSurface25};
