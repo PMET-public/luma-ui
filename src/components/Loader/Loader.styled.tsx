@@ -17,7 +17,7 @@ const animation = keyframes`
 
 export const Root = styled.div`
     display: grid;
-    font-size: 1rem;
+    font-size: inherit;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
     grid-gap: 0.5em;

@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
+import React, { useState, ChangeEvent, FormEvent, useEffect, ReactElement } from 'react'
 import { Component } from '../../lib'
 import { Root, Wrapper, SearchIcon, Field, Count, ResetButton, ResetIcon } from './SearchBar.styled'
 
@@ -6,7 +6,7 @@ import { useThrottle } from '../../hooks/useThrottle'
 
 export type SearchBarProps = {
     clearButton?: boolean
-    count?: number
+    count?: string | ReactElement
     label?: string
     value?: string
     onUpdate?: (query: string) => any
@@ -61,12 +61,7 @@ export const SearchBar: Component<SearchBarProps> = ({
                         value={value}
                     />
 
-                    {typeof count === 'number' && (
-                        <Count>
-                            {count > 999 ? '+999' : count} {count === 0 || count > 1 ? 'results' : 'result'}
-                        </Count>
-                    )}
-
+                    {count && <Count>{count}</Count>}
                     {clearButton && value.length > 0 && (
                         <ResetButton as="button" type="reset" aria-label="reset" onClick={handleReset}>
                             <ResetIcon />

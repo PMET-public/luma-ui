@@ -5,10 +5,10 @@ import ResetIconSvg from 'remixicon/icons/System/close-line.svg'
 
 export const Root = styled.div`
     --opacity: 0.5;
-    /* border-bottom: 0.1rem solid ${props => props.theme.colors.onSurface25}; */
     background: ${props => props.theme.colors.onSurface10};
     border-radius: 1rem;
     color: ${props => props.theme.colors.onSurface};
+    width: 100%;
 
     &:hover,
     &:focus-within {

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { text, number, files } from '@storybook/addon-knobs'
-import { PageBuilderRowFullBleedMock, PageBuilderBannerMock } from '../../components/PageBuilder/PageBuilder.story'
+// import { PageBuilderRowFullBleedMock, PageBuilderBannerMock } from '../../components/PageBuilder/PageBuilder.story'
 
 storiesOf('📑 Templates/Category', module)
     .add(
@@ -383,9 +383,9 @@ storiesOf('📑 Templates/Category', module)
                         ],
                     })),
                 },
-                cmsBlock: {
-                    html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
-                },
+                // cmsBlock: {
+                //     html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
+                // },
             }
 
             return (
@@ -409,7 +409,7 @@ storiesOf('📑 Templates/Category', module)
                 search: {
                     searchBar: {
                         label: 'Search',
-                        count,
+                        count: `${count > 999 ? '+999' : count} ${count === 0 || count > 1 ? 'results' : 'result'}`,
                     },
                     noResult: 'Oops! we couldn’t find any results for "kakaa". Please try again.',
                 },
