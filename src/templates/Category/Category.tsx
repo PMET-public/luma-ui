@@ -29,6 +29,7 @@ import SearchBar, { SearchBarProps } from '../../components/SearchBar'
 import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 
 export type CategoryProps = {
+    display?: 'PRODUCTS' | 'PAGE' | 'PRODUCTS_AND_PAGE'
     title?: Props<{
         text: string
     }>
@@ -49,6 +50,7 @@ export type CategoryProps = {
 }
 
 export const Category: Component<CategoryProps> = ({
+    display = 'PRODUCTS_AND_PAGE',
     breadcrumbs,
     categories,
     children,
@@ -67,61 +69,69 @@ export const Category: Component<CategoryProps> = ({
 
     return (
         <Root {...props}>
-            {cmsBlock && <PageBuilder {...cmsBlock} />}
+            {(display === 'PRODUCTS_AND_PAGE' || display === 'PAGE') && cmsBlock && <PageBuilder {...cmsBlock} />}
 
-            <TopBar>
-                <TopBarWrapper $margin>
-                    {search ? (
-                        <SearchBar {...search.searchBar} />
-                    ) : (
-                        <Heading>
-                            {title && <Title {...title}>{title.text}</Title>}
-                            {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
-                        </Heading>
+            {(display === 'PRODUCTS_AND_PAGE' || display === 'PRODUCTS') && (
+                <React.Fragment>
+                    <TopBar>
+                        <TopBarWrapper $margin>
+                            {search ? (
+                                <SearchBar {...search.searchBar} />
+                            ) : (
+                                <Heading>
+                                    {title && <Title {...title}>{title.text}</Title>}
+                                    {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
+                                </Heading>
+                            )}
+                            {filters && (
+                                <TopBarFilterButton
+                                    as="button"
+                                    type="button"
+                                    onClick={() => setShowFilter(!showFilter)}
+                                >
+                                    <span>
+                                        <FiltersIcon aria-label={filters.label} />
+                                    </span>
+                                </TopBarFilterButton>
+                            )}
+                        </TopBarWrapper>
+                    </TopBar>
+
+                    {categories && (
+                        <CategoriesWrapper>
+                            <Pills {...categories} />
+                        </CategoriesWrapper>
                     )}
+
+                    <Content>
+                        {products && (
+                            <ProductListWrapper $margin>
+                                <ProductList {...products} />
+                            </ProductListWrapper>
+                        )}
+
+                        {search && search.noResult && <NoResult $margin>{search.noResult}</NoResult>}
+                    </Content>
+
                     {filters && (
-                        <TopBarFilterButton as="button" type="button" onClick={() => setShowFilter(!showFilter)}>
-                            <span>
-                                <FiltersIcon aria-label={filters.label} />
-                            </span>
-                        </TopBarFilterButton>
+                        <FiltersWrapper $active={showFilter} $height={viewport.height} ref={filtersRef}>
+                            <Filters {...filters} />
+                            {filters.closeButton && (
+                                <FiltersButtons>
+                                    <Button
+                                        as="button"
+                                        type="button"
+                                        onClick={() => setShowFilter(false)}
+                                        {...filters.closeButton}
+                                    />
+                                </FiltersButtons>
+                            )}
+                        </FiltersWrapper>
                     )}
-                </TopBarWrapper>
-            </TopBar>
 
-            {categories && (
-                <CategoriesWrapper>
-                    <Pills {...categories} />
-                </CategoriesWrapper>
+                    {filters && showFilter && <FiltersScreen onClick={() => setShowFilter(false)} />}
+                </React.Fragment>
             )}
-
-            <Content>
-                {products && (
-                    <ProductListWrapper $margin>
-                        <ProductList {...products} />
-                    </ProductListWrapper>
-                )}
-
-                {search && search.noResult && <NoResult $margin>{search.noResult}</NoResult>}
-            </Content>
-
-            {filters && (
-                <FiltersWrapper $active={showFilter} $height={viewport.height} ref={filtersRef}>
-                    <Filters {...filters} />
-                    {filters.closeButton && (
-                        <FiltersButtons>
-                            <Button
-                                as="button"
-                                type="button"
-                                onClick={() => setShowFilter(false)}
-                                {...filters.closeButton}
-                            />
-                        </FiltersButtons>
-                    )}
-                </FiltersWrapper>
-            )}
-
-            {filters && showFilter && <FiltersScreen onClick={() => setShowFilter(false)} />}
         </Root>
     )
 }
