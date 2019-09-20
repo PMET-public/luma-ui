@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useCallback } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import { useResize } from './useResize'
@@ -18,6 +18,15 @@ export const useImage = (image: Image) => {
     const [size, setSize] = useState({ width: 0, height: 0 })
     const viewport = useResize()
     const theme = useContext(ThemeContext)
+
+    const handleImageLoad = useCallback((e: any) => {
+        setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
+        setLoaded(true)
+    }, [])
+
+    const handleImageError = useCallback(() => {
+        setError(true)
+    }, [])
 
     /**
      * Set Mobile or Desktop Image
@@ -64,15 +73,6 @@ export const useImage = (image: Image) => {
             img.removeEventListener('error', handleImageError)
         }
     }, [src])
-
-    function handleImageLoad(e: any) {
-        setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
-        setLoaded(true)
-    }
-
-    function handleImageError() {
-        setError(true)
-    }
 
     return {
         src,

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext, useCallback } from 'react'
 import { Component } from '../../lib'
 import { Root, ImageWrapper, Item, Button, Content } from './HotSpots.styled'
 
@@ -31,11 +31,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     items,
     ...props
 }) => {
-    const [active, setActive] = useState()
-
-    const set = (id?: string | number | null) => {
-        setActive(id)
-    }
+    const [active, set] = useState()
 
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
@@ -61,9 +57,9 @@ HotSpots.Item = ({ children, coords, id, label, ...props }) => {
         leave: { opacity: 0, transform: 'scale(0.9)' },
     })
 
-    const handleToggle = () => {
+    const handleToggle = useCallback(() => {
         if (children) context.set(active ? null : id)
-    }
+    }, [children])
 
     return (
         <Item {...props}>

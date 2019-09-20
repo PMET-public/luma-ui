@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useThrottle } from './useThrottle'
 
 type UseResize = {
@@ -16,7 +16,7 @@ export const useResize = (fn?: (props?: any) => any): UseResize => {
         width: 0,
     })
 
-    const triggerResize = () => {
+    const triggerResize = useCallback(() => {
         if (fn) fn()
         const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
         const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
@@ -26,7 +26,7 @@ export const useResize = (fn?: (props?: any) => any): UseResize => {
             vHeight: `calc(${height * 0.01}px * 100)`,
             vWidth: `calc(${width * 0.01}px * 100)`,
         })
-    }
+    }, [fn])
 
     const throttled = useThrottle(triggerResize, 150, true)
 

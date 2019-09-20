@@ -44,12 +44,10 @@ export const useMeasure = (ref: RefObject<HTMLElement | null>): UseMeasure => {
         offsetY: 0,
     })
 
-    const triggerMeasure = () => {
+    useEffect(() => {
         if (!ref.current) return
         setValues(getValues(ref.current))
-    }
-
-    useEffect(triggerMeasure, [ref.current])
+    }, [ref.current])
 
     return values
 }

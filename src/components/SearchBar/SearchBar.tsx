@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
+import React, { useState, ChangeEvent, FormEvent, useEffect, useCallback } from 'react'
 import { Component } from '../../lib'
 import { Root, Wrapper, SearchIcon, Field, Count, ResetButton, ResetIcon } from './SearchBar.styled'
 
@@ -36,19 +36,22 @@ export const SearchBar: Component<SearchBarProps> = ({
 
     useEffect(() => setValue(defaultValue), [defaultValue])
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         const query = event.currentTarget.value
         setValue(query)
-    }
+    }, [])
 
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault()
-        if (onSearch && value) onSearch(value)
-    }
+    const handleSubmit = useCallback(
+        (event: FormEvent) => {
+            event.preventDefault()
+            if (onSearch && value) onSearch(value)
+        },
+        [onSearch, value]
+    )
 
-    const handleReset = () => {
+    const handleReset = useCallback(() => {
         setValue('')
-    }
+    }, [])
 
     return (
         <Root {...props}>

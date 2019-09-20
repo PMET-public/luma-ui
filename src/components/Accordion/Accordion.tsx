@@ -63,11 +63,9 @@ Accordion.Item = ({ children, label, ...props }) => {
               }
     )
 
-    const triggerSelect = () => onSelect()
-
     return (
         <Item {...props}>
-            <Button type="button" onClick={triggerSelect}>
+            <Button type="button" onClick={onSelect}>
                 <ButtonLabel>{label}</ButtonLabel>
                 <ButtonIcon $active={active}>
                     <ArrowIconSvg />

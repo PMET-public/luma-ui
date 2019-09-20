@@ -41,8 +41,6 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, ti
 
     const { height } = useMeasure(elRef)
 
-    const triggerToggle = () => setOpen(!open)
-
     return (
         <Group {...props}>
             <Wrapper
@@ -68,7 +66,7 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, ti
 
             {items.length > offset && (
                 <div>
-                    <ToggleButton $active={open} onClick={triggerToggle}>
+                    <ToggleButton $active={open} onClick={() => setOpen(!open)}>
                         <ToggleIcon />
                         {open ? 'Less' : 'More'}
                     </ToggleButton>
