@@ -25,7 +25,7 @@ import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
 import IconAccountActiveSvg from 'remixicon/icons/User/user-3-fill.svg'
 
 export type AppProps = {
-    logo: any
+    logo: Props
 
     home: Props<{
         active?: boolean
