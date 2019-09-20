@@ -26,6 +26,7 @@ import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import Pills, { PillsProps } from '../../components/Pills'
 import Button, { ButtonProps } from '../../components/Button'
 import SearchBar, { SearchBarProps } from '../../components/SearchBar'
+import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 
 export type CategoryProps = {
     title?: Props<{
@@ -37,7 +38,7 @@ export type CategoryProps = {
     }
     categories?: PillsProps
     breadcrumbs?: BreadcrumbsProps
-    // cmsBlock?: PageBuilderProps
+    cmsBlock?: PageBuilderProps
     filters?: {
         label: string
         open?: boolean
@@ -52,7 +53,7 @@ export const Category: Component<CategoryProps> = ({
     categories,
     children,
     filters,
-    // cmsBlock,
+    cmsBlock,
     products,
     search,
     title,
@@ -86,6 +87,8 @@ export const Category: Component<CategoryProps> = ({
                 </TopBarWrapper>
             </TopBar>
 
+            {cmsBlock && <PageBuilder {...cmsBlock} />}
+
             {categories && (
                 <CategoriesWrapper>
                     <Pills {...categories} />
@@ -93,8 +96,6 @@ export const Category: Component<CategoryProps> = ({
             )}
 
             <Content>
-                {/* {cmsBlock && <PageBuilder {...cmsBlock} />} */}
-
                 {products && (
                     <ProductListWrapper $margin>
                         <ProductList {...products} />
