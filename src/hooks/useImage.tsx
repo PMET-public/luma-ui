@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import { useResize } from './useResize'
