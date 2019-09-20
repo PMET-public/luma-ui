@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import styled, { ThemeProvider as StyledThemeProvider, createGlobalStyle } from 'styled-components'
 import { ResetStyles } from './ResetStyles'
 import { light as lightColors, dark as darkColors } from './colors'
@@ -72,6 +72,20 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({ dark: _da
     const [dark, setDark] = useState(_dark)
 
     const colors = dark ? darkColors : lightColors
+
+    useEffect(() => {
+        const savedPreference = localStorage.getItem('luma-ui/color-scheme')
+
+        setDark(
+            savedPreference
+                ? savedPreference === 'dark'
+                : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        )
+    }, [])
+
+    useEffect(() => {
+        window.localStorage.setItem('luma-ui/color-scheme', dark ? 'dark' : 'light')
+    }, [dark])
 
     return (
         <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, dark, setDark }}>
