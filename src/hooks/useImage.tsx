@@ -19,14 +19,14 @@ export const useImage = (image: Image) => {
     const viewport = useResize()
     const theme = useContext(ThemeContext)
 
-    const handleImageLoad = useCallback((e: any) => {
+    const handleImageLoad = (e: any) => {
         setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
         setLoaded(true)
-    }, [])
+    }
 
-    const handleImageError = useCallback(() => {
+    const handleImageError = () => {
         setError(true)
-    }, [])
+    }
 
     /**
      * Set Mobile or Desktop Image

@@ -67,6 +67,8 @@ export const Category: Component<CategoryProps> = ({
 
     return (
         <Root {...props}>
+            {cmsBlock && <PageBuilder {...cmsBlock} />}
+
             <TopBar>
                 <TopBarWrapper $margin>
                     {search ? (
@@ -86,8 +88,6 @@ export const Category: Component<CategoryProps> = ({
                     )}
                 </TopBarWrapper>
             </TopBar>
-
-            {cmsBlock && <PageBuilder {...cmsBlock} />}
 
             {categories && (
                 <CategoriesWrapper>

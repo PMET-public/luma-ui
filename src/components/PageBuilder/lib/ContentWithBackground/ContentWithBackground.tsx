@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useContext } from 'react'
 import { Component, Props } from '../../../../lib'
 import { Root, BgImage, Content } from '../../lib/ContentWithBackground/ContentWithBackground.styled'
 
 import { Image, useImage } from '../../../../hooks/useImage'
+import { ThemeContext } from 'styled-components'
 
 export type ContentWithBackgroundProps = Props<{
     backgroundImages?: Image
@@ -15,6 +16,8 @@ export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
     ...props
 }) => {
     const bgImage = useImage(backgroundImages)
+
+    const { colors } = useContext(ThemeContext)
 
     const styles: { [key: string]: any } = useMemo(() => {
         if (!style) return {}
@@ -35,10 +38,8 @@ export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
 
     return (
         <Root
-            style={{
-                backgroundColor: styles.background.backgroundColor,
-                ...styles.wrapper,
-            }}
+            $backgroundColor={styles.background.backgroundColor || bgImage.src ? colors.onSurface5 : 'transparent'}
+            style={styles.wrapper}
             {...props}
         >
             {bgImage.src && (
