@@ -9,7 +9,7 @@ import { PageBuilderBannerMock, PageBuilderRowFullBleedMock } from '../../compon
 
 const ProductMockData = (): ProductProps => ({
     buttons: [{ text: 'Add to Cart' }, { text: 'Add to Favorite', secondary: true }],
-    breadcrumbs: {
+    categories: {
         items: [
             {
                 text: 'Women',
@@ -113,6 +113,8 @@ const ProductMockData = (): ProductProps => ({
             },
         },
     ],
+    description:
+        "The Breathe Easy Tank is so soft, lightweight, and comfortable, you won't even know it's there -- until its high-tech Cocona® fabric starts wicking sweat away from your body to help you stay dry and focused. Layer it over your favorite sports bra and get moving.",
     pageBuilder: {
         html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
     },

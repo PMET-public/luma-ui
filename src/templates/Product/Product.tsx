@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import { Component, Props } from '../../lib'
 import {
     Root,
@@ -13,6 +13,7 @@ import {
     Swatches,
     SwatchesTitle,
     Buttons,
+    Description,
 } from './Product.styled'
 
 import Carousel from '../../components/Carousel'
@@ -21,22 +22,26 @@ import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
 import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
+import TextSwatches, { TextSwatchesProps } from '../../components/TextSwatches'
+import ThumbSwatches, { ThumbSwatchesProps } from '../../components/ThumbSwatches'
 
-const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
-const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
+// const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
+// const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
 
 export type ProductProps = {
-    breadcrumbs?: BreadcrumbsProps
+    categories?: BreadcrumbsProps
     buttons: ButtonProps[]
+    description?: string
     pageBuilder?: PageBuilderProps
     images: ImageProps[]
-    swatches?: Array<{
-        title?: Props<{
-            text: string
-        }>
-        type: 'text' | 'thumb'
-        props: any
-    }>
+    swatches?: Array<
+        {
+            _id?: string | number
+            title?: Props<{
+                text: string
+            }>
+        } & ({ type: 'text'; props: TextSwatchesProps } | { type: 'thumb'; props: ThumbSwatchesProps })
+    >
     price: PriceProps
     sku?: Props<{
         text: string
@@ -47,8 +52,9 @@ export type ProductProps = {
 }
 
 export const Product: Component<ProductProps> = ({
+    description,
     pageBuilder,
-    breadcrumbs,
+    categories,
     buttons,
     images,
     price,
@@ -74,7 +80,7 @@ export const Product: Component<ProductProps> = ({
                     <Info>
                         <InfoOptions>
                             <Header>
-                                {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
+                                {categories && <Breadcrumbs prefix="#" {...categories} />}
 
                                 <Title {...title}>{title.text}</Title>
 
@@ -83,15 +89,18 @@ export const Product: Component<ProductProps> = ({
                                 {sku && <Sku {...sku}>{sku.text}</Sku>}
                             </Header>
 
+                            {description && (
+                                <Description dangerouslySetInnerHTML={{ __html: description }}></Description>
+                            )}
+
                             {swatches &&
-                                swatches.map(({ type, title, props }, index) => (
-                                    <Suspense fallback="Loading...." key={index}>
-                                        <Swatches>
-                                            {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
-                                            {type === 'text' && <TextSwatches {...props} />}
-                                            {type === 'thumb' && <ThumbSwatches {...props} />}
-                                        </Swatches>
-                                    </Suspense>
+                                swatches.map(({ _id, type, title, props }, index) => (
+                                    <Swatches key={_id || index}>
+                                        {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
+                                        {type === 'text' && <TextSwatches {...(props as TextSwatchesProps)} />}
+                                        {type === 'thumb' && <ThumbSwatches {...(props as ThumbSwatchesProps)} />}
+                                        tpy
+                                    </Swatches>
                                 ))}
 
                             <Buttons>

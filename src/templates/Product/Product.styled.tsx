@@ -116,6 +116,7 @@ export const Info = styled.div`
     @media ${props => props.theme.breakpoints.medium} {
         position: sticky;
         top: 2rem;
+        width: 100%;
     }
 `
 
@@ -125,15 +126,19 @@ export const Header = styled.header`
     grid-auto-rows: max-content;
 
     ${BreadcrumbsRoot} {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         color: ${props => props.theme.colors.onSurface75};
     }
 `
 
-export const Title = styled.h2``
+export const Title = styled.h2`
+    font-family: ${props => props.theme.typography.heading.family};
+    font-weight: ${props => props.theme.typography.heading.weight};
+    font-size: 1.8rem;
+`
 
 export const Sku = styled.span`
-    font-size: 0.85em;
+    font-size: 1.3rem;
     color: ${props => props.theme.colors.onSurface75};
 `
 
@@ -143,10 +148,15 @@ export const Swatches = styled.div`
 `
 
 export const SwatchesTitle = styled.h3`
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 `
 
 export const Buttons = styled.div`
     display: grid;
     grid-gap: 1rem;
+`
+
+export const Description = styled.div`
+    font-size: 1.4rem;
+    line-height: 1.3;
 `
