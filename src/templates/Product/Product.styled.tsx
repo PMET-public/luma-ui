@@ -101,22 +101,19 @@ export const InfoWrapper = styled.div`
 export const InfoOptions = styled.div`
     display: grid;
     grid-gap: 3rem;
-    padding: 2rem ${props => props.theme.layout.margin};
-
-    @media ${props => props.theme.breakpoints.large} {
-        max-width: 60rem;
-        padding: 4rem 6rem 4rem;
-    }
 `
 
 export const Info = styled.div`
     display: grid;
     grid-gap: 3rem;
+    padding: 2rem ${props => props.theme.layout.margin};
 
     @media ${props => props.theme.breakpoints.medium} {
         position: sticky;
         top: 2rem;
         width: 100%;
+        max-width: 60rem;
+        padding: 4rem 6rem 4rem;
     }
 `
 
@@ -156,7 +153,12 @@ export const Buttons = styled.div`
     grid-gap: 1rem;
 `
 
-export const Description = styled.div`
+export const ShortDescription = styled.div`
     font-size: 1.4rem;
     line-height: 1.3;
+`
+
+export const Description = styled.div`
+    font-size: 1.6rem;
+    line-height: 1.6;
 `

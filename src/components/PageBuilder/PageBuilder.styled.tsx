@@ -4,8 +4,6 @@ import { Wrapper as ContainerWrapper } from '../Container'
 
 export const Root = styled.div`
     width: 100%;
-    line-height: 1.2;
-    color: #222; /** default text color in pagebuilder */
 
     & h1,
     & h2,

@@ -39,10 +39,10 @@ const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ component, ite
 }
 
 export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => {
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState<any[] | null>(null)
 
     useEffect(() => {
-        setItems(htmlToProps(html).items)
+        if (/data-content-type=/.test(html)) setItems(htmlToProps(html).items)
     }, [])
 
     return useMemo(() => {
@@ -50,9 +50,11 @@ export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => 
 
         return (
             <Root {...props}>
-                {items.map((contentType, index) => (
-                    <PageBuilderFactory key={index} {...contentType} />
-                ))}
+                {items ? (
+                    items.map((contentType, index) => <PageBuilderFactory key={index} {...contentType} />)
+                ) : (
+                    <div dangerouslySetInnerHTML={{ __html: html }} />
+                )}
             </Root>
         )
     }, [items])

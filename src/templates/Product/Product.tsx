@@ -13,6 +13,7 @@ import {
     Swatches,
     SwatchesTitle,
     Buttons,
+    ShortDescription,
     Description,
 } from './Product.styled'
 
@@ -31,9 +32,9 @@ import ThumbSwatches, { ThumbSwatchesProps } from '../../components/ThumbSwatche
 export type ProductProps = {
     categories?: BreadcrumbsProps
     buttons: ButtonProps[]
-    description?: string
-    pageBuilder?: PageBuilderProps
-    images: ImageProps[]
+    shortDescription?: string
+    description?: PageBuilderProps
+    gallery: ImageProps[]
     swatches?: Array<
         {
             _id?: string | number
@@ -53,10 +54,10 @@ export type ProductProps = {
 
 export const Product: Component<ProductProps> = ({
     description,
-    pageBuilder,
+    shortDescription,
     categories,
     buttons,
-    images,
+    gallery,
     price,
     sku,
     swatches,
@@ -68,7 +69,7 @@ export const Product: Component<ProductProps> = ({
             <Wrapper>
                 <Images>
                     <Carousel gap={1} padding={3}>
-                        {images.map((image, index) => (
+                        {gallery.map((image, index) => (
                             <Carousel.Item key={index}>
                                 <Image transition vignette={1} {...image} />
                             </Carousel.Item>
@@ -78,28 +79,26 @@ export const Product: Component<ProductProps> = ({
 
                 <InfoWrapper>
                     <Info>
+                        <Header>
+                            {categories && <Breadcrumbs prefix="#" {...categories} />}
+
+                            <Title {...title}>{title.text}</Title>
+
+                            <Price {...price} />
+
+                            {sku && <Sku {...sku}>{sku.text}</Sku>}
+                        </Header>
+
+                        {shortDescription && (
+                            <ShortDescription dangerouslySetInnerHTML={{ __html: shortDescription }} />
+                        )}
                         <InfoOptions>
-                            <Header>
-                                {categories && <Breadcrumbs prefix="#" {...categories} />}
-
-                                <Title {...title}>{title.text}</Title>
-
-                                <Price {...price} />
-
-                                {sku && <Sku {...sku}>{sku.text}</Sku>}
-                            </Header>
-
-                            {description && (
-                                <Description dangerouslySetInnerHTML={{ __html: description }}></Description>
-                            )}
-
                             {swatches &&
                                 swatches.map(({ _id, type, title, props }, index) => (
                                     <Swatches key={_id || index}>
                                         {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
                                         {type === 'text' && <TextSwatches {...(props as TextSwatchesProps)} />}
                                         {type === 'thumb' && <ThumbSwatches {...(props as ThumbSwatchesProps)} />}
-                                        tpy
                                     </Swatches>
                                 ))}
 
@@ -109,11 +108,15 @@ export const Product: Component<ProductProps> = ({
                                 ))}
                             </Buttons>
                         </InfoOptions>
+
+                        {description && (
+                            <Description>
+                                <PageBuilder {...description} />
+                            </Description>
+                        )}
                     </Info>
                 </InfoWrapper>
             </Wrapper>
-
-            {pageBuilder && <PageBuilder {...pageBuilder} />}
         </Root>
     )
 }
