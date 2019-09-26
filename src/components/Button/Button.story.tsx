@@ -7,6 +7,7 @@ import { action } from '@storybook/addon-actions'
 storiesOf('📦 Components/Button', module).add('Default', () => (
     <Button
         secondary={boolean('secondary', false)}
+        disabled={boolean('disabled', false)}
         text={text('text', 'Button')}
         onClick={action('onClick')}
         as="button"

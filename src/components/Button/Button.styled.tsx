@@ -21,7 +21,7 @@ export const Root = styled.div<{ $secondary?: boolean }>`
     }
 
     &[disabled] {
-        opacity: 0.35;
+        opacity: 0.3;
     }
 
     ${props =>

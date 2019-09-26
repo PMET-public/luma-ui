@@ -108,15 +108,15 @@ export const Product: Component<ProductProps> = ({
                                 ))}
                             </Buttons>
                         </InfoOptions>
-
-                        {description && (
-                            <Description>
-                                <PageBuilder {...description} />
-                            </Description>
-                        )}
                     </Info>
                 </InfoWrapper>
             </Wrapper>
+
+            {description && (
+                <Description>
+                    <PageBuilder {...description} />
+                </Description>
+            )}
         </Root>
     )
 }
