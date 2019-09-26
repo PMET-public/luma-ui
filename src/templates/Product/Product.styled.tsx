@@ -4,7 +4,6 @@ import { Root as ImageRoot, ImageTag } from '../../components/Image'
 import { Root as CarouselRoot } from '../../components/Carousel'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Wrapper as ContainerWrapper } from '../../components/Container'
-import { Root as PriceRoot } from '../../components/Price'
 
 export const Root = styled.div`
     display: grid;
@@ -124,12 +123,8 @@ export const Header = styled.header`
     grid-auto-rows: max-content;
 
     ${BreadcrumbsRoot} {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         color: ${props => props.theme.colors.onSurface75};
-    }
-
-    ${PriceRoot} {
-        font-size: 2rem;
     }
 `
 
