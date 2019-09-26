@@ -39,7 +39,7 @@ export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
             )}
 
             <ImageWrapper>
-                <Image width={4} height={5} vignette={0.5} transition {...image} />
+                <Image width={4} height={5} vignette={10} transition {...image} />
             </ImageWrapper>
 
             {colors && (

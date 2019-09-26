@@ -30,7 +30,7 @@ export const ImageComponent: Component<ImageProps> = ({
     const height = _height || image.size.height
 
     return (
-        <Root $vignette={vignette} {...props}>
+        <Root $vignette={image.loaded ? vignette : 0} {...props}>
             <LoadedImage
                 $error={image.error}
                 $loaded={image.loaded}

@@ -71,7 +71,7 @@ export const Product: Component<ProductProps> = ({
                     <Carousel gap={1} padding={3}>
                         {gallery.map((image, index) => (
                             <Carousel.Item key={index}>
-                                <Image transition vignette={1} {...image} />
+                                <Image transition vignette={10} {...image} />
                             </Carousel.Item>
                         ))}
                     </Carousel>
