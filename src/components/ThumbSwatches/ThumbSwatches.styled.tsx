@@ -22,7 +22,7 @@ export const Item = styled.div<{ $active?: boolean }>`
         `}
 
     &:hover:not([disabled]) {
-        border-color: ${props => props.theme.colors.primary75};
+        border-color: ${props => props.theme.colors.primary25};
     }
 `
 

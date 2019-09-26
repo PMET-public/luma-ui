@@ -4,6 +4,7 @@ import { Root as ImageRoot, ImageTag } from '../../components/Image'
 import { Root as CarouselRoot } from '../../components/Carousel'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Wrapper as ContainerWrapper } from '../../components/Container'
+import { Root as PriceRoot } from '../../components/Price'
 
 export const Root = styled.div`
     display: grid;
@@ -126,12 +127,16 @@ export const Header = styled.header`
         font-size: 1.3rem;
         color: ${props => props.theme.colors.onSurface75};
     }
+
+    ${PriceRoot} {
+        font-size: 2rem;
+    }
 `
 
 export const Title = styled.h2`
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight};
-    font-size: 1.8rem;
+    font-size: 2.3rem;
 `
 
 export const Sku = styled.span`
@@ -145,7 +150,8 @@ export const Swatches = styled.div`
 `
 
 export const SwatchesTitle = styled.h3`
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
 `
 
 export const Buttons = styled.div`
