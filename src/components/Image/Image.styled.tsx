@@ -18,7 +18,7 @@ export const Root = styled.div<{ $vignette?: number }>`
                 left: 0;
                 width: 100%;
                 height: 100%;
-                box-shadow: inset 0 0 10rem ${props.$vignette}rem rgba(0, 0, 0, 0.15);
+                box-shadow: inset 0 0 ${props.$vignette}rem rgba(0, 0, 0, 0.15);
             }
         `}
 `

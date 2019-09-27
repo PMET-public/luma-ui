@@ -5,3 +5,5 @@ export const getBackgroundImages = (string: string) => {
 
     return desktop === undefined && mobile === undefined ? undefined : { desktop, mobile }
 }
+
+export const isPageBuilderHtml = (html: string) => /data-content-type=/.test(html)

@@ -25,6 +25,8 @@ export const Root = styled.div<{
     $showButton?: 'always' | 'never' | 'hover'
     $showOverlay?: 'always' | 'never' | 'hover'
 }>`
+    color: #222; /** default text color in pagebuilder */
+
     ${props =>
         props.$showOverlay === 'hover' &&
         `

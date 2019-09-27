@@ -5,11 +5,11 @@ import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
 import { files } from '@storybook/addon-knobs'
-import { PageBuilderBannerMock, PageBuilderRowFullBleedMock } from '../../components/PageBuilder/PageBuilder.story'
+import { PageBuilderRowFullBleedMock, PageBuilderTextMock } from '../../components/PageBuilder/PageBuilder.story'
 
 const ProductMockData = (): ProductProps => ({
     buttons: [{ text: 'Add to Cart' }, { text: 'Add to Favorite', secondary: true }],
-    breadcrumbs: {
+    categories: {
         items: [
             {
                 text: 'Women',
@@ -34,7 +34,7 @@ const ProductMockData = (): ProductProps => ({
     sku: {
         text: 'SKU. VSK12-LA',
     },
-    images: new Array(5).fill({
+    gallery: new Array(5).fill({
         src: {
             desktop: files(
                 'Image',
@@ -113,8 +113,10 @@ const ProductMockData = (): ProductProps => ({
             },
         },
     ],
-    pageBuilder: {
-        html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
+    shortDescription: '',
+    description: {
+        html:
+            '<p>With abutted seams and moisture wicking capacity, the Maya Tunic lets you work out in complete comfort.</p>\n<p>&bull; Mint green heather tunic-style tank. <br />&bull; Wrapped back with cut out detail.<br />&bull; Drawcord detail at end.<br />&bull; Abutted seams.</p>',
     },
 })
 

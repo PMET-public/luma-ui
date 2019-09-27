@@ -20,6 +20,10 @@ export const Root = styled.div<{ $secondary?: boolean }>`
         color: inherit;
     }
 
+    &[disabled] {
+        opacity: 0.3;
+    }
+
     ${props =>
         !props.$secondary &&
         `

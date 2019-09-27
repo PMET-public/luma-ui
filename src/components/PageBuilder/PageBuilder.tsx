@@ -4,9 +4,10 @@
 
 import React, { Suspense, useMemo, useEffect, useState } from 'react'
 import { Component } from '../../lib'
-import { Root } from './PageBuilder.styled'
+import { Root, RichText } from './PageBuilder.styled'
 import { ErrorBoundary } from '../../lib'
 import { htmlToProps } from './lib/parser'
+import { isPageBuilderHtml } from './lib/utils'
 
 export type PageBuilderProps = {
     html: string
@@ -39,10 +40,10 @@ const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ component, ite
 }
 
 export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => {
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState<any[] | null>(null)
 
     useEffect(() => {
-        setItems(htmlToProps(html).items)
+        if (isPageBuilderHtml(html)) setItems(htmlToProps(html).items)
     }, [])
 
     return useMemo(() => {
@@ -50,9 +51,11 @@ export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => 
 
         return (
             <Root {...props}>
-                {items.map((contentType, index) => (
-                    <PageBuilderFactory key={index} {...contentType} />
-                ))}
+                {items ? (
+                    items.map((contentType, index) => <PageBuilderFactory key={index} {...contentType} />)
+                ) : (
+                    <RichText dangerouslySetInnerHTML={{ __html: html }} />
+                )}
             </Root>
         )
     }, [items])

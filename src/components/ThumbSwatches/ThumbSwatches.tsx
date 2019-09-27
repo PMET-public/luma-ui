@@ -18,8 +18,8 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ items = [], ...pr
     return (
         <Root {...props}>
             {items.map(({ image, active = false, disabled = false, ...item }, index) => (
-                <Item $active={active} as="button" disabled={disabled} key={index} {...item}>
-                    <ImageWrapper>
+                <Item $active={active} as="button" key={index} {...item}>
+                    <ImageWrapper $active={active} $disabled={disabled}>
                         <Image transition width={4} height={5} {...image} />
                     </ImageWrapper>
                 </Item>
