@@ -69,8 +69,7 @@ export const Images = styled.div`
         }
 
         @media ${props => props.theme.breakpoints.large} {
-            grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
-            /* grid-template-columns: repeat(2, 1fr); */
+            grid-template-columns: repeat(2, 1fr);
 
             ${CarouselItem} {
                 &:first-child,
@@ -170,6 +169,10 @@ export const Description = styled.div`
         line-height: 1.6;
         /* text-align: center; */
         color: ${props => props.theme.colors.onSurface90};
-        padding: 3rem ${props => props.theme.layout.margin};
+        padding: 0 ${props => props.theme.layout.margin};
+
+        @media ${props => props.theme.breakpoints.medium} {
+            padding-top: 3rem;
+        }
     }
 `
