@@ -10,32 +10,31 @@ export const Root = styled.div`
     display: grid;
 `
 
-export const Wrapper = styled(ContainerWrapper)`
+export const Wrapper = styled(ContainerWrapper).attrs(props => ({
+    $margin: true,
+}))`
     display: grid;
     grid-auto-columns: 1fr;
     grid-auto-rows: minmax(max-content, max-content);
     grid-gap: 1rem;
+    padding-top: 2rem;
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    @media ${props => props.theme.breakpoints.untilMedium} {
         display: grid;
         grid-auto-rows: max-content;
         grid-template-columns: 1fr;
     }
 
-    @media ${props => props.theme.breakpoints.medium} {
+    @media ${props => props.theme.breakpoints.large} {
         display: grid;
         grid-auto-rows: max-content;
         grid-gap: 2rem;
         grid-template-columns: 1.25fr 1fr;
     }
-
-    /* @media ${props => props.theme.breakpoints.xLarge} {
-        grid-template-columns: 1.25fr 1fr;
-    } */
 `
 
 export const Images = styled.div`
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    @media ${props => props.theme.breakpoints.untilMedium} {
         position: sticky;
         top: 0;
         z-index: 0;
@@ -54,22 +53,25 @@ export const Images = styled.div`
     ${CarouselRoot} {
         padding: 0;
 
-        @media ${props => props.theme.breakpoints.smallOnly} {
+        @media ${props => props.theme.breakpoints.untilMedium} {
             width: 100vw;
             position: relative;
             margin-left: -50vw;
             left: 50%;
         }
-
+/* 
         @media ${props => props.theme.breakpoints.medium} {
             grid-gap: 0.5rem;
             grid-auto-flow: row;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: 1fr;
             overflow: unset;
-        }
+        } */
 
         @media ${props => props.theme.breakpoints.large} {
-            grid-template-columns: repeat(2, 1fr);
+            grid-auto-flow: row;
+            grid-gap: 0.5rem;
+            grid-template-columns: 1fr 1fr;
+            overflow: unset;
 
             ${CarouselItem} {
                 &:first-child,
@@ -82,7 +84,7 @@ export const Images = styled.div`
 `
 
 export const InfoWrapper = styled.div`
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    @media ${props => props.theme.breakpoints.untilMedium} {
         background-color: ${props => props.theme.colors.surface};
         border-radius: 1rem 1rem 0 0;
         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
@@ -112,7 +114,7 @@ export const Info = styled.div`
     grid-gap: 3rem;
     padding: 2rem ${props => props.theme.layout.margin};
 
-    @media ${props => props.theme.breakpoints.medium} {
+    @media ${props => props.theme.breakpoints.large} {
         position: sticky;
         top: 6rem;
         width: 100%;
@@ -167,12 +169,7 @@ export const Description = styled.div`
     ${RichText} {
         font-size: 1.4rem;
         line-height: 1.6;
-        /* text-align: center; */
+        padding: 0 1rem;
         color: ${props => props.theme.colors.onSurface90};
-        padding: 0 ${props => props.theme.layout.margin};
-
-        @media ${props => props.theme.breakpoints.medium} {
-            padding-top: 3rem;
-        }
     }
 `

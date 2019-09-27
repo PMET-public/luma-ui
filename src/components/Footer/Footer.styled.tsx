@@ -12,7 +12,6 @@ export const Root = styled.div`
     padding: 4rem 0 6rem;
     width: 100%;
     color: ${props => props.theme.colors.onSurface75};
-    background-color: ${props => props.theme.colors.onSurface5};
 
     & a {
         transition: opacity 205ms ease;

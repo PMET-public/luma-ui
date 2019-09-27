@@ -7,6 +7,7 @@ import { Component } from '../../lib'
 import { Root, RichText } from './PageBuilder.styled'
 import { ErrorBoundary } from '../../lib'
 import { htmlToProps } from './lib/parser'
+import { isPageBuilderHtml } from './lib/utils'
 
 export type PageBuilderProps = {
     html: string
@@ -42,7 +43,7 @@ export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => 
     const [items, setItems] = useState<any[] | null>(null)
 
     useEffect(() => {
-        if (/data-content-type=/.test(html)) setItems(htmlToProps(html).items)
+        if (isPageBuilderHtml(html)) setItems(htmlToProps(html).items)
     }, [])
 
     return useMemo(() => {

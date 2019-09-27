@@ -25,6 +25,7 @@ import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import TextSwatches, { TextSwatchesProps } from '../../components/TextSwatches'
 import ThumbSwatches, { ThumbSwatchesProps } from '../../components/ThumbSwatches'
+import { isPageBuilderHtml } from '../../components/PageBuilder/lib/utils'
 
 // const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
 // const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
@@ -64,6 +65,8 @@ export const Product: Component<ProductProps> = ({
     title,
     ...props
 }) => {
+    const descriptionAsPageBuilderContent = !!description && isPageBuilderHtml(description.html)
+
     return (
         <Root {...props}>
             <Wrapper>
@@ -108,15 +111,16 @@ export const Product: Component<ProductProps> = ({
                                 ))}
                             </Buttons>
                         </InfoOptions>
+
+                        {description && !descriptionAsPageBuilderContent && (
+                            <Description>
+                                <PageBuilder {...description} />
+                            </Description>
+                        )}
                     </Info>
                 </InfoWrapper>
             </Wrapper>
-
-            {description && (
-                <Description>
-                    <PageBuilder {...description} />
-                </Description>
-            )}
+            {description && descriptionAsPageBuilderContent && <PageBuilder {...description} />}
         </Root>
     )
 }
