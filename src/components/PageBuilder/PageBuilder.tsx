@@ -4,7 +4,7 @@
 
 import React, { Suspense, useMemo, useEffect, useState } from 'react'
 import { Component } from '../../lib'
-import { Root } from './PageBuilder.styled'
+import { Root, RichText } from './PageBuilder.styled'
 import { ErrorBoundary } from '../../lib'
 import { htmlToProps } from './lib/parser'
 
@@ -53,7 +53,7 @@ export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => 
                 {items ? (
                     items.map((contentType, index) => <PageBuilderFactory key={index} {...contentType} />)
                 ) : (
-                    <div dangerouslySetInnerHTML={{ __html: html }} />
+                    <RichText dangerouslySetInnerHTML={{ __html: html }} />
                 )}
             </Root>
         )

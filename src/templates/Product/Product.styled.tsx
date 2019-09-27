@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 import { Root as ImageRoot, ImageTag } from '../../components/Image'
-import { Root as CarouselRoot } from '../../components/Carousel'
+import { Root as CarouselRoot, Item as CarouselItem } from '../../components/Carousel'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Wrapper as ContainerWrapper } from '../../components/Container'
+import { RichText } from '../../components/PageBuilder'
 
 export const Root = styled.div`
     display: grid;
@@ -25,12 +26,12 @@ export const Wrapper = styled(ContainerWrapper)`
         display: grid;
         grid-auto-rows: max-content;
         grid-gap: 2rem;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    @media ${props => props.theme.breakpoints.xLarge} {
         grid-template-columns: 1.25fr 1fr;
     }
+
+    /* @media ${props => props.theme.breakpoints.xLarge} {
+        grid-template-columns: 1.25fr 1fr;
+    } */
 `
 
 export const Images = styled.div`
@@ -68,11 +69,15 @@ export const Images = styled.div`
         }
 
         @media ${props => props.theme.breakpoints.large} {
-            grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
-        }
+            grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+            /* grid-template-columns: repeat(2, 1fr); */
 
-        @media ${props => props.theme.breakpoints.xLarge} {
-            grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
+            ${CarouselItem} {
+                &:first-child,
+                &:last-child:nth-child(even) {
+                    grid-column-end: span 2;
+                }
+            }
         }
     }
 `
@@ -110,7 +115,7 @@ export const Info = styled.div`
 
     @media ${props => props.theme.breakpoints.medium} {
         position: sticky;
-        top: 2rem;
+        top: 6rem;
         width: 100%;
         max-width: 60rem;
         padding: 4rem 6rem 4rem;
@@ -160,6 +165,11 @@ export const ShortDescription = styled.div`
 `
 
 export const Description = styled.div`
-    font-size: 1.6rem;
-    line-height: 1.6;
+    ${RichText} {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        /* text-align: center; */
+        color: ${props => props.theme.colors.onSurface90};
+        padding: 3rem ${props => props.theme.layout.margin};
+    }
 `

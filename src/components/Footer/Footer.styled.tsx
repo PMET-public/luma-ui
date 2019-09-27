@@ -11,8 +11,8 @@ export const Root = styled.div`
     grid-gap: 3rem;
     padding: 4rem 0 6rem;
     width: 100%;
-    color: ${props => props.theme.colors.surface90};
-    background-color: ${props => props.theme.colors.onSurface};
+    color: ${props => props.theme.colors.onSurface75};
+    background-color: ${props => props.theme.colors.onSurface5};
 
     & a {
         transition: opacity 205ms ease;

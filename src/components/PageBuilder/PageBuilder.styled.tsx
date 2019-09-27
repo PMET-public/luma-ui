@@ -77,3 +77,5 @@ export const Root = styled.div`
         }
     }
 `
+
+export const RichText = styled.div``
