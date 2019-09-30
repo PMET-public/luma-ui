@@ -59,13 +59,6 @@ export const Images = styled.div`
             margin-left: -50vw;
             left: 50%;
         }
-/* 
-        @media ${props => props.theme.breakpoints.medium} {
-            grid-gap: 0.5rem;
-            grid-auto-flow: row;
-            grid-template-columns: 1fr;
-            overflow: unset;
-        } */
 
         @media ${props => props.theme.breakpoints.medium} {
             grid-auto-flow: row;
@@ -130,7 +123,7 @@ export const Info = styled.div`
 
 export const Header = styled.header`
     display: grid;
-    grid-gap: 1.6rem;
+    grid-gap: 1.3rem;
     grid-auto-flow: row;
 
     ${BreadcrumbsRoot} {
