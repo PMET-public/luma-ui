@@ -3,7 +3,6 @@ import { Component, Props } from '../../lib'
 import { Root, HeaderContainer, Main, FooterContainer, TabBarContainer } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
-import { useTheme } from '../../theme/useTheme'
 
 import Header from '../Header'
 import TabBar from '../TabBar'
@@ -23,6 +22,7 @@ import IconFavoriteActiveSvg from 'remixicon/icons/System/heart-fill.svg'
 import IconDarkModeSvg from 'remixicon/icons/Design/contrast-2-line.svg'
 import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
 import IconAccountActiveSvg from 'remixicon/icons/User/user-3-fill.svg'
+import { useAppContext } from '../../AppProvider'
 
 export type AppProps = {
     logo: Props
@@ -82,7 +82,7 @@ export const App: Component<AppProps> = ({
 }) => {
     const { vHeight } = useResize()
 
-    const { dark, setDark } = useTheme()
+    const { state, dispatch } = useAppContext()
 
     return (
         <Root style={{ minHeight: vHeight }} {...props}>
@@ -108,7 +108,11 @@ export const App: Component<AppProps> = ({
                             {
                                 as: 'button',
                                 text: 'Dark Mode',
-                                onClick: () => setDark(!dark),
+                                onClick: () =>
+                                    dispatch({
+                                        type: 'setColorScheme',
+                                        payload: state.colorScheme === 'dark' ? 'light' : 'dark',
+                                    }),
                                 icon: {
                                     svg: IconDarkModeSvg,
                                 },

@@ -8,8 +8,7 @@ declare module 'styled-components' {
         colors: ThemeColors
         typography: ThemeTypography
         breakpoints: Breakpoints
-        dark: boolean
-        setDark: (s: boolean) => any
         layout: Layout
+        colorScheme: string
     }
 }
