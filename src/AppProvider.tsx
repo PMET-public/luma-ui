@@ -11,6 +11,7 @@ export type AppProviderProps = {}
 type ReducerState = {
     colorScheme: string
     cartId: string
+    cartCount: number
 }
 
 type ReducerActions =
@@ -22,6 +23,10 @@ type ReducerActions =
           type: 'setCartId'
           payload: string
       }
+    | {
+          type: 'setCartCount'
+          payload: number
+      }
 
 type AppContextProps = {
     state: ReducerState
@@ -31,6 +36,7 @@ type AppContextProps = {
 const initialState: ReducerState = {
     colorScheme: (typeof localStorage !== 'undefined' && localStorage.getItem('luma-ui/color-scheme')) || 'light',
     cartId: (typeof localStorage !== 'undefined' && localStorage.getItem('luma-ui/cart-id')) || '',
+    cartCount: 0,
 }
 
 const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
@@ -41,6 +47,11 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
                 colorScheme: action.payload,
             }
         case 'setCartId':
+            return {
+                ...state,
+                cartId: action.payload,
+            }
+        case 'setCartCount':
             return {
                 ...state,
                 cartId: action.payload,
