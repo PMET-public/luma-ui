@@ -1,15 +1,16 @@
 import React from 'react'
 import Button from './'
 import { storiesOf } from '@storybook/react'
-import { text, boolean } from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Button', module).add('Default', () => (
     <Button
         secondary={boolean('secondary', false)}
         disabled={boolean('disabled', false)}
-        text={text('text', 'Button')}
+        loader={boolean('loading', false) ? { label: 'loading' } : undefined}
         onClick={action('onClick')}
+        text={text('text', 'Button')}
         as="button"
     />
 ))

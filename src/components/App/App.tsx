@@ -82,7 +82,7 @@ export const App: Component<AppProps> = ({
 }) => {
     const { vHeight } = useResize()
 
-    const { state, dispatch } = useAppContext()
+    const [appState, appDispatch] = useAppContext()
 
     return (
         <Root style={{ minHeight: vHeight }} {...props}>
@@ -109,9 +109,9 @@ export const App: Component<AppProps> = ({
                                 as: 'button',
                                 text: 'Dark Mode',
                                 onClick: () =>
-                                    dispatch({
+                                    appDispatch({
                                         type: 'setColorScheme',
-                                        payload: state.colorScheme === 'dark' ? 'light' : 'dark',
+                                        payload: appState.colorScheme === 'dark' ? 'light' : 'dark',
                                     }),
                                 icon: {
                                     svg: IconDarkModeSvg,
@@ -129,6 +129,7 @@ export const App: Component<AppProps> = ({
                                 'aria-label': cart.text,
                                 icon: {
                                     svg: cart.active ? IconBagActiveSvg : IconBagSvg,
+                                    count: appState.cartCount,
                                     ...cart.icon,
                                 },
                                 ...cart,

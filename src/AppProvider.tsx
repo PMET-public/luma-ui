@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, createContext, useContext, useReducer, Reducer } from 'react'
+import React, { FunctionComponent, useEffect, createContext, useContext, useReducer, Reducer, Dispatch } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { ResetStyles } from './theme/ResetStyles'
 import { GlobalStyles, Root } from './theme/GlobalStyles'
@@ -28,10 +28,7 @@ type ReducerActions =
           payload: number
       }
 
-type AppContextProps = {
-    state: ReducerState
-    dispatch: (a: ReducerActions) => any
-}
+type AppContextProps = [ReducerState, Dispatch<ReducerActions>]
 
 const initialState: ReducerState = {
     colorScheme: (typeof localStorage !== 'undefined' && localStorage.getItem('luma-ui/color-scheme')) || 'light',
@@ -54,17 +51,14 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
         case 'setCartCount':
             return {
                 ...state,
-                cartId: action.payload,
+                cartCount: action.payload,
             }
         default:
             throw `Reducer action not valid.`
     }
 }
 
-export const AppContext = createContext<AppContextProps>({
-    state: initialState,
-    dispatch: a => {},
-})
+export const AppContext = createContext<AppContextProps>([initialState, x => {}])
 
 export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
@@ -80,7 +74,7 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
     const colors = colorSchemes[state.colorScheme]
 
     return (
-        <AppContext.Provider value={{ state, dispatch }}>
+        <AppContext.Provider value={[state, dispatch]}>
             <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, colorScheme: state.colorScheme }}>
                 <Root>
                     <ResetStyles />

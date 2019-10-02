@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $secondary?: boolean }>`
+export const Root = styled.button<{ $secondary?: boolean }>`
     align-items: center;
     background-color: ${props => (props.$secondary ? 'transparent' : 'currentColor')};
     border-radius: 2.4rem;
@@ -27,7 +27,7 @@ export const Root = styled.div<{ $secondary?: boolean }>`
     ${props =>
         !props.$secondary &&
         `
-            & > span {
+            > * {
                 filter: invert(1);
             }
         `}
