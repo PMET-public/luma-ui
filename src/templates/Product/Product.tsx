@@ -5,6 +5,7 @@ import {
     Wrapper,
     Images,
     InfoWrapper,
+    InfoInnerWrapper,
     InfoOptions,
     Info,
     Header,
@@ -81,43 +82,45 @@ export const Product: Component<ProductProps> = ({
                 </Images>
 
                 <InfoWrapper>
-                    <Info>
-                        <Header>
-                            {categories && <Breadcrumbs prefix="#" {...categories} />}
+                    <InfoInnerWrapper>
+                        <Info>
+                            <Header>
+                                {categories && <Breadcrumbs prefix="#" {...categories} />}
 
-                            <Title {...title}>{title.text}</Title>
+                                <Title {...title}>{title.text}</Title>
 
-                            <Price {...price} />
+                                <Price {...price} />
 
-                            {sku && <Sku {...sku}>{sku.text}</Sku>}
-                        </Header>
+                                {sku && <Sku {...sku}>{sku.text}</Sku>}
+                            </Header>
 
-                        {shortDescription && (
-                            <ShortDescription dangerouslySetInnerHTML={{ __html: shortDescription }} />
-                        )}
-                        <InfoOptions>
-                            {swatches &&
-                                swatches.map(({ _id, type, title, props }, index) => (
-                                    <Swatches key={_id || index}>
-                                        {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
-                                        {type === 'text' && <TextSwatches {...(props as TextSwatchesProps)} />}
-                                        {type === 'thumb' && <ThumbSwatches {...(props as ThumbSwatchesProps)} />}
-                                    </Swatches>
-                                ))}
+                            {shortDescription && (
+                                <ShortDescription dangerouslySetInnerHTML={{ __html: shortDescription }} />
+                            )}
+                            <InfoOptions>
+                                {swatches &&
+                                    swatches.map(({ _id, type, title, props }, index) => (
+                                        <Swatches key={_id || index}>
+                                            {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
+                                            {type === 'text' && <TextSwatches {...(props as TextSwatchesProps)} />}
+                                            {type === 'thumb' && <ThumbSwatches {...(props as ThumbSwatchesProps)} />}
+                                        </Swatches>
+                                    ))}
 
-                            <Buttons>
-                                {buttons.map((button, index) => (
-                                    <Button key={index} {...button} />
-                                ))}
-                            </Buttons>
-                        </InfoOptions>
+                                <Buttons>
+                                    {buttons.map((button, index) => (
+                                        <Button key={index} {...button} />
+                                    ))}
+                                </Buttons>
+                            </InfoOptions>
 
-                        {description && !descriptionAsPageBuilderContent && (
-                            <Description>
-                                <PageBuilder {...description} />
-                            </Description>
-                        )}
-                    </Info>
+                            {description && !descriptionAsPageBuilderContent && (
+                                <Description>
+                                    <PageBuilder {...description} />
+                                </Description>
+                            )}
+                        </Info>
+                    </InfoInnerWrapper>
                 </InfoWrapper>
             </Wrapper>
             {description && descriptionAsPageBuilderContent && <PageBuilder {...description} />}

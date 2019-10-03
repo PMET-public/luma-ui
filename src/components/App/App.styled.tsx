@@ -59,6 +59,7 @@ export const FooterContainer = styled(ContainerWrapper)`
 
 export const TabBarContainer = styled(ContainerWrapper)`
     background-color: ${props => props.theme.colors.surface90};
+    backdrop-filter: blur(10px);
     position: sticky;
     bottom: 0;
     z-index: 2;

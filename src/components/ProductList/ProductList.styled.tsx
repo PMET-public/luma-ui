@@ -14,6 +14,10 @@ export const List = styled.div`
     @media ${props => props.theme.breakpoints.large} {
         grid-gap: 3rem 0.5rem;
     }
+
+    @media ${props => props.theme.breakpoints.xLarge} {
+        grid-gap: 3rem;
+    }
 `
 
 export const ItemWrapper = styled.div`

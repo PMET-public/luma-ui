@@ -13,6 +13,7 @@ export const Root = styled.div`
 
 export const TopBar = styled.div`
     background-color: ${props => props.theme.colors.surface90};
+    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1;

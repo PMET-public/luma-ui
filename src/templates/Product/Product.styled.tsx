@@ -3,16 +3,13 @@ import styled from 'styled-components'
 import { Root as ImageRoot, ImageTag } from '../../components/Image'
 import { Root as CarouselRoot, Item as CarouselItem } from '../../components/Carousel'
 import { Root as BreadcrumbsRoot, Item as BreadcrumbsItem } from '../../components/Breadcrumbs'
-import { Wrapper as ContainerWrapper } from '../../components/Container'
 import { RichText } from '../../components/PageBuilder'
 
 export const Root = styled.div`
     display: grid;
 `
 
-export const Wrapper = styled(ContainerWrapper).attrs(props => ({
-    $margin: true,
-}))`
+export const Wrapper = styled.div`
     display: grid;
     grid-auto-columns: 1fr;
     grid-auto-rows: minmax(max-content, max-content);
@@ -29,7 +26,6 @@ export const Wrapper = styled(ContainerWrapper).attrs(props => ({
         grid-auto-rows: max-content;
         grid-gap: 2rem;
         grid-template-columns: 1.25fr 1fr;
-        padding-top: 2rem;
     }
 `
 
@@ -61,6 +57,7 @@ export const Images = styled.div`
         }
 
         @media ${props => props.theme.breakpoints.medium} {
+            max-width: 120rem;
             grid-auto-flow: row;
             grid-gap: 0.5rem;
             grid-template-columns: 1fr 1fr;
@@ -97,6 +94,19 @@ export const InfoWrapper = styled.div`
     }
 `
 
+export const InfoInnerWrapper = styled.div`
+    @media ${props => props.theme.breakpoints.medium} {
+        align-items: center;
+        display: flex;
+        height: calc(100vh - 8rem);
+        justify-content: center;
+        max-width: 60rem;
+        padding: 4rem 2rem 4rem;
+        position: sticky;
+        top: 8rem;
+    }
+`
+
 export const InfoOptions = styled.div`
     display: grid;
     grid-gap: 3rem;
@@ -104,21 +114,16 @@ export const InfoOptions = styled.div`
 
 export const Info = styled.div`
     display: grid;
+    grid-auto-rows: max-content;
     grid-gap: 3rem;
     padding: 2rem ${props => props.theme.layout.margin};
 
-    @media ${props => props.theme.breakpoints.medium} {
-        position: sticky;
-        top: 8rem;
-        width: 100%;
-        max-width: 60rem;
-        padding: 4rem 2rem 4rem;
-    }
 
-    @media ${props => props.theme.breakpoints.large} {
-        padding-lef: 6rem;
+
+    /* @media ${props => props.theme.breakpoints.large} {
+        padding-left: 6rem;
         padding-right: 6rem;
-    }
+    } */
 `
 
 export const Header = styled.header`
