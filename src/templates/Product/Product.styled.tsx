@@ -32,7 +32,7 @@ export const Wrapper = styled.div`
 export const Images = styled.div`
     @media ${props => props.theme.breakpoints.smallOnly} {
         position: sticky;
-        top: 0;
+        top: 6rem;
         z-index: 0;
     }
 
