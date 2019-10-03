@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Component, Props } from '../../lib'
 import { Root, HeaderContainer, Main, FooterContainer, TabBarContainer } from './App.styled'
 
 import { useResize } from '../../hooks/useResize'
+import { useMeasure } from '../../hooks/useMeasure'
 
 import Header from '../Header'
 import TabBar from '../TabBar'
@@ -80,13 +81,21 @@ export const App: Component<AppProps> = ({
     search,
     ...props
 }) => {
+    const headerRef = useRef<HTMLDivElement>(null)
+
+    const tabBarRef = useRef<HTMLDivElement>(null)
+
     const { vHeight } = useResize()
+
+    const { height: headerHeight } = useMeasure(headerRef)
+
+    const { height: tabBarHeight } = useMeasure(tabBarRef)
 
     const [appState, appDispatch] = useAppContext()
 
     return (
-        <Root style={{ minHeight: vHeight }} {...props}>
-            <HeaderContainer as="header" $margin>
+        <Root $mainHeight={`calc(${vHeight} - ${headerHeight}px - ${tabBarHeight}px)`} {...props}>
+            <HeaderContainer ref={headerRef} as="header" $margin>
                 <Header
                     logo={{
                         svg: LogoImageSvg,
@@ -145,7 +154,7 @@ export const App: Component<AppProps> = ({
                 <Footer {...footer} />
             </FooterContainer>
 
-            <TabBarContainer as="nav">
+            <TabBarContainer ref={tabBarRef} as="nav">
                 <TabBar
                     items={[
                         {

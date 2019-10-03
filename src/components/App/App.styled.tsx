@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { Root as HeaderRoot, Logo as HeaderLogo, Menu as HeaderMenu, Utilities as HeaderUtilities } from '../Header'
 import { Wrapper as ContainerWrapper } from '../Container'
 
-export const Root = styled.div`
+export const Root = styled.div<{ $mainHeight: string }>`
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
-    grid-template-rows: auto 1fr auto auto;
+    grid-template-rows: auto minmax(${props => props.$mainHeight}, 1fr) auto auto;
     width: 100%;
 `
 
@@ -14,6 +14,7 @@ export const HeaderContainer = styled(ContainerWrapper)`
     background-color: ${props => props.theme.colors.surface90};
     box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.09), inset 0 -0.2rem 0 rgba(255, 255, 255, 0.09);
     color: ${props => props.theme.colors.onSurface};
+    z-index: 2;
 
     ${HeaderRoot} {
         @media ${props => props.theme.breakpoints.smallOnly} {

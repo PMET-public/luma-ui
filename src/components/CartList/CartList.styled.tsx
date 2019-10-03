@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Root = styled.section`
     display: grid;
     grid-auto-rows: max-content;
-    grid-gap: 2rem;
+    /* grid-gap: 2rem; */
     width: 100%;
 `
 
@@ -12,31 +12,45 @@ export const Product = styled.article`
     grid-auto-flow: column;
     grid-gap: 2rem;
     grid-template-columns: auto 1fr;
+
+    &:not(:last-of-type) {
+        border-bottom: 0.1rem solid ${props => props.theme.colors.onSurface10};
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+    }
 `
 
 export const Thumbnail = styled.div`
-    width: 14rem;
+    width: 10rem;
+    @media ${props => props.theme.breakpoints.medium} {
+        width: 16rem;
+    }
+    @media ${props => props.theme.breakpoints.large} {
+        width: 18rem;
+    }
 `
 
 export const DetailsWrapper = styled.div`
-    align-items: flex-start;
+    align-items: center;
     display: grid;
-    grid-gap: 1.4rem;
+    grid-gap: 1.2rem 1rem;
     grid-template-areas:
-        'title'
-        'price'
-        'sku'
-        'options'
-        'actions';
+        'title title'
+        'sku sku'
+        'options options'
+        'price quantity';
+    grid-template-rows: repeat(3, max-content);
+    grid-template-columns: 1fr auto;
+    font-size: 1.4rem;
 
     @media ${({ theme }) => theme.breakpoints.medium} {
-        grid-gap: 2rem;
         grid-template:
-            'title price'
-            'sku .'
-            'options .'
-            'actions .';
-        grid-template-rows: max-content max-content max-content max-content;
+            'title price quantity'
+            'sku sku sku'
+            'options options options';
+        grid-template-rows: repeat(3, max-content);
+        grid-template-columns: 1fr auto auto;
+        padding-top: 2rem;
     }
 `
 
@@ -54,17 +68,17 @@ export const Price = styled.div`
 export const Sku = styled.div`
     grid-area: sku;
     color: ${({ theme }) => theme.colors.onSurface75};
-    font-size: 1.3rem;
 `
 
 export const Options = styled.ul`
     grid-area: options;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: -0.75rem;
 `
 
 export const Option = styled.li`
-    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
     &:not(:last-child) {
         margin-right: 1rem;
     }
@@ -78,13 +92,6 @@ export const OptionLabel = styled.span`
 
 export const OptionValue = styled.span``
 
-export const Actions = styled.div`
-    grid-area: actions;
-    align-items: center;
-    display: grid;
-    grid-auto-columns: max-content;
-    grid-auto-flow: column;
-    grid-gap: 4rem;
+export const Quantity = styled.div`
+    grid-area: quantity;
 `
-
-export const ActionQuantity = styled.div``

@@ -1,11 +1,11 @@
 import React from 'react'
-import ShoppingCart from './'
+import CartList from '.'
 import { storiesOf } from '@storybook/react'
 import { number } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
-storiesOf('📦 Components/ShoppingCart', module).add('Default', () => (
-    <ShoppingCart
+storiesOf('📦 Components/CartList', module).add('Default', () => (
+    <CartList
         items={new Array(number('count', 1)).fill({
             title: {
                 text: 'Jillian Top',

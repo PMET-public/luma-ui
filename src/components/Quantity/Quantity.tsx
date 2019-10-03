@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { Component } from '../../lib'
-import { Root, Plus, Minus, Value } from './Quantity.styled'
+import { Root, Actions, Plus, Minus, Value } from './Quantity.styled'
 
 import PlusIconSvg from 'remixicon/icons/System/add-line.svg'
 import MinusIconSvg from 'remixicon/icons/System/subtract-line.svg'
@@ -42,17 +42,21 @@ export const Quantity: Component<QuantityProps> = ({
 
     return (
         <Root {...props}>
-            <Minus disabled={value < minValue} type="button" onClick={() => handleUpdate(value - 1)}>
-                {onRemove && value <= minValue ? (
-                    <RemoveIconSvg aria-label={substractLabel} />
-                ) : (
-                    <MinusIconSvg aria-label={removeLabel} />
-                )}
-            </Minus>
-            <Value>{value}</Value>
-            <Plus disabled={value === maxValue} onClick={() => handleUpdate(value + 1)}>
-                <PlusIconSvg aria-label={addLabel} />
-            </Plus>
+            <Value>
+                <sub>x</sub> {value}
+            </Value>
+            <Actions>
+                <Minus disabled={value < minValue} type="button" onClick={() => handleUpdate(value - 1)}>
+                    {onRemove && value <= minValue ? (
+                        <RemoveIconSvg aria-label={substractLabel} />
+                    ) : (
+                        <MinusIconSvg aria-label={removeLabel} />
+                    )}
+                </Minus>
+                <Plus disabled={value === maxValue} onClick={() => handleUpdate(value + 1)}>
+                    <PlusIconSvg aria-label={addLabel} />
+                </Plus>
+            </Actions>
         </Root>
     )
 }

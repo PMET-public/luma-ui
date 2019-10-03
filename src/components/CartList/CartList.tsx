@@ -7,19 +7,20 @@ import {
     DetailsWrapper,
     Title,
     Price,
+    Quantity,
     Sku,
     Options,
     Option,
     OptionLabel,
     OptionValue,
-    Actions,
-    ActionQuantity,
-} from './ShoppingCart.styled'
+} from './CartList.styled'
 import PriceComponent, { PriceProps } from '../Price'
 import Image, { ImageProps } from '../Image'
-import Quantity, { QuantityProps } from '../Quantity'
+import QuantityComponent, { QuantityProps } from '../Quantity'
+import PageBuilder, { PageBuilderProps } from '../PageBuilder'
 
-export type ShoppingCartProps = {
+export type CartListProps = {
+    cmsBlock?: PageBuilderProps
     items: Array<{
         _id?: string | number
         title: Props<{
@@ -37,19 +38,22 @@ export type ShoppingCartProps = {
     }>
 }
 
-export const ShoppingCart: Component<ShoppingCartProps> = ({ items, ...props }) => {
+export const CartList: Component<CartListProps> = ({ items, cmsBlock, ...props }) => {
     return items ? (
         <Root {...props}>
-            {items.map(({ _id, title, sku, thumbnail, price, quantity, options, onUpdate, onRemove }, index) => (
+            {items.map(({ _id, title, sku, thumbnail, price, quantity, options }, index) => (
                 <Product key={_id || index}>
                     <Thumbnail>
                         <Image vignette={8} transition width="100%" height="auto" {...thumbnail} />
                     </Thumbnail>
                     <DetailsWrapper>
                         <Title {...title}>{title.text}</Title>
+
                         <Price>
                             <PriceComponent {...price} />
                         </Price>
+
+                        <Quantity as={QuantityComponent} {...quantity} />
                         <Sku>{sku}</Sku>
                         {options && (
                             <Options>
@@ -60,14 +64,11 @@ export const ShoppingCart: Component<ShoppingCartProps> = ({ items, ...props }) 
                                 ))}
                             </Options>
                         )}
-                        <Actions>
-                            <ActionQuantity>
-                                <Quantity {...quantity} />
-                            </ActionQuantity>
-                        </Actions>
                     </DetailsWrapper>
                 </Product>
             ))}
+
+            {cmsBlock && <PageBuilder {...cmsBlock} />}
         </Root>
     ) : null
 }

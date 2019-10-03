@@ -1,14 +1,20 @@
 import styled from 'styled-components'
 
 export const Root = styled.div`
+    align-items: center;
+    display: grid;
+    grid-gap: 1.4rem;
+    grid-template-columns: max-content max-content;
+`
+
+export const Actions = styled.div`
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-    justify-content: center;
+    grid-template-columns: max-content max-content;
 `
 
 const Button = styled.button`
+    font-size: 1.6rem;
     & > svg {
         fill: ${({ theme }) => theme.colors.primary};
         width: 1em;
@@ -24,8 +30,8 @@ const Button = styled.button`
     border-radius: 1rem;
     display: flex;
     justify-content: center;
-    height: 2em;
-    width: 2em;
+    min-height: 2em;
+    min-width: 2em;
 `
 
 export const Plus = styled(Button)``
@@ -34,4 +40,8 @@ export const Minus = styled(Button)``
 
 export const Value = styled.span`
     text-align: center;
+
+    & > sub {
+        font-size: 80%;
+    }
 `
