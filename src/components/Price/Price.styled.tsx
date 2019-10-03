@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Root = styled.div`
-    font-size: 1.4rem;
     display: grid;
     grid-gap: 0.75rem;
     grid-auto-flow: column;

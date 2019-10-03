@@ -6,7 +6,6 @@ import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/ShoppingCart', module).add('Default', () => (
     <ShoppingCart
-        removeButton={{ label: 'remove item', onClick: action('remove item') }}
         items={new Array(number('count', 1)).fill({
             title: {
                 text: 'Jillian Top',
@@ -15,7 +14,14 @@ storiesOf('📦 Components/ShoppingCart', module).add('Default', () => (
             thumbnail: {
                 src: require('../../../public/images/fashion-thumb2.jpg'),
             },
-            quantity: 1,
+            quantity: {
+                value: 2,
+                onUpdate: action('onUpdate'),
+                onRemove: action('onRemove'),
+                addLabel: 'Add',
+                removeLabel: 'Remove',
+                substractLabel: 'Remove',
+            },
             price: {
                 regular: 39.99,
             },

@@ -6,20 +6,18 @@ import {
     Thumbnail,
     DetailsWrapper,
     Title,
+    Price,
     Sku,
-    Note,
     Options,
     Option,
     OptionLabel,
     OptionValue,
     Actions,
     ActionQuantity,
-    ActionRemove,
 } from './ShoppingCart.styled'
-import Price, { PriceProps } from '../Price'
+import PriceComponent, { PriceProps } from '../Price'
 import Image, { ImageProps } from '../Image'
-
-import RemoveIconSvg from 'remixicon/icons/System/delete-bin-2-line.svg'
+import Quantity, { QuantityProps } from '../Quantity'
 
 export type ShoppingCartProps = {
     items: Array<{
@@ -29,32 +27,29 @@ export type ShoppingCartProps = {
         }>
         sku: string
         thumbnail: ImageProps
-        quantity: number
+        quantity: QuantityProps
         price: PriceProps
         options?: Array<{
             _id?: string | number
             label: string
             value: string
         }>
-        note?: string
-    }>
-
-    removeButton: Props<{
-        label: string
     }>
 }
 
-export const ShoppingCart: Component<ShoppingCartProps> = ({ items, removeButton, ...props }) => {
+export const ShoppingCart: Component<ShoppingCartProps> = ({ items, ...props }) => {
     return items ? (
         <Root {...props}>
-            {items.map(({ _id, title, sku, thumbnail, price, quantity, note, options }, index) => (
+            {items.map(({ _id, title, sku, thumbnail, price, quantity, options, onUpdate, onRemove }, index) => (
                 <Product key={_id || index}>
                     <Thumbnail>
                         <Image vignette={8} transition width="100%" height="auto" {...thumbnail} />
                     </Thumbnail>
                     <DetailsWrapper>
                         <Title {...title}>{title.text}</Title>
-                        <Price {...price} />
+                        <Price>
+                            <PriceComponent {...price} />
+                        </Price>
                         <Sku>{sku}</Sku>
                         {options && (
                             <Options>
@@ -65,12 +60,10 @@ export const ShoppingCart: Component<ShoppingCartProps> = ({ items, removeButton
                                 ))}
                             </Options>
                         )}
-                        {note && <Note>{note}</Note>}
                         <Actions>
-                            <ActionQuantity>{quantity}</ActionQuantity>
-                            <ActionRemove {...removeButton}>
-                                <RemoveIconSvg />
-                            </ActionRemove>
+                            <ActionQuantity>
+                                <Quantity {...quantity} />
+                            </ActionQuantity>
                         </Actions>
                     </DetailsWrapper>
                 </Product>

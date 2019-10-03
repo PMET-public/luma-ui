@@ -10,9 +10,22 @@ export const Root = styled.div`
 
 const Button = styled.button`
     & > svg {
-        fill: currentColor;
-        width: 2rem;
+        fill: ${({ theme }) => theme.colors.primary};
+        width: 1em;
+        height: 1em;
     }
+
+    &[disabled] {
+        opacity: 0.5;
+    }
+
+    align-items: center;
+    background-color: ${({ theme }) => theme.colors.primary5};
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    height: 2em;
+    width: 2em;
 `
 
 export const Plus = styled(Button)``
