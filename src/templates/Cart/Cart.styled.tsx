@@ -53,7 +53,7 @@ export const CartSummaryWrapper = styled.div`
         bottom: 5rem;
 
         ${CartSummaryRoot} {
-            grid-gap: 0.8rem;
+            grid-gap: 1rem;
             font-size: 1.4rem;
         }
 

@@ -7,9 +7,8 @@ export const Root = styled.div`
     display: grid;
     grid-auto-flow: column;
     grid-gap: 2rem;
-    padding: 1.3rem 0;
     width: 100%;
-    height: 5rem;
+    height: 5.2rem;
 
     /** iOS X paddings */
     @supports (padding: max(0px)) {

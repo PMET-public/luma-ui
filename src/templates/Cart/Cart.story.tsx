@@ -34,24 +34,27 @@ storiesOf('📑 Templates/Cart', module).add('Default', () => (
             }}
             summary={{
                 title: { as: 'h2', text: 'Summary' },
-                subTotal: {
-                    label: 'Subtotal',
-                    price: {
-                        regular: 19.99,
+                prices: [
+                    {
+                        label: 'Subtotal',
+                        price: {
+                            regular: 19.99,
+                        },
                     },
-                },
-                taxes: {
-                    label: 'Taxes',
-                    price: {
-                        regular: null,
+                    {
+                        label: 'Taxes',
+                        price: {
+                            regular: null,
+                        },
                     },
-                },
-                total: {
-                    label: 'Total',
-                    price: {
-                        regular: 19.99,
+                    {
+                        appearance: 'bold',
+                        label: 'Total',
+                        price: {
+                            regular: 19.99,
+                        },
                     },
-                },
+                ],
                 buttons: [{ text: 'Checkout' }],
             }}
         />

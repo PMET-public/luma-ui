@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const Root = styled.div`
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-gap: 1.6rem;
+`
+
 export const Title = styled.div`
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight};
@@ -12,8 +18,8 @@ export const PriceItem = styled.div`
     grid-template-columns: 1fr auto;
 `
 
-export const Label = styled.strong<{ $bold?: boolean }>`
-    font-weight: ${props => (props.$bold ? 600 : 400)};
+export const Label = styled.strong<{ $appearance?: 'bold' | 'normal' }>`
+    font-weight: ${props => (props.$appearance === 'bold' ? 600 : 400)};
 `
 
 export const Buttons = styled.div`
@@ -21,9 +27,4 @@ export const Buttons = styled.div`
     display: grid;
     grid-gap: 1rem;
     grid-auto-rows: max-content;
-`
-export const Root = styled.div`
-    display: grid;
-    grid-auto-rows: max-content;
-    grid-gap: 1.6rem;
 `

@@ -108,11 +108,11 @@ export const App: Component<AppProps> = ({
                         items: [
                             {
                                 'aria-label': myAccount.text,
+                                ...myAccount,
                                 icon: {
-                                    svg: cart.active ? IconAccountActiveSvg : IconAccountSvg,
+                                    svg: cart.myAccount ? IconAccountActiveSvg : IconAccountSvg,
                                     ...myAccount.icon,
                                 },
-                                ...myAccount,
                             },
                             {
                                 as: 'button',
@@ -128,20 +128,20 @@ export const App: Component<AppProps> = ({
                             },
                             {
                                 'aria-label': search.text,
+                                ...search,
                                 icon: {
                                     svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                     ...search.icon,
                                 },
-                                ...search,
                             },
                             {
                                 'aria-label': cart.text,
+                                ...cart,
                                 icon: {
                                     svg: cart.active ? IconBagActiveSvg : IconBagSvg,
                                     count: appState.cartCount,
                                     ...cart.icon,
                                 },
-                                ...cart,
                             },
                         ],
                     }}
@@ -159,35 +159,36 @@ export const App: Component<AppProps> = ({
                     items={[
                         {
                             'aria-label': home.text,
+                            ...home,
                             icon: {
                                 svg: home.active ? IconHomeActiveSvg : IconHomeSvg,
                                 ...home.icon,
                             },
-                            ...home,
                         },
                         {
+                            ...favorites,
                             'aria-label': favorites.text,
                             icon: {
                                 svg: favorites.active ? IconFavoriteActiveSvg : IconFavoritesSvg,
                                 ...favorites.icon,
                             },
-                            ...favorites,
                         },
                         {
+                            ...search,
                             'aria-label': search.text,
                             icon: {
                                 svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                 ...search.icon,
                             },
-                            ...search,
                         },
                         {
+                            ...cart,
                             'aria-label': cart.text,
                             icon: {
                                 svg: cart.active ? IconBagActiveSvg : IconBagSvg,
+                                count: appState.cartCount,
                                 ...cart.icon,
                             },
-                            ...cart,
                         },
                     ]}
                 />

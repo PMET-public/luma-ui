@@ -38,5 +38,5 @@ export const Count = styled.span`
     justify-content: center;
     left: calc(100% + 0.2em);
     position: absolute;
-    top: -0.3em;
+    top: 0em;
 `

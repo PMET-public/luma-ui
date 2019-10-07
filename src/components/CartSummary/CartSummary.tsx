@@ -7,37 +7,28 @@ import Button, { ButtonProps } from '../Button'
 type PriceItemProps = {
     label: string
     price: PriceProps
+    appearance?: 'bold' | 'normal'
 }
 
 export type CartSummaryProps = {
     title: Props<{ text: string }>
-    subTotal?: PriceItemProps
-    taxes?: PriceItemProps
-    total: PriceItemProps
+    prices: PriceItemProps[]
     buttons: ButtonProps[]
 }
 
-export const CartSummary: Component<CartSummaryProps> = ({ title, subTotal, taxes, total, buttons, ...props }) => {
+export const CartSummary: Component<CartSummaryProps> = ({ title, prices, buttons, ...props }) => {
     return (
         <Root aria-label={title.text} {...props}>
             <Title {...title}>{title.text}</Title>
-            {subTotal && (
-                <PriceItem>
-                    <Label>{subTotal.label}</Label>
-                    <Price {...subTotal.price} />
+
+            {prices.map((price, index) => (
+                <PriceItem key={index}>
+                    <Label $appearance={price.appearance || 'normal'}>{price.label}</Label>
+                    <Price {...price.price} />
                 </PriceItem>
-            )}
-            {taxes && (
-                <PriceItem>
-                    <Label>{taxes.label}</Label>
-                    <Price {...taxes.price} />
-                </PriceItem>
-            )}
-            <PriceItem>
-                <Label $bold>{total.label}</Label>
-                <Price {...total.price} />
-            </PriceItem>
-            <Buttons>{buttons && buttons.map((button, index) => <Button key="index" {...button} />)}</Buttons>
+            ))}
+
+            <Buttons>{buttons && buttons.map((button, index) => <Button key={index} {...button} />)}</Buttons>
         </Root>
     )
 }
