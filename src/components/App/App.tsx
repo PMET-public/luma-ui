@@ -91,7 +91,7 @@ export const App: Component<AppProps> = ({
 
     const { height: tabBarHeight } = useMeasure(tabBarRef)
 
-    const [appState, appDispatch] = useAppContext()
+    const { state, actions } = useAppContext()
 
     return (
         <Root $mainHeight={`calc(${vHeight} - ${headerHeight}px - ${tabBarHeight}px)`} {...props}>
@@ -117,11 +117,7 @@ export const App: Component<AppProps> = ({
                             {
                                 as: 'button',
                                 text: 'Dark Mode',
-                                onClick: () =>
-                                    appDispatch({
-                                        type: 'setColorScheme',
-                                        payload: appState.colorScheme === 'dark' ? 'light' : 'dark',
-                                    }),
+                                onClick: () => actions.setColorScheme(state.colorScheme === 'dark' ? 'light' : 'dark'),
                                 icon: {
                                     svg: IconDarkModeSvg,
                                 },
@@ -139,7 +135,7 @@ export const App: Component<AppProps> = ({
                                 ...cart,
                                 icon: {
                                     svg: cart.active ? IconBagActiveSvg : IconBagSvg,
-                                    count: appState.cartCount,
+                                    count: state.cartCount,
                                     ...cart.icon,
                                 },
                             },
@@ -186,7 +182,7 @@ export const App: Component<AppProps> = ({
                             'aria-label': cart.text,
                             icon: {
                                 svg: cart.active ? IconBagActiveSvg : IconBagSvg,
-                                count: appState.cartCount,
+                                count: state.cartCount,
                                 ...cart.icon,
                             },
                         },

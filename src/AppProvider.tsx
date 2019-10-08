@@ -86,4 +86,15 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
     )
 }
 
-export const useAppContext = () => useContext(AppContext)
+export const useAppContext = () => {
+    const [state, dispatch] = useContext(AppContext)
+
+    return {
+        state,
+        actions: {
+            setColorScheme: (theme: string) => dispatch({ type: 'setColorScheme', payload: theme }),
+            setCartId: (cartId: string) => dispatch({ type: 'setCartId', payload: cartId }),
+            setCartCount: (count: number) => dispatch({ type: 'setCartCount', payload: count }),
+        },
+    }
+}
