@@ -10,30 +10,17 @@ export type AppProviderProps = {}
 
 type ReducerState = {
     colorScheme: string
-    cartId: string
-    cartCount: number
 }
 
-type ReducerActions =
-    | {
-          type: 'setColorScheme'
-          payload: string
-      }
-    | {
-          type: 'setCartId'
-          payload: string
-      }
-    | {
-          type: 'setCartCount'
-          payload: number
-      }
+type ReducerActions = {
+    type: 'setColorScheme'
+    payload: string
+}
 
 type AppContextProps = [ReducerState, Dispatch<ReducerActions>]
 
 const initialState: ReducerState = {
     colorScheme: (typeof localStorage !== 'undefined' && localStorage.getItem('luma-ui/color-scheme')) || 'light',
-    cartId: (typeof localStorage !== 'undefined' && localStorage.getItem('luma-ui/cart-id')) || '',
-    cartCount: 0,
 }
 
 const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
@@ -42,16 +29,6 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
             return {
                 ...state,
                 colorScheme: action.payload,
-            }
-        case 'setCartId':
-            return {
-                ...state,
-                cartId: action.payload,
-            }
-        case 'setCartCount':
-            return {
-                ...state,
-                cartCount: action.payload,
             }
         default:
             throw `Reducer action not valid.`
@@ -66,10 +43,6 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
     useEffect(() => {
         localStorage.setItem('luma-ui/color-scheme', state.colorScheme)
     }, [state.colorScheme])
-
-    useEffect(() => {
-        localStorage.setItem('luma-ui/cart-id', state.cartId)
-    }, [state.cartId])
 
     const colors = colorSchemes[state.colorScheme]
 
@@ -93,8 +66,6 @@ export const useAppContext = () => {
         state,
         actions: {
             setColorScheme: (theme: string) => dispatch({ type: 'setColorScheme', payload: theme }),
-            setCartId: (cartId: string) => dispatch({ type: 'setCartId', payload: cartId }),
-            setCartCount: (count: number) => dispatch({ type: 'setCartCount', payload: count }),
         },
     }
 }

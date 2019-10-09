@@ -135,7 +135,6 @@ export const App: Component<AppProps> = ({
                                 ...cart,
                                 icon: {
                                     svg: cart.active ? IconBagActiveSvg : IconBagSvg,
-                                    count: state.cartCount,
                                     ...cart.icon,
                                 },
                             },
@@ -182,7 +181,6 @@ export const App: Component<AppProps> = ({
                             'aria-label': cart.text,
                             icon: {
                                 svg: cart.active ? IconBagActiveSvg : IconBagSvg,
-                                count: state.cartCount,
                                 ...cart.icon,
                             },
                         },
