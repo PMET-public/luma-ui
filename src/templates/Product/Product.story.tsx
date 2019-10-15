@@ -5,10 +5,10 @@ import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
 import { files } from '@storybook/addon-knobs'
-import { PageBuilderRowFullBleedMock, PageBuilderTextMock } from '../../components/PageBuilder/PageBuilder.story'
+// import { PageBuilderRowFullBleedMock, PageBuilderTextMock } from '../../components/PageBuilder/PageBuilder.story'
 
 const ProductMockData = (): ProductProps => ({
-    buttons: [{ text: 'Add to Cart' }, { text: 'Add to Favorite', secondary: true }],
+    buttons: [{ text: 'Add to Cart', type: 'submit' }, { text: 'Add to Favorite', secondary: true }],
     categories: {
         items: [
             {
@@ -50,17 +50,19 @@ const ProductMockData = (): ProductProps => ({
             )[0],
         },
     }),
-    swatches: [
+    options: [
         {
             title: {
-                text: 'Blue',
+                text: 'Color',
                 as: 'h3',
             },
             type: 'thumb',
-            props: {
+            required: true,
+            swatches: {
+                groupId: 'color',
                 items: [
                     {
-                        active: true,
+                        value: 1,
                         image: {
                             alt: '',
                             src: require('../../../public/images/product-item-sample.jpg'),
@@ -69,6 +71,7 @@ const ProductMockData = (): ProductProps => ({
                         },
                     },
                     {
+                        value: 2,
                         disabled: true,
                         image: {
                             alt: '',
@@ -78,6 +81,7 @@ const ProductMockData = (): ProductProps => ({
                         },
                     },
                     {
+                        value: 3,
                         image: {
                             alt: '',
                             src: require('../../../public/images/product-item-sample.jpg'),
@@ -86,6 +90,7 @@ const ProductMockData = (): ProductProps => ({
                         },
                     },
                     {
+                        value: 4,
                         image: {
                             alt: '',
                             src: require('../../../public/images/product-item-sample.jpg'),
@@ -102,14 +107,10 @@ const ProductMockData = (): ProductProps => ({
                 as: 'h3',
             },
             type: 'text',
-            props: {
-                items: [
-                    { text: 'XS', disabled: true },
-                    { text: 'S' },
-                    { text: 'M', active: true },
-                    { text: 'L' },
-                    { text: 'XL' },
-                ],
+            required: true,
+            swatches: {
+                groupId: 'size',
+                items: [{ text: 'XS', disabled: true }, { text: 'S' }, { text: 'M' }, { text: 'L' }, { text: 'XL' }],
             },
         },
     ],

@@ -6,32 +6,39 @@ export const Root = styled.div`
     grid-template-columns: repeat(3, 1fr);
 `
 
-export const Item = styled.div<{ $active?: boolean; disabled: boolean }>`
-    background-color: ${props => props.theme.colors.onPrimary};
-    border-radius: 0.5rem;
-    border: 0.1rem solid ${props => props.theme.colors.primary25};
-    color: ${props => props.theme.colors.primary};
-    padding: 1rem;
-    text-align: center;
-    transition: all 305ms ease;
+export const Item = styled.span`
+    position: relative;
 
-    ${props =>
-        props.$active &&
-        `
-            background-color: ${props.theme.colors.primary};
-            color: ${props.theme.colors.onPrimary};
-            font-weight: 600;
-        `}
+    & > label {
+        cursor: pointer;
+        align-items: center;
+        background-color: ${props => props.theme.colors.onPrimary};
+        border-radius: 0.5rem;
+        border: 0.1rem solid ${props => props.theme.colors.primary25};
+        color: ${props => props.theme.colors.primary};
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+        transition: all 305ms ease;
+    }
 
-    ${props =>
-        props.disabled &&
-        `
-            filter: opacity(30%);
-        `}
+    & > input[type='radio'] {
+        position: absolute;
+        opacity: 0;
+    }
 
-    &:hover:not([disabled]) {
+    & > input[type='radio']:checked + label,
+    & > input[type='radio']:focus + label {
+        background-color: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.onPrimary};
+        font-weight: 600;
+    }
+
+    & > input[type='radio']:disabled + label {
+        opacity: 0.35;
+    }
+
+    &:hover > input[type='radio']:not(:disabled) + label {
         border-color: ${props => props.theme.colors.primary75};
     }
 `
-
-export const Label = styled.span``

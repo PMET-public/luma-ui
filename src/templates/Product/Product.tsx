@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Component, Props } from '../../lib'
 import {
     Root,
@@ -17,6 +17,7 @@ import {
     ShortDescription,
     Description,
 } from './Product.styled'
+import useForm from 'react-hook-form'
 
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
@@ -37,14 +38,16 @@ export type ProductProps = {
     shortDescription?: string
     description?: PageBuilderProps
     gallery: ImageProps[]
-    swatches?: Array<
+    options?: Array<
         {
             _id?: string | number
             title?: Props<{
                 text: string
             }>
-        } & ({ type: 'text'; props: TextSwatchesProps } | { type: 'thumb'; props: ThumbSwatchesProps })
+            required?: boolean
+        } & ({ type: 'text'; swatches: TextSwatchesProps } | { type: 'thumb'; swatches: ThumbSwatchesProps })
     >
+
     price: PriceProps
     sku?: Props<{
         text: string
@@ -52,6 +55,7 @@ export type ProductProps = {
     title: Props<{
         text: string
     }>
+    onSubmit?: (...args: any) => any
 }
 
 export const Product: Component<ProductProps> = ({
@@ -62,14 +66,19 @@ export const Product: Component<ProductProps> = ({
     gallery,
     price,
     sku,
-    swatches,
+    options,
     title,
+    onSubmit = () => {},
     ...props
 }) => {
-    const descriptionAsPageBuilderContent = !!description && isPageBuilderHtml(description.html)
+    const { register, handleSubmit } = useForm()
+
+    const descriptionAsPageBuilderContent = useMemo(() => {
+        return !!description && isPageBuilderHtml(description.html)
+    }, [description && description.html])
 
     return (
-        <Root {...props}>
+        <Root as="form" {...props} onSubmit={handleSubmit(onSubmit)}>
             <Wrapper>
                 <Images>
                     <Carousel gap={1} padding={3}>
@@ -97,22 +106,41 @@ export const Product: Component<ProductProps> = ({
                             {shortDescription && (
                                 <ShortDescription dangerouslySetInnerHTML={{ __html: shortDescription }} />
                             )}
-                            <InfoOptions>
-                                {swatches &&
-                                    swatches.map(({ _id, type, title, props }, index) => (
-                                        <Swatches key={_id || index}>
-                                            {title && <SwatchesTitle {...title}>{title.text}</SwatchesTitle>}
-                                            {type === 'text' && <TextSwatches {...(props as TextSwatchesProps)} />}
-                                            {type === 'thumb' && <ThumbSwatches {...(props as ThumbSwatchesProps)} />}
-                                        </Swatches>
+
+                            {options && (
+                                <InfoOptions>
+                                    {options.map(({ _id, type, title, required, swatches }, index) => (
+                                        <fieldset key={_id || index}>
+                                            <Swatches>
+                                                {title && (
+                                                    <SwatchesTitle as="legend" {...title}>
+                                                        {title.text}
+                                                    </SwatchesTitle>
+                                                )}
+                                                {type === 'text' && (
+                                                    <TextSwatches
+                                                        ref={register({ required })}
+                                                        {...(swatches as TextSwatchesProps)}
+                                                    />
+                                                )}
+                                                {type === 'thumb' && (
+                                                    <ThumbSwatches
+                                                        ref={register({ required })}
+                                                        {...(swatches as ThumbSwatchesProps)}
+                                                    />
+                                                )}
+                                            </Swatches>
+                                        </fieldset>
                                     ))}
 
-                                <Buttons>
-                                    {buttons.map((button, index) => (
-                                        <Button key={index} {...button} />
-                                    ))}
-                                </Buttons>
-                            </InfoOptions>
+                                    <Buttons>
+                                        {buttons.map((button, index) => (
+                                            // disabled if invalid
+                                            <Button key={index} {...button} />
+                                        ))}
+                                    </Buttons>
+                                </InfoOptions>
+                            )}
 
                             {description && !descriptionAsPageBuilderContent && (
                                 <Description>

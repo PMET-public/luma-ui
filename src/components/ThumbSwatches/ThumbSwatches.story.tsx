@@ -5,9 +5,9 @@ import { object } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ThumbSwatches', module).add('Default', () => (
     <ThumbSwatches
+        groupId="color"
         items={object('items', [
             {
-                active: true,
                 image: {
                     alt: '',
                     src: require('../../../public/images/product-item-sample.jpg'),
@@ -21,6 +21,7 @@ storiesOf('📦 Components/ThumbSwatches', module).add('Default', () => (
                 },
             },
             {
+                defaultChecked: true,
                 image: {
                     alt: '',
                     src: require('../../../public/images/product-item-sample.jpg'),

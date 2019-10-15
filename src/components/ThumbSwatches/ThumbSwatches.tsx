@@ -1,29 +1,37 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Item, ImageWrapper } from './ThumbSwatches.styled'
+import { Root, Item } from './ThumbSwatches.styled'
 
 import Image, { ImageProps } from '../Image'
 
 export type ThumbSwatchesProps = {
+    groupId: string
     items: Array<
         Props<{
-            active?: boolean
-            disabled?: boolean
             image: ImageProps
         }>
     >
 }
 
-export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ items = [], ...props }) => {
-    return (
-        <Root {...props}>
-            {items.map(({ image, active = false, disabled = false, ...item }, index) => (
-                <Item $active={active} as="button" key={index} {...item}>
-                    <ImageWrapper $active={active} $disabled={disabled}>
-                        <Image transition width={4} height={5} {...image} />
-                    </ImageWrapper>
-                </Item>
-            ))}
-        </Root>
-    )
-}
+export const ThumbSwatches: Component<ThumbSwatchesProps> = React.forwardRef(
+    ({ groupId, items = [], ...props }, ref) => {
+        return (
+            <Root {...props}>
+                {items.map(({ image, ...item }, index) => (
+                    <Item key={index}>
+                        <input
+                            id={`swatch-group__${groupId}__${index}`}
+                            ref={ref}
+                            type="radio"
+                            name={groupId}
+                            {...item}
+                        />
+                        <label htmlFor={`swatch-group__${groupId}__${index}`}>
+                            <Image transition width={4} height={5} {...image} />
+                        </label>
+                    </Item>
+                ))}
+            </Root>
+        )
+    }
+)

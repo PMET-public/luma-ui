@@ -41,9 +41,9 @@ export const Root = styled.div`
         }
     }
 
-    & *:focus {
+    /* & *:focus {
         outline: none;
-    }
+    } */
 
     /*
         & *:focus {

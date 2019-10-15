@@ -5,10 +5,11 @@ import { object } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/TextSwatches', module).add('Default', () => (
     <TextSwatches
+        groupId="size"
         items={object('list', [
             { text: 'XS' },
-            { text: 'M', as: 'button', disabled: true },
-            { text: 'L', active: true, as: 'button' },
+            { text: 'M', disabled: true },
+            { text: 'L', defaultChecked: true },
             { text: 'XL' },
             { text: 'S' },
         ])}
