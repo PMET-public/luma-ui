@@ -1,11 +1,12 @@
 import React from 'react'
-import TextSwatches from './'
+import TextSwatches from '.'
 import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/TextSwatches', module).add('Default', () => (
+storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
     <TextSwatches
-        groupId="size"
+        name="size"
+        type="radio"
         items={object('list', [
             { text: 'XS' },
             { text: 'M', disabled: true },

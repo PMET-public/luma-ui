@@ -117,13 +117,6 @@ export const Info = styled.div`
     grid-auto-rows: max-content;
     grid-gap: 3rem;
     padding: 2rem ${props => props.theme.layout.margin};
-
-
-
-    /* @media ${props => props.theme.breakpoints.large} {
-        padding-left: 6rem;
-        padding-right: 6rem;
-    } */
 `
 
 export const Header = styled.header`
@@ -155,16 +148,6 @@ export const Title = styled.h2`
 export const Sku = styled.span`
     font-size: 1.3rem;
     color: ${props => props.theme.colors.onSurface75};
-`
-
-export const Swatches = styled.div`
-    display: grid;
-    grid-gap: 1rem;
-`
-
-export const SwatchesTitle = styled.h3`
-    font-size: 1.6rem;
-    font-weight: 600;
 `
 
 export const Buttons = styled.div`
