@@ -149,6 +149,7 @@ export const Product: Component<ProductProps> = ({
                                     })}
                                 </InfoOptions>
                             )}
+
                             <Buttons>
                                 <Button onClick={handleOnAddToCartClick} {...addToCartButton} />
                             </Buttons>
