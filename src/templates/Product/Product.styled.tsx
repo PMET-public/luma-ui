@@ -164,7 +164,6 @@ export const Description = styled.div`
     ${RichText} {
         font-size: 1.4rem;
         line-height: 1.6;
-        padding: 0 1rem;
         color: ${props => props.theme.colors.onSurface90};
     }
 `

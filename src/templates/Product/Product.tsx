@@ -147,12 +147,11 @@ export const Product: Component<ProductProps> = ({
                                             </fieldset>
                                         )
                                     })}
-
-                                    <Buttons>
-                                        <Button onClick={handleOnAddToCartClick} {...addToCartButton} />
-                                    </Buttons>
                                 </InfoOptions>
                             )}
+                            <Buttons>
+                                <Button onClick={handleOnAddToCartClick} {...addToCartButton} />
+                            </Buttons>
 
                             <input type="hidden" name="quantity" value={1} ref={register({ required: true })} />
 
