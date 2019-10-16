@@ -8,6 +8,8 @@ import {
     InfoWrapper,
     InfoInnerWrapper,
     InfoOptions,
+    Field,
+    Label,
     Info,
     Header,
     Title,
@@ -25,7 +27,6 @@ import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
 import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
-import Field, { FieldProps } from '../../components/Form/Field'
 import TextSwatches, { TextSwatchesProps } from '../../components/Form/TextSwatches'
 import ThumbSwatches, { ThumbSwatchesProps } from '../../components/Form/ThumbSwatches'
 
@@ -43,9 +44,10 @@ export type ProductProps = {
     options?: Array<
         {
             _id?: string | number
+            label?: string
             required?: boolean
-        } & FieldProps &
-            ({ type: 'text'; swatches: TextSwatchesProps } | { type: 'thumb'; swatches: ThumbSwatchesProps })
+            error?: string | boolean
+        } & ({ type: 'text'; swatches: TextSwatchesProps } | { type: 'thumb'; swatches: ThumbSwatchesProps })
     >
 
     sku?: Props<{
@@ -130,7 +132,8 @@ export const Product: Component<ProductProps> = ({
 
                                         return (
                                             <fieldset key={_id || index}>
-                                                <Field label={label} error={error}>
+                                                <Field>
+                                                    {label && <Label $error={!!error}>{label}</Label>}
                                                     {type === 'text' && (
                                                         <TextSwatches
                                                             ref={register({ required })}

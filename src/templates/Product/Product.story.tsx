@@ -57,9 +57,7 @@ const ProductMockData = (): ProductProps => ({
         {
             type: 'thumb',
             required: true,
-            label: {
-                text: 'Color',
-            },
+            label: 'Color',
             swatches: {
                 name: 'color',
                 type: 'radio',
@@ -107,9 +105,7 @@ const ProductMockData = (): ProductProps => ({
         {
             type: 'text',
             required: true,
-            label: {
-                text: 'Size',
-            },
+            label: 'Size',
             swatches: {
                 name: 'size',
                 items: [
