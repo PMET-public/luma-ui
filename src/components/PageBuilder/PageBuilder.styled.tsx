@@ -69,13 +69,11 @@ export const Root = styled.div`
         padding: 2rem;
     }
 
-    ${ContainerWrapper} {
-        & {
-            margin: unset;
-            max-width: unset;
-            padding: unset;
-        }
-    }
+    /* & > ${ContainerWrapper} {
+        margin: unset;
+        max-width: unset;
+        padding: unset;
+    } */
 `
 
 export const RichText = styled.div``

@@ -19,10 +19,12 @@ export const Row: Component<RowProps> = ({
     style,
     ...props
 }) => {
+    const isContained = appearance === 'contained' || appearance === 'full-width'
+
     return (
         <Root {...props}>
             <ContentWithBackground {...background} style={style}>
-                <Wrapper $contained={appearance !== 'full-bleed'} $margin={appearance !== 'full-bleed'}>
+                <Wrapper $contained={isContained} $margin={isContained}>
                     {children}
                 </Wrapper>
             </ContentWithBackground>
