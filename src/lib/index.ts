@@ -76,3 +76,10 @@ export const getStyleAsObject = (style: CSSStyleDeclaration) => {
     }
     return output
 }
+
+/**
+ * Regext Dictionary
+ */
+export const regexDictionary = {
+    email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+}

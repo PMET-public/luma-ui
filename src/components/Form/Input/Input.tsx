@@ -15,8 +15,6 @@ export const Input: Component<InputProps> = React.forwardRef(({ label, as, error
 
     const [active, setActive] = useState<boolean>(defaultActive)
 
-    console.log(active)
-
     const handleOnChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             const { value, placeholder } = event.currentTarget
