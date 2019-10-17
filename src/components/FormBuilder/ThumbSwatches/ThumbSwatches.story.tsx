@@ -3,7 +3,7 @@ import ThumbSwatches from './'
 import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/Form/ThumbSwatches', module).add('Default', () => (
+storiesOf('📦 Components/FormBuilder/ThumbSwatches', module).add('Default', () => (
     <ThumbSwatches
         name="color"
         type="radio"

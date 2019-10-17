@@ -3,7 +3,7 @@ import TextSwatches from '.'
 import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
+storiesOf('📦 Components/FormBuilder/TextSwatches', module).add('Default', () => (
     <TextSwatches
         name="size"
         type="radio"

@@ -27,8 +27,8 @@ import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
 import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
-import TextSwatches, { TextSwatchesProps } from '../../components/Form/TextSwatches'
-import ThumbSwatches, { ThumbSwatchesProps } from '../../components/Form/ThumbSwatches'
+import TextSwatches, { TextSwatchesProps } from '../../components/FormBuilder/TextSwatches'
+import ThumbSwatches, { ThumbSwatchesProps } from '../../components/FormBuilder/ThumbSwatches'
 
 // const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
 // const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))

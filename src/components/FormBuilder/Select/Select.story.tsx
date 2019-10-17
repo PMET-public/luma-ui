@@ -3,7 +3,7 @@ import Select from '.'
 import { storiesOf } from '@storybook/react'
 import { text, boolean } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/Form/Select', module).add('Default', () => (
+storiesOf('📦 Components/FormBuilder/Select', module).add('Default', () => (
     <Select
         label="Label"
         error={boolean('error', false) && { message: text('error message', '') }}

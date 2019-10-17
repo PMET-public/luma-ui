@@ -2,11 +2,6 @@ import styled from 'styled-components'
 
 export const Root = styled.div`
     display: grid;
-    grid-gap: 6rem;
-`
-
-export const Step = styled.div`
-    display: grid;
     grid-gap: 1rem;
 `
 
