@@ -6,6 +6,8 @@ import {
     Buttons as CartSummaryButtons,
 } from '../../components/CartSummary'
 
+import { DetailsWrapper as CartListDetailsWrapper } from '../../components/CartList'
+
 export const Root = styled.div`
     display: grid;
     grid-gap: 2rem;
@@ -18,8 +20,12 @@ export const Root = styled.div`
     }
 
     @media ${props => props.theme.breakpoints.large} {
-        grid-gap: 6rem;
+        grid-gap: 1rem;
         grid-template-columns: 1.5fr 1fr;
+    }
+
+    @media ${props => props.theme.breakpoints.xLarge} {
+        grid-gap: 6rem;
     }
 `
 
@@ -33,6 +39,17 @@ export const CartListWrapper = styled.div`
 
     @media ${props => props.theme.breakpoints.large} {
         padding-top: 4rem;
+    }
+
+    @media ${props => props.theme.breakpoints.xLarge} {
+        ${CartListDetailsWrapper} {
+            grid-template:
+                'title price quantity'
+                'sku sku sku'
+                'options options options';
+            grid-template-rows: repeat(3, max-content);
+            grid-template-columns: 1fr auto auto;
+        }
     }
 `
 

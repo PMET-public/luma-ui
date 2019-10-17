@@ -39,19 +39,9 @@ export const DetailsWrapper = styled.div`
         'sku sku'
         'options options'
         'price quantity';
-    grid-template-rows: repeat(3, max-content);
-    grid-template-columns: 1fr auto;
+    grid-template-rows: repeat(4, max-content);
+    grid-template-columns: repeat(2, max-content);
     font-size: 1.4rem;
-
-    @media ${({ theme }) => theme.breakpoints.medium} {
-        grid-template:
-            'title price quantity'
-            'sku sku sku'
-            'options options options';
-        grid-template-rows: repeat(3, max-content);
-        grid-template-columns: 1fr auto auto;
-        padding-top: 2rem;
-    }
 `
 
 export const Title = styled.div`
