@@ -58,7 +58,7 @@ export const Main = styled.main`
 `
 
 export const FooterContainer = styled(ContainerWrapper)`
-    margin-top: 4rem;
+    box-shadow: inset 0 0.1rem 0 rgba(0, 0, 0, 0.09), inset 0 0.2rem 0 rgba(255, 255, 255, 0.09);
 `
 
 export const TabBarContainer = styled(ContainerWrapper)`

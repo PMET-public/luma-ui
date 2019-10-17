@@ -145,9 +145,11 @@ export const App: Component<AppProps> = ({
 
             <Main>{children}</Main>
 
-            <FooterContainer as="footer">
-                <Footer {...footer} />
-            </FooterContainer>
+            {footer && (
+                <FooterContainer as="footer">
+                    <Footer {...footer} />
+                </FooterContainer>
+            )}
 
             <TabBarContainer ref={tabBarRef} as="nav">
                 <TabBar
