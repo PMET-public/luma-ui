@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useState, useCallback, useEffect, ChangeEvent } from 'react'
+import React, { HTMLAttributes, useState, useCallback, useMemo, ChangeEvent } from 'react'
 import { Component } from '../../../lib'
 import { Root, Label, InputField, Error } from './Input.styled'
 
@@ -8,7 +8,14 @@ export type InputProps = {
 } & HTMLAttributes<HTMLInputElement>
 
 export const Input: Component<InputProps> = React.forwardRef(({ label, as, error, ...props }, ref: any) => {
-    const [active, setActive] = useState<true | false | null>(null)
+    const defaultActive = useMemo(() => {
+        const { defaultValue, value = defaultValue, placeholder } = props
+        return !!value || !!placeholder || !!error
+    }, [props.value, props.defaultValue, props.placeholder, error])
+
+    const [active, setActive] = useState<boolean>(defaultActive)
+
+    console.log(active)
 
     const handleOnChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -17,17 +24,10 @@ export const Input: Component<InputProps> = React.forwardRef(({ label, as, error
         },
         [ref]
     )
-
-    useEffect(() => {
-        const { defaultValue, value = defaultValue, placeholder } = props
-        console.log({ value, placeholder, error })
-        setActive(!!value || !!placeholder || !!error)
-    }, [props.value, props.defaultValue, props.placeholder, error])
-
     return (
         <Root as={as}>
             {label && (
-                <Label htmlFor={props.name} $active={active} $error={!!error}>
+                <Label htmlFor={props.name} $active={defaultActive || active} $error={!!error}>
                     {label}
                 </Label>
             )}

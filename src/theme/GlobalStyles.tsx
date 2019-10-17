@@ -41,18 +41,12 @@ export const Root = styled.div`
         }
     }
 
-    /* & *:focus {
-        outline: none;
-    } */
-
-    /*
-        & *:focus {
-            outline-style: solid;
-            outline-color: currentColor;
-            outline-width: 0.1rem;
-            outline-offset: 0.1rem;
-        }
-        */
+    & *:focus {
+        outline-style: solid;
+        outline-color: currentColor;
+        outline-width: 0.1rem;
+        outline-offset: 0.3rem;
+    }
 
     code {
         font-family: 'Fira Code', 'Courier New', Courier, monospace;
