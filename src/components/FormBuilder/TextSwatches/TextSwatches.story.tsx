@@ -1,10 +1,11 @@
 import React from 'react'
 import TextSwatches from '.'
 import { storiesOf } from '@storybook/react'
-import { object } from '@storybook/addon-knobs'
+import { object, boolean, text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/FormBuilder/TextSwatches', module).add('Default', () => (
     <TextSwatches
+        label={text('label', '')}
         name="size"
         type="radio"
         items={object('list', [
@@ -14,5 +15,6 @@ storiesOf('📦 Components/FormBuilder/TextSwatches', module).add('Default', () 
             { text: 'XL' },
             { text: 'S' },
         ])}
+        error={boolean('error', false) ? { message: text('error message', 'Error') } : undefined}
     />
 ))

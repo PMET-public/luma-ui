@@ -1,8 +1,10 @@
 import styled from 'styled-components'
-
+import { FieldWrapper, FieldLabel, FieldError } from '../FormBuilder.styled'
 import { Root as ImageRoot, ImageTag, LoadedImage } from '../../Image'
 
-export const Root = styled.div`
+export const Root = FieldWrapper
+
+export const Items = styled.div`
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(4, 1fr);
@@ -69,3 +71,7 @@ export const Item = styled.div`
         }
     }
 `
+
+export const Label = FieldLabel
+
+export const Error = FieldError

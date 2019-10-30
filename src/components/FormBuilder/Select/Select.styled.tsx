@@ -1,11 +1,9 @@
 import styled from 'styled-components'
+import { FieldWrapper, FieldLabel, FieldError } from '../FormBuilder.styled'
 
 import CarretIconSvg from 'remixicon/icons/System/arrow-drop-down-line.svg'
 
-export const Root = styled.div`
-    display: grid;
-    grid-gap: 0.8rem;
-`
+export const Root = FieldWrapper
 
 export const SelectField = styled.div<{ $error?: boolean }>`
     align-items: center;
@@ -52,18 +50,9 @@ export const SelectWrapper = styled.div`
     }
 `
 
-export const Label = styled.label<{ $error?: boolean }>`
-    font-size: 1em;
-    font-weight: 600;
-    pointer-events: none;
-    color: ${props => (props.$error ? props.theme.colors.onError : 'unset')};
-`
+export const Label = FieldLabel
 
-export const Error = styled.span`
-    color: ${props => props.theme.colors.onError};
-    min-height: 1em;
-    font-size: 90%;
-`
+export const Error = FieldError
 
 export const CarretIcon = styled(CarretIconSvg)`
     fill: currentColor;

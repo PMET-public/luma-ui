@@ -1,12 +1,13 @@
 import React from 'react'
 import ThumbSwatches from './'
 import { storiesOf } from '@storybook/react'
-import { object } from '@storybook/addon-knobs'
+import { object, boolean, text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/FormBuilder/ThumbSwatches', module).add('Default', () => (
     <ThumbSwatches
         name="color"
         type="radio"
+        label={text('label', '')}
         items={object('items', [
             {
                 image: {
@@ -30,5 +31,6 @@ storiesOf('📦 Components/FormBuilder/ThumbSwatches', module).add('Default', ()
             },
         ])}
         style={{ minWidth: '40rem' }}
+        error={boolean('error', false) && { message: text('error message', '') }}
     />
 ))

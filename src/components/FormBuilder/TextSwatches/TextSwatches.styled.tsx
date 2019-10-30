@@ -1,6 +1,9 @@
 import styled from 'styled-components'
+import { FieldWrapper, FieldLabel, FieldError } from '../FormBuilder.styled'
 
-export const Root = styled.div`
+export const Root = FieldWrapper
+
+export const Items = styled.div`
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
@@ -22,23 +25,25 @@ export const Item = styled.span`
         transition: all 305ms ease;
     }
 
-    & > input[type='radio'] {
+    & > input {
         position: absolute;
         opacity: 0;
     }
 
-    & > input[type='radio']:checked + label,
-    & > input[type='radio']:focus + label {
+    & > input:checked + label {
         background-color: ${props => props.theme.colors.primary};
         color: ${props => props.theme.colors.onPrimary};
-        font-weight: 600;
     }
 
-    & > input[type='radio']:disabled + label {
+    & > input:disabled + label {
         opacity: 0.35;
     }
 
-    &:hover > input[type='radio']:not(:disabled) + label {
+    &:hover > input:not(:disabled) + label {
         border-color: ${props => props.theme.colors.primary75};
     }
 `
+
+export const Label = FieldLabel
+
+export const Error = FieldError

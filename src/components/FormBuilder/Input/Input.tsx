@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, useState, useCallback, useMemo, ChangeEvent } from 'react'
 import { Component } from '../../../lib'
-import { Root, Label, InputField, Error } from './Input.styled'
+import { Root, InputField, Label, Error } from './Input.styled'
 
 export type InputProps = {
     label: string

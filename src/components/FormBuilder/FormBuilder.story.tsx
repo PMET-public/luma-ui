@@ -10,7 +10,7 @@ storiesOf('📦 Components/FormBuilder', module).add('Default', () => (
         }}
         fields={[
             {
-                type: 'text',
+                field: 'text',
                 label: 'First Name',
                 name: 'firstName',
                 rules: {
@@ -18,7 +18,7 @@ storiesOf('📦 Components/FormBuilder', module).add('Default', () => (
                 },
             },
             {
-                type: 'text',
+                field: 'text',
                 label: 'Last Name',
                 name: 'lastName',
                 rules: {
@@ -26,41 +26,10 @@ storiesOf('📦 Components/FormBuilder', module).add('Default', () => (
                 },
             },
             {
-                type: 'text',
-                label: 'Address',
-                name: 'street',
-                rules: {
-                    required: true,
-                },
-            },
-            {
-                type: 'text',
-                label: 'City',
-                name: 'city',
-                rules: {
-                    required: true,
-                },
-            },
-            {
-                type: 'text',
-                label: 'State',
-                name: 'state',
-                rules: {
-                    required: true,
-                },
-            },
-            {
-                type: 'text',
-                label: 'Zip Code',
-                name: 'zipCode',
-                rules: {
-                    required: true,
-                },
-            },
-            {
-                type: 'text',
-                label: 'Phone Number',
-                name: 'zipCode',
+                field: 'selection',
+                label: 'One or Two?',
+                name: 'oneTwo',
+                items: [{ text: 'one', value: 1 }, { text: 'two', value: 2 }],
                 rules: {
                     required: true,
                 },

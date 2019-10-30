@@ -1,9 +1,10 @@
 import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
-import { Root, Item } from './TextSwatches.styled'
+import { Root, Items, Item, Label, Error } from './TextSwatches.styled'
 
 export type TextSwatchesProps = {
-    name: string
+    label?: string
+    error?: { message?: string } | boolean
     type?: 'radio' | 'checkbox'
     items: Array<
         {
@@ -14,15 +15,25 @@ export type TextSwatchesProps = {
 }
 
 export const TextSwatches: Component<TextSwatchesProps> = React.forwardRef(
-    ({ name, type = 'radio', items = [], ...props }, ref) => {
+    ({ label, error, name, type = 'radio', items = [], ...props }, ref) => {
         return (
             <Root {...props}>
-                {items.map(({ text, ...item }, index) => (
-                    <Item key={index}>
-                        <input id={`swatch-group__${name}__${index}`} ref={ref} type={type} name={name} {...item} />
-                        <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
-                    </Item>
-                ))}
+                {label && (
+                    <Label htmlFor={props.name} $error={!!error}>
+                        {label}
+                    </Label>
+                )}
+
+                <Items>
+                    {items.map(({ text, ...item }, index) => (
+                        <Item key={index}>
+                            <input id={`swatch-group__${name}__${index}`} ref={ref} type={type} name={name} {...item} />
+                            <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
+                        </Item>
+                    ))}
+                </Items>
+
+                <Error>{typeof error === 'object' && error.message}</Error>
             </Root>
         )
     }
