@@ -22,7 +22,7 @@ export const Select: Component<SelectProps> = React.forwardRef(({ label, items, 
             (option: AllHTMLAttributes<HTMLOptionElement>) => option.value === defaultValue || option.defaultChecked
         )
 
-        return selectedOption ? selectedOption.text : ''
+        return selectedOption ? selectedOption.label || selectedOption.text : ''
     }, [props.defaultValue])
 
     const [selected, setSelected] = useState(defaultSelected)
