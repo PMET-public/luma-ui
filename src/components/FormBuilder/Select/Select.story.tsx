@@ -7,6 +7,7 @@ storiesOf('📦 Components/FormBuilder/Select', module).add('Default', () => (
     <Select
         label="Label"
         error={boolean('error', false) && { message: text('error message', '') }}
+        defaultValue="2"
         items={[
             { text: 'One', value: '1' },
             { text: 'Two', value: '2' },

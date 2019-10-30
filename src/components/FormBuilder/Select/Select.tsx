@@ -1,26 +1,29 @@
-import React, { HTMLAttributes, useState, useCallback, ChangeEvent, useMemo } from 'react'
+import React, { AllHTMLAttributes, useState, useCallback, useMemo, ChangeEvent } from 'react'
 import { Component } from '../../../lib'
 import { Root, Label, SelectWrapper, SelectField, CarretIcon, Error } from './Select.styled'
 
 export type SelectProps = {
     label: string
     error?: { message?: string } | boolean
-    items: Array<{ text: string } & HTMLAttributes<HTMLOptionElement>>
-} & HTMLAttributes<HTMLSelectElement>
+    items: Array<{ text: string } & AllHTMLAttributes<HTMLOptionElement>>
+} & AllHTMLAttributes<HTMLSelectElement>
 
 export const Select: Component<SelectProps> = React.forwardRef(({ label, items, as, error, ...props }, ref: any) => {
     const handleOnChange = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
         const { options } = event.currentTarget
-        setSelected(options[options.selectedIndex].innerText)
+        const { label, innerText } = options[options.selectedIndex]
+        setSelected(label || innerText)
     }, [])
 
     const defaultSelected = useMemo(() => {
-        const { defaultValue, value = defaultValue } = props
+        const { defaultValue } = props
+
         const selectedOption = items.find(
-            (option: HTMLAttributes<HTMLOptionElement>) => option.defaultValue === value || option.defaultChecked
+            (option: AllHTMLAttributes<HTMLOptionElement>) => option.value === defaultValue || option.defaultChecked
         )
+
         return selectedOption ? selectedOption.text : ''
-    }, [props.defaultValue, props.value])
+    }, [props.defaultValue])
 
     const [selected, setSelected] = useState(defaultSelected)
 
