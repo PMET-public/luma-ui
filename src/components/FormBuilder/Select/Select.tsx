@@ -1,6 +1,6 @@
-import React, { AllHTMLAttributes, useState, useCallback, useMemo, ChangeEvent } from 'react'
+import React, { AllHTMLAttributes } from 'react'
 import { Component } from '../../../lib'
-import { Root, Label, SelectWrapper, SelectField, CarretIcon, Error } from './Select.styled'
+import { Root, Label, SelectField, SelectFieldWrapper, Error } from './Select.styled'
 
 export type SelectProps = {
     label: string
@@ -8,56 +8,27 @@ export type SelectProps = {
     items: Array<{ text: string } & AllHTMLAttributes<HTMLOptionElement>>
 } & AllHTMLAttributes<HTMLSelectElement>
 
-export const Select: Component<SelectProps> = React.forwardRef(
-    ({ label, items, as, error, onChange, ...props }, ref: any) => {
-        const handleOnChange = useCallback(
-            (event: ChangeEvent<HTMLSelectElement>) => {
-                const { options } = event.currentTarget
-                const { innerText, label = innerText } = options[options.selectedIndex]
-                setSelected(label)
-                if (onChange) onChange(event)
-            },
-            [onChange]
-        )
+export const Select: Component<SelectProps> = React.forwardRef(({ label, items, as, error, ...props }, ref: any) => {
+    return (
+        <Root as={as}>
+            {label && (
+                <Label htmlFor={props.name} $error={!!error}>
+                    {label}
+                </Label>
+            )}
 
-        const defaultSelected = useMemo(() => {
-            const { defaultValue } = props
+            <SelectFieldWrapper>
+                <SelectField as="select" $error={!!error} ref={ref} disabled={!items} {...props}>
+                    {items &&
+                        items.map(({ text, ...option }, index) => (
+                            <option key={index} {...option}>
+                                {text}
+                            </option>
+                        ))}
+                </SelectField>
+            </SelectFieldWrapper>
 
-            const selectedOption = items.find(
-                (option: AllHTMLAttributes<HTMLOptionElement>) => option.value === defaultValue || option.defaultChecked
-            )
-
-            return selectedOption ? selectedOption.label || selectedOption.text : ''
-        }, [props.defaultValue])
-
-        const [selected, setSelected] = useState(defaultSelected)
-
-        return (
-            <Root as={as}>
-                {label && (
-                    <Label htmlFor={props.name} $error={!!error}>
-                        {label}
-                    </Label>
-                )}
-
-                <SelectWrapper>
-                    <SelectField $error={!!error}>
-                        <span>{selected}</span>
-                        <CarretIcon />
-                    </SelectField>
-
-                    <select ref={ref} disabled={!items} onChange={handleOnChange} {...props}>
-                        {items &&
-                            items.map(({ text, ...option }, index) => (
-                                <option key={index} {...option}>
-                                    {text}
-                                </option>
-                            ))}
-                    </select>
-                </SelectWrapper>
-
-                <Error>{typeof error === 'object' && error.message}</Error>
-            </Root>
-        )
-    }
-)
+            <Error>{typeof error === 'object' && error.message}</Error>
+        </Root>
+    )
+})
