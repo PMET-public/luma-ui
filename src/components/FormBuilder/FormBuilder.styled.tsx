@@ -2,15 +2,22 @@ import styled from 'styled-components'
 
 export const Root = styled.div`
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: 3rem;
 `
 
 export const Title = styled.div`
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: 400;
 `
 
+export const Form = styled.form`
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-column-gap: 3rem;
+`
+
+/** Reusable by Fields */
 export const FieldWrapper = styled.div`
     display: grid;
     grid-gap: 1rem;

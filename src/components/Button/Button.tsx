@@ -6,13 +6,13 @@ import Loader, { LoaderProps } from '../Loader'
 export type ButtonProps = Props<{
     secondary?: boolean
     text?: string
-    loader?: LoaderProps
+    loading?: LoaderProps
 }>
 
-export const Button: Component<ButtonProps> = ({ text, children = text, loader, secondary = false, ...props }) => {
+export const Button: Component<ButtonProps> = ({ text, children = text, loading, secondary = false, ...props }) => {
     return (
-        <Root $secondary={secondary} as="button" {...props} disabled={!!loader || props.disabled}>
-            {!!loader ? <Loader as="span" {...loader} /> : <span>{children}</span>}
+        <Root $secondary={secondary} as="button" {...props} disabled={!!loading || props.disabled}>
+            {!!loading ? <Loader as="span" {...loading} /> : <span>{children}</span>}
         </Root>
     )
 }

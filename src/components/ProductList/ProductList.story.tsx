@@ -5,7 +5,7 @@ import { number, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ProductList', module).add('Default', () => (
     <ProductList
-        loader={boolean('loading', false) ? { label: 'loader' } : undefined}
+        loading={boolean('loading', false)}
         items={new Array(number('# items', 10)).fill(null).map(() => ({
             image: {
                 alt: '',

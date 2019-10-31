@@ -84,13 +84,16 @@ export const CartSummaryWrapper = styled.div`
     }
 
     @media ${props => props.theme.breakpoints.large} {
-        display: flex;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        /* height: 100vh; */
+        /* display: flex;
         height: calc(100vh);
-        align-items: flex-end;
+        align-items: flex-end; */
         background-color: ${props => props.theme.colors.onSurface10};
         position: sticky;
         top: 0;
-        margin-top: -6rem;
+        /* margin-top: -6rem; */
 
         ${CartSummaryRoot} {
             padding: 4rem;

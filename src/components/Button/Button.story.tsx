@@ -8,7 +8,7 @@ storiesOf('📦 Components/Button', module).add('Default', () => (
     <Button
         secondary={boolean('secondary', false)}
         disabled={boolean('disabled', false)}
-        loader={boolean('loading', false) ? { label: 'loading' } : undefined}
+        loading={boolean('loading', false)}
         onClick={action('onClick')}
         text={text('text', 'Button')}
         as="button"

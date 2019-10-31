@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Title } from './FormBuilder.styled'
+import { Root, Title, Form } from './FormBuilder.styled'
 import useForm from 'react-hook-form'
 import { ValidationOptions } from 'react-hook-form/dist/types'
 import Button, { ButtonProps } from '../Button'
@@ -29,11 +29,19 @@ export type FormBuilderProps = {
                   field: 'selection'
               } & TextSwatchesProps))
     >
+    autoComplete?: boolean
     submitButton: ButtonProps
     onSubmit: (...args: any) => any
 }
 
-export const FormBuilder: Component<FormBuilderProps> = ({ title, fields, submitButton, onSubmit, ...props }) => {
+export const FormBuilder: Component<FormBuilderProps> = ({
+    title,
+    fields,
+    autoComplete,
+    submitButton,
+    onSubmit,
+    ...props
+}) => {
     const { register, handleSubmit, triggerValidation, errors } = useForm()
     const { text, ...titleProps } = title
 
@@ -41,39 +49,42 @@ export const FormBuilder: Component<FormBuilderProps> = ({ title, fields, submit
         <Root {...props}>
             <Title {...titleProps}>{text}</Title>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <Form autoComplete={autoComplete ? 'on' : 'off'} onSubmit={handleSubmit(onSubmit)}>
                 {fields.map(({ field = 'text', rules, name, ...fieldProps }, index) => {
                     switch (field) {
                         case 'text':
                             return (
-                                <Input
-                                    key={index}
-                                    type="text"
-                                    name={name}
-                                    error={name ? errors[name] : false}
-                                    ref={register({ ...rules })}
-                                    {...(fieldProps as InputProps)}
-                                />
+                                <div key={index} className={`FormBuilderField__${name}`}>
+                                    <Input
+                                        type="text"
+                                        name={name}
+                                        error={name ? errors[name] : false}
+                                        ref={register({ ...rules })}
+                                        {...(fieldProps as InputProps)}
+                                    />
+                                </div>
                             )
                         case 'select':
                             return (
-                                <Select
-                                    key={index}
-                                    name={name}
-                                    error={name ? errors[name] : false}
-                                    ref={register({ ...rules })}
-                                    {...(fieldProps as SelectProps)}
-                                />
+                                <div key={index} className={`FormBuilderField__${name}`}>
+                                    <Select
+                                        name={name}
+                                        error={name ? errors[name] : false}
+                                        ref={register({ ...rules })}
+                                        {...(fieldProps as SelectProps)}
+                                    />
+                                </div>
                             )
                         case 'selection':
                             return (
-                                <TextSwatches
-                                    key={index}
-                                    name={name}
-                                    error={name ? errors[name] : false}
-                                    ref={register({ ...rules })}
-                                    {...(fieldProps as TextSwatchesProps)}
-                                />
+                                <div key={index} className={`FormBuilderField__${name}`}>
+                                    <TextSwatches
+                                        name={name}
+                                        error={name ? errors[name] : false}
+                                        ref={register({ ...rules })}
+                                        {...(fieldProps as TextSwatchesProps)}
+                                    />
+                                </div>
                             )
                         default:
                             return null
@@ -81,7 +92,7 @@ export const FormBuilder: Component<FormBuilderProps> = ({ title, fields, submit
                 })}
 
                 <Button onClick={triggerValidation} {...submitButton} />
-            </form>
+            </Form>
         </Root>
     )
 }

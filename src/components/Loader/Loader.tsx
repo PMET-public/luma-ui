@@ -2,13 +2,11 @@ import React from 'react'
 import { Component } from '../../lib'
 import { Root } from './Loader.styled'
 
-export type LoaderProps = {
-    label: string
-}
+export type LoaderProps = {}
 
-export const Loader: Component<LoaderProps> = ({ label, ...props }) => {
+export const Loader: Component<LoaderProps> = ({ ...props }) => {
     return (
-        <Root aria-label={label} {...props}>
+        <Root {...props}>
             <span></span>
             <span></span>
             <span></span>

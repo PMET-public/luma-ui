@@ -6,7 +6,7 @@ import ProductItem, { ProductItemProps } from '../ProductItem'
 import Loader, { LoaderProps } from '../Loader'
 
 export type ProductListProps = {
-    loader?: LoaderProps
+    loading?: LoaderProps
     items?: Array<
         {
             _id?: string | number
@@ -14,7 +14,7 @@ export type ProductListProps = {
     >
 }
 
-export const ProductList: Component<ProductListProps> = ({ loader, items = [], ...props }) => {
+export const ProductList: Component<ProductListProps> = ({ loading, items = [], ...props }) => {
     return (
         <Root {...props}>
             <List>
@@ -24,7 +24,7 @@ export const ProductList: Component<ProductListProps> = ({ loader, items = [], .
                     </ItemWrapper>
                 ))}
             </List>
-            {loader && <Loader {...loader} />}
+            {loading && <Loader {...loading} />}
         </Root>
     )
 }

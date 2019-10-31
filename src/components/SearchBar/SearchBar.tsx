@@ -9,7 +9,7 @@ import Loader, { LoaderProps } from '../Loader'
 export type SearchBarProps = {
     clearButton?: boolean
     count?: string
-    loader?: LoaderProps
+    loading?: LoaderProps
     label?: string
     value?: string
     onUpdate?: (query: string) => any
@@ -20,7 +20,7 @@ export const SearchBar: Component<SearchBarProps> = ({
     clearButton = true,
     count,
     label = 'Search',
-    loader,
+    loading,
     value: defaultValue = '',
     onSearch,
     onUpdate,
@@ -68,7 +68,7 @@ export const SearchBar: Component<SearchBarProps> = ({
                         value={value}
                     />
 
-                    {count && <Count>{loader ? <Loader {...loader} /> : count}</Count>}
+                    {count && <Count>{loading ? <Loader {...loading} /> : count}</Count>}
                     {clearButton && value.length > 0 && (
                         <ResetButton as="button" type="reset" aria-label="reset" onClick={handleReset}>
                             <ResetIcon />
