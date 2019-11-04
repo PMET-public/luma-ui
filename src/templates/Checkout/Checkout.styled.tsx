@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
     align-items: center;
     display: grid;
     grid-auto-rows: max-content;
-    grid-gap: 10rem;
+    grid-gap: 14rem;
 
     @media ${props => props.theme.breakpoints.large} {
         padding-top: 4rem;

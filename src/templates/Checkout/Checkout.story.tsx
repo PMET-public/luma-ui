@@ -3,12 +3,13 @@ import Checkout from './'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
-import { number } from '@storybook/addon-knobs'
+import { number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
     <App {...AppMockData}>
         <Checkout
+            step={select('step', { 'contactInfo (1)': 1, 'shippingMethod (2)': 2, 'paymentMethod (3)': 3 }, 1)}
             contactInfo={{
                 fields: {
                     email: {

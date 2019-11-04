@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Component } from '../../lib'
 import { Root, Wrapper, Title, CartSummaryWrapper } from './Checkout.styled'
 
@@ -9,6 +9,7 @@ import ShippingMethodForm, { ShippingMethodFormProps } from '../../components/Ch
 import PaymentMethodForm, { PaymentMethodFormProps } from '../../components/Checkout/PaymentMethodForm'
 
 export type CartProps = {
+    step?: 1 | 2 | 3
     contactInfo: ContactInfoFormProps
     shippingMethod: ShippingMethodFormProps
     paymentMethod: PaymentMethodFormProps
@@ -17,7 +18,7 @@ export type CartProps = {
 }
 
 export const Checkout: Component<CartProps> = ({
-    active = 'contactInfo',
+    step = 1,
     contactInfo,
     shippingMethod,
     paymentMethod,
@@ -25,23 +26,55 @@ export const Checkout: Component<CartProps> = ({
     summary,
     ...props
 }) => {
+    const contactInfoElem = useRef<HTMLDivElement>(null)
+    const shippingMethodElem = useRef<HTMLDivElement>(null)
+    const paymentMethodElem = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        switch (step) {
+            case 1:
+                if (!contactInfoElem.current) return
+                window.scrollTo({ top: 0, behavior: 'smooth' }) //.scrollIntoView(scrollOptions)
+                break
+            case 2:
+                if (!shippingMethodElem.current) return
+                window.scrollTo({
+                    top: shippingMethodElem.current.offsetTop,
+                    behavior: 'smooth',
+                })
+                break
+            case 3:
+                if (!paymentMethodElem.current) return
+                window.scrollTo({
+                    top: paymentMethodElem.current.offsetTop,
+                    behavior: 'smooth',
+                })
+                break
+            default:
+                break
+        }
+    }, [step])
+
     return (
         <Root {...props}>
             <Wrapper>
-                <div>
+                <div ref={contactInfoElem}>
                     <Title>Contact Information</Title>
                     <ContactInfoForm {...contactInfo} />
                 </div>
 
-                <div>
-                    <Title>Shipping Method</Title>
-                    <ShippingMethodForm {...shippingMethod} />
-                </div>
-
-                <div>
-                    <Title>Payment Method</Title>
-                    <PaymentMethodForm {...paymentMethod} />
-                </div>
+                {step > 1 && (
+                    <div ref={shippingMethodElem}>
+                        <Title>Shipping Method</Title>
+                        <ShippingMethodForm {...shippingMethod} />
+                    </div>
+                )}
+                {step > 2 && (
+                    <div ref={paymentMethodElem}>
+                        <Title>Payment Method</Title>
+                        <PaymentMethodForm {...paymentMethod} />
+                    </div>
+                )}
             </Wrapper>
             <CartSummaryWrapper>
                 <CartList {...list} />
