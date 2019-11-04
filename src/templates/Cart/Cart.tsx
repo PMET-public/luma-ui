@@ -10,7 +10,7 @@ export type CartProps = {
     summary: CartSummaryProps
 }
 
-export const Cart: Component<CartProps> = ({ list, summary, checkout, ...props }) => {
+export const Cart: Component<CartProps> = ({ list, summary, checkoutStep, checkout, ...props }) => {
     return (
         <Root {...props}>
             <CartListWrapper>

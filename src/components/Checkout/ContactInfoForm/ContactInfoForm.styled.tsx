@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
-export const Root = styled.div`
+export const Root = styled.div<{ $preview?: boolean }>`
     display: grid;
     grid-row-gap: 1rem;
     grid-column-gap: 3rem;
+    grid-auto-rows: max-content;
+
     grid-template-areas:
         'email'
         'firstName'

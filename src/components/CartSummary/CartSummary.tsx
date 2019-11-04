@@ -13,7 +13,7 @@ type PriceItemProps = {
 export type CartSummaryProps = {
     title: Props<{ text: string }>
     prices: PriceItemProps[]
-    buttons: ButtonProps[]
+    buttons?: ButtonProps[]
 }
 
 export const CartSummary: Component<CartSummaryProps> = ({ title, prices, buttons, ...props }) => {

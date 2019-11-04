@@ -4,7 +4,7 @@ import { Select as SelectRoot, Wrapper } from './Select.styled'
 import { Field, Label, FieldInput, Error } from '../Form'
 
 export type SelectProps = {
-    label: string
+    label?: string
     error?: { message?: string } | boolean
     items: Array<{ text: string } & AllHTMLAttributes<HTMLOptionElement>>
 } & AllHTMLAttributes<HTMLSelectElement>
@@ -18,7 +18,7 @@ export const Select: Component<SelectProps> = React.forwardRef(({ label, items, 
                 </Label>
             )}
 
-            <Wrapper>
+            <Wrapper $disabled={props.disabled}>
                 <FieldInput as={SelectRoot} $error={!!error} ref={ref} disabled={!items} {...props}>
                     {items &&
                         items.map(({ text, ...option }, index) => (

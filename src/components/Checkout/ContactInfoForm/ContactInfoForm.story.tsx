@@ -2,10 +2,15 @@ import React from 'react'
 import ContactInfoForm from '.'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
+import { boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () => {
     return (
         <ContactInfoForm
+            preview={boolean('preview', false)}
+            title={{
+                text: 'Contact Information',
+            }}
             fields={{
                 email: {
                     label: 'Email',
@@ -48,7 +53,7 @@ storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () 
                     label: 'Postal Code',
                 },
             }}
-            submitButton={{
+            button={{
                 text: 'Save & Continue',
             }}
             onSubmit={action('onSubmit')}

@@ -7,7 +7,9 @@ export const Root = styled.div`
         border-radius: 1rem;
     }
 
-    & .braintree-sheet__error {
+    & .braintree-sheet__error,
+    .braintree-placeholder,
+    .braintree-heading {
         display: none;
     }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Component } from '../../../lib'
 import { Root } from './ShippingMethodForm.styled'
-import Form, { Checkbox, CheckboxProps } from '../../Form'
+import Form, { Select, SelectProps } from '../../Form'
 import useForm from 'react-hook-form'
 import Button, { ButtonProps } from '../../Button'
 
@@ -10,24 +10,24 @@ export type ShippingMethodFormPayload = {
 }
 
 export type ShippingMethodFormProps = {
-    submitButton: ButtonProps
+    preview?: boolean
+    button: ButtonProps
     onSubmit: (payload: ShippingMethodFormPayload) => any
-} & CheckboxProps
+} & SelectProps
 
-export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({ submitButton, onSubmit, ...props }) => {
+export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({ preview, button, onSubmit, ...props }) => {
     const { handleSubmit, register, errors } = useForm<ShippingMethodFormPayload>()
 
     return (
         <Root as={Form} onSubmit={handleSubmit(onSubmit)}>
-            <Checkbox
-                type="radio"
+            <Select
                 name="shippingMethod"
                 ref={register({ required: true })}
                 error={errors.shippingMethod}
+                disabled={preview}
                 {...props}
             />
-
-            <Button {...submitButton} />
+            <Button {...button} />
         </Root>
     )
 }

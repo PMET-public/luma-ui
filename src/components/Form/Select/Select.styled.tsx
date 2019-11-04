@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import CarretIconSvg from 'remixicon/icons/System/arrow-drop-down-line.svg'
 
-export const Wrapper = styled.span`
+export const Wrapper = styled.span<{ $disabled?: boolean }>`
     position: relative;
     width: 100%;
 
@@ -15,6 +14,8 @@ export const Wrapper = styled.span`
         display: inline-block;
         border: 0.3em solid transparent;
         border-top-color: ${props => props.theme.colors.onSurface75};
+        opacity: ${props => (props.$disabled ? 0 : 1)};
+        transition: opacity 250ms ease;
     }
 `
 
@@ -30,10 +31,4 @@ export const Select = styled.select`
         color: initial;
         font-size: initial;
     }
-`
-
-export const CarretIcon = styled(CarretIconSvg)`
-    fill: currentColor;
-    width: 2.4rem;
-    height: 2.4rem;
 `

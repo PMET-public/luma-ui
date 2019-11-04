@@ -30,7 +30,7 @@ export const Input = styled.input<{ $error?: boolean }>`
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 0.1rem solid ${props => props.theme.colors.primary10};
+    border-bottom: 0.1rem solid ${props => props.theme.colors.primary15};
     transition: border 250ms ease, background-color 250ms ease;
     background-color: ${props => props.theme.colors.surface};
 
@@ -42,6 +42,10 @@ export const Input = styled.input<{ $error?: boolean }>`
         outline: none;
         border-bottom-color: ${props => props.theme.colors.accent50};
         background-color: ${props => props.theme.colors.accent5};
+    }
+
+    &:disabled {
+        border-bottom-style: dashed;
     }
 
     ${props =>

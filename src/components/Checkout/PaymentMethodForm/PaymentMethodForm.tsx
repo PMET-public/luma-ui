@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { Component } from '../../../lib'
-import { Root } from './BraintreeForm.styled'
+import { Root } from './PaymentMethodForm.styled'
 import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload } from 'braintree-web-drop-in'
 import Button, { ButtonProps } from '../../Button'
 import Form from '../../Form'
@@ -8,13 +8,15 @@ import useForm from 'react-hook-form'
 
 export type Braintree = Dropin
 
-export type BraintreeFormProps = {
-    options: Omit<Options, 'container'>
-    submitButton: ButtonProps
+export type PaymentMethodPayload = PaymentMethodPayload
+
+export type PaymentMethodFormProps = {
+    braintree: Omit<Options, 'container'>
+    button: ButtonProps
     onSubmit: (payload: PaymentMethodPayload) => any
 }
 
-export const BraintreeForm: Component<BraintreeFormProps> = ({ options, submitButton, onSubmit, ...props }) => {
+export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ braintree, button, onSubmit, ...props }) => {
     const [instance, setInstance] = useState<Braintree>()
 
     const { handleSubmit } = useForm<PaymentMethodPayload>()
@@ -22,7 +24,7 @@ export const BraintreeForm: Component<BraintreeFormProps> = ({ options, submitBu
     useEffect(() => {
         ;(async function() {
             const instance = await BraintreeWebDropIn.create({
-                ...options,
+                ...braintree,
                 container: '[data-braintree-dropin]',
             })
 
@@ -35,7 +37,7 @@ export const BraintreeForm: Component<BraintreeFormProps> = ({ options, submitBu
         return () => {
             if (instance) instance.teardown()
         }
-    }, [JSON.stringify(options)])
+    }, [JSON.stringify(braintree)])
 
     const handleRequestPaymentMethod = useCallback(async () => {
         if (instance) {
@@ -47,7 +49,7 @@ export const BraintreeForm: Component<BraintreeFormProps> = ({ options, submitBu
     return (
         <Root as={Form} onSubmit={handleSubmit(handleRequestPaymentMethod)}>
             <div data-braintree-dropin {...props} />
-            {instance && <Button {...submitButton} />}
+            {instance && <Button {...button} />}
         </Root>
     )
 }
