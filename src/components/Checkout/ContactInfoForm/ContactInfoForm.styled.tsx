@@ -5,6 +5,7 @@ export const Root = styled.div`
     grid-row-gap: 1rem;
     grid-column-gap: 3rem;
     grid-template-areas:
+        'email'
         'firstName'
         'lastName'
         'company'
@@ -17,6 +18,7 @@ export const Root = styled.div`
 
     @media ${props => props.theme.breakpoints.medium} {
         grid-template-areas:
+            'email email email email'
             'firstName firstName lastName lastName'
             'company company company company'
             'address1 address1 address1 address1'
@@ -25,6 +27,10 @@ export const Root = styled.div`
             'country country country country'
             'region region postalCode postalCode';
     }
+`
+
+export const Email = styled.div`
+    grid-area: email;
 `
 
 export const FirstName = styled.div`

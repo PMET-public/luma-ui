@@ -2,6 +2,7 @@ import React from 'react'
 import { Component } from '../../../lib'
 import {
     Root,
+    Email,
     FirstName,
     LastName,
     Company,
@@ -11,24 +12,13 @@ import {
     Country,
     Region,
     PostalCode,
-} from './Address.styled'
-import { useFormContext } from 'react-hook-form'
+} from './ContactInfoForm.styled'
+import useForm from 'react-hook-form'
 
-import { Input, InputProps, Select, SelectProps } from '../../Form'
+import Form, { Input, InputProps, Select, SelectProps, patterns } from '../../Form'
+import Button, { ButtonProps } from '../../Button'
 
-export type AddressProps = {
-    firstName: InputProps
-    lastName: InputProps
-    company: InputProps
-    address1: InputProps
-    address2: InputProps
-    city: InputProps
-    country: SelectProps
-    region: InputProps
-    postalCode: InputProps
-}
-
-export type AddressPayload = {
+export type ContactInfoFormPayload = {
     email: string
     firstName: string
     lastName: string
@@ -41,22 +31,38 @@ export type AddressPayload = {
     country: string
 }
 
-export const Address: Component<AddressProps> = ({
-    firstName,
-    lastName,
-    company,
-    address1,
-    address2,
-    city,
-    country,
-    region,
-    postalCode,
-    ...props
-}) => {
-    const { register, errors } = useFormContext<AddressPayload>()
+export type ContactInfoFormProps = {
+    fields: {
+        email: InputProps
+        firstName: InputProps
+        lastName: InputProps
+        company: InputProps
+        address1: InputProps
+        address2: InputProps
+        city: InputProps
+        country: SelectProps
+        region: InputProps
+        postalCode: InputProps
+    }
+    submitButton: ButtonProps
+    onSubmit: (payload: ContactInfoFormPayload) => any
+}
+
+export const ContactInfoForm: Component<ContactInfoFormProps> = ({ fields, submitButton, onSubmit, ...props }) => {
+    const { handleSubmit, register, errors } = useForm<ContactInfoFormPayload>()
+
+    const { email, firstName, lastName, company, address1, address2, city, country, region, postalCode } = fields
 
     return (
-        <Root {...props}>
+        <Root as={Form} onSubmit={handleSubmit(onSubmit)} {...props}>
+            <Email>
+                <Input
+                    {...email}
+                    name="email"
+                    ref={register({ required: true, pattern: patterns.email })}
+                    error={errors.email}
+                />
+            </Email>
             <FirstName>
                 <Input {...firstName} name="firstName" ref={register({ required: true })} error={errors.firstName} />
             </FirstName>
@@ -84,6 +90,8 @@ export const Address: Component<AddressProps> = ({
             <PostalCode>
                 <Input {...postalCode} name="postalCode" ref={register({ required: true })} error={errors.postalCode} />
             </PostalCode>
+
+            <Button {...submitButton} />
         </Root>
     )
 }
