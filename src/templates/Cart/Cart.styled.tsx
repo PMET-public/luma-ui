@@ -84,6 +84,10 @@ export const CartSummaryWrapper = styled.div`
     }
 
     @media ${props => props.theme.breakpoints.large} {
+        &::before {
+            content: '';
+        }
+
         display: grid;
         grid-template-rows: 1fr auto;
         /* height: 100vh; */
