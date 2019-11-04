@@ -12,7 +12,7 @@ export const Root = styled.div`
         'address2'
         'city'
         'country'
-        'state'
+        'region'
         'postalCode';
 
     @media ${props => props.theme.breakpoints.medium} {
@@ -23,7 +23,7 @@ export const Root = styled.div`
             'address2 address2 address2 address2'
             'city city city city'
             'country country country country'
-            'state state postalCode postalCode';
+            'region region postalCode postalCode';
     }
 `
 
@@ -55,8 +55,8 @@ export const Country = styled.div`
     grid-area: country;
 `
 
-export const State = styled.div`
-    grid-area: state;
+export const Region = styled.div`
+    grid-area: region;
 `
 
 export const PostalCode = styled.div`

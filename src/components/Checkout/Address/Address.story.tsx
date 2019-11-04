@@ -39,7 +39,7 @@ storiesOf('📦 Components/Checkout/Address', module).add('Default', () => {
                         },
                     ],
                 }}
-                state={{
+                region={{
                     label: 'State',
                 }}
                 postalCode={{

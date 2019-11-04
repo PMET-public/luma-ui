@@ -6,8 +6,12 @@ import { useFormContext } from 'react-hook-form'
 
 export type ShippingMethodProps = CheckboxProps
 
+export type ShippingMethodPayload = {
+    shippingMethod: string
+}
+
 export const ShippingMethod: Component<ShippingMethodProps> = ({ ...props }) => {
-    const { register, errors } = useFormContext()
+    const { register, errors } = useFormContext<ShippingMethodPayload>()
 
     return (
         <Root>

@@ -9,7 +9,7 @@ import {
     Address2,
     City,
     Country,
-    State,
+    Region,
     PostalCode,
 } from './Address.styled'
 import { useFormContext } from 'react-hook-form'
@@ -24,8 +24,21 @@ export type AddressProps = {
     address2: InputProps
     city: InputProps
     country: SelectProps
-    state: InputProps
+    region: InputProps
     postalCode: InputProps
+}
+
+export type AddressPayload = {
+    email: string
+    firstName: string
+    lastName: string
+    company?: string
+    address1: string
+    address2?: string
+    city: string
+    region: string
+    postalCode: string
+    country: string
 }
 
 export const Address: Component<AddressProps> = ({
@@ -36,11 +49,11 @@ export const Address: Component<AddressProps> = ({
     address2,
     city,
     country,
-    state,
+    region,
     postalCode,
     ...props
 }) => {
-    const { register, errors } = useFormContext()
+    const { register, errors } = useFormContext<AddressPayload>()
 
     return (
         <Root {...props}>
@@ -65,9 +78,9 @@ export const Address: Component<AddressProps> = ({
             <Country>
                 <Select {...country} name="country" ref={register({ required: true })} error={errors.country} />
             </Country>
-            <State>
-                <Input {...state} name="state" ref={register({ required: true })} error={errors.state} />
-            </State>
+            <Region>
+                <Input {...region} name="region" ref={register({ required: true })} error={errors.region} />
+            </Region>
             <PostalCode>
                 <Input {...postalCode} name="postalCode" ref={register({ required: true })} error={errors.postalCode} />
             </PostalCode>
