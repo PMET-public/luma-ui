@@ -11,16 +11,17 @@ import { Root as CartListRoot, Thumbnail as CartItemThumb } from '../../componen
 export const Root = styled.div`
     display: grid;
     grid-gap: 2rem;
-    /* max-width: ${props => props.theme.layout.containedWidth}; */
     margin: 0 auto;
     height: 100%;
 
     @media ${props => props.theme.breakpoints.untilMedium} {
+        grid-template-areas: 'summary' 'main';
         grid-template-rows: 1fr auto;
     }
 
     @media ${props => props.theme.breakpoints.large} {
         grid-gap: 1rem;
+        grid-template-areas: 'main summary';
         grid-template-columns: 1.5fr 1fr;
     }
 
@@ -30,6 +31,7 @@ export const Root = styled.div`
 `
 
 export const Wrapper = styled.div`
+    grid-area: main;
     position: relative;
     z-index: 1;
     padding: 2rem ${props => props.theme.layout.margin} 4rem;
@@ -46,22 +48,27 @@ export const Wrapper = styled.div`
     }
 `
 
-export const CartSummaryWrapper = styled.div`
+export const SummaryWrapper = styled.div`
+    grid-area: summary;
     color: ${props => props.theme.colors.onSurface};
+
+    ${CartItemThumb} {
+        width: 10rem;
+    }
+
+    ${CartListRoot} {
+        margin-bottom: 2rem;
+    }
 
     @media ${props => props.theme.breakpoints.untilMedium} {
         padding: 1.6rem ${props => props.theme.layout.margin};
-        background-color: ${props => props.theme.colors.surface90};
-        backdrop-filter: blur(10px);
-        border-top: 0.2rem solid ${props => props.theme.colors.onSurface10};
-        bottom: 0;
-        position: sticky;
-        z-index: 2;
+        /* background-color: ${props => props.theme.colors.surface90}; */
+        /* backdrop-filter: blur(10px); */
+        border-bottom: 0.2rem solid ${props => props.theme.colors.onSurface10};
+        /* z-index: 2; */
     }
 
     @media ${props => props.theme.breakpoints.smallOnly} {
-        bottom: 5rem;
-
         ${CartSummaryRoot} {
             grid-gap: 1rem;
             font-size: 1.4rem;
@@ -79,27 +86,20 @@ export const CartSummaryWrapper = styled.div`
     @media ${props => props.theme.breakpoints.large} {
         display: grid;
         grid-template-rows: 1fr auto;
-        /* height: 100vh; */
-        /* display: flex;
-        height: calc(100vh);
-        align-items: flex-end; */
         background-color: ${props => props.theme.colors.onSurface10};
         position: sticky;
         top: 0;
-        /* margin-top: -6rem; */
+
+        ${CartListRoot} {
+            padding: 4rem;
+        }
 
         ${CartSummaryRoot} {
             padding: 4rem;
             width: 100%;
+            position: sticky;
+            bottom: 0;
         }
-    }
-
-    ${CartListRoot} {
-        padding: 2rem;
-    }
-
-    ${CartItemThumb} {
-        width: 10rem;
     }
 `
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { Component } from '../../lib'
-import { Root, Wrapper, Title, CartSummaryWrapper } from './Checkout.styled'
+import { Root, Wrapper, Title, SummaryWrapper } from './Checkout.styled'
 
 import CartList, { CartListProps } from '../../components/CartList'
 import CartSummary, { CartSummaryProps } from '../../components/CartSummary'
@@ -60,13 +60,13 @@ export const Checkout: Component<CartProps> = ({
             <Wrapper>
                 <div ref={contactInfoElem}>
                     <Title>Contact Information</Title>
-                    <ContactInfoForm {...contactInfo} />
+                    <ContactInfoForm preview={step > 1} {...contactInfo} />
                 </div>
 
                 {step > 1 && (
                     <div ref={shippingMethodElem}>
                         <Title>Shipping Method</Title>
-                        <ShippingMethodForm {...shippingMethod} />
+                        <ShippingMethodForm preview={step > 2} {...shippingMethod} />
                     </div>
                 )}
                 {step > 2 && (
@@ -76,10 +76,10 @@ export const Checkout: Component<CartProps> = ({
                     </div>
                 )}
             </Wrapper>
-            <CartSummaryWrapper>
+            <SummaryWrapper>
                 <CartList {...list} />
                 <CartSummary {...summary} />
-            </CartSummaryWrapper>
+            </SummaryWrapper>
         </Root>
     )
 }

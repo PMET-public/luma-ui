@@ -90,18 +90,15 @@ export const CartSummaryWrapper = styled.div`
 
         display: grid;
         grid-template-rows: 1fr auto;
-        /* height: 100vh; */
-        /* display: flex;
-        height: calc(100vh);
-        align-items: flex-end; */
         background-color: ${props => props.theme.colors.onSurface10};
         position: sticky;
         top: 0;
-        /* margin-top: -6rem; */
 
         ${CartSummaryRoot} {
             padding: 4rem;
             width: 100%;
+            position: sticky;
+            bottom: 0;
         }
     }
 `

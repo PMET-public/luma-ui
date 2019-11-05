@@ -46,6 +46,7 @@ export const Input = styled.input<{ $error?: boolean }>`
 
     &:disabled {
         border-bottom-style: dashed;
+        border-bottom-color: ${props => props.theme.colors.primary10};
     }
 
     ${props =>
