@@ -52,17 +52,28 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                     postalCode: {
                         label: 'Postal Code',
                     },
+                    phone: {
+                        label: 'Phone Number',
+                    },
                 },
-                button: {
+                editButton: {
+                    text: 'Edit',
+                },
+                submitButton: {
                     text: 'Continue to Shipping',
                 },
+                onEdit: action('onEdit'),
                 onSubmit: action('onSubmit'),
             }}
             shippingMethod={{
                 items: [{ text: 'Fixed $5.00', value: '1' }, { text: '1-Day Express $29.99', value: '2' }],
-                button: {
+                editButton: {
                     text: 'Continue to Payment',
                 },
+                submitButton: {
+                    text: 'Continue to Payment',
+                },
+                onEdit: action('onEdit'),
                 onSubmit: action('onSubmit'),
             }}
             paymentMethod={{
@@ -72,7 +83,7 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                     vaultManager: true,
                     preselectVaultedPaymentMethod: true,
                 },
-                button: {
+                submitButton: {
                     text: 'Place Order',
                 },
                 onSubmit: action('onSubmit'),
@@ -111,9 +122,7 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                     },
                     {
                         label: 'Taxes',
-                        price: {
-                            regular: null,
-                        },
+                        price: null,
                     },
                     {
                         appearance: 'bold',
@@ -123,7 +132,6 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                         },
                     },
                 ],
-                // buttons: [{ text: 'Checkout' }],
             }}
         />
     </App>

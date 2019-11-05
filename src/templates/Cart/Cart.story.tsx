@@ -43,9 +43,7 @@ storiesOf('📑 Templates/Cart', module).add('Default', () => (
                     },
                     {
                         label: 'Taxes',
-                        price: {
-                            regular: null,
-                        },
+                        price: null,
                     },
                     {
                         appearance: 'bold',
@@ -55,8 +53,8 @@ storiesOf('📑 Templates/Cart', module).add('Default', () => (
                         },
                     },
                 ],
-                buttons: [{ text: 'Checkout' }],
             }}
+            buttons={[{ text: 'Checkout' }]}
         />
     </App>
 ))

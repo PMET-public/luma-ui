@@ -54,18 +54,20 @@ export const Quantity: Component<QuantityProps> = ({
             <Value>
                 <sub>x</sub> {value}
             </Value>
-            <Actions>
-                <Minus disabled={value < minValue} type="button" onClick={() => setValue(value - 1)}>
-                    {_onRemove && value <= minValue ? (
-                        <RemoveIconSvg aria-label={substractLabel} />
-                    ) : (
-                        <MinusIconSvg aria-label={removeLabel} />
-                    )}
-                </Minus>
-                <Plus disabled={value === maxValue} onClick={() => setValue(value + 1)}>
-                    <PlusIconSvg aria-label={addLabel} />
-                </Plus>
-            </Actions>
+            {_onUpdate && (
+                <Actions>
+                    <Minus disabled={value < minValue} type="button" onClick={() => setValue(value - 1)}>
+                        {_onRemove && value <= minValue ? (
+                            <RemoveIconSvg aria-label={substractLabel} />
+                        ) : (
+                            <MinusIconSvg aria-label={removeLabel} />
+                        )}
+                    </Minus>
+                    <Plus disabled={value === maxValue} onClick={() => setValue(value + 1)}>
+                        <PlusIconSvg aria-label={addLabel} />
+                    </Plus>
+                </Actions>
+            )}
         </Root>
     )
 }

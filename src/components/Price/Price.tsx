@@ -5,7 +5,7 @@ import { Root, Label, RegularPrice, SpecialPrice } from './Price.styled'
 export type PriceProps = {
     currency?: string
     label?: string
-    regular: number | null
+    regular: number
     special?: number
 }
 
@@ -15,7 +15,7 @@ export const Price: Component<PriceProps> = ({ currency = 'USD', label, regular,
             {label && <Label>{label}</Label>}
 
             <RegularPrice $hasSpecial={!!special}>
-                {regular === null ? '—' : regular.toLocaleString('en-US', { style: 'currency', currency })}
+                {regular.toLocaleString('en-US', { style: 'currency', currency })}
             </RegularPrice>
 
             {!!special && (

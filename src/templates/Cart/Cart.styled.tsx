@@ -11,7 +11,6 @@ import { DetailsWrapper as CartListDetailsWrapper } from '../../components/CartL
 export const Root = styled.div`
     display: grid;
     grid-gap: 2rem;
-    max-width: ${props => props.theme.layout.containedWidth};
     margin: 0 auto;
     height: 100%;
 
@@ -29,7 +28,7 @@ export const Root = styled.div`
     }
 `
 
-export const CartListWrapper = styled.div`
+export const Wrapper = styled.div`
     position: relative;
     z-index: 1;
     padding: 2rem ${props => props.theme.layout.margin};
@@ -53,7 +52,10 @@ export const CartListWrapper = styled.div`
     }
 `
 
-export const CartSummaryWrapper = styled.div`
+export const SummaryWrapper = styled.div`
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-rows: max-content;
     color: ${props => props.theme.colors.onSurface};
 
     @media ${props => props.theme.breakpoints.untilMedium} {
@@ -93,9 +95,9 @@ export const CartSummaryWrapper = styled.div`
         background-color: ${props => props.theme.colors.onSurface10};
         position: sticky;
         top: 0;
+        padding: 3rem;
 
         ${CartSummaryRoot} {
-            padding: 4rem;
             width: 100%;
             position: sticky;
             bottom: 0;

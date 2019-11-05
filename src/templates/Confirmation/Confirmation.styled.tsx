@@ -1,0 +1,52 @@
+import styled from 'styled-components'
+
+import DoubleCheckIconSvg from 'remixicon/icons/System/check-double-line.svg'
+import ShoppingIconSvg from 'remixicon/icons/Finance/shopping-bag-3-fill.svg'
+
+export const Root = styled.div`
+    align-items: center;
+    display: grid;
+    grid-auto-rows: 1fr;
+    height: 100%;
+    justify-content: center;
+    max-width: ${props => props.theme.layout.containedWidth};
+    padding: 0 ${props => props.theme.layout.margin};
+    text-align: center;
+    width: 100%;
+`
+
+export const Wrapper = styled.div`
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-gap: 2rem;
+`
+
+export const Title = styled.div`
+    font-family: ${props => props.theme.typography.heading.family};
+    font-weight: ${props => props.theme.typography.heading.weight};
+    font-size: ${props => props.theme.typography.heading.size};
+`
+
+export const Content = styled.div`
+    line-height: 1.6;
+`
+
+export const GraphicWrapper = styled.div`
+    display: inline-block;
+    position: relative;
+    font-size: 4rem;
+    color: ${props => props.theme.colors.accent75};
+`
+
+export const DoubleCheckIcon = styled(DoubleCheckIconSvg)`
+    width: 3em;
+    fill: currentColor;
+    position: absolute;
+    top: -2.4em;
+    left: 1.6em;
+`
+
+export const ShoppingIcon = styled(ShoppingIconSvg)`
+    width: 6em;
+    fill: currentColor;
+`

@@ -34,23 +34,31 @@ export const Wrapper = styled.div`
     grid-area: main;
     position: relative;
     z-index: 1;
-    padding: 2rem ${props => props.theme.layout.margin} 4rem;
+    padding: 2rem ${props => props.theme.layout.margin};
     max-width: 120rem;
     justify-self: center;
     width: 100%;
     align-items: center;
     display: grid;
     grid-auto-rows: max-content;
-    grid-gap: 14rem;
+    grid-gap: 4rem;
 
     @media ${props => props.theme.breakpoints.large} {
         padding-top: 4rem;
+        grid-gap: 14rem;
+    }
+
+    &::after {
+        content: '';
     }
 `
 
 export const SummaryWrapper = styled.div`
-    grid-area: summary;
     color: ${props => props.theme.colors.onSurface};
+    display: grid;
+    grid-area: summary;
+    grid-gap: 2rem;
+    grid-template-rows: max-content;
 
     ${CartItemThumb} {
         width: 10rem;
@@ -61,11 +69,8 @@ export const SummaryWrapper = styled.div`
     }
 
     @media ${props => props.theme.breakpoints.untilMedium} {
-        padding: 1.6rem ${props => props.theme.layout.margin};
-        /* background-color: ${props => props.theme.colors.surface90}; */
-        /* backdrop-filter: blur(10px); */
+        padding: 1.6rem ${props => props.theme.layout.margin} 6rem;
         border-bottom: 0.2rem solid ${props => props.theme.colors.onSurface10};
-        /* z-index: 2; */
     }
 
     @media ${props => props.theme.breakpoints.smallOnly} {
@@ -89,6 +94,7 @@ export const SummaryWrapper = styled.div`
         background-color: ${props => props.theme.colors.onSurface10};
         position: sticky;
         top: 0;
+        padding-bottom: 8rem;
 
         ${CartListRoot} {
             padding: 4rem;

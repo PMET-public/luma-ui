@@ -1,24 +1,27 @@
 import React from 'react'
 import { Component } from '../../lib'
-import { Root, CartListWrapper, CartSummaryWrapper } from './Cart.styled'
+import { Root, Wrapper, SummaryWrapper } from './Cart.styled'
 
 import CartList, { CartListProps } from '../../components/CartList'
 import CartSummary, { CartSummaryProps } from '../../components/CartSummary'
+import Button, { ButtonProps } from '../../components/Button'
 
 export type CartProps = {
     list: CartListProps
     summary: CartSummaryProps
+    buttons?: ButtonProps[]
 }
 
-export const Cart: Component<CartProps> = ({ list, summary, checkoutStep, checkout, ...props }) => {
+export const Cart: Component<CartProps> = ({ list, summary, buttons, ...props }) => {
     return (
         <Root {...props}>
-            <CartListWrapper>
+            <Wrapper>
                 <CartList {...list} />
-            </CartListWrapper>
-            <CartSummaryWrapper>
+            </Wrapper>
+            <SummaryWrapper>
                 <CartSummary {...summary} />
-            </CartSummaryWrapper>
+                {buttons && buttons.map((button, index) => <Button key={index} {...button} />)}
+            </SummaryWrapper>
         </Root>
     )
 }

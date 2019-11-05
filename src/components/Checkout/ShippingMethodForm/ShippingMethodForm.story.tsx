@@ -10,12 +10,16 @@ storiesOf('📦 Components/Checkout/ShippingMethodForm', module).add('Default', 
     return (
         <FormContext {...methods}>
             <ShippingMethodForm
-                preview={boolean('preview', false)}
+                edit={boolean('edit', false)}
                 items={[{ text: 'Fixed - $5.00', value: '1' }, { text: '1-Day Express - $29.99', value: '2' }]}
-                button={{
+                submitButton={{
                     text: 'Save',
                 }}
+                editButton={{
+                    text: 'Edit',
+                }}
                 onSubmit={action('onSubmit')}
+                onEdit={action('onEdit')}
             />
         </FormContext>
     )

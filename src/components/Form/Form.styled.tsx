@@ -4,6 +4,7 @@ export const Root = styled.form`
     display: grid;
     grid-row-gap: 1rem;
     grid-column-gap: 3rem;
+    grid-auto-rows: max-content;
 `
 
 export const Field = styled.div`

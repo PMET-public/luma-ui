@@ -15,9 +15,7 @@ storiesOf('📦 Components/CartSummary', module).add('Default', () => (
             },
             {
                 label: 'Taxes',
-                price: {
-                    regular: null,
-                },
+                price: null,
             },
             {
                 appearance: 'bold',
@@ -27,6 +25,5 @@ storiesOf('📦 Components/CartSummary', module).add('Default', () => (
                 },
             },
         ]}
-        buttons={[{ text: 'Checkout' }]}
     />
 ))

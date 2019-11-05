@@ -7,10 +7,7 @@ import { boolean } from '@storybook/addon-knobs'
 storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () => {
     return (
         <ContactInfoForm
-            preview={boolean('preview', false)}
-            title={{
-                text: 'Contact Information',
-            }}
+            edit={boolean('edit', false)}
             fields={{
                 email: {
                     label: 'Email',
@@ -52,11 +49,18 @@ storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () 
                 postalCode: {
                     label: 'Postal Code',
                 },
+                phone: {
+                    label: 'Phone Number',
+                },
             }}
-            button={{
+            submitButton={{
                 text: 'Save & Continue',
             }}
+            editButton={{
+                text: 'Edit',
+            }}
             onSubmit={action('onSubmit')}
+            onEdit={action('onEdit')}
         />
     )
 })

@@ -10,13 +10,24 @@ export type ShippingMethodFormPayload = {
 }
 
 export type ShippingMethodFormProps = {
-    preview?: boolean
-    button: ButtonProps
+    edit?: boolean
+    editButton: ButtonProps
+    submitButton: ButtonProps
     onSubmit: (payload: ShippingMethodFormPayload) => any
+    onEdit: (...args: any) => any
 } & SelectProps
 
-export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({ preview, button, onSubmit, ...props }) => {
-    const { handleSubmit, register, errors } = useForm<ShippingMethodFormPayload>()
+export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
+    edit = false,
+    submitButton,
+    editButton,
+    onEdit,
+    onSubmit,
+    ...props
+}) => {
+    const { handleSubmit, register, errors, formState } = useForm<ShippingMethodFormPayload>()
+
+    const disabled = formState.isSubmitting || !edit
 
     return (
         <Root as={Form} onSubmit={handleSubmit(onSubmit)}>
@@ -24,10 +35,23 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({ preview
                 name="shippingMethod"
                 ref={register({ required: true })}
                 error={errors.shippingMethod}
-                disabled={preview}
+                disabled={disabled}
                 {...props}
             />
-            <Button {...button} />
+
+            {edit ? (
+                <Button type="submit" loading={formState.isSubmitting} {...submitButton} />
+            ) : (
+                <Button
+                    type="button"
+                    secondary
+                    {...editButton}
+                    onClick={(e: Event) => {
+                        e.preventDefault()
+                        onEdit()
+                    }}
+                />
+            )}
         </Root>
     )
 }

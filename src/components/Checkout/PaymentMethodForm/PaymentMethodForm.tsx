@@ -12,14 +12,19 @@ export type PaymentMethodPayload = PaymentMethodPayload
 
 export type PaymentMethodFormProps = {
     braintree: Omit<Options, 'container'>
-    button: ButtonProps
+    submitButton: ButtonProps
     onSubmit: (payload: PaymentMethodPayload) => any
 }
 
-export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ braintree, button, onSubmit, ...props }) => {
+export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
+    braintree,
+    submitButton,
+    onSubmit,
+    ...props
+}) => {
     const [instance, setInstance] = useState<Braintree>()
 
-    const { handleSubmit } = useForm<PaymentMethodPayload>()
+    const { handleSubmit, formState } = useForm<PaymentMethodPayload>()
 
     useEffect(() => {
         ;(async function() {
@@ -40,16 +45,19 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ braintree
     }, [JSON.stringify(braintree)])
 
     const handleRequestPaymentMethod = useCallback(async () => {
-        if (instance) {
+        if (!instance) return
+        try {
             const payload = await instance.requestPaymentMethod()
-            onSubmit(payload)
+            return onSubmit(payload)
+        } catch (error) {
+            console.error(error.message)
         }
     }, [instance])
 
     return (
         <Root as={Form} onSubmit={handleSubmit(handleRequestPaymentMethod)}>
             <div data-braintree-dropin {...props} />
-            {instance && <Button {...button} />}
+            {instance && <Button loading={formState.isSubmitting} {...submitButton} />}
         </Root>
     )
 }

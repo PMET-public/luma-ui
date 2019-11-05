@@ -12,6 +12,7 @@ import {
     Country,
     Region,
     PostalCode,
+    PhoneNumber,
 } from './ContactInfoForm.styled'
 import useForm from 'react-hook-form'
 
@@ -29,10 +30,11 @@ export type ContactInfoFormPayload = {
     region: string
     postalCode: string
     country: string
+    phone: string
 }
 
 export type ContactInfoFormProps = {
-    preview?: boolean
+    edit?: boolean
     fields: {
         email: InputProps
         firstName: InputProps
@@ -44,32 +46,39 @@ export type ContactInfoFormProps = {
         country: SelectProps
         region: InputProps
         postalCode: InputProps
+        phone: InputProps
     }
-    button: ButtonProps
+    editButton: ButtonProps
+    submitButton: ButtonProps
     onSubmit: (payload: ContactInfoFormPayload) => any
+    onEdit: (...args: any) => any
 }
 
 export const ContactInfoForm: Component<ContactInfoFormProps> = ({
-    preview = false,
+    edit = false,
     fields,
-    button,
+    submitButton,
+    editButton,
     onSubmit,
+    onEdit,
     ...props
 }) => {
-    const { handleSubmit, register, errors } = useForm<ContactInfoFormPayload>()
+    const { handleSubmit, register, errors, formState } = useForm<ContactInfoFormPayload>()
 
-    const { email, firstName, lastName, company, address1, address2, city, country, region, postalCode } = fields
+    const { email, firstName, lastName, company, address1, address2, city, country, region, postalCode, phone } = fields
+
+    const disabled = formState.isSubmitting || !edit
 
     return (
         <Form autoComplete={props.disabled ? 'off' : 'on'} onSubmit={handleSubmit(onSubmit)} {...props}>
-            <Root $preview={preview}>
+            <Root $preview={!edit}>
                 <Email>
                     <Input
                         {...email}
                         name="email"
                         ref={register({ required: true, pattern: patterns.email })}
                         error={errors.email}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </Email>
                 <FirstName>
@@ -78,7 +87,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                         name="firstName"
                         ref={register({ required: true })}
                         error={errors.firstName}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </FirstName>
                 <LastName>
@@ -87,23 +96,23 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                         name="lastName"
                         ref={register({ required: true })}
                         error={errors.lastName}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </LastName>
                 <Company>
-                    <Input {...company} name="company" ref={register} error={errors.company} disabled={preview} />
+                    <Input {...company} name="company" ref={register} error={errors.company} disabled={disabled} />
                 </Company>
                 <Address1>
                     <Input
                         {...address1}
-                        name="address1"
+                        name="street[0]"
                         ref={register({ required: true })}
                         error={errors.address1}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </Address1>
                 <Address2>
-                    <Input {...address2} name="address2" ref={register} error={errors.address2} disabled={preview} />
+                    <Input {...address2} name="street[1]" ref={register} error={errors.address2} disabled={disabled} />
                 </Address2>
                 <City>
                     <Input
@@ -111,7 +120,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                         name="city"
                         ref={register({ required: true })}
                         error={errors.city}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </City>
                 <Country>
@@ -120,7 +129,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                         name="country"
                         ref={register({ required: true })}
                         error={errors.country}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </Country>
                 <Region>
@@ -129,7 +138,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                         name="region"
                         ref={register({ required: true })}
                         error={errors.region}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </Region>
                 <PostalCode>
@@ -138,12 +147,33 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                         name="postalCode"
                         ref={register({ required: true })}
                         error={errors.postalCode}
-                        disabled={preview}
+                        disabled={disabled}
                     />
                 </PostalCode>
+                <PhoneNumber>
+                    <Input
+                        {...phone}
+                        name="phone"
+                        ref={register({ required: true })}
+                        error={errors.phone}
+                        disabled={disabled}
+                    />
+                </PhoneNumber>
             </Root>
 
-            <Button {...button} />
+            {edit ? (
+                <Button type="submit" loading={formState.isSubmitting} {...submitButton} />
+            ) : (
+                <Button
+                    type="button"
+                    secondary
+                    {...editButton}
+                    onClick={(e: Event) => {
+                        e.preventDefault()
+                        onEdit()
+                    }}
+                />
+            )}
         </Form>
     )
 }

@@ -16,7 +16,8 @@ export const Root = styled.div<{ $preview?: boolean }>`
         'city'
         'country'
         'region'
-        'postalCode';
+        'postalCode'
+        'phone';
 
     @media ${props => props.theme.breakpoints.medium} {
         grid-template-areas:
@@ -27,7 +28,8 @@ export const Root = styled.div<{ $preview?: boolean }>`
             'address2 address2 address2 address2'
             'city city city city'
             'country country country country'
-            'region region postalCode postalCode';
+            'region region postalCode postalCode'
+            'phone phone phone phone';
     }
 `
 
@@ -69,4 +71,8 @@ export const Region = styled.div`
 
 export const PostalCode = styled.div`
     grid-area: postalCode;
+`
+
+export const PhoneNumber = styled.div`
+    grid-area: phone;
 `

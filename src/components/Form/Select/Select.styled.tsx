@@ -23,7 +23,6 @@ export const Select = styled.select`
     width: 100%;
     border-radius: 0;
     appearance: none;
-    cursor: pointer;
     padding-right: 1.65em;
 
     & option {
