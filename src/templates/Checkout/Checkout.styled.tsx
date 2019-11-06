@@ -94,7 +94,6 @@ export const SummaryWrapper = styled.div`
         background-color: ${props => props.theme.colors.onSurface10};
         position: sticky;
         top: 0;
-        padding-bottom: 8rem;
 
         ${CartListRoot} {
             padding: 4rem;
