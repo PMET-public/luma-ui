@@ -43,8 +43,8 @@ export const HeaderContainer = styled(ContainerWrapper)`
 
     ${HeaderUtilities} {
         /* Hide Search and Cart on Mobile */
-        & > *:nth-child(3),
-        & > *:nth-child(4) {
+        & > [data-utilities-search],
+        & > [data-utilities-cart] {
             @media ${props => props.theme.breakpoints.smallOnly} {
                 display: none;
             }

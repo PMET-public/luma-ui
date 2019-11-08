@@ -18,11 +18,11 @@ import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 import IconBagActiveSvg from 'remixicon/icons/Finance/shopping-bag-fill.svg'
 import IconHomeSvg from 'remixicon/icons/Buildings/store-2-line.svg'
 import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
-import IconFavoritesSvg from 'remixicon/icons/System/heart-line.svg'
-import IconFavoriteActiveSvg from 'remixicon/icons/System/heart-fill.svg'
+// import IconFavoritesSvg from 'remixicon/icons/System/heart-line.svg'
+// import IconFavoriteActiveSvg from 'remixicon/icons/System/heart-fill.svg'
 import IconDarkModeSvg from 'remixicon/icons/Design/contrast-2-line.svg'
-import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
-import IconAccountActiveSvg from 'remixicon/icons/User/user-3-fill.svg'
+// import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
+// import IconAccountActiveSvg from 'remixicon/icons/User/user-3-fill.svg'
 import { useAppContext } from '../../AppProvider'
 
 export type AppProps = {
@@ -41,17 +41,17 @@ export type AppProps = {
         }>
     >
 
-    myAccount: Props<{
-        active?: boolean
-        icon?: IconProps
-        text: string
-    }>
+    // myAccount: Props<{
+    //     active?: boolean
+    //     icon?: IconProps
+    //     text: string
+    // }>
 
-    favorites: Props<{
-        active?: boolean
-        icon?: IconProps
-        text: string
-    }>
+    // favorites: Props<{
+    //     active?: boolean
+    //     icon?: IconProps
+    //     text: string
+    // }>
 
     search: Props<{
         active?: boolean
@@ -76,8 +76,8 @@ export const App: Component<AppProps> = ({
     home,
     logo,
     menu,
-    myAccount,
-    favorites,
+    // myAccount,
+    // favorites,
     search,
     ...props
 }) => {
@@ -106,17 +106,18 @@ export const App: Component<AppProps> = ({
                     }}
                     utilities={{
                         items: [
-                            {
-                                'aria-label': myAccount.text,
-                                ...myAccount,
-                                icon: {
-                                    svg: cart.myAccount ? IconAccountActiveSvg : IconAccountSvg,
-                                    ...myAccount.icon,
-                                },
-                            },
+                            // {
+                            //     'aria-label': myAccount.text,
+                            //     ...myAccount,
+                            //     icon: {
+                            //         svg: cart.myAccount ? IconAccountActiveSvg : IconAccountSvg,
+                            //         ...myAccount.icon,
+                            //     },
+                            // },
                             {
                                 as: 'button',
                                 text: 'Dark Mode',
+                                'data-utilities-darl-mode': true,
                                 onClick: () => actions.setColorScheme(state.colorScheme === 'dark' ? 'light' : 'dark'),
                                 icon: {
                                     svg: IconDarkModeSvg,
@@ -125,6 +126,7 @@ export const App: Component<AppProps> = ({
                             {
                                 'aria-label': search.text,
                                 ...search,
+                                'data-utilities-search': true,
                                 icon: {
                                     svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                     ...search.icon,
@@ -133,6 +135,7 @@ export const App: Component<AppProps> = ({
                             {
                                 'aria-label': cart.text,
                                 ...cart,
+                                'data-utilities-cart': true,
                                 icon: {
                                     svg: cart.active ? IconBagActiveSvg : IconBagSvg,
                                     ...cart.icon,
@@ -162,14 +165,14 @@ export const App: Component<AppProps> = ({
                                 ...home.icon,
                             },
                         },
-                        {
-                            ...favorites,
-                            'aria-label': favorites.text,
-                            icon: {
-                                svg: favorites.active ? IconFavoriteActiveSvg : IconFavoritesSvg,
-                                ...favorites.icon,
-                            },
-                        },
+                        // {
+                        //     ...favorites,
+                        //     'aria-label': favorites.text,
+                        //     icon: {
+                        //         svg: favorites.active ? IconFavoriteActiveSvg : IconFavoritesSvg,
+                        //         ...favorites.icon,
+                        //     },
+                        // },
                         {
                             ...search,
                             'aria-label': search.text,
