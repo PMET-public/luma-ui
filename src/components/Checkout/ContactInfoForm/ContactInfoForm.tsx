@@ -44,7 +44,7 @@ export type ContactInfoFormProps = {
         address2: InputProps
         city: InputProps
         country: SelectProps
-        region: InputProps
+        region: ({ type: 'text' } & InputProps) | ({ type: 'select' } & SelectProps)
         postalCode: InputProps
         phone: InputProps
     }
@@ -133,13 +133,23 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                     />
                 </Country>
                 <Region>
-                    <Input
-                        {...region}
-                        name="region"
-                        ref={register({ required: true })}
-                        error={errors.region}
-                        disabled={disabled}
-                    />
+                    {region.type === 'select' ? (
+                        <Select
+                            {...region}
+                            name="region"
+                            ref={register({ required: true })}
+                            error={errors.region}
+                            disabled={disabled}
+                        />
+                    ) : (
+                        <Input
+                            {...region}
+                            name="region"
+                            ref={register({ required: true })}
+                            error={errors.region}
+                            disabled={disabled}
+                        />
+                    )}
                 </Region>
                 <PostalCode>
                     <Input

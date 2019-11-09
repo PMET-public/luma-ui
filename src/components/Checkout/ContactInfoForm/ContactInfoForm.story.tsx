@@ -2,7 +2,7 @@ import React from 'react'
 import ContactInfoForm from '.'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { boolean } from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () => {
     return (
@@ -44,6 +44,7 @@ storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () 
                     ],
                 },
                 region: {
+                    type: 'text',
                     label: 'State',
                 },
                 postalCode: {

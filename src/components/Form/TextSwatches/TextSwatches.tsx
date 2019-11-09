@@ -5,6 +5,7 @@ import { Field, Label, Error } from '../Form'
 
 export type TextSwatchesProps = {
     label?: string
+    name: string
     error?: { message?: string } | boolean
     type?: 'radio' | 'checkbox'
     items: Array<

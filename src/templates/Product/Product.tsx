@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useCallback } from 'react'
+import React, { useMemo, useRef, useCallback, useEffect } from 'react'
 import { Component, Props } from '../../lib'
 import { isPageBuilderHtml } from '../../components/PageBuilder/lib/utils'
 import {
@@ -30,9 +30,6 @@ import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import TextSwatches, { TextSwatchesProps } from '../../components/Form/TextSwatches'
 import ThumbSwatches, { ThumbSwatchesProps } from '../../components/Form/ThumbSwatches'
 
-// const TextSwatches = React.lazy(() => import('../../components/TextSwatches'))
-// const ThumbSwatches = React.lazy(() => import('../../components/ThumbSwatches'))
-
 export type ProductProps = {
     categories?: BreadcrumbsProps
     addToCartButton: ButtonProps
@@ -47,7 +44,15 @@ export type ProductProps = {
             label?: string
             required?: boolean
             error?: string | boolean
-        } & ({ type: 'text'; swatches: TextSwatchesProps } | { type: 'thumb'; swatches: ThumbSwatchesProps })
+        } & (
+            | {
+                  type: 'text'
+                  swatches: TextSwatchesProps
+              }
+            | {
+                  type: 'thumb'
+                  swatches: ThumbSwatchesProps
+              })
     >
 
     sku?: Props<{
@@ -75,7 +80,7 @@ export const Product: Component<ProductProps> = ({
     onChange = () => {},
     ...props
 }) => {
-    const { register, handleSubmit, errors, setError, getValues, formState } = useForm()
+    const { register, handleSubmit, errors, setError, getValues } = useForm()
 
     const infoElemRef = useRef<HTMLDivElement>(null)
 
@@ -88,9 +93,14 @@ export const Product: Component<ProductProps> = ({
         onChange(values)
     }, [onChange])
 
-    const handleOnAddToCartClick = useCallback(() => {
-        if (!formState.isValid && infoElemRef.current) infoElemRef.current.scrollIntoView({ behavior: 'smooth' })
-    }, [formState.isValid, infoElemRef.current])
+    /**
+     * Scroll to top if there are any errors
+     */
+    useEffect(() => {
+        if (Object.entries(errors).length > 0 && infoElemRef.current) {
+            infoElemRef.current.scrollIntoView({ behavior: 'smooth' })
+        }
+    }, [errors])
 
     return (
         <Root as="form" {...props} onSubmit={handleSubmit(onAddToCart)} onChange={handleOnValueChanges}>
@@ -154,7 +164,7 @@ export const Product: Component<ProductProps> = ({
                             )}
 
                             <Buttons>
-                                <Button onClick={handleOnAddToCartClick} {...addToCartButton} />
+                                <Button {...addToCartButton} />
                             </Buttons>
 
                             <input type="hidden" name="quantity" value={1} ref={register({ required: true })} />
