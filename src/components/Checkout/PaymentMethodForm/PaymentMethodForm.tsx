@@ -1,14 +1,14 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { Component } from '../../../lib'
 import { Root } from './PaymentMethodForm.styled'
-import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload } from 'braintree-web-drop-in'
+import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload as Payload } from 'braintree-web-drop-in'
 import Button, { ButtonProps } from '../../Button'
 import Form from '../../Form'
 import useForm from 'react-hook-form'
 
 export type Braintree = Dropin
 
-export type PaymentMethodPayload = PaymentMethodPayload
+export type PaymentMethodPayload = Payload
 
 export type PaymentMethodFormProps = {
     braintree: Omit<Options, 'container'>

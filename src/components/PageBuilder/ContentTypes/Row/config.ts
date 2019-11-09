@@ -13,7 +13,15 @@ const props = (elem: HTMLElement) => {
         backgroundImages: backgroundImages ? getBackgroundImages(backgroundImages) : undefined,
     }
 
-    return { appearance, background, style }
+    return {
+        /**
+         * Patch: add "full-screen" appearance based on className for now
+         */
+        appearance: elem.classList.contains('full-screen') ? 'full-screen' : appearance,
+
+        background,
+        style,
+    }
 }
 
 export default { component, props }

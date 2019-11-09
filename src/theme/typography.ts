@@ -2,14 +2,25 @@ export const typography = {
     body: {
         family: 'source-sans-pro, sans-serif',
         style: 'normal',
-        weight: 400,
+        weight: {
+            normal: 400,
+            semi: 600,
+            bold: 700,
+        },
     },
 
     heading: {
         family: 'rucksack, sans-serif',
         style: 'normal',
-        weight: 600,
-        size: '2.8rem',
+        weight: {
+            normal: 400,
+            semi: 500,
+            bold: 600,
+        },
+        size: {
+            primary: '3rem',
+            secondary: '2rem',
+        },
     },
 }
 

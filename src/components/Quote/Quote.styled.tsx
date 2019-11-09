@@ -6,8 +6,8 @@ export const Root = styled.div`
 `
 export const BlockQuote = styled.blockquote`
     font-style: italic;
-    font-size: 2.3rem;
     font-family: ${props => props.theme.typography.heading.family};
+    font-size: ${props => props.theme.typography.heading.size.secondary};
     padding: 2rem 0;
 
     &::before {

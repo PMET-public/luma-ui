@@ -1,13 +1,9 @@
 import React from 'react'
 import ProductCarousel from '.'
 import { storiesOf } from '@storybook/react'
-import { object } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ProductCarousel', module).add('Default', () => {
     const props = {
-        title: object('title', {
-            text: 'Title',
-        }),
         items: new Array(10).fill({
             image: {
                 alt: '',

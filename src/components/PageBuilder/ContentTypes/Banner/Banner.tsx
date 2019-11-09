@@ -1,13 +1,13 @@
 import React from 'react'
 import { Component, Props } from '../../../../lib'
-import { Root, Container, Wrapper, Overlay, Content, Button } from './Banner.styled'
+import { Root, Container, Wrapper, Overlay, ContentWrapper, Content, Button } from './Banner.styled'
 
 import Link, { LinkProps } from '../../../Link'
 import ButtonComponent, { ButtonProps as ButtonComponentProps } from '../../../Button'
 import ContentWithBackground, { ContentWithBackgroundProps } from '../../lib/ContentWithBackground'
 
 export type BannerProps = {
-    appearance?: 'poster' | 'collage-left' | 'collage-center' | 'collage-right'
+    appearance?: 'poster' | 'collage-left' | 'collage-centered' | 'collage-right'
     background?: ContentWithBackgroundProps
     button?: ButtonComponentProps
     link?: LinkProps
@@ -43,10 +43,12 @@ export const Banner: Component<BannerProps> = ({
             {...props}
         >
             <Container {...background} as={ContentWithBackground}>
-                <Wrapper style={style}>
+                <Wrapper $appearance={appearance} style={style}>
                     <Overlay {...overlay}>
-                        {content && <Content {...content} dangerouslySetInnerHTML={{ __html: content.html }} />}
-                        {button && <Button as={ButtonComponent} {...button} />}
+                        <ContentWrapper>
+                            {content && <Content {...content} dangerouslySetInnerHTML={{ __html: content.html }} />}
+                            {button && <Button as={ButtonComponent} {...button} />}
+                        </ContentWrapper>
                     </Overlay>
                 </Wrapper>
             </Container>

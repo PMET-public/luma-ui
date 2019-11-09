@@ -23,8 +23,8 @@ export const Wrapper = styled.div`
 
 export const Title = styled.div`
     font-family: ${props => props.theme.typography.heading.family};
-    font-weight: ${props => props.theme.typography.heading.weight};
-    font-size: ${props => props.theme.typography.heading.size};
+    font-weight: ${props => props.theme.typography.heading.weight.semi};
+    font-size: ${props => props.theme.typography.heading.size.primary};
 `
 
 export const Content = styled.div`

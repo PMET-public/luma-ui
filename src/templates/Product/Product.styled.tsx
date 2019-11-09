@@ -168,8 +168,8 @@ export const Label = styled.div<{ $error?: boolean }>`
 
 export const Title = styled.h2`
     font-family: ${props => props.theme.typography.heading.family};
-    font-weight: ${props => props.theme.typography.heading.weight};
-    font-size: 2.3rem;
+    font-weight: ${props => props.theme.typography.heading.weight.semi};
+    font-size: ${props => props.theme.typography.heading.weight.secondary};
 `
 
 export const Sku = styled.span`

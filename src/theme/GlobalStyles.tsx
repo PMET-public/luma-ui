@@ -17,7 +17,7 @@ export const Root = styled.div`
     color: ${props => props.theme.colors.onBackground};
     font-family: ${props => props.theme.typography.body.family};
     font-style: ${props => props.theme.typography.body.style};
-    font-weight: ${props => props.theme.typography.body.weight};
+    font-weight: ${props => props.theme.typography.body.weight.normal};
 
     & .visuallyhidden {
         clip: rect(0 0 0 0);
