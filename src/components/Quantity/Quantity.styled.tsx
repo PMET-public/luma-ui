@@ -4,7 +4,7 @@ export const Root = styled.div`
     align-items: center;
     display: grid;
     grid-gap: 1.4rem;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: 1fr max-content;
 `
 
 export const Actions = styled.div`

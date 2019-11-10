@@ -18,7 +18,9 @@ storiesOf('📦 Components/Checkout/ShippingMethodForm', module).add('Default', 
                 editButton={{
                     text: 'Edit',
                 }}
-                onSubmit={action('onSubmit')}
+                onSubmit={() => {
+                    throw Error('Oops!. There was an error... `cause your are just testing ;)')
+                }}
                 onEdit={action('onEdit')}
             />
         </FormContext>

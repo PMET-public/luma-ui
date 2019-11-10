@@ -1,15 +1,17 @@
 import React from 'react'
-import Confirmation from './'
+import CartLanding from '.'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
+import { boolean } from '@storybook/addon-knobs'
 
-storiesOf('📑 Templates/Confirmation', module).add('Default', () => (
+storiesOf('📑 Templates/CartLanding', module).add('Default', () => (
     <App {...AppMockData}>
-        <Confirmation
+        <CartLanding
             title={{
                 text: 'Thank you for your purchase',
             }}
+            success={boolean('success', false)}
             children={
                 <div>
                     <p>Your order # is: 000004011.</p>

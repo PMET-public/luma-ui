@@ -6,10 +6,8 @@ import ShoppingIconSvg from 'remixicon/icons/Finance/shopping-bag-3-fill.svg'
 export const Root = styled.div`
     align-items: center;
     display: grid;
-    grid-auto-rows: 1fr;
     height: 100%;
     justify-content: center;
-    max-width: ${props => props.theme.layout.containedWidth};
     padding: 0 ${props => props.theme.layout.margin};
     text-align: center;
     width: 100%;
@@ -34,7 +32,7 @@ export const Content = styled.div`
 export const GraphicWrapper = styled.div`
     display: inline-block;
     position: relative;
-    font-size: 4rem;
+    font-size: 3rem;
     color: ${props => props.theme.colors.accent75};
 `
 

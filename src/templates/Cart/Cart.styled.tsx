@@ -1,46 +1,24 @@
 import styled from 'styled-components'
 
-import {
-    Root as CartSummaryRoot,
-    Title as CartSummaryTitle,
-    Buttons as CartSummaryButtons,
-} from '../../components/CartSummary'
-
 import { DetailsWrapper as CartListDetailsWrapper } from '../../components/CartList'
 
 export const Root = styled.div`
     display: grid;
-    grid-gap: 2rem;
-    margin: 0 auto;
+    grid-template-rows: 1fr auto auto;
     height: 100%;
-
-    @media ${props => props.theme.breakpoints.untilMedium} {
-        grid-template-rows: 1fr auto;
-    }
+    grid-row-gap: 4rem;
+    grid-column-gap: 2rem;
 
     @media ${props => props.theme.breakpoints.large} {
-        grid-gap: 1rem;
-        grid-template-columns: 1.5fr 1fr;
-    }
-
-    @media ${props => props.theme.breakpoints.xLarge} {
-        grid-gap: 6rem;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1.25fr 0.75fr;
     }
 `
 
-export const Wrapper = styled.div`
-    position: relative;
-    z-index: 1;
-    padding: 2rem ${props => props.theme.layout.margin};
+export const ProductList = styled.div`
+    padding: 0 ${props => props.theme.layout.margin};
 
-    display: flex;
-    align-items: center;
-
-    @media ${props => props.theme.breakpoints.large} {
-        padding-top: 4rem;
-    }
-
-    @media ${props => props.theme.breakpoints.xLarge} {
+    @media ${props => props.theme.breakpoints.medium} {
         ${CartListDetailsWrapper} {
             grid-template:
                 'title price quantity'
@@ -55,52 +33,50 @@ export const Wrapper = styled.div`
 export const SummaryWrapper = styled.div`
     display: grid;
     grid-gap: 2rem;
-    grid-template-rows: max-content;
-    color: ${props => props.theme.colors.onSurface};
+    grid-auto-rows: max-content;
+    padding: 0 ${props => props.theme.layout.margin};
 
-    @media ${props => props.theme.breakpoints.untilMedium} {
-        padding: 1.6rem ${props => props.theme.layout.margin};
-        background-color: ${props => props.theme.colors.surface90};
-        backdrop-filter: blur(10px);
-        border-top: 0.2rem solid ${props => props.theme.colors.onSurface10};
-        bottom: 0;
-        position: sticky;
-        z-index: 2;
+    @media ${props => props.theme.breakpoints.large} {
+        background-color: ${props => props.theme.colors.graySurface};
+        display: flex;
+        align-items: flex-end;
+        padding: 0 3rem;
     }
+`
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
-        bottom: 5rem;
+export const CartSummaryWrapper = styled.div`
+    display: grid;
+    grid-gap: 2rem;
+    grid-auto-rows: max-content;
+    width: 100%;
 
-        ${CartSummaryRoot} {
-            grid-gap: 1rem;
-            font-size: 1.4rem;
-        }
+    @media ${props => props.theme.breakpoints.large} {
+        position: sticky;
+        bottom: 0;
+        padding: 3rem 0;
+    }
+`
 
-        ${CartSummaryTitle} {
-            display: none;
-        }
+export const Button = styled.div`
+    @media ${props => props.theme.breakpoints.untilMedium} {
+        display: none;
+    }
+`
 
-        ${CartSummaryButtons} {
-            margin-top: 0.75rem;
-        }
+export const StickyButtonWrapper = styled.div`
+    backdrop-filter: blur(10px);
+    background-color: ${props => props.theme.colors.surface90};
+    border-top: 0.1rem solid ${props => props.theme.colors.onSurface10};
+    bottom: 5.2rem; /* Include Tab  */
+    display: grid;
+    padding: 1.6rem ${props => props.theme.layout.margin};
+    position: sticky;
+
+    @media ${props => props.theme.breakpoints.medium} {
+        bottom: 0;
     }
 
     @media ${props => props.theme.breakpoints.large} {
-        &::before {
-            content: '';
-        }
-
-        display: grid;
-        grid-template-rows: 1fr auto;
-        background-color: ${props => props.theme.colors.onSurface10};
-        position: sticky;
-        top: 0;
-        padding: 3rem;
-
-        ${CartSummaryRoot} {
-            width: 100%;
-            position: sticky;
-            bottom: 0;
-        }
+        display: none;
     }
 `

@@ -9,6 +9,7 @@ import { action } from '@storybook/addon-actions'
 storiesOf('📑 Templates/Cart', module).add('Default', () => (
     <App {...AppMockData}>
         <Cart
+            title={{ text: 'Shopping Bag' }}
             list={{
                 items: new Array(number('quantity', 2)).fill({
                     title: {
@@ -33,28 +34,22 @@ storiesOf('📑 Templates/Cart', module).add('Default', () => (
                 }),
             }}
             summary={{
-                title: { as: 'h2', text: 'Summary' },
+                title: { as: 'h2', text: 'Bag Summary' },
                 prices: [
-                    {
-                        label: 'Subtotal',
-                        price: {
-                            regular: 19.99,
-                        },
-                    },
                     {
                         label: 'Taxes',
                         price: null,
                     },
                     {
                         appearance: 'bold',
-                        label: 'Total',
+                        label: 'Subtotal',
                         price: {
                             regular: 19.99,
                         },
                     },
                 ],
             }}
-            buttons={[{ text: 'Checkout' }]}
+            button={{ text: 'Checkout' }}
         />
     </App>
 ))

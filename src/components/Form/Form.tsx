@@ -1,6 +1,13 @@
 import React from 'react'
 import { Component } from '../../lib'
-import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input as InputRoot } from './Form.styled'
+import {
+    Root,
+    Field as FieldRoot,
+    Label as LabelRoot,
+    Error as ErrorRoot,
+    Input as InputRoot,
+    FormError as FormErrorRoot,
+} from './Form.styled'
 
 /** Form */
 export type FormProps = {}
@@ -39,4 +46,11 @@ export type ErrorProps = {}
 
 export const Error: Component<ErrorProps> = ({ children, ...props }) => {
     return <ErrorRoot {...props}>{children}</ErrorRoot>
+}
+
+/** Error */
+export type FormErrorProps = {}
+
+export const FormError: Component<FormErrorProps> = ({ children, ...props }) => {
+    return <FormErrorRoot {...props}>{children}</FormErrorRoot>
 }

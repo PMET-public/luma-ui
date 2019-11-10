@@ -8,8 +8,8 @@ export const Root = styled.div`
 
 export const Title = styled.div`
     font-family: ${props => props.theme.typography.heading.family};
-    font-weight: ${props => props.theme.typography.heading.weight.semi};
-    font-size: 1.5em;
+    font-weight: ${props => props.theme.typography.heading.weight.bold};
+    font-size: 2rem;
     margin-bottom: 1rem;
 `
 

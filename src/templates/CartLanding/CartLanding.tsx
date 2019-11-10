@@ -1,18 +1,19 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Wrapper, Title, Content, DoubleCheckIcon, ShoppingIcon, GraphicWrapper } from './Confirmation.styled'
+import { Root, Wrapper, Title, Content, DoubleCheckIcon, ShoppingIcon, GraphicWrapper } from './CartLanding.styled'
 
-export type ConfirmationProps = {
+export type CartLandingProps = {
     title: Props<{ text: string }>
+    success?: boolean
 }
 
-export const Confirmation: Component<ConfirmationProps> = ({ title, children, ...props }) => {
+export const CartLanding: Component<CartLandingProps> = ({ success, title, children, ...props }) => {
     return (
         <Root {...props}>
             <Wrapper>
                 <div>
                     <GraphicWrapper>
-                        <DoubleCheckIcon />
+                        {success && <DoubleCheckIcon />}
                         <ShoppingIcon />
                     </GraphicWrapper>
                 </div>

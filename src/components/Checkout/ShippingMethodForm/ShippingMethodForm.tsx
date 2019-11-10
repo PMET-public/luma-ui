@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { Component } from '../../../lib'
 import { Root } from './ShippingMethodForm.styled'
-import Form, { Select, SelectProps } from '../../Form'
+import Form, { Select, SelectProps, FormError } from '../../Form'
 import useForm from 'react-hook-form'
 import Button, { ButtonProps } from '../../Button'
 
@@ -25,12 +25,32 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
     onSubmit,
     ...props
 }) => {
-    const { handleSubmit, register, errors, formState } = useForm<ShippingMethodFormPayload>()
+    const { handleSubmit, register, errors } = useForm<ShippingMethodFormPayload>()
 
-    const disabled = formState.isSubmitting || !edit
+    const [formError, setFormError] = useState<string | null>(null)
+
+    const [loading, setLoading] = useState(false)
+
+    const handleOnSubmit = useCallback(
+        async form => {
+            setFormError(null)
+            setLoading(true)
+
+            try {
+                await handleSubmit(onSubmit)(form)
+                setLoading(false)
+            } catch (error) {
+                setFormError(error.message)
+                setLoading(false)
+            }
+        },
+        [handleSubmit, onSubmit]
+    )
+
+    const disabled = loading || !edit
 
     return (
-        <Root as={Form} onSubmit={handleSubmit(onSubmit)}>
+        <Root as={Form} onSubmit={handleOnSubmit}>
             <Select
                 name="shippingMethod"
                 ref={register({ required: true })}
@@ -39,8 +59,10 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
                 {...props}
             />
 
+            {formError && <FormError>{formError}</FormError>}
+
             {edit ? (
-                <Button type="submit" loading={formState.isSubmitting} {...submitButton} />
+                <Button type="submit" loading={loading} {...submitButton} />
             ) : (
                 <Button
                     type="button"

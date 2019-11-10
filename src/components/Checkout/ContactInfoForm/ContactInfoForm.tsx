@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Component } from '../../../lib'
 import {
     Root,
@@ -16,7 +16,7 @@ import {
 } from './ContactInfoForm.styled'
 import useForm from 'react-hook-form'
 
-import Form, { Input, InputProps, Select, SelectProps, patterns } from '../../Form'
+import Form, { Input, InputProps, Select, SelectProps, FormError, patterns } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
 
 export type ContactInfoFormPayload = {
@@ -63,14 +63,34 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
     onEdit,
     ...props
 }) => {
-    const { handleSubmit, register, errors, formState } = useForm<ContactInfoFormPayload>()
+    const { handleSubmit, register, errors } = useForm<ContactInfoFormPayload>()
+
+    const [formError, setFormError] = useState<string | null>(null)
+
+    const [loading, setLoading] = useState(false)
+
+    const handleOnSubmit = useCallback(
+        async form => {
+            setFormError(null)
+            setLoading(true)
+
+            try {
+                await handleSubmit(onSubmit)(form)
+                setLoading(false)
+            } catch (error) {
+                setFormError(error.message)
+                setLoading(false)
+            }
+        },
+        [handleSubmit, onSubmit]
+    )
 
     const { email, firstName, lastName, company, address1, address2, city, country, region, postalCode, phone } = fields
 
-    const disabled = formState.isSubmitting || !edit
+    const disabled = loading || !edit
 
     return (
-        <Form autoComplete={props.disabled ? 'off' : 'on'} onSubmit={handleSubmit(onSubmit)} {...props}>
+        <Form autoComplete={props.disabled ? 'off' : 'on'} onSubmit={handleOnSubmit} {...props}>
             <Root $preview={!edit}>
                 <Email>
                     <Input
@@ -171,8 +191,10 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 </PhoneNumber>
             </Root>
 
+            {formError && <FormError>{formError}</FormError>}
+
             {edit ? (
-                <Button type="submit" loading={formState.isSubmitting} {...submitButton} />
+                <Button type="submit" loading={loading} {...submitButton} />
             ) : (
                 <Button
                     type="button"

@@ -3,7 +3,7 @@ import { Component } from '../../../lib'
 import { Root } from './PaymentMethodForm.styled'
 import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload as Payload } from 'braintree-web-drop-in'
 import Button, { ButtonProps } from '../../Button'
-import Form from '../../Form'
+import Form, { FormError } from '../../Form'
 import useForm from 'react-hook-form'
 
 export type Braintree = Dropin
@@ -22,9 +22,13 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
     onSubmit,
     ...props
 }) => {
+    const { handleSubmit } = useForm<PaymentMethodPayload>()
+
     const [instance, setInstance] = useState<Braintree>()
 
-    const { handleSubmit, formState } = useForm<PaymentMethodPayload>()
+    const [formError, setFormError] = useState<string | null>(null)
+
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         ;(async function() {
@@ -54,10 +58,29 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
         }
     }, [instance])
 
+    const handleOnSubmit = useCallback(
+        async form => {
+            setFormError(null)
+            setLoading(true)
+
+            try {
+                await handleSubmit(handleRequestPaymentMethod)(form)
+                setLoading(false)
+            } catch (error) {
+                setFormError(error.message)
+                setLoading(false)
+            }
+        },
+        [handleSubmit, onSubmit]
+    )
+
     return (
-        <Root as={Form} onSubmit={handleSubmit(handleRequestPaymentMethod)}>
+        <Root as={Form} onSubmit={handleOnSubmit}>
             <div data-braintree-dropin {...props} />
-            {instance && <Button loading={formState.isSubmitting} {...submitButton} />}
+
+            {formError && <FormError>{formError}</FormError>}
+
+            {instance && <Button loading={loading} {...submitButton} />}
         </Root>
     )
 }

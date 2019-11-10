@@ -1,27 +1,37 @@
 import React from 'react'
-import { Component } from '../../lib'
-import { Root, Wrapper, SummaryWrapper } from './Cart.styled'
+import { Component, Props } from '../../lib'
+import { Root, SummaryWrapper, CartSummaryWrapper, ProductList, Button, StickyButtonWrapper } from './Cart.styled'
 
 import CartList, { CartListProps } from '../../components/CartList'
 import CartSummary, { CartSummaryProps } from '../../components/CartSummary'
-import Button, { ButtonProps } from '../../components/Button'
+import ButtonComponent, { ButtonProps } from '../../components/Button'
+import PageTitle from '../../components/PageTitle'
 
 export type CartProps = {
+    title: Props<{ text: string }>
     list: CartListProps
     summary: CartSummaryProps
-    buttons?: ButtonProps[]
+    button: ButtonProps
 }
 
-export const Cart: Component<CartProps> = ({ list, summary, buttons, ...props }) => {
+export const Cart: Component<CartProps> = ({ title, list, summary, button, ...props }) => {
     return (
         <Root {...props}>
-            <Wrapper>
+            <ProductList>
+                <PageTitle {...title}>{title.text}</PageTitle>
                 <CartList {...list} />
-            </Wrapper>
+            </ProductList>
+
             <SummaryWrapper>
-                <CartSummary {...summary} />
-                {buttons && buttons.map((button, index) => <Button key={index} {...button} />)}
+                <CartSummaryWrapper>
+                    <CartSummary {...summary} />
+                    <Button as={ButtonComponent} {...button} />
+                </CartSummaryWrapper>
             </SummaryWrapper>
+
+            <StickyButtonWrapper>
+                <ButtonComponent {...button} />
+            </StickyButtonWrapper>
         </Root>
     )
 }

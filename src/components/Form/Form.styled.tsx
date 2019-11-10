@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Root = styled.form`
     display: grid;
-    grid-row-gap: 1rem;
+    grid-row-gap: 2rem;
     grid-column-gap: 3rem;
     grid-auto-rows: max-content;
 `
@@ -24,6 +24,17 @@ export const Error = styled.span`
     min-height: 1em;
     font-size: 90%;
 `
+
+export const FormError = styled.span`
+    background-color: ${props => props.theme.colors.error};
+    border-radius: 0.25rem;
+    border: 0.1rem solid ${props => props.theme.colors.onError};
+    color: ${props => props.theme.colors.onError};
+    font-size: 90%;
+    min-height: 1em;
+    padding: 1rem;
+`
+
 export const Input = styled.input<{ $error?: boolean }>`
     appearance: none;
     border-radius: 0;

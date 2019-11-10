@@ -9,6 +9,7 @@ import { action } from '@storybook/addon-actions'
 storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
     <App {...AppMockData}>
         <Checkout
+            title={{ text: 'Checkout' }}
             step={select('step', { 'contactInfo (1)': 1, 'shippingMethod (2)': 2, 'paymentMethod (3)': 3 }, 1)}
             contactInfo={{
                 fields: {

@@ -72,6 +72,8 @@ export const light = {
 
     notice: '#ffffff',
     onNotice: '#039be5',
+
+    graySurface: '#e9e9e9',
 }
 
 /**
@@ -150,6 +152,8 @@ export const dark = {
 
     notice: '#039be5',
     onNotice: '#ffffff',
+
+    graySurface: '#333',
 }
 
 export type ThemeColors = typeof light | typeof dark

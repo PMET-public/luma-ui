@@ -2,7 +2,6 @@ import React from 'react'
 import PaymentMethodForm from '.'
 import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Checkout/PaymentMethodForm', module).add('Default', () => {
     const braintree = object('braintree', {
@@ -12,5 +11,13 @@ storiesOf('📦 Components/Checkout/PaymentMethodForm', module).add('Default', (
         preselectVaultedPaymentMethod: false,
     })
 
-    return <PaymentMethodForm braintree={braintree} submitButton={{ text: 'Save' }} onSubmit={action('onSubmit')} />
+    return (
+        <PaymentMethodForm
+            braintree={braintree}
+            submitButton={{ text: 'Save' }}
+            onSubmit={() => {
+                throw Error('Oops!. There was an error... `cause your are just testing ;)')
+            }}
+        />
+    )
 })

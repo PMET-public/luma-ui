@@ -7,7 +7,6 @@ import NotFoundIconSvg from 'remixicon/icons/System/eye-close-line.svg'
 export const Root = styled.div`
     align-items: center;
     display: grid;
-    grid-auto-rows: 1fr;
     height: 100%;
     justify-content: center;
     max-width: ${props => props.theme.layout.containedWidth};

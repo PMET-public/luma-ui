@@ -47,8 +47,9 @@ export const DetailsWrapper = styled.div`
 export const Title = styled.div`
     grid-area: title;
     font-family: ${({ theme }) => theme.typography.heading.family};
-    font-size: 1.8rem;
-    font-weight: ${({ theme }) => theme.typography.heading.weight};
+    font-weight: ${({ theme }) => theme.typography.heading.weight.bold};
+    font-size: 1.6rem;
+    padding-top: 1rem;
 `
 
 export const Price = styled.div`

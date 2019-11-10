@@ -18,7 +18,7 @@ export const typography = {
             bold: 600,
         },
         size: {
-            primary: '3rem',
+            primary: '2.6rem',
             secondary: '2rem',
         },
     },
