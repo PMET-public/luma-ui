@@ -9,7 +9,7 @@ import { action } from '@storybook/addon-actions'
 storiesOf('📑 Templates/Cart', module).add('Default', () => (
     <App {...AppMockData}>
         <Cart
-            title={{ text: 'Shopping Bag' }}
+            breadcrumbs={{ prefix: '#', items: [{ text: 'Cart' }] }}
             list={{
                 items: new Array(number('quantity', 2)).fill({
                     title: {

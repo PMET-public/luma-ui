@@ -8,7 +8,7 @@ export const Root = styled.div`
     display: grid;
     grid-template-rows: 1fr auto;
     height: 100%;
-    grid-row-gap: 2rem;
+    grid-row-gap: 4rem;
     grid-column-gap: 2rem;
 
     @media ${props => props.theme.breakpoints.large} {
@@ -19,9 +19,14 @@ export const Root = styled.div`
 
 export const Wrapper = styled.div`
     display: grid;
-    grid-gap: 2rem;
+    grid-gap: 4rem;
     grid-auto-rows: max-content;
-    padding: 0 ${props => props.theme.layout.margin};
+    padding: 2rem ${props => props.theme.layout.margin};
+
+    @media ${props => props.theme.breakpoints.large} {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
 `
 
 export const CartSummaryWrapper = styled.div`
@@ -39,13 +44,18 @@ export const CartSummaryWrapper = styled.div`
 
     ${CartSummaryRoot} {
         grid-area: summary;
-
         padding: 2rem ${props => props.theme.layout.margin};
+        border-top: 0.1rem solid ${props => props.theme.colors.onSurface10};
+
+        @media ${props => props.theme.breakpoints.large} {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            border-top: 0;
+        }
     }
 
     @media ${props => props.theme.breakpoints.large} {
         grid-template-areas: 'list' 'summary';
-
         grid-gap: 0;
         grid-template-rows: 1fr auto;
 
@@ -74,110 +84,3 @@ export const Title = styled.div`
     font-size: ${props => props.theme.typography.heading.size.secondary};
     margin-bottom: 2rem;
 `
-
-// export const Root = styled.div`
-//     display: grid;
-//     grid-gap: 2rem;
-//     margin: 0 auto;
-//     height: 100%;
-//     grid-auto-rows: max-content;
-
-//     @media ${props => props.theme.breakpoints.untilMedium} {
-//         grid-template-areas: 'title' 'main' 'summary';
-//         grid-template-rows: 1fr auto;
-//     }
-
-//     @media ${props => props.theme.breakpoints.large} {
-//         grid-gap: 1rem;
-//         grid-template-areas: 'title summary' 'main summary';
-//         grid-template-columns: 1.25fr 0.75fr;
-//         grid-template-rows: 1fr;
-//     }
-// /*
-//     @media ${props => props.theme.breakpoints.xLarge} {
-//         grid-gap: 6rem;
-//     } */
-// `
-
-// export const PageTitle = styled.div`
-//     grid-area: 'title';
-//     padding-left: ${props => props.theme.layout.margin};
-//     padding-right: ${props => props.theme.layout.margin};
-// `
-
-// export const Wrapper = styled.div`
-//     grid-area: main;
-//     position: relative;
-//     z-index: 1;
-//     padding: 0 ${props => props.theme.layout.margin};
-//     /* max-width: 120rem; */
-//     justify-self: center;
-//     width: 100%;
-//     /* align-items: center; */
-//     display: grid;
-//     grid-auto-rows: max-content;
-//     grid-gap: 4rem;
-
-//     @media ${props => props.theme.breakpoints.large} {
-//         grid-gap: 8rem;
-//     }
-
-//     &::after {
-//         content: '';
-//     }
-// `
-
-// export const SummaryWrapper = styled.div`
-//     color: ${props => props.theme.colors.onSurface};
-//     display: grid;
-//     grid-area: summary;
-//     grid-gap: 2rem;
-//     grid-template-rows: max-content;
-
-// ${CartItemThumb} {
-//     width: 10rem;
-// }
-
-// ${CartListRoot} {
-//     margin-bottom: 2rem;
-// }
-
-//     @media ${props => props.theme.breakpoints.untilMedium} {
-//         padding: 1.6rem ${props => props.theme.layout.margin} 6rem;
-//         border-bottom: 0.2rem solid ${props => props.theme.colors.onSurface10};
-//     }
-
-//     @media ${props => props.theme.breakpoints.smallOnly} {
-//         ${CartSummaryRoot} {
-//             grid-gap: 1rem;
-//             font-size: 1.4rem;
-//         }
-
-//         ${CartSummaryTitle} {
-//             display: none;
-//         }
-
-//         ${CartSummaryButtons} {
-//             margin-top: 0.75rem;
-//         }
-//     }
-
-//     @media ${props => props.theme.breakpoints.large} {
-//         display: grid;
-//         grid-template-rows: 1fr auto;
-//         background-color: ${props => props.theme.colors.onSurface10};
-//         position: sticky;
-//         top: 0;
-
-//         ${CartListRoot} {
-//             padding: 4rem;
-//         }
-
-//         ${CartSummaryRoot} {
-//             padding: 4rem;
-//             width: 100%;
-//             position: sticky;
-//             bottom: 0;
-//         }
-//     }
-// `

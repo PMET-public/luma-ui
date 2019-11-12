@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Item } from './Breadcrumbs.styled'
+import { Root, ItemWrapper, Item } from './Breadcrumbs.styled'
 
 export type BreadcrumbsProps = {
     divider?: string
@@ -18,10 +18,12 @@ export const Breadcrumbs: Component<BreadcrumbsProps> = ({ divider = '', items =
         <Root {...props}>
             {items.map(({ text, _id, ...item }, index) => (
                 <React.Fragment key={_id || index}>
-                    <Item {...item}>
-                        {prefix}
-                        {text}
-                    </Item>
+                    <ItemWrapper>
+                        <Item {...item}>
+                            {prefix}
+                            {text}
+                        </Item>
+                    </ItemWrapper>
                     {index < items.length - 1 && divider}
                 </React.Fragment>
             ))}

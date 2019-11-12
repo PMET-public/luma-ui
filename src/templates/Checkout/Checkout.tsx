@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Component, Props } from '../../lib'
+import { Component } from '../../lib'
 import { Root, Wrapper, Steps, Title, CartSummaryWrapper } from './Checkout.styled'
 
 import CartList, { CartListProps } from '../../components/CartList'
@@ -7,24 +7,27 @@ import CartSummary, { CartSummaryProps } from '../../components/CartSummary'
 import ContactInfoForm, { ContactInfoFormProps } from '../../components/Checkout/ContactInfoForm'
 import ShippingMethodForm, { ShippingMethodFormProps } from '../../components/Checkout/ShippingMethodForm'
 import PaymentMethodForm, { PaymentMethodFormProps } from '../../components/Checkout/PaymentMethodForm'
-import PageTitle from '../../components/PageTitle'
+import PlaceOrderForm, { PlaceOrderFormProps } from '../../components/Checkout/PlaceOrderForm'
+import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 
-export type CartProps = {
-    step?: 1 | 2 | 3
-    title: Props<{ text: string }>
+export type CheckoutProps = {
+    step: 1 | 2 | 3 | 4
+    breadcrumbs: BreadcrumbsProps
     contactInfo: ContactInfoFormProps
     shippingMethod: ShippingMethodFormProps
     paymentMethod: PaymentMethodFormProps
+    placeOrder: PlaceOrderFormProps
     list: CartListProps
     summary: CartSummaryProps
 }
 
-export const Checkout: Component<CartProps> = ({
+export const Checkout: Component<CheckoutProps> = ({
     step = 1,
-    title,
+    breadcrumbs,
     contactInfo,
     shippingMethod,
     paymentMethod,
+    placeOrder,
     list,
     summary,
     ...props
@@ -32,6 +35,7 @@ export const Checkout: Component<CartProps> = ({
     const contactInfoElem = useRef<HTMLDivElement>(null)
     const shippingMethodElem = useRef<HTMLDivElement>(null)
     const paymentMethodElem = useRef<HTMLDivElement>(null)
+    const placeOrderElem = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         switch (step) {
@@ -53,6 +57,13 @@ export const Checkout: Component<CartProps> = ({
                     behavior: 'smooth',
                 })
                 break
+            case 4:
+                if (!placeOrderElem.current) return
+                window.scrollTo({
+                    top: placeOrderElem.current.offsetTop - placeOrderElem.current.offsetHeight,
+                    behavior: 'smooth',
+                })
+                break
             default:
                 break
         }
@@ -61,7 +72,7 @@ export const Checkout: Component<CartProps> = ({
     return (
         <Root {...props}>
             <Wrapper>
-                <PageTitle>{title.text}</PageTitle>
+                <Breadcrumbs {...breadcrumbs} />
                 <Steps>
                     <div ref={contactInfoElem}>
                         <Title>Contact Information</Title>
@@ -78,6 +89,12 @@ export const Checkout: Component<CartProps> = ({
                         <div ref={paymentMethodElem}>
                             <Title>Payment Method</Title>
                             <PaymentMethodForm {...paymentMethod} />
+                        </div>
+                    )}
+
+                    {step > 3 && (
+                        <div ref={placeOrderElem}>
+                            <PlaceOrderForm {...placeOrder} />
                         </div>
                     )}
                 </Steps>

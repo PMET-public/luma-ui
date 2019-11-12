@@ -1,24 +1,24 @@
 import React from 'react'
-import { Component, Props } from '../../lib'
+import { Component } from '../../lib'
 import { Root, SummaryWrapper, CartSummaryWrapper, ProductList, Button, StickyButtonWrapper } from './Cart.styled'
 
 import CartList, { CartListProps } from '../../components/CartList'
 import CartSummary, { CartSummaryProps } from '../../components/CartSummary'
 import ButtonComponent, { ButtonProps } from '../../components/Button'
-import PageTitle from '../../components/PageTitle'
+import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 
 export type CartProps = {
-    title: Props<{ text: string }>
+    breadcrumbs: BreadcrumbsProps
     list: CartListProps
     summary: CartSummaryProps
     button: ButtonProps
 }
 
-export const Cart: Component<CartProps> = ({ title, list, summary, button, ...props }) => {
+export const Cart: Component<CartProps> = ({ breadcrumbs, list, summary, button, ...props }) => {
     return (
         <Root {...props}>
             <ProductList>
-                <PageTitle {...title}>{title.text}</PageTitle>
+                <Breadcrumbs {...breadcrumbs} />
                 <CartList {...list} />
             </ProductList>
 

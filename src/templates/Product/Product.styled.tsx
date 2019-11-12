@@ -30,6 +30,9 @@ export const Wrapper = styled.div`
 `
 
 export const Images = styled.div`
+    display: grid;
+    align-items: center;
+
     @media ${props => props.theme.breakpoints.smallOnly} {
         position: sticky;
         top: 6rem;
@@ -123,20 +126,6 @@ export const Header = styled.header`
     display: grid;
     grid-gap: 1.3rem;
     grid-auto-flow: row;
-
-    ${BreadcrumbsRoot} {
-        font-size: 1.2rem;
-        color: ${props => props.theme.colors.onSurface75};
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    ${BreadcrumbsItem} {
-        &:not(:last-of-type) {
-            margin-right: 1.6rem;
-        }
-        line-height: 1.5;
-    }
 `
 
 export const Field = styled.div`

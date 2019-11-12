@@ -5,9 +5,9 @@ import { DetailsWrapper as CartListDetailsWrapper } from '../../components/CartL
 export const Root = styled.div`
     display: grid;
     grid-template-rows: 1fr auto auto;
-    height: 100%;
-    grid-row-gap: 4rem;
+    grid-row-gap: 2rem;
     grid-column-gap: 2rem;
+    height: 100%;
 
     @media ${props => props.theme.breakpoints.large} {
         grid-template-rows: 1fr;
@@ -17,6 +17,10 @@ export const Root = styled.div`
 
 export const ProductList = styled.div`
     padding: 0 ${props => props.theme.layout.margin};
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-gap: 2rem;
+    padding-top: 2rem;
 
     @media ${props => props.theme.breakpoints.medium} {
         ${CartListDetailsWrapper} {
@@ -28,13 +32,22 @@ export const ProductList = styled.div`
             grid-template-columns: 1fr auto auto;
         }
     }
+
+    @media ${props => props.theme.breakpoints.large} {
+        padding-top: 4rem;
+        grid-gap: 4rem;
+    }
 `
 
 export const SummaryWrapper = styled.div`
     display: grid;
     grid-gap: 2rem;
     grid-auto-rows: max-content;
-    padding: 0 ${props => props.theme.layout.margin};
+
+    @media ${props => props.theme.breakpoints.untilMedium} {
+        padding: 2rem ${props => props.theme.layout.margin};
+        border-top: 0.1rem solid ${props => props.theme.colors.onSurface10};
+    }
 
     @media ${props => props.theme.breakpoints.large} {
         background-color: ${props => props.theme.colors.graySurface};
@@ -53,7 +66,7 @@ export const CartSummaryWrapper = styled.div`
     @media ${props => props.theme.breakpoints.large} {
         position: sticky;
         bottom: 0;
-        padding: 3rem 0;
+        padding: 4rem 0;
     }
 `
 

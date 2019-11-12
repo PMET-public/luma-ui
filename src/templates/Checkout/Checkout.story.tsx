@@ -9,8 +9,12 @@ import { action } from '@storybook/addon-actions'
 storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
     <App {...AppMockData}>
         <Checkout
-            title={{ text: 'Checkout' }}
-            step={select('step', { 'contactInfo (1)': 1, 'shippingMethod (2)': 2, 'paymentMethod (3)': 3 }, 1)}
+            breadcrumbs={{ prefix: '#', items: [{ text: 'Cart' }, { text: 'Checkout' }] }}
+            step={select(
+                'step',
+                { 'contactInfo (1)': 1, 'shippingMethod (2)': 2, 'paymentMethod (3)': 3, 'placeOrder (4)': 4 },
+                1
+            )}
             contactInfo={{
                 fields: {
                     email: {
@@ -85,9 +89,22 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                     preselectVaultedPaymentMethod: true,
                 },
                 submitButton: {
-                    text: 'Place Order',
+                    text: 'Save Payment Method',
                 },
                 onSubmit: action('onSubmit'),
+            }}
+            placeOrder={{
+                submitButton: {
+                    text: 'Place Order',
+                },
+                onSubmit: e =>
+                    new Promise(resolve => {
+                        // fake loader
+                        setTimeout(() => {
+                            action('onSubmit')(e)
+                            resolve()
+                        }, 3000)
+                    }),
             }}
             list={{
                 items: new Array(number('quantity', 2)).fill({

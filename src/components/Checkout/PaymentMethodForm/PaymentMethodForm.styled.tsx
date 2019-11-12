@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-export const Root = styled.div`
-    min-height: 40rem;
+import CardIconSvg from 'remixicon/icons/Finance/bank-card-fill.svg'
 
+export const Root = styled.div`
     & .braintree-sheet {
         background-color: ${props => props.theme.colors.surface};
         color: ${props => props.theme.colors.onSurface};
@@ -72,3 +72,22 @@ export const Root = styled.div`
         display: none;
     }
 `
+
+export const Card = styled.div`
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    grid-gap: 1rem;
+    align-items: center;
+`
+
+export const CardIcon = styled(CardIconSvg)`
+    width: 3rem;
+    fill: currentColor;
+`
+
+export const CardType = styled.span`
+    font-weight: ${props => props.theme.typography.body.weight.semi};
+`
+
+export const CardNumber = styled.span``

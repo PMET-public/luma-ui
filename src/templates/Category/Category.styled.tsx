@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { Wrapper as ContainerWrapper } from '../../components/Container'
-import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs'
 import { Root as FiltersRoot } from '../../components/Filters'
 import { Wrapper as PillsWrapper } from '../../components/Pills'
 
@@ -41,12 +40,6 @@ export const Heading = styled.div`
     grid-auto-flow: row;
     grid-auto-rows: max-content;
     grid-gap: 0.3rem;
-
-    ${BreadcrumbsRoot} {
-        color: ${props => props.theme.colors.onSurface75};
-        font-size: 1.2rem;
-        line-height: inherit;
-    }
 
     @media ${props => props.theme.breakpoints.medium} {
         grid-auto-columns: max-content;
