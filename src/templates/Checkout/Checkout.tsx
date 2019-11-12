@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { Component } from '../../lib'
-import { Root, Wrapper, Steps, Title, CartSummaryWrapper } from './Checkout.styled'
+import { Root, Wrapper, Steps, Title, CartSummaryWrapper, DoneIcon, PendingIcon } from './Checkout.styled'
 
 import CartList, { CartListProps } from '../../components/CartList'
 import CartSummary, { CartSummaryProps } from '../../components/CartSummary'
@@ -13,10 +13,10 @@ import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 export type CheckoutProps = {
     step: 1 | 2 | 3 | 4
     breadcrumbs: BreadcrumbsProps
-    contactInfo: ContactInfoFormProps
-    shippingMethod: ShippingMethodFormProps
-    paymentMethod: PaymentMethodFormProps
-    placeOrder: PlaceOrderFormProps
+    contactInfo: ContactInfoFormProps & { title: string }
+    shippingMethod: ShippingMethodFormProps & { title: string }
+    paymentMethod: PaymentMethodFormProps & { title: string }
+    placeOrder: PlaceOrderFormProps & { title: string }
     list: CartListProps
     summary: CartSummaryProps
 }
@@ -75,28 +75,39 @@ export const Checkout: Component<CheckoutProps> = ({
                 <Breadcrumbs {...breadcrumbs} />
                 <Steps>
                     <div ref={contactInfoElem}>
-                        <Title>Contact Information</Title>
+                        <Title $active>
+                            <DoneIcon />
+                            <PendingIcon />
+                            {contactInfo.title}
+                        </Title>
                         <ContactInfoForm {...contactInfo} />
                     </div>
 
-                    {step > 1 && (
-                        <div ref={shippingMethodElem}>
-                            <Title>Shipping Method</Title>
-                            <ShippingMethodForm {...shippingMethod} />
-                        </div>
-                    )}
-                    {step > 2 && (
-                        <div ref={paymentMethodElem}>
-                            <Title>Payment Method</Title>
-                            <PaymentMethodForm {...paymentMethod} />
-                        </div>
-                    )}
+                    <div ref={shippingMethodElem}>
+                        <Title $active={step > 1}>
+                            <DoneIcon />
+                            <PendingIcon />
+                            {shippingMethod.title}
+                        </Title>
+                        {step > 1 && <ShippingMethodForm {...shippingMethod} />}
+                    </div>
+                    <div ref={paymentMethodElem}>
+                        <Title $active={step > 2}>
+                            <DoneIcon />
+                            <PendingIcon />
+                            {paymentMethod.title}
+                        </Title>
+                        {step > 2 && <PaymentMethodForm {...paymentMethod} />}
+                    </div>
 
-                    {step > 3 && (
-                        <div ref={placeOrderElem}>
-                            <PlaceOrderForm {...placeOrder} />
-                        </div>
-                    )}
+                    <div ref={placeOrderElem}>
+                        <Title $active={step > 3}>
+                            <DoneIcon />
+                            <PendingIcon />
+                            Finish
+                        </Title>
+                        {step > 3 && <PlaceOrderForm {...placeOrder} />}
+                    </div>
                 </Steps>
             </Wrapper>
 

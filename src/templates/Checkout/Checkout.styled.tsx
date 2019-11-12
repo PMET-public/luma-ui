@@ -4,6 +4,9 @@ import { Root as CartSummaryRoot } from '../../components/CartSummary'
 
 import { Root as CartListRoot, Thumbnail as CartItemThumb } from '../../components/CartList'
 
+import PendingIconSvg from 'remixicon/icons/System/checkbox-blank-circle-fill.svg'
+import DoneIconSvg from 'remixicon/icons/Design/edit-circle-fill.svg'
+
 export const Root = styled.div`
     display: grid;
     grid-template-rows: 1fr auto;
@@ -78,9 +81,46 @@ export const Steps = styled.div`
     grid-gap: 8rem;
 `
 
-export const Title = styled.div`
+export const PendingIcon = styled(PendingIconSvg)``
+export const DoneIcon = styled(DoneIconSvg)``
+
+export const Title = styled.div<{ $active: boolean }>`
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight.bold};
     font-size: ${props => props.theme.typography.heading.size.secondary};
+    color: ${props => props.theme.colors.onSurface};
+    opacity: 0.6;
     margin-bottom: 2rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    grid-gap: 1rem;
+    align-items: center;
+
+    ${PendingIcon} {
+        margin-top: 0.4rem;
+        fill: currentColor;
+        width: 0.75em;
+        opacity: 0.35;
+    }
+
+    ${DoneIcon} {
+        margin-top: 0.2rem;
+        width: 1em;
+        display: none;
+        fill: currentColor;
+    }
+
+    ${props =>
+        props.$active &&
+        `
+            opacity: 1;
+            ${PendingIcon} {
+                display: none
+            }
+
+            ${DoneIcon} {
+                display: block;
+            }
+        `}
 `
