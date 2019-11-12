@@ -8,6 +8,7 @@ import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
 export const Root = styled.div`
     display: grid;
+    grid-auto-rows: max-content;
 `
 
 export const TopBar = styled.div`
@@ -141,10 +142,7 @@ export const FiltersScreen = styled.div`
 `
 
 export const NoResult = styled(ContainerWrapper)`
-    color: ${props => props.theme.colors.primary75};
+    height: 70%;
+    width: 100%;
     font-size: 1.4rem;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 `

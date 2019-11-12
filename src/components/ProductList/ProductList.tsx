@@ -3,10 +3,10 @@ import { Component } from '../../lib'
 import { Root, List, ItemWrapper } from './ProductList.styled'
 
 import ProductItem, { ProductItemProps } from '../ProductItem'
-import Loader, { LoaderProps } from '../Loader'
+// import Loader, { LoaderProps } from '../Loader'
 
 export type ProductListProps = {
-    loading?: LoaderProps
+    loading?: number
     items?: Array<
         {
             _id?: string | number
@@ -23,8 +23,15 @@ export const ProductList: Component<ProductListProps> = ({ loading, items = [], 
                         <ProductItem {...item} />
                     </ItemWrapper>
                 ))}
+
+                {loading
+                    ? new Array(loading).fill(null).map((_, index) => (
+                          <ItemWrapper key={index}>
+                              <ProductItem.Skeleton />
+                          </ItemWrapper>
+                      ))
+                    : null}
             </List>
-            {loading && <Loader {...loading} />}
         </Root>
     )
 }

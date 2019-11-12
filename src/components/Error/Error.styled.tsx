@@ -9,7 +9,6 @@ export const Root = styled.div`
     display: grid;
     height: 100%;
     justify-content: center;
-    max-width: ${props => props.theme.layout.containedWidth};
     padding: 0 ${props => props.theme.layout.margin};
     text-align: center;
     width: 100%;
