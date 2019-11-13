@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 export const Root = styled.div`
     width: 100%;
+    display: flex;
+    flex-direction: column;
 
     & h1,
     & h2,
@@ -11,6 +13,9 @@ export const Root = styled.div`
     & h6 & p {
         &:not(:first-child) {
             margin-top: 1rem;
+        }
+        &:not(:last-child) {
+            margin-bottom: 1rem;
         }
     }
 
@@ -26,7 +31,7 @@ export const Root = styled.div`
 
     & h1 {
         font-size: 4rem;
-        font-weight: ${props => props.theme.typography.heading.weight.normal};
+        font-weight: ${props => props.theme.typography.heading.weight.bolder};
     }
 
     & h2 {

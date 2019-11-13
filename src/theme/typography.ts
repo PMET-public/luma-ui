@@ -4,7 +4,7 @@ export const typography = {
         style: 'normal',
         weight: {
             normal: 400,
-            semi: 600,
+            semi: 400,
             bold: 700,
         },
     },
@@ -16,6 +16,7 @@ export const typography = {
             normal: 400,
             semi: 500,
             bold: 600,
+            bolder: 900,
         },
         size: {
             primary: '2.6rem',

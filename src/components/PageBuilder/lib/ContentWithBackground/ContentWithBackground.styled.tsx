@@ -1,10 +1,22 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $backgroundColor?: string }>`
+export const Root = styled.div<{ $backgroundColor?: string; $height?: string }>`
     position: relative;
     width: 100%;
-    height: 100%;
     background-color: ${props => props.$backgroundColor || 'transparent'};
+    height: 100%;
+
+    ${props =>
+        props.$height &&
+        `
+            min-height: unset !important;
+            max-height: unset !important;
+            height: calc(${props.$height} - 14rem);
+
+            @media ${props.theme.breakpoints.medium} {
+                height: calc(${props.$height} - 6rem);
+            }
+        `}
 `
 
 export const BgImage = styled.div<{ $src: string; $loaded?: boolean; $error?: boolean }>`

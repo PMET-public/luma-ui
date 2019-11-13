@@ -4,13 +4,16 @@ import { Root, BgImage, Content } from '../../lib/ContentWithBackground/ContentW
 
 import { Image, useImage } from '../../../../hooks/useImage'
 import { ThemeContext } from 'styled-components'
+import { useResize } from '../../../../hooks/useResize'
 
 export type ContentWithBackgroundProps = Props<{
     backgroundImages?: Image
+    fullScxreen?: boolean
 }>
 
 export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
     backgroundImages,
+    fullScreen,
     children,
     style,
     ...props
@@ -18,6 +21,8 @@ export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
     const bgImage = useImage(backgroundImages)
 
     const { colors } = useContext(ThemeContext)
+
+    const { vHeight } = useResize()
 
     const styles: { [key: string]: any } = useMemo(() => {
         if (!style) return {}
@@ -38,6 +43,7 @@ export const ContentWithBackground: Component<ContentWithBackgroundProps> = ({
 
     return (
         <Root
+            $height={fullScreen ? vHeight : undefined}
             $backgroundColor={styles.background.backgroundColor || bgImage.src ? colors.onSurface5 : 'transparent'}
             style={styles.wrapper}
             {...props}

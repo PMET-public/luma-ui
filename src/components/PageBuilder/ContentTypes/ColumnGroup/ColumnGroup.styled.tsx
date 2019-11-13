@@ -5,7 +5,7 @@ export const Root = styled.div`
     flex-direction: row;
     width: 100%;
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    @media ${props => props.theme.breakpoints.untilMedium} {
         flex-direction: column;
     }
 `

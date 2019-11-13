@@ -16,19 +16,15 @@ export const Row: Component<RowProps> = ({
     children,
     // enableParallax,
     // parallaxSpeed = 1,
-    style: _style,
+    style,
     ...props
 }) => {
     const contained = appearance === 'contained' || appearance === 'full-width'
     const fullScreen = appearance === 'full-screen'
 
-    const style = { ..._style }
-
-    if (fullScreen) _style.minHeight = `calc(100vh - 5rem)`
-
     return (
         <Root {...props}>
-            <ContentWithBackground {...background} style={style}>
+            <ContentWithBackground fullScreen={fullScreen} {...background} style={style}>
                 <Wrapper $contained={contained} $margin={contained}>
                     {children}
                 </Wrapper>

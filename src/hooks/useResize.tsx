@@ -23,8 +23,8 @@ export const useResize = (fn?: (props?: any) => any): UseResize => {
         setResize({
             height,
             width,
-            vHeight: `calc(${height * 0.01}px * 100)`,
-            vWidth: `calc(${width * 0.01}px * 100)`,
+            vHeight: `${height}px`,
+            vWidth: `${width}px`,
         })
     }, [fn])
 

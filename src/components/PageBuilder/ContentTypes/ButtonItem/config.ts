@@ -7,14 +7,14 @@ const component = lazy(() => import('./'))
 
 const props = (elem: HTMLElement) => {
     const buttonElem = elem.childNodes[0] as HTMLElement
+
     const type = buttonElem.classList.contains('pagebuilder-button-link') ? 'link' : 'button'
-    const secondary = buttonElem.classList.contains('pagebuilder-button-secondary') ? true : false
+    const color = buttonElem.classList.contains('pagebuilder-button-secondary') ? 'secondary' : 'primary'
 
     const style = getStyleAsObject(elem.style)
 
     const button: ButtonProps = {
         text: elem.textContent || '',
-        secondary,
     }
 
     const link: LinkProps | undefined =
@@ -31,6 +31,7 @@ const props = (elem: HTMLElement) => {
         link,
         style,
         type,
+        color,
     }
 }
 
