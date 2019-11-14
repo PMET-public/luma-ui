@@ -41,11 +41,15 @@ export const Root = styled.div`
         }
     }
 
-    & *:focus {
+    .focus-visible:focus {
         outline-style: solid;
-        outline-color: currentColor;
+        outline-color: ${props => props.theme.colors.accent};
         outline-width: 0.1rem;
         outline-offset: 0.3rem;
+    }
+
+    .js-focus-visible :focus:not(.focus-visible) {
+        outline: 0;
     }
 
     code {

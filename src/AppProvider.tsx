@@ -14,6 +14,7 @@ import { GlobalStyles, Root } from './theme/GlobalStyles'
 import * as colorSchemes from './theme/colors'
 import { typography } from './theme/typography'
 import { breakpoints, layout } from './theme/layout'
+import 'focus-visible'
 
 export type AppProviderProps = {}
 

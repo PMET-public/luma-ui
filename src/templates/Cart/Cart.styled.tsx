@@ -77,7 +77,6 @@ export const Button = styled.div`
 `
 
 export const StickyButtonWrapper = styled.div`
-    backdrop-filter: blur(10px);
     background-color: ${props => props.theme.colors.surface90};
     border-top: 0.1rem solid ${props => props.theme.colors.onSurface10};
     bottom: 5.2rem; /* Include Tab  */

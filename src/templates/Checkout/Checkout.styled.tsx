@@ -68,7 +68,6 @@ export const CartSummaryWrapper = styled.div`
 
         ${CartSummaryRoot} {
             background-color: ${props => props.theme.colors.graySurface};
-            backdrop-filter: blur(30px);
             position: sticky;
             bottom: 0;
         }

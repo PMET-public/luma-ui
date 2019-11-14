@@ -45,6 +45,7 @@ export const Menu = styled.div`
     -webkit-overflow-scrolling: touch;
     grid-area: navigation;
     overflow-x: auto;
+    padding: 0.5rem 0;
 
     &::-webkit-scrollbar {
         display: none;

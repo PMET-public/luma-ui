@@ -11,13 +11,7 @@ export const Root = styled.div`
     grid-auto-rows: max-content;
 `
 
-export const TopBar = styled.div`
-    background-color: ${props => props.theme.colors.surface90};
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 1;
-`
+export const TopBar = styled.div``
 
 export const TopBarWrapper = styled(ContainerWrapper)`
     align-items: center;

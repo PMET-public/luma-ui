@@ -2,7 +2,7 @@
  * ☢️ Experimental
  */
 
-import React, { Suspense, useMemo } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, RichText } from './PageBuilder.styled'
 import { ErrorBoundary } from '../../lib'
@@ -40,18 +40,19 @@ const PageBuilderFactory: Component<PageBuilderFactoryProps> = ({ component, ite
 }
 
 export const PageBuilder: Component<PageBuilderProps> = ({ html, ...props }) => {
-    const items: any[] = useMemo(() => (isPageBuilderHtml(html) ? htmlToProps(html).items : null), [html])
+    const [items, setItems] = useState<Array<any> | null>(null)
 
-    return useMemo(
-        () => (
-            <Root {...props}>
-                {items ? (
-                    items.map((contentType, index) => <PageBuilderFactory key={index} {...contentType} />)
-                ) : (
-                    <RichText dangerouslySetInnerHTML={{ __html: html }} />
-                )}
-            </Root>
-        ),
-        [items]
+    useEffect(() => {
+        setItems(isPageBuilderHtml(html) ? htmlToProps(html).items : null)
+    }, [html])
+
+    return (
+        <Root {...props}>
+            {items ? (
+                items.map((contentType, index) => <PageBuilderFactory key={index} {...contentType} />)
+            ) : (
+                <RichText dangerouslySetInnerHTML={{ __html: html }} />
+            )}
+        </Root>
     )
 }
