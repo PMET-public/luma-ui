@@ -77,7 +77,7 @@ export const Button = styled.div`
 `
 
 export const StickyButtonWrapper = styled.div`
-    background-color: ${props => props.theme.colors.surface90};
+    background-color: ${props => props.theme.colors.surface};
     border-top: 0.1rem solid ${props => props.theme.colors.onSurface10};
     bottom: 5.2rem; /* Include Tab  */
     display: grid;
