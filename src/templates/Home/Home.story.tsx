@@ -3,7 +3,6 @@ import Home from './'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
-import { PageBuilderBannerMock, PageBuilderRowContainedMock } from '../../components/PageBuilder/PageBuilder.story'
 
 storiesOf('📑 Templates/Home', module).add(
     'Default',
@@ -61,9 +60,6 @@ storiesOf('📑 Templates/Home', module).add(
                             text: 'All Time',
                         },
                     ],
-                }}
-                pageBuilder={{
-                    html: PageBuilderRowContainedMock(PageBuilderBannerMock()),
                 }}
             />
         </App>

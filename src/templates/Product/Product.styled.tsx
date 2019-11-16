@@ -2,8 +2,6 @@ import styled from 'styled-components'
 
 import { Root as ImageRoot, ImageTag } from '../../components/Image'
 import { Root as CarouselRoot, Item as CarouselItem } from '../../components/Carousel'
-import { Root as BreadcrumbsRoot, Item as BreadcrumbsItem } from '../../components/Breadcrumbs'
-import { RichText } from '../../components/PageBuilder'
 
 export const Root = styled.div`
     display: grid;
@@ -177,9 +175,7 @@ export const ShortDescription = styled.div`
 `
 
 export const Description = styled.div`
-    ${RichText} {
-        font-size: 1.4rem;
-        line-height: 1.6;
-        color: ${props => props.theme.colors.onSurface90};
-    }
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: ${props => props.theme.colors.onSurface90};
 `

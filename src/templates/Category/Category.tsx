@@ -19,14 +19,12 @@ import {
 
 import { useResize } from '../../hooks/useResize'
 
-// import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import ProductList, { ProductListProps } from '../../components/ProductList'
 import Filters, { FiltersProps } from '../../components/Filters'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import Pills, { PillsProps } from '../../components/Pills'
 import Button, { ButtonProps } from '../../components/Button'
 import SearchBar, { SearchBarProps } from '../../components/SearchBar'
-import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 
 export type CategoryProps = {
     display?: 'PRODUCTS' | 'PAGE' | 'PRODUCTS_AND_PAGE'
@@ -39,7 +37,6 @@ export type CategoryProps = {
     }
     categories?: PillsProps
     breadcrumbs?: BreadcrumbsProps
-    cmsBlock?: PageBuilderProps
     filters?: {
         label: string
         open?: boolean
@@ -55,7 +52,6 @@ export const Category: Component<CategoryProps> = ({
     categories,
     children,
     filters,
-    cmsBlock,
     products,
     search,
     title,
@@ -70,7 +66,7 @@ export const Category: Component<CategoryProps> = ({
     return (
         <>
             <Root {...props}>
-                {(display === 'PRODUCTS_AND_PAGE' || display === 'PAGE') && cmsBlock && <PageBuilder {...cmsBlock} />}
+                {(display === 'PRODUCTS_AND_PAGE' || display === 'PAGE') && <>{children}</>}
 
                 {(display === 'PRODUCTS_AND_PAGE' || display === 'PRODUCTS') && (
                     <>

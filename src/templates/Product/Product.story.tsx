@@ -6,7 +6,6 @@ import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
 import { files } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-// import { PageBuilderRowFullBleedMock, PageBuilderTextMock } from '../../components/PageBuilder/PageBuilder.story'
 
 const ProductMockData = (): ProductProps => ({
     addToCartButton: { text: 'Add to Cart', type: 'submit' },
@@ -119,10 +118,8 @@ const ProductMockData = (): ProductProps => ({
         },
     ],
     shortDescription: '',
-    description: {
-        html:
-            '<p>With abutted seams and moisture wicking capacity, the Maya Tunic lets you work out in complete comfort.</p>\n<p>&bull; Mint green heather tunic-style tank. <br />&bull; Wrapped back with cut out detail.<br />&bull; Drawcord detail at end.<br />&bull; Abutted seams.</p>',
-    },
+    description:
+        '<p>With abutted seams and moisture wicking capacity, the Maya Tunic lets you work out in complete comfort.</p>\n<p>&bull; Mint green heather tunic-style tank. <br />&bull; Wrapped back with cut out detail.<br />&bull; Drawcord detail at end.<br />&bull; Abutted seams.</p>',
 })
 
 storiesOf('📑 Templates/Product', module).add(

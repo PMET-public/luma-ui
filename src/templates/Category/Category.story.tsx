@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { text, number, files } from '@storybook/addon-knobs'
-// import { PageBuilderRowFullBleedMock, PageBuilderBannerMock } from '../../components/PageBuilder/PageBuilder.story'
 
 storiesOf('📑 Templates/Category', module)
     .add(
@@ -383,9 +382,6 @@ storiesOf('📑 Templates/Category', module)
                         ],
                     })),
                 },
-                // cmsBlock: {
-                //     html: PageBuilderRowFullBleedMock(PageBuilderBannerMock()),
-                // },
             }
 
             return (

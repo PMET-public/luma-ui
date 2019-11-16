@@ -1,6 +1,5 @@
-import React, { useMemo, useRef, useCallback, useEffect } from 'react'
+import React, { useRef, useCallback, useEffect } from 'react'
 import { Component, Props } from '../../lib'
-import { isPageBuilderHtml } from '../../components/PageBuilder/lib/utils'
 import {
     Root,
     Wrapper,
@@ -25,7 +24,6 @@ import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
-import PageBuilder, { PageBuilderProps } from '../../components/PageBuilder'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
 import TextSwatches, { TextSwatchesProps } from '../../components/Form/TextSwatches'
 import ThumbSwatches, { ThumbSwatchesProps } from '../../components/Form/ThumbSwatches'
@@ -34,7 +32,7 @@ export type ProductProps = {
     categories?: BreadcrumbsProps
     addToCartButton: ButtonProps
     shortDescription?: string
-    description?: PageBuilderProps
+    description?: string
     gallery: ImageProps[]
     price: PriceProps
 
@@ -67,8 +65,9 @@ export type ProductProps = {
 }
 
 export const Product: Component<ProductProps> = ({
-    description,
+    children,
     shortDescription,
+    description,
     categories,
     addToCartButton,
     gallery,
@@ -83,10 +82,6 @@ export const Product: Component<ProductProps> = ({
     const { register, handleSubmit, errors, setError, getValues } = useForm()
 
     const infoElemRef = useRef<HTMLDivElement>(null)
-
-    const descriptionAsPageBuilderContent = useMemo(() => {
-        return !!description && isPageBuilderHtml(description.html)
-    }, [description && description.html])
 
     const handleOnValueChanges = useCallback(() => {
         const values = getValues({ nest: true })
@@ -169,16 +164,11 @@ export const Product: Component<ProductProps> = ({
 
                             <input type="hidden" name="quantity" value={1} ref={register({ required: true })} />
 
-                            {description && !descriptionAsPageBuilderContent && (
-                                <Description>
-                                    <PageBuilder {...description} />
-                                </Description>
-                            )}
+                            {description && <Description dangerouslySetInnerHTML={{ __html: description }} />}
                         </Info>
                     </InfoInnerWrapper>
                 </InfoWrapper>
             </Wrapper>
-            {description && descriptionAsPageBuilderContent && <PageBuilder {...description} />}
         </Root>
     )
 }

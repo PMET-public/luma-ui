@@ -63,16 +63,3 @@ export const toPascalCase = (string: string) => {
     const camelCased = toCamelCase(string)
     return camelCased.charAt(0).toUpperCase() + camelCased.slice(1)
 }
-
-/**
- * Styles as CSS Object
- */
-export const getStyleAsObject = (style: CSSStyleDeclaration) => {
-    const output = {}
-    for (let i = 0; i < style.length; i++) {
-        const name = style[i]
-        const value = style.getPropertyValue(name)
-        output[toCamelCase(name)] = value
-    }
-    return output
-}

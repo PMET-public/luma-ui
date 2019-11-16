@@ -17,10 +17,8 @@ import {
 import PriceComponent, { PriceProps } from '../Price'
 import Image, { ImageProps } from '../Image'
 import QuantityComponent, { QuantityProps } from '../Quantity'
-import PageBuilder, { PageBuilderProps } from '../PageBuilder'
 
 export type CartListProps = {
-    cmsBlock?: PageBuilderProps
     items: Array<{
         _id?: string | number
         title: Props<{
@@ -38,7 +36,7 @@ export type CartListProps = {
     }>
 }
 
-export const CartList: Component<CartListProps> = ({ items, cmsBlock, ...props }) => {
+export const CartList: Component<CartListProps> = ({ items, children, ...props }) => {
     return items ? (
         <Root {...props}>
             {items.map(({ _id, title, sku, thumbnail, price, quantity, options }, index) => (
@@ -68,7 +66,7 @@ export const CartList: Component<CartListProps> = ({ items, cmsBlock, ...props }
                 </Product>
             ))}
 
-            {cmsBlock && <PageBuilder {...cmsBlock} />}
+            {children}
         </Root>
     ) : null
 }
