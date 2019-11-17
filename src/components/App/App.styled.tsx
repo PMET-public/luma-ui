@@ -8,6 +8,8 @@ export const Root = styled.div<{ $mainHeight: string }>`
     grid-auto-columns: minmax(0, 1fr);
     grid-template-rows: auto minmax(${props => props.$mainHeight}, 1fr) auto auto;
     width: 100%;
+    background-color: ${props => props.theme.colors.surface};
+    color: ${props => props.theme.colors.onSurface};
 `
 
 export const HeaderContainer = styled(ContainerWrapper)`

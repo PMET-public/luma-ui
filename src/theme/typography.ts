@@ -1,6 +1,6 @@
 export const typography = {
     body: {
-        family: 'source-sans-pro, sans-serif',
+        family: 'source-sans-pro, Helvetica, sans-serif',
         style: 'normal',
         weight: {
             normal: 400,
@@ -10,7 +10,7 @@ export const typography = {
     },
 
     heading: {
-        family: 'rucksack, sans-serif',
+        family: 'rucksack, Impact, sans-serif',
         style: 'normal',
         weight: {
             normal: 400,
