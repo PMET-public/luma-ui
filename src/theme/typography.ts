@@ -10,7 +10,7 @@ export const typography = {
     },
 
     heading: {
-        family: 'rucksack, Impact, sans-serif',
+        family: 'rucksack, Helvetica, sans-serif',
         style: 'normal',
         weight: {
             normal: 400,

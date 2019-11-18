@@ -8,6 +8,8 @@ export const GlobalStyles = createGlobalStyle`
     body {
         font-size: 16px; /* px fallback */
         font-size: 1.6rem; /* default font-size for document */
+        background-color: ${props => props.theme.colors.surface};
+        color: ${props => props.theme.colors.onSurface};
     }
 `
 
@@ -39,6 +41,10 @@ export const Root = styled.div`
         &[disabled] {
             color: inherit;
         }
+    }
+
+    *:focus {
+        outline: 0;
     }
 
     .focus-visible:focus {

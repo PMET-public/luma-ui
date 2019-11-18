@@ -9,10 +9,15 @@ export const Root = styled.div`
     border-radius: 1rem;
     color: ${props => props.theme.colors.onSurface};
     width: 100%;
+    border: 0.1rem solid transparent;
 
     &:hover,
     &:focus-within {
         --opacity: 1;
+    }
+
+    &:focus-within {
+        border-color: ${props => props.theme.colors.accent50};
     }
 `
 
@@ -43,6 +48,9 @@ export const Field = styled.input`
     font-size: inherit;
     font-weight: 600;
     width: 4rem;
+    &:focus {
+        outline: none !important;
+    }
 `
 
 export const Count = styled.span`

@@ -51,7 +51,7 @@ export const Input = styled.input<{ $error?: boolean }>`
     }
 
     &:focus {
-        outline: none;
+        outline: none !important;
         border-bottom-color: ${props => props.theme.colors.accent50};
         background-color: ${props => props.theme.colors.accent5};
     }
