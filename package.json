@@ -1,9 +1,9 @@
 {
-  "name": "@PMET-public/luma-ui",
-  "version": "1.0.0",
+  "name": "luma-ui",
+  "version": "1.0.0-beta.1",
   "description": "Luma React UI LIbrary",
   "repository": "git@github.com:PMET-public/luma-ui.git",
-  "author": "Carlos A. Cabrera <cacabrer@adobe.com>",
+  "author": "Carlos A. Cabrera @fnhhipster",
   "license": "MIT",
   "engines": {
     "node": ">=10.15.2",
@@ -12,9 +12,6 @@
   "files": [
     "dist/"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "scripts": {
     "prepare": "yarn build",
     "prebuild": "rimraf dist",
