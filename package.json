@@ -12,6 +12,9 @@
   "files": [
     "dist/"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "prepare": "yarn build",
     "prebuild": "rimraf dist",

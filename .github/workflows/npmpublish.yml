@@ -16,7 +16,7 @@ jobs:
                   scope: '@PMET-public/luma-ui'
             - run: npm install -g yarn # Extra Step
             - run: yarn install
-            - run: echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
+            - run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
             - run: yarn publish
             - run: yarn storybook:deploy
               env:
