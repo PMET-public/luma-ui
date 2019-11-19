@@ -13,16 +13,18 @@
     "dist/"
   ],
   "scripts": {
+    "prepare": "yarn build",
+    "prebuild": "rimraf dist",
+    "build": "NODE_ENV=production rollup -c",
     "predev": "rimraf dist",
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
     "rollup:watch": "rollup -c -w",
-    "prebuild": "rimraf dist",
-    "build": "NODE_ENV=production rollup -c",
     "generate": "./bin/generate.js",
     "storybook:watch": "start-storybook -p 5001 --quiet --ci -s ./public",
     "storybook:build": "build-storybook -s ./public",
     "storybook:deploy": "storybook-to-ghpages",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "test": "echo \"No Tests Found 🧐\" "
   },
   "peerDependencies": {
     "react": "^16.11.0",
