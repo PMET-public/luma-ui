@@ -1,5 +1,5 @@
 {
-  "name": "luma-ui",
+  "name": "@magento/luma-ui",
   "version": "1.0.0",
   "description": "Luma React UI LIbrary",
   "repository": "git@github.com:PMET-public/luma-ui.git",
