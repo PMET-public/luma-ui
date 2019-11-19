@@ -1,35 +1,18 @@
 const path = require('path')
 
 module.exports = ({ config }) => {
+    
+    // Add Welcome Story
+    config.entry.push(path.resolve('./.storybook/welcome.tsx'))
 
     config.module.rules.push(
         {
             test: /\.tsx?$/,
             use: [
-                'awesome-typescript-loader',
+                'babel-loader',
                 'tslint-loader',
             ],
             exclude: /node_modules/,
-        },
-        {
-            test: /\.less$/,
-            exclude: /node_modules/,
-            use: [
-                'style-loader',
-                {
-                    loader: 'css-loader',
-                    options: {
-                        sourceMap: true,
-                    },
-                },
-                {
-                    loader: 'less-loader',
-                    options: {
-                        paths: [ path.resolve('src/styles/variables') ],
-                        sourceMap: true,
-                    },
-                },
-            ]
         },
     )
 
