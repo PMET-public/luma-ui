@@ -15,13 +15,13 @@
   "scripts": {
     "prepare": "yarn build",
     "prebuild": "rimraf dist",
-    "postdeploy": "storybook-to-ghpages",
     "build": "NODE_ENV=production rollup -c",
     "predev": "rimraf dist",
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
     "rollup:watch": "rollup -c -w",
     "generate": "./bin/generate.js",
     "storybook:watch": "start-storybook -p 5001 --quiet --ci -s ./public",
+    "storybook:deploy": "storybook-to-ghpages",
     "tsc": "tsc",
     "test": "echo \"No Tests Found 🧐\" "
   },
