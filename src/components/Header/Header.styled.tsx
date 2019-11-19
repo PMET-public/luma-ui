@@ -1,4 +1,4 @@
-import { Root as IconRoot } from '../Icon'
+import { Root as IconRoot } from '../Icon/Icon.styled'
 import styled from 'styled-components'
 
 export const Root = styled.div`

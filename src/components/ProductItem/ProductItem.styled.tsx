@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { Root as ImageRoot, ImageTag } from '../Image'
-import { Root as PriceRoot } from '../Price'
+import { Root as ImageRoot, ImageTag } from '../Image/Image.styled'
+import { Root as PriceRoot } from '../Price/Price.styled'
 
 export const Root = styled.div`
     display: block;

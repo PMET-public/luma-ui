@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 
-import { Root as HeaderRoot, Logo as HeaderLogo, Menu as HeaderMenu, Utilities as HeaderUtilities } from '../Header'
-import { Wrapper as ContainerWrapper } from '../Container'
+import {
+    Root as HeaderRoot,
+    Logo as HeaderLogo,
+    Menu as HeaderMenu,
+    Utilities as HeaderUtilities,
+} from '../Header/Header.styled'
+import { Wrapper as ContainerWrapper } from '../Container/Container.styled'
 
 export const Root = styled.div<{ $mainHeight: string }>`
     display: grid;

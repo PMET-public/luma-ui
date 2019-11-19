@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Root as CarouselRoot } from '../Carousel'
+import { Root as CarouselRoot } from '../Carousel/Carousel.styled'
 
 export const Root = styled.div`
     width: 100%;

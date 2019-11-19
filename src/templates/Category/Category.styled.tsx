@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import { Wrapper as ContainerWrapper } from '../../components/Container'
-import { Root as FiltersRoot } from '../../components/Filters'
-import { Wrapper as PillsWrapper } from '../../components/Pills'
+import { Wrapper as ContainerWrapper } from '../../components/Container/Container.styled'
+import { Root as FiltersRoot } from '../../components/Filters/Filters.styled'
+import { Wrapper as PillsWrapper } from '../../components/Pills/Pills.styled'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 

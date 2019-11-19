@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Root as ImageRoot, ImageTag, LoadedImage } from '../../Image'
+import { Root as ImageRoot, ImageTag, LoadedImage } from '../../Image/Image.styled'
 
 export const Items = styled.div`
     display: grid;

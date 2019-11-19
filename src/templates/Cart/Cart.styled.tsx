@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { DetailsWrapper as CartListDetailsWrapper } from '../../components/CartList'
+import { DetailsWrapper as CartListDetailsWrapper } from '../../components/CartList/CartList.styled'
 
 export const Root = styled.div`
     display: grid;

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { Root as ImageRoot, ImageTag } from '../../components/Image'
-import { Root as CarouselRoot, Item as CarouselItem } from '../../components/Carousel'
+import { Root as ImageRoot, ImageTag } from '../../components/Image/Image.styled'
+import { Root as CarouselRoot, Item as CarouselItem } from '../../components/Carousel/Carousel.styled'
 
 export const Root = styled.div`
     display: grid;

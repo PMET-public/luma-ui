@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-
-import { ImageTag } from '../Image'
+import { ImageTag } from '../Image/Image.styled'
 
 const size = '9rem'
 

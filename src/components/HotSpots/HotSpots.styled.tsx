@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-import { Root as ImageRoot } from '../Image'
+import { Root as ImageRoot } from '../Image/Image.styled'
 
 const pulseAnimation = keyframes`
     0% {

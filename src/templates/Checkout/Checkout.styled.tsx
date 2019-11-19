@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-import { Root as CartSummaryRoot } from '../../components/CartSummary'
-
-import { Root as CartListRoot, Thumbnail as CartItemThumb } from '../../components/CartList'
+import { Root as CartSummaryRoot } from '../../components/CartSummary/CartSummary.styled'
+import { Root as CartListRoot, Thumbnail as CartItemThumb } from '../../components/CartList/CartList.styled'
 
 import PendingIconSvg from 'remixicon/icons/System/checkbox-blank-circle-fill.svg'
 import DoneIconSvg from 'remixicon/icons/Design/edit-circle-fill.svg'
