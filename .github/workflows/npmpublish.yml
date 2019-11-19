@@ -13,7 +13,7 @@ jobs:
               with:
                   node-version: 12
                   registry-url: https://npm.pkg.github.com/
-                  scope: '@magento'
+                  scope: '@PMET-public/luma-ui'
             - run: npm install -g yarn # Extra Step
             - run: yarn install
             - run: echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
