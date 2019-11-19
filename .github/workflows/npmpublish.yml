@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-#       - run: npm ci
+      - run: yarn install
       - run: yarn test
 
   publish-gpr:
@@ -24,8 +24,8 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-          scope: '@magento'
-#       - run: npm ci
+          scope: "@magento"
+      - run: yarn install
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
