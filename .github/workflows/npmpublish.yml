@@ -13,6 +13,7 @@ jobs:
               with:
                   node-version: 12
             - run: npm install yarn --global
+            - run: npm install
             - run: npm ci
             - run: npm test
 
@@ -27,6 +28,7 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
                   scope: '@PMET-public'
             - run: npm install yarn --global
+            - run: npm install
             - run: npm ci
             - run: npm publish
               env:
