@@ -15,8 +15,8 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
                   scope: '@magento'
             - run: npm install -g yarn # Extra Step
-            - run: npm ci
-            - run: npm publish
-            - run: yarn storybook:deploy
+            - run: yarn install
+            - run: echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
+            - run: yarn publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
