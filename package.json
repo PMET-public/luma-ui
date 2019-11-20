@@ -2,13 +2,9 @@
   "name": "@pmet-public/luma-ui",
   "version": "1.0.0-beta.1",
   "description": "Luma React UI LIbrary",
-  "repository": "git@github.com:PMET-public/luma-ui.git",
+  "repository": "https://github.com/PMET-public/luma-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
   "license": "MIT",
-  "engines": {
-    "node": ">=10.15.2",
-    "yarn": ">=1.15.2"
-  },
   "files": [
     "dist/"
   ],
@@ -19,7 +15,7 @@
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
     "rollup:watch": "rollup -c -w",
     "generate": "./bin/generate.js",
-    "storybook:watch": "start-storybook -p 5001 --quiet --ci -s ./public",
+    "storybook:watch": "start-storybook -p 5001 --quiet -s ./public",
     "storybook:deploy": "storybook-to-ghpages",
     "tsc": "tsc",
     "test": "echo \"No Tests Found 🧐\" "
