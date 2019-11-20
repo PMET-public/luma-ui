@@ -28,37 +28,6 @@ jobs:
             - run: npm install -g yarn # Extra Step
             - run: yarn install
             - run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
-            - run: yarn publish
+            - run: yarn publish --access public
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-    publish-gpr:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: 12
-                  registry-url: https://npm.pkg.github.com/
-                  scope: '@PMET-public/luma-ui'
-            - run: npm install -g yarn # Extra Step
-            - run: yarn install
-            - run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
-            - run: yarn publish
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    publish-storybook:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: 12
-            - run: npm install -g yarn # Extra Step
-            - run: yarn install
-            - run: yarn storybook:deploy
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
