@@ -1,5 +1,5 @@
 {
-  "name": "luma-ui",
+  "name": "@pmet-public/luma-ui",
   "version": "1.0.0-beta.1",
   "description": "Luma React UI LIbrary",
   "repository": "git@github.com:PMET-public/luma-ui.git",
@@ -16,7 +16,6 @@
     "prepare": "yarn build",
     "prebuild": "rimraf dist",
     "build": "NODE_ENV=production rollup -c",
-    "predev": "rimraf dist",
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
     "rollup:watch": "rollup -c -w",
     "generate": "./bin/generate.js",
