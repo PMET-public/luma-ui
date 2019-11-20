@@ -15,7 +15,7 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
                   scope: '@PMET-public'
             - run: npm install yarn --global
-            - run: npm ci
+            - run: npm install
             - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
