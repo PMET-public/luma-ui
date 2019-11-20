@@ -15,7 +15,6 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
                   scope: '@pmet-public/luma-ui'
             - run: npm install yarn --global
-            - run: npm install
             - run: npm ci
             - run: npm publish
             - run: yarn storybook:deploy
