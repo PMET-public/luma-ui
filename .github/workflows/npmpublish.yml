@@ -14,9 +14,9 @@ jobs:
                   node-version: 12
                   registry-url: https://npm.pkg.github.com/
                   scope: '@pmet-public/luma-ui'
-            - run: npm install -g yarn # Extra Step
-            - run: yarn install
-            - run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+            - run: npm install yarn --global
+            - run: npm install
+            - run: npm ci
             - run: npm publish
             - run: yarn storybook:deploy
               env:
