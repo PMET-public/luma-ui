@@ -12,11 +12,14 @@ export const Item = styled.div`
         position: relative;
         display: block;
         cursor: pointer;
+        border: 0.1rem solid transparent;
+        border-radius: 0.7rem;
+        padding: 0.3rem;
 
         ${ImageRoot} {
-            border: 0.1rem solid transparent;
+            border-radius: 0.5rem;
+
             background-color: white;
-            border-radius: 0.7rem;
             display: block;
             overflow: hidden;
             transition: all 305ms ease;
@@ -42,8 +45,8 @@ export const Item = styled.div`
 
     & > input[type='radio']:checked + label,
     & > input[type='radio']:focus + label {
+        border-color: ${props => props.theme.colors.primary} !important;
         ${ImageRoot} {
-            border-color: ${props => props.theme.colors.primary} !important;
             ${LoadedImage} {
                 filter: brightness(100%) contrast(100%) !important;
             }
@@ -59,9 +62,8 @@ export const Item = styled.div`
     }
 
     &:hover > input[type='radio']:not(:disabled) + label {
+        border-color: ${props => props.theme.colors.primary75};
         ${ImageRoot} {
-            border-color: ${props => props.theme.colors.primary75};
-
             ${LoadedImage} {
                 filter: brightness(98%) contrast(92%);
             }

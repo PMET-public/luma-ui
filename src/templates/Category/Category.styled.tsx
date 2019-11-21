@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { Wrapper as ContainerWrapper } from '../../components/Container/Container.styled'
 import { Root as FiltersRoot } from '../../components/Filters/Filters.styled'
-import { Wrapper as PillsWrapper } from '../../components/Pills/Pills.styled'
 
 import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
 
@@ -26,25 +25,23 @@ export const TopBarWrapper = styled(ContainerWrapper)`
     height: 7rem;
 `
 
-export const CategoriesWrapper = styled(ContainerWrapper)`
-    margin-bottom: 2rem;
-    ${PillsWrapper} {
-        padding-left: ${props => props.theme.layout.margin};
-    }
-`
-
 export const Heading = styled.div`
     align-items: baseline;
     display: grid;
-    grid-auto-columns: max-content;
+    grid-template-columns: auto auto 1fr;
     grid-auto-flow: column;
     grid-gap: 1rem;
+    font-size: 1.3rem;
+
+    @media ${props => props.theme.breakpoints.medium} {
+        grid-gap: 2rem;
+        font-size: 1.4rem;
+    }
 `
 
 export const Title = styled.div`
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight.bold};
-    font-size: 1.4rem;
     line-height: 1.5;
 
     @media ${props => props.theme.breakpoints.medium} {

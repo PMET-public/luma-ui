@@ -8,7 +8,6 @@ import {
     Title,
     TopBarFilterButton,
     FiltersIcon,
-    CategoriesWrapper,
     Content,
     ProductListWrapper,
     FiltersWrapper,
@@ -78,6 +77,7 @@ export const Category: Component<CategoryProps> = ({
                                     <Heading>
                                         {title && <Title {...title}>{title.text}</Title>}
                                         {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
+                                        {categories && <Pills {...categories} />}
                                     </Heading>
                                 )}
                                 {filters && (
@@ -93,12 +93,6 @@ export const Category: Component<CategoryProps> = ({
                                 )}
                             </TopBarWrapper>
                         </TopBar>
-
-                        {categories && (
-                            <CategoriesWrapper>
-                                <Pills {...categories} />
-                            </CategoriesWrapper>
-                        )}
 
                         <Content>
                             {products && (

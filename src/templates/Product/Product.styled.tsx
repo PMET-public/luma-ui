@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { Root as ImageRoot, ImageTag } from '../../components/Image/Image.styled'
 import { Root as CarouselRoot, Item as CarouselItem } from '../../components/Carousel/Carousel.styled'
+import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs/Breadcrumbs.styled'
 
 export const Root = styled.div`
     display: grid;
@@ -124,6 +125,10 @@ export const Header = styled.header`
     display: grid;
     grid-gap: 1.3rem;
     grid-auto-flow: row;
+
+    ${BreadcrumbsRoot} {
+        font-size: 1.3rem;
+    }
 `
 
 export const Field = styled.div`

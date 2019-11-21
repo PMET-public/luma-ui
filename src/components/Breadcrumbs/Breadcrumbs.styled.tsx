@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Root = styled.div`
     align-items: center;
-    font-size: 1.4rem;
     color: ${props => props.theme.colors.onSurface};
     display: flex;
     flex-wrap: wrap;
@@ -10,8 +9,9 @@ export const Root = styled.div`
 `
 
 export const ItemWrapper = styled.span`
+    font-size: inherit;
     &:not(:last-of-type) {
-        margin-right: 1.6rem;
+        margin-right: 0.6em;
     }
 
     line-height: 1.5;
