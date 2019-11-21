@@ -10,12 +10,12 @@ export const Root = styled.div`
     width: 100%;
     padding-top: 1.3rem;
     padding-bottom: 1.3rem;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 
     /** iOS X paddings */
     @supports (padding: max(0px)) {
         padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
-        padding-left: max(0, env(safe-area-inset-left));
-        padding-right: max(0, env(safe-area-inset-right));
     }
 `
 
