@@ -24,7 +24,7 @@ export const Root = styled.div`
 export const Wrapper = styled.label`
     align-items: center;
     display: flex;
-    padding: 0.5rem 0.75rem;
+    padding: 0.25rem 0;
     width: 100%;
 
     & > * {
@@ -36,6 +36,7 @@ export const Wrapper = styled.label`
 export const SearchIcon = styled(IconSearchSvg)`
     fill: currentColor;
     width: 1.1em;
+    height: 1.1em;
     opacity: var(--opacity);
 `
 
@@ -46,10 +47,17 @@ export const Field = styled.input`
     color: inherit;
     flex-grow: 1;
     font-size: inherit;
-    font-weight: 600;
     width: 4rem;
+    padding: 0.2rem 0 0 0.25rem;
+    font-family: ${props => props.theme.typography.body.family};
+    font-weight: ${props => props.theme.typography.body.weight.semi};
+
     &:focus {
         outline: none !important;
+    }
+
+    &::-webkit-input-placeholder {
+        line-height: normal;
     }
 `
 

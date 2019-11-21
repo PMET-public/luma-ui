@@ -11,13 +11,17 @@ export const Root = styled.div`
     grid-auto-rows: max-content;
 `
 
-export const TopBar = styled.div``
+export const TopBar = styled.div`
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: ${props => props.theme.colors.surface};
+`
 
 export const TopBarWrapper = styled(ContainerWrapper)`
     align-items: center;
     color: ${props => props.theme.colors.onSurface};
     display: grid;
-    grid-gap: 1rem;
     grid-template-columns: 1fr auto;
     height: 7rem;
 `
@@ -30,22 +34,16 @@ export const CategoriesWrapper = styled(ContainerWrapper)`
 `
 
 export const Heading = styled.div`
-    align-items: center;
+    align-items: baseline;
     display: grid;
-    grid-auto-flow: row;
-    grid-auto-rows: max-content;
-    grid-gap: 0.3rem;
-
-    @media ${props => props.theme.breakpoints.medium} {
-        grid-auto-columns: max-content;
-        grid-auto-flow: column;
-        grid-gap: 2rem;
-    }
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
 `
 
 export const Title = styled.div`
     font-family: ${props => props.theme.typography.heading.family};
-    font-weight: ${props => props.theme.typography.heading.weight.semi};
+    font-weight: ${props => props.theme.typography.heading.weight.bold};
     font-size: 1.4rem;
     line-height: 1.5;
 
@@ -55,6 +53,7 @@ export const Title = styled.div`
 `
 
 export const TopBarFilterButton = styled.button`
+    margin-left: 1rem;
     & > span {
         align-items: center;
         display: grid;

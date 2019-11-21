@@ -19,7 +19,7 @@ export const ProductList = styled.div`
     padding: 0 ${props => props.theme.layout.margin};
     display: grid;
     grid-auto-rows: max-content;
-    grid-gap: 2rem;
+    grid-gap: 4rem;
     padding-top: 2rem;
 
     @media ${props => props.theme.breakpoints.medium} {
@@ -35,7 +35,6 @@ export const ProductList = styled.div`
 
     @media ${props => props.theme.breakpoints.large} {
         padding-top: 4rem;
-        grid-gap: 4rem;
     }
 `
 
