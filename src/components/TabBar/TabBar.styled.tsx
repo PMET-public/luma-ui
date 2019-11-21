@@ -8,7 +8,6 @@ export const Root = styled.div`
     grid-auto-flow: column;
     grid-gap: 2rem;
     width: 100%;
-    height: 5.2rem;
     padding-top: 1.3rem;
     padding-bottom: 1.3rem;
 
