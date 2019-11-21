@@ -6,6 +6,7 @@ export const Root = styled.div`
     display: flex;
     flex-wrap: wrap;
     opacity: 0.6;
+    font-size: 1.3rem;
 `
 
 export const ItemWrapper = styled.span`
