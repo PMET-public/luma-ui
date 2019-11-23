@@ -6,6 +6,8 @@ import {
     TopBarWrapper,
     Heading,
     Title,
+    BackButton,
+    BackIcon,
     TopBarFilterButton,
     FiltersIcon,
     Content,
@@ -30,6 +32,7 @@ export type CategoryProps = {
     title?: Props<{
         text: string
     }>
+    backButton?: Props
     search?: {
         searchBar: SearchBarProps
         noResult?: React.ReactNode
@@ -54,6 +57,7 @@ export const Category: Component<CategoryProps> = ({
     products,
     search,
     title,
+    backButton,
     ...props
 }) => {
     const [showFilter, setShowFilter] = useState(!!(filters && filters.open))
@@ -75,7 +79,16 @@ export const Category: Component<CategoryProps> = ({
                                     <SearchBar {...search.searchBar} />
                                 ) : (
                                     <Heading>
-                                        {title && <Title {...title}>{title.text}</Title>}
+                                        {title && (
+                                            <Title {...title}>
+                                                {backButton && (
+                                                    <BackButton {...backButton}>
+                                                        <BackIcon />
+                                                    </BackButton>
+                                                )}
+                                                {title.text}
+                                            </Title>
+                                        )}
                                         {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
                                         {categories && <Pills {...categories} />}
                                     </Heading>

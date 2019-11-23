@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { Wrapper as ContainerWrapper } from '../../components/Container/Container.styled'
 import { Root as FiltersRoot } from '../../components/Filters/Filters.styled'
 
-import FiltersIcoSvg from 'remixicon/icons/Media/equalizer-line.svg'
+import FiltersIconSvg from 'remixicon/icons/Media/equalizer-line.svg'
+import BackIconSvg from 'remixicon/icons/System/arrow-left-line.svg'
 
 export const Root = styled.div`
     display: grid;
@@ -26,7 +27,7 @@ export const TopBarWrapper = styled(ContainerWrapper)`
 `
 
 export const Heading = styled.div`
-    align-items: baseline;
+    align-items: center;
     display: grid;
     grid-template-columns: auto auto 1fr;
     grid-auto-flow: column;
@@ -40,13 +41,25 @@ export const Heading = styled.div`
 `
 
 export const Title = styled.div`
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    grid-gap: 0.35em;
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight.bold};
-    line-height: 1.5;
+    font-size: 1.6rem;
+    height: 2rem;
+`
 
-    @media ${props => props.theme.breakpoints.medium} {
-        font-size: 1.6rem;
-    }
+export const BackIcon = styled(BackIconSvg)`
+    width: 2rem;
+    height: 2rem;
+    fill: currentColor;
+`
+export const BackButton = styled.div`
+    display: flex;
+    align-items: center;
+    /* padding-top: 0.3rem; */
 `
 
 export const TopBarFilterButton = styled.button`
@@ -62,7 +75,7 @@ export const TopBarFilterButton = styled.button`
     }
 `
 
-export const FiltersIcon = styled(FiltersIcoSvg)`
+export const FiltersIcon = styled(FiltersIconSvg)`
     width: 2rem;
 `
 
