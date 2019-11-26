@@ -23,11 +23,15 @@ export const Root = styled.div<{ $vignette?: number }>`
         `}
 `
 
-export const ImageTag = styled.img`
+export const ImageTag = styled.img<{ loading?: string }>`
     max-width: 100%;
 `
 
-export const LoadedImage = styled(ImageTag)<{ $transition?: boolean; $loaded?: boolean; $error?: boolean }>`
+export const LoadedImage = styled(ImageTag)<{
+    $transition?: boolean
+    $loaded?: boolean
+    $error?: boolean
+}>`
     min-height: 100%;
     min-width: 100%;
     object-fit: cover;

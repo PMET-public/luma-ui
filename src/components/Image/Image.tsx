@@ -40,6 +40,7 @@ export const ImageComponent: Component<ImageProps> = ({
                 title={title}
                 height={height}
                 width={width}
+                loading="lazy"
             />
 
             <Placeholder
