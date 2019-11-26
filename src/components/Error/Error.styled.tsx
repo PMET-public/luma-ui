@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ErrorIconSvg from 'remixicon/icons/System/error-warning-line.svg'
 import OfflineIconSvg from '../../svgs/offline.svg'
 import NotFoundIconSvg from 'remixicon/icons/System/eye-close-line.svg'
+import LockIconSvg from 'remixicon/icons/System/lock-password-fill.svg'
 
 export const Root = styled.div`
     align-items: center;
@@ -36,6 +37,12 @@ export const NotFoundIcon = styled(NotFoundIconSvg)`
     fill: ${props => props.theme.colors.onSurface50};
 `
 export const OfflineIcon = styled(OfflineIconSvg)`
+    width: 8rem;
+    height: auto;
+    fill: ${props => props.theme.colors.onSurface50};
+`
+
+export const LockIcon = styled(LockIconSvg)`
     width: 8rem;
     height: auto;
     fill: ${props => props.theme.colors.onSurface50};
