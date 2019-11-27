@@ -37,7 +37,9 @@ export const FormError = styled.span`
 
 export const Input = styled.input<{ $error?: boolean }>`
     appearance: none;
+    box-sizing: border-box;
     border-radius: 0;
+    height: 3.5rem;
     padding: 0.6rem 0;
     border-top: none;
     border-left: none;
@@ -45,7 +47,6 @@ export const Input = styled.input<{ $error?: boolean }>`
     border-bottom: 0.1rem solid ${props => props.theme.colors.primary15};
     transition: border 250ms ease, background-color 250ms ease;
     background-color: ${props => props.theme.colors.surface};
-    height: 3.5rem;
 
     &::placeholder {
         color: ${props => props.theme.colors.primary75};

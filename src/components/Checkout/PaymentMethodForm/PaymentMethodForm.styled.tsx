@@ -9,6 +9,10 @@ export const Root = styled.div`
         border-radius: 1rem;
     }
 
+    & .braintree-upper-container:before {
+        display: none;
+    }
+
     & .braintree-sheet__error,
     .braintree-placeholder,
     .braintree-heading {
