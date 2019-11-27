@@ -63,7 +63,13 @@ export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
 
 ProductItem.Skeleton = props => {
     return (
-        <ContentLoader height={810} width={600} primaryColor="#f3f3f3" secondaryColor="#e6e6e6" {...props}>
+        <ContentLoader
+            height={810}
+            width={600}
+            primaryColor="rgba(204, 204, 204, 0.25)"
+            secondaryColor="rgba(204, 204, 204, 0.35)"
+            {...props}
+        >
             <rect x="16" y="762" rx="4" ry="4" width="60%" height="16" />
             <rect x="16" y="787" rx="4" ry="4" width="30%" height="15" />
             <rect x="0" y="0" rx="5" ry="5" width="600" height="750" />
