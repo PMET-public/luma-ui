@@ -5,6 +5,7 @@ import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload as Payload } 
 import Button, { ButtonProps } from '../../Button'
 import Form, { FormError } from '../../Form'
 import useForm from 'react-hook-form'
+import { useTheme } from '../../../theme/useTheme'
 
 export type Braintree = Dropin
 
@@ -116,6 +117,8 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
     onSubmit,
     ...props
 }) => {
+    const { colors } = useTheme()
+
     const { handleSubmit } = useForm<PaymentMethodPayload>()
 
     const containerElem = useRef(null)
@@ -127,8 +130,27 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
 
         try {
             const payload = await BraintreeWebDropIn.create({
-                ...braintree,
                 container: '[data-braintree-dropin]',
+                card: {
+                    overrides: {
+                        fields: {
+                            number: {
+                                maskInput: {
+                                    showLastFour: true, // Only show last four digits on blur.
+                                },
+                            },
+                        },
+                        styles: {
+                            input: {
+                                color: colors.onSurface,
+                            },
+                            ':focus': {
+                                color: colors.onSurface,
+                            },
+                        },
+                    },
+                },
+                ...braintree,
             })
 
             dispatch({ type: 'setInstance', payload })

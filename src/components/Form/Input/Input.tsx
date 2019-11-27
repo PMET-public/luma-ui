@@ -5,7 +5,7 @@ import { Field, FieldInput, Label, Error } from '../Form'
 
 export type InputProps = {
     label: string
-    error?: { message?: string } | boolean
+    error?: { message?: string }
 } & HTMLAttributes<HTMLInputElement>
 
 export const Input: Component<InputProps> = React.forwardRef(
