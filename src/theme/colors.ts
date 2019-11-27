@@ -64,13 +64,13 @@ export const light = {
     onAccent10: 'rgba(250, 250, 250, 0.10)',
     onAccent5: 'rgba(250, 250, 250, 0.05)',
 
-    error: '#ffffff',
+    error: 'rgba(255, 255, 255, 1)',
     onError: '#ef5350',
 
-    warning: '#ffffff',
+    warning: 'rgba(255, 255, 255, 1)',
     onWarning: '#f57c00',
 
-    notice: '#ffffff',
+    notice: 'rgba(255, 255, 255, 1)',
     onNotice: '#039be5',
 
     graySurface: '#e9e9e9',
@@ -81,7 +81,7 @@ export const light = {
  */
 export const dark = {
     background: '#222222',
-    onBackground: '#ffffff',
+    onBackground: 'rgba(255, 255, 255, 1)',
 
     surface: 'rgba(34, 34, 34, 1)',
     surface90: 'rgba(34, 34, 34, 0.90)',
@@ -129,13 +129,13 @@ export const dark = {
     onSecondary10: 'rgba(250, 250, 250, 0.10)',
     onSecondary5: 'rgba(250, 250, 250, 0.05)',
 
-    accent: 'rgba(161, 74, 36, 1)',
-    accent75: 'rgba(161, 74, 36, 0.75)',
-    accent50: 'rgba(161, 74, 36, 0.5)',
-    accent25: 'rgba(161, 74, 36, 0.25)',
-    accent15: 'rgba(161, 74, 36, 0.15)',
-    accent10: 'rgba(161, 74, 36, 0.10)',
-    accent5: 'rgba(161, 74, 36, 0.05)',
+    accent: 'rgba(38, 169, 265, 1)',
+    accent75: 'rgba(38, 169, 265, 0.75)',
+    accent50: 'rgba(38, 169, 265, 0.5)',
+    accent25: 'rgba(38, 169, 265, 0.25)',
+    accent15: 'rgba(38, 169, 265, 0.15)',
+    accent10: 'rgba(38, 169, 265, 0.10)',
+    accent5: 'rgba(38, 169, 265, 0.05)',
     onAccent: 'rgba(250, 250, 250, 1)',
     onAccent75: 'rgba(250, 250, 250, 0.75)',
     onAccent50: 'rgba(250, 250, 250, 0.5)',
@@ -144,14 +144,14 @@ export const dark = {
     onAccent10: 'rgba(250, 250, 250, 0.10)',
     onAccent5: 'rgba(250, 250, 250, 0.05)',
 
-    error: '#ef5350',
-    onError: '#ffffff',
+    error: '#222222',
+    onError: '#ef5350',
 
-    warning: '#f57c00',
-    onWarning: '#ffffff',
+    warning: '#222222',
+    onWarning: '#f57c00',
 
-    notice: '#039be5',
-    onNotice: '#ffffff',
+    notice: '#222222',
+    onNotice: '#039be5',
 
     graySurface: '#333',
 }
