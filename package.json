@@ -1,6 +1,6 @@
 {
   "name": "@pmet-public/luma-ui",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "Luma React UI LIbrary",
   "repository": "https://github.com/PMET-public/luma-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
@@ -58,7 +58,7 @@
     "react": "^16.11.0",
     "react-content-loader": "^4.2.2",
     "react-dom": "^16.11.0",
-    "react-hook-form": "^3.24.0",
+    "react-hook-form": "^3.28.11",
     "react-spring": "^8.0.25",
     "remixicon": "^1.3.1",
     "rimraf": "^2.6.3",

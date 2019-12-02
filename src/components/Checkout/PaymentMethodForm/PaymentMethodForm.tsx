@@ -19,7 +19,7 @@ export type PaymentMethodFormProps = {
 }
 
 type ReducerState = {
-    instance: Braintree | null
+    braintreeInstance: Braintree | null
     loading: boolean
     formError?: string | null
     editable: boolean
@@ -28,11 +28,11 @@ type ReducerState = {
 
 type ReducerActions =
     | {
-          type: 'setInstance'
+          type: 'setBraintree'
           payload: Braintree
       }
     | {
-          type: 'unsetInstance'
+          type: 'unsetBraintree'
       }
     | {
           type: 'setLoader'
@@ -57,7 +57,7 @@ type ReducerActions =
       }
 
 const initialState: ReducerState = {
-    instance: null,
+    braintreeInstance: null,
     loading: false,
     formError: null,
     editable: true,
@@ -66,15 +66,15 @@ const initialState: ReducerState = {
 
 const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
     switch (action.type) {
-        case 'setInstance':
+        case 'setBraintree':
             return {
                 ...state,
-                instance: action.payload,
+                braintreeInstance: action.payload,
             }
-        case 'unsetInstance':
+        case 'unsetBraintree':
             return {
                 ...state,
-                instance: null,
+                braintreeInstance: null,
             }
         case 'setLoader':
             return {
@@ -102,7 +102,7 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
                 ...state,
                 paymentInfo: action.payload,
                 editable: false,
-                instance: null,
+                braintreeInstance: null,
             }
 
         default:
@@ -123,7 +123,10 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
 
     const containerElem = useRef(null)
 
-    const [{ instance, editable, loading, formError, paymentInfo }, dispatch] = useReducer(reducer, initialState)
+    const [{ braintreeInstance, editable, loading, formError, paymentInfo }, dispatch] = useReducer(
+        reducer,
+        initialState
+    )
 
     const createBraintreeInstance = useCallback(async () => {
         if (!containerElem) return
@@ -153,27 +156,27 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
                 ...braintree,
             })
 
-            dispatch({ type: 'setInstance', payload })
+            dispatch({ type: 'setBraintree', payload })
         } catch (error) {
-            dispatch({ type: 'unsetInstance' })
+            dispatch({ type: 'unsetBraintree' })
             console.error(error)
         }
     }, [containerElem, JSON.stringify(braintree)])
 
     useEffect(() => {
-        if (editable && !instance) createBraintreeInstance()
+        if (editable && !braintreeInstance) createBraintreeInstance()
 
         return () => {
-            if (instance) instance.teardown()
+            if (braintreeInstance) braintreeInstance.teardown()
         }
-    }, [instance])
+    }, [braintreeInstance])
 
     const handleRequestPaymentMethod = useCallback(async () => {
-        if (!instance) return
-        const payload = await instance.requestPaymentMethod()
+        if (!braintreeInstance) return
+        const payload = await braintreeInstance.requestPaymentMethod()
         dispatch({ type: 'setPaymentInfo', payload })
         return onSubmit(payload)
-    }, [instance])
+    }, [braintreeInstance, onSubmit])
 
     const handleOnEdit = useCallback(
         async (e: Event) => {
@@ -197,7 +200,7 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
 
             dispatch({ type: 'setLoader', payload: false })
         },
-        [handleSubmit, onSubmit]
+        [handleSubmit, braintreeInstance]
     )
 
     return (
