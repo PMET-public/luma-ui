@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
     margin-bottom: -1rem;
     overflow-x: scroll;
     padding: 0 0 1rem;
+    scrollbar-width: none;
 
     &::-webkit-scrollbar {
         display: none;
