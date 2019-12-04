@@ -168,13 +168,6 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
         }
     }, [instance])
 
-    const handleRequestPaymentMethod = useCallback(async () => {
-        if (!instance) return
-        const payload = await instance.requestPaymentMethod()
-        dispatch({ type: 'setPaymentInfo', payload })
-        return onSubmit(payload)
-    }, [instance])
-
     const handleOnEdit = useCallback(
         async (e: Event) => {
             e.preventDefault()
@@ -189,15 +182,22 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
             dispatch({ type: 'setLoader', payload: true })
             dispatch({ type: 'unsetFormError' })
 
+            async function _submit() {
+                if (!instance) return
+                const payload = await instance.requestPaymentMethod()
+                dispatch({ type: 'setPaymentInfo', payload })
+                await onSubmit(payload)
+            }
+
             try {
-                await handleSubmit(handleRequestPaymentMethod)(form)
+                await handleSubmit(_submit)(form)
             } catch (error) {
                 dispatch({ type: 'setFormError', payload: error.message })
             }
 
             dispatch({ type: 'setLoader', payload: false })
         },
-        [handleSubmit, onSubmit]
+        [handleSubmit, onSubmit, instance]
     )
 
     return (
