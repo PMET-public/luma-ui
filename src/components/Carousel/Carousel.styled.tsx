@@ -15,6 +15,7 @@ export const Root = styled.div<{ $gap: number; $padding: number; $show: number }
     padding-bottom: 1rem;
     scroll-padding: var(--padding);
     scroll-snap-type: x mandatory;
+
     width: 100%;
 
     &::-webkit-scrollbar {
