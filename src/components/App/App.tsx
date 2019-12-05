@@ -33,7 +33,7 @@ export type AppProps = {
         text: string
     }>
 
-    menu: Array<
+    menu?: Array<
         Props<{
             active?: boolean
             text: string

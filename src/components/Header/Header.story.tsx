@@ -7,78 +7,88 @@ import Logo from '../../../public/images/luma.svg'
 import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
 import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 
-storiesOf('📦 Components/Header', module).add('Default', () => (
-    <Header
-        logo={{
-            as: 'a',
-            href: '#',
-            title: 'Luma',
-            svg: Logo,
-        }}
-        menu={{
-            items: [
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'New In',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'Women',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'Men',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'Gear',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'Training',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'Gift Cards',
-                },
-            ],
-        }}
-        utilities={{
-            items: [
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'Help',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    text: 'My Account',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    icon: {
-                        svg: IconSearchSvg,
+storiesOf('📦 Components/Header', module)
+    .add('Default', () => (
+        <Header
+            logo={{
+                as: 'a',
+                href: '#',
+                title: 'Luma',
+                svg: Logo,
+            }}
+            menu={{
+                items: [
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'New In',
                     },
-                    text: 'Search',
-                },
-                {
-                    as: 'a',
-                    href: '#',
-                    icon: {
-                        svg: IconBagSvg,
-                        count: 3,
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'Women',
                     },
-                    text: 'My Basket',
-                },
-            ],
-        }}
-    />
-))
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'Men',
+                    },
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'Gear',
+                    },
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'Training',
+                    },
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'Gift Cards',
+                    },
+                ],
+            }}
+            utilities={{
+                items: [
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'Help',
+                    },
+                    {
+                        as: 'a',
+                        href: '#',
+                        text: 'My Account',
+                    },
+                    {
+                        as: 'a',
+                        href: '#',
+                        icon: {
+                            svg: IconSearchSvg,
+                        },
+                        text: 'Search',
+                    },
+                    {
+                        as: 'a',
+                        href: '#',
+                        icon: {
+                            svg: IconBagSvg,
+                            count: 3,
+                        },
+                        text: 'My Basket',
+                    },
+                ],
+            }}
+        />
+    ))
+    .add('Skeleton', () => (
+        <Header
+            logo={{
+                svg: Logo,
+            }}
+            menu={{}}
+            utilities={{}}
+        />
+    ))

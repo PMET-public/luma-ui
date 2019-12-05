@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Component, Props } from '../../lib'
+import ContentLoader from 'react-content-loader'
+
 import {
     Root,
     TopBar,
@@ -49,7 +51,7 @@ export type CategoryProps = {
 }
 
 export const Category: Component<CategoryProps> = ({
-    display = 'PRODUCTS_AND_PAGE',
+    display = 'PRODUCTS',
     breadcrumbs,
     categories,
     children,
@@ -69,7 +71,7 @@ export const Category: Component<CategoryProps> = ({
     return (
         <>
             <Root {...props}>
-                {(display === 'PRODUCTS_AND_PAGE' || display === 'PAGE') && <>{children}</>}
+                {(display === 'PRODUCTS_AND_PAGE' || display === 'PAGE') && children}
 
                 {(display === 'PRODUCTS_AND_PAGE' || display === 'PRODUCTS') && (
                     <>
@@ -86,7 +88,18 @@ export const Category: Component<CategoryProps> = ({
                                                         <BackIcon />
                                                     </BackButton>
                                                 )}
-                                                {title.text}
+                                                {title.text || (
+                                                    <ContentLoader
+                                                        height={16}
+                                                        width={200}
+                                                        speed={2}
+                                                        primaryColor="#f3f3f3"
+                                                        secondaryColor="#ecebeb"
+                                                        style={{ width: '20rem' }}
+                                                    >
+                                                        <rect x="0" y="0" rx="3" ry="3" width="200" height="16" />
+                                                    </ContentLoader>
+                                                )}
                                             </Title>
                                         )}
                                         {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
