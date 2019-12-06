@@ -3,12 +3,13 @@ import Cart from './'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
-import { number } from '@storybook/addon-knobs'
+import { number, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📑 Templates/Cart', module).add('Default', () => (
     <App {...AppMockData}>
         <Cart
+            loading={boolean('loading', true)}
             breadcrumbs={{ prefix: '#', items: [{ text: 'Cart' }] }}
             list={{
                 items: new Array(number('quantity', 2)).fill({

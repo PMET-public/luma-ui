@@ -110,7 +110,7 @@ export const Product: Component<ProductProps> = ({
                     <Carousel gap={1} padding={3}>
                         {loading ? (
                             <CarouselItem>
-                                <ProductImageSkeleton style={{ width: '100%;' }} />
+                                <ProductImageSkeleton style={{ width: '100%' }} />
                             </CarouselItem>
                         ) : (
                             gallery.map((image, index) => (
@@ -125,7 +125,9 @@ export const Product: Component<ProductProps> = ({
                     <InfoInnerWrapper>
                         <Info>
                             {loading ? (
-                                <ProductDetailsSkeleton style={{ width: '100%' }} />
+                                <ProductDetailsSkeleton
+                                    style={{ width: '56rem', minWidth: '100%', maxWidth: '100%' }}
+                                />
                             ) : (
                                 <React.Fragment>
                                     <Header>
