@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { Root as ImageRoot, ImageTag } from '../../components/Image/Image.styled'
-import { Root as CarouselRoot, Item as CarouselItem } from '../../components/Carousel/Carousel.styled'
+import { Root as CarouselRoot, Item as CarouselComponentItem } from '../../components/Carousel/Carousel.styled'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs/Breadcrumbs.styled'
 
 export const Root = styled.div`
@@ -38,16 +38,6 @@ export const Images = styled.div`
         z-index: 0;
     }
 
-    ${ImageRoot} {
-        display: block;
-        width: 100%;
-    }
-
-    ${ImageTag} {
-        width: 100%;
-        height: 100%;
-    }
-
     ${CarouselRoot} {
         padding: 0;
 
@@ -64,13 +54,25 @@ export const Images = styled.div`
             grid-gap: 0.5rem;
             grid-template-columns: 1fr 1fr;
             overflow: unset;
+        }
+    }
+`
 
-            ${CarouselItem} {
-                &:first-child,
-                &:last-child:nth-child(even) {
-                    grid-column-end: span 2;
-                }
-            }
+export const CarouselItem = styled(CarouselComponentItem)`
+    ${ImageRoot} {
+        display: block;
+        width: 100%;
+    }
+
+    ${ImageTag} {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media ${props => props.theme.breakpoints.medium} {
+        &:first-child,
+        &:last-child:nth-child(even) {
+            grid-column-end: span 2;
         }
     }
 `

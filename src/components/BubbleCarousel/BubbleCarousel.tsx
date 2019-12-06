@@ -5,34 +5,44 @@ import { Root, Wrapper, ImageWrapper, Item, Label } from './BubbleCarousel.style
 import Image, { ImageProps } from '../Image'
 import { BubbleCarouselSkeleton } from './BubbleCarouselSkeleton'
 
+type Items = Array<
+    Props<{
+        text: string
+        image: ImageProps
+    }>
+>
+
 export type BubbleCarouselProps = {
-    items?: Array<
-        Props<{
-            text: string
-            image: ImageProps
-        }>
-    >
+    loading?: boolean
+    items?: Items
 }
 
-export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, items, ...props }) => {
-    return (
+export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loading, items, ...props }) => {
+    /** Skeleton */
+    if (loading) {
+        return (
+            <>
+                {new Array(4).fill(null).map((_, index) => (
+                    <Item key={index}>
+                        <BubbleCarouselSkeleton />
+                    </Item>
+                ))}
+            </>
+        )
+    }
+
+    return items ? (
         <Root {...props}>
             <Wrapper>
-                {items
-                    ? items.map(({ text, image, ...item }, index) => (
-                          <Item key={index} {...item}>
-                              <ImageWrapper>
-                                  <Image alt="null" transition {...image} />
-                              </ImageWrapper>
-                              <Label>{text}</Label>
-                          </Item>
-                      ))
-                    : new Array(4).fill(null).map((_, index) => (
-                          <Item key={index}>
-                              <BubbleCarouselSkeleton />
-                          </Item>
-                      ))}
+                {items.map(({ text, image, ...item }, index) => (
+                    <Item key={index} {...item}>
+                        <ImageWrapper>
+                            <Image alt="null" transition {...image} />
+                        </ImageWrapper>
+                        <Label>{text}</Label>
+                    </Item>
+                ))}
             </Wrapper>
         </Root>
-    )
+    ) : null
 }

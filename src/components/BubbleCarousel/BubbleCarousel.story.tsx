@@ -1,61 +1,61 @@
 import React from 'react'
 import BubbleCarousel from '.'
 import { storiesOf } from '@storybook/react'
+import { boolean } from '@storybook/addon-knobs'
 
-storiesOf('📦 Components/BubbleCarousel', module)
-    .add('Default', () => (
-        <BubbleCarousel
-            label="Shop the Look"
-            items={[
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb1.jpg'),
-                    },
-                    text: 'Minimalist',
+storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
+    <BubbleCarousel
+        label="Shop the Look"
+        loading={boolean('loading', true)}
+        items={[
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb1.jpg'),
-                    },
-                    text: 'Minimalist',
+                text: 'Minimalist',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb2.jpg'),
-                    },
-                    text: 'Dressy',
+                text: 'Minimalist',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb2.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb3.jpg'),
-                    },
-                    text: 'Beachy',
+                text: 'Dressy',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb3.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb4.jpg'),
-                    },
-                    text: 'Biz Cas’',
+                text: 'Beachy',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb4.jpg'),
                 },
-                {
-                    as: 'a',
-                    href: '#',
-                    image: {
-                        src: require('../../../public/images/fashion-thumb5.jpg'),
-                    },
-                    text: 'All Time',
+                text: 'Biz Cas’',
+            },
+            {
+                as: 'a',
+                href: '#',
+                image: {
+                    src: require('../../../public/images/fashion-thumb5.jpg'),
                 },
-            ]}
-        />
-    ))
-    .add('Skeleton', () => <BubbleCarousel label="Shop the Look" />)
+                text: 'All Time',
+            },
+        ]}
+    />
+))
