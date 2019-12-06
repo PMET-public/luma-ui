@@ -25,6 +25,8 @@ import IconDarkModeSvg from 'remixicon/icons/Design/contrast-2-line.svg'
 import { useAppContext } from '../../AppProvider'
 
 export type AppProps = {
+    loading?: boolean
+
     logo: Props
 
     home: Props<{
@@ -33,7 +35,7 @@ export type AppProps = {
         text: string
     }>
 
-    menu?: Array<
+    menu: Array<
         Props<{
             active?: boolean
             text: string
@@ -69,6 +71,7 @@ export type AppProps = {
 }
 
 export const App: Component<AppProps> = ({
+    loading,
     cart,
     children,
     footer,
@@ -94,6 +97,7 @@ export const App: Component<AppProps> = ({
         <Root $mainHeight={`calc(100vh - ${headerHeight}px - ${tabBarHeight}px)`} {...props}>
             <HeaderContainer ref={headerRef} as="header" $margin>
                 <Header
+                    loading={loading}
                     logo={{
                         svg: LogoImageSvg,
                         ...logo,
@@ -145,11 +149,9 @@ export const App: Component<AppProps> = ({
 
             <Main>{children}</Main>
 
-            {footer && (
-                <FooterContainer as="footer">
-                    <Footer {...footer} />
-                </FooterContainer>
-            )}
+            <FooterContainer as="footer">
+                <Footer loading={loading} {...footer} />
+            </FooterContainer>
 
             <TabBarContainer ref={tabBarRef} as="nav">
                 <TabBar

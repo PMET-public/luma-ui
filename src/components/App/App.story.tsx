@@ -1,6 +1,7 @@
 import React from 'react'
 import App, { AppProps } from '.'
 import { storiesOf } from '@storybook/react'
+import { boolean } from '@storybook/addon-knobs'
 
 export const AppMockData: AppProps = {
     logo: {
@@ -41,16 +42,16 @@ export const AppMockData: AppProps = {
             text: 'Sale',
         },
     ],
-    myAccount: {
-        as: 'a',
-        href: '#',
-        text: 'My Account',
-    },
-    favorites: {
-        as: 'a',
-        href: '#',
-        text: 'Liked',
-    },
+    // myAccount: {
+    //     as: 'a',
+    //     href: '#',
+    //     text: 'My Account',
+    // },
+    // favorites: {
+    //     as: 'a',
+    //     href: '#',
+    //     text: 'Liked',
+    // },
     search: {
         as: 'a',
         href: '#',
@@ -82,4 +83,6 @@ export const AppMockData: AppProps = {
     },
 }
 
-storiesOf('📦 Components/App', module).add('Default', () => <App {...AppMockData} />)
+storiesOf('📦 Components/App', module).add('Default', () => (
+    <App loading={boolean('loading', false)} {...AppMockData} />
+))

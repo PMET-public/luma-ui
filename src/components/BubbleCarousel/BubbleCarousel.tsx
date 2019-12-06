@@ -3,7 +3,7 @@ import { Component, Props } from '../../lib'
 import { Root, Wrapper, ImageWrapper, Item, Label } from './BubbleCarousel.styled'
 
 import Image, { ImageProps } from '../Image'
-import { BubbleCarouselSkeleton } from './BubbleCarouselSkeleton'
+import { BubbleCarouselSkeleton } from './BubbleCarousel.Skeleton'
 
 type Items = Array<
     Props<{
@@ -14,35 +14,28 @@ type Items = Array<
 
 export type BubbleCarouselProps = {
     loading?: boolean
-    items?: Items
+    items: Items
 }
 
 export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loading, items, ...props }) => {
-    /** Skeleton */
-    if (loading) {
-        return (
-            <>
-                {new Array(4).fill(null).map((_, index) => (
-                    <Item key={index}>
-                        <BubbleCarouselSkeleton />
-                    </Item>
-                ))}
-            </>
-        )
-    }
-
-    return items ? (
+    return (
         <Root {...props}>
             <Wrapper>
-                {items.map(({ text, image, ...item }, index) => (
-                    <Item key={index} {...item}>
-                        <ImageWrapper>
-                            <Image alt="null" transition {...image} />
-                        </ImageWrapper>
-                        <Label>{text}</Label>
-                    </Item>
-                ))}
+                {loading ? (
+                    <div>
+                        <BubbleCarouselSkeleton style={{ padding: '0 1rem' }} />
+                    </div>
+                ) : (
+                    items.map(({ text, image, ...item }, index) => (
+                        <Item key={index} {...item}>
+                            <ImageWrapper>
+                                <Image alt="null" transition {...image} />
+                            </ImageWrapper>
+                            <Label>{text}</Label>
+                        </Item>
+                    ))
+                )}
             </Wrapper>
         </Root>
-    ) : null
+    )
 }

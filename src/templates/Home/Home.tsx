@@ -3,19 +3,20 @@ import { Component } from '../../lib'
 import { Root, Stories } from './Home.styled'
 
 import BubbleCarousel, { BubbleCarouselProps } from '../../components/BubbleCarousel'
-import { HomeSkeleton } from './HomeSkeleton'
+import { HomeSkeleton } from './Home.Skeleton'
 
 export type HomeProps = {
+    loading?: boolean
     stories: BubbleCarouselProps
 }
 
-export const Home: Component<HomeProps> = ({ children, stories, ...props }) => {
+export const Home: Component<HomeProps> = ({ loading, stories, children, ...props }) => {
     return (
         <Root {...props}>
             <Stories>
-                <BubbleCarousel {...stories} />
+                <BubbleCarousel loading={loading} {...stories} />
             </Stories>
-            {children || <HomeSkeleton />}
+            {loading ? <HomeSkeleton /> : children}
         </Root>
     )
 }
