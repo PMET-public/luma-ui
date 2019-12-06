@@ -2,7 +2,7 @@ import React from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, IconWrapper } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
-import { MenuSkeleton } from './Menu.Skeleton'
+import { MenuSkeleton } from './Menu.skeleton'
 import Icon, { IconProps } from '../Icon'
 
 export type HeaderProps = {

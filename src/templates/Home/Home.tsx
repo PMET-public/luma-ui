@@ -3,7 +3,7 @@ import { Component } from '../../lib'
 import { Root, Stories } from './Home.styled'
 
 import BubbleCarousel, { BubbleCarouselProps } from '../../components/BubbleCarousel'
-import { HomeSkeleton } from './Home.Skeleton'
+import { HomeSkeleton } from './Home.skeleton'
 
 export type HomeProps = {
     loading?: boolean

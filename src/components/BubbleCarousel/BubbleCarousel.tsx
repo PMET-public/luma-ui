@@ -3,7 +3,7 @@ import { Component, Props } from '../../lib'
 import { Root, Wrapper, ImageWrapper, Item, Label } from './BubbleCarousel.styled'
 
 import Image, { ImageProps } from '../Image'
-import { BubbleCarouselSkeleton } from './BubbleCarousel.Skeleton'
+import { BubbleCarouselSkeleton } from './BubbleCarousel.skeleton'
 
 type Items = Array<
     Props<{

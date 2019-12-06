@@ -73,7 +73,10 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
             }}
             shippingMethod={{
                 title: 'Shipping',
-                items: [{ text: 'Fixed $5.00', value: '1' }, { text: '1-Day Express $29.99', value: '2' }],
+                items: [
+                    { text: 'Fixed $5.00', value: '1' },
+                    { text: '1-Day Express $29.99', value: '2' },
+                ],
                 editButton: {
                     text: 'Continue to Payment',
                 },
@@ -131,7 +134,10 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                     price: {
                         regular: 39.99,
                     },
-                    options: [{ label: 'Size', value: 'M' }, { label: 'Color', value: 'Red' }],
+                    options: [
+                        { label: 'Size', value: 'M' },
+                        { label: 'Color', value: 'Red' },
+                    ],
                 }),
             }}
             summary={{

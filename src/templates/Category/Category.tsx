@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Component, Props } from '../../lib'
-import { TitleSkeleton } from './Title.Skeleton'
+import { TitleSkeleton } from './Title.skeleton'
 
 import {
     Root,

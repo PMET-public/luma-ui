@@ -30,7 +30,10 @@ storiesOf('📑 Templates/Cart', module).add('Default', () => (
                     price: {
                         regular: 39.99,
                     },
-                    options: [{ label: 'Size', value: 'M' }, { label: 'Color', value: 'Red' }],
+                    options: [
+                        { label: 'Size', value: 'M' },
+                        { label: 'Color', value: 'Red' },
+                    ],
                 }),
             }}
             summary={{
