@@ -67,7 +67,6 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
      */
     useEffect(() => {
         const payload = localStorage.getItem('luma-ui/colorScheme') || 'light'
-        console.log({ payload })
         dispatch({ type: 'setColorScheme', payload })
     }, [])
 
