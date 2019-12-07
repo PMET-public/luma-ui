@@ -36,7 +36,7 @@ type ReducerActions =
 type AppContextProps = [ReducerState, Dispatch<ReducerActions>]
 
 const initialState: ReducerState = {
-    colorScheme: (typeof localStorage !== 'undefined' && localStorage.getItem('luma-ui/colorScheme')) || 'light',
+    colorScheme: 'light',
     online: true,
 }
 
@@ -57,10 +57,19 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
     }
 }
 
-export const AppContext = createContext<AppContextProps>([initialState, x => {}])
+export const AppContext = createContext<AppContextProps>([initialState, () => {}])
 
 export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
+
+    /**
+     * Get Color Preference
+     */
+    useEffect(() => {
+        const payload = localStorage.getItem('luma-ui/colorScheme') || 'light'
+        console.log({ payload })
+        dispatch({ type: 'setColorScheme', payload })
+    }, [])
 
     /**
      * Save Color Preference
