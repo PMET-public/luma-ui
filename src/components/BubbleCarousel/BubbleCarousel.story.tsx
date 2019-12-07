@@ -1,10 +1,12 @@
 import React from 'react'
 import BubbleCarousel from '.'
 import { storiesOf } from '@storybook/react'
+import { boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
     <BubbleCarousel
         label="Shop the Look"
+        loading={boolean('loading', true)}
         items={[
             {
                 as: 'a',

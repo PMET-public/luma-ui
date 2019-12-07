@@ -6,9 +6,11 @@ import Logo from '../../../public/images/luma.svg'
 
 import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
 import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
+import { boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Header', module).add('Default', () => (
     <Header
+        loading={boolean('loading', false)}
         logo={{
             as: 'a',
             href: '#',

@@ -1,11 +1,12 @@
 import React from 'react'
 import CartList from '.'
 import { storiesOf } from '@storybook/react'
-import { number } from '@storybook/addon-knobs'
+import { number, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/CartList', module).add('Default', () => (
     <CartList
+        loading={boolean('loading', false)}
         items={new Array(number('count', 1)).fill({
             title: {
                 text: 'Jillian Top',
@@ -25,7 +26,10 @@ storiesOf('📦 Components/CartList', module).add('Default', () => (
             price: {
                 regular: 39.99,
             },
-            options: [{ label: 'Size', value: 'M' }, { label: 'Color', value: 'Red' }],
+            options: [
+                { label: 'Size', value: 'M' },
+                { label: 'Color', value: 'Red' },
+            ],
         })}
     />
 ))

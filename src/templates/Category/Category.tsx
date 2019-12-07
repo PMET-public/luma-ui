@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Component, Props } from '../../lib'
+import { TitleSkeleton } from './Title.skeleton'
+
 import {
     Root,
     TopBar,
@@ -28,6 +30,8 @@ import Button, { ButtonProps } from '../../components/Button'
 import SearchBar, { SearchBarProps } from '../../components/SearchBar'
 
 export type CategoryProps = {
+    loading?: boolean
+    loadingMore?: boolean
     display?: 'PRODUCTS' | 'PAGE' | 'PRODUCTS_AND_PAGE'
     title?: Props<{
         text: string
@@ -49,7 +53,9 @@ export type CategoryProps = {
 }
 
 export const Category: Component<CategoryProps> = ({
-    display = 'PRODUCTS_AND_PAGE',
+    loading,
+    loadingMore,
+    display = 'PRODUCTS',
     breadcrumbs,
     categories,
     children,
@@ -69,14 +75,14 @@ export const Category: Component<CategoryProps> = ({
     return (
         <>
             <Root {...props}>
-                {(display === 'PRODUCTS_AND_PAGE' || display === 'PAGE') && <>{children}</>}
+                {(display === 'PRODUCTS_AND_PAGE' || display === 'PAGE') && children}
 
                 {(display === 'PRODUCTS_AND_PAGE' || display === 'PRODUCTS') && (
                     <>
                         <TopBar>
                             <TopBarWrapper $margin>
                                 {search ? (
-                                    <SearchBar {...search.searchBar} />
+                                    <SearchBar loading={loading || loadingMore} {...search.searchBar} />
                                 ) : (
                                     <Heading>
                                         {title && (
@@ -86,11 +92,17 @@ export const Category: Component<CategoryProps> = ({
                                                         <BackIcon />
                                                     </BackButton>
                                                 )}
-                                                {title.text}
+                                                {!title.text && loading ? <TitleSkeleton /> : title.text}
                                             </Title>
                                         )}
-                                        {breadcrumbs && <Breadcrumbs prefix="#" {...breadcrumbs} />}
-                                        {categories && <Pills {...categories} />}
+                                        {breadcrumbs && (
+                                            <Breadcrumbs
+                                                prefix="#"
+                                                loading={!breadcrumbs && loading}
+                                                {...breadcrumbs}
+                                            />
+                                        )}
+                                        {categories && <Pills loading={!categories && loading} {...categories} />}
                                     </Heading>
                                 )}
                                 {filters && (
@@ -110,7 +122,7 @@ export const Category: Component<CategoryProps> = ({
                         <Content>
                             {products && (
                                 <ProductListWrapper $margin>
-                                    <ProductList {...products} />
+                                    <ProductList loadingMore={loadingMore} {...products} />
                                 </ProductListWrapper>
                             )}
                         </Content>

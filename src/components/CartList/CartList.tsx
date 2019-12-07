@@ -17,9 +17,11 @@ import {
 import PriceComponent, { PriceProps } from '../Price'
 import Image, { ImageProps } from '../Image'
 import QuantityComponent, { QuantityProps } from '../Quantity'
+import { CartListSkeleton } from './CartList.skeleton'
 
 export type CartListProps = {
-    items: Array<{
+    loading?: boolean
+    items?: Array<{
         _id?: string | number
         title: Props<{
             text: string
@@ -35,11 +37,12 @@ export type CartListProps = {
         }>
     }>
 }
-
-export const CartList: Component<CartListProps> = ({ items, children, ...props }) => {
-    return items ? (
+export const CartList: Component<CartListProps> = ({ loading, items, children, ...props }) => {
+    return loading ? (
+        <CartListSkeleton />
+    ) : (
         <Root {...props}>
-            {items.map(({ _id, title, sku, thumbnail, price, quantity, options }, index) => (
+            {items?.map(({ _id, title, sku, thumbnail, price, quantity, options }, index) => (
                 <Product key={_id || index}>
                     <Thumbnail>
                         <Image vignette={8} transition width="100%" height="auto" {...thumbnail} />
@@ -68,5 +71,5 @@ export const CartList: Component<CartListProps> = ({ items, children, ...props }
 
             {children}
         </Root>
-    ) : null
+    )
 }

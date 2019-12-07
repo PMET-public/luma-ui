@@ -2,10 +2,11 @@ import React from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, IconWrapper } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
-
+import { MenuSkeleton } from './Menu.skeleton'
 import Icon, { IconProps } from '../Icon'
 
 export type HeaderProps = {
+    loading?: boolean
     logo: Props<{
         svg: ReactComponentLike
     }>
@@ -23,7 +24,9 @@ export type HeaderProps = {
         }>[]
     }
 }
+
 export const Header: Component<HeaderProps> = ({
+    loading,
     logo: { svg: LogoSvg, ...logo },
     menu: { items: menuItems, ...menu },
     utilities: { items: utilitiesItems, ...utilities },
@@ -39,11 +42,15 @@ export const Header: Component<HeaderProps> = ({
             {/* Menu */}
             <Menu {...menu}>
                 <MenuWrapper>
-                    {menuItems.map(({ active = false, text, ...menuItem }, index) => (
-                        <MenuItem $active={active} key={index} {...menuItem}>
-                            {text}
-                        </MenuItem>
-                    ))}
+                    {loading ? (
+                        <MenuSkeleton />
+                    ) : (
+                        menuItems.map(({ active = false, text, ...menuItem }, index) => (
+                            <MenuItem $active={active} key={index} {...menuItem}>
+                                {text}
+                            </MenuItem>
+                        ))
+                    )}
                 </MenuWrapper>
             </Menu>
 

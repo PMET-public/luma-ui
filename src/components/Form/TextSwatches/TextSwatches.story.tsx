@@ -5,6 +5,7 @@ import { object, boolean, text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
     <TextSwatches
+        loading={boolean('loading', false)}
         label={text('label', '')}
         name="size"
         type="radio"

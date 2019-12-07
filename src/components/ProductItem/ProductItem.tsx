@@ -1,12 +1,12 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Badge, ImageWrapper, Colors, Color, Details, Title, PriceWrapper } from './ProductItem.styled'
-
+import { ProductItemSkeleton } from './ProductItem.skeleton'
 import Image, { ImageProps } from '../Image'
 import Price, { PriceProps } from '../Price'
-import ContentLoader, { IContentLoaderProps } from 'react-content-loader'
 
 export type ProductItemProps = {
+    loading?: boolean
     badge?: Props<{
         text: string
     }>
@@ -18,61 +18,40 @@ export type ProductItemProps = {
     }>
 }
 
-type CompoundComponent = {
-    Skeleton: Component<IContentLoaderProps>
-}
-
-export const ProductItem: Component<ProductItemProps> & CompoundComponent = ({
-    badge,
-    colors,
-    image,
-    price,
-    title,
-    ...props
-}) => {
+export const ProductItem: Component<ProductItemProps> = ({ loading, badge, colors, image, price, title, ...props }) => {
     return (
         <Root {...props}>
-            {!!badge && (
-                <Badge as="span" {...badge}>
-                    {badge.text}
-                </Badge>
+            {loading ? (
+                <ProductItemSkeleton />
+            ) : (
+                <React.Fragment>
+                    {badge && (
+                        <Badge as="span" {...badge}>
+                            {badge.text}
+                        </Badge>
+                    )}
+
+                    <ImageWrapper>
+                        <Image width={4} height={5} vignette={10} transition {...image} />
+                    </ImageWrapper>
+
+                    {colors && (
+                        <Colors>
+                            {colors.map(({ label, value, ...color }, index) => (
+                                <Color arial-label={label} key={index} style={{ backgroundColor: value }} {...color} />
+                            ))}
+                        </Colors>
+                    )}
+
+                    <Details>
+                        <Title {...title}>{title.text}</Title>
+
+                        <PriceWrapper>
+                            <Price {...price} />
+                        </PriceWrapper>
+                    </Details>
+                </React.Fragment>
             )}
-
-            <ImageWrapper>
-                <Image width={4} height={5} vignette={10} transition {...image} />
-            </ImageWrapper>
-
-            {colors && (
-                <Colors>
-                    {colors.map(({ label, value, ...color }, index) => (
-                        <Color arial-label={label} key={index} style={{ backgroundColor: value }} {...color} />
-                    ))}
-                </Colors>
-            )}
-
-            <Details>
-                <Title {...title}>{title.text}</Title>
-
-                <PriceWrapper>
-                    <Price {...price} />
-                </PriceWrapper>
-            </Details>
         </Root>
-    )
-}
-
-ProductItem.Skeleton = props => {
-    return (
-        <ContentLoader
-            height={810}
-            width={600}
-            primaryColor="rgba(204, 204, 204, 0.25)"
-            secondaryColor="rgba(204, 204, 204, 0.35)"
-            {...props}
-        >
-            <rect x="16" y="762" rx="4" ry="4" width="60%" height="16" />
-            <rect x="16" y="787" rx="4" ry="4" width="30%" height="15" />
-            <rect x="0" y="0" rx="5" ry="5" width="600" height="750" />
-        </ContentLoader>
     )
 }

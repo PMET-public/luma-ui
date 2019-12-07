@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
 import { ProductProps } from './Product'
-import { files } from '@storybook/addon-knobs'
+import { files, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 const ProductMockData = (): ProductProps => ({
@@ -36,7 +36,7 @@ const ProductMockData = (): ProductProps => ({
     sku: {
         text: 'SKU. VSK12-LA',
     },
-    gallery: new Array(5).fill({
+    gallery: Array(3).fill({
         src: {
             desktop: files(
                 'Image',
@@ -126,7 +126,7 @@ storiesOf('📑 Templates/Product', module).add(
     'Default',
     () => (
         <App {...AppMockData}>
-            <Product {...ProductMockData()} />
+            <Product loading={boolean('loading', false)} {...ProductMockData()} />
         </App>
     ),
     {

@@ -1,10 +1,11 @@
 import React from 'react'
 import Breadcrumbs from './'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
+import { text, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Breadcrumbs', module).add('Default', () => (
     <Breadcrumbs
+        loading={boolean('loading', false)}
         divider={text('divider', '')}
         prefix={text('prefix', '#')}
         items={[
