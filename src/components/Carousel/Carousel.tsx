@@ -8,11 +8,7 @@ export type CarouselProps = {
     show?: number
 }
 
-export type CarouselItemProps = {
-    classes?: {
-        item?: string
-    }
-}
+export type CarouselItemProps = {}
 
 type CompoundComponent = {
     Item: Component<CarouselItemProps>

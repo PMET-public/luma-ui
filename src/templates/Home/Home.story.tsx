@@ -3,12 +3,14 @@ import Home from './'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
+import { boolean } from '@storybook/addon-knobs'
 
 storiesOf('📑 Templates/Home', module).add(
     'Default',
     () => (
         <App {...AppMockData}>
             <Home
+                loading={boolean('loading', false)}
                 stories={{
                     items: [
                         {

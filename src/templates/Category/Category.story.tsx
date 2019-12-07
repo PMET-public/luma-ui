@@ -3,20 +3,27 @@ import Category, { CategoryProps } from '../Category'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
-import { text, number, files } from '@storybook/addon-knobs'
+import { text, number, files, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📑 Templates/Category', module)
     .add(
         'Default',
         () => {
+            const loading = boolean('loading', false)
+            const loadingMore = boolean('loadingMore', false)
             const count = number('count', 10, undefined, 'Products')
             const ProductListMockData: CategoryProps = {
+                loading,
+                loadingMore,
                 title: {
                     as: 'h2',
                     text: 'Hoodies & Sweatshirts',
                 },
                 breadcrumbs: {
-                    items: [{ as: 'a', href: '#', text: 'Women' }, { as: 'a', href: '#', text: 'Tops' }],
+                    items: [
+                        { as: 'a', href: '#', text: 'Women' },
+                        { as: 'a', href: '#', text: 'Tops' },
+                    ],
                 },
                 categories: {
                     items: [
@@ -399,9 +406,13 @@ storiesOf('📑 Templates/Category', module)
     .add(
         'Search',
         () => {
+            const loading = boolean('loading', false)
+            const loadingMore = boolean('loadingMore', false)
             const count = number('count', 10, undefined, 'Products')
 
             const ProductListMockData: CategoryProps = {
+                loading,
+                loadingMore,
                 search: {
                     searchBar: {
                         label: 'Search',

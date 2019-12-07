@@ -2,7 +2,7 @@ import React from 'react'
 import Carousel from './'
 import { storiesOf } from '@storybook/react'
 import styled from 'styled-components'
-import { number } from '@storybook/addon-knobs'
+import { number, boolean } from '@storybook/addon-knobs'
 
 const Item = styled.div`
     align-items: center;

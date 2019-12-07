@@ -11,7 +11,10 @@ storiesOf('📦 Components/Checkout/ShippingMethodForm', module).add('Default', 
         <FormContext {...methods}>
             <ShippingMethodForm
                 edit={boolean('edit', false)}
-                items={[{ text: 'Fixed - $5.00', value: '1' }, { text: '1-Day Express - $29.99', value: '2' }]}
+                items={[
+                    { text: 'Fixed - $5.00', value: '1' },
+                    { text: '1-Day Express - $29.99', value: '2' },
+                ]}
                 submitButton={{
                     text: 'Save',
                 }}

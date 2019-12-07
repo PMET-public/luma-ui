@@ -1,11 +1,12 @@
 import React from 'react'
 import ProductList from '.'
 import { storiesOf } from '@storybook/react'
-import { number } from '@storybook/addon-knobs'
+import { number, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ProductList', module).add('Default', () => (
     <ProductList
-        loading={number('loading', 7)}
+        loading={boolean('loading', false)}
+        loadingMore={boolean('loadingMore', false)}
         items={new Array(number('# items', 7)).fill(null).map(() => ({
             image: {
                 alt: '',
