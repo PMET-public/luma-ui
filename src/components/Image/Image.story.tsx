@@ -37,3 +37,28 @@ storiesOf('📦 Components/Image', module)
             transition={boolean('transition', true)}
         />
     ))
+    .add('Lazy Loaded', () => (
+        <div>
+            <Image
+                alt=""
+                src={{
+                    mobile: '/images/banner-1--mobile.jpg',
+                    desktop: '/images/banner-1.jpg',
+                }}
+                height={400}
+                width={600}
+                transition={true}
+            />
+            <Image
+                style={{ marginTop: '100vh' }}
+                alt=""
+                src={{
+                    mobile: '/images/banner-2--mobile.jpg',
+                    desktop: '/images/banner-2.jpg',
+                }}
+                height={400}
+                width={600}
+                transition={true}
+            />
+        </div>
+    ))

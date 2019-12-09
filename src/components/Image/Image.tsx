@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Component } from '../../lib'
 import { Root, LoadedImage, Placeholder, ErrorIcon } from './Image.styled'
 
 import { useImage, Image } from '../../hooks/useImage'
+import { useMeasure } from '../../hooks/useMeasure'
 
 export type ImageProps = {
     alt?: string
@@ -12,6 +13,7 @@ export type ImageProps = {
     vignette?: number
     transition?: boolean
     title?: string
+    lazy?: boolean
 }
 
 export const ImageComponent: Component<ImageProps> = ({
@@ -22,9 +24,14 @@ export const ImageComponent: Component<ImageProps> = ({
     vignette = 0,
     width: _width,
     height: _height,
+    lazy = true,
     ...props
 }) => {
-    const image = useImage(src)
+    const imageElem = useRef<HTMLImageElement>(null)
+
+    const { offsetY } = useMeasure(imageElem)
+
+    const image = useImage(src, lazy ? offsetY - 200 : undefined)
 
     const width = _width || image.size.width
     const height = _height || image.size.height
@@ -32,6 +39,7 @@ export const ImageComponent: Component<ImageProps> = ({
     return (
         <Root $vignette={image.loaded ? vignette : 0} {...props}>
             <LoadedImage
+                ref={imageElem}
                 $error={image.error}
                 $loaded={image.loaded}
                 $transition={transition}

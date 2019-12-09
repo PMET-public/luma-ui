@@ -1,7 +1,8 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, RefObject, useCallback } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import { useResize } from './useResize'
+import { useScroll } from './useScroll'
 
 export type Image =
     | string
@@ -11,13 +12,15 @@ export type Image =
       }
     | undefined
 
-export const useImage = (image: Image) => {
+export const useImage = (image: Image, lazyOffsetY?: number) => {
     const [src, setSrc] = useState('')
     const [loaded, setLoaded] = useState(false)
     const [error, setError] = useState(!image)
     const [size, setSize] = useState({ width: 0, height: 0 })
     const viewport = useResize()
     const theme = useContext(ThemeContext)
+
+    const { scrollY } = useScroll()
 
     const handleImageLoad = (e: any) => {
         setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
@@ -45,12 +48,7 @@ export const useImage = (image: Image) => {
         }
     }, [JSON.stringify(image), viewport.width])
 
-    /**
-     * Load
-     */
-    useEffect(() => {
-        if (!src) return
-
+    const loadImage = useCallback(() => {
         const img = new Image()
 
         img.src = src
@@ -74,8 +72,17 @@ export const useImage = (image: Image) => {
         }
     }, [src])
 
+    /**
+     * Load
+     */
+    useEffect(() => {
+        if (!src || loaded) return
+        const active = !lazyOffsetY || lazyOffsetY - viewport.height < scrollY
+        if (active) loadImage()
+    }, [src, loaded, viewport.height, lazyOffsetY, scrollY])
+
     return {
-        src,
+        src: loaded ? src : undefined,
         loaded,
         error,
         size,
