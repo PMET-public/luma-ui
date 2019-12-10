@@ -45,9 +45,9 @@ export const useMeasure = (ref: RefObject<HTMLElement | null>): UseMeasure => {
     })
 
     useEffect(() => {
-        if (!ref.current) return
+        if (!ref || !ref.current) return
         setValues(getValues(ref.current))
-    }, [ref.current])
+    }, [ref?.current])
 
     return values
 }

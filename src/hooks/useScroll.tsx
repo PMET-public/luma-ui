@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useThrottle } from './useThrottle'
 
 type UseScroll = {
@@ -10,7 +10,14 @@ type UseScroll = {
     scrollY: number
 }
 
-export const useScroll = (delay = 150): UseScroll => {
+type Options = {
+    delay?: number
+    container?: Element | null
+}
+
+export const useScroll = (options?: Options): UseScroll => {
+    const { delay = 50, container } = options || {}
+
     const [scroll, setWheelEvent] = useState({
         scrollDeltaX: 0,
         scrollDeltaY: 0,
@@ -20,23 +27,26 @@ export const useScroll = (delay = 150): UseScroll => {
         scrollY: 0,
     })
 
-    const throttled = useThrottle(
-        () => {
-            const elem: any = document.scrollingElement
-            setWheelEvent({
-                scrollDeltaX: elem.scrollLeft - scroll.scrollX,
-                scrollDeltaY: elem.scrollTop - scroll.scrollY,
-                scrollHeight: elem.scrollHeight,
-                scrollWidth: elem.scrollWidth,
-                scrollX: elem.scrollLeft,
-                scrollY: elem.scrollTop,
-            })
-        },
-        delay,
-        true
-    )
+    const handleUpdate = useCallback(() => {
+        const elem = container || document.scrollingElement
+
+        if (!elem) return
+
+        setWheelEvent({
+            scrollDeltaX: elem.scrollLeft - scroll.scrollX,
+            scrollDeltaY: elem.scrollTop - scroll.scrollY,
+            scrollHeight: elem.scrollHeight,
+            scrollWidth: elem.scrollWidth,
+            scrollX: elem.scrollLeft,
+            scrollY: elem.scrollTop,
+        })
+    }, [scroll.scrollX, scroll.scrollY])
+
+    const throttled = useThrottle(handleUpdate, delay, true)
 
     useEffect(() => {
+        handleUpdate()
+
         window.addEventListener('scroll', throttled)
 
         return () => {

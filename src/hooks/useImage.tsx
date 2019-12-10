@@ -3,6 +3,7 @@ import { ThemeContext } from 'styled-components'
 
 import { useResize } from './useResize'
 import { useScroll } from './useScroll'
+import { useMeasure } from './useMeasure'
 
 export type Image =
     | string
@@ -12,15 +13,29 @@ export type Image =
       }
     | undefined
 
-export const useImage = (image: Image, lazyOffsetY?: number) => {
+export type Options = {
+    offset?: number
+    container?: Element
+}
+
+export const useImage = (ref: RefObject<any>, image: Image, options?: Options) => {
+    const { offset = 0, container } = options || {}
+
     const [src, setSrc] = useState('')
+
     const [loaded, setLoaded] = useState(false)
+
     const [error, setError] = useState(!image)
+
     const [size, setSize] = useState({ width: 0, height: 0 })
-    const viewport = useResize()
+
+    const { width: vWidth, height: vHeight } = useResize()
+
+    const { offsetX, offsetY } = useMeasure(ref)
+
     const theme = useContext(ThemeContext)
 
-    const { scrollY } = useScroll()
+    const { scrollX, scrollY } = useScroll({ container })
 
     const handleImageLoad = (e: any) => {
         setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
@@ -46,7 +61,7 @@ export const useImage = (image: Image, lazyOffsetY?: number) => {
                 setSrc(image.desktop)
             }
         }
-    }, [JSON.stringify(image), viewport.width])
+    }, [JSON.stringify(image), vWidth])
 
     const loadImage = useCallback(() => {
         const img = new Image()
@@ -77,12 +92,13 @@ export const useImage = (image: Image, lazyOffsetY?: number) => {
      */
     useEffect(() => {
         if (!src || loaded) return
-        const active = !lazyOffsetY || lazyOffsetY - viewport.height < scrollY
+        const visible = ref?.current?.offsetParent !== null
+        const active = visible && offsetY - offset - vHeight < scrollY && offsetX - offset - vWidth < scrollX
         if (active) loadImage()
-    }, [src, loaded, viewport.height, lazyOffsetY, scrollY])
+    }, [src, ref?.current, loaded, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
 
     return {
-        src: loaded ? src : undefined,
+        src: loaded ? src : '',
         loaded,
         error,
         size,
