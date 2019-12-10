@@ -13,10 +13,11 @@ type UseScroll = {
 type Options = {
     delay?: number
     container?: RefObject<Element>
+    disabled?: boolean
 }
 
 export const useScroll = (options?: Options): UseScroll => {
-    const { delay = 50, container } = options || {}
+    const { delay = 50, container, disabled = false } = options || {}
 
     const [scroll, setWheelEvent] = useState({
         scrollDeltaX: 0,
@@ -47,6 +48,8 @@ export const useScroll = (options?: Options): UseScroll => {
     useEffect(() => {
         const root = container?.current || window
 
+        if (disabled) return root.removeEventListener('scroll', throttled)
+
         handleUpdate()
 
         root.addEventListener('scroll', throttled)
@@ -54,7 +57,7 @@ export const useScroll = (options?: Options): UseScroll => {
         return () => {
             root.removeEventListener('scroll', throttled)
         }
-    }, [container?.current])
+    }, [container?.current, disabled])
 
     return scroll
 }

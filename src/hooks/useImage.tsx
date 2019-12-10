@@ -35,7 +35,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
 
     const theme = useContext(ThemeContext)
 
-    const { scrollX, scrollY } = useScroll({ container })
+    const { scrollX, scrollY } = useScroll({ container, disabled: loaded })
 
     const handleImageLoad = (e: any) => {
         setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
