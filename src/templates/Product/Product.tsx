@@ -4,6 +4,7 @@ import {
     Root,
     Wrapper,
     Images,
+    Carousel,
     CarouselItem,
     InfoWrapper,
     InfoInnerWrapper,
@@ -22,7 +23,6 @@ import {
 import useForm from 'react-hook-form'
 
 import Image, { ImageProps } from '../../components/Image'
-import Carousel from '../../components/Carousel'
 import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
 import Breadcrumbs, { BreadcrumbsProps } from '../../components/Breadcrumbs'
@@ -87,7 +87,8 @@ export const Product: Component<ProductProps> = ({
 }) => {
     const { register, handleSubmit, errors, setError, getValues } = useForm()
 
-    const infoElemRef = useRef<HTMLDivElement>(null)
+    const carouselElem = useRef(null)
+    const infoElemRef = useRef<HTMLElement>(null)
 
     const handleOnValueChanges = useCallback(() => {
         const values = getValues({ nest: true })
@@ -107,7 +108,7 @@ export const Product: Component<ProductProps> = ({
         <Root as="form" {...props} onSubmit={handleSubmit(onAddToCart)} onChange={handleOnValueChanges}>
             <Wrapper>
                 <Images>
-                    <Carousel gap={1} padding={3}>
+                    <Carousel ref={carouselElem} $gap={1} $padding={3} $show={1}>
                         {loading ? (
                             <CarouselItem>
                                 <ProductImageSkeleton style={{ width: '100%' }} />
@@ -115,7 +116,12 @@ export const Product: Component<ProductProps> = ({
                         ) : (
                             gallery.map((image, index) => (
                                 <CarouselItem key={index}>
-                                    <Image transition vignette={10} {...image} />
+                                    <Image
+                                        {...image}
+                                        transition
+                                        vignette={10}
+                                        lazy={{ container: carouselElem, ...image.lazy }}
+                                    />
                                 </CarouselItem>
                             ))
                         )}

@@ -37,24 +37,24 @@ export const Images = styled.div`
         top: 6rem;
         z-index: 0;
     }
+`
 
-    ${CarouselRoot} {
-        padding: 0;
+export const Carousel = styled(CarouselRoot)`
+    padding: 0;
 
-        @media ${props => props.theme.breakpoints.smallOnly} {
-            width: 100vw;
-            position: relative;
-            margin-left: -50vw;
-            left: 50%;
-        }
+    @media ${props => props.theme.breakpoints.smallOnly} {
+        width: 100vw;
+        position: relative;
+        margin-left: -50vw;
+        left: 50%;
+    }
 
-        @media ${props => props.theme.breakpoints.medium} {
-            max-width: 120rem;
-            grid-auto-flow: row;
-            grid-gap: 0.5rem;
-            grid-template-columns: 1fr 1fr;
-            overflow: unset;
-        }
+    @media ${props => props.theme.breakpoints.medium} {
+        max-width: 120rem;
+        grid-auto-flow: row;
+        grid-gap: 0.5rem;
+        grid-template-columns: 1fr 1fr;
+        overflow: unset;
     }
 `
 
