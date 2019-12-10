@@ -59,6 +59,9 @@ storiesOf('📦 Components/Image', module)
                 height={400}
                 width={600}
                 transition={true}
+                lazy={{
+                    offset: number('offset', 0),
+                }}
             />
         </div>
     ))

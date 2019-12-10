@@ -13,19 +13,19 @@ export type Image =
       }
     | undefined
 
-export type Options = {
+export type LazyLoadOptions = {
     offset?: number
-    container?: Element
+    container?: RefObject<Element>
 }
 
-export const useImage = (ref: RefObject<any>, image: Image, options?: Options) => {
-    const { offset = 0, container } = options || {}
+export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOptions) => {
+    const { offset = 200, container } = options || {}
 
     const [src, setSrc] = useState('')
 
     const [loaded, setLoaded] = useState(false)
 
-    const [error, setError] = useState(!image)
+    const [error, setError] = useState(false)
 
     const [size, setSize] = useState({ width: 0, height: 0 })
 
@@ -93,7 +93,10 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: Options) =
     useEffect(() => {
         if (!src || loaded) return
         const visible = ref?.current?.offsetParent !== null
-        const active = visible && offsetY - offset - vHeight < scrollY && offsetX - offset - vWidth < scrollX
+        const active =
+            visible && // load if the image is visible (not hidden)
+            offsetY - offset - vHeight < scrollY && // load if the use has scrolled vertically near the image
+            offsetX - offset - vWidth < scrollX // load if the use has scrolled horizontally to near the image
         if (active) loadImage()
     }, [src, ref?.current, loaded, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
 

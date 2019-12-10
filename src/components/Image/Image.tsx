@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Component } from '../../lib'
 import { Root, LoadedImage, Placeholder, ErrorIcon } from './Image.styled'
 
-import { useImage, Image } from '../../hooks/useImage'
+import { useImage, Image, LazyLoadOptions } from '../../hooks/useImage'
 
 export type ImageProps = {
     alt?: string
@@ -12,7 +12,7 @@ export type ImageProps = {
     vignette?: number
     transition?: boolean
     title?: string
-    lazy?: boolean
+    lazy?: LazyLoadOptions
 }
 
 export const ImageComponent: Component<ImageProps> = ({
@@ -23,12 +23,12 @@ export const ImageComponent: Component<ImageProps> = ({
     vignette = 0,
     width: _width,
     height: _height,
-    lazy = true,
+    lazy,
     ...props
 }) => {
     const imageElem = useRef<HTMLImageElement>(null)
 
-    const image = useImage(imageElem, src, { offset: 0 })
+    const image = useImage(imageElem, src, { ...lazy })
 
     const width = _width || image.size.width
     const height = _height || image.size.height
