@@ -24,11 +24,13 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
 
     const [loaded, setLoaded] = useState(false)
 
+    const [ready, setReady] = useState(false)
+
     const [error, setError] = useState(false)
 
     const [size, setSize] = useState({ width: 0, height: 0 })
 
-    const { width: vWidth, height: vHeight, breakpoint } = useResize()
+    const { width: vWidth, height: vHeight, breakpoints } = useResize()
 
     const { offsetX, offsetY } = useMeasure(ref)
 
@@ -52,7 +54,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
         if (typeof image === 'string') {
             setSrc(image)
         } else {
-            if (image.mobile && breakpoint === 'smallOnly') {
+            if (image.mobile && breakpoints.smallOnly) {
                 setSrc(image.mobile)
             } else {
                 setSrc(image.desktop)
@@ -88,17 +90,21 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
      * Load
      */
     useEffect(() => {
-        if (!src || loaded) return
+        if (!src) return
         const visible = ref?.current?.offsetParent !== null
         const active =
             visible && // load if the image is visible (not hidden)
             offsetY - offset - vHeight < scrollY && // load if the use has scrolled vertically near the image
             offsetX - offset - vWidth < scrollX // load if the use has scrolled horizontally to near the image
-        if (active) loadImage()
-    }, [src, ref?.current, loaded, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
+        if (active) setReady(true)
+    }, [src, ref?.current, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
+
+    useEffect(() => {
+        if (!loaded && ready) loadImage()
+    }, [ready, loaded])
 
     return {
-        src: loaded ? src : '',
+        src: ready ? src : '',
         loaded,
         error,
         size,
