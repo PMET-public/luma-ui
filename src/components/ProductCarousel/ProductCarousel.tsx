@@ -13,7 +13,7 @@ export type ProductCarouselProps = {
 
 export const ProductCarousel: Component<ProductCarouselProps> = ({ loading, items, title, ...props }) => {
     const [scrollerRef, setScrollerRef] = useState<MutableRefObject<Element>>()
-    const { breakpoints } = useResize(console.log)
+    const { breakpoints } = useResize()
 
     const show = useMemo(() => {
         if (breakpoints.smallOnly) return 1

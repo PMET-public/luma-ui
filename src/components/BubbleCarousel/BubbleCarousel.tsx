@@ -21,8 +21,6 @@ export type BubbleCarouselProps = {
 export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loading, items, ...props }) => {
     const [scrollerRef, setScrollerRef] = useState<MutableRefObject<Element>>()
 
-    console.log(scrollerRef)
-
     return (
         <Root
             as={Carousel}
