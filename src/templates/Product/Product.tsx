@@ -179,6 +179,7 @@ export const Product: Component<ProductProps> = ({
                                                                 {type === 'thumb' && (
                                                                     <ThumbSwatchesWrapper>
                                                                         <ThumbSwatches
+                                                                            ref={register({ required })}
                                                                             {...(swatches as ThumbSwatchesProps)}
                                                                         />
                                                                     </ThumbSwatchesWrapper>
