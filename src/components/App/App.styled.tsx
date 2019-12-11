@@ -15,6 +15,10 @@ export const Root = styled.div`
     width: 100%;
     background-color: ${props => props.theme.colors.surface};
     color: ${props => props.theme.colors.onSurface};
+
+    @media ${props => props.theme.breakpoints.medium} {
+        grid-template-rows: auto minmax(100vh, 1fr) auto auto;
+    }
 `
 
 export const HeaderContainer = styled(ContainerWrapper)`

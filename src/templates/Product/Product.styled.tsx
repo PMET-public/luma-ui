@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Root as ImageRoot, ImageTag } from '../../components/Image/Image.styled'
 import { Root as CarouselRoot, Item as CarouselComponentItem } from '../../components/Carousel/Carousel.styled'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs/Breadcrumbs.styled'
+import { Items as ThumbSwatchesItems } from '../../components/Form/ThumbSwatches/ThumbSwatches.styled'
 
 export const Root = styled.div`
     display: grid;
@@ -130,6 +131,22 @@ export const Header = styled.header`
 
     ${BreadcrumbsRoot} {
         font-size: 1.3rem;
+    }
+`
+
+export const ThumbSwatchesWrapper = styled.div`
+    overflow-y: hidden;
+
+    ${ThumbSwatchesItems} {
+        -webkit-overflow-scrolling: touch;
+        grid-auto-columns: calc(100% / 2);
+        grid-auto-flow: column;
+        grid-template-columns: unset;
+        overflow-x: auto;
+        padding-bottom: 2rem;
+        scrollbar-width: none;
+        margin-top: -0.5rem;
+        padding: 1rem 0 1rem;
     }
 `
 

@@ -18,6 +18,7 @@ import {
     Buttons,
     ShortDescription,
     Description,
+    ThumbSwatchesWrapper,
 } from './Product.styled'
 
 import useForm from 'react-hook-form'
@@ -167,10 +168,12 @@ export const Product: Component<ProductProps> = ({
                                                                     />
                                                                 )}
                                                                 {type === 'thumb' && (
-                                                                    <ThumbSwatches
-                                                                        ref={register({ required })}
-                                                                        {...(swatches as ThumbSwatchesProps)}
-                                                                    />
+                                                                    <ThumbSwatchesWrapper>
+                                                                        <ThumbSwatches
+                                                                            ref={register({ required })}
+                                                                            {...(swatches as ThumbSwatchesProps)}
+                                                                        />
+                                                                    </ThumbSwatchesWrapper>
                                                                 )}
                                                             </Field>
                                                         </fieldset>
