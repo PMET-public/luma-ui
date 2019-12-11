@@ -45,7 +45,7 @@ export const Header: Component<HeaderProps> = ({
                     {loading ? (
                         <MenuSkeleton />
                     ) : (
-                        menuItems.map(({ active = false, text, ...menuItem }, index) => (
+                        menuItems?.map(({ active = false, text, ...menuItem }, index) => (
                             <MenuItem $active={active} key={index} {...menuItem}>
                                 {text}
                             </MenuItem>
@@ -56,7 +56,7 @@ export const Header: Component<HeaderProps> = ({
 
             {/* Utilities */}
             <Utilities {...utilities}>
-                {utilitiesItems.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
+                {utilitiesItems?.map(({ active = false, text, icon, ...utilitiesItem }, index) => (
                     <UtilitiesItem $active={active} $icon={!!icon} key={index} {...utilitiesItem}>
                         {icon ? (
                             <IconWrapper>

@@ -124,7 +124,7 @@ export const Product: Component<ProductProps> = ({
                                 <ProductImageSkeleton style={{ width: '100%' }} />
                             </CarouselItem>
                         ) : (
-                            gallery.map((image, index) => (
+                            gallery?.map((image, index) => (
                                 <CarouselItem key={index} as={Carousel.Item}>
                                     <Image
                                         {...image}
