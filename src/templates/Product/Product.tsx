@@ -1,10 +1,10 @@
-import React, { useRef, useCallback, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useEffect, MutableRefObject } from 'react'
 import { Component, Props } from '../../lib'
 import {
     Root,
     Wrapper,
     Images,
-    Carousel,
+    CarouselWrapper,
     CarouselItem,
     InfoWrapper,
     InfoInnerWrapper,
@@ -23,6 +23,7 @@ import {
 
 import useForm from 'react-hook-form'
 
+import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
 import Button, { ButtonProps } from '../../components/Button'
@@ -88,8 +89,8 @@ export const Product: Component<ProductProps> = ({
 }) => {
     const { register, handleSubmit, errors, setError, getValues } = useForm()
 
-    const carouselElem = useRef(null)
-    const infoElemRef = useRef<HTMLElement>(null)
+    const [scrollerRef, setScrollerRef] = useState<MutableRefObject<Element>>()
+    const infoRef = useRef<HTMLElement>(null)
 
     const handleOnValueChanges = useCallback(() => {
         const values = getValues({ nest: true })
@@ -100,8 +101,8 @@ export const Product: Component<ProductProps> = ({
      * Scroll to top if there are any errors
      */
     useEffect(() => {
-        if (Object.entries(errors).length > 0 && infoElemRef.current) {
-            infoElemRef.current.scrollIntoView({ behavior: 'smooth' })
+        if (Object.entries(errors).length > 0 && infoRef.current) {
+            infoRef.current.scrollIntoView({ behavior: 'smooth' })
         }
     }, [errors])
 
@@ -109,26 +110,34 @@ export const Product: Component<ProductProps> = ({
         <Root as="form" {...props} onSubmit={handleSubmit(onAddToCart)} onChange={handleOnValueChanges}>
             <Wrapper>
                 <Images>
-                    <Carousel ref={carouselElem} $gap={1} $padding={3} $show={1}>
+                    <CarouselWrapper
+                        as={Carousel}
+                        scrollerRef={setScrollerRef}
+                        gap={1}
+                        padding={3}
+                        show={1}
+                        snap={true}
+                        hideScrollBar
+                    >
                         {loading ? (
-                            <CarouselItem>
+                            <CarouselItem as={Carousel.Item}>
                                 <ProductImageSkeleton style={{ width: '100%' }} />
                             </CarouselItem>
                         ) : (
                             gallery.map((image, index) => (
-                                <CarouselItem key={index}>
+                                <CarouselItem key={index} as={Carousel.Item}>
                                     <Image
                                         {...image}
                                         transition
                                         vignette={10}
-                                        lazy={{ container: carouselElem, ...image.lazy }}
+                                        lazy={{ container: scrollerRef, ...image.lazy }}
                                     />
                                 </CarouselItem>
                             ))
                         )}
-                    </Carousel>
+                    </CarouselWrapper>
                 </Images>
-                <InfoWrapper ref={infoElemRef}>
+                <InfoWrapper ref={infoRef}>
                     <InfoInnerWrapper>
                         <Info>
                             {loading ? (
@@ -170,7 +179,6 @@ export const Product: Component<ProductProps> = ({
                                                                 {type === 'thumb' && (
                                                                     <ThumbSwatchesWrapper>
                                                                         <ThumbSwatches
-                                                                            ref={register({ required })}
                                                                             {...(swatches as ThumbSwatchesProps)}
                                                                         />
                                                                     </ThumbSwatchesWrapper>

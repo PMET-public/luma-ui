@@ -15,7 +15,13 @@ const Item = styled.div`
 `
 
 storiesOf('📦 Components/Carousel', module).add('Default', () => (
-    <Carousel padding={number('padding', 4)} gap={number('gap', 2)} show={number('show', 1)}>
+    <Carousel
+        padding={number('padding', 4)}
+        gap={number('gap', 2)}
+        show={number('show', 1)}
+        hideScrollBar={boolean('hideScrollBar', false)}
+        snap={boolean('snap', true)}
+    >
         <Carousel.Item>
             <Item>1</Item>
         </Carousel.Item>

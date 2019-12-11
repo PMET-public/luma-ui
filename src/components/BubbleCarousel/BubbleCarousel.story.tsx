@@ -6,7 +6,7 @@ import { boolean } from '@storybook/addon-knobs'
 storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
     <BubbleCarousel
         label="Shop the Look"
-        loading={boolean('loading', true)}
+        loading={boolean('loading', false)}
         items={[
             {
                 as: 'a',

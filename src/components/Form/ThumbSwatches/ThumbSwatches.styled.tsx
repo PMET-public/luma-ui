@@ -4,7 +4,7 @@ import { Root as ImageRoot, ImageTag, LoadedImage } from '../../Image/Image.styl
 export const Items = styled.div`
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 `
 
 export const Item = styled.div`

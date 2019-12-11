@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext, RefObject, useCallback } from 'react'
-import { ThemeContext } from 'styled-components'
+import { useState, useEffect, RefObject, useCallback } from 'react'
 
 import { useResize } from './useResize'
 import { useScroll } from './useScroll'
@@ -29,11 +28,9 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
 
     const [size, setSize] = useState({ width: 0, height: 0 })
 
-    const { width: vWidth, height: vHeight } = useResize()
+    const { width: vWidth, height: vHeight, breakpoint } = useResize()
 
     const { offsetX, offsetY } = useMeasure(ref)
-
-    const theme = useContext(ThemeContext)
 
     const { scrollX, scrollY } = useScroll({ container, disabled: loaded })
 
@@ -55,7 +52,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
         if (typeof image === 'string') {
             setSrc(image)
         } else {
-            if (image.mobile && window.matchMedia(theme.breakpoints.smallOnly).matches) {
+            if (image.mobile && breakpoint === 'smallOnly') {
                 setSrc(image.mobile)
             } else {
                 setSrc(image.desktop)

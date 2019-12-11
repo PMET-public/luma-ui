@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { Root as ImageRoot, ImageTag } from '../../components/Image/Image.styled'
-import { Root as CarouselRoot, Item as CarouselComponentItem } from '../../components/Carousel/Carousel.styled'
 import { Root as BreadcrumbsRoot } from '../../components/Breadcrumbs/Breadcrumbs.styled'
 import { Items as ThumbSwatchesItems } from '../../components/Form/ThumbSwatches/ThumbSwatches.styled'
 
@@ -15,13 +14,13 @@ export const Wrapper = styled.div`
     grid-auto-rows: minmax(max-content, max-content);
     grid-gap: 1rem;
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    @media ${props => props.theme.breakpoints.untilMedium} {
         display: grid;
         grid-auto-rows: max-content;
         grid-template-columns: 1fr;
     }
 
-    @media ${props => props.theme.breakpoints.medium} {
+    @media ${props => props.theme.breakpoints.large} {
         display: grid;
         grid-auto-rows: max-content;
         grid-gap: 2rem;
@@ -33,24 +32,17 @@ export const Images = styled.div`
     display: grid;
     align-items: center;
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    @media ${props => props.theme.breakpoints.untilMedium} {
         position: sticky;
         top: 6rem;
         z-index: 0;
     }
 `
 
-export const Carousel = styled(CarouselRoot)`
+export const CarouselWrapper = styled.div`
     padding: 0;
 
-    @media ${props => props.theme.breakpoints.smallOnly} {
-        width: 100vw;
-        position: relative;
-        margin-left: -50vw;
-        left: 50%;
-    }
-
-    @media ${props => props.theme.breakpoints.medium} {
+    @media ${props => props.theme.breakpoints.large} {
         max-width: 120rem;
         grid-auto-flow: row;
         grid-gap: 0.5rem;
@@ -59,7 +51,9 @@ export const Carousel = styled(CarouselRoot)`
     }
 `
 
-export const CarouselItem = styled(CarouselComponentItem)`
+export const CarouselItem = styled.div`
+    display: grid;
+
     ${ImageRoot} {
         display: block;
         width: 100%;
@@ -70,7 +64,12 @@ export const CarouselItem = styled(CarouselComponentItem)`
         height: 100%;
     }
 
-    @media ${props => props.theme.breakpoints.medium} {
+    @media ${props => props.theme.breakpoints.large} {
+        grid-column-end: span 2;
+    }
+
+    @media ${props => props.theme.breakpoints.large} {
+        grid-column-end: span 1;
         &:first-child,
         &:last-child:nth-child(even) {
             grid-column-end: span 2;
@@ -79,7 +78,7 @@ export const CarouselItem = styled(CarouselComponentItem)`
 `
 
 export const InfoWrapper = styled.div`
-    @media ${props => props.theme.breakpoints.smallOnly} {
+    @media ${props => props.theme.breakpoints.untilMedium} {
         background-color: ${props => props.theme.colors.surface};
         border-radius: 1rem 1rem 0 0;
         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
@@ -100,15 +99,15 @@ export const InfoWrapper = styled.div`
 `
 
 export const InfoInnerWrapper = styled.div`
-    @media ${props => props.theme.breakpoints.medium} {
+    @media ${props => props.theme.breakpoints.large} {
         align-items: center;
         display: flex;
-        height: calc(100vh - 8rem);
         justify-content: center;
         max-width: 60rem;
         padding: 4rem 2rem 4rem;
         position: sticky;
         top: 8rem;
+        min-height: calc(100vh - 8rem);
     }
 `
 
@@ -135,18 +134,14 @@ export const Header = styled.header`
 `
 
 export const ThumbSwatchesWrapper = styled.div`
-    overflow-y: hidden;
+    overflow-y: auto;
 
     ${ThumbSwatchesItems} {
-        -webkit-overflow-scrolling: touch;
-        grid-auto-columns: calc(100% / 2);
-        grid-auto-flow: column;
-        grid-template-columns: unset;
-        overflow-x: auto;
-        padding-bottom: 2rem;
-        scrollbar-width: none;
-        margin-top: -0.5rem;
-        padding: 1rem 0 1rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        @media ${props => props.theme.breakpoints.large} {
+            grid-template-columns: repeat(4, 1fr);
+        }
     }
 `
 
@@ -180,7 +175,7 @@ export const Label = styled.div<{ $error?: boolean }>`
 export const Title = styled.h2`
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight.semi};
-    font-size: ${props => props.theme.typography.heading.weight.secondary};
+    font-size: ${props => props.theme.typography.heading.size.secondary};
 `
 
 export const Sku = styled.span`

@@ -89,15 +89,6 @@ const ProductMockData = (): ProductProps => ({
                             height: 5,
                         },
                     },
-                    {
-                        defaultValue: '4',
-                        image: {
-                            alt: '',
-                            src: require('../../../public/images/product-item-sample.jpg'),
-                            width: 4,
-                            height: 5,
-                        },
-                    },
                 ],
             },
         },

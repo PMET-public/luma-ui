@@ -1,6 +1,23 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $gap: number; $padding: number; $show: number }>`
+export const Root = styled.div<{ $height?: number }>`
+    width: 100%;
+    overflow-y: hidden;
+
+    ${props =>
+        props.$height &&
+        `
+            height: calc(${props.$height} + 3rem);
+            `}
+`
+
+export const Scroller = styled.div<{
+    $gap: number
+    $padding: number
+    $show: number | 'auto'
+    $hideScrollBar?: boolean
+    $snap?: boolean
+}>`
     --gap: ${props => props.$gap}rem;
     --padding: ${props => props.$padding}rem;
     --show: ${props => props.$show};
@@ -12,26 +29,39 @@ export const Root = styled.div<{ $gap: number; $padding: number; $show: number }
     grid-gap: var(--gap);
     overflow-x: scroll;
     overflow-y: hidden;
-    padding-bottom: 1rem;
     scroll-padding: var(--padding);
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: ${props => (props.$snap ? `x mandatory` : `unset`)};
 
-    width: 100%;
+    ${props =>
+        props.$hideScrollBar
+            ? `
+            padding: 1rem 0 1rem;
+            scrollbar-width: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        `
+            : `
+            padding-bottom: 1rem;
 
-    &::-webkit-scrollbar {
-        height: 0.2rem;
-    }
+            scrollbar-color: ${props.theme.colors.primary25} ${props.theme.colors.primary15};
+            scrollbar-width: thin;
 
-    &::-webkit-scrollbar-track {
-        margin: 0 10%;
-        border-radius: 3rem;
-        background: ${props => props.theme.colors.primary15};
-    }
+            &::-webkit-scrollbar {
+                height: 0.2rem;
+            }
 
-    &::-webkit-scrollbar-thumb {
-        border-radius: 3rem;
-        background: ${props => props.theme.colors.primary25};
-    }
+            &::-webkit-scrollbar-track {
+                margin: 0 10%;
+                border-radius: 3rem;
+                background: ${props.theme.colors.primary15};
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 3rem;
+                background: ${props.theme.colors.primary25};
+            }
+        `}
 `
 
 export const Item = styled.div`
