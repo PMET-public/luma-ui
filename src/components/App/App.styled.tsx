@@ -8,10 +8,10 @@ import {
 } from '../Header/Header.styled'
 import { Wrapper as ContainerWrapper } from '../Container/Container.styled'
 
-export const Root = styled.div<{ $mainHeight: string }>`
+export const Root = styled.div`
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
-    grid-template-rows: auto minmax(${props => props.$mainHeight}, 1fr) auto auto;
+    grid-template-rows: auto minmax(calc(100vh - 6rem - 6rem), 1fr) auto auto;
     width: 100%;
     background-color: ${props => props.theme.colors.surface};
     color: ${props => props.theme.colors.onSurface};
@@ -24,6 +24,7 @@ export const HeaderContainer = styled(ContainerWrapper)`
     position: sticky;
     top: 0;
     z-index: 2;
+    height: 6rem;
 
     ${HeaderRoot} {
         @media ${props => props.theme.breakpoints.smallOnly} {
@@ -72,6 +73,7 @@ export const TabBarContainer = styled(ContainerWrapper)`
     position: sticky;
     bottom: 0;
     z-index: 2;
+    height: 6rem;
 
     @media ${props => props.theme.breakpoints.medium} {
         display: none;

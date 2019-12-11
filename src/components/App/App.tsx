@@ -2,8 +2,6 @@ import React, { useRef } from 'react'
 import { Component, Props } from '../../lib'
 import { Root, HeaderContainer, Main, FooterContainer, TabBarContainer } from './App.styled'
 
-import { useMeasure } from '../../hooks/useMeasure'
-
 import Header from '../Header'
 import TabBar from '../TabBar'
 import Footer, { FooterProps } from '../Footer'
@@ -87,14 +85,10 @@ export const App: Component<AppProps> = ({
 
     const tabBarRef = useRef<HTMLDivElement>(null)
 
-    const { height: headerHeight } = useMeasure(headerRef)
-
-    const { height: tabBarHeight } = useMeasure(tabBarRef)
-
     const { state, actions } = useAppContext()
 
     return (
-        <Root $mainHeight={`calc(100vh - ${headerHeight}px - ${tabBarHeight}px)`} {...props}>
+        <Root {...props}>
             <HeaderContainer ref={headerRef} as="header" $margin>
                 <Header
                     loading={loading}
