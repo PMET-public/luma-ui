@@ -42,7 +42,6 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = React.forwardRef(
                                         ref={ref as any}
                                         type={type}
                                         name={name}
-                                        defaultChecked={items.length === 1}
                                         {...item}
                                     />
                                     <label htmlFor={`swatch-group__${name}__${index}`}>
