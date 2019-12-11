@@ -14,13 +14,13 @@ export const Wrapper = styled.div`
     grid-auto-rows: minmax(max-content, max-content);
     grid-gap: 1rem;
 
-    @media ${props => props.theme.breakpoints.untilMedium} {
+    @media ${props => props.theme.breakpoints.smallOnly} {
         display: grid;
         grid-auto-rows: max-content;
         grid-template-columns: 1fr;
     }
 
-    @media ${props => props.theme.breakpoints.large} {
+    @media ${props => props.theme.breakpoints.medium} {
         display: grid;
         grid-auto-rows: max-content;
         grid-gap: 2rem;
@@ -32,17 +32,18 @@ export const Images = styled.div`
     display: grid;
     align-items: center;
 
-    @media ${props => props.theme.breakpoints.untilMedium} {
+    @media ${props => props.theme.breakpoints.smallOnly} {
         position: sticky;
         top: 6rem;
         z-index: 0;
+        max-height: calc(100vh - 20rem);
     }
 `
 
 export const CarouselWrapper = styled.div`
     padding: 0;
 
-    @media ${props => props.theme.breakpoints.large} {
+    @media ${props => props.theme.breakpoints.medium} {
         max-width: 120rem;
         grid-auto-flow: row;
         grid-gap: 0.5rem;
@@ -64,7 +65,7 @@ export const CarouselItem = styled.div`
         height: 100%;
     }
 
-    @media ${props => props.theme.breakpoints.large} {
+    @media ${props => props.theme.breakpoints.medium} {
         grid-column-end: span 2;
     }
 
@@ -78,7 +79,7 @@ export const CarouselItem = styled.div`
 `
 
 export const InfoWrapper = styled.div`
-    @media ${props => props.theme.breakpoints.untilMedium} {
+    @media ${props => props.theme.breakpoints.smallOnly} {
         background-color: ${props => props.theme.colors.surface};
         border-radius: 1rem 1rem 0 0;
         box-shadow: 0 -0.5rem 0.3rem rgba(0, 0, 0, 0.05);
@@ -99,7 +100,7 @@ export const InfoWrapper = styled.div`
 `
 
 export const InfoInnerWrapper = styled.div`
-    @media ${props => props.theme.breakpoints.large} {
+    @media ${props => props.theme.breakpoints.medium} {
         align-items: center;
         display: flex;
         justify-content: center;
@@ -139,7 +140,7 @@ export const ThumbSwatchesWrapper = styled.div`
     ${ThumbSwatchesItems} {
         grid-template-columns: repeat(3, 1fr);
 
-        @media ${props => props.theme.breakpoints.large} {
+        @media ${props => props.theme.breakpoints.medium} {
             grid-template-columns: repeat(4, 1fr);
         }
     }
