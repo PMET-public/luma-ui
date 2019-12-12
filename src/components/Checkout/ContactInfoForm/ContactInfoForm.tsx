@@ -52,6 +52,7 @@ export type ContactInfoFormProps = {
     submitButton: ButtonProps
     onSubmit: (payload: ContactInfoFormPayload) => any
     onEdit: (...args: any) => any
+    loading?: boolean
 }
 
 export const ContactInfoForm: Component<ContactInfoFormProps> = ({
@@ -61,25 +62,26 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
     editButton,
     onSubmit,
     onEdit,
+    loading,
     ...props
 }) => {
     const { handleSubmit, register, errors } = useForm<ContactInfoFormPayload>()
 
     const [formError, setFormError] = useState<string | null>(null)
 
-    const [loading, setLoading] = useState(false)
+    const [submitting, setSubmitting] = useState(false)
 
     const handleOnSubmit = useCallback(
         async form => {
             setFormError(null)
-            setLoading(true)
+            setSubmitting(true)
 
             try {
                 await handleSubmit(onSubmit)(form)
-                setLoading(false)
+                setSubmitting(false)
             } catch (error) {
                 setFormError(error.message)
-                setLoading(false)
+                setSubmitting(false)
             }
         },
         [handleSubmit, onSubmit]
@@ -87,13 +89,14 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
 
     const { email, firstName, lastName, company, address1, address2, city, country, region, postalCode, phone } = fields
 
-    const disabled = loading || !edit
+    const disabled = submitting || !edit
 
     return (
         <Form autoComplete={props.disabled ? 'off' : 'on'} onSubmit={handleOnSubmit} {...props}>
             <Root $preview={!edit}>
                 <Email>
                     <Input
+                        loading={loading}
                         {...email}
                         name="email"
                         ref={register({ required: true, pattern: patterns.email })}
@@ -103,6 +106,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 </Email>
                 <FirstName>
                     <Input
+                        loading={loading}
                         {...firstName}
                         name="firstName"
                         ref={register({ required: true })}
@@ -112,6 +116,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 </FirstName>
                 <LastName>
                     <Input
+                        loading={loading}
                         {...lastName}
                         name="lastName"
                         ref={register({ required: true })}
@@ -120,10 +125,18 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                     />
                 </LastName>
                 <Company>
-                    <Input {...company} name="company" ref={register} error={errors.company} disabled={disabled} />
+                    <Input
+                        loading={loading}
+                        {...company}
+                        name="company"
+                        ref={register}
+                        error={errors.company}
+                        disabled={disabled}
+                    />
                 </Company>
                 <Address1>
                     <Input
+                        loading={loading}
                         {...address1}
                         name="street[0]"
                         ref={register({ required: true })}
@@ -132,10 +145,18 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                     />
                 </Address1>
                 <Address2>
-                    <Input {...address2} name="street[1]" ref={register} error={errors.address2} disabled={disabled} />
+                    <Input
+                        loading={loading}
+                        {...address2}
+                        name="street[1]"
+                        ref={register}
+                        error={errors.address2}
+                        disabled={disabled}
+                    />
                 </Address2>
                 <City>
                     <Input
+                        loading={loading}
                         {...city}
                         name="city"
                         ref={register({ required: true })}
@@ -145,6 +166,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 </City>
                 <Country>
                     <Select
+                        loading={loading}
                         {...country}
                         name="country"
                         ref={register({ required: true })}
@@ -155,6 +177,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 <Region>
                     {region.type === 'select' ? (
                         <Select
+                            loading={loading}
                             {...region}
                             name="region"
                             ref={register({ required: true })}
@@ -163,6 +186,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                         />
                     ) : (
                         <Input
+                            loading={loading}
                             {...region}
                             name="region"
                             ref={register({ required: true })}
@@ -173,6 +197,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 </Region>
                 <PostalCode>
                     <Input
+                        loading={loading}
                         {...postalCode}
                         name="postalCode"
                         ref={register({ required: true })}
@@ -182,6 +207,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 </PostalCode>
                 <PhoneNumber>
                     <Input
+                        loading={loading}
                         {...phone}
                         name="phone"
                         ref={register({ required: true })}
@@ -194,7 +220,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
             {formError && <FormError>{formError}</FormError>}
 
             {edit ? (
-                <Button type="submit" loading={loading} {...submitButton} />
+                <Button type="submit" loading={loading || submitting} {...submitButton} />
             ) : (
                 <Button
                     type="button"

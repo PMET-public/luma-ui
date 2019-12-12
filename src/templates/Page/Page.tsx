@@ -2,8 +2,12 @@ import React from 'react'
 import { Component } from '../../lib'
 import { Root } from './Page.styled'
 
-export type PageProps = {}
+import { PageSkeleton } from './Page.skeleton'
 
-export const Page: Component<PageProps> = ({ children, ...props }) => {
-    return <Root {...props}>{children}</Root>
+export type PageProps = {
+    loading?: boolean
+}
+
+export const Page: Component<PageProps> = ({ loading, children, ...props }) => {
+    return <Root {...props}> {loading ? <PageSkeleton /> : children}</Root>
 }

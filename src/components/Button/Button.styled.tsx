@@ -5,9 +5,11 @@ export const Root = styled.button<{ $secondary?: boolean }>`
     background-color: ${props => (props.$secondary ? 'transparent' : 'currentColor')};
     border-radius: 2.4rem;
     border: 0.1rem solid;
+    box-sizing: border-box;
     display: inline-flex;
     font-size: 1.6rem;
-    font-weight: 600;
+    font-weight: 800;
+    height: 3em;
     justify-content: center;
     line-height: 1;
     padding: 1.6rem 2.8rem;
