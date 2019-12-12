@@ -39,7 +39,9 @@ export type CartListProps = {
 }
 export const CartList: Component<CartListProps> = ({ loading, items, children, ...props }) => {
     return loading ? (
-        <CartListSkeleton />
+        <Root {...props}>
+            <CartListSkeleton />
+        </Root>
     ) : (
         <Root {...props}>
             {items?.map(({ _id, title, sku, thumbnail, price, quantity, options }, index) => (

@@ -19,6 +19,7 @@ export type CheckoutProps = {
     placeOrder: PlaceOrderFormProps & { title: string }
     list: CartListProps
     summary: CartSummaryProps
+    loading?: boolean
 }
 
 export const Checkout: Component<CheckoutProps> = ({
@@ -30,6 +31,7 @@ export const Checkout: Component<CheckoutProps> = ({
     placeOrder,
     list,
     summary,
+    loading,
     ...props
 }) => {
     const contactInfoElem = useRef<HTMLDivElement>(null)
@@ -72,7 +74,8 @@ export const Checkout: Component<CheckoutProps> = ({
     return (
         <Root {...props}>
             <Wrapper>
-                <Breadcrumbs {...breadcrumbs} />
+                <Breadcrumbs loading={loading} {...breadcrumbs} />
+
                 <Steps>
                     <div ref={contactInfoElem}>
                         <Title $active>
@@ -89,7 +92,7 @@ export const Checkout: Component<CheckoutProps> = ({
                             <PendingIcon />
                             {shippingMethod.title}
                         </Title>
-                        {step > 1 && <ShippingMethodForm {...shippingMethod} />}
+                        {step > 1 && <ShippingMethodForm loading={loading} {...shippingMethod} />}
                     </div>
                     <div ref={paymentMethodElem}>
                         <Title $active={step > 2}>
@@ -97,7 +100,7 @@ export const Checkout: Component<CheckoutProps> = ({
                             <PendingIcon />
                             {paymentMethod.title}
                         </Title>
-                        {step > 2 && <PaymentMethodForm {...paymentMethod} />}
+                        {step > 2 && <PaymentMethodForm loading={loading} {...paymentMethod} />}
                     </div>
 
                     <div ref={placeOrderElem}>
@@ -106,13 +109,13 @@ export const Checkout: Component<CheckoutProps> = ({
                             <PendingIcon />
                             Finish
                         </Title>
-                        {step > 3 && <PlaceOrderForm {...placeOrder} />}
+                        {step > 3 && <PlaceOrderForm loading={loading} {...placeOrder} />}
                     </div>
                 </Steps>
             </Wrapper>
 
             <CartSummaryWrapper>
-                <CartList {...list} />
+                <CartList loading={loading} {...list} />
                 <CartSummary {...summary} />
             </CartSummaryWrapper>
         </Root>

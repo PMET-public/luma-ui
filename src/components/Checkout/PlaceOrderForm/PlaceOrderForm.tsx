@@ -10,26 +10,27 @@ export type PlaceOrderFormPayload = {}
 export type PlaceOrderFormProps = {
     submitButton: ButtonProps
     onSubmit: (payload: PlaceOrderFormPayload) => any
+    loading?: boolean
 }
 
-export const PlaceOrderForm: Component<PlaceOrderFormProps> = ({ submitButton, onSubmit, ...props }) => {
+export const PlaceOrderForm: Component<PlaceOrderFormProps> = ({ loading, submitButton, onSubmit, ...props }) => {
     const { handleSubmit } = useForm<PlaceOrderFormPayload>()
 
     const [formError, setFormError] = useState<string | null>(null)
 
-    const [loading, setLoading] = useState(false)
+    const [submitting, setSubmitting] = useState(false)
 
     const handleOnSubmit = useCallback(
         async form => {
             setFormError(null)
-            setLoading(true)
+            setSubmitting(true)
 
             try {
                 await handleSubmit(onSubmit)(form)
-                setLoading(false)
+                setSubmitting(false)
             } catch (error) {
                 setFormError(error.message)
-                setLoading(false)
+                setSubmitting(false)
             }
         },
         [handleSubmit, onSubmit]
@@ -39,7 +40,7 @@ export const PlaceOrderForm: Component<PlaceOrderFormProps> = ({ submitButton, o
         <Root as={Form} onSubmit={handleOnSubmit} {...props}>
             {formError && <FormError>{formError}</FormError>}
 
-            <Button type="submit" loading={loading} {...submitButton} />
+            <Button type="submit" loading={loading || submitting} {...submitButton} />
         </Root>
     )
 }

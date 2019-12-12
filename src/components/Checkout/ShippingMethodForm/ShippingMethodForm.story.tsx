@@ -10,6 +10,7 @@ storiesOf('📦 Components/Checkout/ShippingMethodForm', module).add('Default', 
     return (
         <FormContext {...methods}>
             <ShippingMethodForm
+                loading={boolean('loading', false)}
                 edit={boolean('edit', false)}
                 items={[
                     { text: 'Fixed - $5.00', value: '1' },

@@ -15,6 +15,7 @@ export type ShippingMethodFormProps = {
     submitButton: ButtonProps
     onSubmit: (payload: ShippingMethodFormPayload) => any
     onEdit: (...args: any) => any
+    loading?: boolean
 } & SelectProps
 
 export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
@@ -23,35 +24,37 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
     editButton,
     onEdit,
     onSubmit,
+    loading,
     ...props
 }) => {
     const { handleSubmit, register, errors } = useForm<ShippingMethodFormPayload>()
 
     const [formError, setFormError] = useState<string | null>(null)
 
-    const [loading, setLoading] = useState(false)
+    const [submitting, setSubmitting] = useState(false)
 
     const handleOnSubmit = useCallback(
         async form => {
             setFormError(null)
-            setLoading(true)
+            setSubmitting(true)
 
             try {
                 await handleSubmit(onSubmit)(form)
-                setLoading(false)
+                setSubmitting(false)
             } catch (error) {
                 setFormError(error.message)
-                setLoading(false)
+                setSubmitting(false)
             }
         },
         [handleSubmit, onSubmit]
     )
 
-    const disabled = loading || !edit
+    const disabled = submitting || !edit
 
     return (
         <Root as={Form} onSubmit={handleOnSubmit}>
             <Select
+                loading={loading}
                 name="shippingMethod"
                 ref={register({ required: true })}
                 error={errors.shippingMethod}
@@ -62,7 +65,7 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
             {formError && <FormError>{formError}</FormError>}
 
             {edit ? (
-                <Button type="submit" loading={loading} {...submitButton} />
+                <Button type="submit" loading={loading || submitting} {...submitButton} />
             ) : (
                 <Button
                     type="button"

@@ -3,12 +3,13 @@ import Checkout from './'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
-import { number, select } from '@storybook/addon-knobs'
+import { number, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
     <App {...AppMockData}>
         <Checkout
+            loading={boolean('loading', true)}
             breadcrumbs={{ prefix: '#', items: [{ text: 'Cart' }, { text: 'Checkout' }] }}
             step={select(
                 'step',
@@ -97,6 +98,7 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                 submitButton: {
                     text: 'Save Payment Method',
                 },
+                editButton: action('edit'),
                 onSubmit: action('onSubmit'),
             }}
             placeOrder={{

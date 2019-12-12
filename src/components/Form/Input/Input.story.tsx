@@ -5,8 +5,9 @@ import { text, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Form/Input', module).add('Default', () => (
     <Input
+        loading={boolean('loading', false)}
         label="Label"
         placeholder={text('placeholder', '')}
-        error={boolean('error', false) && { message: text('error message', '') }}
+        error={boolean('error', false) ? { message: text('error message', '') } : undefined}
     />
 ))

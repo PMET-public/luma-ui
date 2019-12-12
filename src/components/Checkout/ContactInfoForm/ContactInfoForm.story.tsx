@@ -2,11 +2,12 @@ import React from 'react'
 import ContactInfoForm from '.'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { boolean, text } from '@storybook/addon-knobs'
+import { boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () => {
     return (
         <ContactInfoForm
+            loading={boolean('loading', false)}
             edit={boolean('edit', false)}
             fields={{
                 email: {
