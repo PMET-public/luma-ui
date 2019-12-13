@@ -1,25 +1,40 @@
-import React from 'react'
-import { Component } from '../../lib'
-import { Root, Tab, Tabs as TabsContainer, TabList, TabPanel } from './Tabs.styled'
+/**
+ * Built with  https://github.com/reactjs/react-tabs
+ */
 
-export type TabsProps = {}
+import React, { FunctionComponent } from 'react'
+import { Tab as _Tab, Tabs as _Tabs, TabListWrapper, TabList as _TabList, TabPanel as _TabPanel } from './Tabs.styled'
 
-export const Tabs: Component<TabsProps> = ({ ...props }) => {
+import {
+    TabsProps as _TabsProps,
+    TabListProps as _TabListProps,
+    TabProps as _TabProps,
+    TabPanelProps as _TabPanelProps,
+} from 'react-tabs'
+
+export type TabsProps = _TabsProps
+export type TabListProps = _TabListProps
+export type TabProps = _TabProps
+export type TabPanelProps = _TabPanelProps
+
+const Tabs = _Tabs
+
+const TabList: FunctionComponent<TabListProps & { align?: 'left' | 'center' | 'right' }> = ({
+    align = 'left',
+    ...props
+}) => {
     return (
-        <Root {...props}>
-            <TabsContainer>
-                <TabList>
-                    <Tab>Title 1</Tab>
-                    <Tab>Title 2</Tab>
-                </TabList>
-
-                <TabPanel>
-                    <h2>Any content 1</h2>
-                </TabPanel>
-                <TabPanel>
-                    <h2>Any content 2</h2>
-                </TabPanel>
-            </TabsContainer>
-        </Root>
+        <TabListWrapper $align={align}>
+            <_TabList {...(props as any)} />
+        </TabListWrapper>
     )
 }
+TabList.tabsRole = 'TabList'
+
+const Tab = _Tab
+Tab.tabsRole = 'Tab'
+
+const TabPanel = _TabPanel
+TabPanel.tabsRole = 'TabPanel'
+
+export { Tabs, TabList, Tab, TabPanel }

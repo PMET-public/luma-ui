@@ -24,7 +24,8 @@ export const Scroller = styled.div<{
 
     -webkit-overflow-scrolling: touch;
     display: grid;
-    grid-auto-columns: calc(100% / var(--show) - var(--padding));
+    grid-auto-columns: ${props =>
+        props.$show === 'auto' ? 'max-content' : 'calc(100% / var(--show) - var(--padding))'};
     grid-auto-flow: column;
     grid-gap: var(--gap);
     overflow-x: scroll;
@@ -35,7 +36,7 @@ export const Scroller = styled.div<{
     ${props =>
         props.$hideScrollBar
             ? `
-            padding: 1rem 0 1rem;
+            
             scrollbar-width: none;
             &::-webkit-scrollbar {
                 display: none;
