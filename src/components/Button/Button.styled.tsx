@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const Root = styled.button<{ $secondary?: boolean }>`
     align-items: center;
-    background-color: ${props => (props.$secondary ? 'transparent' : 'currentColor')};
+    background-color: ${props => (props.$secondary ? props.theme.colors.surface : props.theme.colors.onSurface)};
+    color: ${props => (props.$secondary ? props.theme.colors.onSurface : props.theme.colors.surface)};
     border-radius: 2.4rem;
-    border: 0.1rem solid;
     box-sizing: border-box;
     display: inline-flex;
     font-size: 1.6rem;
@@ -25,12 +25,4 @@ export const Root = styled.button<{ $secondary?: boolean }>`
     &[disabled] {
         opacity: 0.3;
     }
-
-    ${props =>
-        !props.$secondary &&
-        `
-            > * {
-                filter: invert(1);
-            }
-        `}
 `
