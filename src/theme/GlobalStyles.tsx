@@ -37,10 +37,6 @@ export const Root = styled.div`
         &:not([disabled]) {
             cursor: pointer;
         }
-
-        &[disabled] {
-            color: inherit;
-        }
     }
 
     *:focus {
