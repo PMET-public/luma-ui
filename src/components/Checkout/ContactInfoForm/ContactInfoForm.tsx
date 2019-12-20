@@ -224,7 +224,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
             ) : (
                 <Button
                     type="button"
-                    secondary
+                    outline
                     {...editButton}
                     onClick={(e: Event) => {
                         e.preventDefault()

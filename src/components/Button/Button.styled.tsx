@@ -1,9 +1,18 @@
 import styled from 'styled-components'
 
-export const Root = styled.button<{ $secondary?: boolean }>`
+export const Root = styled.button<{ $secondary?: boolean; $outline?: boolean }>`
     align-items: center;
     background-color: ${props => (props.$secondary ? props.theme.colors.surface : props.theme.colors.onSurface)};
     color: ${props => (props.$secondary ? props.theme.colors.onSurface : props.theme.colors.surface)};
+
+    ${props =>
+        props.$outline &&
+        `
+            color: ${props.$secondary ? props.theme.colors.surface : props.theme.colors.onSurface};
+            border: 0.1rem solid currentColor;
+            background-color: transparent;
+        `}
+
     border-radius: 2.4rem;
     box-sizing: border-box;
     display: inline-flex;

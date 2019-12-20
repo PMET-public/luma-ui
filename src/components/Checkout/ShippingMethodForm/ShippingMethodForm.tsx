@@ -69,7 +69,7 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
             ) : (
                 <Button
                     type="button"
-                    secondary
+                    outline
                     {...editButton}
                     onClick={(e: Event) => {
                         e.preventDefault()

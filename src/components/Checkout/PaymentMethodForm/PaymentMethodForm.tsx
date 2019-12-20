@@ -220,7 +220,7 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
             {loading || editable ? (
                 <Button type="submit" loading={loading} {...submitButton} />
             ) : (
-                <Button secondary onClick={handleOnEdit} {...editButton} />
+                <Button outline onClick={handleOnEdit} {...editButton} />
             )}
         </Root>
     )
