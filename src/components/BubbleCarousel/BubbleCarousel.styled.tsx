@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { ImageTag } from '../Image/Image.styled'
 
 export const Root = styled.div`
-    --size: 9rem;
+    --size: 11rem;
 `
 
 export const Item = styled.div`

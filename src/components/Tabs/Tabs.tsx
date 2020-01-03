@@ -2,7 +2,8 @@
  * Built with  https://github.com/reactjs/react-tabs
  */
 
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { Component } from '../../lib'
 import { Tab as _Tab, Tabs as _Tabs, TabListWrapper, TabList as _TabList, TabPanel as _TabPanel } from './Tabs.styled'
 
 import {
@@ -19,16 +20,14 @@ export type TabPanelProps = _TabPanelProps
 
 const Tabs = _Tabs
 
-const TabList: FunctionComponent<TabListProps & { align?: 'left' | 'center' | 'right' }> = ({
-    align = 'left',
-    ...props
-}) => {
+const TabList: Component<TabListProps & { align?: 'left' | 'center' | 'right' }> = ({ align = 'left', ...props }) => {
     return (
         <TabListWrapper $align={align}>
             <_TabList {...(props as any)} />
         </TabListWrapper>
     )
 }
+
 TabList.tabsRole = 'TabList'
 
 const Tab = _Tab
