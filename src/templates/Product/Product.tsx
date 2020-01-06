@@ -21,7 +21,7 @@ import {
     ThumbSwatchesWrapper,
 } from './Product.styled'
 
-import useForm from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { Component } from '../../../lib'
 import { Root } from './PlaceOrderForm.styled'
 import Form, { FormError } from '../../Form'
-import useForm from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import Button, { ButtonProps } from '../../Button'
 
 export type PlaceOrderFormPayload = {}

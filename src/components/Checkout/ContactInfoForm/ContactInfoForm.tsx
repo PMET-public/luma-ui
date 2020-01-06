@@ -14,7 +14,7 @@ import {
     PostalCode,
     PhoneNumber,
 } from './ContactInfoForm.styled'
-import useForm from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import Form, { Input, InputProps, Select, SelectProps, FormError, patterns } from '../../Form'
 import Button, { ButtonProps } from '../../Button'

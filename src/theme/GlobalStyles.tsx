@@ -57,4 +57,51 @@ export const Root = styled.div`
     code {
         font-family: 'Fira Code', 'Courier New', Courier, monospace;
     }
+
+    & .breakpoint-smallOnly-hidden {
+        @media ${props => props.theme.breakpoints.smallOnly} {
+            display: none;
+        }
+    }
+    & .breakpoint-medium-hidden {
+        @media ${props => props.theme.breakpoints.medium} {
+            display: none;
+        }
+    }
+
+    & .breakpoint-mediumOnly-hidden {
+        @media ${props => props.theme.breakpoints.mediumOnly} {
+            display: none;
+        }
+    }
+
+    & .breakpoint-untilMedium-hidden {
+        @media ${props => props.theme.breakpoints.untilMedium} {
+            display: none;
+        }
+    }
+
+    & .breakpoint-large-hidden {
+        @media ${props => props.theme.breakpoints.large} {
+            display: none;
+        }
+    }
+
+    & .breakpoint-largeOnly-hidden {
+        @media ${props => props.theme.breakpoints.largeOnly} {
+            display: none;
+        }
+    }
+
+    & .breakpoint-untilLarge-hidden {
+        @media ${props => props.theme.breakpoints.untilLarge} {
+            display: none;
+        }
+    }
+
+    & .breakpoint-xLarge-hidden {
+        @media ${props => props.theme.breakpoints.xLarge} {
+            display: none;
+        }
+    }
 `

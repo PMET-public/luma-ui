@@ -112,7 +112,6 @@ export const App: Component<AppProps> = ({
                             {
                                 as: 'button',
                                 text: 'Dark Mode',
-                                'data-utilities-darl-mode': true,
                                 onClick: () => actions.setColorScheme(state.colorScheme === 'dark' ? 'light' : 'dark'),
                                 icon: {
                                     svg: IconDarkModeSvg,
@@ -121,7 +120,7 @@ export const App: Component<AppProps> = ({
                             {
                                 'aria-label': search.text,
                                 ...search,
-                                'data-utilities-search': true,
+                                className: 'breakpoint-smallOnly-hidden',
                                 icon: {
                                     svg: search.active ? IconSearchActiveSvg : IconSearchSvg,
                                     ...search.icon,
@@ -130,7 +129,7 @@ export const App: Component<AppProps> = ({
                             {
                                 'aria-label': cart.text,
                                 ...cart,
-                                'data-utilities-cart': true,
+                                className: 'breakpoint-smallOnly-hidden',
                                 icon: {
                                     svg: cart.active ? IconBagActiveSvg : IconBagSvg,
                                     ...cart.icon,

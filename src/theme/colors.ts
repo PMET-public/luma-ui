@@ -90,6 +90,7 @@ export const dark = {
     surface25: 'rgba(34, 34, 34, 0.25)',
     surface15: 'rgba(34, 34, 34, 0.15)',
     surface10: 'rgba(34, 34, 34, 0.10)',
+    surface5: 'rgba(34, 34, 34, 0.05)',
     onSurface: 'rgba(255, 255, 255, 1)',
     onSurface90: 'rgba(255, 255, 255, 0.90)',
     onSurface75: 'rgba(255, 255, 255, 0.75)',

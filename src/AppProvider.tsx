@@ -97,7 +97,6 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
             window.removeEventListener('offline', handleNetworkChange)
         }
     }, [])
-
     return (
         <AppContext.Provider value={[state, dispatch]}>
             <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, colorScheme: state.colorScheme }}>

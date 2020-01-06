@@ -1,11 +1,6 @@
 import styled from 'styled-components'
 
-import {
-    Root as HeaderRoot,
-    Logo as HeaderLogo,
-    Menu as HeaderMenu,
-    Utilities as HeaderUtilities,
-} from '../Header/Header.styled'
+import { Utilities as HeaderUtilities } from '../Header/Header.styled'
 import { Wrapper as ContainerWrapper } from '../Container/Container.styled'
 
 export const Root = styled.div`
@@ -29,28 +24,6 @@ export const HeaderContainer = styled(ContainerWrapper)`
     top: 0;
     z-index: 2;
     height: 6rem;
-
-    ${HeaderRoot} {
-        @media ${props => props.theme.breakpoints.smallOnly} {
-            grid-template-areas: 'logo utilities';
-        }
-    }
-
-    ${HeaderLogo} {
-        line-height: 0;
-        margin: 0;
-        z-index: 2;
-
-        & svg {
-            height: 3rem;
-        }
-    }
-
-    ${HeaderMenu} {
-        @media ${props => props.theme.breakpoints.smallOnly} {
-            display: none;
-        }
-    }
 
     ${HeaderUtilities} {
         /* Hide Search and Cart on Mobile */

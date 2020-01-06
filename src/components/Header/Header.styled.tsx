@@ -13,6 +13,10 @@ export const Root = styled.div`
     padding: 1rem 0;
     min-height: 6rem;
 
+    @media ${props => props.theme.breakpoints.smallOnly} {
+        grid-template-areas: 'logo utilities';
+    }
+
     @media ${props => props.theme.breakpoints.medium} {
         grid-template-areas: 'logo navigation utilities';
         grid-template-columns: auto 1fr auto;
@@ -29,6 +33,9 @@ export const Logo = styled.div`
     align-items: center;
     display: flex;
     grid-area: logo;
+    line-height: 0;
+    margin: 0;
+    z-index: 2;
 
     & svg {
         height: 3rem;
@@ -49,6 +56,10 @@ export const Menu = styled.div`
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
+        display: none;
+    }
+
+    @media ${props => props.theme.breakpoints.smallOnly} {
         display: none;
     }
 

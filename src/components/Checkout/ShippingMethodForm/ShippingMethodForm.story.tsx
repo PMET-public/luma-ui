@@ -1,7 +1,7 @@
 import React from 'react'
 import ShippingMethodForm from '.'
 import { storiesOf } from '@storybook/react'
-import useForm, { FormContext } from 'react-hook-form'
+import { useForm, FormContext } from 'react-hook-form'
 import { action } from '@storybook/addon-actions'
 import { boolean } from '@storybook/addon-knobs'
 

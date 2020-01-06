@@ -4,7 +4,7 @@ import { Root, Card, CardIcon, CardType, CardNumber } from './PaymentMethodForm.
 import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload as Payload } from 'braintree-web-drop-in'
 import Button, { ButtonProps } from '../../Button'
 import Form, { FormError } from '../../Form'
-import useForm from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useTheme } from '../../../theme/useTheme'
 
 export type Braintree = Dropin

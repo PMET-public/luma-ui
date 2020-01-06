@@ -1,7 +1,7 @@
 import React from 'react'
 import PlaceOrderForm from '.'
 import { storiesOf } from '@storybook/react'
-import useForm, { FormContext } from 'react-hook-form'
+import { useForm, FormContext } from 'react-hook-form'
 import { boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Checkout/PlaceOrderForm', module).add('Default', () => {
