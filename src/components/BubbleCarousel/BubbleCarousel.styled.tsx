@@ -2,14 +2,14 @@ import styled from 'styled-components'
 import { ImageTag } from '../Image/Image.styled'
 
 export const Root = styled.div`
-    --size: 11rem;
+    --size: 10rem;
+    font-size: var(--size);
 `
 
 export const Item = styled.div`
     text-decoration: none;
     padding: 0 0.75rem;
     display: grid;
-    grid-gap: 0.35rem;
 `
 
 export const ImageWrapper = styled.div`

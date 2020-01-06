@@ -34,7 +34,11 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
         >
             {loading ? (
                 <div>
-                    <BubbleCarouselSkeleton style={{ padding: '0 1rem', height: '8.7em', width: 'auto' }} />
+                    <BubbleCarouselSkeleton style={{ padding: '0 1rem', width: '1em', height: 'auto' }} />
+                    <BubbleCarouselSkeleton style={{ padding: '0 1rem', width: '1em', height: 'auto' }} />
+                    <BubbleCarouselSkeleton style={{ padding: '0 1rem', width: '1em', height: 'auto' }} />
+                    <BubbleCarouselSkeleton style={{ padding: '0 1rem', width: '1em', height: 'auto' }} />
+                    <BubbleCarouselSkeleton style={{ padding: '0 1rem', width: '1em', height: 'auto' }} />
                 </div>
             ) : (
                 items.map(({ text, image, ...item }, index) => (
