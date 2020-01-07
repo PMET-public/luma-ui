@@ -34,16 +34,16 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
         >
             {loading ? (
                 <>
-                    <Item as={Carousel.Item}>
+                    <Item>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
                     </Item>
-                    <Item as={Carousel.Item}>
+                    <Item>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
                     </Item>
-                    <Item as={Carousel.Item}>
+                    <Item>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
                     </Item>
-                    <Item as={Carousel.Item}>
+                    <Item>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
                     </Item>
                 </>
