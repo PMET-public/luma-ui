@@ -15,9 +15,10 @@
         "@babel/plugin-proposal-nullish-coalescing-operator",
         "inline-react-svg",
         [
-            "babel-plugin-styled-components",
+            "styled-components",
             {
-                "ssr": true
+                "ssr": false,
+                "displayName": true
             }
         ]
     ],

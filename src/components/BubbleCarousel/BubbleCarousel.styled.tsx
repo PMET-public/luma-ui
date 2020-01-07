@@ -6,7 +6,7 @@ export const Root = styled.div`
     font-size: var(--size);
 `
 
-export const Item = styled.div`
+export const CarouselItem = styled.div`
     text-decoration: none;
     display: grid;
 

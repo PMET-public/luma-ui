@@ -1,6 +1,6 @@
 import React, { useState, MutableRefObject } from 'react'
 import { Component, Props } from '../../lib'
-import { Root, ImageWrapper, Item, Label } from './BubbleCarousel.styled'
+import { Root, ImageWrapper, CarouselItem, Label } from './BubbleCarousel.styled'
 
 import Carousel from '../Carousel'
 import Image, { ImageProps } from '../Image'
@@ -34,22 +34,22 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
         >
             {loading ? (
                 <>
-                    <Item>
+                    <CarouselItem>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    </Item>
-                    <Item>
+                    </CarouselItem>
+                    <CarouselItem>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    </Item>
-                    <Item>
+                    </CarouselItem>
+                    <CarouselItem>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    </Item>
-                    <Item>
+                    </CarouselItem>
+                    <CarouselItem>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    </Item>
+                    </CarouselItem>
                 </>
             ) : (
                 items.map(({ text, image, ...item }, index) => (
-                    <Item as={Carousel.Item} key={index} {...item}>
+                    <CarouselItem {...item} key={index}>
                         <ImageWrapper>
                             <Image
                                 alt="null"
@@ -62,7 +62,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
                             />
                         </ImageWrapper>
                         <Label>{text}</Label>
-                    </Item>
+                    </CarouselItem>
                 ))
             )}
         </Root>
