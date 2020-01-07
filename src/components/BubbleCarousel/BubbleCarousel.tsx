@@ -25,7 +25,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
         <Root
             as={Carousel}
             scrollerRef={setScrollerRef}
-            gap={0.75}
+            gap={1.4}
             show="auto"
             padding={1.5}
             snap={false}
@@ -33,7 +33,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
             {...props}
         >
             {loading ? (
-                <div>
+                <>
                     <Item as={Carousel.Item}>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
                     </Item>
@@ -46,7 +46,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
                     <Item as={Carousel.Item}>
                         <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
                     </Item>
-                </div>
+                </>
             ) : (
                 items.map(({ text, image, ...item }, index) => (
                     <Item as={Carousel.Item} key={index} {...item}>

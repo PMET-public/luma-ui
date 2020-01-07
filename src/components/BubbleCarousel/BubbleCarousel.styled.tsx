@@ -8,8 +8,15 @@ export const Root = styled.div`
 
 export const Item = styled.div`
     text-decoration: none;
-    padding: 0 0.75rem;
     display: grid;
+
+    &:first-child {
+        padding-left: 1rem;
+    }
+
+    &:last-child {
+        padding-right: 1rem;
+    }
 `
 
 export const ImageWrapper = styled.div`
