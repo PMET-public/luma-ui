@@ -34,11 +34,18 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
         >
             {loading ? (
                 <div>
-                    <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
-                    <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
+                    <Item as={Carousel.Item}>
+                        <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
+                    </Item>
+                    <Item as={Carousel.Item}>
+                        <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
+                    </Item>
+                    <Item as={Carousel.Item}>
+                        <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
+                    </Item>
+                    <Item as={Carousel.Item}>
+                        <BubbleCarouselSkeleton style={{ width: '1em', height: 'auto' }} />
+                    </Item>
                 </div>
             ) : (
                 items.map(({ text, image, ...item }, index) => (
