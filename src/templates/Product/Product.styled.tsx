@@ -41,15 +41,11 @@ export const Images = styled.div`
 `
 
 export const CarouselWrapper = styled.div`
-    padding: 0;
-
     @media ${props => props.theme.breakpoints.medium} {
-        max-width: 120rem;
-        grid-auto-flow: row;
-        grid-gap: 0.5rem;
-        grid-template-columns: 1fr 1fr;
-        overflow: unset;
+        display: none;
     }
+
+    padding: 0;
 `
 
 export const CarouselItem = styled.div`
@@ -64,16 +60,29 @@ export const CarouselItem = styled.div`
         width: 100%;
         height: 100%;
     }
+`
 
-    @media ${props => props.theme.breakpoints.medium} {
-        grid-column-end: span 2;
+export const GalleryGrid = styled.div`
+    @media ${props => props.theme.breakpoints.smallOnly} {
+        display: none;
     }
 
-    @media ${props => props.theme.breakpoints.large} {
-        grid-column-end: span 1;
-        &:first-child,
-        &:last-child:nth-child(even) {
-            grid-column-end: span 2;
+    display: grid;
+    grid-auto-flow: row;
+    grid-gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+    max-width: 120rem;
+    overflow: unset;
+
+    ${CarouselItem} {
+        grid-column-end: span 2;
+
+        @media ${props => props.theme.breakpoints.large} {
+            grid-column-end: span 1;
+            &:first-child,
+            &:last-child:nth-child(even) {
+                grid-column-end: span 2;
+            }
         }
     }
 `
