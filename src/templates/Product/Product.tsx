@@ -6,6 +6,7 @@ import {
     Images,
     CarouselWrapper,
     CarouselItem,
+    GalleryGrid,
     InfoWrapper,
     InfoInnerWrapper,
     InfoOptions,
@@ -110,6 +111,7 @@ export const Product: Component<ProductProps> = ({
         <Root as="form" {...props} onSubmit={handleSubmit(onAddToCart)} onChange={handleOnValueChanges}>
             <Wrapper>
                 <Images>
+                    {/* Mobile Gallery Carousel */}
                     <CarouselWrapper
                         as={Carousel}
                         scrollerRef={setScrollerRef}
@@ -130,12 +132,24 @@ export const Product: Component<ProductProps> = ({
                                         {...image}
                                         transition
                                         vignette={10}
-                                        lazy={{ container: scrollerRef, ...image.lazy }}
+                                        lazy={{
+                                            container: scrollerRef,
+                                            ...image.lazy,
+                                        }}
                                     />
                                 </CarouselItem>
                             ))
                         )}
                     </CarouselWrapper>
+
+                    {/* Tablet and Desktop Gallery Grid */}
+                    <GalleryGrid>
+                        {gallery?.map((image, index) => (
+                            <CarouselItem key={index}>
+                                <Image {...image} transition vignette={10} lazy={{ ...image.lazy }} />
+                            </CarouselItem>
+                        ))}
+                    </GalleryGrid>
                 </Images>
                 <InfoWrapper ref={infoRef}>
                     <InfoInnerWrapper>

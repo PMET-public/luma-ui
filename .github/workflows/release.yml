@@ -1,33 +1,33 @@
 name: Node.js Package
 
 on:
-    release:
-        types: [created]
+  release:
+    types: [created]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: 12
-            - run: npm install -g yarn # Extra Step
-            - run: yarn install
-            - run: yarn test
+  # build:
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #         - uses: actions/checkout@v1
+  #         - uses: actions/setup-node@v1
+  #           with:
+  #               node-version: 12
+  #         - run: npm install -g yarn # Extra Step
+  #         - run: yarn install
+  #         - run: yarn test
 
-    publish-npm:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: 12
-                  registry-url: https://registry.npmjs.org/
-            - run: npm install -g yarn # Extra Step
-            - run: yarn install
-            - run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
-            - run: yarn publish --access public
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  publish-npm:
+    # needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm install -g yarn # Extra Step
+      - run: yarn install
+      - run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+      - run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

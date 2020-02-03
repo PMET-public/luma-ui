@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef, RefObject } from 'react'
+import { useState, useEffect, useCallback, RefObject } from 'react'
 import { useThrottle } from './useThrottle'
 
 type UseScroll = {
