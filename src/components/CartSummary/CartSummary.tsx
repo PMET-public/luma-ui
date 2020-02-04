@@ -2,7 +2,8 @@ import React from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Title, PriceItem, Label } from './CartSummary.styled'
 import Price, { PriceProps } from '../Price'
-import ApplyCouponsForm from '../Checkout/ApplyCouponsForm'
+import ApplyCouponForm, { ApplyCouponFormProps } from '../Checkout/ApplyCouponForm'
+import Accordion from '../Accordion'
 
 type PriceItemProps = {
     label: string
@@ -13,27 +14,27 @@ type PriceItemProps = {
 export type CartSummaryProps = {
     title: Props<{ text: string }>
     prices: PriceItemProps[]
+    coupons?: {
+        label: string
+        open?: boolean
+        fields: ApplyCouponFormProps[]
+    }
 }
 
-export const CartSummary: Component<CartSummaryProps> = ({ title, prices, ...props }) => {
+export const CartSummary: Component<CartSummaryProps> = ({ title, prices, coupons, ...props }) => {
     return (
         <Root aria-label={title.text} {...props}>
             <Title {...title}>{title.text}</Title>
 
-            <ApplyCouponsForm
-                fields={{
-                    giftCardNumber: {
-                        label: 'Gift Card',
-                    },
-                }}
-                loading={false}
-                submitButton={{
-                    text: 'Apply',
-                }}
-                onSubmit={() => {
-                    throw Error('Oops!. There was an error... `cause your are just testing ;)')
-                }}
-            />
+            {coupons && (
+                <Accordion defaultSelected={coupons.open ? 0 : -1}>
+                    <Accordion.Item label={coupons.label}>
+                        {coupons.fields.map((coupon, index) => (
+                            <ApplyCouponForm key={index} {...coupon} />
+                        ))}
+                    </Accordion.Item>
+                </Accordion>
+            )}
 
             {prices.map(({ label, price, appearance = 'normal' }, index) => (
                 <PriceItem key={index}>

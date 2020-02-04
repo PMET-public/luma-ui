@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useRef } from 'react'
+import React, { createContext, useState, useContext, useRef, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, Button, ButtonLabel, ButtonIcon, Content } from './Accordion.styled'
 
@@ -28,6 +28,11 @@ export const Accordion: Component<AccordionProps> & CompoundComponent = ({
     ...props
 }) => {
     const [selected, setSelected] = useState(defaultSelected)
+
+    /** Update Selected when prop changes */
+    useEffect(() => {
+        setSelected(defaultSelected)
+    }, [defaultSelected])
 
     return (
         <Root {...props}>

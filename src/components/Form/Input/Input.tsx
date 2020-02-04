@@ -8,6 +8,7 @@ export type InputProps = {
     label: string
     error?: { message?: string }
     loading?: boolean
+    name: string
 } & HTMLAttributes<HTMLInputElement>
 
 export const Input: Component<InputProps> = React.forwardRef(

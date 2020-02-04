@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect, MutableRefObject } from 'react'
-import { Component, Props } from '../../lib'
+import { Component, Props, getfromObject } from '../../lib'
 import {
     Root,
     Wrapper,
@@ -176,9 +176,15 @@ export const Product: Component<ProductProps> = ({
                                             {options.map(
                                                 ({ _id, error: _error, type, label, required, swatches }, index) => {
                                                     const { name } = swatches
-                                                    const error = errors[name]
+                                                    const error = getfromObject(name, errors)
 
-                                                    if (_error) setError(name, typeof _error === 'string' ? _error : '')
+                                                    if (_error) {
+                                                        setError(
+                                                            name,
+                                                            'error',
+                                                            typeof _error === 'string' ? _error : ''
+                                                        )
+                                                    }
 
                                                     return (
                                                         <fieldset key={_id || index}>

@@ -1,9 +1,28 @@
 import styled from 'styled-components'
+import {
+    Button as AccordionButton,
+    Content as AccordionContent,
+    ButtonLabel as AccordionLabel,
+} from '../Accordion/Accordion.styled'
 
 export const Root = styled.div`
     display: grid;
     grid-auto-rows: max-content;
     grid-gap: 1.6rem;
+
+    ${AccordionLabel} {
+        font-family: inherit;
+        font-weight: ${props => props.theme.typography.body.weight.bold};
+    }
+
+    ${AccordionButton}, ${AccordionContent} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    ${AccordionContent} {
+        padding-bottom: 2rem;
+    }
 `
 
 export const Title = styled.div`

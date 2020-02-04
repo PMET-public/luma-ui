@@ -25,5 +25,20 @@ storiesOf('📦 Components/CartSummary', module).add('Default', () => (
                 },
             },
         ]}
+        coupons={{
+            label: 'Apply Gift Card or Discount Code',
+            fields: [
+                {
+                    field: { label: 'Gift Card', name: 'giftCardCode' },
+                    submitButton: { text: 'Apply' },
+                    onSubmit: () => {},
+                },
+                {
+                    field: { label: 'Discount Code', name: 'discountCode' },
+                    submitButton: { text: 'Apply' },
+                    onSubmit: () => {},
+                },
+            ],
+        }}
     />
 ))
