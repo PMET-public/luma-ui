@@ -60,7 +60,13 @@ export const Checkbox: Component<CheckboxProps> = ({
                 <Wrapper>
                     {items.map(({ text, ...item }, index) => (
                         <Item key={index}>
-                            <Input type={type} {...item} name={name} ref={register({ ...rules })} />
+                            <Input
+                                key={props.defaultValue as string} // update field when defaultValue changes
+                                type={type}
+                                {...item}
+                                name={name}
+                                ref={register({ ...rules })}
+                            />
                             <OffIcon as={type === 'radio' ? RadioOffIconSvg : CheckboxOffIconSvg} />
                             <OnIcon as={type === 'radio' ? RadioOnIconSvg : CheckboxOnIconSvg} />
                             {text}
