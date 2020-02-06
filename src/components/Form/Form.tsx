@@ -8,12 +8,21 @@ import {
     Input as InputRoot,
     FormError as FormErrorRoot,
 } from './Form.styled'
+import { FormContext, useForm } from 'react-hook-form'
 
 /** Form */
 export type FormProps = {}
 
-export const Form: Component<FormProps> = ({ children, ...props }) => {
-    return <Root {...props}>{children}</Root>
+export const Form: Component<FormProps> = ({ children, onSubmit, ...props }) => {
+    const form = useForm()
+
+    return (
+        <FormContext {...form}>
+            <Root onSubmit={form.handleSubmit(onSubmit)} {...props}>
+                {children}
+            </Root>
+        </FormContext>
+    )
 }
 
 /** Field */

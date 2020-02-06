@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Component } from '../../../lib'
 import { Root, Button } from './ApplyCouponForm.styled'
-import Form, { Input, InputProps } from '../../Form'
+import Form, { Input, InputProps, FormError } from '../../Form'
 import ButtonComponent, { ButtonProps } from '../../Button'
-
-import { useForm } from 'react-hook-form'
 
 export type ApplyCouponFormPayload = {
     [code: string]: string
@@ -16,6 +14,7 @@ export type ApplyCouponFormProps = {
     onSubmit: (payload: ApplyCouponFormPayload) => any
     submitting?: boolean
     submitButton: ButtonProps
+    error?: string
 }
 
 export const ApplyCouponForm: Component<ApplyCouponFormProps> = ({
@@ -24,30 +23,16 @@ export const ApplyCouponForm: Component<ApplyCouponFormProps> = ({
     onSubmit,
     submitButton,
     submitting = false,
+    error,
     ...props
 }) => {
-    const { handleSubmit, register, errors, setError, clearError } = useForm<ApplyCouponFormPayload>()
-
-    useEffect(() => {
-        if (field.error?.message) {
-            setError(field.name, 'ssError', field.error.message)
-        } else {
-            clearError(field.name)
-        }
-    }, [field.error?.message])
-
     return (
-        <Root as={Form} onSubmit={handleSubmit(onSubmit)} {...props}>
-            <Input
-                key={field.defaultValue as string} // update field when defaultValue changes
-                loading={loading}
-                ref={register({ required: true })}
-                disabled={submitting}
-                error={errors[field.name]}
-                {...field}
-            />
+        <Root as={Form} onSubmit={onSubmit} {...props}>
+            <Input loading={loading} rules={{ required: true }} disabled={submitting} {...field} />
 
             <Button as={ButtonComponent} type="submit" loading={loading || submitting} {...submitButton} />
+
+            {error && <FormError>{error}</FormError>}
         </Root>
     )
 }

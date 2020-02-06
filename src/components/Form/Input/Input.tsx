@@ -1,80 +1,104 @@
-import React, { HTMLAttributes, useState, useCallback, useMemo, ChangeEvent, FocusEvent } from 'react'
+import React, { InputHTMLAttributes, useState, useEffect, useCallback, useMemo, ChangeEvent, FocusEvent } from 'react'
 import { Component } from '../../../lib'
 import { Label as LabelRoot } from './Input.styled'
 import { Field, FieldInput, Label, Error } from '../Form'
 import { InputSkeleton } from './Input.skeleton'
+import { ValidationOptions, useFormContext, ErrorMessage } from 'react-hook-form'
+import _get from 'lodash.get'
 
 export type InputProps = {
     label: string
-    error?: { message?: string }
     loading?: boolean
     name: string
-} & HTMLAttributes<HTMLInputElement>
+    rules?: ValidationOptions
+    error?: string
+} & InputHTMLAttributes<HTMLInputElement>
 
-export const Input: Component<InputProps> = React.forwardRef(
-    ({ loading, label, as, error, onChange, onFocus, onBlur, ...props }, ref) => {
-        const defaultActive = useMemo(() => {
-            const { defaultValue, value = defaultValue, placeholder } = props
-            return !!value || !!placeholder || !!error
-        }, [props.value, props.defaultValue, props.placeholder, error])
+export const Input: Component<InputProps> = ({
+    as,
+    error,
+    label,
+    loading,
+    name,
+    rules,
+    onBlur,
+    onChange,
+    onFocus,
+    ...props
+}) => {
+    const { register, setError, clearError, errors } = useFormContext()
 
-        const [active, setActive] = useState<boolean>(defaultActive)
+    const hasError = !!error || !!_get(errors, name)
 
-        const handleOnChange = useCallback(
-            (event: ChangeEvent<HTMLInputElement>) => {
-                const { value, placeholder } = event.currentTarget
-                setActive(!!value || !!placeholder || !!error)
-                if (onChange) onChange(event)
-            },
-            [ref, error, onChange]
-        )
+    useEffect(() => {
+        if (error) {
+            setError(name, 'server', error)
+        } else {
+            clearError(name)
+        }
+    }, [error])
 
-        const handleOnFocus = useCallback(
-            (event: FocusEvent<HTMLInputElement>) => {
-                setActive(true)
-                if (onFocus) onFocus(event)
-            },
-            [onFocus]
-        )
+    const defaultActive = useMemo(() => {
+        const { defaultValue, value = defaultValue, placeholder } = props
+        return !!value || !!placeholder || hasError
+    }, [props.value, props.defaultValue, props.placeholder, hasError])
 
-        const handleOnBlur = useCallback(
-            (event: FocusEvent<HTMLInputElement>) => {
-                const { value, placeholder } = event.currentTarget
-                setActive(!!value || !!placeholder || !!error)
-                if (onBlur) onBlur(event)
-            },
-            [onBlur]
-        )
+    const [active, setActive] = useState<boolean>(defaultActive)
 
-        return (
-            <Field as={as}>
-                {label && (
-                    <Label
-                        as={LabelRoot}
-                        htmlFor={props.name}
-                        $active={loading || defaultActive || active}
-                        $error={!!error}
-                    >
-                        {label}
-                    </Label>
-                )}
-                {loading ? (
-                    <InputSkeleton />
-                ) : (
-                    <React.Fragment>
-                        <FieldInput
-                            $error={!!error}
-                            type="text"
-                            ref={ref}
-                            onFocus={handleOnFocus}
-                            onChange={handleOnChange}
-                            onBlur={handleOnBlur}
-                            {...props}
-                        />
-                        <Error>{typeof error === 'object' && error.message}</Error>
-                    </React.Fragment>
-                )}
-            </Field>
-        )
-    }
-)
+    const handleOnChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            const { value, placeholder } = event.currentTarget
+            setActive(!!value || !!placeholder || hasError)
+            if (onChange) onChange(event)
+        },
+        [hasError, onChange]
+    )
+
+    const handleOnFocus = useCallback(
+        (event: FocusEvent<HTMLInputElement>) => {
+            setActive(true)
+            if (onFocus) onFocus(event)
+        },
+        [onFocus]
+    )
+
+    const handleOnBlur = useCallback(
+        (event: FocusEvent<HTMLInputElement>) => {
+            const { value, placeholder } = event.currentTarget
+            setActive(!!value || !!placeholder || !!hasError)
+            if (onBlur) onBlur(event)
+        },
+        [hasError, onBlur]
+    )
+
+    return (
+        <Field as={as}>
+            {label && (
+                <Label as={LabelRoot} htmlFor={name} $active={loading || defaultActive || active} $error={hasError}>
+                    {label}
+                </Label>
+            )}
+            {loading ? (
+                <InputSkeleton />
+            ) : (
+                <React.Fragment>
+                    <FieldInput
+                        key={props.defaultValue as string} // update field when defaultValue changes
+                        $error={hasError}
+                        type="text"
+                        onFocus={handleOnFocus}
+                        onChange={handleOnChange}
+                        onBlur={handleOnBlur}
+                        {...props}
+                        name={name}
+                        ref={register({ ...rules })}
+                    />
+
+                    <Error>
+                        <ErrorMessage name={name}>{({ message }) => message}</ErrorMessage>
+                    </Error>
+                </React.Fragment>
+            )}
+        </Field>
+    )
+}

@@ -30,14 +30,7 @@ export class ErrorBoundary extends React.Component<any, { hasError: boolean }> {
 /**
  * Components Types
  */
-// type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
-
-// export type Props<P = {}> = Override<
-//     React.AllHTMLAttributes<HTMLElement>,
-//     {
-//         as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
-//     } & P
-// >
+export type Override<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
 
 export type Props<P = {}> = {
     [key: string]: any
@@ -69,6 +62,8 @@ export const toPascalCase = (string: string) => {
  */
 
 export const getfromObject = (property: string, object: { [key: string]: any }): any => {
+    console.warn('getfromObject Deprecated')
+
     const entry = property.split('.').reduce((result, key) => {
         return result[key] || {}
     }, object)

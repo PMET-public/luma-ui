@@ -4,7 +4,6 @@ import { Root, Card, CardIcon, CardType, CardNumber } from './PaymentMethodForm.
 import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload as Payload } from 'braintree-web-drop-in'
 import Button, { ButtonProps } from '../../Button'
 import Form, { FormError } from '../../Form'
-import { useForm } from 'react-hook-form'
 import { useTheme } from '../../../theme/useTheme'
 
 export type Braintree = Dropin
@@ -12,6 +11,8 @@ export type Braintree = Dropin
 export type PaymentMethodPayload = Payload
 
 export type PaymentMethodFormProps = {
+    submitting?: boolean
+    error?: string
     submitButton: ButtonProps
     editButton: ButtonProps
     braintree: Omit<Options, 'container'>
@@ -111,6 +112,8 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
 }
 
 export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
+    submitting,
+    error,
     braintree,
     submitButton,
     editButton,
@@ -118,8 +121,6 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
     ...props
 }) => {
     const { colors } = useTheme()
-
-    const { handleSubmit } = useForm<PaymentMethodPayload>()
 
     const containerElem = useRef(null)
 
@@ -190,14 +191,14 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
             }
 
             try {
-                await handleSubmit(_submit)(form)
+                await _submit()
             } catch (error) {
                 dispatch({ type: 'setFormError', payload: error.message })
             }
 
             dispatch({ type: 'setLoader', payload: false })
         },
-        [handleSubmit, onSubmit, instance]
+        [onSubmit, instance]
     )
 
     return (
@@ -215,10 +216,10 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
                 )
             )}
 
-            {formError && <FormError>{formError}</FormError>}
+            {(error || formError) && <FormError>{error || formError}</FormError>}
 
-            {loading || editable ? (
-                <Button type="submit" loading={loading} {...submitButton} />
+            {submitting || loading || editable ? (
+                <Button type="submit" loading={submitting || loading} {...submitButton} />
             ) : (
                 <Button outline onClick={handleOnEdit} {...editButton} />
             )}

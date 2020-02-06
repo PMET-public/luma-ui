@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { Component } from '../../../lib'
 import {
     Root,
@@ -14,7 +14,6 @@ import {
     PostalCode,
     PhoneNumber,
 } from './ContactInfoForm.styled'
-import { useForm } from 'react-hook-form'
 
 import Form, { Input, InputProps, Select, SelectProps, FormError, patterns } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
@@ -53,6 +52,8 @@ export type ContactInfoFormProps = {
     onSubmit: (payload: ContactInfoFormPayload) => any
     onEdit: (...args: any) => any
     loading?: boolean
+    submitting?: boolean
+    error?: string
 }
 
 export const ContactInfoForm: Component<ContactInfoFormProps> = ({
@@ -63,161 +64,62 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
     onSubmit,
     onEdit,
     loading,
+    submitting,
+    error,
     ...props
 }) => {
-    const { handleSubmit, register, errors } = useForm<ContactInfoFormPayload>()
-
-    const [formError, setFormError] = useState<string | null>(null)
-
-    const [submitting, setSubmitting] = useState(false)
-
-    const handleOnSubmit = useCallback(
-        async form => {
-            setFormError(null)
-            setSubmitting(true)
-
-            try {
-                await handleSubmit(onSubmit)(form)
-                setSubmitting(false)
-            } catch (error) {
-                setFormError(error.message)
-                setSubmitting(false)
-            }
-        },
-        [handleSubmit, onSubmit]
-    )
-
     const { email, firstName, lastName, company, address1, address2, city, country, region, postalCode, phone } = fields
 
     const disabled = submitting || !edit
 
     return (
-        <Form autoComplete={props.disabled ? 'off' : 'on'} onSubmit={handleOnSubmit} {...props}>
+        <Form autoComplete={props.disabled ? 'off' : 'on'} onSubmit={onSubmit} {...props}>
             <Root $preview={!edit}>
                 <Email>
                     <Input
                         loading={loading}
-                        {...email}
-                        name="email"
-                        ref={register({ required: true, pattern: patterns.email })}
-                        error={errors.email}
+                        rules={{ required: true, pattern: patterns.email }}
                         disabled={disabled}
+                        {...email}
                     />
                 </Email>
                 <FirstName>
-                    <Input
-                        loading={loading}
-                        {...firstName}
-                        name="firstName"
-                        ref={register({ required: true })}
-                        error={errors.firstName}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} rules={{ required: true }} disabled={disabled} {...firstName} />
                 </FirstName>
                 <LastName>
-                    <Input
-                        loading={loading}
-                        {...lastName}
-                        name="lastName"
-                        ref={register({ required: true })}
-                        error={errors.lastName}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} rules={{ required: true }} disabled={disabled} {...lastName} />
                 </LastName>
                 <Company>
-                    <Input
-                        loading={loading}
-                        {...company}
-                        name="company"
-                        ref={register}
-                        error={errors.company}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} disabled={disabled} {...company} />
                 </Company>
                 <Address1>
-                    <Input
-                        loading={loading}
-                        {...address1}
-                        name="street[0]"
-                        ref={register({ required: true })}
-                        error={errors.address1}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} rules={{ required: true }} disabled={disabled} {...address1} />
                 </Address1>
                 <Address2>
-                    <Input
-                        loading={loading}
-                        {...address2}
-                        name="street[1]"
-                        ref={register}
-                        error={errors.address2}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} disabled={disabled} {...address2} />
                 </Address2>
                 <City>
-                    <Input
-                        loading={loading}
-                        {...city}
-                        name="city"
-                        ref={register({ required: true })}
-                        error={errors.city}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} rules={{ required: true }} disabled={disabled} {...city} />
                 </City>
                 <Country>
-                    <Select
-                        loading={loading}
-                        {...country}
-                        name="country"
-                        ref={register({ required: true })}
-                        error={errors.country}
-                        disabled={disabled}
-                    />
+                    <Select loading={loading} rules={{ required: true }} disabled={disabled} {...country} />
                 </Country>
                 <Region>
                     {region.type === 'select' ? (
-                        <Select
-                            loading={loading}
-                            {...region}
-                            name="region"
-                            ref={register({ required: true })}
-                            error={errors.region}
-                            disabled={disabled}
-                        />
+                        <Select loading={loading} rules={{ required: true }} disabled={disabled} {...region} />
                     ) : (
-                        <Input
-                            loading={loading}
-                            {...region}
-                            name="region"
-                            ref={register({ required: true })}
-                            error={errors.region}
-                            disabled={disabled}
-                        />
+                        <Input loading={loading} rules={{ required: true }} disabled={disabled} {...region} />
                     )}
                 </Region>
                 <PostalCode>
-                    <Input
-                        loading={loading}
-                        {...postalCode}
-                        name="postalCode"
-                        ref={register({ required: true })}
-                        error={errors.postalCode}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} rules={{ required: true }} disabled={disabled} {...postalCode} />
                 </PostalCode>
                 <PhoneNumber>
-                    <Input
-                        loading={loading}
-                        {...phone}
-                        name="phone"
-                        ref={register({ required: true })}
-                        error={errors.phone}
-                        disabled={disabled}
-                    />
+                    <Input loading={loading} rules={{ required: true }} disabled={disabled} {...phone} />
                 </PhoneNumber>
             </Root>
 
-            {formError && <FormError>{formError}</FormError>}
+            {error && <FormError>{error}</FormError>}
 
             {edit ? (
                 <Button type="submit" loading={loading || submitting} {...submitButton} />
@@ -225,11 +127,11 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
                 <Button
                     type="button"
                     outline
-                    {...editButton}
                     onClick={(e: Event) => {
                         e.preventDefault()
                         onEdit()
                     }}
+                    {...editButton}
                 />
             )}
         </Form>

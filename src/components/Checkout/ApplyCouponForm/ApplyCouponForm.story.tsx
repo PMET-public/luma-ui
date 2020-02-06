@@ -1,31 +1,20 @@
 import React from 'react'
 import ApplyCouponForm from '.'
 import { storiesOf } from '@storybook/react'
-import { useForm, FormContext } from 'react-hook-form'
-import { boolean } from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 
-storiesOf('📦 Components/Checkout/ApplyCouponForm', module).add('Default', () => {
-    const methods = useForm()
-
-    return (
-        <FormContext {...methods}>
-            <ApplyCouponForm
-                field={{
-                    label: 'Gift Card',
-                    name: 'giftCard',
-                }}
-                loading={boolean('loading', false)}
-                submitButton={{
-                    text: 'Apply',
-                }}
-                onSubmit={() => {
-                    return new Promise((resolve, reject) => {
-                        return setTimeout(() => {
-                            reject({ message: 'Oops!. There was an error... `cause your are just testing ;)' })
-                        }, 3000)
-                    })
-                }}
-            />
-        </FormContext>
-    )
-})
+storiesOf('📦 Components/Checkout/ApplyCouponForm', module).add('Default', () => (
+    <ApplyCouponForm
+        field={{
+            label: 'Gift Card',
+            name: 'giftCard',
+        }}
+        loading={boolean('loading', false)}
+        onSubmit={action('onSubmit')}
+        submitButton={{
+            text: 'Apply',
+        }}
+        error={text('error', '')}
+    />
+))
