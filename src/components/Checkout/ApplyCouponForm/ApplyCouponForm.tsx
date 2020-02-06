@@ -1,7 +1,7 @@
 import React from 'react'
 import { Component } from '../../../lib'
 import { Root, Button } from './ApplyCouponForm.styled'
-import Form, { Input, InputProps, FormError } from '../../Form'
+import Form, { Input, InputProps } from '../../Form'
 import ButtonComponent, { ButtonProps } from '../../Button'
 
 export type ApplyCouponFormPayload = {
@@ -28,11 +28,8 @@ export const ApplyCouponForm: Component<ApplyCouponFormProps> = ({
 }) => {
     return (
         <Root as={Form} onSubmit={onSubmit} {...props}>
-            <Input loading={loading} rules={{ required: true }} disabled={submitting} {...field} />
-
+            <Input loading={loading} rules={{ required: true }} disabled={submitting} error={error} {...field} />
             <Button as={ButtonComponent} type="submit" loading={loading || submitting} {...submitButton} />
-
-            {error && <FormError>{error}</FormError>}
         </Root>
     )
 }

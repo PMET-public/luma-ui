@@ -1,18 +1,13 @@
-import React, { InputHTMLAttributes, useState, useEffect, useCallback, useMemo, ChangeEvent, FocusEvent } from 'react'
+import React, { useState, useCallback, useMemo, ChangeEvent, FocusEvent } from 'react'
 import { Component } from '../../../lib'
 import { Label as LabelRoot } from './Input.styled'
-import { Field, FieldInput, Label, Error } from '../Form'
+import { FormFieldProps, Field, FieldInput, Label, Error } from '../Form'
 import { InputSkeleton } from './Input.skeleton'
-import { ValidationOptions, useFormContext, ErrorMessage } from 'react-hook-form'
-import _get from 'lodash.get'
+import { useFormFieldError } from '../useFormFieldError'
 
-export type InputProps = {
-    label: string
+export type InputProps = FormFieldProps & {
     loading?: boolean
-    name: string
-    rules?: ValidationOptions
-    error?: string
-} & InputHTMLAttributes<HTMLInputElement>
+}
 
 export const Input: Component<InputProps> = ({
     as,
@@ -26,32 +21,22 @@ export const Input: Component<InputProps> = ({
     onFocus,
     ...props
 }) => {
-    const { register, setError, clearError, errors } = useFormContext()
-
-    const hasError = !!error || !!_get(errors, name)
-
-    useEffect(() => {
-        if (error) {
-            setError(name, 'server', error)
-        } else {
-            clearError(name)
-        }
-    }, [error])
+    const fieldError = useFormFieldError({ name, error })
 
     const defaultActive = useMemo(() => {
         const { defaultValue, value = defaultValue, placeholder } = props
-        return !!value || !!placeholder || hasError
-    }, [props.value, props.defaultValue, props.placeholder, hasError])
+        return !!value || !!placeholder || !!fieldError
+    }, [props.value, props.defaultValue, props.placeholder, !!fieldError])
 
     const [active, setActive] = useState<boolean>(defaultActive)
 
     const handleOnChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             const { value, placeholder } = event.currentTarget
-            setActive(!!value || !!placeholder || hasError)
+            setActive(!!value || !!placeholder || !!fieldError)
             if (onChange) onChange(event)
         },
-        [hasError, onChange]
+        [!!fieldError, onChange]
     )
 
     const handleOnFocus = useCallback(
@@ -65,16 +50,21 @@ export const Input: Component<InputProps> = ({
     const handleOnBlur = useCallback(
         (event: FocusEvent<HTMLInputElement>) => {
             const { value, placeholder } = event.currentTarget
-            setActive(!!value || !!placeholder || !!hasError)
+            setActive(!!value || !!placeholder || !!fieldError)
             if (onBlur) onBlur(event)
         },
-        [hasError, onBlur]
+        [!!fieldError, onBlur]
     )
 
     return (
         <Field as={as}>
             {label && (
-                <Label as={LabelRoot} htmlFor={name} $active={loading || defaultActive || active} $error={hasError}>
+                <Label
+                    as={LabelRoot}
+                    htmlFor={name}
+                    error={!!fieldError}
+                    $active={loading || defaultActive || active || !!fieldError}
+                >
                     {label}
                 </Label>
             )}
@@ -83,20 +73,17 @@ export const Input: Component<InputProps> = ({
             ) : (
                 <React.Fragment>
                     <FieldInput
-                        key={props.defaultValue as string} // update field when defaultValue changes
-                        $error={hasError}
                         type="text"
                         onFocus={handleOnFocus}
                         onChange={handleOnChange}
                         onBlur={handleOnBlur}
-                        {...props}
                         name={name}
-                        ref={register({ ...rules })}
+                        error={!!fieldError}
+                        rules={rules}
+                        {...props}
                     />
 
-                    <Error>
-                        <ErrorMessage name={name}>{({ message }) => message}</ErrorMessage>
-                    </Error>
+                    <Error>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>

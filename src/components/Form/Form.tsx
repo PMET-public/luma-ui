@@ -8,7 +8,9 @@ import {
     Input as InputRoot,
     FormError as FormErrorRoot,
 } from './Form.styled'
-import { FormContext, useForm } from 'react-hook-form'
+
+import { FormContext, useForm, useFormContext, ValidationOptions } from 'react-hook-form'
+import _get from 'lodash.get'
 
 /** Form */
 export type FormProps = {}
@@ -25,6 +27,13 @@ export const Form: Component<FormProps> = ({ children, onSubmit, ...props }) => 
     )
 }
 
+export type FormFieldProps = {
+    name: string
+    label?: string
+    error?: string
+    rules?: ValidationOptions
+}
+
 /** Field */
 export type FieldProps = {}
 
@@ -33,24 +42,35 @@ export const Field: Component<FieldProps> = ({ children, ...props }) => {
 }
 
 /** Label */
-export type LabelProps = {}
+export type LabelProps = { error?: boolean }
 
-export const Label: Component<LabelProps> = ({ children, ...props }) => {
-    return <LabelRoot {...props}>{children}</LabelRoot>
+export const Label: Component<LabelProps> = ({ children, error = false, ...props }) => {
+    return (
+        <LabelRoot $error={error} {...props}>
+            {children}
+        </LabelRoot>
+    )
 }
 
 /** FieldInput */
-export type FieldInputProps = {}
+export type FieldInputProps = { rules?: ValidationOptions; error?: boolean }
 
-export const FieldInput: Component<FieldInputProps> = React.forwardRef(({ children, ...props }, ref: any) => {
+export const FieldInput: Component<FieldInputProps> = ({ children, rules, error = false, ...props }) => {
+    const { register } = useFormContext()
+
     return (
-        <InputRoot ref={ref} {...props}>
+        <InputRoot
+            $error={error}
+            key={props.defaultValue as string} // update field when defaultValue changes
+            {...props}
+            ref={register({ ...rules })}
+        >
             {children}
         </InputRoot>
     )
-})
+}
 
-/** Error */
+/** Field Error */
 export type ErrorProps = {}
 
 export const Error: Component<ErrorProps> = ({ children, ...props }) => {

@@ -1,20 +1,15 @@
-import React, { HTMLAttributes, useEffect } from 'react'
+import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
 import { Items, Item } from './ThumbSwatches.styled'
 
 import Image, { ImageProps } from '../../Image'
-import { Field, Label, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
 import { ThumbSwatchesSkeleton } from './ThumbSwatches.skeleton'
-import { ValidationOptions, useFormContext, ErrorMessage } from 'react-hook-form'
-import _get from 'lodash.get'
+import { useFormFieldError } from '../useFormFieldError'
 
-export type ThumbSwatchesProps = {
+export type ThumbSwatchesProps = FormFieldProps & {
     loading?: boolean
-    name: string
     type?: 'radio' | 'checkbox'
-    label?: string
-    rules?: ValidationOptions
-    error?: string
     items: Array<
         {
             image: ImageProps
@@ -33,17 +28,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
     items = [],
     ...props
 }) => {
-    const { register, setError, clearError, errors } = useFormContext()
-
-    const hasError = !!error || !!_get(errors, name)
-
-    useEffect(() => {
-        if (error) {
-            setError(name, 'server', error)
-        } else {
-            clearError(name)
-        }
-    }, [error])
+    const fieldError = useFormFieldError({ name, error })
 
     return (
         <Field {...props}>
@@ -52,7 +37,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
             ) : (
                 <React.Fragment>
                     {label && (
-                        <Label htmlFor={props.name} $error={hasError}>
+                        <Label htmlFor={props.name} error={!!fieldError}>
                             {label}
                         </Label>
                     )}
@@ -60,11 +45,12 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                     <Items>
                         {items.map(({ image, ...item }, index) => (
                             <Item key={index}>
-                                <input
+                                <FieldInput
                                     id={`swatch-group__${name}__${index}`}
-                                    ref={register({ ...rules })}
                                     type={type}
                                     name={name}
+                                    rules={rules}
+                                    error={!!fieldError}
                                     {...item}
                                 />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>
@@ -74,9 +60,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                         ))}
                     </Items>
 
-                    <Error>
-                        <ErrorMessage name={name}>{({ message }) => message}</ErrorMessage>
-                    </Error>
+                    <Error>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>

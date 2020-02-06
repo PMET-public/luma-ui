@@ -1,37 +1,22 @@
-import React, { SelectHTMLAttributes, OptionHTMLAttributes, useEffect } from 'react'
+import React, { OptionHTMLAttributes } from 'react'
 import { Component } from '../../../lib'
 import { Select as SelectRoot, Wrapper } from './Select.styled'
-import { Field, Label, FieldInput, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
 import { SelectSkeleton } from './Select.skeleton'
-import { ValidationOptions, useFormContext, ErrorMessage } from 'react-hook-form'
-import _get from 'lodash.get'
+import { useFormFieldError } from '../useFormFieldError'
 
-export type SelectProps = {
-    label?: string
+export type SelectProps = FormFieldProps & {
     items: Array<{ text: string } & OptionHTMLAttributes<HTMLOptionElement>>
     loading?: boolean
-    name: string
-    rules?: ValidationOptions
-    error?: string
-} & SelectHTMLAttributes<HTMLSelectElement>
+}
 
 export const Select: Component<SelectProps> = ({ as, error, label, loading, name, rules, items, ...props }) => {
-    const { register, setError, clearError, errors } = useFormContext()
-
-    const hasError = !!error || !!_get(errors, name)
-
-    useEffect(() => {
-        if (error) {
-            setError(name, 'server', error)
-        } else {
-            clearError(name)
-        }
-    }, [error])
+    const fieldError = useFormFieldError({ name, error })
 
     return (
         <Field as={as}>
             {label && (
-                <Label htmlFor={props.name} $error={hasError}>
+                <Label htmlFor={name} error={!!fieldError}>
                     {label}
                 </Label>
             )}
@@ -43,11 +28,11 @@ export const Select: Component<SelectProps> = ({ as, error, label, loading, name
                     <Wrapper $disabled={props.disabled}>
                         <FieldInput
                             as={SelectRoot}
-                            $error={hasError}
-                            disabled={!items}
-                            {...props}
+                            disabled={items?.length === 0}
                             name={name}
-                            ref={register({ ...rules })}
+                            rules={rules}
+                            error={!!fieldError}
+                            {...props}
                         >
                             {items &&
                                 items.map(({ text, ...option }, index) => (
@@ -58,9 +43,7 @@ export const Select: Component<SelectProps> = ({ as, error, label, loading, name
                         </FieldInput>
                     </Wrapper>
 
-                    <Error>
-                        <ErrorMessage name={name}>{({ message }) => message}</ErrorMessage>
-                    </Error>
+                    <Error>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>

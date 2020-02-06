@@ -3,6 +3,7 @@ import ThumbSwatches from '.'
 import { storiesOf } from '@storybook/react'
 import { number, boolean, text } from '@storybook/addon-knobs'
 import { Form } from '../Form'
+import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/ThumbSwatches', module).add('Default', () => (
     <Form>
@@ -19,6 +20,7 @@ storiesOf('📦 Components/Form/ThumbSwatches', module).add('Default', () => (
             })}
             style={{ minWidth: '40rem' }}
             error={text('error', '')}
+            onChange={action('onChange')}
         />
     </Form>
 ))

@@ -3,6 +3,7 @@ import TextSwatches from '../TextSwatches'
 import { storiesOf } from '@storybook/react'
 import { object, boolean, text } from '@storybook/addon-knobs'
 import { Form } from '../Form'
+import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
     <Form>
@@ -18,6 +19,7 @@ storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
                 { text: 'XL' },
                 { text: 'S' },
             ])}
+            onChange={action('onChange')}
             error={text('error', '')}
         />
     </Form>

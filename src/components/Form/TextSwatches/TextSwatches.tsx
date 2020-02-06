@@ -1,17 +1,12 @@
-import React, { HTMLAttributes, useEffect } from 'react'
+import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
 import { Items, Item } from './TextSwatches.styled'
-import { Field, Label, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
 import { TextSwatchesSkeleton } from './TextSwatches.skeleton'
-import { ValidationOptions, useFormContext, ErrorMessage } from 'react-hook-form'
-import _get from 'lodash.get'
+import { useFormFieldError } from '../useFormFieldError'
 
-export type TextSwatchesProps = {
+export type TextSwatchesProps = FormFieldProps & {
     loading?: boolean
-    error?: string
-    rules?: ValidationOptions
-    label?: string
-    name: string
     type?: 'radio' | 'checkbox'
     items: Array<
         {
@@ -31,17 +26,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
     items = [],
     ...props
 }) => {
-    const { register, setError, clearError, errors } = useFormContext()
-
-    const hasError = !!error || !!_get(errors, name)
-
-    useEffect(() => {
-        if (error) {
-            setError(name, 'server', error)
-        } else {
-            clearError(name)
-        }
-    }, [error])
+    const fieldError = useFormFieldError({ name, error })
 
     return (
         <Field {...props}>
@@ -50,7 +35,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
             ) : (
                 <React.Fragment>
                     {label && (
-                        <Label htmlFor={props.name} $error={hasError}>
+                        <Label htmlFor={props.name} error={!!fieldError}>
                             {label}
                         </Label>
                     )}
@@ -58,21 +43,20 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
                     <Items>
                         {items.map(({ text, ...item }, index) => (
                             <Item key={index}>
-                                <input
+                                <FieldInput
                                     id={`swatch-group__${name}__${index}`}
+                                    rules={rules}
                                     name={name}
-                                    {...item}
-                                    ref={register({ ...rules })}
                                     type={type}
+                                    error={!!fieldError}
+                                    {...item}
                                 />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
                             </Item>
                         ))}
                     </Items>
 
-                    <Error>
-                        <ErrorMessage name={name}>{({ message }) => message}</ErrorMessage>
-                    </Error>
+                    <Error>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>

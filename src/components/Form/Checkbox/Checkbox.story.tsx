@@ -10,7 +10,7 @@ storiesOf('📦 Components/Form/Checkbox', module).add('Default', () => (
             label="Label"
             name="test"
             placeholder={text('placeholder', '')}
-            error={text('error message', '')}
+            error={text('error', '')}
             type={select('type', { checkbox: 'checkbox', radio: 'radio' }, 'checkbox')}
             items={[
                 {
