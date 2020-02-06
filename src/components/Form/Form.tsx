@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Component } from '../../lib'
 import {
     Root,
@@ -9,18 +9,34 @@ import {
     FormError as FormErrorRoot,
 } from './Form.styled'
 
-import { FormContext, useForm, useFormContext, ValidationOptions } from 'react-hook-form'
+import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors } from 'react-hook-form'
 import _get from 'lodash.get'
 
 /** Form */
-export type FormProps = {}
+export type FormProps = {
+    onValues?: (values: any) => any
+    onErrors?: (values: FieldErrors<any>) => any
+}
 
-export const Form: Component<FormProps> = ({ children, onSubmit, ...props }) => {
+export const Form: Component<FormProps> = ({ children, onSubmit, onErrors, onValues, onChange, ...props }) => {
     const form = useForm()
+
+    const handleOnValueChanges = useCallback(
+        e => {
+            const values = form.getValues({ nest: true })
+            if (onValues) onValues(values)
+            if (onChange) onChange(e)
+        },
+        [onChange, onValues]
+    )
+
+    useEffect(() => {
+        if (onErrors) onErrors(form.errors)
+    }, [onErrors, Object.entries(form.errors).toString()])
 
     return (
         <FormContext {...form}>
-            <Root onSubmit={form.handleSubmit(onSubmit)} {...props}>
+            <Root onSubmit={form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
                 {children}
             </Root>
         </FormContext>

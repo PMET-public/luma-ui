@@ -56,17 +56,3 @@ export const toPascalCase = (string: string) => {
     const camelCased = toCamelCase(string)
     return camelCased.charAt(0).toUpperCase() + camelCased.slice(1)
 }
-
-/**
- * Get from Deep Object
- */
-
-export const getfromObject = (property: string, object: { [key: string]: any }): any => {
-    console.warn('getfromObject Deprecated')
-
-    const entry = property.split('.').reduce((result, key) => {
-        return result[key] || {}
-    }, object)
-
-    return Object.keys(entry).length === 0 ? undefined : entry
-}

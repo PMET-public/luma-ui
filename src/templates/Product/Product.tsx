@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback, useEffect, MutableRefObject } from 'react'
-import { Component, Props, getfromObject } from '../../lib'
+import React, { useState, useRef, useCallback, MutableRefObject } from 'react'
+import { Component, Props } from '../../lib'
 import {
     Root,
     Wrapper,
@@ -11,7 +11,6 @@ import {
     InfoInnerWrapper,
     InfoOptions,
     Field,
-    Label,
     Info,
     Header,
     Title,
@@ -22,8 +21,6 @@ import {
     ThumbSwatchesWrapper,
 } from './Product.styled'
 
-import { useForm } from 'react-hook-form'
-
 import Carousel from '../../components/Carousel'
 import Image, { ImageProps } from '../../components/Image'
 import Price, { PriceProps } from '../../components/Price'
@@ -33,6 +30,7 @@ import TextSwatches, { TextSwatchesProps } from '../../components/Form/TextSwatc
 import ThumbSwatches, { ThumbSwatchesProps } from '../../components/Form/ThumbSwatches'
 import { ProductDetailsSkeleton } from './ProductDetails.skeleton'
 import { ProductImageSkeleton } from './ProductImage.skeleton'
+import Form, { Input } from '../../components/Form'
 
 export type ProductProps = {
     loading?: boolean
@@ -44,21 +42,16 @@ export type ProductProps = {
     price: PriceProps
 
     options?: Array<
-        {
-            _id?: string | number
-            label?: string
-            required?: boolean
-            error?: string | boolean
-        } & (
-            | {
-                  type: 'text'
-                  swatches: TextSwatchesProps
-              }
-            | {
-                  type: 'thumb'
-                  swatches: ThumbSwatchesProps
-              }
-        )
+        | {
+              _id?: string | number
+              type: 'text'
+              swatches: TextSwatchesProps
+          }
+        | {
+              _id?: string | number
+              type: 'thumb'
+              swatches: ThumbSwatchesProps
+          }
     >
 
     sku: Props<{
@@ -88,27 +81,24 @@ export const Product: Component<ProductProps> = ({
     onChange = () => {},
     ...props
 }) => {
-    const { register, handleSubmit, errors, setError, getValues } = useForm()
-
     const [scrollerRef, setScrollerRef] = useState<MutableRefObject<Element>>()
-    const infoRef = useRef<HTMLElement>(null)
 
-    const handleOnValueChanges = useCallback(() => {
-        const values = getValues({ nest: true })
-        onChange(values)
-    }, [onChange])
+    const infoRef = useRef<HTMLDivElement>(null)
 
     /**
      * Scroll to top if there are any errors
      */
-    useEffect(() => {
-        if (Object.entries(errors).length > 0 && infoRef.current) {
-            infoRef.current.scrollIntoView({ behavior: 'smooth' })
-        }
-    }, [errors])
+    const handleOnErrors = useCallback(
+        errors => {
+            if (Object.entries(errors).length > 0 && infoRef.current) {
+                infoRef.current.scrollIntoView({ behavior: 'smooth' })
+            }
+        },
+        [infoRef.current]
+    )
 
     return (
-        <Root as="form" {...props} onSubmit={handleSubmit(onAddToCart)} onChange={handleOnValueChanges}>
+        <Root as={Form} onSubmit={onAddToCart} onValues={onChange} onErrors={handleOnErrors} {...props}>
             <Wrapper>
                 <Images>
                     {/* Mobile Gallery Carousel */}
@@ -173,42 +163,24 @@ export const Product: Component<ProductProps> = ({
 
                                     {options && (
                                         <InfoOptions>
-                                            {options.map(
-                                                ({ _id, error: _error, type, label, required, swatches }, index) => {
-                                                    const { name } = swatches
-                                                    const error = getfromObject(name, errors)
-
-                                                    if (_error) {
-                                                        setError(
-                                                            name,
-                                                            'error',
-                                                            typeof _error === 'string' ? _error : ''
-                                                        )
-                                                    }
-
-                                                    return (
-                                                        <fieldset key={_id || index}>
-                                                            <Field>
-                                                                {label && <Label $error={!!error}>{label}</Label>}
-                                                                {type === 'text' && (
-                                                                    <TextSwatches
-                                                                        ref={register({ required })}
-                                                                        {...(swatches as TextSwatchesProps)}
+                                            {options.map(({ _id, type, swatches }, index) => {
+                                                return (
+                                                    <fieldset key={_id || index}>
+                                                        <Field>
+                                                            {type === 'text' && (
+                                                                <TextSwatches {...(swatches as TextSwatchesProps)} />
+                                                            )}
+                                                            {type === 'thumb' && (
+                                                                <ThumbSwatchesWrapper>
+                                                                    <ThumbSwatches
+                                                                        {...(swatches as ThumbSwatchesProps)}
                                                                     />
-                                                                )}
-                                                                {type === 'thumb' && (
-                                                                    <ThumbSwatchesWrapper>
-                                                                        <ThumbSwatches
-                                                                            ref={register({ required })}
-                                                                            {...(swatches as ThumbSwatchesProps)}
-                                                                        />
-                                                                    </ThumbSwatchesWrapper>
-                                                                )}
-                                                            </Field>
-                                                        </fieldset>
-                                                    )
-                                                }
-                                            )}
+                                                                </ThumbSwatchesWrapper>
+                                                            )}
+                                                        </Field>
+                                                    </fieldset>
+                                                )
+                                            })}
                                         </InfoOptions>
                                     )}
 
@@ -216,9 +188,9 @@ export const Product: Component<ProductProps> = ({
                                         <Button {...addToCartButton} />
                                     </Buttons>
 
-                                    <input type="hidden" name="quantity" value={1} ref={register({ required: true })} />
+                                    <Input type="hidden" name="quantity" value={1} rules={{ required: true }} />
 
-                                    <Description dangerouslySetInnerHTML={{ __html: description }} />
+                                    {description && <Description dangerouslySetInnerHTML={{ __html: description }} />}
                                 </React.Fragment>
                             )}
                         </Info>
