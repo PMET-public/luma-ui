@@ -1,12 +1,12 @@
 import React from 'react'
 import { Component } from '../../../lib'
 import { Root } from './PlaceOrderForm.styled'
-import Form, { FormError } from '../../Form'
+import Form, { FormProps, FormError } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
 
 export type PlaceOrderFormPayload = {}
 
-export type PlaceOrderFormProps = {
+export type PlaceOrderFormProps = FormProps<PlaceOrderFormPayload> & {
     loading?: boolean
     submitting?: boolean
     error?: string

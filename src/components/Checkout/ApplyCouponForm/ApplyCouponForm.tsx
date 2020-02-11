@@ -1,17 +1,16 @@
 import React from 'react'
 import { Component } from '../../../lib'
 import { Root, Button } from './ApplyCouponForm.styled'
-import Form, { Input, InputProps } from '../../Form'
+import Form, { FormProps, Input, InputProps } from '../../Form'
 import ButtonComponent, { ButtonProps } from '../../Button'
 
 export type ApplyCouponFormPayload = {
     [code: string]: string
 }
 
-export type ApplyCouponFormProps = {
+export type ApplyCouponFormProps = FormProps<ApplyCouponFormPayload> & {
     field: InputProps
     loading?: boolean
-    onSubmit: (payload: ApplyCouponFormPayload) => any
     submitting?: boolean
     submitButton: ButtonProps
     error?: string

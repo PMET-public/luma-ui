@@ -17,7 +17,7 @@ export type CartSummaryProps = {
     coupons?: {
         label: string
         open?: boolean
-        fields: ApplyCouponFormProps[]
+        items: ApplyCouponFormProps[]
     }
 }
 
@@ -29,7 +29,7 @@ export const CartSummary: Component<CartSummaryProps> = ({ title, prices, coupon
             {coupons && (
                 <Accordion defaultSelected={coupons.open ? 0 : -1}>
                     <Accordion.Item label={coupons.label}>
-                        {coupons.fields.map((coupon, index) => (
+                        {coupons.items.map((coupon, index) => (
                             <ApplyCouponForm key={index} {...coupon} />
                         ))}
                     </Accordion.Item>

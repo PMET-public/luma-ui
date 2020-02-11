@@ -3,14 +3,14 @@ import { Component } from '../../../lib'
 import { Root, Card, CardIcon, CardType, CardNumber } from './PaymentMethodForm.styled'
 import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload as Payload } from 'braintree-web-drop-in'
 import Button, { ButtonProps } from '../../Button'
-import Form, { FormError } from '../../Form'
+import Form, { FormProps, FormError } from '../../Form'
 import { useTheme } from '../../../theme/useTheme'
 
 export type Braintree = Dropin
 
 export type PaymentMethodPayload = Payload
 
-export type PaymentMethodFormProps = {
+export type PaymentMethodFormProps = FormProps<PaymentMethodPayload> & {
     submitting?: boolean
     error?: string
     submitButton: ButtonProps

@@ -1,18 +1,17 @@
 import React from 'react'
 import { Component } from '../../../lib'
 import { Root } from './ShippingMethodForm.styled'
-import Form, { Select, SelectProps, FormError } from '../../Form'
+import Form, { FormProps, Select, SelectProps, FormError } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
 
 export type ShippingMethodFormPayload = {
     shippingMethod: string
 }
 
-export type ShippingMethodFormProps = {
+export type ShippingMethodFormProps = FormProps<ShippingMethodFormPayload> & {
     edit?: boolean
     editButton: ButtonProps
     submitButton: ButtonProps
-    onSubmit: (payload: ShippingMethodFormPayload) => any
     onEdit: (...args: any) => any
     loading?: boolean
     submitting?: boolean

@@ -15,7 +15,7 @@ import {
     PhoneNumber,
 } from './ContactInfoForm.styled'
 
-import Form, { Input, InputProps, Select, SelectProps, FormError, patterns } from '../../Form'
+import Form, { FormProps, Input, InputProps, Select, SelectProps, FormError, patterns } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
 
 export type ContactInfoFormPayload = {
@@ -32,7 +32,7 @@ export type ContactInfoFormPayload = {
     phone: string
 }
 
-export type ContactInfoFormProps = {
+export type ContactInfoFormProps = FormProps<ContactInfoFormPayload> & {
     edit?: boolean
     fields: {
         email: InputProps

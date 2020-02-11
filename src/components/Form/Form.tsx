@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from 'react'
-import { Component } from '../../lib'
+import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes } from 'react'
+import { Component, Props } from '../../lib'
 import {
     Root,
     Field as FieldRoot,
@@ -9,13 +9,14 @@ import {
     FormError as FormErrorRoot,
 } from './Form.styled'
 
-import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors } from 'react-hook-form'
+import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors, OnSubmit } from 'react-hook-form'
 import _get from 'lodash.get'
 
 /** Form */
-export type FormProps = {
+export type FormProps<P = {}> = FormHTMLAttributes<any> & {
     onValues?: (values: any) => any
     onErrors?: (values: FieldErrors<any>) => any
+    onSubmit: OnSubmit<P>
 }
 
 export const Form: Component<FormProps> = ({ children, onSubmit, onErrors, onValues, onChange, ...props }) => {
@@ -43,12 +44,12 @@ export const Form: Component<FormProps> = ({ children, onSubmit, onErrors, onVal
     )
 }
 
-export type FormFieldProps = {
+export type FormFieldProps = Props<{
     name: string
     label?: string
     error?: string
     rules?: ValidationOptions
-}
+}>
 
 /** Field */
 export type FieldProps = {}
@@ -58,7 +59,7 @@ export const Field: Component<FieldProps> = ({ children, ...props }) => {
 }
 
 /** Label */
-export type LabelProps = { error?: boolean }
+export type LabelProps = LabelHTMLAttributes<any> & { error?: boolean }
 
 export const Label: Component<LabelProps> = ({ children, error = false, ...props }) => {
     return (
@@ -69,18 +70,13 @@ export const Label: Component<LabelProps> = ({ children, error = false, ...props
 }
 
 /** FieldInput */
-export type FieldInputProps = { rules?: ValidationOptions; error?: boolean }
+export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationOptions; error?: boolean }
 
 export const FieldInput: Component<FieldInputProps> = ({ children, rules, error = false, ...props }) => {
     const { register } = useFormContext()
 
     return (
-        <InputRoot
-            $error={error}
-            key={props.defaultValue as string} // update field when defaultValue changes
-            {...props}
-            ref={register({ ...rules })}
-        >
+        <InputRoot $error={error} {...props} ref={register({ ...rules })}>
             {children}
         </InputRoot>
     )
