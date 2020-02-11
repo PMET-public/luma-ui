@@ -1,22 +1,25 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { Component } from '../../../lib'
 import { Root } from './ShippingMethodForm.styled'
-import Form, { Select, SelectProps, FormError } from '../../Form'
-import { useForm } from 'react-hook-form'
+import Form, { FormProps, Select, SelectProps, FormError } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
 
 export type ShippingMethodFormPayload = {
     shippingMethod: string
 }
 
-export type ShippingMethodFormProps = {
+export type ShippingMethodFormProps = FormProps<ShippingMethodFormPayload> & {
     edit?: boolean
     editButton: ButtonProps
     submitButton: ButtonProps
-    onSubmit: (payload: ShippingMethodFormPayload) => any
     onEdit: (...args: any) => any
     loading?: boolean
-} & SelectProps
+    submitting?: boolean
+    error?: string
+    fields: {
+        shippingMethod: SelectProps
+    }
+}
 
 export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
     edit = false,
@@ -25,44 +28,20 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
     onEdit,
     onSubmit,
     loading,
+    submitting,
+    fields,
+    error,
     ...props
 }) => {
-    const { handleSubmit, register, errors } = useForm<ShippingMethodFormPayload>()
-
-    const [formError, setFormError] = useState<string | null>(null)
-
-    const [submitting, setSubmitting] = useState(false)
-
-    const handleOnSubmit = useCallback(
-        async form => {
-            setFormError(null)
-            setSubmitting(true)
-
-            try {
-                await handleSubmit(onSubmit)(form)
-                setSubmitting(false)
-            } catch (error) {
-                setFormError(error.message)
-                setSubmitting(false)
-            }
-        },
-        [handleSubmit, onSubmit]
-    )
+    const { shippingMethod } = fields
 
     const disabled = submitting || !edit
 
     return (
-        <Root as={Form} onSubmit={handleOnSubmit}>
-            <Select
-                loading={loading}
-                name="shippingMethod"
-                ref={register({ required: true })}
-                error={errors.shippingMethod}
-                disabled={disabled}
-                {...props}
-            />
+        <Root as={Form} onSubmit={onSubmit}>
+            <Select loading={loading} disabled={disabled} {...shippingMethod} />
 
-            {formError && <FormError>{formError}</FormError>}
+            {error && <FormError>{error}</FormError>}
 
             {edit ? (
                 <Button type="submit" loading={loading || submitting} {...submitButton} />

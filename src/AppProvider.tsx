@@ -66,7 +66,10 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
      * Get Color Preference
      */
     useEffect(() => {
-        const payload = localStorage.getItem('luma-ui/colorScheme') || 'light'
+        const payload =
+            localStorage.getItem('luma-ui/colorScheme') ||
+            (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+
         dispatch({ type: 'setColorScheme', payload })
     }, [])
 

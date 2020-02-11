@@ -35,6 +35,7 @@ export const ButtonLabel = styled.span`
 export const ButtonIcon = styled.span<{ $active?: boolean }>`
     width: 2.4rem;
     transition: transform 305ms ease-out;
+    fill: currentColor;
 
     ${props => props.$active && 'transform: rotateX(180deg);'}
 `

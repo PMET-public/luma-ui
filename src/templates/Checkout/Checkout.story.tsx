@@ -3,7 +3,7 @@ import Checkout from './'
 import { storiesOf } from '@storybook/react'
 import App from '../../components/App'
 import { AppMockData } from '../../components/App/App.story'
-import { number, select, boolean } from '@storybook/addon-knobs'
+import { select, boolean, number } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
@@ -21,27 +21,35 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                 fields: {
                     email: {
                         label: 'Email',
+                        name: 'email',
                     },
                     firstName: {
                         label: 'First Name',
+                        name: 'firstName',
                     },
                     lastName: {
                         label: 'Last Name',
+                        name: 'lastName',
                     },
                     company: {
                         label: 'Company (optional)',
+                        name: 'company',
                     },
                     address1: {
                         label: 'Address',
+                        name: 'address1',
                     },
                     address2: {
                         label: 'Apt, Suite, Unit, etc (optional)',
+                        name: 'address2',
                     },
                     city: {
                         label: 'City',
+                        name: 'city',
                     },
                     country: {
                         label: 'Country',
+                        name: 'country',
                         items: [
                             {
                                 text: 'United States',
@@ -55,12 +63,16 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                     },
                     region: {
                         label: 'State',
+                        name: 'region',
+                        type: 'text',
                     },
                     postalCode: {
                         label: 'Postal Code',
+                        name: 'postalCode',
                     },
                     phone: {
                         label: 'Phone Number',
+                        name: 'phone',
                     },
                 },
                 editButton: {
@@ -74,10 +86,15 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
             }}
             shippingMethod={{
                 title: 'Shipping',
-                items: [
-                    { text: 'Fixed $5.00', value: '1' },
-                    { text: '1-Day Express $29.99', value: '2' },
-                ],
+                fields: {
+                    shippingMethod: {
+                        name: 'shippingMethod',
+                        items: [
+                            { text: 'Fixed $5.00', value: '1' },
+                            { text: '1-Day Express $29.99', value: '2' },
+                        ],
+                    },
+                },
                 editButton: {
                     text: 'Continue to Payment',
                 },
@@ -107,14 +124,7 @@ storiesOf('📑 Templates/Checkout', module).add('Checkout', () => (
                 submitButton: {
                     text: 'Place Order',
                 },
-                onSubmit: e =>
-                    new Promise(resolve => {
-                        // fake loader
-                        setTimeout(() => {
-                            action('onSubmit')(e)
-                            resolve()
-                        }, 3000)
-                    }),
+                onSubmit: action('placeOrder'),
             }}
             list={{
                 items: new Array(number('quantity', 2)).fill({

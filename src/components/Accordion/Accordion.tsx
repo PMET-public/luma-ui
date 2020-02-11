@@ -1,9 +1,10 @@
-import React, { createContext, useState, useContext, useRef } from 'react'
+import React, { createContext, useState, useContext, useRef, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, Button, ButtonLabel, ButtonIcon, Content } from './Accordion.styled'
 
 import { useMeasure } from '../../hooks/useMeasure'
 import { animated, useSpring } from 'react-spring'
+import { easeCircle as easing } from 'd3-ease'
 
 import ArrowIconSvg from 'remixicon/icons/System/arrow-down-s-line.svg'
 
@@ -28,11 +29,16 @@ export const Accordion: Component<AccordionProps> & CompoundComponent = ({
 }) => {
     const [selected, setSelected] = useState(defaultSelected)
 
+    /** Update Selected when prop changes */
+    useEffect(() => {
+        setSelected(defaultSelected)
+    }, [defaultSelected])
+
     return (
         <Root {...props}>
             {React.Children.map(children, (child, index) => {
                 const active = selected === index
-                const onSelect = () => setSelected(index)
+                const onSelect = () => setSelected(selected === index ? -1 : index)
 
                 return (
                     <ItemContext.Provider key={index} value={{ index, active, onSelect }}>
@@ -51,8 +57,12 @@ Accordion.Item = ({ children, label, ...props }) => {
 
     const { active, onSelect } = useContext(ItemContext)
 
-    const transition = useSpring(
-        active
+    const transition = useSpring({
+        config: {
+            duration: 500,
+            easing,
+        },
+        ...(active
             ? {
                   height,
                   opacity: 1,
@@ -60,8 +70,8 @@ Accordion.Item = ({ children, label, ...props }) => {
             : {
                   height: 0,
                   opacity: 0,
-              }
-    )
+              }),
+    })
 
     return (
         <Item {...props}>

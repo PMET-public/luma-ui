@@ -1,22 +1,18 @@
 import React from 'react'
 import PlaceOrderForm from '.'
 import { storiesOf } from '@storybook/react'
-import { useForm, FormContext } from 'react-hook-form'
-import { boolean } from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Checkout/PlaceOrderForm', module).add('Default', () => {
-    const methods = useForm()
     return (
-        <FormContext {...methods}>
-            <PlaceOrderForm
-                loading={boolean('loading', false)}
-                submitButton={{
-                    text: 'Place Order',
-                }}
-                onSubmit={() => {
-                    throw Error('Oops!. There was an error... `cause your are just testing ;)')
-                }}
-            />
-        </FormContext>
+        <PlaceOrderForm
+            loading={boolean('loading', false)}
+            submitButton={{
+                text: 'Place Order',
+            }}
+            onSubmit={action('onSubmit')}
+            error={text('error', '')}
+        />
     )
 })

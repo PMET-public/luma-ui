@@ -2,6 +2,7 @@ import React from 'react'
 import PaymentMethodForm from '.'
 import { storiesOf } from '@storybook/react'
 import { text } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Checkout/PaymentMethodForm', module).add('Default', () => {
     const braintree = {
@@ -22,9 +23,8 @@ storiesOf('📦 Components/Checkout/PaymentMethodForm', module).add('Default', (
             editButton={{
                 text: 'Edit',
             }}
-            onSubmit={() => {
-                throw Error('Oops!. There was an error... `cause your are just testing ;)')
-            }}
+            onSubmit={action('onSubmit')}
+            error={text('error', '')}
         />
     )
 })

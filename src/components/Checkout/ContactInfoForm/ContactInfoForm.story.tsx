@@ -2,7 +2,7 @@ import React from 'react'
 import ContactInfoForm from '.'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { boolean } from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () => {
     return (
@@ -11,27 +11,35 @@ storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () 
             edit={boolean('edit', false)}
             fields={{
                 email: {
+                    name: 'email',
                     label: 'Email',
                 },
                 firstName: {
+                    name: 'firstName',
                     label: 'First Name',
                 },
                 lastName: {
+                    name: 'lastName',
                     label: 'Last Name',
                 },
                 company: {
+                    name: 'company',
                     label: 'Company (optional)',
                 },
                 address1: {
+                    name: 'address1',
                     label: 'Address',
                 },
                 address2: {
+                    name: 'address2',
                     label: 'Apt, Suite, Unit, etc (optional)',
                 },
                 city: {
+                    name: 'city',
                     label: 'City',
                 },
                 country: {
+                    name: 'country',
                     label: 'Country',
                     items: [
                         {
@@ -45,13 +53,16 @@ storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () 
                     ],
                 },
                 region: {
+                    name: 'region',
                     type: 'text',
                     label: 'State',
                 },
                 postalCode: {
+                    name: 'postalCode',
                     label: 'Postal Code',
                 },
                 phone: {
+                    name: 'phone',
                     label: 'Phone Number',
                 },
             }}
@@ -61,10 +72,9 @@ storiesOf('📦 Components/Checkout/ContactInfoForm', module).add('Default', () 
             editButton={{
                 text: 'Edit',
             }}
-            onSubmit={() => {
-                throw Error('Oops!. There was an error... `cause your are just testing ;)')
-            }}
+            onSubmit={action('onSubmit')}
             onEdit={action('onEdit')}
+            error={text('error', '')}
         />
     )
 })

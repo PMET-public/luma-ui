@@ -1,13 +1,20 @@
 import React from 'react'
 import Input from '.'
 import { storiesOf } from '@storybook/react'
-import { text, boolean } from '@storybook/addon-knobs'
+import { text, boolean, object } from '@storybook/addon-knobs'
+import { Form } from '../Form'
+import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/Input', module).add('Default', () => (
-    <Input
-        loading={boolean('loading', false)}
-        label="Label"
-        placeholder={text('placeholder', '')}
-        error={boolean('error', false) ? { message: text('error message', '') } : undefined}
-    />
+    <Form>
+        <Input
+            name="test"
+            loading={boolean('loading', false)}
+            label="Label"
+            placeholder={text('placeholder', '')}
+            error={text('error', '')}
+            rules={object('rules', { required: true })}
+            onChange={action('onChange')}
+        />
+    </Form>
 ))

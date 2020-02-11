@@ -1,14 +1,12 @@
 import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
 import { Items, Item } from './TextSwatches.styled'
-import { Field, Label, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
 import { TextSwatchesSkeleton } from './TextSwatches.skeleton'
+import { useFormFieldError } from '../useFormFieldError'
 
-export type TextSwatchesProps = {
+export type TextSwatchesProps = FormFieldProps & {
     loading?: boolean
-    label?: string
-    name: string
-    error?: { message?: string } | boolean
     type?: 'radio' | 'checkbox'
     items: Array<
         {
@@ -18,39 +16,49 @@ export type TextSwatchesProps = {
     >
 }
 
-export const TextSwatches: Component<TextSwatchesProps> = React.forwardRef(
-    ({ loading, label, error, name, type = 'radio', items = [], ...props }, ref) => {
-        return (
-            <Field {...props}>
-                {loading ? (
-                    <TextSwatchesSkeleton />
-                ) : (
-                    <React.Fragment>
-                        {label && (
-                            <Label htmlFor={props.name} $error={!!error}>
-                                {label}
-                            </Label>
-                        )}
+export const TextSwatches: Component<TextSwatchesProps> = ({
+    loading,
+    error,
+    label,
+    name,
+    rules,
+    type = 'radio',
+    items = [],
+    ...props
+}) => {
+    const fieldError = useFormFieldError({ name, error })
 
-                        <Items>
-                            {items.map(({ text, ...item }, index) => (
-                                <Item key={index}>
-                                    <input
-                                        id={`swatch-group__${name}__${index}`}
-                                        ref={ref as any}
-                                        type={type}
-                                        name={name}
-                                        {...item}
-                                    />
-                                    <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
-                                </Item>
-                            ))}
-                        </Items>
+    return (
+        <Field {...props}>
+            {loading ? (
+                <TextSwatchesSkeleton />
+            ) : (
+                <React.Fragment>
+                    {label && (
+                        <Label htmlFor={props.name} error={!!fieldError}>
+                            {label}
+                        </Label>
+                    )}
 
-                        <Error>{typeof error === 'object' && error.message}</Error>
-                    </React.Fragment>
-                )}
-            </Field>
-        )
-    }
-)
+                    <Items>
+                        {items.map(({ text, ...item }, index) => (
+                            <Item key={index}>
+                                <FieldInput
+                                    id={`swatch-group__${name}__${index}`}
+                                    rules={rules}
+                                    name={name}
+                                    type={type}
+                                    error={!!fieldError}
+                                    {...item}
+                                />
+                                <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
+                            </Item>
+                        ))}
+                    </Items>
+
+                    <Error>{fieldError?.message}</Error>
+                </React.Fragment>
+            )}
+        </Field>
+    )
+}
