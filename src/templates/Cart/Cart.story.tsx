@@ -52,6 +52,21 @@ storiesOf('📑 Templates/Cart', module).add('Default', () => (
                         },
                     },
                 ],
+                coupons: {
+                    label: 'Apply Gift Card or Discount Code',
+                    items: [
+                        {
+                            field: { label: 'Gift Card', name: 'giftCardCode' },
+                            submitButton: { text: 'Apply' },
+                            onSubmit: () => {},
+                        },
+                        {
+                            field: { label: 'Discount Code', name: 'discountCode' },
+                            submitButton: { text: 'Apply' },
+                            onSubmit: () => {},
+                        },
+                    ],
+                },
             }}
             button={{ text: 'Checkout' }}
         />

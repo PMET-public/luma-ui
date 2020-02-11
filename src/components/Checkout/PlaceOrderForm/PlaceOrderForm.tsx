@@ -1,45 +1,30 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { Component } from '../../../lib'
 import { Root } from './PlaceOrderForm.styled'
-import Form, { FormError } from '../../Form'
-import { useForm } from 'react-hook-form'
+import Form, { FormProps, FormError } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
 
 export type PlaceOrderFormPayload = {}
 
-export type PlaceOrderFormProps = {
+export type PlaceOrderFormProps = FormProps<PlaceOrderFormPayload> & {
+    loading?: boolean
+    submitting?: boolean
+    error?: string
     submitButton: ButtonProps
     onSubmit: (payload: PlaceOrderFormPayload) => any
-    loading?: boolean
 }
 
-export const PlaceOrderForm: Component<PlaceOrderFormProps> = ({ loading, submitButton, onSubmit, ...props }) => {
-    const { handleSubmit } = useForm<PlaceOrderFormPayload>()
-
-    const [formError, setFormError] = useState<string | null>(null)
-
-    const [submitting, setSubmitting] = useState(false)
-
-    const handleOnSubmit = useCallback(
-        async form => {
-            setFormError(null)
-            setSubmitting(true)
-
-            try {
-                await handleSubmit(onSubmit)(form)
-                setSubmitting(false)
-            } catch (error) {
-                setFormError(error.message)
-                setSubmitting(false)
-            }
-        },
-        [handleSubmit, onSubmit]
-    )
-
+export const PlaceOrderForm: Component<PlaceOrderFormProps> = ({
+    loading,
+    submitting,
+    error,
+    submitButton,
+    onSubmit,
+    ...props
+}) => {
     return (
-        <Root as={Form} onSubmit={handleOnSubmit} {...props}>
-            {formError && <FormError>{formError}</FormError>}
-
+        <Root as={Form} onSubmit={onSubmit} {...props}>
+            {error && <FormError>{error}</FormError>}
             <Button type="submit" loading={loading || submitting} {...submitButton} />
         </Root>
     )

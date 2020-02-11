@@ -3,15 +3,13 @@ import { Component } from '../../../lib'
 import { Items, Item } from './ThumbSwatches.styled'
 
 import Image, { ImageProps } from '../../Image'
-import { Field, Label, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
 import { ThumbSwatchesSkeleton } from './ThumbSwatches.skeleton'
+import { useFormFieldError } from '../useFormFieldError'
 
-export type ThumbSwatchesProps = {
+export type ThumbSwatchesProps = FormFieldProps & {
     loading?: boolean
-    name: string
     type?: 'radio' | 'checkbox'
-    label?: string
-    error?: boolean | { message: string }
     items: Array<
         {
             image: ImageProps
@@ -20,41 +18,51 @@ export type ThumbSwatchesProps = {
     >
 }
 
-export const ThumbSwatches: Component<ThumbSwatchesProps> = React.forwardRef(
-    ({ loading, name, type = 'radio', label, error, items = [], ...props }, ref) => {
-        return (
-            <Field {...props}>
-                {loading ? (
-                    <ThumbSwatchesSkeleton />
-                ) : (
-                    <React.Fragment>
-                        {label && (
-                            <Label htmlFor={props.name} $error={!!error}>
-                                {label}
-                            </Label>
-                        )}
+export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
+    loading,
+    name,
+    type = 'radio',
+    label,
+    error,
+    rules,
+    items = [],
+    ...props
+}) => {
+    const fieldError = useFormFieldError({ name, error })
 
-                        <Items>
-                            {items.map(({ image, ...item }, index) => (
-                                <Item key={index}>
-                                    <input
-                                        id={`swatch-group__${name}__${index}`}
-                                        ref={ref as any}
-                                        type={type}
-                                        name={name}
-                                        {...item}
-                                    />
-                                    <label htmlFor={`swatch-group__${name}__${index}`}>
-                                        <Image transition width={4} height={5} {...image} />
-                                    </label>
-                                </Item>
-                            ))}
-                        </Items>
+    return (
+        <Field {...props}>
+            {loading ? (
+                <ThumbSwatchesSkeleton />
+            ) : (
+                <React.Fragment>
+                    {label && (
+                        <Label htmlFor={props.name} error={!!fieldError}>
+                            {label}
+                        </Label>
+                    )}
 
-                        <Error>{typeof error === 'object' && error.message}</Error>
-                    </React.Fragment>
-                )}
-            </Field>
-        )
-    }
-)
+                    <Items>
+                        {items.map(({ image, ...item }, index) => (
+                            <Item key={index}>
+                                <FieldInput
+                                    id={`swatch-group__${name}__${index}`}
+                                    type={type}
+                                    name={name}
+                                    rules={rules}
+                                    error={!!fieldError}
+                                    {...item}
+                                />
+                                <label htmlFor={`swatch-group__${name}__${index}`}>
+                                    <Image transition width={4} height={5} {...image} />
+                                </label>
+                            </Item>
+                        ))}
+                    </Items>
+
+                    <Error>{fieldError?.message}</Error>
+                </React.Fragment>
+            )}
+        </Field>
+    )
+}

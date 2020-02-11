@@ -46,7 +46,7 @@ export const Input = styled.input<{ $error?: boolean }>`
     border-right: none;
     border-bottom: 0.1rem solid ${props => props.theme.colors.primary15};
     transition: border 250ms ease, background-color 250ms ease;
-    background-color: ${props => props.theme.colors.surface};
+    background-color: transparent;
 
     &::placeholder {
         color: ${props => props.theme.colors.primary75};

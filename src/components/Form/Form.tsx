@@ -1,5 +1,5 @@
-import React from 'react'
-import { Component } from '../../lib'
+import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes } from 'react'
+import { Component, Props } from '../../lib'
 import {
     Root,
     Field as FieldRoot,
@@ -9,12 +9,47 @@ import {
     FormError as FormErrorRoot,
 } from './Form.styled'
 
-/** Form */
-export type FormProps = {}
+import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors, OnSubmit } from 'react-hook-form'
+import _get from 'lodash.get'
 
-export const Form: Component<FormProps> = ({ children, ...props }) => {
-    return <Root {...props}>{children}</Root>
+/** Form */
+export type FormProps<P = {}> = FormHTMLAttributes<any> & {
+    onValues?: (values: any) => any
+    onErrors?: (values: FieldErrors<any>) => any
+    onSubmit: OnSubmit<P>
 }
+
+export const Form: Component<FormProps> = ({ children, onSubmit, onErrors, onValues, onChange, ...props }) => {
+    const form = useForm()
+
+    const handleOnValueChanges = useCallback(
+        e => {
+            const values = form.getValues({ nest: true })
+            if (onValues) onValues(values)
+            if (onChange) onChange(e)
+        },
+        [onChange, onValues]
+    )
+
+    useEffect(() => {
+        if (onErrors) onErrors(form.errors)
+    }, [onErrors, Object.entries(form.errors).toString()])
+
+    return (
+        <FormContext {...form}>
+            <Root onSubmit={form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
+                {children}
+            </Root>
+        </FormContext>
+    )
+}
+
+export type FormFieldProps = Props<{
+    name: string
+    label?: string
+    error?: string
+    rules?: ValidationOptions
+}>
 
 /** Field */
 export type FieldProps = {}
@@ -24,24 +59,30 @@ export const Field: Component<FieldProps> = ({ children, ...props }) => {
 }
 
 /** Label */
-export type LabelProps = {}
+export type LabelProps = LabelHTMLAttributes<any> & { error?: boolean }
 
-export const Label: Component<LabelProps> = ({ children, ...props }) => {
-    return <LabelRoot {...props}>{children}</LabelRoot>
+export const Label: Component<LabelProps> = ({ children, error = false, ...props }) => {
+    return (
+        <LabelRoot $error={error} {...props}>
+            {children}
+        </LabelRoot>
+    )
 }
 
 /** FieldInput */
-export type FieldInputProps = {}
+export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationOptions; error?: boolean }
 
-export const FieldInput: Component<FieldInputProps> = React.forwardRef(({ children, ...props }, ref: any) => {
+export const FieldInput: Component<FieldInputProps> = ({ children, rules, error = false, ...props }) => {
+    const { register } = useFormContext()
+
     return (
-        <InputRoot ref={ref} {...props}>
+        <InputRoot $error={error} {...props} ref={register({ ...rules })}>
             {children}
         </InputRoot>
     )
-})
+}
 
-/** Error */
+/** Field Error */
 export type ErrorProps = {}
 
 export const Error: Component<ErrorProps> = ({ children, ...props }) => {
