@@ -1,13 +1,4 @@
-import React, {
-    FunctionComponent,
-    useEffect,
-    createContext,
-    useContext,
-    useReducer,
-    Reducer,
-    Dispatch,
-    useCallback,
-} from 'react'
+import React, { FunctionComponent, useEffect, createContext, useContext, useReducer, Reducer, Dispatch } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { ResetStyles } from './theme/ResetStyles'
 import { GlobalStyles, Root } from './theme/GlobalStyles'
@@ -20,24 +11,17 @@ export type AppProviderProps = {}
 
 type ReducerState = {
     colorScheme: string
-    online: boolean
 }
 
-type ReducerActions =
-    | {
-          type: 'setColorScheme'
-          payload: string
-      }
-    | {
-          type: 'setOnline'
-          payload: boolean
-      }
+type ReducerActions = {
+    type: 'setColorScheme'
+    payload: string
+}
 
 type AppContextProps = [ReducerState, Dispatch<ReducerActions>]
 
 const initialState: ReducerState = {
     colorScheme: 'light',
-    online: true,
 }
 
 const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
@@ -47,11 +31,7 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
                 ...state,
                 colorScheme: action.payload,
             }
-        case 'setOnline':
-            return {
-                ...state,
-                online: action.payload,
-            }
+
         default:
             throw `Reducer action not valid.`
     }
@@ -82,24 +62,6 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
 
     const colors = colorSchemes[state.colorScheme]
 
-    /**
-     * Offline
-     */
-    const handleNetworkChange = useCallback(() => {
-        dispatch({ type: 'setOnline', payload: navigator.onLine })
-    }, [])
-
-    useEffect(() => {
-        dispatch({ type: 'setOnline', payload: navigator.onLine })
-
-        window.addEventListener('online', handleNetworkChange)
-        window.addEventListener('offline', handleNetworkChange)
-
-        return () => {
-            window.removeEventListener('online', handleNetworkChange)
-            window.removeEventListener('offline', handleNetworkChange)
-        }
-    }, [])
     return (
         <AppContext.Provider value={[state, dispatch]}>
             <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, colorScheme: state.colorScheme }}>
