@@ -111,7 +111,7 @@ export const Product: Component<ProductProps> = ({
                         snap={true}
                         hideScrollBar
                     >
-                        {loading ? (
+                        {!gallery ? (
                             <CarouselItem as={Carousel.Item}>
                                 <ProductImageSkeleton style={{ width: '100%' }} />
                             </CarouselItem>
@@ -134,11 +134,22 @@ export const Product: Component<ProductProps> = ({
 
                     {/* Tablet and Desktop Gallery Grid */}
                     <GalleryGrid>
-                        {gallery?.map((image, index) => (
-                            <CarouselItem key={index}>
-                                <Image {...image} transition vignette={10} lazy={{ ...image.lazy }} />
-                            </CarouselItem>
-                        ))}
+                        {!gallery ? (
+                            <>
+                                <CarouselItem as={Carousel.Item}>
+                                    <ProductImageSkeleton style={{ width: '100%', height: '740px' }} />
+                                </CarouselItem>
+                                <CarouselItem as={Carousel.Item}>
+                                    <ProductImageSkeleton style={{ width: '100%', height: '740px' }} />
+                                </CarouselItem>
+                            </>
+                        ) : (
+                            gallery.map((image, index) => (
+                                <CarouselItem key={index}>
+                                    <Image {...image} transition vignette={10} lazy={{ ...image.lazy }} />
+                                </CarouselItem>
+                            ))
+                        )}
                     </GalleryGrid>
                 </Images>
                 <InfoWrapper ref={infoRef}>

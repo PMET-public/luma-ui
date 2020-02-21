@@ -56,6 +56,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
                                 transition
                                 lazy={{
                                     container: scrollerRef,
+                                    offset: 40,
                                     ...image?.lazy,
                                 }}
                                 {...image}
