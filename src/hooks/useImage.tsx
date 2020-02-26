@@ -62,7 +62,22 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
         }
     }, [JSON.stringify(image), vWidth])
 
-    const loadImage = useCallback(() => {
+    /**
+     * Load
+     */
+    useEffect(() => {
+        if (!src) return
+        const visible = ref?.current?.offsetParent !== null
+        const active =
+            visible && // load if the image is visible (not hidden)
+            offsetY - offset - vHeight < scrollY && // load if the use has scrolled vertically near the image
+            offsetX - offset - vWidth < scrollX // load if the use has scrolled horizontally to near the image
+        if (active) setReady(true)
+    }, [src, ref?.current, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
+
+    useEffect(() => {
+        if (loaded && !ready) return
+
         const img = new Image()
 
         img.src = src
@@ -84,24 +99,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
             img.removeEventListener('load', handleImageLoad)
             img.removeEventListener('error', handleImageError)
         }
-    }, [src])
-
-    /**
-     * Load
-     */
-    useEffect(() => {
-        if (!src) return
-        const visible = ref?.current?.offsetParent !== null
-        const active =
-            visible && // load if the image is visible (not hidden)
-            offsetY - offset - vHeight < scrollY && // load if the use has scrolled vertically near the image
-            offsetX - offset - vWidth < scrollX // load if the use has scrolled horizontally to near the image
-        if (active) setReady(true)
-    }, [src, ref?.current, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
-
-    useEffect(() => {
-        if (!loaded && ready) loadImage()
-    }, [ready, loaded])
+    }, [ready, loaded, src])
 
     return {
         src: ready ? src : '',
