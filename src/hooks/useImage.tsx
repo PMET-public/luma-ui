@@ -76,24 +76,24 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
     }, [src, ref?.current, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
 
     useEffect(() => {
-        if (loaded && !ready) return
-
         const img = new Image()
-
-        img.src = src
-
-        /**
-         * Mark Image as loaded if loaded from cache
-         * http://mikefowler.me/journal/2014/04/22/cached-images-load-event
-         */
-        if (img.complete) {
-            setSize({ width: img.width, height: img.height })
-            setLoaded(true)
-            return
-        }
 
         img.addEventListener('load', handleImageLoad)
         img.addEventListener('error', handleImageError)
+
+        if (!loaded && ready) {
+            img.src = src
+
+            /**
+             * Mark Image as loaded if loaded from cache
+             * http://mikefowler.me/journal/2014/04/22/cached-images-load-event
+             */
+            if (img.complete) {
+                setSize({ width: img.width, height: img.height })
+                setLoaded(true)
+                return
+            }
+        }
 
         return () => {
             img.removeEventListener('load', handleImageLoad)
