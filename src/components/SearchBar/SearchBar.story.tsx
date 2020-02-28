@@ -11,8 +11,8 @@ storiesOf('📦 Components/SearchBar', module).add('Default', () => {
 
     return (
         <SearchBar
-            onUpdate={(query: string) => action(`onUpdate(${query})`)()}
-            onSearch={(query: string) => action(`onSubmit(${query})`)()}
+            onUpdate={action(`onUpdate`)}
+            onSearch={action(`onSubmit`)}
             count={`${count > 999 ? '+999' : count} ${count === 0 || count > 1 ? 'results' : 'result'}`}
             loading={loading}
             value={value}

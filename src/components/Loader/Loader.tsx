@@ -7,9 +7,9 @@ export type LoaderProps = {}
 export const Loader: Component<LoaderProps> = ({ ...props }) => {
     return (
         <Root {...props}>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
         </Root>
     )
 }

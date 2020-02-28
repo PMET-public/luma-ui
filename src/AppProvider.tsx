@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, createContext, useContext, useReducer, Reducer, Dispatch } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
-import { ResetStyles } from './theme/ResetStyles'
-import { GlobalStyles, Root } from './theme/GlobalStyles'
+import { Root } from './theme/Root.styles'
+import { GlobalStyles } from './theme/GlobalStyles'
 import * as colorSchemes from './theme/colors'
 import { typography } from './theme/typography'
 import { breakpoints, layout } from './theme/layout'
@@ -64,12 +64,9 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
 
     return (
         <AppContext.Provider value={[state, dispatch]}>
+            <GlobalStyles />
             <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, colorScheme: state.colorScheme }}>
-                <Root>
-                    <ResetStyles />
-                    <GlobalStyles />
-                    {children}
-                </Root>
+                <Root>{children}</Root>
             </StyledThemeProvider>
         </AppContext.Provider>
     )

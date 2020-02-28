@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { Component, Props } from '../../lib'
 import { TitleSkeleton } from './Title.skeleton'
 
@@ -72,6 +72,14 @@ export const Category: Component<CategoryProps> = ({
 
     const filtersRef = useRef(null)
 
+    const handleToggleFilters = useCallback(() => {
+        setShowFilter(!showFilter)
+    }, [showFilter, setShowFilter])
+
+    const handleCloseFilters = useCallback(() => {
+        setShowFilter(false)
+    }, [showFilter, setShowFilter])
+
     return (
         <>
             <Root {...props}>
@@ -106,11 +114,7 @@ export const Category: Component<CategoryProps> = ({
                                     </Heading>
                                 )}
                                 {filters && (
-                                    <TopBarFilterButton
-                                        as="button"
-                                        type="button"
-                                        onClick={() => setShowFilter(!showFilter)}
-                                    >
+                                    <TopBarFilterButton as="button" type="button" onClick={handleToggleFilters}>
                                         <span>
                                             <FiltersIcon aria-label={filters.label} />
                                         </span>
@@ -135,7 +139,7 @@ export const Category: Component<CategoryProps> = ({
                                         <Button
                                             as="button"
                                             type="button"
-                                            onClick={() => setShowFilter(false)}
+                                            onClick={handleCloseFilters}
                                             {...filters.closeButton}
                                         />
                                     </FiltersButtons>
@@ -143,7 +147,7 @@ export const Category: Component<CategoryProps> = ({
                             </FiltersWrapper>
                         )}
 
-                        {filters && showFilter && <FiltersScreen onClick={() => setShowFilter(false)} />}
+                        {filters && showFilter && <FiltersScreen onClick={handleCloseFilters} />}
                     </>
                 )}
             </Root>

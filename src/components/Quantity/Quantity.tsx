@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Component } from '../../lib'
 import { Root, Actions, Plus, Minus, Value } from './Quantity.styled'
 
@@ -49,6 +49,14 @@ export const Quantity: Component<QuantityProps> = ({
 
     useEffect(() => setLoaded(true), [])
 
+    const handleSubstract = useCallback(() => {
+        setValue(value - 1)
+    }, [value, setValue])
+
+    const handleAdd = useCallback(() => {
+        setValue(value + 1)
+    }, [value, setValue])
+
     return (
         <Root {...props}>
             <Value>
@@ -56,14 +64,14 @@ export const Quantity: Component<QuantityProps> = ({
             </Value>
             {_onUpdate && (
                 <Actions>
-                    <Minus disabled={value < minValue} type="button" onClick={() => setValue(value - 1)}>
+                    <Minus disabled={value < minValue} type="button" onClick={handleSubstract}>
                         {_onRemove && value <= minValue ? (
                             <RemoveIconSvg aria-label={substractLabel} />
                         ) : (
                             <MinusIconSvg aria-label={removeLabel} />
                         )}
                     </Minus>
-                    <Plus disabled={value === maxValue} onClick={() => setValue(value + 1)}>
+                    <Plus disabled={value === maxValue} onClick={handleAdd}>
                         <PlusIconSvg aria-label={addLabel} />
                     </Plus>
                 </Actions>

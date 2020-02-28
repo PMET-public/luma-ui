@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = ({ config }) => {
-    
+
     // Add Welcome Story
     config.entry.push(path.resolve('./.storybook/welcome.tsx'))
 

@@ -19,9 +19,7 @@ const PriceTag = styled.div`
 
 const PriceTagMock = ({ text, price }: any) => (
     <PriceTag>
-        <a href="" onClick={e => e.preventDefault()}>
-            {text}
-        </a>
+        <a href>{text}</a>
         <em>{price}</em>
     </PriceTag>
 )

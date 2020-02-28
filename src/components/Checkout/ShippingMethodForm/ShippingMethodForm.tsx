@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Component } from '../../../lib'
 import { Root } from './ShippingMethodForm.styled'
 import Form, { FormProps, Select, SelectProps, FormError } from '../../Form'
@@ -33,6 +33,14 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
     error,
     ...props
 }) => {
+    const handleOnClickEdit = useCallback(
+        (e: Event) => {
+            e.preventDefault()
+            onEdit()
+        },
+        [onEdit]
+    )
+
     const { shippingMethod } = fields
 
     const disabled = submitting || !edit
@@ -46,15 +54,7 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
             {edit ? (
                 <Button type="submit" loading={loading || submitting} {...submitButton} />
             ) : (
-                <Button
-                    type="button"
-                    outline
-                    {...editButton}
-                    onClick={(e: Event) => {
-                        e.preventDefault()
-                        onEdit()
-                    }}
-                />
+                <Button type="button" outline {...editButton} onClick={handleOnClickEdit} />
             )}
         </Root>
     )

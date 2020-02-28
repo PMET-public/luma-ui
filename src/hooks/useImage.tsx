@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject, useCallback } from 'react'
+import { useState, useEffect, RefObject } from 'react'
 
 import { useResize } from './useResize'
 import { useScroll } from './useScroll'

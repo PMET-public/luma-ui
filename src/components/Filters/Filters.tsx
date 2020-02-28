@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Group, Wrapper, List, GroupLabel, Item, Icon, Count, ToggleIcon, ToggleButton } from './Filters.styled'
 
@@ -37,6 +37,8 @@ type FiltersGroupProps = {
 const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
     const [open, setOpen] = useState(false)
 
+    const handleOnToggle = useCallback(() => setOpen(!open), [open, setOpen])
+
     const elRef = useRef<any>(null)
 
     const { height } = useMeasure(elRef)
@@ -66,7 +68,7 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, ti
 
             {items.length > offset && (
                 <div>
-                    <ToggleButton $active={open} onClick={() => setOpen(!open)}>
+                    <ToggleButton $active={open} onClick={handleOnToggle}>
                         <ToggleIcon />
                         {open ? 'Less' : 'More'}
                     </ToggleButton>

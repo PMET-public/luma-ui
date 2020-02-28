@@ -108,7 +108,7 @@ export const Product: Component<ProductProps> = ({
                         gap={1}
                         padding={3}
                         show={1}
-                        snap={true}
+                        snap
                         hideScrollBar
                     >
                         {!gallery ? (

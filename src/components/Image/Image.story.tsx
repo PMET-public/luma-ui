@@ -47,7 +47,7 @@ storiesOf('📦 Components/Image', module)
                 }}
                 height={400}
                 width={600}
-                transition={true}
+                transition
             />
             <Image
                 style={{ marginTop: '100vh' }}
@@ -58,7 +58,7 @@ storiesOf('📦 Components/Image', module)
                 }}
                 height={400}
                 width={600}
-                transition={true}
+                transition
                 lazy={{
                     offset: number('offset', 0),
                 }}

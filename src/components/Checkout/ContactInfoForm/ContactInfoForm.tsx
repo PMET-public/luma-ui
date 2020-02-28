@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Component } from '../../../lib'
 import {
     Root,
@@ -68,6 +68,14 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
     error,
     ...props
 }) => {
+    const handleOnClickEdit = useCallback(
+        (e: Event) => {
+            e.preventDefault()
+            onEdit()
+        },
+        [onEdit]
+    )
+
     const { email, firstName, lastName, company, address1, address2, city, country, region, postalCode, phone } = fields
 
     const disabled = submitting || !edit
@@ -124,15 +132,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
             {edit ? (
                 <Button type="submit" loading={loading || submitting} {...submitButton} />
             ) : (
-                <Button
-                    type="button"
-                    outline
-                    onClick={(e: Event) => {
-                        e.preventDefault()
-                        onEdit()
-                    }}
-                    {...editButton}
-                />
+                <Button type="button" outline onClick={handleOnClickEdit} {...editButton} />
             )}
         </Form>
     )
