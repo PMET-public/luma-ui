@@ -119,7 +119,7 @@ export const CodeBlock: FunctionComponent<CodeBlockProps> = ({ children, lang, r
             <div onDoubleClick={triggerCopy}>
                 <Label>{lang}</Label>
                 <Pre>
-                    <Source dangerouslySetInnerHTML={{ __html: source }} ref={inputEl} spellCheck={false}></Source>
+                    <Source dangerouslySetInnerHTML={{ __html: source }} ref={inputEl} spellCheck={false} />
                 </Pre>
             </div>
         </Root>
