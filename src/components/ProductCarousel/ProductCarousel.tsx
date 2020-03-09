@@ -1,44 +1,58 @@
-import React, { useState, MutableRefObject, useMemo } from 'react'
+import React from 'react'
 import { Component } from '../../lib'
 import { Root } from './ProductCarousel.styled'
 import { ProductItemSkeleton } from '../ProductItem/ProductItem.skeleton'
-import Carousel from '../Carousel'
+import SlickSlider, { SlickSliderProps } from '../SlickSlider'
 import ProductItem, { ProductItemProps } from '../ProductItem'
-import { useResize } from '../../hooks/useResize'
 
 export type ProductCarouselProps = {
     loading?: boolean
     items: ProductItemProps[]
 }
 
-export const ProductCarousel: Component<ProductCarouselProps> = ({ loading, items, title, ...props }) => {
-    const [scrollerRef, setScrollerRef] = useState<MutableRefObject<Element>>()
-    const { breakpoints } = useResize()
-
-    const show = useMemo(() => {
-        if (breakpoints.smallOnly) return 1
-        if (breakpoints.untilMedium) return 2
-        if (breakpoints.untilLarge) return 3
-        return 4
-    }, [breakpoints])
-
+export const ProductCarousel: Component<ProductCarouselProps & SlickSliderProps> = ({
+    loading,
+    items,
+    title,
+    ...props
+}) => {
     return items ? (
-        <Root as={Carousel} scrollerRef={setScrollerRef} gap={1} padding={4} show={show} {...props}>
+        <Root
+            as={SlickSlider}
+            slidesToShow={4.15}
+            slidesToScroll={4.15}
+            infinite={false}
+            lazyLoad="progressive"
+            responsive={[
+                {
+                    breakpoint: 1599,
+                    settings: {
+                        slidesToShow: 3.15,
+                        slidesToScroll: 3.15,
+                    },
+                },
+                {
+                    breakpoint: 991,
+                    settings: {
+                        slidesToShow: 2.15,
+                        slidesToScroll: 2.15,
+                    },
+                },
+                {
+                    breakpoint: 599,
+                    settings: {
+                        slidesToShow: 1.15,
+                        slidesToScroll: 1.15,
+                    },
+                },
+            ]}
+            {...props}
+        >
             {loading
                 ? Array(4)
                       .fill(null)
                       .map((_, index) => <ProductItemSkeleton key={index} />)
-                : items.map((item, index) => (
-                      <Carousel.Item key={index}>
-                          <ProductItem
-                              {...item}
-                              image={{
-                                  ...item.image,
-                                  lazy: { container: scrollerRef, ...item.image.lazy },
-                              }}
-                          />
-                      </Carousel.Item>
-                  ))}
+                : items.map((item, index) => <ProductItem key={index} {...item} image={item.image} />)}
         </Root>
     ) : null
 }
