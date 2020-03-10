@@ -69,11 +69,13 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: { lazyload
         if (!src) return
 
         const visible = ref?.current?.offsetParent !== null
+
         const active =
             visible && // load if the image is visible (not hidden)
             (!lazyload ||
                 ((typeof lazyload.offsetY !== 'number' || offsetY - lazyload.offsetY - vHeight < scrollY) && // load if the use has scrolled vertically near the image
                     (typeof lazyload.offsetX !== 'number' || offsetX - lazyload.offsetX - vWidth < scrollX))) // load if the use has scrolled horizontally to near the image
+
         return active
     }, [src, ref, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY, lazyload])
 

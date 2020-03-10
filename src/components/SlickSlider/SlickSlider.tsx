@@ -36,7 +36,6 @@ export const SlickSlider: Component<SlickSliderProps> = ({ children, ...props })
 
             <Root
                 as={Slick}
-                lazyLoad
                 respondTo="min"
                 draggable
                 beforeChange={handleBeforeChange}
@@ -53,7 +52,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ children, ...props })
                 }
                 {...props}
             >
-                {items.map((item, index) => {
+                {items.map((item: any, index) => {
                     return (
                         <Item key={index}>
                             {React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}
