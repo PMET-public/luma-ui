@@ -6,6 +6,34 @@ export const Root = styled.div`
     max-width: 100%;
 `
 
+export const Item = styled.div``
+
+export const NavButton = styled.button`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    padding: 1rem;
+    z-index: 2;
+    background: ${props => props.theme.colors.onPrimary50};
+    line-height: 0;
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+    }
+
+    &:disabled {
+        opacity: 0.25;
+    }
+`
+
+export const ArrowIcon = styled(ArrowIconSvg)`
+    fill: ${props => props.theme.colors.primary};
+    width: 3rem;
+    height: 3rem;
+`
+
 export const SlickGlobalStyles = createGlobalStyle`
     .slick-slider {
         position: relative;
@@ -28,17 +56,23 @@ export const SlickGlobalStyles = createGlobalStyle`
         overflow: hidden;
         margin: 0;
         padding: 0;
+        cursor: move; /* fallback if grab cursor is unsupported */
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab
+    }
+
+    .slick-list:active {
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
     }
 
     .slick-list:focus {
         outline: none;
     }
 
-    .slick-list.dragging {
-        cursor: pointer;
-        cursor: hand;
-    }
-
+   
     .slick-slider .slick-track, .slick-slider .slick-list {
         -webkit-transform: translate3d(0, 0, 0);
         -moz-transform: translate3d(0, 0, 0);
@@ -86,10 +120,6 @@ export const SlickGlobalStyles = createGlobalStyle`
         display: none;
     }
 
-    .slick-slide.dragging img {
-        pointer-events: none;
-    }
-
     .slick-initialized .slick-slide {
         display: block;
     }
@@ -107,38 +137,8 @@ export const SlickGlobalStyles = createGlobalStyle`
     .slick-arrow.slick-hidden {
         display: none;
     }
-`
 
-export const Item = styled.div<{ $gap?: number }>`
-    padding: ${props => (props.$gap ? `${props.$gap}rem` : 0)};
-`
-
-export const NavButton = styled.button`
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.5;
-    padding: 1rem;
-    z-index: 2;
-
-    &:hover,
-    &:focus {
-        opacity: 1;
-    }
-
-    &:disabled {
-        opacity: 0.25;
-    }
-`
-
-export const ArrowIcon = styled(ArrowIconSvg)`
-    fill: currentColor;
-    width: 4rem;
-    height: 4rem;
-`
-
-export const SlickGlobalThemeSyles = createGlobalStyle`
-    
+    /* Theme */
     [dir='rtl'] .slick-prev {
         right: 0;
         left: auto;
@@ -203,5 +203,4 @@ export const SlickGlobalThemeSyles = createGlobalStyle`
     .slick-dots li:not(.slick-active) button:hover {
         opacity: 0.5;
     }
-
 `

@@ -12,7 +12,7 @@ export type ImageProps = {
     vignette?: number
     transition?: boolean
     title?: string
-    lazy?: LazyLoadOptions
+    lazyload?: LazyLoadOptions
 }
 
 export const ImageComponent: Component<ImageProps> = ({
@@ -23,12 +23,12 @@ export const ImageComponent: Component<ImageProps> = ({
     vignette = 0,
     width: _width,
     height: _height,
-    lazy,
+    lazyload,
     ...props
 }) => {
     const imageElem = useRef<HTMLImageElement>(null)
 
-    const image = useImage(imageElem, src, { ...lazy })
+    const image = useImage(imageElem, src, { lazyload })
 
     const width = _width || image.size.width
     const height = _height || image.size.height

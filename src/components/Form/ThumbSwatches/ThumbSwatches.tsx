@@ -54,7 +54,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                                     {...item}
                                 />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>
-                                    <Image transition width={4} height={5} {...image} />
+                                    <Image transition width={4} height={5} lazyload={{ offsetY: 100 }} {...image} />
                                 </label>
                             </Item>
                         ))}

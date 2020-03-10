@@ -1,19 +1,46 @@
-import React from 'react'
+import React, { Suspense, useState, useCallback } from 'react'
 import { Component } from '../../lib'
-import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles, SlickGlobalThemeSyles } from './SlickSlider.styled'
-import Slick, { Settings } from 'react-slick'
+import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
+import { Settings } from 'react-slick'
 
-export type SlickSliderProps = Settings & {
-    gap?: number
-}
+const Slick = React.lazy(() => import('react-slick'))
 
-export const SlickSlider: Component<SlickSliderProps> = ({ gap, children, ...props }) => {
+export type SlickSliderProps = Settings
+
+export const SlickSlider: Component<SlickSliderProps> = ({ children, ...props }) => {
+    const [dragging, setDragging] = useState(false)
+
+    const handleBeforeChange = useCallback(() => {
+        setDragging(true)
+    }, [setDragging])
+
+    const handleAfterChange = useCallback(() => {
+        setDragging(false)
+    }, [setDragging])
+
+    const handleOnItemClick = useCallback(
+        e => {
+            if (dragging) {
+                e.preventDefault()
+                e.stopPropagation()
+            }
+        },
+        [dragging]
+    )
+
+    const items = React.Children.toArray(children)
+
     return (
-        <React.Fragment>
+        <Suspense fallback="">
             <SlickGlobalStyles />
-            <SlickGlobalThemeSyles />
+
             <Root
                 as={Slick}
+                lazyLoad
+                respondTo="min"
+                draggable
+                beforeChange={handleBeforeChange}
+                afterChange={handleAfterChange}
                 prevArrow={
                     <NavButton>
                         <ArrowIcon />
@@ -26,10 +53,14 @@ export const SlickSlider: Component<SlickSliderProps> = ({ gap, children, ...pro
                 }
                 {...props}
             >
-                {React.Children.map(children, child => (
-                    <Item $gap={gap}>{child}</Item>
-                ))}
+                {items.map((item, index) => {
+                    return (
+                        <Item key={index}>
+                            {React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}
+                        </Item>
+                    )
+                })}
             </Root>
-        </React.Fragment>
+        </Suspense>
     )
 }
