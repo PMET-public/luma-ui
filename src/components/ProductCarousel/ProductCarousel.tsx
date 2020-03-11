@@ -10,31 +10,37 @@ export type ProductCarouselProps = {
     items: ProductItemProps[]
 } & SlickSliderProps
 
-export const ProductCarousel: Component<ProductCarouselProps> = ({ loading, items, title, ...props }) => {
+export const ProductCarousel: Component<ProductCarouselProps> = ({
+    loading,
+    items,
+    title,
+    centerMode = false,
+    ...props
+}) => {
     return items ? (
         <Root
             as={SlickSlider}
-            slidesToShow={4.15}
-            slidesToScroll={4}
             dots
             arrows
             infinite
             speed={400}
-            centerMode={false}
+            centerMode={centerMode}
             variableWidth={false}
+            slidesToShow={4.15}
+            slidesToScroll={centerMode ? 1 : 4}
             responsive={[
                 {
                     breakpoint: 1599,
                     settings: {
                         slidesToShow: 3.15,
-                        slidesToScroll: 3,
+                        slidesToScroll: centerMode ? 1 : 3,
                     },
                 },
                 {
                     breakpoint: 991,
                     settings: {
                         slidesToShow: 2.15,
-                        slidesToScroll: 2,
+                        slidesToScroll: centerMode ? 1 : 2,
                     },
                 },
                 {

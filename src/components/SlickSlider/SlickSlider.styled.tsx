@@ -15,7 +15,7 @@ export const NavButton = styled.button`
     opacity: 0.5;
     padding: 1rem;
     z-index: 2;
-    background: ${props => props.theme.colors.onPrimary50};
+    background: ${props => props.theme.colors.onPrimary};
     line-height: 0;
 
     &:hover,
