@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject } from 'react'
+import { useState, useEffect, RefObject, useMemo } from 'react'
 
 import { useResize } from './useResize'
 import { useScroll } from './useScroll'
@@ -13,18 +13,17 @@ export type Image =
     | undefined
 
 export type LazyLoadOptions = {
-    offset?: number
+    offsetX?: number
+    offsetY?: number
     container?: RefObject<Element>
 }
 
-export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOptions) => {
-    const { offset = 200, container } = options || {}
+export const useImage = (ref: RefObject<any>, image: Image, options?: { lazyload?: LazyLoadOptions }) => {
+    const { lazyload } = options || {}
 
     const [src, setSrc] = useState('')
 
     const [loaded, setLoaded] = useState(false)
-
-    const [ready, setReady] = useState(false)
 
     const [error, setError] = useState(false)
 
@@ -34,7 +33,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
 
     const { offsetX, offsetY } = useMeasure(ref)
 
-    const { scrollX, scrollY } = useScroll({ container, disabled: loaded })
+    const { scrollX, scrollY } = useScroll({ container: lazyload?.container, disabled: loaded })
 
     const handleImageLoad = (e: any) => {
         setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
@@ -65,15 +64,20 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: LazyLoadOp
     /**
      * Load
      */
-    useEffect(() => {
+
+    const ready = useMemo(() => {
         if (!src) return
+
         const visible = ref?.current?.offsetParent !== null
+
         const active =
             visible && // load if the image is visible (not hidden)
-            offsetY - offset - vHeight < scrollY && // load if the use has scrolled vertically near the image
-            offsetX - offset - vWidth < scrollX // load if the use has scrolled horizontally to near the image
-        if (active) setReady(true)
-    }, [src, ref?.current, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY])
+            (!lazyload ||
+                ((typeof lazyload.offsetY !== 'number' || offsetY - lazyload.offsetY - vHeight < scrollY) && // load if the use has scrolled vertically near the image
+                    (typeof lazyload.offsetX !== 'number' || offsetX - lazyload.offsetX - vWidth < scrollX))) // load if the use has scrolled horizontally to near the image
+
+        return active
+    }, [src, ref, vHeight, vWidth, offsetX, offsetY, scrollX, scrollY, lazyload])
 
     useEffect(() => {
         const img = new Image()

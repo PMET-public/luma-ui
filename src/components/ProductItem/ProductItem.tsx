@@ -32,7 +32,7 @@ export const ProductItem: Component<ProductItemProps> = ({ loading, badge, color
                     )}
 
                     <ImageWrapper>
-                        <Image width={4} height={5} vignette={10} transition {...image} />
+                        <Image width={4} height={5} vignette={10} transition lazyload={{ offsetY: 100 }} {...image} />
                     </ImageWrapper>
 
                     {colors && (

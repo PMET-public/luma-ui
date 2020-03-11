@@ -122,9 +122,11 @@ export const Product: Component<ProductProps> = ({
                                         {...image}
                                         transition
                                         vignette={10}
-                                        lazy={{
+                                        lazyload={{
                                             container: scrollerRef,
-                                            ...image.lazy,
+                                            offsetY: 100,
+                                            offsetX: 50,
+                                            ...image.lazyload,
                                         }}
                                     />
                                 </CarouselItem>
@@ -146,7 +148,12 @@ export const Product: Component<ProductProps> = ({
                         ) : (
                             gallery.map((image, index) => (
                                 <CarouselItem key={index}>
-                                    <Image {...image} transition vignette={10} lazy={{ ...image.lazy }} />
+                                    <Image
+                                        {...image}
+                                        transition
+                                        vignette={10}
+                                        lazyload={{ offsetY: 100, ...image.lazyload }}
+                                    />
                                 </CarouselItem>
                             ))
                         )}

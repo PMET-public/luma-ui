@@ -22,7 +22,13 @@ type CompoundComponent = {
     Item: Component<HotSpotItemProps>
 }
 
-export const HotSpotsContext = createContext({ active: null, set: (id: string | number | null) => {} })
+export const HotSpotsContext = createContext<{
+    active: null | string
+    set: React.Dispatch<React.SetStateAction<null | string>>
+}>({
+    active: null,
+    set: () => {},
+})
 
 export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     children,
@@ -31,13 +37,13 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
     items,
     ...props
 }) => {
-    const [active, set] = useState()
+    const [active, set] = useState(null)
 
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
             <Root {...props}>
                 <ImageWrapper>
-                    <Image transition {...image} />
+                    <Image transition lazyload={{ offsetY: 100 }} {...image} />
                 </ImageWrapper>
 
                 {items ? items.map((item, index) => <HotSpots.Item key={index} {...item} />) : children}
