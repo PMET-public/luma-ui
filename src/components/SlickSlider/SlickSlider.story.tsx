@@ -16,13 +16,10 @@ const Item = styled.div`
 
 storiesOf('📦 Components/SlickSlider', module).add('Default', () => (
     <SlickSlider
-        gap={2}
         {...object('settings', {
-            accessibility: true,
-            centerMode: true,
             arrows: true,
-            centerPadding: '40px',
-            slidesToShow: 3,
+            dots: true,
+            fade: true,
         })}
     >
         <Item>1</Item>

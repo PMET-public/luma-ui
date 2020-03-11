@@ -1,9 +1,18 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import ArrowIconSvg from 'remixicon/icons/System/arrow-left-line.svg'
 
-export const Root = styled.div`
+export const Root = styled.div<{ $draggable?: boolean }>`
     display: flex;
     max-width: 100%;
+
+    ${props =>
+        props.$draggable &&
+        `
+            cursor: move; /* fallback if grab cursor is unsupported */
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab
+        `}
 `
 
 export const Item = styled.div``
@@ -56,10 +65,6 @@ export const SlickGlobalStyles = createGlobalStyle`
         overflow: hidden;
         margin: 0;
         padding: 0;
-        cursor: move; /* fallback if grab cursor is unsupported */
-        cursor: grab;
-        cursor: -moz-grab;
-        cursor: -webkit-grab
     }
 
     .slick-list:active {
