@@ -1,6 +1,6 @@
 {
   "name": "@pmet-public/luma-ui",
-  "version": "1.0.0-beta.43",
+  "version": "1.0.0-beta.44",
   "description": "Luma React UI LIbrary",
   "repository": "https://github.com/PMET-public/luma-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
@@ -22,9 +22,9 @@
     "test": "echo \"No Tests Found 🧐\" "
   },
   "peerDependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "styled-components": "^5.0.1"
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "styled-components": "5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -68,9 +68,9 @@
     "prettier": "1.19.1",
     "prismjs": "^1.18.0",
     "prop-types": "^15.0.0-0",
-    "react": "^16.13.0",
+    "react": "16.13.0",
     "react-content-loader": "^4.3.4",
-    "react-dom": "^16.13.0",
+    "react-dom": "16.13.0",
     "react-hook-form": "^5.0.3",
     "react-slick": "^0.25.2",
     "react-spring": "^8.0.25",
@@ -83,7 +83,7 @@
     "rollup-plugin-multi-input": "1.1.1",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.0.2",
-    "styled-components": "^5.0.1",
+    "styled-components": "5.0.1",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-loader": "^3.5.4",
