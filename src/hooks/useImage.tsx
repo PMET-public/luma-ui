@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject, useMemo } from 'react'
+import { useState, useEffect, RefObject, useMemo, useCallback } from 'react'
 
 import { useResize } from './useResize'
 import { useScroll } from './useScroll'
@@ -33,16 +33,19 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: { lazyload
 
     const { offsetX, offsetY } = useMeasure(ref)
 
-    const { scrollX, scrollY } = useScroll({ container: lazyload?.container, disabled: loaded })
+    const { scrollX, scrollY } = useScroll({ container: lazyload?.container })
 
-    const handleImageLoad = (e: any) => {
-        setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
-        setLoaded(true)
-    }
+    const handleImageLoad = useCallback(
+        (e: any) => {
+            setSize({ width: e.currentTarget.naturalWidth, height: e.currentTarget.naturalHeight })
+            setLoaded(true)
+        },
+        [setSize, setLoaded]
+    )
 
-    const handleImageError = () => {
+    const handleImageError = useCallback(() => {
         setError(true)
-    }
+    }, [setError])
 
     /**
      * Set Mobile or Desktop Image
@@ -66,7 +69,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: { lazyload
      */
 
     const ready = useMemo(() => {
-        if (!src) return
+        if (!src) return false
 
         const visible = ref?.current?.offsetParent !== null
 
