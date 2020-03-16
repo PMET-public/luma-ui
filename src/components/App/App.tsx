@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Component, Props } from '../../lib'
 import { Root, HeaderContainer, Main, FooterContainer, TabBarContainer } from './App.styled'
 
@@ -81,15 +81,11 @@ export const App: Component<AppProps> = ({
     search,
     ...props
 }) => {
-    const headerRef = useRef<HTMLDivElement>(null)
-
-    const tabBarRef = useRef<HTMLDivElement>(null)
-
     const { state, actions } = useAppContext()
 
     return (
         <Root {...props}>
-            <HeaderContainer ref={headerRef} as="header" $margin>
+            <HeaderContainer as="header" $margin>
                 <Header
                     loading={loading}
                     logo={{
@@ -146,7 +142,7 @@ export const App: Component<AppProps> = ({
                 <Footer loading={loading} {...footer} />
             </FooterContainer>
 
-            <TabBarContainer ref={tabBarRef} as="nav">
+            <TabBarContainer as="nav">
                 <TabBar
                     items={[
                         {
