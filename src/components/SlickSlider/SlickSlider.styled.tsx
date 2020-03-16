@@ -26,6 +26,7 @@ export const NavButton = styled.button`
     z-index: 2;
     background: ${props => props.theme.colors.onPrimary};
     line-height: 0;
+    transition: opacity 450ms ease;
 
     &:hover,
     &:focus {
@@ -179,7 +180,7 @@ export const SlickGlobalStyles = createGlobalStyle`
     .slick-dots li {
         position: relative;
         display: inline-block;
-        margin: 0 0.5rem;
+        margin: 0 0.3rem;
         padding: 0;
         cursor: pointer;
     }
@@ -196,10 +197,13 @@ export const SlickGlobalStyles = createGlobalStyle`
         background: currentColor;
         border-radius: 50%;
         opacity: 0.2;
+        transform: scale(0.75);
+        transition: transform 600ms ease, opacity 600ms ease;
     }
 
     .slick-dots li.slick-active button {
         opacity: 0.5;
+        transform: scale(1)
     }
 
     .slick-dots li button:hover, .slick-dots li button:focus {
