@@ -32,7 +32,8 @@ export const NavButton = styled.button`
         opacity: 1;
     }
 
-    &:disabled {
+    &.slick-disabled {
+        cursor: initial !important;
         opacity: 0.25;
     }
 `

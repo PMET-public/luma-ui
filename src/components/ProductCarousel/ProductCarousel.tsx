@@ -14,18 +14,25 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
     loading,
     items,
     title,
+    accessibility = true,
+    arrows = true,
+    dots = true,
+    speed = 400,
+    infinite = true,
     centerMode = false,
+    variableWidth = false,
     ...props
 }) => {
     return items ? (
         <Root
             as={SlickSlider}
-            dots
-            arrows
-            infinite
-            speed={400}
+            dots={dots}
+            accessibility={accessibility}
+            arrows={arrows}
+            infinite={infinite}
+            speed={speed}
             centerMode={centerMode}
-            variableWidth={false}
+            variableWidth={variableWidth}
             slidesToShow={4.15}
             slidesToScroll={centerMode ? 1 : 4}
             responsive={[

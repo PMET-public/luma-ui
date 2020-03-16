@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductCarousel from '.'
 import { storiesOf } from '@storybook/react'
-import { boolean } from '@storybook/addon-knobs'
+import { boolean, number } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/ProductCarousel', module).add('Default', () => {
@@ -9,7 +9,7 @@ storiesOf('📦 Components/ProductCarousel', module).add('Default', () => {
         loading: boolean('loading', false),
         dots: true,
 
-        items: new Array(10).fill({
+        items: new Array(number('Items #', 4)).fill({
             image: {
                 alt: '',
                 src: require('../../../public/images/product-item-sample.jpg'),
