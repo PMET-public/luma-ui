@@ -11,8 +11,8 @@ export type ProductCarouselProps = {
 } & SlickSliderProps
 
 export const ProductCarousel: Component<ProductCarouselProps> = ({
-    loading,
-    items,
+    loading = false,
+    items = [],
     title,
     accessibility = true,
     arrows = true,
@@ -23,7 +23,7 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
     variableWidth = false,
     ...props
 }) => {
-    return items ? (
+    return (
         <Root
             as={SlickSlider}
             dots={dots}
@@ -63,10 +63,10 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
             {loading
                 ? Array(4)
                       .fill(null)
-                      .map((_, index) => <ProductItemSkeleton key={index} />)
-                : items.map((item, index) => (
+                      .map((_, key) => <ProductItemSkeleton key={key} />)
+                : items.map((item, key) => (
                       <ProductItem
-                          key={index}
+                          key={key}
                           {...item}
                           image={{
                               ...item.image,
@@ -75,5 +75,5 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
                       />
                   ))}
         </Root>
-    ) : null
+    )
 }

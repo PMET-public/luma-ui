@@ -7,7 +7,13 @@ const Slick = React.lazy(() => import('react-slick'))
 
 export type SlickSliderProps = Settings
 
-export const SlickSlider: Component<SlickSliderProps> = ({ beforeChange, afterChange, fade, children, ...props }) => {
+export const SlickSlider: Component<SlickSliderProps> = ({
+    beforeChange,
+    afterChange,
+    fade = false,
+    children,
+    ...props
+}) => {
     const draggable = !fade
 
     const [dragging, setDragging] = useState(false)
@@ -44,34 +50,36 @@ export const SlickSlider: Component<SlickSliderProps> = ({ beforeChange, afterCh
         <React.Fragment>
             <SlickGlobalStyles />
             <Suspense fallback="">
-                <Root
-                    as={Slick}
-                    $draggable={draggable}
-                    respondTo="min"
-                    draggable={draggable}
-                    fade={fade}
-                    beforeChange={handleBeforeChange}
-                    afterChange={handleAfterChange}
-                    prevArrow={
-                        <NavButton>
-                            <ArrowIcon />
-                        </NavButton>
-                    }
-                    nextArrow={
-                        <NavButton>
-                            <ArrowIcon />
-                        </NavButton>
-                    }
-                    {...props}
-                >
-                    {items.map((item: any, index) => {
-                        return (
-                            <Item key={index}>
-                                {React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}
-                            </Item>
-                        )
-                    })}
-                </Root>
+                {items.length > 0 ? (
+                    <Root
+                        $draggable={draggable}
+                        as={Slick}
+                        respondTo="min"
+                        draggable={draggable}
+                        fade={fade}
+                        beforeChange={handleBeforeChange}
+                        afterChange={handleAfterChange}
+                        prevArrow={
+                            <NavButton>
+                                <ArrowIcon />
+                            </NavButton>
+                        }
+                        nextArrow={
+                            <NavButton>
+                                <ArrowIcon />
+                            </NavButton>
+                        }
+                        {...props}
+                    >
+                        {items.map((item: any, index) => {
+                            return (
+                                <Item key={index}>
+                                    {React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}
+                                </Item>
+                            )
+                        })}
+                    </Root>
+                ) : null}
             </Suspense>
         </React.Fragment>
     )

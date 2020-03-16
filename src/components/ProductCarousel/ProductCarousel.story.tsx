@@ -1,15 +1,13 @@
 import React from 'react'
 import ProductCarousel from '.'
 import { storiesOf } from '@storybook/react'
-import { boolean, number } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
+import { number, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/ProductCarousel', module).add('Default', () => {
     const props = {
         loading: boolean('loading', false),
-        dots: true,
-
-        items: new Array(number('Items #', 4)).fill({
+        items: new Array(number('Products Qty.', 4)).fill({
             image: {
                 alt: '',
                 src: require('../../../public/images/product-item-sample.jpg'),
@@ -23,7 +21,7 @@ storiesOf('📦 Components/ProductCarousel', module).add('Default', () => {
             title: {
                 text: 'Circle Hooded Ice Flee',
             },
-            colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
+            // colors: [{ value: 'brown' }, { value: 'gray' }, { value: 'black' }, { value: 'blue' }],
         }),
     }
 
