@@ -61,7 +61,7 @@ export const Input: Component<InputProps> = ({
             {label && (
                 <Label
                     as={LabelRoot}
-                    htmlFor={name}
+                    htmlFor={`field-input__${name}`}
                     error={!!fieldError}
                     $active={loading || defaultActive || active || !!fieldError}
                 >
@@ -73,6 +73,7 @@ export const Input: Component<InputProps> = ({
             ) : (
                 <React.Fragment>
                     <FieldInput
+                        id={`field-input__${name}`}
                         type="text"
                         onFocus={handleOnFocus}
                         onChange={handleOnChange}

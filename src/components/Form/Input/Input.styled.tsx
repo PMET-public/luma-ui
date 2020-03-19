@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Label = styled.div<{ $active?: boolean; $error?: boolean }>`
+export const Label = styled.label<{ $active?: boolean; $error?: boolean }>`
     transition: transform 250ms ease, font-size 250ms ease;
     transform-origin: left;
 
@@ -12,6 +12,6 @@ export const Label = styled.div<{ $active?: boolean; $error?: boolean }>`
             : `
                 transform: translateY(calc(100% + 1.5em));
                 font-weight: 400;
-                color: ${props.theme.colors.onSurface50};
+                color: ${props.theme.colors.onSurface75};
             `}
 `

@@ -49,7 +49,7 @@ export const Input = styled.input<{ $error?: boolean }>`
     background-color: transparent;
 
     &::placeholder {
-        color: ${props => props.theme.colors.primary75};
+        color: ${props => props.theme.colors.primary50};
     }
 
     &:focus {

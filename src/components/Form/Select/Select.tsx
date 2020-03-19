@@ -16,7 +16,7 @@ export const Select: Component<SelectProps> = ({ as, error, label, loading, name
     return (
         <Field as={as}>
             {label && (
-                <Label htmlFor={name} error={!!fieldError}>
+                <Label htmlFor={`field-input__${name}`} error={!!fieldError}>
                     {label}
                 </Label>
             )}
@@ -27,6 +27,7 @@ export const Select: Component<SelectProps> = ({ as, error, label, loading, name
                 <React.Fragment>
                     <Wrapper $disabled={props.disabled}>
                         <FieldInput
+                            id={`field-input__${name}`}
                             as={SelectRoot}
                             disabled={items?.length === 0}
                             name={name}
