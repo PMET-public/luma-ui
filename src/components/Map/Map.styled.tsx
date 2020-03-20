@@ -35,8 +35,12 @@ export const Marker = styled.svg`
 
     &[aria-selected] {
         background-color: transparent;
-        fill: #fff;
+        fill: #222;
         transform: scale(1.2);
+
+        & > path:first-of-type {
+            fill: #fff;
+        }
     }
 
     &:hover:not([aria-selected]) {
