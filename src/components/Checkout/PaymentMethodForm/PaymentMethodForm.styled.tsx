@@ -35,17 +35,17 @@ export const Root = styled.div`
         .braintree-form__field-group.braintree-form__field-group--has-error
         .braintree-form__field
         .braintree-form__hosted-field {
-        border-bottom-color: ${props => props.theme.colors.onError};
+        border-bottom-color: ${props => props.theme.colors.error};
     }
 
     & .braintree-sheet__content--form .braintree-form__field-group .braintree-form__field-error {
-        color: ${props => props.theme.colors.onError};
+        color: ${props => props.theme.colors.error};
         min-height: 2rem;
         display: block;
     }
 
     & .braintree-sheet__content--form .braintree-form__field-group .braintree-form__field-error-icon use {
-        fill: ${props => props.theme.colors.onError};
+        fill: ${props => props.theme.colors.error};
     }
 
     & .braintree-sheet__content--form .braintree-form__field-group {

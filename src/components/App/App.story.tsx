@@ -2,6 +2,7 @@ import React from 'react'
 import App, { AppProps } from '.'
 import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
+import { toast } from '../../lib'
 
 export const AppMockData: AppProps = {
     logo: {
@@ -64,25 +65,14 @@ export const AppMockData: AppProps = {
         text: 'My Bag',
     },
     footer: {
-        copyright: '© 2019 Magento, Inc. All Rights Reserved.',
-        menu: [
-            { text: 'Blog', as: 'a', href: '#' },
-            { text: 'About', as: 'a', href: '#' },
-            { text: 'Orders & Returns', as: 'a', href: '#' },
-            { text: 'Customer Service', as: 'a', href: '#' },
-            { text: 'Contact', as: 'a', href: '#' },
-            { text: 'Privacy Policy', as: 'a', href: '#' },
-            { text: 'Terms of Use', as: 'a', href: '#' },
-        ],
-        social: {
-            facebook: { title: 'Facebook', as: 'a', href: 'https://facebook.com', target: 'blank' },
-            twitter: { title: 'Twitter', as: 'a', href: 'https://twitter.com', target: 'blank' },
-            pinterest: { title: 'Pinterest', as: 'a', href: 'https://pinterest.com', target: 'blank' },
-            instragram: { title: 'Instagram', as: 'a', href: 'https://instagram.com', target: 'blank' },
-        },
+        html: <div>Footer</div>,
     },
 }
 
-storiesOf('📦 Components/App', module).add('Default', () => (
-    <App loading={boolean('loading', false)} {...AppMockData} />
-))
+storiesOf('📦 Components/App', module).add('Default', () => {
+    toast.success('Success!')
+    toast.error('Error!')
+    toast.warn('Warning!')
+    toast.info('Info!')
+    return <App loading={boolean('loading', false)} {...AppMockData} />
+})

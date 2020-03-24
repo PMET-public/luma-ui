@@ -160,28 +160,6 @@ export const Field = styled.div`
     grid-gap: 1.4rem;
 `
 
-// export const Label = styled.div<{ $error?: boolean }>`
-//     align-items: center;
-//     display: grid;
-//     font-size: 1.6rem;
-//     font-weight: 600;
-//     grid-auto-columns: max-content;
-//     grid-auto-flow: column;
-//     grid-gap: 0.5rem;
-//     height: 1.2em;
-//     transition: color 305ms ease;
-
-//     ${props =>
-//         props.$error &&
-//         `
-//             color: ${props.theme.colors.onError};
-//             & > svg {
-//                 fill: currentColor;
-//                 width: 1.4em;
-//             }
-//         `};
-// `
-
 export const Title = styled.h2`
     font-family: ${props => props.theme.typography.heading.family};
     font-weight: ${props => props.theme.typography.heading.weight.semi};

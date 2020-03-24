@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, createContext, useContext, useReducer, Reducer, Dispatch } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
-import { Root } from './theme/Root.styles'
 import { ToastContainer, toast } from 'react-toastify'
+import { Root } from './theme/Root.styles'
 import { GlobalStyles } from './theme/GlobalStyles'
 import { ToastsStyles } from './theme/ToastStyles'
 import * as colorSchemes from './theme/colors'
@@ -12,6 +12,7 @@ import 'focus-visible'
 export type AppProviderProps = {}
 
 type ReducerState = {
+    toast: typeof toast
     colorScheme: string
 }
 
@@ -23,6 +24,7 @@ type ReducerActions = {
 type AppContextProps = [ReducerState, Dispatch<ReducerActions>]
 
 const initialState: ReducerState = {
+    toast,
     colorScheme: 'light',
 }
 
@@ -69,6 +71,8 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
             <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
             <ToastsStyles $colors={colors} />
             <GlobalStyles />
+            <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
+            <ToastsStyles $colors={colors} />
             <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, colorScheme: state.colorScheme }}>
                 <Root>{children}</Root>
             </StyledThemeProvider>

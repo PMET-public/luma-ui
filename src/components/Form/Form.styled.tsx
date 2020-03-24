@@ -16,11 +16,11 @@ export const Label = styled.label<{ $error?: boolean }>`
     font-size: 1.3rem;
     font-weight: 600;
     pointer-events: none;
-    color: ${props => (props.$error ? props.theme.colors.onError : props.theme.colors.onSurface)};
+    color: ${props => (props.$error ? props.theme.colors.error : props.theme.colors.onSurface)};
 `
 
 export const Error = styled.span`
-    color: ${props => props.theme.colors.onError};
+    color: ${props => props.theme.colors.error};
     min-height: 1em;
     font-size: 90%;
 `
@@ -28,8 +28,8 @@ export const Error = styled.span`
 export const FormError = styled.span`
     background-color: ${props => props.theme.colors.error};
     border-radius: 0.25rem;
-    border: 0.1rem solid ${props => props.theme.colors.onError};
-    color: ${props => props.theme.colors.onError};
+    border: 0.1rem solid ${props => props.theme.colors.error};
+    color: ${props => props.theme.colors.error};
     font-size: 90%;
     min-height: 1em;
     padding: 1rem;
@@ -66,6 +66,6 @@ export const Input = styled.input<{ $error?: boolean }>`
     ${props =>
         props.$error &&
         `
-            border-bottom-color: ${props.theme.colors.onError};
+            border-bottom-color: ${props.theme.colors.error};
         `}
 `

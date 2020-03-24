@@ -7,6 +7,7 @@ import { useTransition, animated } from 'react-spring'
 import StoreMarkerSvg from 'remixicon/icons/Map/map-pin-fill.svg'
 import CloseSvg from 'remixicon/icons/System/close-circle-fill.svg'
 import { Props as GoogleMapsProps, Coords } from 'google-map-react'
+import Error from '../Error'
 
 const GoogleMapReact = React.lazy(() => import('google-map-react')) as React.ComponentType<GoogleMapsProps>
 
@@ -120,7 +121,7 @@ export const Map: Component<MapProps> = ({ apiKey, controls, locations = [], ...
         [selected, setSelected, mapRef]
     )
 
-    if (!apiKey) return <>Missing Google Maps API Key</>
+    if (!apiKey) return <Error>Missing Google Maps API Key</Error>
 
     return (
         <Suspense fallback="">
