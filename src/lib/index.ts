@@ -1,5 +1,9 @@
 import React from 'react'
 
+import { toast as _toast } from 'react-toastify'
+
+export const toast = _toast
+
 /**
  * Error Boundary
  */
