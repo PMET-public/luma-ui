@@ -6,7 +6,7 @@ import { Form } from '../Form'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/Select', module).add('Default', () => (
-    <Form>
+    <Form onSubmit={action('onSubmit')}>
         <Select
             name="test"
             loading={boolean('loading', false)}

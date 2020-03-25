@@ -6,7 +6,7 @@ import { Form } from '../Form'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
-    <Form>
+    <Form onSubmit={action('onSubmit')}>
         <TextSwatches
             loading={boolean('loading', false)}
             label={text('label', '')}
