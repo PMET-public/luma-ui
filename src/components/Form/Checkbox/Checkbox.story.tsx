@@ -3,9 +3,10 @@ import Checkbox from '.'
 import { storiesOf } from '@storybook/react'
 import { text, select } from '@storybook/addon-knobs'
 import { Form } from '../Form'
+import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/Checkbox', module).add('Default', () => (
-    <Form>
+    <Form onSubmit={action('onSubmit')}>
         <Checkbox
             label="Label"
             name="test"

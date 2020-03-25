@@ -23,6 +23,7 @@ export const Error = styled.span`
     color: ${props => props.theme.colors.error};
     min-height: 1em;
     font-size: 90%;
+    line-height: 1.3;
 `
 
 export const FormError = styled.span`

@@ -1,4 +1,11 @@
-import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes } from 'react'
+import React, {
+    useCallback,
+    useEffect,
+    FormHTMLAttributes,
+    LabelHTMLAttributes,
+    InputHTMLAttributes,
+    MutableRefObject,
+} from 'react'
 import { Component, Props } from '../../lib'
 import {
     Root,
@@ -9,7 +16,15 @@ import {
     FormError as FormErrorRoot,
 } from './Form.styled'
 
-import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors, OnSubmit } from 'react-hook-form'
+import {
+    FormContext,
+    useForm,
+    useFormContext,
+    ValidationOptions,
+    FieldErrors,
+    OnSubmit,
+    FormContextValues,
+} from 'react-hook-form'
 import _get from 'lodash.get'
 
 /** Form */
@@ -19,30 +34,36 @@ export type FormProps<P = {}> = FormHTMLAttributes<any> & {
     onSubmit: OnSubmit<P>
 }
 
-export const Form: Component<FormProps> = ({ children, onSubmit, onErrors, onValues, onChange, ...props }) => {
-    const form = useForm()
+export type FormContext = FormContextValues
 
-    const handleOnValueChanges = useCallback(
-        e => {
-            const values = form.getValues({ nest: true })
-            if (onValues) onValues(values)
-            if (onChange) onChange(e)
-        },
-        [onChange, onValues]
-    )
+export const Form: Component<FormProps> = React.forwardRef(
+    ({ children, onSubmit, onErrors, onValues, onChange, ...props }, ref: MutableRefObject<FormContextValues>) => {
+        const form = useForm()
 
-    useEffect(() => {
-        if (onErrors) onErrors(form.errors)
-    }, [onErrors, Object.entries(form.errors).toString()])
+        if (ref) ref.current = form
 
-    return (
-        <FormContext {...form}>
-            <Root onSubmit={form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
-                {children}
-            </Root>
-        </FormContext>
-    )
-}
+        const handleOnValueChanges = useCallback(
+            e => {
+                const values = form.getValues({ nest: true })
+                if (onValues) onValues(values)
+                if (onChange) onChange(e)
+            },
+            [onChange, onValues]
+        )
+
+        useEffect(() => {
+            if (onErrors) onErrors(form.errors)
+        }, [onErrors, Object.entries(form.errors).toString()])
+
+        return (
+            <FormContext {...form}>
+                <Root onSubmit={form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
+                    {children}
+                </Root>
+            </FormContext>
+        )
+    }
+)
 
 export type FormFieldProps = Props<{
     name: string
