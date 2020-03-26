@@ -65,7 +65,11 @@ export const AppMockData: AppProps = {
         text: 'My Bag',
     },
     footer: {
-        html: <div>Footer</div>,
+        html: (
+            <div style={{ textAlign: 'center', padding: '3rem', fontSize: '0.75em', opacity: 0.65 }}>
+                Footer goes here
+            </div>
+        ),
     },
 }
 
