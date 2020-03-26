@@ -1,8 +1,8 @@
 import React from 'react'
 import Select from '../Select'
 import { storiesOf } from '@storybook/react'
-import { text, boolean } from '@storybook/addon-knobs'
-import { Form } from '../Form'
+import { text, boolean, select } from '@storybook/addon-knobs'
+import { Form, FieldColors } from '../Form'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/Select', module).add('Default', () => (
@@ -12,6 +12,16 @@ storiesOf('📦 Components/Form/Select', module).add('Default', () => (
             loading={boolean('loading', false)}
             label="Label"
             error={text('error', '')}
+            color={select(
+                'color',
+                {
+                    default: FieldColors.default,
+                    error: FieldColors.error,
+                    warning: FieldColors.warning,
+                    notice: FieldColors.notice,
+                },
+                undefined
+            )}
             defaultValue="2"
             onChange={action('onChange')}
             items={[

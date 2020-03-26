@@ -1,8 +1,8 @@
 import React from 'react'
 import TextSwatches from '../TextSwatches'
 import { storiesOf } from '@storybook/react'
-import { object, boolean, text } from '@storybook/addon-knobs'
-import { Form } from '../Form'
+import { object, boolean, text, select } from '@storybook/addon-knobs'
+import { Form, FieldColors } from '../Form'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
@@ -21,6 +21,16 @@ storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
             ])}
             onChange={action('onChange')}
             error={text('error', '')}
+            color={select(
+                'color',
+                {
+                    default: FieldColors.default,
+                    error: FieldColors.error,
+                    warning: FieldColors.warning,
+                    notice: FieldColors.notice,
+                },
+                undefined
+            )}
         />
     </Form>
 ))

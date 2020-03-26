@@ -1,7 +1,7 @@
 import React, { OptionHTMLAttributes } from 'react'
 import { Component } from '../../../lib'
 import { Select as SelectRoot, Wrapper } from './Select.styled'
-import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'
 import { SelectSkeleton } from './Select.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
 
@@ -10,13 +10,25 @@ export type SelectProps = FormFieldProps & {
     loading?: boolean
 }
 
-export const Select: Component<SelectProps> = ({ as, error, label, loading, name, rules, items, ...props }) => {
+export const Select: Component<SelectProps> = ({
+    as,
+    error,
+    color: _color,
+    label,
+    loading,
+    name,
+    rules,
+    items,
+    ...props
+}) => {
     const fieldError = useFormFieldError({ name, error })
+
+    const color = _color ?? (fieldError && FieldColors.error)
 
     return (
         <Field as={as}>
             {label && (
-                <Label htmlFor={`field-input__${name}`} error={!!fieldError}>
+                <Label htmlFor={`field-input__${name}`} color={color}>
                     {label}
                 </Label>
             )}
@@ -32,7 +44,7 @@ export const Select: Component<SelectProps> = ({ as, error, label, loading, name
                             disabled={items?.length === 0}
                             name={name}
                             rules={rules}
-                            error={!!fieldError}
+                            color={color}
                             {...props}
                         >
                             {items &&
@@ -44,7 +56,7 @@ export const Select: Component<SelectProps> = ({ as, error, label, loading, name
                         </FieldInput>
                     </Wrapper>
 
-                    <Error>{fieldError?.message}</Error>
+                    <Error color={color}>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>

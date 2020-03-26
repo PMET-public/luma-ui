@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
 import { Items, Item } from './TextSwatches.styled'
-import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'
 import { TextSwatchesSkeleton } from './TextSwatches.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
 
@@ -19,6 +19,7 @@ export type TextSwatchesProps = FormFieldProps & {
 export const TextSwatches: Component<TextSwatchesProps> = ({
     loading,
     error,
+    color: _color,
     label,
     name,
     rules,
@@ -28,6 +29,8 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
 }) => {
     const fieldError = useFormFieldError({ name, error })
 
+    const color = _color ?? (fieldError && FieldColors.error)
+
     return (
         <Field {...props}>
             {loading ? (
@@ -35,7 +38,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
             ) : (
                 <React.Fragment>
                     {label && (
-                        <Label htmlFor={props.name} error={!!fieldError}>
+                        <Label htmlFor={props.name} color={color}>
                             {label}
                         </Label>
                     )}
@@ -48,7 +51,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
                                     rules={rules}
                                     name={name}
                                     type={type}
-                                    error={!!fieldError}
+                                    color={color as any}
                                     {...item}
                                 />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
@@ -56,7 +59,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
                         ))}
                     </Items>
 
-                    <Error>{fieldError?.message}</Error>
+                    <Error color={color as any}>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>

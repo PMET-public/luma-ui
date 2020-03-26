@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
 import { Wrapper, Input, Item, OffIcon, OnIcon, Placeholder } from './Checkbox.styled'
-import { FormFieldProps, Field, Label, Error, FieldInput } from '../Form'
+import { FormFieldProps, Field, Label, Error, FieldInput, FieldColors } from '../Form'
 
 import RadioOnIconSvg from 'remixicon/icons/System/checkbox-circle-line.svg'
 import RadioOffIconSvg from 'remixicon/icons/System/checkbox-blank-circle-line.svg'
@@ -22,6 +22,7 @@ export type CheckboxProps = FormFieldProps & {
 export const Checkbox: Component<CheckboxProps> = ({
     as,
     error,
+    color: _color,
     rules,
     label,
     name,
@@ -32,11 +33,13 @@ export const Checkbox: Component<CheckboxProps> = ({
 }) => {
     const fieldError = useFormFieldError({ name, error })
 
+    const color = _color ?? (fieldError && FieldColors.error)
+
     return (
         <fieldset>
             <Field as={as} {...props}>
                 {label && (
-                    <Label as="legend" error={!!fieldError}>
+                    <Label as="legend" color={color}>
                         {label}
                     </Label>
                 )}
@@ -51,7 +54,7 @@ export const Checkbox: Component<CheckboxProps> = ({
                                 type={type}
                                 name={name}
                                 rules={rules}
-                                error={!!fieldError}
+                                color={color as any}
                                 {...item}
                             />
                             <OffIcon as={type === 'radio' ? RadioOffIconSvg : CheckboxOffIconSvg} />
@@ -61,7 +64,7 @@ export const Checkbox: Component<CheckboxProps> = ({
                     ))}
                 </Wrapper>
 
-                <Error>{fieldError?.message}</Error>
+                <Error color={color}>{fieldError?.message}</Error>
             </Field>
         </fieldset>
     )
