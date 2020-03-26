@@ -14,7 +14,10 @@ import {
     Error as ErrorRoot,
     Input as InputRoot,
     FormError as FormErrorRoot,
+    FieldColors,
 } from './Form.styled'
+
+export { FieldColors } from './Form.styled'
 
 import {
     FormContext,
@@ -64,13 +67,6 @@ export const Form: Component<FormProps> = React.forwardRef(
         )
     }
 )
-
-export enum FieldColors {
-    default = '',
-    error = 'error',
-    warning = 'warning',
-    notice = 'notice',
-}
 
 export type FormFieldProps = Props<{
     name: string

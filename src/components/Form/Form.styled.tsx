@@ -1,5 +1,11 @@
 import styled from 'styled-components'
-import { FieldColors } from './Form'
+
+export enum FieldColors {
+    default = '',
+    error = 'error',
+    warning = 'warning',
+    notice = 'notice',
+}
 
 export const Root = styled.form`
     display: grid;
