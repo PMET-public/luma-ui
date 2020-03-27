@@ -24,6 +24,7 @@ import {
     FieldErrors,
     OnSubmit,
     FormContextValues,
+    UseFormOptions,
 } from 'react-hook-form'
 import _get from 'lodash.get'
 
@@ -32,13 +33,17 @@ export type FormProps<P = {}> = FormHTMLAttributes<any> & {
     onValues?: (values: any) => any
     onErrors?: (values: FieldErrors<any>) => any
     onSubmit: OnSubmit<P>
+    options: UseFormOptions
 }
 
 export type FormContext = FormContextValues
 
 export const Form: Component<FormProps> = React.forwardRef(
-    ({ children, onSubmit, onErrors, onValues, onChange, ...props }, ref: MutableRefObject<FormContextValues>) => {
-        const form = useForm()
+    (
+        { children, onSubmit, onErrors, onValues, onChange, options, ...props },
+        ref: MutableRefObject<FormContextValues>
+    ) => {
+        const form = useForm(options)
 
         if (ref) ref.current = form
 
