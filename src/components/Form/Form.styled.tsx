@@ -23,7 +23,7 @@ export const Label = styled.label<{ $color?: FieldColors }>`
     font-size: 1.3rem;
     font-weight: 600;
     pointer-events: none;
-    color: ${({ theme, $color = theme.colors.onSurface }) => theme.colors[$color]};
+    color: ${({ theme, $color = 'onSurface' }) => theme.colors[$color]};
 `
 
 export const Error = styled.span<{ $color?: FieldColors }>`
@@ -52,7 +52,7 @@ export const Input = styled.input<{ $color?: FieldColors }>`
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 0.1rem solid ${({ theme, $color = theme.colors.primary15 }) => theme.colors[$color]};
+    border-bottom: 0.1rem solid ${({ theme, $color = 'primary15' }) => theme.colors[$color]};
     transition: border 250ms ease, background-color 250ms ease;
     background-color: transparent;
 

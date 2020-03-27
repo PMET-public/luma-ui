@@ -14,7 +14,7 @@ export type CheckboxProps = FormFieldProps & {
     items: Array<
         {
             text: string
-            value: string
+            value?: string
         } & HTMLAttributes<HTMLInputElement>
     >
 }
