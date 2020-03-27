@@ -14,7 +14,10 @@ import {
     Error as ErrorRoot,
     Input as InputRoot,
     FormError as FormErrorRoot,
+    FieldColors,
 } from './Form.styled'
+
+export { FieldColors } from './Form.styled'
 
 import {
     FormContext,
@@ -74,6 +77,7 @@ export type FormFieldProps = Props<{
     name: string
     label?: string
     error?: string
+    color?: FieldColors
     rules?: ValidationOptions
 }>
 
@@ -85,39 +89,47 @@ export const Field: Component<FieldProps> = ({ children, ...props }) => {
 }
 
 /** Label */
-export type LabelProps = LabelHTMLAttributes<any> & { error?: boolean }
+export type LabelProps = LabelHTMLAttributes<any> & { color?: FieldColors }
 
-export const Label: Component<LabelProps> = ({ children, error = false, ...props }) => {
+export const Label: Component<LabelProps> = ({ children, color, ...props }) => {
     return (
-        <LabelRoot $error={error} {...props}>
+        <LabelRoot $color={color} {...props}>
             {children}
         </LabelRoot>
     )
 }
 
 /** FieldInput */
-export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationOptions; error?: boolean }
+export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationOptions; color?: FieldColors }
 
-export const FieldInput: Component<FieldInputProps> = ({ children, rules, error = false, ...props }) => {
+export const FieldInput: Component<FieldInputProps> = ({ children, rules, color, ...props }) => {
     const { register } = useFormContext()
 
     return (
-        <InputRoot $error={error} {...props} ref={register({ ...rules })}>
+        <InputRoot $color={color} {...props} ref={register({ ...rules })}>
             {children}
         </InputRoot>
     )
 }
 
 /** Field Error */
-export type ErrorProps = {}
+export type ErrorProps = { color?: FieldColors }
 
-export const Error: Component<ErrorProps> = ({ children, ...props }) => {
-    return <ErrorRoot {...props}>{children}</ErrorRoot>
+export const Error: Component<ErrorProps> = ({ children, color, ...props }) => {
+    return (
+        <ErrorRoot $color={color} {...props}>
+            {children}
+        </ErrorRoot>
+    )
 }
 
 /** Error */
-export type FormErrorProps = {}
+export type FormErrorProps = { color?: FieldColors }
 
-export const FormError: Component<FormErrorProps> = ({ children, ...props }) => {
-    return <FormErrorRoot {...props}>{children}</FormErrorRoot>
+export const FormError: Component<FormErrorProps> = ({ children, color, ...props }) => {
+    return (
+        <FormErrorRoot color={color} {...props}>
+            {children}
+        </FormErrorRoot>
+    )
 }

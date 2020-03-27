@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, ChangeEvent, FocusEvent } from 'react'
 import { Component } from '../../../lib'
 import { Label as LabelRoot } from './Input.styled'
-import { FormFieldProps, Field, FieldInput, Label, Error } from '../Form'
+import { FormFieldProps, Field, FieldInput, Label, Error, FieldColors } from '../Form'
 import { InputSkeleton } from './Input.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
 
@@ -12,6 +12,7 @@ export type InputProps = FormFieldProps & {
 export const Input: Component<InputProps> = ({
     as,
     error,
+    color: _color,
     label,
     loading,
     name,
@@ -22,6 +23,8 @@ export const Input: Component<InputProps> = ({
     ...props
 }) => {
     const fieldError = useFormFieldError({ name, error })
+
+    const color = _color ?? (fieldError && FieldColors.error)
 
     const defaultActive = useMemo(() => {
         const { defaultValue, value = defaultValue, placeholder } = props
@@ -62,7 +65,7 @@ export const Input: Component<InputProps> = ({
                 <Label
                     as={LabelRoot}
                     htmlFor={`field-input__${name}`}
-                    error={!!fieldError}
+                    color={color}
                     $active={loading || defaultActive || active || !!fieldError}
                 >
                     {label}
@@ -79,12 +82,12 @@ export const Input: Component<InputProps> = ({
                         onChange={handleOnChange}
                         onBlur={handleOnBlur}
                         name={name}
-                        error={!!fieldError}
+                        color={color}
                         rules={rules}
                         {...props}
                     />
 
-                    <Error>{fieldError?.message}</Error>
+                    <Error color={color}>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>

@@ -1,8 +1,8 @@
 import React from 'react'
 import Input from '.'
 import { storiesOf } from '@storybook/react'
-import { text, boolean, object } from '@storybook/addon-knobs'
-import { Form } from '../Form'
+import { text, boolean, object, select } from '@storybook/addon-knobs'
+import { Form, FieldColors } from '../Form'
 import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/Form/Input', module).add('Default', () => (
@@ -13,7 +13,16 @@ storiesOf('📦 Components/Form/Input', module).add('Default', () => (
             label="Label"
             placeholder={text('placeholder', '')}
             error={text('error', '')}
-            hint={text('hint', '')}
+            color={select(
+                'color',
+                {
+                    default: undefined,
+                    error: FieldColors.error,
+                    warning: FieldColors.warning,
+                    notice: FieldColors.notice,
+                },
+                undefined
+            )}
             rules={object('rules', { required: true })}
             onChange={action('onChange')}
         />

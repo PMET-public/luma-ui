@@ -3,7 +3,7 @@ import { Component } from '../../../lib'
 import { Items, Item } from './ThumbSwatches.styled'
 
 import Image, { ImageProps } from '../../Image'
-import { FormFieldProps, Field, Label, FieldInput, Error } from '../Form'
+import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'
 import { ThumbSwatchesSkeleton } from './ThumbSwatches.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
 
@@ -24,11 +24,14 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
     type = 'radio',
     label,
     error,
+    color: _color,
     rules,
     items = [],
     ...props
 }) => {
     const fieldError = useFormFieldError({ name, error })
+
+    const color = _color ?? (fieldError && FieldColors.error)
 
     return (
         <Field {...props}>
@@ -37,7 +40,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
             ) : (
                 <React.Fragment>
                     {label && (
-                        <Label htmlFor={props.name} error={!!fieldError}>
+                        <Label htmlFor={props.name} color={color}>
                             {label}
                         </Label>
                     )}
@@ -50,7 +53,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                                     type={type}
                                     name={name}
                                     rules={rules}
-                                    error={!!fieldError}
+                                    color={color as any}
                                     {...item}
                                 />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>
@@ -60,7 +63,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                         ))}
                     </Items>
 
-                    <Error>{fieldError?.message}</Error>
+                    <Error color={color}>{fieldError?.message}</Error>
                 </React.Fragment>
             )}
         </Field>
