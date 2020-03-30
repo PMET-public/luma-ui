@@ -58,12 +58,10 @@ storiesOf('📑 Templates/Cart', module).add('Default', () => (
                         {
                             field: { label: 'Gift Card', name: 'giftCardCode' },
                             submitButton: { text: 'Apply' },
-                            onSubmit: () => {},
                         },
                         {
                             field: { label: 'Discount Code', name: 'discountCode' },
                             submitButton: { text: 'Apply' },
-                            onSubmit: () => {},
                         },
                     ],
                 },

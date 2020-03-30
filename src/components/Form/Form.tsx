@@ -35,8 +35,8 @@ import _get from 'lodash.get'
 export type FormProps<P = {}> = FormHTMLAttributes<any> & {
     onValues?: (values: any) => any
     onErrors?: (values: FieldErrors<any>) => any
-    onSubmit: OnSubmit<P>
-    options: UseFormOptions
+    options?: UseFormOptions
+    onSubmit?: OnSubmit<P>
 }
 
 export type FormContext = FormContextValues
