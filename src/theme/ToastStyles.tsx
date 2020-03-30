@@ -7,7 +7,7 @@ export const ToastsStyles = createGlobalStyle<{ $colors: typeof light | typeof d
         transform: translate3d(0, 0, 9999px);
         position: fixed;
         padding: 4px;
-        width: 320px;
+        width: 400px;
         box-sizing: border-box;
         color: #fff;
     }
