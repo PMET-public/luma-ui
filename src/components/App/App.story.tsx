@@ -3,6 +3,7 @@ import App, { AppProps } from '.'
 import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
 import { toast } from '../../lib'
+import { action } from '@storybook/addon-actions'
 
 export const AppMockData: AppProps = {
     logo: {
@@ -77,6 +78,10 @@ storiesOf('📦 Components/App', module).add('Default', () => {
     toast.success('Success!')
     toast.error('Error!')
     toast.warn('Warning!')
-    toast.info('Info!')
+    toast.info(
+        <>
+            Info! <button onClick={action('onClick')}>Button</button>
+        </>
+    )
     return <App loading={boolean('loading', false)} {...AppMockData} />
 })

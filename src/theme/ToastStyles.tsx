@@ -10,6 +10,13 @@ export const ToastsStyles = createGlobalStyle<{ $colors: typeof light | typeof d
         width: 400px;
         box-sizing: border-box;
         color: #fff;
+
+        & button {
+            text-decoration: underline;
+            margin-left: 0.4rem;
+            display: inline-block;
+            cursor: pointer;
+        }
     }
     .Toastify__toast-container--top-left {
         top: 1em;
