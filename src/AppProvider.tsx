@@ -71,8 +71,6 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
             <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
             <ToastsStyles $colors={colors} />
             <GlobalStyles />
-            <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
-            <ToastsStyles $colors={colors} />
             <StyledThemeProvider theme={{ colors, typography, breakpoints, layout, colorScheme: state.colorScheme }}>
                 <Root>{children}</Root>
             </StyledThemeProvider>

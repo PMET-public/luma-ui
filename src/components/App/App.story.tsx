@@ -5,6 +5,7 @@ import { boolean } from '@storybook/addon-knobs'
 import { toast } from '../../lib'
 import { action } from '@storybook/addon-actions'
 import styled from 'styled-components'
+import { useEffect } from '@storybook/addons'
 
 export const AppMockData: AppProps = {
     logo: {
@@ -93,14 +94,19 @@ const Toast = styled.div`
 `
 
 storiesOf('📦 Components/App', module).add('Default', () => {
-    toast.info(
-        <Toast>
-            🎉 A new update (x.x.x) is available.
-            <button onClick={action('onClick')}>Reload</button>
-        </Toast>,
-        {
-            autoClose: false,
-        }
-    )
+    useEffect(() => {
+        toast.info(
+            <Toast>
+                🎉 A new update (x.x.x) is available.
+                <button onClick={action('onClick')}>Reload</button>
+            </Toast>,
+            {
+                autoClose: false,
+                closeButton: false,
+                onClose: action('onClose'),
+            }
+        )
+    }, [])
+
     return <App loading={boolean('loading', false)} {...AppMockData} />
 })
