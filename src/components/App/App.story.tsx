@@ -80,7 +80,10 @@ storiesOf('📦 Components/App', module).add('Default', () => {
     toast.warn('Warning!')
     toast.info(
         <>
-            Info! <button onClick={action('onClick')}>Button</button>
+            Info!{' '}
+            <button className="button" onClick={action('onClick')}>
+                Button
+            </button>
         </>
     )
     return <App loading={boolean('loading', false)} {...AppMockData} />

@@ -11,11 +11,17 @@ export const ToastsStyles = createGlobalStyle<{ $colors: typeof light | typeof d
         box-sizing: border-box;
         color: #fff;
 
-        & button {
-            text-decoration: underline;
-            margin-left: 0.4rem;
-            display: inline-block;
+        & .button {
+            background-color: #fff;
+            border-radius: 2.4rem;
+            box-sizing: border-box;
+            color: #222;
             cursor: pointer;
+            display: inline-flex;
+            font-weight: 800;
+            margin-left: 1rem;
+            padding: 1rem 2.2rem;
+            font-size: 0.8em;
         }
     }
     .Toastify__toast-container--top-left {
