@@ -6,23 +6,12 @@ export const ToastsStyles = createGlobalStyle<{ $colors: typeof light | typeof d
         z-index: 9999;
         transform: translate3d(0, 0, 9999px);
         position: fixed;
-        padding: 4px;
-        width: 400px;
         box-sizing: border-box;
         color: #fff;
-
-        & .button {
-            background-color: #fff;
-            border-radius: 2.4rem;
-            box-sizing: border-box;
-            color: #222;
-            cursor: pointer;
-            display: inline-flex;
-            font-weight: 800;
-            margin-left: 1rem;
-            padding: 1rem 2.2rem;
-            font-size: 0.8em;
-        }
+        padding: 4px;
+        min-width: 30rem;
+        max-width: 100%;
+        font-size: 1.4rem;
     }
     .Toastify__toast-container--top-left {
         top: 1em;
