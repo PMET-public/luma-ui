@@ -2,13 +2,16 @@ import React from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, IconWrapper } from './Header.styled'
 import { ReactComponentLike } from 'prop-types'
+import { LogoSkeleton } from './Logo.skeleton'
 import { MenuSkeleton } from './Menu.skeleton'
 import Icon, { IconProps } from '../Icon'
+import LogoImageSvg from '../../../public/images/luma.svg'
 
 export type HeaderProps = {
     loading?: boolean
     logo: Props<{
-        svg: ReactComponentLike
+        loading?: boolean
+        svg?: ReactComponentLike
     }>
     menu: {
         items: Props<{
@@ -27,7 +30,7 @@ export type HeaderProps = {
 
 export const Header: Component<HeaderProps> = ({
     loading,
-    logo: { svg: LogoSvg, ...logo },
+    logo: { svg: StoreLogo, ...logo },
     menu: { items: menuItems, ...menu },
     utilities: { items: utilitiesItems, ...utilities },
     ...props
@@ -35,8 +38,9 @@ export const Header: Component<HeaderProps> = ({
     return (
         <Root {...props}>
             {/* Logo */}
+
             <Logo {...logo}>
-                <LogoSvg />
+                {loading && !StoreLogo ? <LogoSkeleton /> : StoreLogo ? <StoreLogo /> : <LogoImageSvg />}
             </Logo>
 
             {/* Menu */}

@@ -7,8 +7,6 @@ import TabBar from '../TabBar'
 import Footer, { FooterProps } from '../Footer'
 import { IconProps } from '../Icon'
 
-import LogoImageSvg from '../../../public/images/luma.svg'
-
 import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
 import IconSearchActiveSvg from 'remixicon/icons/System/search-fill.svg'
 import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
@@ -88,10 +86,7 @@ export const App: Component<AppProps> = ({
             <HeaderContainer as="header" $margin>
                 <Header
                     loading={loading}
-                    logo={{
-                        svg: LogoImageSvg,
-                        ...logo,
-                    }}
+                    logo={{ ...logo }}
                     menu={{
                         items: menu,
                     }}
