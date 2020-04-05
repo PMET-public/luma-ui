@@ -37,8 +37,10 @@ export const Logo = styled.div`
     margin: 0;
     z-index: 2;
 
-    & svg {
+    & svg,
+    & img {
         height: 3rem;
+        max-width: 15rem;
     }
 
     & a {

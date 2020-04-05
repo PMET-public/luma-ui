@@ -1,6 +1,6 @@
 {
   "name": "@pmet-public/luma-ui",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Luma React UI LIbrary",
   "repository": "https://github.com/PMET-public/luma-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
@@ -56,7 +56,7 @@
     "@types/styled-components": "5.0.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-inline-react-svg": "^1.1.0",
-    "babel-plugin-styled-components": "^1.10.6",
+    "babel-plugin-styled-components": "1.10.7",
     "braintree-web-drop-in": "^1.20.4",
     "common-tags": "^1.8.0",
     "concurrently": "^5.0.2",

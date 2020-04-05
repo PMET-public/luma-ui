@@ -9,6 +9,5 @@ declare module 'styled-components' {
         typography: ThemeTypography
         breakpoints: Breakpoints
         layout: Layout
-        colorScheme: string
     }
 }

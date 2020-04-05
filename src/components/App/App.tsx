@@ -15,10 +15,10 @@ import IconHomeSvg from 'remixicon/icons/Buildings/store-2-line.svg'
 import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
 // import IconFavoritesSvg from 'remixicon/icons/System/heart-line.svg'
 // import IconFavoriteActiveSvg from 'remixicon/icons/System/heart-fill.svg'
-import IconDarkModeSvg from 'remixicon/icons/Design/contrast-2-line.svg'
+// import IconDarkModeSvg from 'remixicon/icons/Design/contrast-2-line.svg'
 // import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
 // import IconAccountActiveSvg from 'remixicon/icons/User/user-3-fill.svg'
-import { useAppContext } from '../../AppProvider'
+// import { useAppContext } from '../../AppProvider'
 
 export type AppProps = {
     loading?: boolean
@@ -79,7 +79,7 @@ export const App: Component<AppProps> = ({
     search,
     ...props
 }) => {
-    const { state, actions } = useAppContext()
+    // const { state, actions } = useAppContext()
 
     return (
         <Root {...props}>
@@ -100,14 +100,6 @@ export const App: Component<AppProps> = ({
                             //         ...myAccount.icon,
                             //     },
                             // },
-                            {
-                                as: 'button',
-                                text: 'Dark Mode',
-                                onClick: () => actions.setColorScheme(state.colorScheme === 'dark' ? 'light' : 'dark'),
-                                icon: {
-                                    svg: IconDarkModeSvg,
-                                },
-                            },
                             {
                                 'aria-label': search.text,
                                 ...search,

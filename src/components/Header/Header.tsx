@@ -30,7 +30,7 @@ export type HeaderProps = {
 
 export const Header: Component<HeaderProps> = ({
     loading,
-    logo: { svg: StoreLogo, ...logo },
+    logo: { svg: StoreLogo, loading: logoLoading = loading, ...logo },
     menu: { items: menuItems, ...menu },
     utilities: { items: utilitiesItems, ...utilities },
     ...props
@@ -40,7 +40,7 @@ export const Header: Component<HeaderProps> = ({
             {/* Logo */}
 
             <Logo {...logo}>
-                {loading && !StoreLogo ? <LogoSkeleton /> : StoreLogo ? <StoreLogo /> : <LogoImageSvg />}
+                {logoLoading && !StoreLogo ? <LogoSkeleton /> : StoreLogo ? <StoreLogo /> : <LogoImageSvg />}
             </Logo>
 
             {/* Menu */}
