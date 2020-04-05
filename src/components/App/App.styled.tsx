@@ -8,7 +8,7 @@ export const Root = styled.div`
     background-color: ${props => props.theme.colors.surface};
     color: ${props => props.theme.colors.onSurface};
     width: 100%;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 
     grid-auto-columns: minmax(0, 1fr);
     grid-template-rows: auto minmax(calc(100vh - 6rem - 6rem), 1fr) auto auto;

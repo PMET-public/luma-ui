@@ -23,7 +23,7 @@ import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
 export type AppProps = {
     loading?: boolean
 
-    logo: Props
+    logo: Props<{ loading?: boolean }>
 
     home: Props<{
         active?: boolean
@@ -86,7 +86,7 @@ export const App: Component<AppProps> = ({
             <HeaderContainer as="header" $margin>
                 <Header
                     loading={loading}
-                    logo={{ ...logo }}
+                    logo={logo}
                     menu={{
                         items: menu,
                     }}
