@@ -37,6 +37,7 @@ export const LoadedImage = styled(ImageTag)<{
     object-fit: cover;
     object-position: center;
     position: absolute;
+    font-size: 0;
 
     ${props => props.$error && 'opacity: 0;'}
 

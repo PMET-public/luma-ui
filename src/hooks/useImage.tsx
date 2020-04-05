@@ -33,7 +33,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: { lazyload
 
     const { offsetX, offsetY } = useMeasure(ref)
 
-    const { scrollX, scrollY } = useScroll({ container: lazyload?.container })
+    const { scrollX, scrollY } = useScroll({ container: lazyload?.container, disabled: loaded })
 
     const handleImageLoad = useCallback(
         (e: any) => {
@@ -69,7 +69,7 @@ export const useImage = (ref: RefObject<any>, image: Image, options?: { lazyload
      */
 
     const ready = useMemo(() => {
-        if (!src) return false
+        if (!src) return
 
         const visible = ref?.current?.offsetParent !== null
 
