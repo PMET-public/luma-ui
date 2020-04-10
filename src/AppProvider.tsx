@@ -2,8 +2,8 @@ import React, { FunctionComponent, createContext, useContext, useReducer, Reduce
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { ToastContainer, toast } from 'react-toastify'
 import { Root } from './theme/Root.styles'
+import { ToastsStyles } from './theme/ToastsStyles'
 import { GlobalStyles } from './theme/GlobalStyles'
-import { ToastsStyles } from './theme/ToastStyles'
 import { defaultColors } from './theme/colors'
 import { typography } from './theme/typography'
 import { breakpoints, layout } from './theme/layout'
@@ -40,11 +40,11 @@ export const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) =
 
     return (
         <AppContext.Provider value={[state, dispatch]}>
-            <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
-            <ToastsStyles $colors={colors} />
-            <GlobalStyles />
             <StyledThemeProvider theme={{ colors, typography, breakpoints, layout }}>
                 <Root>{children}</Root>
+                <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
+                <ToastsStyles />
+                <GlobalStyles />
             </StyledThemeProvider>
         </AppContext.Provider>
     )
