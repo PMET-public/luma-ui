@@ -3,13 +3,11 @@ import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'
 import { withA11y } from '@storybook/addon-a11y'
 import { withLuma } from './addons/luma/withLuma'
-// import { withPerformance } from 'storybook-addon-performance'
 
 import Logo from './static/logo.png'
 
 addDecorator(withLuma)
 addDecorator(withKnobs)
-// addDecorator(withPerformance)
 addDecorator(withA11y)
 
 addParameters({
