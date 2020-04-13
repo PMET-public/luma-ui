@@ -7,14 +7,15 @@ export type SkeletonProps = {
     height: number
 }
 
-export const Skeleton: Component<SkeletonProps> = ({ children, ...props }) => {
+export const Skeleton: Component<SkeletonProps> = ({ children, width, height, ...props }) => {
     return (
         <ContentLoader
             speed={1}
-            primaryColor="rgba(204, 204, 204, 0.45)"
-            secondaryColor="rgba(204, 204, 204, 0.25)"
+            backgroundColor="rgba(204, 204, 204, 0.45)"
+            foregroundColor="rgba(204, 204, 204, 0.25)"
+            viewBox={`0 0 ${width} ${height}`}
             {...props}
-            style={{ width: `${props.width}px`, ...props.style }}
+            style={{ width: `${width}px`, ...props.style }}
         >
             {children}
         </ContentLoader>
