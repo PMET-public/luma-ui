@@ -13,11 +13,6 @@ import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 import IconBagActiveSvg from 'remixicon/icons/Finance/shopping-bag-fill.svg'
 import IconHomeSvg from 'remixicon/icons/Buildings/store-2-line.svg'
 import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
-// import IconFavoritesSvg from 'remixicon/icons/System/heart-line.svg'
-// import IconFavoriteActiveSvg from 'remixicon/icons/System/heart-fill.svg'
-// import IconAccountSvg from 'remixicon/icons/User/user-3-line.svg'
-// import IconAccountActiveSvg from 'remixicon/icons/User/user-3-fill.svg'
-// import { useAppContext } from '../../AppProvider'
 
 export type AppProps = {
     loading?: boolean
@@ -37,18 +32,6 @@ export type AppProps = {
         }>
     >
 
-    // myAccount: Props<{
-    //     active?: boolean
-    //     icon?: IconProps
-    //     text: string
-    // }>
-
-    // favorites: Props<{
-    //     active?: boolean
-    //     icon?: IconProps
-    //     text: string
-    // }>
-
     search: Props<{
         active?: boolean
         icon?: IconProps
@@ -65,19 +48,7 @@ export type AppProps = {
     footer: FooterProps
 }
 
-export const App: Component<AppProps> = ({
-    loading,
-    cart,
-    children,
-    footer,
-    home,
-    logo,
-    menu,
-    // myAccount,
-    // favorites,
-    search,
-    ...props
-}) => {
+export const App: Component<AppProps> = ({ loading, cart, children, footer, home, logo, menu, search, ...props }) => {
     return (
         <Root {...props}>
             <HeaderContainer as="header" $margin>
@@ -89,14 +60,6 @@ export const App: Component<AppProps> = ({
                     }}
                     utilities={{
                         items: [
-                            // {
-                            //     'aria-label': myAccount.text,
-                            //     ...myAccount,
-                            //     icon: {
-                            //         svg: cart.myAccount ? IconAccountActiveSvg : IconAccountSvg,
-                            //         ...myAccount.icon,
-                            //     },
-                            // },
                             {
                                 'aria-label': search.text,
                                 ...search,
@@ -137,14 +100,6 @@ export const App: Component<AppProps> = ({
                                 ...home.icon,
                             },
                         },
-                        // {
-                        //     ...favorites,
-                        //     'aria-label': favorites.text,
-                        //     icon: {
-                        //         svg: favorites.active ? IconFavoriteActiveSvg : IconFavoritesSvg,
-                        //         ...favorites.icon,
-                        //     },
-                        // },
                         {
                             ...search,
                             'aria-label': search.text,

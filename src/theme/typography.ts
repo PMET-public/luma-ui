@@ -1,4 +1,4 @@
-export const typography = {
+export const defaultTypography = {
     body: {
         family: 'source-sans-pro, Helvetica, sans-serif',
         style: 'normal',
@@ -25,4 +25,4 @@ export const typography = {
     },
 }
 
-export type ThemeTypography = typeof typography
+export type ThemeTypography = typeof defaultTypography

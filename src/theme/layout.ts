@@ -1,4 +1,4 @@
-export const breakpoints = {
+export const defaultBreakpoints = {
     smallOnly: '(max-width: 599px)',
     medium: '(min-width: 600px)',
     mediumOnly: '(min-width: 600px) and (max-width: 991px)',
@@ -9,11 +9,11 @@ export const breakpoints = {
     xLarge: '(min-width: 1600px)',
 }
 
-export type Breakpoints = typeof breakpoints
+export type ThemeBreakpoints = typeof defaultBreakpoints
 
-export const layout = {
+export const defaultLayout = {
     containedWidth: '190rem',
     margin: '2rem',
 }
 
-export type Layout = typeof layout
+export type ThemeLayout = typeof defaultLayout

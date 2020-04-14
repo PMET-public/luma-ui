@@ -38,21 +38,13 @@ export const Header: Component<HeaderProps> = ({
         <Root {...props}>
             {/* Logo */}
             <Logo {...logo}>
-                {logoImage ? (
-                    <img {...logoImage} />
-                ) : logoLoading ? (
-                    <LogoSkeleton />
-                ) : (
-                    <span>
-                        <LogoImageSvg as={LogoSkeleton} />
-                    </span>
-                )}
+                {logoImage ? <img {...logoImage} /> : logoLoading ? <LogoSkeleton /> : <LogoImageSvg />}
             </Logo>
 
             {/* Menu */}
             <Menu {...menu}>
                 <MenuWrapper>
-                    {loading ? (
+                    {false && loading ? (
                         <MenuSkeleton />
                     ) : (
                         menuItems?.map(({ active = false, text, ...menuItem }, index) => (
