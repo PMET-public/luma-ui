@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "yarn build",
     "prebuild": "rimraf dist",
-    "build": "NODE_ENV=production rollup -c",
+    "build": "rollup -c",
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
     "rollup:watch": "rollup -c -w",
     "generate": "./bin/generate.js",

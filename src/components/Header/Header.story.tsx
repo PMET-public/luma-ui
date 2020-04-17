@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './'
 import { storiesOf } from '@storybook/react'
 
-import Logo from '../../../public/images/luma.svg'
+import Logo from '../../svgs/luma.svg'
 
 import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
 import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
