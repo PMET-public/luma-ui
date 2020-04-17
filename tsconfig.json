@@ -11,8 +11,12 @@
             "dom",
             "es2017"
         ],
-        "moduleResolution": "node",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./@types"
+        ],
         "module": "esnext",
+        "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
@@ -21,10 +25,20 @@
         "sourceMap": true,
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true,
-        "target": "esnext"
+        "target": "esnext",
+        "baseUrl": "./src",
+        "declaration": true,
+        "rootDir": "./src"
     },
+    "include": [
+        "node_modules/@types",
+        "./@types",
+        "src/**/*.tsx",
+        "src/**/*.ts"
+    ],
     "exclude": [
         "node_modules",
-        "dist"
+        "dist",
+        "src/**/*.story.tsx"
     ]
 }

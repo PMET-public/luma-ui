@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import ErrorIconSvg from 'remixicon/icons/System/error-warning-line.svg'
-import OfflineIconSvg from '../../svgs/offline.svg'
+import OfflineIconSvg from 'remixicon/icons/System/wifi-off-line.svg'
 import NotFoundIconSvg from 'remixicon/icons/System/eye-close-line.svg'
 import LockIconSvg from 'remixicon/icons/System/lock-password-fill.svg'
 

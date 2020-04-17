@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeDecorator } from '@storybook/addons'
-import { AppProvider } from '../../../src/AppProvider'
+import { baseTheme, BaseStyles } from '../../../src/theme'
+import { ThemeProvider } from 'styled-components'
 
 import styled from 'styled-components'
 
@@ -21,9 +22,10 @@ export const withLuma = makeDecorator({
     parameterName: 'luma',
     wrapper: (getStory, context, { parameters = {} }) => {
         return (
-            <AppProvider>
+            <ThemeProvider theme={baseTheme}>
                 <Story $layout={parameters.layout || 'centered'}>{getStory(context)}</Story>
-            </AppProvider>
+                <BaseStyles />
+            </ThemeProvider>
         )
     },
 })

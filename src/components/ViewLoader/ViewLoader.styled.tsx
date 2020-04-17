@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-import LoaderImageSvg from '../../../public/images/loader.svg'
+import LoaderImageSvg from '../../svgs/loader.svg'
 
 const animation = keyframes`
     0% {

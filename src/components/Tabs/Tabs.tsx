@@ -28,12 +28,17 @@ const TabList: Component<TabListProps & { align?: 'left' | 'center' | 'right' }>
     )
 }
 
+// @ts-ignore
 TabList.tabsRole = 'TabList'
 
 const Tab = _Tab
+
+// @ts-ignore
 Tab.tabsRole = 'Tab'
 
 const TabPanel = _TabPanel
+
+// @ts-ignore
 TabPanel.tabsRole = 'TabPanel'
 
 export { Tabs, TabList, Tab, TabPanel }

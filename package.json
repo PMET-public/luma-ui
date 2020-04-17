@@ -15,7 +15,7 @@
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
     "rollup:watch": "rollup -c -w",
     "generate": "./bin/generate.js",
-    "storybook:watch": "start-storybook -p 5001 --quiet -s ./public",
+    "storybook:watch": "start-storybook -p 5001 --quiet --ci -s ./public",
     "storybook:deploy": "storybook-to-ghpages",
     "tsc": "tsc",
     "tslint": "tslint -p . -c tslint.json",
@@ -24,7 +24,7 @@
   "peerDependencies": {
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "styled-components": "5.0.1"
+    "styled-components": "5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -53,7 +53,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-slick": "^0.23.4",
     "@types/react-tabs": "^2.3.1",
-    "@types/styled-components": "5.0.1",
+    "@types/styled-components": "5.1.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-inline-react-svg": "^1.1.0",
     "babel-plugin-styled-components": "1.10.7",
@@ -86,7 +86,7 @@
     "rollup-plugin-multi-input": "1.1.1",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.0.2",
-    "styled-components": "5.0.1",
+    "styled-components": "5.1.0",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-loader": "^3.5.4",

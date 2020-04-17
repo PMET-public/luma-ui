@@ -6,17 +6,12 @@ import multiInput from 'rollup-plugin-multi-input'
 import { version } from './package.json'
 import { spawn } from 'child_process'
 
-
 const plugins = [
     multiInput(),
 
     babel({
-        extensions: [
-            '.ts',
-            '.tsx',
-            '.js',
-            '.jsx'
-        ],
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        runtimeHelpers: true,
     }),
 
     tsDeclarations({ outDir: './dist', rootDir: './src' }),
@@ -33,7 +28,6 @@ const plugins = [
     }),
 ]
 
-
 const output = {
     banner: `/* Luma React UI Library v.${version} */`,
     compact: false,
@@ -43,20 +37,11 @@ const output = {
     format: 'cjs',
 }
 
-const external = [
-    'react',
-    'react-dom',
-    'prop-types',
-    'styled-components',
-]
+const external = ['react', 'react-dom', 'prop-types', 'styled-components']
 
 export default [
     {
-        input: [
-            './src/**/*.{ts,tsx}',
-            '!./src/**/*.{story,stories}.*',
-            '!./src/**/*.test.*',
-        ],
+        input: ['./src/**/*.{ts,tsx}', '!./src/**/*.{story,stories}.*', '!./src/**/*.test.*'],
         output,
         plugins,
         external,
@@ -72,9 +57,12 @@ function tsDeclarations({ outDir, rootDir = './' }) {
         name: 'ts-declarations',
 
         buildStart({ input }) {
-            const files = Object.keys(input).map(k => input[k]).join(' ')
+            const files = Object.keys(input)
+                .map(k => input[k])
+                .join(' ')
 
-            spawn(`yarn tsc \
+            spawn(
+                `yarn tsc \
                 --allowSyntheticDefaultImports \
                 --declaration \
                 --emitDeclarationOnly \
@@ -85,13 +73,15 @@ function tsDeclarations({ outDir, rootDir = './' }) {
                 --outDir ${outDir} \
                 --rootDir ${rootDir} \
                 --target esnext \
-                ${files}`, {
+                ${files}`,
+                {
                     shell: true,
                     stdio: 'ignore',
-                    env: process.env
-                }).on('close', () => {
-                    console.log(`*.d.ts → ${outDir}.`)
-                })
-        }
+                    env: process.env,
+                }
+            ).on('close', () => {
+                console.log(`*.d.ts → ${outDir}.`)
+            })
+        },
     }
 }

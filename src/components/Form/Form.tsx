@@ -65,7 +65,7 @@ export const Form: Component<FormProps> = React.forwardRef(
 
         return (
             <FormContext {...form}>
-                <Root onSubmit={form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
+                <Root onSubmit={onSubmit && form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
                     {children}
                 </Root>
             </FormContext>

@@ -4,7 +4,7 @@ import { Root, Logo, Menu, MenuWrapper, MenuItem, Utilities, UtilitiesItem, Icon
 import { LogoSkeleton } from './Logo.skeleton'
 import { MenuSkeleton } from './Menu.skeleton'
 import Icon, { IconProps } from '../Icon'
-import LogoImageSvg from '../../../public/images/luma.svg'
+import LogoImageSvg from '../../svgs/luma.svg'
 
 export type HeaderProps = {
     loading?: boolean
