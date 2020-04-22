@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import { Label as LabelComponent } from '../Form'
 
-export const Label = styled.label<{ $active?: boolean; $error?: boolean }>`
+export const Label = styled(LabelComponent)<{ $active?: boolean }>`
     transition: transform 250ms ease, font-size 250ms ease;
     transform-origin: left;
 

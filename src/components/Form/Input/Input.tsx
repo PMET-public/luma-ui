@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, ChangeEvent, FocusEvent } from 'react'
 import { Component } from '../../../lib'
 import { Label as LabelRoot } from './Input.styled'
-import { FormFieldProps, Field, FieldInput, Label, Error, FieldColors } from '../Form'
+import { FormFieldProps, Field, FieldInput, Error, FieldColors } from '../Form'
 import { InputSkeleton } from './Input.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
 
@@ -62,14 +62,13 @@ export const Input: Component<InputProps> = ({
     return (
         <Field as={as}>
             {label && (
-                <Label
-                    as={LabelRoot}
+                <LabelRoot
                     htmlFor={`field-input__${name}`}
                     color={color}
                     $active={loading || defaultActive || active || !!fieldError}
                 >
                     {label}
-                </Label>
+                </LabelRoot>
             )}
             {loading ? (
                 <InputSkeleton />

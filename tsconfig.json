@@ -25,7 +25,7 @@
         "sourceMap": true,
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true,
-        "target": "ES6",
+        "target": "esnext",
         "baseUrl": "./src",
         "declaration": true,
         "rootDir": "./src"

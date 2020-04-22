@@ -3,11 +3,14 @@ import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import builtins from 'rollup-plugin-node-builtins'
 import multiInput from 'rollup-plugin-multi-input'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import { version } from './package.json'
 import { spawn } from 'child_process'
 
 const plugins = [
     multiInput(),
+
+    peerDepsExternal(),
 
     babel({
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -35,16 +38,17 @@ const output = {
     exports: 'named',
     footer: '/* by @fnhipster */',
     format: 'cjs',
+    globals: {
+        react: 'React',
+        'styled-components': 'styled',
+    },
 }
-
-const external = ['react', 'react-dom', 'prop-types', 'styled-components']
 
 export default [
     {
         input: ['./src/**/*.{ts,tsx}', '!./src/**/*.{story,stories}.*', '!./src/**/*.test.*'],
         output,
         plugins,
-        external,
     },
 ]
 
