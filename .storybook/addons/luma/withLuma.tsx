@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeDecorator } from '@storybook/addons'
-import { baseTheme, BaseStyles } from '../../../src/theme'
+import { baseTheme, BaseStyles } from '../../../theme'
 import { ThemeProvider } from 'styled-components'
 
 import styled from 'styled-components'

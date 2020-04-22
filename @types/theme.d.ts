@@ -1,7 +1,7 @@
 import 'styled-components'
-import { ThemeColors } from '../src/theme/colors'
-import { ThemeTypography } from '../src/theme/typography'
-import { ThemeBreakpoints, ThemeLayout } from '../src/theme/layout'
+import { ThemeColors } from '../theme/colors'
+import { ThemeTypography } from '../theme/typography'
+import { ThemeBreakpoints, ThemeLayout } from '../theme/layout'
 
 declare module 'styled-components' {
     export interface DefaultTheme {

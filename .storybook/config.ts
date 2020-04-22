@@ -31,7 +31,7 @@ addParameters({
     },
 })
 
-const req = require.context('../src', true, /\.(story|stories)\.tsx$/)
+const req = require.context('../components', true, /\.(story|stories)\.tsx$/)
 
 function loadStories() {
     require('./welcome.tsx')

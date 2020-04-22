@@ -26,7 +26,6 @@ yarn dev
 ## Built (as-in build) with
 
 -   [Babel](https://babeljs.io/)
--   [Rollup](https://rollupjs.org/guide/en/)
 
 ## Linted with
 
