@@ -46,7 +46,7 @@ export const Accordion: Component<AccordionProps> & CompoundComponent = ({ child
     )
 }
 
-Accordion.Item = ({ children, label, ...props }) => {
+const AccordionItem: Component<AccordionItemProps> = ({ children, label, ...props }) => {
     const wrapperElemRef = useRef(null)
 
     const { height } = useMeasure(wrapperElemRef)
@@ -84,3 +84,5 @@ Accordion.Item = ({ children, label, ...props }) => {
         </Item>
     )
 }
+
+Accordion.Item = AccordionItem

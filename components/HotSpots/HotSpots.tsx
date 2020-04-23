@@ -31,7 +31,7 @@ export const HotSpotsContext = createContext<{
 })
 
 export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({ children, description, image, items, ...props }) => {
-    const [active, set] = useState(null)
+    const [active, set] = useState<string | null>(null)
 
     return (
         <HotSpotsContext.Provider value={{ active, set }}>
@@ -46,7 +46,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({ childre
     )
 }
 
-HotSpots.Item = ({ children, coords, id, label, ...props }) => {
+const HotSpotsItem: Component<HotSpotItemProps> = ({ children, coords, id, label, ...props }) => {
     const context = useContext(HotSpotsContext)
 
     const active = id === context.active
@@ -80,3 +80,5 @@ HotSpots.Item = ({ children, coords, id, label, ...props }) => {
         </Item>
     )
 }
+
+HotSpots.Item = HotSpotsItem

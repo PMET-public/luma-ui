@@ -13,13 +13,13 @@ export type HeaderProps = {
         image?: any
     }>
     menu: {
-        items: Props<{
+        items?: Props<{
             active?: boolean
             text: string
         }>[]
     }
     utilities: {
-        items: Props<{
+        items?: Props<{
             active?: boolean
             text: string
             icon?: IconProps
@@ -42,7 +42,7 @@ export const Header: Component<HeaderProps> = ({
             {/* Menu */}
             <Menu {...menu}>
                 <MenuWrapper>
-                    {false && loading ? (
+                    {loading ? (
                         <MenuSkeleton />
                     ) : (
                         menuItems?.map(({ active = false, text, ...menuItem }, index) => (

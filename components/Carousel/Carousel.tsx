@@ -38,6 +38,8 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({ childre
     )
 }
 
-Carousel.Item = ({ children, ...props }) => {
+const CarouselItem: Component<CarouselItemProps> = ({ children, ...props }) => {
     return <Item {...props}>{children}</Item>
 }
+
+Carousel.Item = CarouselItem

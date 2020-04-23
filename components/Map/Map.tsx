@@ -34,13 +34,13 @@ export type MapProps = {
 const MapMarker = (props: { show?: boolean } & Location) => {
     const { show = false, ...location } = props
 
-    if (!location) return null
-
     const toggleTransitions = useTransition(show, null, {
         from: { position: 'absolute', top: 100, opacity: 0 },
         enter: { top: 0, opacity: 1 },
         leave: { top: 100, opacity: 0 },
     })
+
+    if (!location) return null
 
     const { name, country, comment, phone, address, city, state, zipCode, ...coords } = location
 
