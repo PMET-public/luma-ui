@@ -12,13 +12,7 @@ storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
             label={text('label', '')}
             name="size"
             type="radio"
-            items={object('list', [
-                { text: 'XS' },
-                { text: 'M', disabled: true },
-                { text: 'L', defaultChecked: true },
-                { text: 'XL' },
-                { text: 'S' },
-            ])}
+            items={object('list', [{ text: 'XS' }, { text: 'M', disabled: true }, { text: 'L', defaultChecked: true }, { text: 'XL' }, { text: 'S' }])}
             onChange={action('onChange')}
             error={text('error', '')}
             color={select(

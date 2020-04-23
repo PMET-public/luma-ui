@@ -111,15 +111,7 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
     }
 }
 
-export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
-    submitting,
-    error,
-    braintree,
-    submitButton,
-    editButton,
-    onSubmit,
-    ...props
-}) => {
+export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ submitting, error, braintree, submitButton, editButton, onSubmit, ...props }) => {
     const { colors } = useTheme()
 
     const containerElem = useRef(null)
@@ -218,11 +210,7 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({
 
             {(error || formError) && <FormError>{error || formError}</FormError>}
 
-            {submitting || loading || editable ? (
-                <Button type="submit" loading={submitting || loading} {...submitButton} />
-            ) : (
-                <Button outline onClick={handleOnEdit} {...editButton} />
-            )}
+            {submitting || loading || editable ? <Button type="submit" loading={submitting || loading} {...submitButton} /> : <Button outline onClick={handleOnEdit} {...editButton} />}
         </Root>
     )
 }

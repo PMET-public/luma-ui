@@ -30,13 +30,7 @@ export const HotSpotsContext = createContext<{
     set: () => {},
 })
 
-export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({
-    children,
-    description,
-    image,
-    items,
-    ...props
-}) => {
+export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({ children, description, image, items, ...props }) => {
     const [active, set] = useState(null)
 
     return (
@@ -69,15 +63,7 @@ HotSpots.Item = ({ children, coords, id, label, ...props }) => {
 
     return (
         <Item {...props}>
-            <Button
-                $active={active}
-                $xPos={coords.x}
-                $yPos={coords.y}
-                aria-label={label}
-                as="button"
-                onClick={handleToggle}
-                tabIndex={0}
-            />
+            <Button $active={active} $xPos={coords.x} $yPos={coords.y} aria-label={label} as="button" onClick={handleToggle} tabIndex={0} />
 
             {children && (
                 <Content $xPos={coords.x} $yPos={coords.y}>

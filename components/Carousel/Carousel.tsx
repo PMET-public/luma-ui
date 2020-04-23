@@ -18,16 +18,7 @@ type CompoundComponent = {
     Item: Component<CarouselItemProps>
 }
 
-export const Carousel: Component<CarouselProps> & CompoundComponent = ({
-    children,
-    gap = 0,
-    padding = 0,
-    show = 1,
-    hideScrollBar = false,
-    snap = true,
-    scrollerRef,
-    ...props
-}) => {
+export const Carousel: Component<CarouselProps> & CompoundComponent = ({ children, gap = 0, padding = 0, show = 1, hideScrollBar = false, snap = true, scrollerRef, ...props }) => {
     const rootElemRef = useRef(null)
     const scrollerElemRef = useRef(null)
     const { height } = useMeasure(rootElemRef)
@@ -40,15 +31,7 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({
 
     return (
         <Root ref={rootElemRef} $height={!hideScrollBar ? height : undefined}>
-            <Scroller
-                ref={scrollerElemRef}
-                $padding={childrenCount > 1 ? padding : 0}
-                $show={show}
-                $gap={gap}
-                $hideScrollBar={hideScrollBar}
-                $snap={snap}
-                {...props}
-            >
+            <Scroller ref={scrollerElemRef} $padding={childrenCount > 1 ? padding : 0} $show={show} $gap={gap} $hideScrollBar={hideScrollBar} $snap={snap} {...props}>
                 {children}
             </Scroller>
         </Root>

@@ -16,15 +16,7 @@ export type ApplyCouponFormProps = FormProps<ApplyCouponFormPayload> & {
     error?: string
 }
 
-export const ApplyCouponForm: Component<ApplyCouponFormProps> = ({
-    field,
-    loading = false,
-    onSubmit,
-    submitButton,
-    submitting = false,
-    error,
-    ...props
-}) => {
+export const ApplyCouponForm: Component<ApplyCouponFormProps> = ({ field, loading = false, onSubmit, submitButton, submitting = false, error, ...props }) => {
     return (
         <Root as={Form} onSubmit={onSubmit} {...props}>
             <Input loading={loading} rules={{ required: true }} disabled={submitting} error={error} {...field} />

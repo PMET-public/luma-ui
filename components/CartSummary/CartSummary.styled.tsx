@@ -1,9 +1,5 @@
 import styled from 'styled-components'
-import {
-    Button as AccordionButton,
-    Content as AccordionContent,
-    ButtonLabel as AccordionLabel,
-} from '../Accordion/Accordion.styled'
+import { Button as AccordionButton, Content as AccordionContent, ButtonLabel as AccordionLabel } from '../Accordion/Accordion.styled'
 
 export const Root = styled.div`
     display: grid;

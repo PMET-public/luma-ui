@@ -6,12 +6,7 @@ import React from 'react'
 import { Component } from '../../lib'
 import { Tab as _Tab, Tabs as _Tabs, TabListWrapper, TabList as _TabList, TabPanel as _TabPanel } from './Tabs.styled'
 
-import {
-    TabsProps as _TabsProps,
-    TabListProps as _TabListProps,
-    TabProps as _TabProps,
-    TabPanelProps as _TabPanelProps,
-} from 'react-tabs'
+import { TabsProps as _TabsProps, TabListProps as _TabListProps, TabProps as _TabProps, TabPanelProps as _TabPanelProps } from 'react-tabs'
 
 export type TabsProps = _TabsProps
 export type TabListProps = _TabListProps

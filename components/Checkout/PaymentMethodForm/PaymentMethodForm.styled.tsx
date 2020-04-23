@@ -19,22 +19,14 @@ export const Root = styled.div`
         display: none;
     }
 
-    &
-        .braintree-sheet__content--form
-        .braintree-form__field-group
-        .braintree-form__field
-        .braintree-form__hosted-field {
+    & .braintree-sheet__content--form .braintree-form__field-group .braintree-form__field .braintree-form__hosted-field {
         border-top: none;
         border-left: none;
         border-right: none;
         border-bottom: 0.1rem solid ${props => props.theme.colors.primary25};
     }
 
-    &
-        .braintree-sheet__content--form
-        .braintree-form__field-group.braintree-form__field-group--has-error
-        .braintree-form__field
-        .braintree-form__hosted-field {
+    & .braintree-sheet__content--form .braintree-form__field-group.braintree-form__field-group--has-error .braintree-form__field .braintree-form__hosted-field {
         border-bottom-color: ${props => props.theme.colors.error};
     }
 
@@ -63,16 +55,9 @@ export const Root = styled.div`
         color: ${props => props.theme.colors.onSurface};
     }
 
-    &
-        .braintree-sheet__content--form
-        .braintree-form__field-group.braintree-form__field-group--card-type-known
-        .braintree-form__field-secondary-icon,
-    .braintree-sheet__content--form
-        .braintree-form__field-group.braintree-form__field-group--has-error
-        .braintree-form__field-error-icon,
-    .braintree-sheet__content--form
-        .braintree-form__field-group.braintree-form__field-group--is-focused
-        .braintree-form__field-secondary-icon {
+    & .braintree-sheet__content--form .braintree-form__field-group.braintree-form__field-group--card-type-known .braintree-form__field-secondary-icon,
+    .braintree-sheet__content--form .braintree-form__field-group.braintree-form__field-group--has-error .braintree-form__field-error-icon,
+    .braintree-sheet__content--form .braintree-form__field-group.braintree-form__field-group--is-focused .braintree-form__field-secondary-icon {
         display: none;
     }
 `

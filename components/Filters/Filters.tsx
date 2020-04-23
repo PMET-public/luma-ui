@@ -45,10 +45,7 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, ti
 
     return (
         <Group {...props}>
-            <Wrapper
-                $duration={items.length * 20 + 'ms'}
-                $height={open ? `${height / 10}rem` : `calc(2em * ${offset})`}
-            >
+            <Wrapper $duration={items.length * 20 + 'ms'} $height={open ? `${height / 10}rem` : `calc(2em * ${offset})`}>
                 <List ref={elRef}>
                     <GroupLabel>{title}</GroupLabel>
 

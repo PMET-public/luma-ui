@@ -10,17 +10,7 @@ export type SelectProps = FormFieldProps & {
     loading?: boolean
 }
 
-export const Select: Component<SelectProps> = ({
-    as,
-    error,
-    color: _color,
-    label,
-    loading,
-    name,
-    rules,
-    items,
-    ...props
-}) => {
+export const Select: Component<SelectProps> = ({ as, error, color: _color, label, loading, name, rules, items, ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -38,15 +28,7 @@ export const Select: Component<SelectProps> = ({
             ) : (
                 <React.Fragment>
                     <Wrapper $disabled={props.disabled}>
-                        <FieldInput
-                            id={`field-input__${name}`}
-                            as={SelectRoot}
-                            disabled={items?.length === 0}
-                            name={name}
-                            rules={rules}
-                            color={color}
-                            {...props}
-                        >
+                        <FieldInput id={`field-input__${name}`} as={SelectRoot} disabled={items?.length === 0} name={name} rules={rules} color={color} {...props}>
                             {items &&
                                 items.map(({ text, ...option }, index) => (
                                     <option key={index} {...option}>

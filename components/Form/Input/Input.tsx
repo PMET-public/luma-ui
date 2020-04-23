@@ -9,19 +9,7 @@ export type InputProps = FormFieldProps & {
     loading?: boolean
 }
 
-export const Input: Component<InputProps> = ({
-    as,
-    error,
-    color: _color,
-    label,
-    loading,
-    name,
-    rules,
-    onBlur,
-    onChange,
-    onFocus,
-    ...props
-}) => {
+export const Input: Component<InputProps> = ({ as, error, color: _color, label, loading, name, rules, onBlur, onChange, onFocus, ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -62,11 +50,7 @@ export const Input: Component<InputProps> = ({
     return (
         <Field as={as}>
             {label && (
-                <LabelRoot
-                    htmlFor={`field-input__${name}`}
-                    color={color}
-                    $active={loading || defaultActive || active || !!fieldError}
-                >
+                <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={loading || defaultActive || active || !!fieldError}>
                     {label}
                 </LabelRoot>
             )}
@@ -74,17 +58,7 @@ export const Input: Component<InputProps> = ({
                 <InputSkeleton />
             ) : (
                 <React.Fragment>
-                    <FieldInput
-                        id={`field-input__${name}`}
-                        type="text"
-                        onFocus={handleOnFocus}
-                        onChange={handleOnChange}
-                        onBlur={handleOnBlur}
-                        name={name}
-                        color={color}
-                        rules={rules}
-                        {...props}
-                    />
+                    <FieldInput id={`field-input__${name}`} type="text" onFocus={handleOnFocus} onChange={handleOnChange} onBlur={handleOnBlur} name={name} color={color} rules={rules} {...props} />
 
                     <Error color={color}>{fieldError?.message}</Error>
                 </React.Fragment>

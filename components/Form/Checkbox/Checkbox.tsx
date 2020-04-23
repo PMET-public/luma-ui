@@ -19,18 +19,7 @@ export type CheckboxProps = FormFieldProps & {
     >
 }
 
-export const Checkbox: Component<CheckboxProps> = ({
-    as,
-    error,
-    color: _color,
-    rules,
-    label,
-    name,
-    placeholder,
-    type = 'checkbox',
-    items,
-    ...props
-}) => {
+export const Checkbox: Component<CheckboxProps> = ({ as, error, color: _color, rules, label, name, placeholder, type = 'checkbox', items, ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -49,14 +38,7 @@ export const Checkbox: Component<CheckboxProps> = ({
                 <Wrapper>
                     {items.map(({ text, ...item }, index) => (
                         <Item key={index}>
-                            <FieldInput
-                                as={Input}
-                                type={type}
-                                name={name}
-                                rules={rules}
-                                color={color as any}
-                                {...item}
-                            />
+                            <FieldInput as={Input} type={type} name={name} rules={rules} color={color as any} {...item} />
                             <OffIcon as={type === 'radio' ? RadioOffIconSvg : CheckboxOffIconSvg} />
                             <OnIcon as={type === 'radio' ? RadioOnIconSvg : CheckboxOnIconSvg} />
                             {text}

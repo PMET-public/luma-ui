@@ -18,17 +18,7 @@ export type ThumbSwatchesProps = FormFieldProps & {
     >
 }
 
-export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
-    loading,
-    name,
-    type = 'radio',
-    label,
-    error,
-    color: _color,
-    rules,
-    items = [],
-    ...props
-}) => {
+export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ loading, name, type = 'radio', label, error, color: _color, rules, items = [], ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -48,14 +38,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({
                     <Items>
                         {items.map(({ image, ...item }, index) => (
                             <Item key={index}>
-                                <FieldInput
-                                    id={`swatch-group__${name}__${index}`}
-                                    type={type}
-                                    name={name}
-                                    rules={rules}
-                                    color={color as any}
-                                    {...item}
-                                />
+                                <FieldInput id={`swatch-group__${name}__${index}`} type={type} name={name} rules={rules} color={color as any} {...item} />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>
                                     <Image transition width={4} height={5} lazyload={{ offsetY: 100 }} {...image} />
                                 </label>

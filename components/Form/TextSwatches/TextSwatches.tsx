@@ -16,17 +16,7 @@ export type TextSwatchesProps = FormFieldProps & {
     >
 }
 
-export const TextSwatches: Component<TextSwatchesProps> = ({
-    loading,
-    error,
-    color: _color,
-    label,
-    name,
-    rules,
-    type = 'radio',
-    items = [],
-    ...props
-}) => {
+export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, color: _color, label, name, rules, type = 'radio', items = [], ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -46,14 +36,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({
                     <Items>
                         {items.map(({ text, ...item }, index) => (
                             <Item key={index}>
-                                <FieldInput
-                                    id={`swatch-group__${name}__${index}`}
-                                    rules={rules}
-                                    name={name}
-                                    type={type}
-                                    color={color as any}
-                                    {...item}
-                                />
+                                <FieldInput id={`swatch-group__${name}__${index}`} rules={rules} name={name} type={type} color={color as any} {...item} />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
                             </Item>
                         ))}

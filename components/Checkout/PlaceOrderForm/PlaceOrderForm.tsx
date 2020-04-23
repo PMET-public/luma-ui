@@ -14,14 +14,7 @@ export type PlaceOrderFormProps = FormProps<PlaceOrderFormPayload> & {
     onSubmit: (payload: PlaceOrderFormPayload) => any
 }
 
-export const PlaceOrderForm: Component<PlaceOrderFormProps> = ({
-    loading,
-    submitting,
-    error,
-    submitButton,
-    onSubmit,
-    ...props
-}) => {
+export const PlaceOrderForm: Component<PlaceOrderFormProps> = ({ loading, submitting, error, submitButton, onSubmit, ...props }) => {
     return (
         <Root as={Form} onSubmit={onSubmit} {...props}>
             {error && <FormError>{error}</FormError>}

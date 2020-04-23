@@ -15,13 +15,7 @@ export type BreadcrumbsProps = {
     >
 }
 
-export const Breadcrumbs: Component<BreadcrumbsProps> = ({
-    loading,
-    divider = '',
-    items = [],
-    prefix = '',
-    ...props
-}) => {
+export const Breadcrumbs: Component<BreadcrumbsProps> = ({ loading, divider = '', items = [], prefix = '', ...props }) => {
     return (
         <Root {...props}>
             {loading ? (

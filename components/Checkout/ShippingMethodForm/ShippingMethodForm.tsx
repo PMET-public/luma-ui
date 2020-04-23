@@ -21,18 +21,7 @@ export type ShippingMethodFormProps = FormProps<ShippingMethodFormPayload> & {
     }
 }
 
-export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
-    edit = false,
-    submitButton,
-    editButton,
-    onEdit,
-    onSubmit,
-    loading,
-    submitting,
-    fields,
-    error,
-    ...props
-}) => {
+export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({ edit = false, submitButton, editButton, onEdit, onSubmit, loading, submitting, fields, error, ...props }) => {
     const handleOnClickEdit = useCallback(
         (e: Event) => {
             e.preventDefault()
@@ -51,11 +40,7 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({
 
             {error && <FormError>{error}</FormError>}
 
-            {edit ? (
-                <Button type="submit" loading={loading || submitting} {...submitButton} />
-            ) : (
-                <Button type="button" outline {...editButton} onClick={handleOnClickEdit} />
-            )}
+            {edit ? <Button type="submit" loading={loading || submitting} {...submitButton} /> : <Button type="button" outline {...editButton} onClick={handleOnClickEdit} />}
         </Root>
     )
 }

@@ -22,11 +22,7 @@ type CompoundComponent = {
     Item: Component<AccordionItemProps>
 }
 
-export const Accordion: Component<AccordionProps> & CompoundComponent = ({
-    children,
-    defaultSelected = -1,
-    ...props
-}) => {
+export const Accordion: Component<AccordionProps> & CompoundComponent = ({ children, defaultSelected = -1, ...props }) => {
     const [selected, setSelected] = useState(defaultSelected)
 
     /** Update Selected when prop changes */

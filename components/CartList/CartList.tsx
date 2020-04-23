@@ -1,19 +1,6 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import {
-    Root,
-    Product,
-    Thumbnail,
-    DetailsWrapper,
-    Title,
-    Price,
-    Quantity,
-    Sku,
-    Options,
-    Option,
-    OptionLabel,
-    OptionValue,
-} from './CartList.styled'
+import { Root, Product, Thumbnail, DetailsWrapper, Title, Price, Quantity, Sku, Options, Option, OptionLabel, OptionValue } from './CartList.styled'
 import PriceComponent, { PriceProps } from '../Price'
 import Image, { ImageProps } from '../Image'
 import QuantityComponent, { QuantityProps } from '../Quantity'
@@ -47,14 +34,7 @@ export const CartList: Component<CartListProps> = ({ loading, items, children, .
             {items?.map(({ _id, title, sku, thumbnail, price, quantity, options }, index) => (
                 <Product key={_id || index}>
                     <Thumbnail>
-                        <Image
-                            vignette={8}
-                            transition
-                            width="100%"
-                            height="auto"
-                            lazyload={{ offsetY: 100 }}
-                            {...thumbnail}
-                        />
+                        <Image vignette={8} transition width="100%" height="auto" lazyload={{ offsetY: 100 }} {...thumbnail} />
                     </Thumbnail>
                     <DetailsWrapper>
                         <Title {...title}>{title.text}</Title>

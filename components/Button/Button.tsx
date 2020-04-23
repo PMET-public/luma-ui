@@ -10,14 +10,7 @@ export type ButtonProps = Props<{
     loading?: LoaderProps
 }>
 
-export const Button: Component<ButtonProps> = ({
-    text,
-    children = text,
-    loading,
-    secondary = false,
-    outline = false,
-    ...props
-}) => {
+export const Button: Component<ButtonProps> = ({ text, children = text, loading, secondary = false, outline = false, ...props }) => {
     return (
         <Root $secondary={secondary} $outline={outline} as="button" {...props} disabled={!!loading || props.disabled}>
             {!!loading ? <Loader as="span" {...loading} /> : <span>{children}</span>}

@@ -22,16 +22,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
     const [scrollerRef, setScrollerRef] = useState<MutableRefObject<Element>>()
 
     return (
-        <Root
-            as={Carousel}
-            scrollerRef={setScrollerRef}
-            gap={1.4}
-            show="auto"
-            padding={1.5}
-            snap={false}
-            hideScrollBar
-            {...props}
-        >
+        <Root as={Carousel} scrollerRef={setScrollerRef} gap={1.4} show="auto" padding={1.5} snap={false} hideScrollBar {...props}>
             {loading ? (
                 <>
                     <CarouselItem>

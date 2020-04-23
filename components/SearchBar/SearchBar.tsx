@@ -16,16 +16,7 @@ export type SearchBarProps = {
     onSearch?: (query: string) => any
 }
 
-export const SearchBar: Component<SearchBarProps> = ({
-    clearButton = true,
-    count,
-    label = 'Search',
-    loading,
-    value: defaultValue = '',
-    onSearch,
-    onUpdate,
-    ...props
-}) => {
+export const SearchBar: Component<SearchBarProps> = ({ clearButton = true, count, label = 'Search', loading, value: defaultValue = '', onSearch, onUpdate, ...props }) => {
     const [value, setValue] = useState(defaultValue)
 
     const throttledUpdate = useThrottle(() => {
@@ -59,14 +50,7 @@ export const SearchBar: Component<SearchBarProps> = ({
                 <Wrapper as="label">
                     <SearchIcon />
 
-                    <Field
-                        aria-label={label}
-                        onChange={handleChange}
-                        placeholder={label}
-                        as="input"
-                        type="text"
-                        value={value}
-                    />
+                    <Field aria-label={label} onChange={handleChange} placeholder={label} as="input" type="text" value={value} />
 
                     {count && <Count>{loading ? <Loader {...loading} /> : count}</Count>}
                     {clearButton && value.length > 0 && (

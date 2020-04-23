@@ -15,17 +15,7 @@ export type ImageProps = {
     lazyload?: LazyLoadOptions
 }
 
-export const ImageComponent: Component<ImageProps> = ({
-    alt,
-    src,
-    title,
-    transition = false,
-    vignette = 0,
-    width: _width,
-    height: _height,
-    lazyload,
-    ...props
-}) => {
+export const ImageComponent: Component<ImageProps> = ({ alt, src, title, transition = false, vignette = 0, width: _width, height: _height, lazyload, ...props }) => {
     const imageElem = useRef<HTMLImageElement>(null)
 
     const image = useImage(imageElem, src, { lazyload })
@@ -35,23 +25,9 @@ export const ImageComponent: Component<ImageProps> = ({
 
     return (
         <Root $vignette={image.loaded ? vignette : 0} {...props}>
-            <LoadedImage
-                ref={imageElem}
-                $error={image.error}
-                $loaded={image.loaded}
-                $transition={transition}
-                alt={alt}
-                src={image.src}
-                title={title}
-                height={height}
-                width={width}
-            />
+            <LoadedImage ref={imageElem} $error={image.error} $loaded={image.loaded} $transition={transition} alt={alt} src={image.src} title={title} height={height} width={width} />
 
-            <Placeholder
-                aria-hidden="true"
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII="
-                {...{ width, height }}
-            />
+            <Placeholder aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII=" {...{ width, height }} />
 
             {image.error && <ErrorIcon />}
         </Root>

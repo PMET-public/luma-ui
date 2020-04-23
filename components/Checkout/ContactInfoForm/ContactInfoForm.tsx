@@ -1,19 +1,6 @@
 import React, { useCallback } from 'react'
 import { Component } from '../../../lib'
-import {
-    Root,
-    Email,
-    FirstName,
-    LastName,
-    Company,
-    Address1,
-    Address2,
-    City,
-    Country,
-    Region,
-    PostalCode,
-    PhoneNumber,
-} from './ContactInfoForm.styled'
+import { Root, Email, FirstName, LastName, Company, Address1, Address2, City, Country, Region, PostalCode, PhoneNumber } from './ContactInfoForm.styled'
 
 import Form, { FormProps, Input, InputProps, Select, SelectProps, FormError, patterns } from '../../Form'
 import Button, { ButtonProps } from '../../Button'
@@ -56,18 +43,7 @@ export type ContactInfoFormProps = FormProps<ContactInfoFormPayload> & {
     error?: string
 }
 
-export const ContactInfoForm: Component<ContactInfoFormProps> = ({
-    edit = false,
-    fields,
-    submitButton,
-    editButton,
-    onSubmit,
-    onEdit,
-    loading,
-    submitting,
-    error,
-    ...props
-}) => {
+export const ContactInfoForm: Component<ContactInfoFormProps> = ({ edit = false, fields, submitButton, editButton, onSubmit, onEdit, loading, submitting, error, ...props }) => {
     const handleOnClickEdit = useCallback(
         (e: Event) => {
             e.preventDefault()
@@ -84,12 +60,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
         <Form autoComplete={props.disabled ? 'off' : 'on'} onSubmit={onSubmit} {...props}>
             <Root $preview={!edit}>
                 <Email>
-                    <Input
-                        loading={loading}
-                        rules={{ required: true, pattern: patterns.email }}
-                        disabled={disabled}
-                        {...email}
-                    />
+                    <Input loading={loading} rules={{ required: true, pattern: patterns.email }} disabled={disabled} {...email} />
                 </Email>
                 <FirstName>
                     <Input loading={loading} rules={{ required: true }} disabled={disabled} {...firstName} />
@@ -129,11 +100,7 @@ export const ContactInfoForm: Component<ContactInfoFormProps> = ({
 
             {error && <FormError>{error}</FormError>}
 
-            {edit ? (
-                <Button type="submit" loading={loading || submitting} {...submitButton} />
-            ) : (
-                <Button type="button" outline onClick={handleOnClickEdit} {...editButton} />
-            )}
+            {edit ? <Button type="submit" loading={loading || submitting} {...submitButton} /> : <Button type="button" outline onClick={handleOnClickEdit} {...editButton} />}
         </Form>
     )
 }

@@ -1,6 +1,7 @@
 const source = require('common-tags').source
 
-module.exports = (Name) => source`
+module.exports = Name =>
+    source`
 
     import React from 'react'
     import { Component } from '../../lib'

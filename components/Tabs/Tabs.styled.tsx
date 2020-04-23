@@ -1,10 +1,5 @@
 import styled from 'styled-components'
-import {
-    Tabs as TabsComponent,
-    TabList as TabListComponent,
-    Tab as TabComponent,
-    TabPanel as TabPanelComponent,
-} from 'react-tabs'
+import { Tabs as TabsComponent, TabList as TabListComponent, Tab as TabComponent, TabPanel as TabPanelComponent } from 'react-tabs'
 
 export const Tabs = styled(TabsComponent)`
     display: flex;

@@ -20,13 +20,9 @@ export const Price: Component<PriceProps> = ({ loading, currency = 'USD', label,
                 <React.Fragment>
                     {label && <Label>{label}</Label>}
 
-                    <RegularPrice $hasSpecial={!!special}>
-                        {regular.toLocaleString('en-US', { style: 'currency', currency })}
-                    </RegularPrice>
+                    <RegularPrice $hasSpecial={!!special}>{regular.toLocaleString('en-US', { style: 'currency', currency })}</RegularPrice>
 
-                    {!!special && (
-                        <SpecialPrice>{special.toLocaleString('en-US', { style: 'currency', currency })}</SpecialPrice>
-                    )}
+                    {!!special && <SpecialPrice>{special.toLocaleString('en-US', { style: 'currency', currency })}</SpecialPrice>}
                 </React.Fragment>
             )}
         </Root>

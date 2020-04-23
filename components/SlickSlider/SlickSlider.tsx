@@ -7,13 +7,7 @@ const Slick = React.lazy(() => import('react-slick'))
 
 export type SlickSliderProps = Settings
 
-export const SlickSlider: Component<SlickSliderProps> = ({
-    beforeChange,
-    afterChange,
-    fade = false,
-    children,
-    ...props
-}) => {
+export const SlickSlider: Component<SlickSliderProps> = ({ beforeChange, afterChange, fade = false, children, ...props }) => {
     const draggable = !fade
 
     const [dragging, setDragging] = useState(false)
@@ -72,11 +66,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({
                         {...props}
                     >
                         {items.map((item: any, index) => {
-                            return (
-                                <Item key={index}>
-                                    {React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}
-                                </Item>
-                            )
+                            return <Item key={index}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
                         })}
                     </Root>
                 ) : null}
