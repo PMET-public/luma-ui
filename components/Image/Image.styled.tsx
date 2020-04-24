@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-import ErrorIconSvg from 'remixicon/icons/Media/image-line.svg'
-
-export const Root = styled.div<{ $vignette?: number }>`
+export const Root = styled.span<{ $vignette?: number }>`
     display: inline-block;
     position: relative;
     display: inherit;
@@ -23,50 +21,6 @@ export const Root = styled.div<{ $vignette?: number }>`
         `}
 `
 
-export const ImageTag = styled.img<{ loading?: string }>`
-    max-width: 100%;
-`
-
-export const LoadedImage = styled(ImageTag)<{
-    $transition?: boolean
-    $loaded?: boolean
-    $error?: boolean
-}>`
-    min-height: 100%;
-    min-width: 100%;
-    object-fit: cover;
-    object-position: center;
-    position: absolute;
-    font-size: 0;
-
-    ${props => props.$error && 'opacity: 0;'}
-
-    ${props =>
-        props.$transition &&
-        `
-            opacity: 0;
-            transition: opacity 205ms ease-out;
-        `}
-
-    ${props =>
-        props.$loaded &&
-        `
-            opacity: 1;
-        `}
-`
-
-export const Placeholder = styled(ImageTag)`
-    background-color: ${props => props.theme.colors.onSurface5};
-`
-
-export const ErrorIcon = styled(ErrorIconSvg)`
-    color: ${props => props.theme.colors.onSurface25};
-    fill: currentColor;
-    font-size: 3rem;
-    height: 1em;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 1em;
+export const Placeholder = styled.img`
+    background: rgba(204, 204, 204, 0.45);
 `

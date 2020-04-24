@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { ImageTag } from '../Image/Image.styled'
 
 export const Root = styled.div`
     --size: 10rem;
@@ -20,7 +19,7 @@ export const CarouselItem = styled.div`
 `
 
 export const ImageWrapper = styled.div`
-    ${ImageTag} {
+    & img {
         border-radius: 50%;
         display: inline-block;
         height: var(--size);

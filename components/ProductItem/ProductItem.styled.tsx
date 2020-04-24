@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { Root as ImageRoot, ImageTag } from '../Image/Image.styled'
 import { Root as PriceRoot } from '../Price/Price.styled'
 
 export const Root = styled.div`
@@ -23,16 +22,14 @@ export const Badge = styled.span`
 `
 
 export const ImageWrapper = styled.div`
-    ${ImageRoot} {
-        display: block;
-        position: relative;
-    }
+    & .LazyLoadImage {
+        height: 100% !important;
+        width: 100% !important;
 
-    ${ImageTag} {
-        height: 100%;
-        width: 100%;
-        min-height: 100%;
-        max-height: 90vh;
+        & img {
+            width: 100%;
+            height: 100%;
+        }
     }
 `
 

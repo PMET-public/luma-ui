@@ -1,8 +1,10 @@
 import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
-import { Items, Item } from './ThumbSwatches.styled'
+import { Item } from './ThumbSwatches.styled'
 
 import Image, { ImageProps } from '../../Image'
+import Carousel from '../../Carousel'
+
 import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'
 import { ThumbSwatchesSkeleton } from './ThumbSwatches.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
@@ -35,16 +37,16 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ loading, name, ty
                         </Label>
                     )}
 
-                    <Items>
+                    <Carousel gap={0} show={items.length > 3 ? 3.2 : 3} snap={false} hideScrollBar>
                         {items.map(({ image, ...item }, index) => (
-                            <Item key={index}>
+                            <Item as={Carousel.Item} key={index}>
                                 <FieldInput id={`swatch-group__${name}__${index}`} type={type} name={name} rules={rules} color={color as any} {...item} />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>
-                                    <Image transition width={4} height={5} lazyload={{ offsetY: 100 }} {...image} />
+                                    <Image width={160} height={198} {...image} />
                                 </label>
                             </Item>
                         ))}
-                    </Items>
+                    </Carousel>
 
                     <Error color={color}>{fieldError?.message}</Error>
                 </React.Fragment>

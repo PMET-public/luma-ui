@@ -1,4 +1,4 @@
-import React, { useState, MutableRefObject } from 'react'
+import React from 'react'
 import { Component, Props } from '../../lib'
 import { Root, ImageWrapper, CarouselItem, Label } from './BubbleCarousel.styled'
 
@@ -19,10 +19,8 @@ export type BubbleCarouselProps = {
 }
 
 export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loading, items, ...props }) => {
-    const [scrollerRef, setScrollerRef] = useState<MutableRefObject<Element>>()
-
     return (
-        <Root as={Carousel} scrollerRef={setScrollerRef} gap={1.4} show="auto" padding={1.5} snap={false} hideScrollBar {...props}>
+        <Root as={Carousel} gap={1.4} show="auto" padding={1.5} snap={false} hideScrollBar {...props}>
             {loading ? (
                 <>
                     <CarouselItem>
@@ -42,17 +40,7 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
                 items.map(({ text, image, ...item }, index) => (
                     <CarouselItem {...item} key={index}>
                         <ImageWrapper>
-                            <Image
-                                alt="null"
-                                transition
-                                lazyload={{
-                                    container: scrollerRef,
-                                    offsetX: 40,
-                                    offsetY: 100,
-                                    ...image?.lazyload,
-                                }}
-                                {...image}
-                            />
+                            <Image alt="null" {...image} />
                         </ImageWrapper>
                         <Label>{text}</Label>
                     </CarouselItem>

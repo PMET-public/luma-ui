@@ -70,7 +70,6 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
                           {...item}
                           image={{
                               ...item.image,
-                              lazyload: { offsetY: 100 },
                           }}
                       />
                   ))}

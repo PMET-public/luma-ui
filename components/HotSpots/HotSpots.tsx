@@ -37,7 +37,7 @@ export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({ childre
         <HotSpotsContext.Provider value={{ active, set }}>
             <Root {...props}>
                 <ImageWrapper>
-                    <Image transition lazyload={{ offsetY: 100 }} {...image} />
+                    <Image {...image} />
                 </ImageWrapper>
 
                 {items ? items.map((item, index) => <HotSpots.Item key={index} {...item} />) : children}

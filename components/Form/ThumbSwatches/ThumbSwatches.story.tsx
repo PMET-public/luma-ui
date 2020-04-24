@@ -18,7 +18,7 @@ storiesOf('📦 Components/Form/ThumbSwatches', module).add('Default', () => (
                     src: require('../../../public/images/product-item-sample.jpg'),
                 },
             })}
-            style={{ minWidth: '40rem' }}
+            style={{ maxWidth: '40rem' }}
             error={text('error', '')}
             onChange={action('onChange')}
             color={select(
