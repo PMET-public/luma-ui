@@ -19,7 +19,17 @@ export const ImageComponent: Component<ImageProps> = ({ src: _src, vignette, wid
 
     return (
         <LazyImageFull src={src || ''} {...props}>
-            {({ imageProps, imageState, ref }) => <Root $loaded={imageState === ImageState.LoadSuccess} $vignette={vignette} {...imageProps} ref={ref} width={width} height={height} />}
+            {({ imageProps, imageState, ref }) => (
+                <Root
+                    $loaded={imageState === ImageState.LoadSuccess}
+                    $vignette={vignette}
+                    {...imageProps}
+                    src={imageState === ImageState.LoadSuccess ? src : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII='}
+                    ref={ref}
+                    width={width}
+                    height={height}
+                />
+            )}
         </LazyImageFull>
     )
 }

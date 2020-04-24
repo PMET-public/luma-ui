@@ -60,3 +60,19 @@ export const toPascalCase = (string: string) => {
     const camelCased = toCamelCase(string)
     return camelCased.charAt(0).toUpperCase() + camelCased.slice(1)
 }
+
+/**
+ * Merge Refs
+ * 🍻 https://github.com/smooth-code/react-merge-refs/
+ */
+export const mergeRefs = (refs: any[]) => {
+    return (value: any) => {
+        refs.forEach(ref => {
+            if (typeof ref === 'function') {
+                ref(value)
+            } else if (ref) {
+                ref.current = value
+            }
+        })
+    }
+}

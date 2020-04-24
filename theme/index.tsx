@@ -26,6 +26,10 @@ export const UIBase = () => {
                         <feComposite operator="over" in="shadow" in2="SourceGraphic" />
                     </filter>
                 </defs>
+
+                <filter id="blur">
+                    <feGaussianBlur stdDeviation="10" />
+                </filter>
             </svg>
         </React.Fragment>
     )
