@@ -34,7 +34,7 @@ export const CartList: Component<CartListProps> = ({ loading, items, children, .
             {items?.map(({ _id, title, sku, thumbnail, price, quantity, options }, index) => (
                 <Product key={_id || index}>
                     <Thumbnail>
-                        <Image vignette={8} width="100%" height="auto" {...thumbnail} />
+                        <Image vignette width="100%" height="auto" {...thumbnail} />
                     </Thumbnail>
                     <DetailsWrapper>
                         <Title {...title}>{title.text}</Title>

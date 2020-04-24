@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Root as PriceRoot } from '../Price/Price.styled'
+import ImageComponent from '../Image'
 
 export const Root = styled.div`
     display: block;
@@ -21,21 +22,16 @@ export const Badge = styled.span`
     z-index: 1;
 `
 
-export const ImageWrapper = styled.div`
-    & .LazyLoadImage {
-        height: 100% !important;
-        width: 100% !important;
-
-        & img {
-            width: 100%;
-            height: 100%;
-        }
-    }
+export const Image = styled(ImageComponent)`
+    width: 100%;
+    height: 100%;
 `
 
 export const Colors = styled.ul`
     display: grid;
     grid-auto-flow: column;
+    margin-top: -1rem;
+    position: relative;
 `
 
 export const Color = styled.li`

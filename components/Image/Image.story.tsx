@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from '.'
 import { storiesOf } from '@storybook/react'
-import { text, number } from '@storybook/addon-knobs'
+import { text, number, boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Image', module)
     .add('Default', () => (
@@ -16,7 +16,7 @@ storiesOf('📦 Components/Image', module)
             }}
             height={number('height', 400)}
             width={number('width', 600)}
-            vignette={number('vignette', 0)}
+            vignette={boolean('vignette', false)}
         />
     ))
     .add('Broken URL', () => <Image alt={text('alt', 'Lorem')} src={text('src', 'notfound.jpeg')} height={number('height', 400)} width={number('width', 600)} vignette={number('vignette', 0)} />)

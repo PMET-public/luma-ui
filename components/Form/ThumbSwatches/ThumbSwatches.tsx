@@ -1,8 +1,8 @@
 import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
-import { Item } from './ThumbSwatches.styled'
+import { Image, Item } from './ThumbSwatches.styled'
 
-import Image, { ImageProps } from '../../Image'
+import { ImageProps } from '../../Image'
 import Carousel from '../../Carousel'
 
 import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'
@@ -37,7 +37,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ loading, name, ty
                         </Label>
                     )}
 
-                    <Carousel gap={0} show={items.length > 3 ? 3.2 : 3} snap={false} hideScrollBar>
+                    <Carousel gap={0.3} padding={0.3} show={items.length > 3 ? 3.2 : 3} snap={false} hideScrollBar>
                         {items.map(({ image, ...item }, index) => (
                             <Item as={Carousel.Item} key={index}>
                                 <FieldInput id={`swatch-group__${name}__${index}`} type={type} name={name} rules={rules} color={color as any} {...item} />

@@ -1,5 +1,17 @@
 import styled from 'styled-components'
 
+import ImageComponent from '../../Image'
+
+export const Image = styled(ImageComponent)`
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 305ms ease;
+    /* display: block; */
+    width: 100%;
+    height: auto;
+    filter: brightness(98%) contrast(94%);
+`
+
 export const Item = styled.div`
     & > label {
         position: relative;
@@ -7,25 +19,7 @@ export const Item = styled.div`
         cursor: pointer;
         border: 0.1rem solid transparent;
         border-radius: 0.7rem;
-        padding: 0.3rem;
-
-        & .LazyLoadImage {
-            border-radius: 0.5rem;
-            overflow: hidden;
-            transition: all 305ms ease;
-            width: 100% !important;
-            height: 100% !important;
-
-            & img {
-                width: 100%;
-                height: 100%;
-                display: block;
-            }
-
-            &.lazy-load-image-loaded {
-                filter: brightness(98%) contrast(94%);
-            }
-        }
+        padding: 0.1rem;
     }
 
     & > input[type='radio'] {
@@ -36,27 +30,21 @@ export const Item = styled.div`
     & > input[type='radio']:checked + label,
     & > input[type='radio']:focus + label {
         border-color: ${props => props.theme.colors.primary} !important;
-        & .LazyLoadImage {
-            &.lazy-load-image-loaded {
-                filter: brightness(100%) contrast(100%) !important;
-            }
+        & ${Image} {
+            filter: brightness(100%) contrast(100%) !important;
         }
     }
 
     & > input[type='radio']:disabled + label {
-        & .LazyLoadImage {
-            &.lazy-load-image-loaded {
-                filter: grayscale(100%) opacity(25%) contrast(90%);
-            }
+        & ${Image} {
+            filter: grayscale(100%) opacity(25%) contrast(90%);
         }
     }
 
     &:hover > input[type='radio']:not(:disabled) + label {
         border-color: ${props => props.theme.colors.primary75};
-        & .LazyLoadImage {
-            &.lazy-load-image-loaded {
-                filter: brightness(98%) contrast(92%);
-            }
+        & ${Image} {
+            filter: brightness(98%) contrast(92%);
         }
     }
 `
