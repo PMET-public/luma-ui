@@ -54,15 +54,14 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
                     {label}
                 </LabelRoot>
             )}
-            {loading ? (
-                <InputSkeleton />
-            ) : (
-                <React.Fragment>
+            <React.Fragment>
+                {loading ? (
+                    <InputSkeleton />
+                ) : (
                     <FieldInput id={`field-input__${name}`} type="text" onFocus={handleOnFocus} onChange={handleOnChange} onBlur={handleOnBlur} name={name} color={color} rules={rules} {...props} />
-
-                    <Error color={color}>{fieldError?.message}</Error>
-                </React.Fragment>
-            )}
+                )}
+                <Error color={color}>{fieldError?.message}</Error>
+            </React.Fragment>
         </Field>
     )
 }

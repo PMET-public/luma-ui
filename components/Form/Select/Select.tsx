@@ -23,10 +23,10 @@ export const Select: Component<SelectProps> = ({ as, error, color: _color, label
                 </Label>
             )}
 
-            {loading ? (
-                <SelectSkeleton />
-            ) : (
-                <React.Fragment>
+            <React.Fragment>
+                {loading ? (
+                    <SelectSkeleton />
+                ) : (
                     <Wrapper $disabled={props.disabled}>
                         <FieldInput id={`field-input__${name}`} as={SelectRoot} disabled={items?.length === 0} name={name} rules={rules} color={color} {...props}>
                             {items &&
@@ -37,10 +37,9 @@ export const Select: Component<SelectProps> = ({ as, error, color: _color, label
                                 ))}
                         </FieldInput>
                     </Wrapper>
-
-                    <Error color={color}>{fieldError?.message}</Error>
-                </React.Fragment>
-            )}
+                )}
+                <Error color={color}>{fieldError?.message}</Error>
+            </React.Fragment>
         </Field>
     )
 }
