@@ -35,6 +35,7 @@ export const Image = styled(ImageComponent)`
 `
 
 export const Label = styled.div`
+    font-weight: 400;
     font-size: 0.12em;
     margin-top: 0.6rem;
     overflow: hidden;

@@ -1,8 +1,6 @@
-# Luma UI
+# StoryStore UI
 
-[📕 UI Library Storybook](https://pmet-public.github.io/luma-ui/?path=/story/%F0%9F%91%8B-welcome--getting-started)
-
-[🛍 Demo PWA Storefront](https://longliveluma.com)
+[📕 UI Library Storybook](https://fnhipster.github.io/storystore-ui)
 
 ## Getting Started
 
@@ -21,7 +19,6 @@ yarn dev
 -   [React](https://reactjs.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Styled Components](https://www.styled-components.com/)
--   [Remix Icons](https://remixicon.com)
 
 ## Built (as-in build) with
 
