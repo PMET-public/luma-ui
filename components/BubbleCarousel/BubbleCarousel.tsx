@@ -1,9 +1,8 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, ImageWrapper, CarouselItem, Label } from './BubbleCarousel.styled'
+import { Root, Image, CarouselItem, Wrapper, Label } from './BubbleCarousel.styled'
 
-import Carousel from '../Carousel'
-import Image, { ImageProps } from '../Image'
+import { ImageProps } from '../Image'
 import { BubbleCarouselSkeleton } from './BubbleCarousel.skeleton'
 
 type Items = Array<
@@ -20,7 +19,7 @@ export type BubbleCarouselProps = {
 
 export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loading, items, ...props }) => {
     return (
-        <Root as={Carousel} gap={1.4} show="auto" padding={1.5} snap={false} hideScrollBar {...props}>
+        <Root gap={1.4} show="auto" padding={1.5} snap={false} hideScrollBar {...props}>
             {loading ? (
                 <>
                     <CarouselItem>
@@ -38,11 +37,11 @@ export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loadi
                 </>
             ) : (
                 items.map(({ text, image, ...item }, index) => (
-                    <CarouselItem {...item} key={index}>
-                        <ImageWrapper>
+                    <CarouselItem key={index}>
+                        <Wrapper {...item}>
                             <Image alt="null" {...image} />
-                        </ImageWrapper>
-                        <Label>{text}</Label>
+                            <Label>{text}</Label>
+                        </Wrapper>
                     </CarouselItem>
                 ))
             )}

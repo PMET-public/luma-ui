@@ -19,7 +19,7 @@
   "peerDependencies": {
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "styled-components": "5.1.0"
+    "styled-components": "4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -48,7 +48,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-slick": "^0.23.4",
     "@types/react-tabs": "^2.3.1",
-    "@types/styled-components": "5.1.0",
+    "@types/styled-components": "4.4.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-inline-react-svg": "^1.1.0",
     "babel-plugin-styled-components": "1.10.7",
@@ -76,7 +76,7 @@
     "react-toastify": "^5.5.0",
     "remixicon": "^2.3.0",
     "rimraf": "^3.0.0",
-    "styled-components": "5.1.0",
+    "styled-components": "4.4.1",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-loader": "^3.5.4",
